@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -248,6 +251,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -255,6 +321,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -360,12 +436,58 @@ $(document).ready(function () {
 </div>
 
 
-<div id="temas-para-describir-la-organización-del-curso" class="section level2">
-<h2>Temas para describir la organización del curso</h2>
+<div id="biol3740" class="section level2">
+<h2>BIOL3740</h2>
+<p>Este sitio es una guía para el curso de Biometría, BIOL3740 en la Universidad de Puerto Rico en Humacao. El objetivo de este sitio es presentar una organización simple y básica para el curso de estadística con ejemplos diversos.</p>
+<p>El curso hará énfasis en los supuestos de las pruebas paramétricas y no-paramétricas.</p>
+</div>
+<div id="pruebas-paramétricas" class="section level2">
+<h2>Pruebas Paramétricas</h2>
+<ul>
+<li>Prueba de Z</li>
+<li>Prueba de t</li>
+<li>Prueba de t con datos pareados</li>
+<li>ANOVA</li>
+<li>Regresión lineal</li>
+<li>Regresión logística</li>
+</ul>
+</div>
+<div id="pruebas-no-paramétricas" class="section level2">
+<h2>Pruebas no Paramétricas</h2>
+<ul>
+<li>Prueba de Mann-Whitney U</li>
+<li>Prueba de Wilcoxon (datos pareados)</li>
+<li>Prueba de Kruskal-Wallis</li>
+<li>Bondad de Ajuste</li>
+<li>Tabla de Contingencia</li>
+</ul>
+</div>
+<div id="metodos-y-pruebas-para-evaluar-los-supuestos" class="section level2">
+<h2>Metodos y Pruebas para evaluar los supuestos</h2>
+<ul>
+<li>Supuestos de normalidad
+<ul>
+<li>Shapiro-Wilks</li>
+<li>Histograma</li>
+<li>qqplot</li>
+</ul></li>
+<li>Supuestos de Igualdad de Varianza
+<ul>
+<li>Los residuales</li>
+<li>Prueba de Levene</li>
+</ul></li>
+<li>Reconocer datos sesgados (outliers)
+<ul>
+<li>Gráficos de caja (boxplots)</li>
+<li>Distancia de Cook’s</li>
+</ul></li>
+</ul>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -398,6 +520,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

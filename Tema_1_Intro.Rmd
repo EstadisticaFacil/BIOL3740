@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # El libro de la clase
 
-[Discovering Statistics using R by Andy Field](https://www.amazon.com/Discovering-Statistics-Using-Andy-Field/dp/1446200469/ref=sr_1_2?keywords=Andy+Field&qid=1565373166&s=gateway&sr=8-2)
+[Discovering Statistics using R by Andy Field](https://www.amazon.com/Discovering-Statistics-Using-Andy-Field/dp/1446200469/ref=sr_1_2?keywords=Andy+Field&qid=1565373166&s=gateway&sr=8-2). Click on the title it will send you to Amazon. 
 
 \pagebreak
 
@@ -24,29 +24,49 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-# El proceso de investigación
+# El proceso de investigación:
 
-## Metodos Cuantitativo
-## Metodos Cualitativos 
+En este curso se estará enfatizando los análisis cuantitativo, esto es simplemente que analizamos los datos para llegar a una conclusión. Naturalmente el proceso de seleccionar los datos puede ser un reto grande. Como uno selecciona los datos y el desarrollo de la investigación depende del diseño experimental. El diseño es el procedimiento de como uno recolecta los datos y como los vamos a analizar.  En este curso no estaremos evaluando métodos cualitativos de análisis. Este método cuantitativo se refiere a evaluar principalmente opiniones, motivaciones o razones que influencia o impacta una situación.  En los métodos cuantitativos es necesario que los resultados sean de una forma o otra numéricos o categóricos.    
+
+El proceso de investigación cuantitativo tiene multiples pasos y podemos visualizar los pasos con un diagrama de flujo. 
 
 
-```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '100%'}
-knitr::include_graphics("Graficos/ResearchProcess.png")
+
+
+```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '70%'}
+knitr::include_graphics("Graficos/Proceso_Investigacion.png")
 ```
 
 ***
 ## El primer paso: 
-1. Todo comienza con una pregunta que quiere llama a ser investigada. 
-
-## El segundo paso:
-2. Por consecuencia hay definir variables (datos) para recolectar
+1. Todo comienza con una pregunta que te llama la intención. Esta pregunta proviene de haber observado tu ambiente. Puede que sea algo muy sencillo (por ejemplo: si la cantidad de estudiantes por salón impacta su rendimiento), o puede ser una pregunta más complicada.  
 
 ***
+## El segundo paso
+2. Es desarrollar una hipótesis. Hay dos tipos de hipótesis, la hipótesis nula y la hipótesis alterna.  SIEMPRE uno comprueba la hipótesis NULA. La nula en la forma más sencilla es que los grupos son iguales.  En otra palabra, si regresamos a la pregunta del primer paso, el rendimiento de los estudiantes irrelevante de la cantidad de estudiantes en el salón es igual. La hipótesis alterna es que "que la cantidad de estudiante en un salón impacta el rendimiento de los estudiantes" 
+
+  * Si se acepta la hipótesis nula esto quiere decir que NO hay evidencia que los grupos sean diferentes
+  * Si se rechaza la hipótesis nula es que hay evidencia que los dos grupos sean diferentes. 
 
 ## El tercer paso:
-3. Explicar estos datos basado en una teoria
+3. Ahora hay que definir cual son las variables (datos) que se van a recolectar.  Por ejemplo, cuantos grupos de estudiantes se seleccionará (2, 3, 10 salones?), La información se recolectará de cuantos estudiantes por salones (todos, la mitad, los que se aparece, o se seleccionará los estudiantes al azar, y si seleciona al azar cual es el mecanismo para seleccionarlos de esta forma).  Cual sera el indice de "rendimiento" (el entusiamo de cada estudiante, la nota de un examen, de un trabajo, la nota final). Si se selecciona la nota final la información sera la nota numérica o alfabética (A, B, C, etc).  
+
+Tomando la información anterior en consideración esto determinará el diseño experimental y las pruebas que se deberá utiliza en el quinto paso. 
 
 ***
+
+## El cuarto paso:
+4. Recolectar los datos. Este se debe hacer de una forma sistemática, con la información bien apuntado y subir la información en una hoja de calculo (spreadsheet), como MS Excel, Google Sheet y Numbers.  
+
+***
+## El quinto paso:
+5. En este paso se hará los gráficos y los análisis estadísticos para evaluar la hipótesis.
+
+***
+## El sexto paso:
+6. Aceptar o rechar la hipotesis NULA. 
+
+
 
 ### Consideramos los Reality Shows:
 
@@ -361,7 +381,7 @@ n*3
 sqrt(n)
 #x=c(1,2,3,4,....)
 x=1:10
-d=1:10000000
+d=1:100
 x
 d
 e=x^2^2
