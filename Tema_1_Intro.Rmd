@@ -70,12 +70,12 @@ Tomando la información anterior en consideración esto determinará el diseño 
 ## Tipo de error estadístico
 
 
-El concepto básico en estadística, y probablemente el más extraño a captar para algunos es que en el mundo existe la *verdad*, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la *verdad* o sea la realidad.  Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error o de rechazar o aceptar la hipótesis. 
+El concepto básico en estadística, y probablemente el más difícil a captar para algunos es que en el mundo existe la *verdad*, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la *verdad* o sea la realidad.  Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error en rechazar o aceptar la hipótesis nula. 
 
-Típicamente se rechaza la hipótesis nula si el valor de *p* es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor critico pudiese ser mayor o menor de 0.05.  El valor de *p* represente la proporción de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de p = 0.05, significa que hay 5% de probabilidad de rechazar la hipótesis si repetimos la investigación 100 veces. Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis.  El otro tipo de error representa el error de aceptar la hipótesis cuando se debería aceptar.  
+Típicamente se rechaza la hipótesis nula si el valor de *p* es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor critico pudiese ser mayor o menor de 0.05.  El valor de *p* represente la probabilidad de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de p = 0.05, significa que hay 5% de probabilidad de de cometer un error en que rechazamos la hipótesis cuando se debería aceptar si repetimos la investigación 100 veces. Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis.  El otro tipo de error representa el error de aceptar la hipótesis cuando se debería aceptar.  
 
 
-Aquí un gráfico de los tipos de errores.  El par de graficos 
+Aquí un gráfico de los tipos de errores.  El par de gráficos representa los dos tipos de error y las dos condiciones en que no se hace un error.  
 
 ```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '60%'}
 knitr::include_graphics("Graficos/Hipothesis_Grid.png")
@@ -83,7 +83,7 @@ knitr::include_graphics("Graficos/Hipothesis_Grid.png")
 ***
 
 
-Ahora vamos a considerar un ejemplo básico de 
+Ahora vamos a considerar un ejemplo básico de preguntas que se podría evaluar.  En este tiempo moderno un tipo de programas a la televisiΩ´Ωon bien comun son los "Reality shows".  Donde tipicamente participa individuos supuestamente "normal" que no sean actores profesionales.  Aqui una lista de algunos de ellos.     
 
 ### Consideramos los Reality Shows:
 
@@ -95,68 +95,97 @@ Ahora vamos a considerar un ejemplo básico de
   6. Skin Wars
   7. Hell's Kitchen
   
-###  Que lo que hay de comun en el tipo de personalidad de las personas en estos programas?
-  
-***
+###  Personalidad de las personas
 
-Narcissistic personality disorder: synonim: Megalomania
-with a long-term pattern of abnormal behavior characterized by exaggerated feelings of self-importance, excessive need for admiration, and a lack of empathy.
+Uno se podría preguntar que tipo de persona son seleccionado para participar en estos tipos de programas. Una hipótesis que son gente con tipo de perosonalidad bien especifica.  Una tipo de es que cumple con unas características tal como *Trastorno de personalidad narcisista* (TPN): estas personas de vez en cuando caracterizado como megalomanía demuestran un patrón a largo plazo de comportamiento anormal caracterizado por sentimientos exagerados de importancia personal, necesidad excesiva de admiración y falta de empatía.   
+  
 
 ***
-
-  Una hipotesis es que los productores de estos Reality Shows selecionan gente con caracteristicas de NPD más a menudo. Podemos comprobar esto recolectando datos de los que solicitan y los que fueron aceptado o no a participar en en uno de estos Reality Show (Big Brother = UK)
+En un ejemplo de **Field et al.** se demuestra la siguiente información sobre personas que solicitaron ser parte de uno de estos *Reality Show* que se llama *Big Brother*. 
+  Una hipótesis es que los productores de estos *Reality Shows* seleccionan gente con características de TPN más a menudo. Podemos comprobar esto recolectando datos de los que solicitan y los que fueron aceptado o no a participar en en uno de estos Reality Show (Big Brother = UK)
   
-  Se entrevistaron 7662 personas para selecionar 12, a cada uno se le hizo una prueba si tenia simtomas de NPD.  
+  Se entrevistaron 7662 personas para seleccionar 12, a cada uno se le hizo una prueba si tenia simtomas de TPN.  
   ***
   
 |             | No NPD | NPD | Total |
-|-------------|--------|-----|-------|
-| Selecionado |      3 |   9 |    12 |
+|-------------|--------:|-----:|-------:|
+| Seleccionado |      3 |   9 |    12 |
 | Rechazado   |   6805 | 845 |  7650 |
 | Total       |   6808 | 854 |  7662 |
-  
+
+
+Lo que uno observa es que la gente que son identificado que tiene características con que cumple con TPN son más propenso a ser seleccionado para participar en el programa.       
 ***
 
 
-# Cuando que una hipotesis no es una hipotesis?
-  
-  
-***
+## Cuando que una hipotesis no es una hipotesis?
 
-## Una teoria tiene que ser falsificable
+### Una teoria tiene que ser falsificable
+  Esto quiere decir hay un mecanismo para determinar la veracidad de una expresión.  Por ejemplo en las 4 expresiones siguiente hay 2 con no pueden ser falsificable. El concepto de hipotesis falsificable proviene del filosofo Karl Popper en su libro *Logik der Forschung* (1934), traducido al español **La lógica de la investigación científica**. Evalúa las siguientes expresiones y determina si son hipótesis cientificas.    
 
 
 1. Lin Manuel es el mejor actor del mundo
-2. El Profesor Tremblay da la mejor clase en la UPRH
+2. Todas la ciguieñas son blancas
 3. El aumento en producción de semillas en una planta X aumenta el tamaño poblacional
-4. Los Beatles vendieron más discos que cualquier otro grupo artistico. 
+4. Los Beatles vendieron más discos que cualquier otro grupo artístico. 
 
 
 ***
 
-Variables Independientes y Dependientes
+### Evaluación de las expresiones 
 
- -La variables Independiente: es la *causa*
- 
-      - Predictor variable 
+1. Lin Manuel es el mejor actor del mundo.
 
- -La variable Dependiente: es la variable que recibe el efecto
-
-      - Outcome Variable 
-
-***
-
-Niveles de mediciones
-
-
-- Continua
-  - Son valores que son continuos o por por lo mennos existe los valores intermedios
-  - la distancia entre el valor 13 y 15 y igual que 101 y 103, hay dos unidades que los separa. 
+  Esta expresión no es una hipótesis porque el concepto de **mejor** es uno que es basado en un juicio individual. En otra palabra como se mide "**mejor**, y quien toma la decisión sobre este medida cualitativa. 
   
-        - Numeros de hijos por familia (0, 2, 5, 3, 8, 4)
-        
+  
+2. Todos los cisnes son blancos
 
-- Categorica o Discreta
+  El problema con esta expresión es la palabra "Todos".  En ningún momento aun que uno trate se podría encontrar "Todos" las aves para evaluar sin son blancos o no. Por consecuencia no es falsificable.   
+
+
+3. El aumento en producción de semillas en una planta X aumenta el tamaño poblacional.
+
+  Este es una hipótesis falsificable por que uno puede hacer un experimento para evaluar la relación que hay entre la producción de semillas y el tamaño poblacional de una especie de plantas. 
+  
+  
+4. Los Beatles vendieron más discos que cualquier otro grupo artístico.
+
+  Este es una hipótesis falsificable porque se puede contabilizar la cantidad de discos vendidos por los Beatles y otros y determinar si es cierto o no. 
+
+
+
+
+
+## Variables Independientes y Dependientes
+
+ -La variable Independiente: es la variable que impacto (teoricamente) la variable dependiente.  Típicamente la **x** en un modelo es la variable independiente.  
+ 
+
+ -La variable Dependiente: es la variable que recibe el efecto (teoricamente) de la variable de variable independiente. La variable dependiente depende de la variable independiente.  La **y's** en un modelo son las variables dependiente.  
+
+***
+
+## Niveles de mediciones
+
+### Variables continuas
+
+- Las variables con datos continuos:
+
+  - Son valores que son contiguos o por por lo menos existe los valores intermedios. 
+  
+  - Ejemplo #1
+   - la distancia entre el valor 13 y 15 es igual que 101 y 103, hay dos unidades que los separa. 
+   - En adición aunque no se haya observado el 14 ni el 102, estos valores son posibles en el universo de los datos. 
+   
+  - Ejemplo #2
+    - Si se mide el tamaño de una célula biológicas.  
+  
+  - Números de hijos por familia (0, 2, 5, 3, 8, 4)
+        
+### Varriables Discretas
+
+- Categórica o Discreta
 - Variables Nominales
 
           - Hombres y Mujeres

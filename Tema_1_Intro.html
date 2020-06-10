@@ -503,9 +503,9 @@ El proceso de Investigación
 </div>
 <div id="tipo-de-error-estadístico" class="section level2">
 <h2>Tipo de error estadístico</h2>
-<p>El concepto básico en estadística, y probablemente el más extraño a captar para algunos es que en el mundo existe la <em>verdad</em>, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la <em>verdad</em> o sea la realidad. Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error o de rechazar o aceptar la hipótesis.</p>
-<p>Típicamente se rechaza la hipótesis nula si el valor de <em>p</em> es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor critico pudiese ser mayor o menor de 0.05. El valor de <em>p</em> represente la proporción de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de p = 0.05, significa que hay 5% de probabilidad de rechazar la hipótesis si repetimos la investigación 100 veces. Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis. El otro tipo de error representa el error de aceptar la hipótesis cuando se debería aceptar.</p>
-<p>Aquí un gráfico de los tipos de errores. El par de graficos</p>
+<p>El concepto básico en estadística, y probablemente el más difícil a captar para algunos es que en el mundo existe la <em>verdad</em>, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la <em>verdad</em> o sea la realidad. Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error en rechazar o aceptar la hipótesis nula.</p>
+<p>Típicamente se rechaza la hipótesis nula si el valor de <em>p</em> es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor critico pudiese ser mayor o menor de 0.05. El valor de <em>p</em> represente la probabilidad de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de p = 0.05, significa que hay 5% de probabilidad de de cometer un error en que rechazamos la hipótesis cuando se debería aceptar si repetimos la investigación 100 veces. Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis. El otro tipo de error representa el error de aceptar la hipótesis cuando se debería aceptar.</p>
+<p>Aquí un gráfico de los tipos de errores. El par de gráficos representa los dos tipos de error y las dos condiciones en que no se hace un error.</p>
 <div class="figure">
 <img src="Graficos/Hipothesis_Grid.png" alt="El proceso de Investigación" width="60%" />
 <p class="caption">
@@ -513,7 +513,7 @@ El proceso de Investigación
 </p>
 </div>
 <hr />
-<p>Ahora vamos a considerar un ejemplo básico de</p>
+<p>Ahora vamos a considerar un ejemplo básico de preguntas que se podría evaluar. En este tiempo moderno un tipo de programas a la televisiΩ´Ωon bien comun son los “Reality shows”. Donde tipicamente participa individuos supuestamente “normal” que no sean actores profesionales. Aqui una lista de algunos de ellos.</p>
 <div id="consideramos-los-reality-shows" class="section level3">
 <h3>Consideramos los Reality Shows:</h3>
 <ol style="list-style-type: decimal">
@@ -526,75 +526,109 @@ El proceso de Investigación
 <li>Hell’s Kitchen</li>
 </ol>
 </div>
-<div id="que-lo-que-hay-de-comun-en-el-tipo-de-personalidad-de-las-personas-en-estos-programas" class="section level3">
-<h3>Que lo que hay de comun en el tipo de personalidad de las personas en estos programas?</h3>
+<div id="personalidad-de-las-personas" class="section level3">
+<h3>Personalidad de las personas</h3>
+<p>Uno se podría preguntar que tipo de persona son seleccionado para participar en estos tipos de programas. Una hipótesis que son gente con tipo de perosonalidad bien especifica. Una tipo de es que cumple con unas características tal como <em>Trastorno de personalidad narcisista</em> (TPN): estas personas de vez en cuando caracterizado como megalomanía demuestran un patrón a largo plazo de comportamiento anormal caracterizado por sentimientos exagerados de importancia personal, necesidad excesiva de admiración y falta de empatía.</p>
 <hr />
-<p>Narcissistic personality disorder: synonim: Megalomania with a long-term pattern of abnormal behavior characterized by exaggerated feelings of self-importance, excessive need for admiration, and a lack of empathy.</p>
-<hr />
-<p>Una hipotesis es que los productores de estos Reality Shows selecionan gente con caracteristicas de NPD más a menudo. Podemos comprobar esto recolectando datos de los que solicitan y los que fueron aceptado o no a participar en en uno de estos Reality Show (Big Brother = UK)</p>
-<p>Se entrevistaron 7662 personas para selecionar 12, a cada uno se le hizo una prueba si tenia simtomas de NPD.<br />
+<p>En un ejemplo de <strong>Field et al.</strong> se demuestra la siguiente información sobre personas que solicitaron ser parte de uno de estos <em>Reality Show</em> que se llama <em>Big Brother</em>. Una hipótesis es que los productores de estos <em>Reality Shows</em> seleccionan gente con características de TPN más a menudo. Podemos comprobar esto recolectando datos de los que solicitan y los que fueron aceptado o no a participar en en uno de estos Reality Show (Big Brother = UK)</p>
+<p>Se entrevistaron 7662 personas para seleccionar 12, a cada uno se le hizo una prueba si tenia simtomas de TPN.<br />
 ***</p>
 <table>
 <thead>
 <tr class="header">
 <th></th>
-<th>No NPD</th>
-<th>NPD</th>
-<th>Total</th>
+<th align="right">No NPD</th>
+<th align="right">NPD</th>
+<th align="right">Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Selecionado</td>
-<td>3</td>
-<td>9</td>
-<td>12</td>
+<td>Seleccionado</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">12</td>
 </tr>
 <tr class="even">
 <td>Rechazado</td>
-<td>6805</td>
-<td>845</td>
-<td>7650</td>
+<td align="right">6805</td>
+<td align="right">845</td>
+<td align="right">7650</td>
 </tr>
 <tr class="odd">
 <td>Total</td>
-<td>6808</td>
-<td>854</td>
-<td>7662</td>
+<td align="right">6808</td>
+<td align="right">854</td>
+<td align="right">7662</td>
 </tr>
 </tbody>
 </table>
-<hr />
+<p>Lo que uno observa es que la gente que son identificado que tiene características con que cumple con TPN son más propenso a ser seleccionado para participar en el programa.<br />
+***</p>
 </div>
 </div>
-</div>
-<div id="cuando-que-una-hipotesis-no-es-una-hipotesis" class="section level1">
-<h1>Cuando que una hipotesis no es una hipotesis?</h1>
-<hr />
-<div id="una-teoria-tiene-que-ser-falsificable" class="section level2">
-<h2>Una teoria tiene que ser falsificable</h2>
+<div id="cuando-que-una-hipotesis-no-es-una-hipotesis" class="section level2">
+<h2>Cuando que una hipotesis no es una hipotesis?</h2>
+<div id="una-teoria-tiene-que-ser-falsificable" class="section level3">
+<h3>Una teoria tiene que ser falsificable</h3>
+<p>Esto quiere decir hay un mecanismo para determinar la veracidad de una expresión. Por ejemplo en las 4 expresiones siguiente hay 2 con no pueden ser falsificable. El concepto de hipotesis falsificable proviene del filosofo Karl Popper en su libro <em>Logik der Forschung</em> (1934), traducido al español <strong>La lógica de la investigación científica</strong>. Evalúa las siguientes expresiones y determina si son hipótesis cientificas.</p>
 <ol style="list-style-type: decimal">
 <li>Lin Manuel es el mejor actor del mundo</li>
-<li>El Profesor Tremblay da la mejor clase en la UPRH</li>
+<li>Todas la ciguieñas son blancas</li>
 <li>El aumento en producción de semillas en una planta X aumenta el tamaño poblacional</li>
-<li>Los Beatles vendieron más discos que cualquier otro grupo artistico.</li>
+<li>Los Beatles vendieron más discos que cualquier otro grupo artístico.</li>
 </ol>
 <hr />
-<p>Variables Independientes y Dependientes</p>
-<p>-La variables Independiente: es la <em>causa</em></p>
-<pre><code>  - Predictor variable </code></pre>
-<p>-La variable Dependiente: es la variable que recibe el efecto</p>
-<pre><code>  - Outcome Variable </code></pre>
+</div>
+<div id="evaluación-de-las-expresiones" class="section level3">
+<h3>Evaluación de las expresiones</h3>
+<ol style="list-style-type: decimal">
+<li>Lin Manuel es el mejor actor del mundo.</li>
+</ol>
+<p>Esta expresión no es una hipótesis porque el concepto de <strong>mejor</strong> es uno que es basado en un juicio individual. En otra palabra como se mide "<strong>mejor</strong>, y quien toma la decisión sobre este medida cualitativa.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Todos los cisnes son blancos</li>
+</ol>
+<p>El problema con esta expresión es la palabra “Todos”. En ningún momento aun que uno trate se podría encontrar “Todos” las aves para evaluar sin son blancos o no. Por consecuencia no es falsificable.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>El aumento en producción de semillas en una planta X aumenta el tamaño poblacional.</li>
+</ol>
+<p>Este es una hipótesis falsificable por que uno puede hacer un experimento para evaluar la relación que hay entre la producción de semillas y el tamaño poblacional de una especie de plantas.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Los Beatles vendieron más discos que cualquier otro grupo artístico.</li>
+</ol>
+<p>Este es una hipótesis falsificable porque se puede contabilizar la cantidad de discos vendidos por los Beatles y otros y determinar si es cierto o no.</p>
+</div>
+</div>
+<div id="variables-independientes-y-dependientes" class="section level2">
+<h2>Variables Independientes y Dependientes</h2>
+<p>-La variable Independiente: es la variable que impacto (teoricamente) la variable dependiente. Típicamente la <strong>x</strong> en un modelo es la variable independiente.</p>
+<p>-La variable Dependiente: es la variable que recibe el efecto (teoricamente) de la variable de variable independiente. La variable dependiente depende de la variable independiente. La <strong>y’s</strong> en un modelo son las variables dependiente.</p>
 <hr />
-<p>Niveles de mediciones</p>
+</div>
+<div id="niveles-de-mediciones" class="section level2">
+<h2>Niveles de mediciones</h2>
+<div id="variables-continuas" class="section level3">
+<h3>Variables continuas</h3>
 <ul>
-<li><p>Continua</p>
+<li><p>Las variables con datos continuos:</p>
 <ul>
-<li><p>Son valores que son continuos o por por lo mennos existe los valores intermedios</p></li>
-<li><p>la distancia entre el valor 13 y 15 y igual que 101 y 103, hay dos unidades que los separa.</p>
-<pre><code>- Numeros de hijos por familia (0, 2, 5, 3, 8, 4)</code></pre></li>
+<li><p>Son valores que son contiguos o por por lo menos existe los valores intermedios.</p></li>
+<li><p>Ejemplo #1</p></li>
+<li><p>la distancia entre el valor 13 y 15 es igual que 101 y 103, hay dos unidades que los separa.</p></li>
+<li><p>En adición aunque no se haya observado el 14 ni el 102, estos valores son posibles en el universo de los datos.</p></li>
+<li><p>Ejemplo #2</p>
+<ul>
+<li>Si se mide el tamaño de una célula biológicas.</li>
 </ul></li>
-<li><p>Categorica o Discreta</p></li>
+<li><p>Números de hijos por familia (0, 2, 5, 3, 8, 4)</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="varriables-discretas" class="section level3">
+<h3>Varriables Discretas</h3>
+<ul>
+<li><p>Categórica o Discreta</p></li>
 <li><p>Variables Nominales</p>
 <pre><code>    - Hombres y Mujeres
     - Omnivoro, vegetariano, vegan, carnivoro</code></pre></li>
@@ -768,6 +802,7 @@ fecha4</code></pre>
 <pre><code>## [1] 7</code></pre>
 <pre class="r"><code>TRUE+7</code></pre>
 <pre><code>## [1] 8</code></pre>
+</div>
 </div>
 <div id="thus" class="section level2">
 <h2>Thus</h2>
