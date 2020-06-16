@@ -67,23 +67,28 @@ Tomando la información anterior en consideración esto determinará el diseño 
 6. Aceptar o rechazar la hipótesis NULA. 
 
 
-## Tipo de error estadístico
+# Tipo de error de interpretación en estadística
 
 
 El concepto básico en estadística, y probablemente el más difícil a captar para algunos es que en el mundo existe la *verdad*, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la *verdad* o sea la realidad.  Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error en rechazar o aceptar la hipótesis nula. 
 
-Típicamente se rechaza la hipótesis nula si el valor de *p* es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor critico pudiese ser mayor o menor de 0.05.  El valor de *p* represente la probabilidad de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de p = 0.05, significa que hay 5% de probabilidad de de cometer un error en que rechazamos la hipótesis cuando se debería aceptar si repetimos la investigación 100 veces. Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis.  El otro tipo de error representa el error de aceptar la hipótesis cuando se debería aceptar.  
+Típicamente se rechaza la hipótesis nula si el valor de *p* es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor critico pudiese ser mayor o menor de 0.05.  El valor de *p* represente la probabilidad de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de p = 0.05, significa que hay 5% de probabilidad de cometer un error en que rechazamos la hipótesis cuando se debería aceptar si repetimos la investigación 100 veces (una razón de 1:20). Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis.  El otro tipo de error 2 o beta representa el error de aceptar la hipótesis cuando se debería rechazar. 
+
+Los tres términos usado en estadística para de los dos tipos de errores
+
+  + Tipo de error I, alfa, falso positivos
+  + Tipo de error II, beta, falso negativos
 
 
 Aquí un gráfico de los tipos de errores.  El par de gráficos representa los dos tipos de error y las dos condiciones en que no se hace un error.  
 
-```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '60%'}
+```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '70%'}
 knitr::include_graphics("Graficos/Hipothesis_Grid.png")
 ```
 ***
 
 
-Ahora vamos a considerar un ejemplo básico de preguntas que se podría evaluar.  En este tiempo moderno un tipo de programas a la televisiΩ´Ωon bien comun son los "Reality shows".  Donde tipicamente participa individuos supuestamente "normal" que no sean actores profesionales.  Aqui una lista de algunos de ellos.     
+Ahora vamos a considerar un ejemplo básico de preguntas que se podría evaluar.  En este tiempo moderno un tipo de programas a la televisión bien común son los "Reality Shows".  Donde típicamente participa individuos supuestamente "normal" que no sean actores profesionales.  Aquí una lista de algunos de ellos "Reality Shows".     
 
 ### Consideramos los Reality Shows:
 
@@ -97,17 +102,15 @@ Ahora vamos a considerar un ejemplo básico de preguntas que se podría evaluar.
   
 ###  Personalidad de las personas
 
-Uno se podría preguntar que tipo de persona son seleccionado para participar en estos tipos de programas. Una hipótesis que son gente con tipo de perosonalidad bien especifica.  Una tipo de es que cumple con unas características tal como *Trastorno de personalidad narcisista* (TPN): estas personas de vez en cuando caracterizado como megalomanía demuestran un patrón a largo plazo de comportamiento anormal caracterizado por sentimientos exagerados de importancia personal, necesidad excesiva de admiración y falta de empatía.   
+Uno se podría preguntar que tipo de persona son seleccionado para participar en estos tipos de programas. Una hipótesis que son gente con tipo de personalidad bien especifica.  Una hipotesis es que son gente que cumple con unas características tal como *Trastorno de personalidad narcisista* (TPN): estas personas de vez en cuando caracterizado como megalomanía, demuestran un patrón a largo plazo de comportamiento anormal caracterizado por sentimientos exagerados de importancia personal, necesidad excesiva de admiración y falta de enpatía.   
   
 
 ***
 En un ejemplo de **Field et al.** se demuestra la siguiente información sobre personas que solicitaron ser parte de uno de estos *Reality Show* que se llama *Big Brother*. 
-  Una hipótesis es que los productores de estos *Reality Shows* seleccionan gente con características de TPN más a menudo. Podemos comprobar esto recolectando datos de los que solicitan y los que fueron aceptado o no a participar en en uno de estos Reality Show (Big Brother = UK)
-  
-  Se entrevistaron 7662 personas para seleccionar 12, a cada uno se le hizo una prueba si tenia simtomas de TPN.  
+  Una hipótesis es que los productores de estos *Reality Shows* seleccionan gente con características de TPN más a menudo. Podemos comprobar esto recolectando datos de los que solicitan y los que fueron aceptado o no a participar en Big Brother (United Kingdom). Se entrevistaron 7662 personas para seleccionar 12, a cada uno se le hizo una prueba si tenia sintomas de TPN.  
   ***
   
-|             | No NPD | NPD | Total |
+|             | No TNP | YNP | Total |
 |-------------|--------:|-----:|-------:|
 | Seleccionado |      3 |   9 |    12 |
 | Rechazado   |   6805 | 845 |  7650 |
@@ -121,48 +124,46 @@ Lo que uno observa es que la gente que son identificado que tiene característic
 ## Cuando que una hipotesis no es una hipotesis?
 
 ### Una teoria tiene que ser falsificable
-  Esto quiere decir hay un mecanismo para determinar la veracidad de una expresión.  Por ejemplo en las 4 expresiones siguiente hay 2 con no pueden ser falsificable. El concepto de hipotesis falsificable proviene del filosofo Karl Popper en su libro *Logik der Forschung* (1934), traducido al español **La lógica de la investigación científica**. Evalúa las siguientes expresiones y determina si son hipótesis cientificas.    
+  Esto quiere decir hay un mecanismo para determinar la veracidad de una expresión.  Por ejemplo en las 4 expresiones siguiente hay 2 con no pueden ser falsificable. El concepto de hipótesis falsificable proviene del filósofo Karl Popper en su libro *Logik der Forschung* (1934), traducido al español **La lógica de la investigación científica**. Evalúa ahora las siguientes expresiones y trate de determinar si son hipótesis falsificable.    
 
+### Ejercicio #1
 
 1. Lin Manuel es el mejor actor del mundo
-2. Todas la ciguieñas son blancas
-3. El aumento en producción de semillas en una planta X aumenta el tamaño poblacional
+2. Todos la cisnes son blancos
+3. El aumento en producción de semillas en una planta X aumenta el tamaño poblacional de esta especie. 
 4. Los Beatles vendieron más discos que cualquier otro grupo artístico. 
 
 
 ***
 
-### Evaluación de las expresiones 
+### Evaluación de las expresiones falsificables 
 
 1. Lin Manuel es el mejor actor del mundo.
 
-  Esta expresión no es una hipótesis porque el concepto de **mejor** es uno que es basado en un juicio individual. En otra palabra como se mide "**mejor**, y quien toma la decisión sobre este medida cualitativa. 
+  Esta expresión no es una hipótesis falsicable porque el concepto de **mejor** es uno que es basado en un juicio individual. En otra palabra como se mide "**mejor**, y quien toma la decisión sobre este medida cualitativa. 
   
   
 2. Todos los cisnes son blancos
 
-  El problema con esta expresión es la palabra "Todos".  En ningún momento aun que uno trate se podría encontrar "Todos" las aves para evaluar sin son blancos o no. Por consecuencia no es falsificable.   
+  El problema con esta expresión es la palabra "Todos".  En ningún momento aun que uno trate nunca se podría encontrar "Todos" las aves para evaluar sin son blancos o no. Por consecuencia no es falsificable.   
 
 
-3. El aumento en producción de semillas en una planta X aumenta el tamaño poblacional.
+3. El aumento en producción de semillas en una planta X aumenta el tamaño poblacional de esta especie.
 
   Este es una hipótesis falsificable por que uno puede hacer un experimento para evaluar la relación que hay entre la producción de semillas y el tamaño poblacional de una especie de plantas. 
   
   
 4. Los Beatles vendieron más discos que cualquier otro grupo artístico.
 
-  Este es una hipótesis falsificable porque se puede contabilizar la cantidad de discos vendidos por los Beatles y otros y determinar si es cierto o no. 
-
-
-
+  Este es una hipótesis falsificable porque se puede contabilizar la cantidad de discos vendidos por los Beatles y otros grupos y determinar si es cierto o no. 
 
 
 ## Variables Independientes y Dependientes
 
- -La variable Independiente: es la variable que impacto (teoricamente) la variable dependiente.  Típicamente la **x** en un modelo es la variable independiente.  
+ -La variable Independiente: es la variable que impacta (teoricamente) la variable dependiente.  Típicamente la **x** en un modelo es la variable independiente.  
  
 
- -La variable Dependiente: es la variable que recibe el efecto (teoricamente) de la variable de variable independiente. La variable dependiente depende de la variable independiente.  La **y's** en un modelo son las variables dependiente.  
+ -La variable Dependiente: es la variable que recibe el efecto (teoricamente) de la variable independiente. La variable dependiente depende de la variable independiente.  Las **y's** en un modelo son las variables dependiente.  
 
 ***
 
@@ -172,16 +173,16 @@ Lo que uno observa es que la gente que son identificado que tiene característic
 
 - Las variables con datos continuos:
 
-  - Son valores que son contiguos o por por lo menos existe los valores intermedios. 
+  - Son valores que son contiguos o por lo menos existe los valores intermedios. 
   
   - Ejemplo #1
    - la distancia entre el valor 13 y 15 es igual que 101 y 103, hay dos unidades que los separa. 
-   - En adición aunque no se haya observado el 14 ni el 102, estos valores son posibles en el universo de los datos. 
+   - En adición aunque no se haya observado el 14 ni el 102 en un recogido de datos estos valores tienen que potencial de existir, en otra palabra estos valores son posibles en el universo de los datos. 
    
   - Ejemplo #2
-    - Si se mide el tamaño de una célula biológicas.  
+    - Si se mide el tamaño de una célula biológicas en micrometros (µm, $10^{-6}$).  Los valores intermedios y contiguos existen.  Por ejemplo, el largo de las células de *Escherichia coli* (*E. coli*) adulta son de 5.27µm en promedio con una desviación estandar de 0.87µm.  Esto significa que hay células de diferentes tamaños que van de menos de 2 µm a más de 10µm de largo, y todos los valores pueden existir en este rango (ref: https://doi.org/10.1098/rsos.160417).     
   
-  - Números de hijos por familia (0, 2, 5, 3, 8, 4)
+    - Números de hijos por familia (0, 2, 5, 3, 8, 4)
         
 ### Varriables Discretas
 
@@ -207,316 +208,5 @@ Lo que uno observa es que la gente que son identificado que tiene característic
 
 ***
 
-```{r}
-bebe=c(2,2,0,1,7,5,3,14)
-mean(bebe)
-median(bebe)
-```
 
 
-```{r}
-gender=c("f","f","m","f","m","m","f","f")
-
-bebe
-gender
-
-ElF_PR=data.frame(bebe, gender)
-ElF_PR
-
-mean(ElF_PR$bebe) # este es la manera de calcular el prmoedio en un data frame
-```
-Suma(ni)/n
-
-```{r}
-mean(bebe)
-median(bebe)
-```
-
-
-
-
-
-
-
-
-```{r}
-age=c(20,20,20,20,27,21,21,19,22,21,21,19,21,19,22,26,20,20,19,19,19,19,21, 100)
-age
-mean(age)
-median(age)
-
-```
-
-```{r}
-belleza= c(22,40,53,57,93, 98, 103, 108,116,121,121, 252)
-belleza
-median(belleza)
-mean(belleza)
-```
-
-
-
-
-
-
-
-
-                        
-                        
-                        
-                        
-##---- Al principio
-
-#Basic Math
-
-#4.1 Basic Math
-
-```{r}
-1+1
-
-1+1+3+4
-
-1-1
-
-1*2*(1+34)
-
-1/2
-
-2^2 # accent circonflex
-factorial(3)
-sqrt(2)    # square root 
-
-4*(3+2)^4  
-```
-
-
-#4.2 variables
-#4.2.1 Assigning a variable
-
-```{r}
-x=3
-
-x
-y=5
-y
-x*y
-
-m=c(1,2,3,4,5,6,7,8,9,9)
-m
-n=c(2,3,4,5,6,7,8,9,9,10)
-suma=m+n
-suma
-m*n
-m-n
-m^n
-length(m)  # counts the number of data points
-length(n)
-length(ElF_PR$bebe)
-```
-
-#4.2.2 REMOVING A VARIABLE
-```{r}
-
-b=6666
-b
-rm(b) # rm=remove
-#b
-```
-
-
-
-
-
-                        
-```{r}
-
-mean(age)
-median(age)
-```
-
-
-
-#4.3 Data type
-
-
-#4.3.1 Numeric Data
-
-
-#4.3.2. Character Data
-
-
-
-#Dates
-# Objects are represented as number of days or seconds since January 1, 1970
-```{r}
-fecha1=as.Date("2012-06-28")
-fecha2=as.Date("2012-06-30")
-fecha3=as.Date("1970-01-01")
-fechaold=as.Date("1969-01-01")
-fecha1
-fecha2
-fecha3
-fechaold
-as.numeric(fecha1)   # Day zero is January 1, 1970
-as.numeric(fecha2)
-as.numeric(fecha3)
-as.numeric(fechaold)
-
-fecha4=as.POSIXct("2012-06-28 17:42:00")
-fecha5=as.POSIXct("2012-06-30 17:42:01")
-fecha6=as.POSIXct("1970-01-01 00:01")
-fecha4
-fecha5
-fecha6
-as.numeric(fecha4)  # los valores en segundos
-as.numeric(fecha5)
-as.numeric(fecha6)
-```
-
-
-
-#Logical
-#True = 1
-#False = 0
-
-```{r}
-
-TRUE*5
-FALSE*5
-FALSE+7
-TRUE+7
-```
-## Thus
-# does x == y?
-```{r}
-x=3
-x
-y=5
-y
-x==y
-m=c(1:10)
-m
-n=c(1,2,4:12)
-n
-m
-
-m==n
-
-```
-# does x != 3 , "does not"
-
-```{r}
-2!=3
-m!=n
-x!=3
-x
-
-2<3
-m>=n
-
-```
-#Vectors
-
-# c()
-
-
-#Vector Operations
-```{r}
-n
-n*3
-sqrt(n)
-#x=c(1,2,3,4,....)
-x=1:10
-d=1:100
-x
-d
-e=x^2^2
-e
-```
-
-```{r}
-z=c(1,2,NA, 8, 3, NA,3)
-z
-is.na(z)
-
-zChar=c("Hockey", NA, "Volley")
-zChar
-is.na(zChar)
-```
-
-# Chapter 5
-
-#5.1 data.frame
-#create 3 vectors
-
-```{r}
-
-x=10:1
-x
-y=-4:5
-y
-q=c("Fajardo", "Carolina", "Luquillo","Gurabo", "Rio_Grande", "Ceiba","Las_Piedras", "Caguas","Maunabo", "Sturgeon_Falls")
-q
-
-theDF=data.frame(x,y,q)  # create the data frame
-theDF
-```
-
-# change the name of the columns
-```{r}
-theDF=data.frame(First=x, Second=y, Municipio=q)
-theDF
-
-nrow(theDF) # the number of rows
-ncol(theDF)  # the number of columns
-
-dim(theDF) # the dimension of the data.frame
-
-names(theDF) # the name of the columns
-
-names(theDF)[2:3] # the name of the third column
-
-rownames(theDF)   # the name of the rows
-
-head(theDF)   #first 6 lines
-
-tail(theDF)   # last 6 lines
-
-head(theDF, n=8)   #first 8 lines
-
-class(theDF) 
-class(d)
-```
-
-# list are an object of the same type of information or different information
-#creates a three element list
-```{r}
-list(1,2,3)
-
-
-#creates a single element list where the only element is a vector that has three elements
-list(c(1,2,3))
-
-(list3=list(c(1,2,3),3:7))
-
-list(theDF, 11:20)
-```
-
-# Matrices is similar to a data.frame, however all the elements are of the same type, for example all numeric
-
-```{r}
-A=matrix(1:10, nrow=5)
-A
-B=matrix(21:30, nrow=5)
-B
-
-A+B
-A*B
-A==B
-A<B
-```
-# Matrix multiplication
-
-```{r}
-A%*%t(B)
-```
