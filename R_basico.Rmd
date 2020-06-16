@@ -114,46 +114,58 @@ La ventaja de los programados de análisis es poder asignar variables a valores 
 
 ```{r}
 x=3
-
 x
+
 y=5
 y
 ```
 
+### tMultiplicando dos variables
 
-
-
+```{r}
 x*y
+```
 
-m=c(1,2,3,4,5,6,7,8,9,9)
-m
-n=c(2,3,4,5,6,7,8,9,9,10)
-suma=m+n
+## Conjuntos de datos
+
+Para representar un conjunto de datos en una lista con una variable se usa la **c()**. 
+De esta forma uno puede identificar un grupo de datos con un nombre de una variable.  Nota que se identifica el primer grupo de datos con el nombre de *Largo_de_la_Hoja*, Este nombre no es muy practico, ya que es demasiado largo, pero demuestra la capacidad de R de utulizar casi cualquier nombre para identificar datos.  
+
+```{r}
+
+Largo_de_la_Hoja=c(1,2,3,4,5,6,7,8,9,9)
+Largo_de_la_Hoja
+Ancho_de_la_Hoja=c(2,3,4,5,6,7,8,9,9,10)
+suma=Largo_de_la_Hoja+Ancho_de_la_Hoja
 suma
-m*n
-m-n
-m^n
-length(m)  # counts the number of data points
-length(n)
-
+Largo_de_la_Hoja*Ancho_de_la_Hoja
+Largo_de_la_Hoja-Ancho_de_la_Hoja
+Largo_de_la_Hoja^Ancho_de_la_Hoja
 ```
 
-#4.2.2 REMOVING A VARIABLE
 ```{r}
+### Contar cuantos valores en una lista o columna de datos con **count()** 
 
-b=6666
-b
-rm(b) # rm=remove
-#b
+
+length(Largo_de_la_Hoja)
+length(Ancho_de_la_Hoja)
 ```
 
 
+### Calculos básicos
+
++ Para calcular el promedio se usa la función **mean()**
++ Para calcular la mediana se usa la función **median()**
+
+
 
 ```{r}
-bebe=c(2,2,0,1,7,5,3,14)
+bebe=c(2,2,0,1,7,5,3,14) # El números de bebés que quieren mis estudiantes
 mean(bebe)
 median(bebe)
 ```
+
+
 
 
 ```{r}
@@ -195,14 +207,6 @@ belleza
 median(belleza)
 mean(belleza)
 ```
-
-
-
-
-
-
-
-
 
 
                         

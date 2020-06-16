@@ -434,24 +434,47 @@ $(document).ready(function () {
 <h1>Asigñar variables</h1>
 <p>La ventaja de los programados de análisis es poder asignar variables a valores individuales o conjuntos de valores. En el primer paso asignamos un valor a la variables “x” e “y”. Nota que cuando se asigna una</p>
 <pre class="r"><code>x=3
-
 x</code></pre>
 <pre><code>## [1] 3</code></pre>
 <pre class="r"><code>y=5
 y</code></pre>
 <pre><code>## [1] 5</code></pre>
-<p>x*y</p>
-<p>m=c(1,2,3,4,5,6,7,8,9,9) m n=c(2,3,4,5,6,7,8,9,9,10) suma=m+n suma m*n m-n m^n length(m) # counts the number of data points length(n)</p>
-<pre><code>
-#4.2.2 REMOVING A VARIABLE
+<div id="tmultiplicando-dos-variables" class="section level3">
+<h3>tMultiplicando dos variables</h3>
+<pre class="r"><code>x*y</code></pre>
+<pre><code>## [1] 15</code></pre>
+</div>
+<div id="conjuntos-de-datos" class="section level2">
+<h2>Conjuntos de datos</h2>
+<p>Para representar un conjunto de datos en una lista con una variable se usa la <strong>c()</strong>. De esta forma uno puede identificar un grupo de datos con un nombre de una variable. Nota que se identifica el primer grupo de datos con el nombre de <em>Largo_de_la_Hoja</em>, Este nombre no es muy practico, ya que es demasiado largo, pero demuestra la capacidad de R de utulizar casi cualquier nombre para identificar datos.</p>
+<pre class="r"><code>Largo_de_la_Hoja=c(1,2,3,4,5,6,7,8,9,9)
+Largo_de_la_Hoja</code></pre>
+<pre><code>##  [1] 1 2 3 4 5 6 7 8 9 9</code></pre>
+<pre class="r"><code>Ancho_de_la_Hoja=c(2,3,4,5,6,7,8,9,9,10)
+suma=Largo_de_la_Hoja+Ancho_de_la_Hoja
+suma</code></pre>
+<pre><code>##  [1]  3  5  7  9 11 13 15 17 18 19</code></pre>
+<pre class="r"><code>Largo_de_la_Hoja*Ancho_de_la_Hoja</code></pre>
+<pre><code>##  [1]  2  6 12 20 30 42 56 72 81 90</code></pre>
+<pre class="r"><code>Largo_de_la_Hoja-Ancho_de_la_Hoja</code></pre>
+<pre><code>##  [1] -1 -1 -1 -1 -1 -1 -1 -1  0 -1</code></pre>
+<pre class="r"><code>Largo_de_la_Hoja^Ancho_de_la_Hoja</code></pre>
+<pre><code>##  [1]          1          8         81       1024      15625     279936
+##  [7]    5764801  134217728  387420489 3486784401</code></pre>
+<pre class="r"><code>### Contar cuantos valores en una lista o columna de datos con **count()** 
 
-```r
-b=6666
-b</code></pre>
-<pre><code>## [1] 6666</code></pre>
-<pre class="r"><code>rm(b) # rm=remove
-#b</code></pre>
-<pre class="r"><code>bebe=c(2,2,0,1,7,5,3,14)
+
+length(Largo_de_la_Hoja)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<pre class="r"><code>length(Ancho_de_la_Hoja)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<div id="calculos-básicos" class="section level3">
+<h3>Calculos básicos</h3>
+<ul>
+<li>Para calcular el promedio se usa la función <strong>mean()</strong></li>
+<li>Para calcular la mediana se usa la función <strong>median()</strong></li>
+</ul>
+<pre class="r"><code>bebe=c(2,2,0,1,7,5,3,14) # El números de bebés que quieren mis estudiantes
 mean(bebe)</code></pre>
 <pre><code>## [1] 4.25</code></pre>
 <pre class="r"><code>median(bebe)</code></pre>
@@ -547,6 +570,8 @@ fecha4</code></pre>
 <pre><code>## [1] 7</code></pre>
 <pre class="r"><code>TRUE+7</code></pre>
 <pre><code>## [1] 8</code></pre>
+</div>
+</div>
 <div id="thus" class="section level2">
 <h2>Thus</h2>
 </div>
