@@ -1,7 +1,6 @@
 ---
 title: "Tema_1_Intro"
-author: "RLT"
-date: "8/9/2019"
+author: "RLTremblay"
 output: 
   html_document:
     toc: yes
@@ -14,49 +13,51 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # El libro de la clase
 
-[Discovering Statistics using R by Andy Field](https://www.amazon.com/Discovering-Statistics-Using-Andy-Field/dp/1446200469/ref=sr_1_2?keywords=Andy+Field&qid=1565373166&s=gateway&sr=8-2). Click on the title it will send you to Amazon. 
+[Introductory Biological Statistics by Havel, Hampton and Meiners](https://www.amazon.com/Introductory-Biological-Statistics-Fourth-Havel/dp/1478638184/ref=sr_1_1?dchild=1&keywords=Introductory+Biological+Statistics&qid=1594323793&s=books&sr=1-1) Presione en el titulo para dirigirlo a Amazon. 
 
 \pagebreak
 
 ***********
+Ultima revisión
+```{r}
 
-
-
+Sys.Date()
+```
 
 
 # El proceso de investigación:
 
-En este curso se estará enfatizando los análisis cuantitativo, esto es simplemente que analizamos los datos para llegar a una conclusión. Naturalmente el proceso de seleccionar los datos puede ser un reto grande. Como uno selecciona los datos y el desarrollo de la investigación depende del diseño experimental. El diseño es el procedimiento de como uno recolecta los datos y como los vamos a analizar.  En este curso no estaremos evaluando métodos cualitativos de análisis. Este método cuantitativo se refiere a evaluar principalmente opiniones, motivaciones o razones que influencia o impacta una situación.  En los métodos cuantitativos es necesario que los resultados sean de una forma o otra numéricos o categóricos.    
+En este curso se estará enfatizando los análisis cuantitativo, esto es simplemente que analizamos los datos para llegar a una conclusión o interpretación sobre un tema. Naturalmente el proceso de seleccionar los datos puede ser un reto grande. Como uno selecciona los datos y el desarrollo de la investigación depende del diseño experimental. El diseño es el procedimiento de como uno recolecta los datos y como los vamos a analizar.  En este curso no estaremos evaluando métodos cualitativos de análisis. Este método cuantitativo se refiere a evaluar principalmente opiniones, motivaciones o razones que influencia o impacta una situación.  En los métodos cuantitativos es necesario que los resultados sean de una forma o otra numéricos o categóricos.    
 
-El proceso de investigación cuantitativo tiene multiples pasos y podemos visualizar los pasos con un diagrama de flujo. 
-
-
+El proceso de investigación cuantitativo tiene múltiples pasos y podemos visualizar los pasos con un diagrama de flujo. 
 
 
-```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '70%'}
+
+
+```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '60%'}
 knitr::include_graphics("Graficos/Proceso_Investigacion.png")
 ```
 
 ***
 ## El primer paso: 
-1. Todo comienza con una pregunta que te llama la intención. Esta pregunta proviene de haber observado tu ambiente. Puede que sea algo muy sencillo (por ejemplo: si la cantidad de estudiantes por salón impacta su rendimiento), o puede ser una pregunta más complicada.  
+1. Todo comienza con una pregunta que te llama la intención. Esta pregunta proviene de haber observado tu ambiente. Puede que sea algo muy sencillo (por ejemplo: si la cantidad de estudiantes por salón impacta su rendimiento), o puede ser una pregunta más complicada (por ejemplo cual es el impacto de la lactancia sobre el desarrollo de las células, la bioquímica y inteligencia de los niños).  
 
 ***
 ## El segundo paso
-2. Es desarrollar una hipótesis. Hay dos tipos de hipótesis, la hipótesis nula y la hipótesis alterna.  SIEMPRE uno comprueba la hipótesis NULA. La nula en la forma más sencilla es que los grupos son iguales.  En otra palabra, si regresamos a la pregunta del primer paso, el rendimiento de los estudiantes irrelevante de la cantidad de estudiantes en el salón es igual. La hipótesis alterna es que "que la cantidad de estudiante en un salón impacta el rendimiento de los estudiantes" 
+2. Es desarrollar una hipótesis. Hay dos tipos de hipótesis, la hipótesis nula y la hipótesis alterna.  SIEMPRE uno comprueba la hipótesis NULA. La nula en la en forma más sencilla es que los grupos son iguales.  En otra palabra, si regresamos a la pregunta del primer paso, el rendimiento de los estudiantes es irrelevante de la cantidad de estudiantes en el salón en otra palabra es igual si hay pocos o muchos estudiantes. La hipótesis alterna es que "que la cantidad de estudiante en un salón impacta el rendimiento de los estudiantes".  Hay otros tipos de hipótesis nula que veremos más tarde. 
 
   * Si se acepta la hipótesis nula esto quiere decir que NO hay evidencia que los grupos sean diferentes
   * Si se rechaza la hipótesis nula es que hay evidencia que los dos grupos sean diferentes. 
 
 ## El tercer paso:
-3. Ahora hay que definir cual son las variables (datos) que se van a recolectar.  Por ejemplo, cuantos grupos de estudiantes se seleccionará (2, 3, 10 salones?), La información se recolectará de cuantos estudiantes por salones (todos, la mitad, los que se aparece, o se seleccionará los estudiantes al azar, y si seleciona al azar cual es el mecanismo para seleccionarlos de esta forma).  Cual sera el indice de "rendimiento" (el entusiamo de cada estudiante, la nota de un examen, de un trabajo, la nota final). Si se selecciona la nota final la información sera la nota numérica o alfabética (A, B, C, etc).  
+3. Ahora hay que definir cual son las variables (datos) que se van a recolectar para evaluar la hipótesis.  Por ejemplo, cuantos grupos de estudiantes se seleccionará (2, 3, 10 salones?), La información se recolectará de cuantos estudiantes por salones (todos, la mitad, los que se aparece, o se seleccionará los estudiantes al azar, y si selecciona al azar cual es el mecanismo para seleccionarlos de esta forma).  Cual sera el indice de "rendimiento" (el entusiasmo de cada estudiante, la nota de un examen, de un trabajo, la nota final). Si se selecciona la nota final la información sera la nota numérica o alfabética (A, B, C, D, o F).  
 
-Tomando la información anterior en consideración esto determinará el diseño experimental y las pruebas que se deberá utiliza en el quinto paso. 
+Tomando la información anterior en consideración esto determinará el diseño experimental y las pruebas estadisticas que se deberá utiliza en el quinto paso. 
 
 ***
 
 ## El cuarto paso:
-4. Recolectar los datos. Este se debe hacer de una forma sistemática, con la información bien apuntado y subir la información en una hoja de calculo (spreadsheet), como MS Excel, Google Sheet y Numbers.  
+4. Recolectar los datos. Este se debe hacer de una forma sistemática, con la información bien apuntado y subir la información en una hoja de calculo (spreadsheet), como MS Excel, Google Sheet y Numbers.  Es mi sugerencia de **NUNCA** utilizar un programa como SPSS o JMP para poner los datos, ya que con estos programas si en el futuro se quiere tener acceso a los datos, y no tiene el programado o el programado ha cambiado de versión muchas veces los datos no se pueden leer (experiencia personal).  
 
 ***
 ## El quinto paso:
@@ -66,13 +67,13 @@ Tomando la información anterior en consideración esto determinará el diseño 
 ## El sexto paso:
 6. Aceptar o rechazar la hipótesis NULA. 
 
-
+***
 # Tipo de error de interpretación en estadística
 
 
-El concepto básico en estadística, y probablemente el más difícil a captar para algunos es que en el mundo existe la *verdad*, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la *verdad* o sea la realidad.  Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error en rechazar o aceptar la hipótesis nula. 
+El concepto básico en estadística, y probablemente el más difícil a captar para algunos es que en el mundo existe la *verdad*, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la *verdad* o sea la realidad.  Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error en rechazar o aceptar la hipótesis nula. Por consecuencia aun que uno tome todas las precauciones para tener un diseño experimental adecuado es posible que los datos no representan el universo de los datos (la verdad). 
 
-Típicamente se rechaza la hipótesis nula si el valor de *p* es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor critico pudiese ser mayor o menor de 0.05.  El valor de *p* represente la probabilidad de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de p = 0.05, significa que hay 5% de probabilidad de cometer un error en que rechazamos la hipótesis cuando se debería aceptar si repetimos la investigación 100 veces (una razón de 1:20). Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis.  El otro tipo de error 2 o beta representa el error de aceptar la hipótesis cuando se debería rechazar. 
+Típicamente se rechaza la hipótesis nula si el valor de **p** es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor crítico pudiese ser mayor o menor de 0.05.  El valor de **p** represente la probabilidad de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de **p** = 0.05, significa que hay 5% de probabilidad de cometer un error en que rechazamos la hipótesis cuando se debería aceptar si repetimos la investigación 100 veces (una razón de 1:20). Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis.  El otro tipo de error 2 o beta representa el error de aceptar la hipótesis nula cuando se debería rechazar. 
 
 Los tres términos usado en estadística para de los dos tipos de errores
 
@@ -88,7 +89,7 @@ knitr::include_graphics("Graficos/Hipothesis_Grid.png")
 ***
 
 
-Ahora vamos a considerar un ejemplo básico de preguntas que se podría evaluar.  En este tiempo moderno un tipo de programas a la televisión bien común son los "Reality Shows".  Donde típicamente participa individuos supuestamente "normal" que no sean actores profesionales.  Aquí una lista de algunos de ellos "Reality Shows".     
+Ahora vamos a considerar un ejemplo básico de preguntas que se podría evaluar.  En este tiempo moderno un tipo de programas a la televisión bien común son los "Reality Shows".  Donde típicamente participa individuos supuestamente "normal" que no sean actores profesionales.  Aquí una lista de algunos de los "Reality Shows".     
 
 ### Consideramos los Reality Shows:
 
@@ -102,22 +103,23 @@ Ahora vamos a considerar un ejemplo básico de preguntas que se podría evaluar.
   
 ###  Personalidad de las personas
 
-Uno se podría preguntar que tipo de persona son seleccionado para participar en estos tipos de programas. Una hipótesis que son gente con tipo de personalidad bien especifica.  Una hipotesis es que son gente que cumple con unas características tal como *Trastorno de personalidad narcisista* (TPN): estas personas de vez en cuando caracterizado como megalomanía, demuestran un patrón a largo plazo de comportamiento anormal caracterizado por sentimientos exagerados de importancia personal, necesidad excesiva de admiración y falta de enpatía.   
+Uno se podría preguntar que tipo de persona son seleccionado para participar en estos tipos de programas. Una hipótesis que son gente con tipo de personalidad bien específica.  Una hipótesis es que son gente que cumple con unas características tal como *Trastorno de personalidad narcisista* (TPN): estas personas de vez en cuando caracterizado como megalomanía, demuestran un patrón a largo plazo de comportamiento anormal caracterizado por sentimientos exagerados de importancia personal, necesidad excesiva de admiración y falta de empatía.   
   
 
 ***
-En un ejemplo de **Field et al.** se demuestra la siguiente información sobre personas que solicitaron ser parte de uno de estos *Reality Show* que se llama *Big Brother*. 
-  Una hipótesis es que los productores de estos *Reality Shows* seleccionan gente con características de TPN más a menudo. Podemos comprobar esto recolectando datos de los que solicitan y los que fueron aceptado o no a participar en Big Brother (United Kingdom). Se entrevistaron 7662 personas para seleccionar 12, a cada uno se le hizo una prueba si tenia sintomas de TPN.  
+En un ejemplo de **Field et al. 2014** se demuestra la siguiente información sobre personas que solicitaron ser parte de uno de estos *Reality Show* que se llama *Big Brother*. 
+
+  Una hipótesis es que los productores de estos *Reality Shows* seleccionan gente con características de TPN más a menudo que las gente que no tienen esta condición. Podemos comprobar esto recolectando datos de los que solicitan y los que fueron aceptado o no a participar en Big Brother (United Kingdom). Se entrevistaron 7662 personas para seleccionar 12, a cada uno se le hizo una prueba si tenia síntomas de TPN.  
   ***
   
-|             | No TNP | YNP | Total |
+|             | No TNP | TPN | Total |
 |-------------|--------:|-----:|-------:|
 | Seleccionado |      3 |   9 |    12 |
 | Rechazado   |   6805 | 845 |  7650 |
 | Total       |   6808 | 854 |  7662 |
 
 
-Lo que uno observa es que la gente que son identificado que tiene características con que cumple con TPN son más propenso a ser seleccionado para participar en el programa.       
+Lo que uno observa es que la gente que son identificado que tiene características con que cumple con TPN son más propenso a ser seleccionado para participar en el programa.  Si fuese que la selección sea al azar, uno esperaría solamente 1 o 2 personas al máximo con la condición de TPN, no 9 personas.       
 ***
 
 

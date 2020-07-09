@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="RLT" />
+<meta name="author" content="RLTremblay" />
 
 
 <title>Tema_1_Intro</title>
@@ -436,24 +436,26 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Tema_1_Intro</h1>
-<h4 class="author">RLT</h4>
-<h4 class="date">8/9/2019</h4>
+<h4 class="author">RLTremblay</h4>
 
 </div>
 
 
 <div id="el-libro-de-la-clase" class="section level1">
 <h1>El libro de la clase</h1>
-<p><a href="https://www.amazon.com/Discovering-Statistics-Using-Andy-Field/dp/1446200469/ref=sr_1_2?keywords=Andy+Field&amp;qid=1565373166&amp;s=gateway&amp;sr=8-2">Discovering Statistics using R by Andy Field</a>. Click on the title it will send you to Amazon.</p>
+<p><a href="https://www.amazon.com/Introductory-Biological-Statistics-Fourth-Havel/dp/1478638184/ref=sr_1_1?dchild=1&amp;keywords=Introductory+Biological+Statistics&amp;qid=1594323793&amp;s=books&amp;sr=1-1">Introductory Biological Statistics by Havel, Hampton and Meiners</a> Presione en el titulo para dirigirlo a Amazon.</p>
 <div style="page-break-after: always;"></div>
 <hr />
+<p>Ultima revisión</p>
+<pre class="r"><code>Sys.Date()</code></pre>
+<pre><code>## [1] &quot;2020-07-09&quot;</code></pre>
 </div>
 <div id="el-proceso-de-investigación" class="section level1">
 <h1>El proceso de investigación:</h1>
-<p>En este curso se estará enfatizando los análisis cuantitativo, esto es simplemente que analizamos los datos para llegar a una conclusión. Naturalmente el proceso de seleccionar los datos puede ser un reto grande. Como uno selecciona los datos y el desarrollo de la investigación depende del diseño experimental. El diseño es el procedimiento de como uno recolecta los datos y como los vamos a analizar. En este curso no estaremos evaluando métodos cualitativos de análisis. Este método cuantitativo se refiere a evaluar principalmente opiniones, motivaciones o razones que influencia o impacta una situación. En los métodos cuantitativos es necesario que los resultados sean de una forma o otra numéricos o categóricos.</p>
-<p>El proceso de investigación cuantitativo tiene multiples pasos y podemos visualizar los pasos con un diagrama de flujo.</p>
+<p>En este curso se estará enfatizando los análisis cuantitativo, esto es simplemente que analizamos los datos para llegar a una conclusión o interpretación sobre un tema. Naturalmente el proceso de seleccionar los datos puede ser un reto grande. Como uno selecciona los datos y el desarrollo de la investigación depende del diseño experimental. El diseño es el procedimiento de como uno recolecta los datos y como los vamos a analizar. En este curso no estaremos evaluando métodos cualitativos de análisis. Este método cuantitativo se refiere a evaluar principalmente opiniones, motivaciones o razones que influencia o impacta una situación. En los métodos cuantitativos es necesario que los resultados sean de una forma o otra numéricos o categóricos.</p>
+<p>El proceso de investigación cuantitativo tiene múltiples pasos y podemos visualizar los pasos con un diagrama de flujo.</p>
 <div class="figure">
-<img src="Graficos/Proceso_Investigacion.png" alt="El proceso de Investigación" width="70%" />
+<img src="Graficos/Proceso_Investigacion.png" alt="El proceso de Investigación" width="60%" />
 <p class="caption">
 El proceso de Investigación
 </p>
@@ -462,14 +464,14 @@ El proceso de Investigación
 <div id="el-primer-paso" class="section level2">
 <h2>El primer paso:</h2>
 <ol style="list-style-type: decimal">
-<li>Todo comienza con una pregunta que te llama la intención. Esta pregunta proviene de haber observado tu ambiente. Puede que sea algo muy sencillo (por ejemplo: si la cantidad de estudiantes por salón impacta su rendimiento), o puede ser una pregunta más complicada.</li>
+<li>Todo comienza con una pregunta que te llama la intención. Esta pregunta proviene de haber observado tu ambiente. Puede que sea algo muy sencillo (por ejemplo: si la cantidad de estudiantes por salón impacta su rendimiento), o puede ser una pregunta más complicada (por ejemplo cual es el impacto de la lactancia sobre el desarrollo de las células, la bioquímica y inteligencia de los niños).</li>
 </ol>
 <hr />
 </div>
 <div id="el-segundo-paso" class="section level2">
 <h2>El segundo paso</h2>
 <ol start="2" style="list-style-type: decimal">
-<li>Es desarrollar una hipótesis. Hay dos tipos de hipótesis, la hipótesis nula y la hipótesis alterna. SIEMPRE uno comprueba la hipótesis NULA. La nula en la forma más sencilla es que los grupos son iguales. En otra palabra, si regresamos a la pregunta del primer paso, el rendimiento de los estudiantes irrelevante de la cantidad de estudiantes en el salón es igual. La hipótesis alterna es que “que la cantidad de estudiante en un salón impacta el rendimiento de los estudiantes”</li>
+<li>Es desarrollar una hipótesis. Hay dos tipos de hipótesis, la hipótesis nula y la hipótesis alterna. SIEMPRE uno comprueba la hipótesis NULA. La nula en la en forma más sencilla es que los grupos son iguales. En otra palabra, si regresamos a la pregunta del primer paso, el rendimiento de los estudiantes es irrelevante de la cantidad de estudiantes en el salón en otra palabra es igual si hay pocos o muchos estudiantes. La hipótesis alterna es que “que la cantidad de estudiante en un salón impacta el rendimiento de los estudiantes”. Hay otros tipos de hipótesis nula que veremos más tarde.</li>
 </ol>
 <ul>
 <li>Si se acepta la hipótesis nula esto quiere decir que NO hay evidencia que los grupos sean diferentes</li>
@@ -479,15 +481,15 @@ El proceso de Investigación
 <div id="el-tercer-paso" class="section level2">
 <h2>El tercer paso:</h2>
 <ol start="3" style="list-style-type: decimal">
-<li>Ahora hay que definir cual son las variables (datos) que se van a recolectar. Por ejemplo, cuantos grupos de estudiantes se seleccionará (2, 3, 10 salones?), La información se recolectará de cuantos estudiantes por salones (todos, la mitad, los que se aparece, o se seleccionará los estudiantes al azar, y si seleciona al azar cual es el mecanismo para seleccionarlos de esta forma). Cual sera el indice de “rendimiento” (el entusiamo de cada estudiante, la nota de un examen, de un trabajo, la nota final). Si se selecciona la nota final la información sera la nota numérica o alfabética (A, B, C, etc).</li>
+<li>Ahora hay que definir cual son las variables (datos) que se van a recolectar para evaluar la hipótesis. Por ejemplo, cuantos grupos de estudiantes se seleccionará (2, 3, 10 salones?), La información se recolectará de cuantos estudiantes por salones (todos, la mitad, los que se aparece, o se seleccionará los estudiantes al azar, y si selecciona al azar cual es el mecanismo para seleccionarlos de esta forma). Cual sera el indice de “rendimiento” (el entusiasmo de cada estudiante, la nota de un examen, de un trabajo, la nota final). Si se selecciona la nota final la información sera la nota numérica o alfabética (A, B, C, D, o F).</li>
 </ol>
-<p>Tomando la información anterior en consideración esto determinará el diseño experimental y las pruebas que se deberá utiliza en el quinto paso.</p>
+<p>Tomando la información anterior en consideración esto determinará el diseño experimental y las pruebas estadisticas que se deberá utiliza en el quinto paso.</p>
 <hr />
 </div>
 <div id="el-cuarto-paso" class="section level2">
 <h2>El cuarto paso:</h2>
 <ol start="4" style="list-style-type: decimal">
-<li>Recolectar los datos. Este se debe hacer de una forma sistemática, con la información bien apuntado y subir la información en una hoja de calculo (spreadsheet), como MS Excel, Google Sheet y Numbers.</li>
+<li>Recolectar los datos. Este se debe hacer de una forma sistemática, con la información bien apuntado y subir la información en una hoja de calculo (spreadsheet), como MS Excel, Google Sheet y Numbers. Es mi sugerencia de <strong>NUNCA</strong> utilizar un programa como SPSS o JMP para poner los datos, ya que con estos programas si en el futuro se quiere tener acceso a los datos, y no tiene el programado o el programado ha cambiado de versión muchas veces los datos no se pueden leer (experiencia personal).</li>
 </ol>
 <hr />
 </div>
@@ -507,8 +509,8 @@ El proceso de Investigación
 </div>
 <div id="tipo-de-error-de-interpretación-en-estadística" class="section level1">
 <h1>Tipo de error de interpretación en estadística</h1>
-<p>El concepto básico en estadística, y probablemente el más difícil a captar para algunos es que en el mundo existe la <em>verdad</em>, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la <em>verdad</em> o sea la realidad. Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error en rechazar o aceptar la hipótesis nula.</p>
-<p>Típicamente se rechaza la hipótesis nula si el valor de <em>p</em> es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor critico pudiese ser mayor o menor de 0.05. El valor de <em>p</em> represente la probabilidad de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de p = 0.05, significa que hay 5% de probabilidad de cometer un error en que rechazamos la hipótesis cuando se debería aceptar si repetimos la investigación 100 veces (una razón de 1:20). Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis. El otro tipo de error 2 o beta representa el error de aceptar la hipótesis cuando se debería rechazar.</p>
+<p>El concepto básico en estadística, y probablemente el más difícil a captar para algunos es que en el mundo existe la <em>verdad</em>, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la <em>verdad</em> o sea la realidad. Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error en rechazar o aceptar la hipótesis nula. Por consecuencia aun que uno tome todas las precauciones para tener un diseño experimental adecuado es posible que los datos no representan el universo de los datos (la verdad).</p>
+<p>Típicamente se rechaza la hipótesis nula si el valor de <strong>p</strong> es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor crítico pudiese ser mayor o menor de 0.05. El valor de <strong>p</strong> represente la probabilidad de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de <strong>p</strong> = 0.05, significa que hay 5% de probabilidad de cometer un error en que rechazamos la hipótesis cuando se debería aceptar si repetimos la investigación 100 veces (una razón de 1:20). Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis. El otro tipo de error 2 o beta representa el error de aceptar la hipótesis nula cuando se debería rechazar.</p>
 <p>Los tres términos usado en estadística para de los dos tipos de errores</p>
 <ul>
 <li>Tipo de error I, alfa, falso positivos</li>

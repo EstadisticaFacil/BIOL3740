@@ -9,43 +9,64 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 ```
 
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
 
+#`r colorize("some words in red", "red")`
+```
+***
 **Instructor:** Raymond L. Tremblay   
   
 **Oficina**: NL 104			 		 
 **Teléfono**: (787) 850-0000 (dept de biología)			  		
 **Coreo electrónico**: raymond.tremblay_at_upr_dot_edu	
  
-
+***
 ### Horario de clase
 **Presentación de temas y discución**: M, J at 9:00-10:20am (80 mins) (NOTE: Necesita traer su laptop!)   
 
-**Hora de Estudiantes**:    
-- M y J from 1:00 a 3:00pm (NL 104)    
+**Hora de consulta con Estudiantes**:    
+- Martes y Jueves from 1:00 a 3:00pm (NL 104) o por MSTeam "Horas de Consulta".    
+
+***
+## Libro obligatorio. 
+- [Havel et al - Introductory Biological Statistics, 4 edition](https://www.amazon.com/Introductory-Biological-Statistics-Fourth-Havel/dp/1478638184/ref=sr_1_1?dchild=1&keywords=Introductory+Biological+Statistics&qid=1594323793&s=books&sr=1-1)
 
 
-### Libros       
+### Libros sugeridos       
 - [Garrett Grolemund, Hadley Wickham. R for Data Science](https://r4ds.had.co.nz) En Ingles. 
 - [Garrett Grolemund, Hadley Wickham. R para Ciencia de Datos](https://es.r4ds.hadley.nz) En Español.
 - [Tremblay y Hernández-Serrano, 2018](https://www.amazon.com/Gráficas-Versátiles-ggplot2-Análisis-Spanish-ebook/dp/B07P2Q87H2/ref=sr_1_1?dchild=1&keywords=Graficas+versatiles&qid=1591404029&sr=8-1).
 
-•	Articulos revisados por pares serán asignados.    
+•	Artículos revisados por pares serán asignados para fomentar el método de utilizar estas herramientas en ciencias. 
 
+***
 ### Programados
 - [R- free statistical programming language](https://cran.r-project.org/) 
 - [RStudio](https://rstudio.com)
 - MS Excel, Numbers o Google Sheet
 
+***
+
 ### Prerequisitos    
 - BIOL 3011-3013: Biología General y Laboratorio primer semestre 
 - BIOL 3012-3014: Biología General y Laboratorio segundo semestre  
 
+***
 ### Descripción del curso  
-Estudio de las diferentes técnicas estadísticas con aplicación a la Biología. Se enfatizará en la estadística descriptiva, análisis de regresiones y correlaciones, pruebas de hipótesis paramétricas y no paramétricas y análisis de frecuencias y varianza. Además, se utilizarán las computadoras como mecanismos para facilitar y agilizar el cómputo y análisis estadístico.
+Estudio de diferentes técnicas estadísticas con aplicación a la Biología. Se enfatizará en la estadística descriptiva, análisis de regresiones y correlaciones, pruebas de hipótesis paramétricas y no paramétricas y análisis de frecuencias y varianza. Se hará énfasis en los supuestos de las pruebas, para seleccionar cual método estadístico es adecuado para el diseño experimental y la distribución de los datos. Además, se utilizarán las computadoras como mecanismos para facilitar y agilizar el cómputo y análisis estadístico.
 
+***
 ### Objetivos del curso
 
 Al finalizar el curso el estudiante podrá:
@@ -79,6 +100,7 @@ Al finalizar el curso el estudiante podrá:
     27. Evaluar situaciones experimentales y poder desarrollar un diseño experimental adecuado y lógico para analizar el problema y llegar a conclusiones.
     28. Se hará énfasis en el uso de programados estadísticos para calcular los índices y probar hipótesis. Los programa de computadora puede incluir R, SPSS, Minitab o otros.  
 
+***
 ### Puntuación: 
 Este curso sera evaluado con los siguiente items:
 
@@ -100,59 +122,53 @@ Escala de Notas:
   * D (69 to 60) 
   * F (< 60) 
 
+***
 ### Examenes:
-Habrá dos examen parciales y un examen final *comprensivo*.  Estos exámenes serán de selecciones múltiples, pareo, respuesta corta, y análisis de conceptos.  El examen final será comprensivo (los temas de todo el semestre).  En este examen se hará énfasis en la comprensión de los supuestos de las pruebas y la capacidad de seleccionar la prueba correcta basado en el diseño experimental y los supuestos. 
+Habrá dos examen parciales y un examen final *comprensivo*.  Estos exámenes serán de selecciones múltiples, pareo, respuesta corta, y análisis de conceptos.  El examen final será comprensivo (incluye todos los temas del semestre).  En este examen final se hará énfasis en la comprensión y aplicaciones de los supuestos de las pruebas y la capacidad de seleccionar la prueba correcta basado en el diseño experimental y los supuestos. 
 
+***
 ### Conferencias
 En la clase las notas serán basado primeramente en la participación y algunas pruebas cortas.  Su participación es esencial para el aprendizaje (y para un ambiente positivo). Aprender *NO* es un proceso pasivo: los estudiantes deben participar haciendo preguntas y discutir el material con su conocimiento anterior (Su bagaje de conocimiento).  
 
+***
 ### Ejercicios  
 Los ejercicios están enfocado en la aplicación de conceptos y métodos discutido en la clase y solución de problemas. Se hará un esfuerza de usar datos reales para demostrar como trabajar con los análisis, tablas, y gráficos en R, RStudio y RMarkdown.  Típicamente, tendrán solamente una semana para hacer los ejercicios y entregarlos en formato *.html*.   
 
-
+***
 ### Faltar a clase y examen:
-*Los trabajos cortos y pruebas cortas NO se reponen*.  Si falta a la clase es su responsabilidad hablar son los otros estudiantes para saber lo que se discutió en la clase. Los examen se reponen solamente por una escusa valida.    
+*Los trabajos cortos y pruebas cortas NO se reponen*.  Si falta a la clase es su responsabilidad hablar con los otros estudiantes para saber lo que se discutió en la clase. Los examen se reponen solamente por una escusa valida.    
 
+***
 ### Derechos de Estudiantes con Impedimentos
 
 La UPR-Humacao cumple con las leyes ADA (Americans with Disabilities Act) y
 51 (Servicios Educativos Integrales para Personas con Impedimentos) para garantizar
 igualdad en el acceso a la educación y servicios. Estudiantes con impedimentos: informe al (la) profesor(a) de cada curso sobre sus necesidades especiales y/o de acomodo razonable para el curso, en la tarjeta de información de la primera semana y visite la Oficina de Servicios para la Población con Impedimentos (SERPI) a la brevedad posible. Se mantendrá la confidencialidad.
 
+***
 ### Integridad académica
 La Universidad de Puerto Rico promueve los más altos estándares de integridad
 académica y científica. El Artículo 6.2 del Reglamento General de Estudiantes de la
 Universidad de Puerto Rico (Certificación Núm. 13, 2009-2010, de la Junta de Síndicos)
-establece que “la deshonestidad académica incluye, pero no se limita a: acciones
+establece que `r colorize("la deshonestidad académica incluye, pero no se limita a: acciones
 fraudulentas, la obtención de notas o grados académicos valiéndose de falsas o
 fraudulentas simulaciones, copiar total o parcialmente la labor académica de otra persona,
 plagiar total o parcialmente el trabajo de otra persona, copiar total o parcialmente las
 respuestas de otra persona a las preguntas de un examen, haciendo o consiguiendo que
 otro tome en su nombre cualquier prueba o examen oral o escrito, así como la ayuda o
-facilitación para que otra persona incurra en la referida conducta”. Cualquiera de estas
+facilitación para que otra persona incurra en la referida conducta", "red")`. Cualquiera de estas
 acciones estará sujeta a sanciones disciplinarias en conformidad con el procedimiento
 disciplinario establecido en el Reglamento General de Estudiantes de la UPR vigente.
 
+***
 ### Comentario sobre grabar videos y/o audio de las clases
-Los estudiantes no PUEDEN grabar la clase por forma de video o audio sin el permiso del profesor.  Algunos estudiantes con necesidades especiales pueden hablar con el profesor para pedir el permiso.  Este permiso tiene que ser por escrito (por ejemplo por email).  
+Los estudiantes no PUEDEN grabar la clase por forma de video o audio sin el permiso del profesor.  Algunos estudiantes con necesidades especiales pueden hablar con el profesor para pedir el permiso.  La solicitud y aprobación del permiso tiene que ser por escrito (por ejemplo por email).  
 
-
+***
 ### Espacio libre de acoso sexual
 La Universidad de Puerto Rico prohíbe el descrimen por razón de sexo y género en todas sus modalidades, incluyendo el hostigamiento sexual. Según la Política Institucional contra el hostigamiento sexual, en la Universidad de Puerto Rico, Cert. Núm. 130 (2014-2015) de la Junta de Gobierno, si un(a) estudiante está siendo o fue afectado por conductas relacionadas a hostigamiento sexual, puede acudir ante la Oficina del Procurador Estudiantil, el Decanato de Estudiantes o el Coordinador de Cumplimiento con Título IX para una orientación o presentar una querella.
 
+***
 ### Protocolo de la Clase
-Los teléfono mobile serán apagado durante la clase.  Si necesita una calculadora traerla al salón. El teléfono no debería esta visible durante la clase al menos que pide permiso al instructor. Recuerda que que se usara computadoras portatiles en cada sesión.
+Los teléfonos mobiles serán apagado durante la clase.  Si necesita una calculadora traerla al salón. El teléfono no debería esta visible durante la clase al menos que pide permiso al instructor. Recuerda que que se usara computadoras portátiles en cada sesión.
 
-
-```{r echo=FALSE, eval=FALSE}
-rmarkdown::render('index.Rmd', 'word_document')
-rmarkdown::render('schedule.Rmd', 'word_document')
-rmarkdown::render('LAB1.Rmd', 'word_document')
-rmarkdown::render('LAB2.Rmd', 'word_document')
-rmarkdown::render('LAB3.Rmd', 'word_document')
-rmarkdown::render('LAB4.Rmd', 'word_document')
-rmarkdown::render('LAB5.Rmd', 'word_document')
-rmarkdown::render('LAB6.Rmd', 'word_document')
-rmarkdown::render('LAB7.Rmd', 'word_document')
-
-```
