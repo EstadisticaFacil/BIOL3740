@@ -11,7 +11,7 @@
 
 
 
-<title>Descripción</title>
+<title>Medidas de disperción</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -437,60 +437,60 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Descripción</h1>
+<h1 class="title toc-ignore">Medidas de disperción</h1>
 
 </div>
 
 
 <p>Fecha de la ultima revisión</p>
 <pre><code>## [1] &quot;2020-07-12&quot;</code></pre>
-<div id="biol3740" class="section level2">
-<h2>BIOL3740</h2>
-<p>Este sitio es una guía para el curso de Biometría, BIOL3740 en la Universidad de Puerto Rico en Humacao. El objetivo de este sitio es presentar una organización simple y básica para el curso de estadística con ejemplos diversos.</p>
-<p>El curso hará énfasis en los supuestos de las pruebas paramétricas y no-paramétricas.</p>
-</div>
-<div id="pruebas-paramétricas" class="section level2">
-<h2>Pruebas Paramétricas</h2>
-<ul>
-<li>Prueba de Z</li>
-<li>Prueba de t</li>
-<li>Prueba de t con datos pareados</li>
-<li>ANOVA</li>
-<li>Regresión lineal</li>
-<li>Regresión logística</li>
-</ul>
-</div>
-<div id="pruebas-no-paramétricas" class="section level2">
-<h2>Pruebas no Paramétricas</h2>
-<ul>
-<li>Prueba de Mann-Whitney U</li>
-<li>Prueba de Wilcoxon (datos pareados)</li>
-<li>Prueba de Kruskal-Wallis</li>
-<li>Bondad de Ajuste</li>
-<li>Tabla de Contingencia</li>
-</ul>
-</div>
-<div id="metodos-y-pruebas-para-evaluar-los-supuestos" class="section level2">
-<h2>Metodos y Pruebas para evaluar los supuestos</h2>
-<ul>
-<li>Supuestos de normalidad
-<ul>
-<li>Shapiro-Wilks</li>
-<li>Histograma</li>
-<li>qqplot</li>
-</ul></li>
-<li>Supuestos de Igualdad de Varianza
-<ul>
-<li>Los residuales</li>
-<li>Prueba de Levene</li>
-</ul></li>
-<li>Reconocer datos sesgados (outliers)
-<ul>
-<li>Gráficos de caja (boxplots)</li>
-<li>Distancia de Cook’s</li>
-</ul></li>
-</ul>
-</div>
+<pre class="r"><code>library(ggplot2)
+library(Hmisc)</code></pre>
+<pre class="r"><code>x=c(0,1,2,3,4,5,6,7,8,9,1000)
+
+mean(x)</code></pre>
+<pre><code>## [1] 95</code></pre>
+<p>#Interquartile Range</p>
+<pre class="r"><code>quantile(x)</code></pre>
+<pre><code>##     0%    25%    50%    75%   100% 
+##    0.0    2.5    5.0    7.5 1000.0</code></pre>
+<pre class="r"><code>quantile(x, probs = c(0.015, 0.25, 0.50,.75, .975)) #Seleccionar los quantiles.  </code></pre>
+<pre><code>##   1.5%    25%    50%    75%  97.5% 
+##   0.15   2.50   5.00   7.50 752.25</code></pre>
+<pre class="r"><code>library(readr)
+Exam_Anxiety &lt;- read_csv(&quot;Data_files_csv/Exam Anxiety.csv&quot;)</code></pre>
+<p>Para visualizar las primeras y ultimas 6 filas usar <strong>head()</strong> y <strong>tail()</strong> respectivamente.</p>
+<pre class="r"><code>head(Exam_Anxiety)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##    Code Revise  Exam Anxiety Gender
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
+## 1     1      4    40    86.3 Male  
+## 2     2     11    65    88.7 Female
+## 3     3     27    80    70.2 Male  
+## 4     4     53    80    61.3 Male  
+## 5     5      4    40    89.5 Male  
+## 6     6     22    70    60.5 Female</code></pre>
+<pre class="r"><code>tail(Exam_Anxiety)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##    Code Revise  Exam Anxiety Gender
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
+## 1    98     23    70    75.8 Male  
+## 2    99     13    55    71.0 Female
+## 3   100     14    75    78.2 Female
+## 4   101      1     2    82.3 Male  
+## 5   102      9    40    79.0 Male  
+## 6   103     20    50    91.1 Female</code></pre>
+<pre class="r"><code>mean(Exam_Anxiety$Revise)</code></pre>
+<pre><code>## [1] 19.85437</code></pre>
+<pre class="r"><code>range(Exam_Anxiety$Revise)</code></pre>
+<pre><code>## [1]  0 98</code></pre>
+<pre class="r"><code>y=rnorm(1001)
+
+
+quantile(y)</code></pre>
+<pre><code>##          0%         25%         50%         75%        100% 
+## -2.68895386 -0.60548488  0.00313083  0.68099915  2.96014362</code></pre>
+<pre class="r"><code>probs = c(0.01, 0.10, 0.50,.90)</code></pre>
 
 
 

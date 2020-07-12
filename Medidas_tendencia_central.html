@@ -363,9 +363,6 @@ div.tocify {
     <li>
       <a href="Introducción.html">Introducción</a>
     </li>
-    <li>
-      <a href="Plagio.html">¿Qué es Plagio?</a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -380,6 +377,12 @@ div.tocify {
     </li>
     <li>
       <a href="Tema_2_Historia.html">Historia breve de la estadística cuantitativa</a>
+    </li>
+    <li>
+      <a href="Medidas_tendencias_central.html">Medidas de Tedencias Central</a>
+    </li>
+    <li>
+      <a href="Medidas_disperción.html">Medidas de Disperción</a>
     </li>
     <li>
       <a href="Tema_3_Graficos.html">Explorando los datos con gráficos</a>
@@ -442,32 +445,110 @@ div.tocify {
 <p>Fecha de la ultima revisión</p>
 <pre><code>## [1] &quot;2020-07-12&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)
-library(Hmisc)</code></pre>
+library(Hmisc)
+library(gridExtra) # Un paquete para organizar las figuras de ggplot2</code></pre>
 <div id="medida-de-tendencia-central" class="section level1">
 <h1>Medida de tendencia central</h1>
+<p>La medidas de tendencia central se llaman así, porque el valor indica la distribución de los datos tiende a estar en <strong>el centro</strong> de la distribución. Hay por lo menos 16 tipos de medidas de tendencias centrales <a href="https://en.wikipedia.org/wiki/Central_tendency" class="uri">https://en.wikipedia.org/wiki/Central_tendency</a>. En este curso estaremos solamente mencionado 3 de estas medidas.</p>
+<ul>
+<li>El promedio a arithmetico</li>
+<li>La mediana</li>
+<li>La moda</li>
+</ul>
 </div>
-<div id="calculate-the-mean" class="section level1">
-<h1>Calculate the mean</h1>
-<pre class="r"><code>x=c(1,2,3,4,5,6,7,8,9,10, 1100)
-d=c(2:100)
+<div id="calculando-el-promedio" class="section level1">
+<h1>Calculando el promedio</h1>
+<p>Aquí creamos una lista de datos con la función <strong>c()</strong> y con la función <strong>mean</strong> podemos calcular el promedio. El promedio es la suma de los valores divido por la cantidad de valores en la lista.<br />
+<span class="math display">\[\bar{x}=\frac{\sum_{i=1}^{n}x_i}n\]</span></p>
+<pre class="r"><code>x=c(0,1,2,3,4,5,6,7,8,9,10)
+
 mean(x)</code></pre>
-<pre><code>## [1] 105</code></pre>
-<pre class="r"><code>mean(d)</code></pre>
-<pre><code>## [1] 51</code></pre>
-<pre class="r"><code>d</code></pre>
-<pre><code>##  [1]   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
-## [20]  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39
-## [39]  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57  58
-## [58]  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74  75  76  77
-## [77]  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96
-## [96]  97  98  99 100</code></pre>
+<pre><code>## [1] 5</code></pre>
+<div id="cuando-el-promedio-no-esta-localizado-en-el-centro" class="section level2">
+<h2>Cuando el promedio no esta localizado en el centro</h2>
+<p>Digamos que yo tengo la cantidad de semillas producida por 11 plantas, la primera no produjo semillas, la segunda 2 semillas y subsiguientemente hasta la ultima que tuvo una producción de 1000 semillas. Nota que en este caso el promedio no se encuentra el el centro de los datos, por consecuencia NO es un buen indicador de la tendencia central de los datos. Cuando esto ocurre uno no debería usar el promedio para describir la tendencia central de los datos.</p>
+<pre class="r"><code>x=c(0,1,2,3,4,5,6,7,8,9,1000)
+
+mean(x)</code></pre>
+<pre><code>## [1] 95</code></pre>
 </div>
-<div id="range" class="section level1">
-<h1>range</h1>
-<pre class="r"><code>range(d)</code></pre>
-<pre><code>## [1]   2 100</code></pre>
-<pre class="r"><code>median(x)</code></pre>
+<div id="la-mediana" class="section level2">
+<h2>La mediana</h2>
+</div>
+<div id="con-n-impares" class="section level2">
+<h2>Con <strong>n</strong> impares</h2>
+<p>Cuando el promedio no es indice adecuado de la tendencia central tenemos dos alternativas, la mediana y la moda. La mediana es el valor en el centro después de haber organizado los datos del más pequeño al más grande.</p>
+<p><span class="math display">\[Mediana\ =\frac{\left({x}_{n+1}\right)^{th}}{2}\]</span> Donde <strong>n</strong> es la cantidad de valores en orden del más pequeño al grande. Por consecuencia se selecciona el valor en el centro de todos los valores. Lo que la función de mediana hace es poner los valores en orden y después determina cual es el valor en el centro. Aquí para demostrar los que hace la función 1) creo un una lista de valores, 2) pongo los datos en orden 3) y mirando los valores en orden vemos que el valor <strong>6</strong> es el valor en el centro. Pero este paso no es necesario ya que la función <strong>median</strong> lo hace automaticamente.</p>
+<pre class="r"><code>b=c(247,0,3,43626,26,23,1,2,4,5,24,6,7)
+b=sort(b)
+b</code></pre>
+<pre><code>##  [1]     0     1     2     3     4     5     6     7    23    24    26   247
+## [13] 43626</code></pre>
+<pre class="r"><code>median(b)</code></pre>
 <pre><code>## [1] 6</code></pre>
+</div>
+<div id="con-n-pares" class="section level2">
+<h2>Con <strong>n</strong> pares</h2>
+<p>Cuando hay una cantidad de datos pares, los dos valores en el centro son sumado y el promedio es calculado.</p>
+<p><span class="math display">\[Mediana\ =\frac{1}{2}* (\frac{\left({x}_{n+1}\right)^{th}}{2}+\frac{\left({x}_{n+1}\right)^{th}}{2})\]</span> En el siguiente caso tanto el valor de 6 y 7 se encuentra en el centro, por consecuencia la mediana es el promedio de estos valores.</p>
+<pre class="r"><code>b=c(247,0,3,43626,26,23,1,2,4,5,24,6,7,7)
+b=sort(b)
+b</code></pre>
+<pre><code>##  [1]     0     1     2     3     4     5     6     7     7    23    24    26
+## [13]   247 43626</code></pre>
+<pre class="r"><code>median(b)</code></pre>
+<pre><code>## [1] 6.5</code></pre>
+</div>
+<div id="la-moda" class="section level2">
+<h2>La moda</h2>
+<p>La moda es el valor más común. Parta encontrar la moda, hay que instalar dos programas. Primero instalar <strong>devtools</strong> y despues correr el siguiente <strong>chunk</strong> para instaslar el package <strong>modeest</strong>, para mode estimates. Quitar <strong>#</strong> para correr la función.</p>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+#devtools::install_github(&quot;paulponcet/modeest&quot;)</code></pre>
+<p>Activar el packete</p>
+<pre class="r"><code>library(modeest)</code></pre>
+<p>Ya pueden ahora usar la <strong>mfv</strong> para encontrar la moda de conjunto de datos. Lo que vemos es que el valor de <strong>7</strong> es el más comun en la lista de datos.</p>
+<pre class="r"><code>mfv(b)</code></pre>
+<pre><code>## [1] 7</code></pre>
+</div>
+</div>
+<div id="cuando-es-que-el-promedio-merdiana-y-moda-son-iguales" class="section level1">
+<h1>Cuando es que el promedio, merdiana y moda son iguales</h1>
+<p>Los tres valores de tendencia central son iguales cuando la distribución es normal, conocida también como en forma de campana. Aquí preparo un lista de datos con distribución normal, y evaluamos donde están los tres valores de tendencia central. Se usa la función <strong>rpois</strong>, para crear un conjunto de datos al azar con 100000, datos, un promedio de 100.</p>
+<pre class="r"><code>df=rpois(10000, 100)
+df=data.frame(df)</code></pre>
+<p>Lo que uno observa es que los tres valores son muy cercano uno del otro.</p>
+<pre class="r"><code>mean(df$df)</code></pre>
+<pre><code>## [1] 100.1372</code></pre>
+<pre class="r"><code>median(df$df)</code></pre>
+<pre><code>## [1] 100</code></pre>
+<pre class="r"><code>mfv(df$df)</code></pre>
+<pre><code>## [1] 99</code></pre>
+<p>Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda). En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta.</p>
+<pre class="r"><code>mea=mean(df$df)
+med=median(df$df)
+mod=mfv(df$df)
+
+
+
+
+a=ggplot(df, aes(df ))+
+  geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;, binwidth = 5)+
+  geom_vline(aes(xintercept = mea, colour=&quot;red&quot;))+
+  geom_vline(aes(xintercept = med, colour=&quot;black&quot;))+
+  geom_vline(aes(xintercept = mod, colour=&quot;green&quot;))+
+  theme(legend.position = &quot;none&quot;)
+
+b=ggplot(df, aes(df ))+
+  geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;, binwidth = 1)+
+  geom_vline(aes(xintercept = mea, colour=&quot;red&quot;))+
+  geom_vline(aes(xintercept = med, colour=&quot;black&quot;))+
+  geom_vline(aes(xintercept = mod, colour=&quot;green&quot;))+
+  xlim(95,102)+
+  theme(legend.position = &quot;none&quot;)
+
+
+grid.arrange(a,b, ncol=2)</code></pre>
+<p><img src="Medidas_tendencia_central_files/figure-html/unnamed-chunk-12-1.png" width="672" /> ```</p>
 </div>
 
 

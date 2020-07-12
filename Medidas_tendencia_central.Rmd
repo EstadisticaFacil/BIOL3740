@@ -19,29 +19,159 @@ Sys.Date()
 ```{r}
 library(ggplot2)
 library(Hmisc)
+library(gridExtra) # Un paquete para organizar las figuras de ggplot2
 ```
 
 
 
 # Medida de tendencia central
 
-# Calculate the mean
+La medidas de tendencia central se llaman así, porque el valor indica la distribución de los datos tiende a estar en **el centro** de la distribución.  Hay por lo menos 16 tipos de medidas de tendencias centrales <https://en.wikipedia.org/wiki/Central_tendency>. En este curso estaremos solamente mencionado 3 de estas medidas.
+
+  - El promedio a arithmetico 
+  - La mediana
+  - La moda
+
+
+
+# Calculando el promedio
+
+Aquí creamos una lista de datos con la función **c()** y con la función **mean** podemos calcular el promedio.   El promedio es la suma de los valores divido por la cantidad de valores en la lista.  
+$$\bar{x}=\frac{\sum_{i=1}^{n}x_i}n$$
 
 
 
 ```{r}
-x=c(1,2,3,4,5,6,7,8,9,10, 1100)
-d=c(2:100)
+x=c(0,1,2,3,4,5,6,7,8,9,10)
+
 mean(x)
-mean(d)
-d
+
 ```
-# range
+
+
+## Cuando el promedio no esta localizado en el centro
+
+Digamos que yo tengo la cantidad de semillas producida por 11 plantas, la primera no produjo semillas, la segunda 2 semillas y subsiguientemente hasta la ultima que tuvo una producción de 1000 semillas. Nota que en este caso el promedio no se encuentra el el centro de los datos, por consecuencia NO es un buen indicador de la tendencia central de los datos.  Cuando esto ocurre uno no debería usar el promedio para describir la tendencia central de los datos.
 
 ```{r}
-range(d)
-median(x)
+x=c(0,1,2,3,4,5,6,7,8,9,1000)
+
+mean(x)
+
 ```
+
+## La mediana
+
+## Con **n** impares
+Cuando el promedio no es indice adecuado de la tendencia central tenemos dos alternativas, la mediana y la moda.  La mediana es el valor en el centro después de haber organizado los datos del más pequeño al más grande.  
+
+$$Mediana\ =\frac{\left({x}_{n+1}\right)^{th}}{2}$$
+Donde **n** es la cantidad de valores en orden del más pequeño al grande. Por consecuencia se selecciona el valor en el centro de todos los valores. Lo que la función de mediana hace es poner los valores en orden y después determina cual es el valor en el centro.  Aquí para demostrar los que hace la función 1) creo un una lista de valores, 2) pongo los datos en orden 3) y mirando los valores en orden vemos que el valor **6** es el valor en el centro.   Pero este paso no es necesario ya que la función **median** lo hace automaticamente.  
+
+
+
+```{r}
+b=c(247,0,3,43626,26,23,1,2,4,5,24,6,7)
+b=sort(b)
+b
+median(b)
+```
+
+
+## Con **n** pares
+
+Cuando hay una cantidad de datos pares, los dos valores en el centro son sumado y el promedio es calculado. 
+
+$$Mediana\ =\frac{1}{2}* (\frac{\left({x}_{n+1}\right)^{th}}{2}+\frac{\left({x}_{n+1}\right)^{th}}{2})$$
+En el siguiente caso tanto el valor de 6 y 7 se encuentra en el centro, por consecuencia la mediana es el promedio de estos valores.  
+```{r}
+b=c(247,0,3,43626,26,23,1,2,4,5,24,6,7,7)
+b=sort(b)
+b
+median(b)
+```
+
+
+## La moda
+
+La moda es el valor más común. Parta encontrar la moda, hay que instalar dos programas.  Primero instalar **devtools** y despues correr el siguiente **chunk** para instaslar el package **modeest**, para mode estimates.   Quitar **#** para correr la función.   
+
+
+```{r}
+# install.packages("devtools")
+#devtools::install_github("paulponcet/modeest")
+```
+
+Activar el packete 
+
+
+```{r}
+library(modeest)
+```
+
+
+Ya pueden ahora usar la **mfv** para encontrar la moda de conjunto de datos. Lo que vemos es que el valor de **7** es el más comun en la lista de datos.   
+
+
+```{r}
+mfv(b)
+```
+
+
+
+# Cuando es que el promedio, merdiana y moda son iguales
+
+
+Los tres valores de tendencia central son iguales cuando la distribución es normal, conocida también como en forma de campana. Aquí preparo un lista de datos con distribución normal, y evaluamos donde están los tres valores de tendencia central.  Se usa la función **rpois**, para crear un conjunto de datos al azar con 100000, datos, un promedio de 100.   
+
+```{r}
+df=rpois(10000, 100)
+df=data.frame(df)
+```
+
+
+Lo que uno observa es que los tres valores son muy cercano uno del otro.   
+
+```{r}
+
+mean(df$df)
+median(df$df)
+mfv(df$df)
+```
+
+Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda).  En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta.    
+
+
+```{r}
+
+mea=mean(df$df)
+med=median(df$df)
+mod=mfv(df$df)
+
+
+
+
+a=ggplot(df, aes(df ))+
+  geom_histogram(fill="orange", colour="white", binwidth = 5)+
+  geom_vline(aes(xintercept = mea, colour="red"))+
+  geom_vline(aes(xintercept = med, colour="black"))+
+  geom_vline(aes(xintercept = mod, colour="green"))+
+  theme(legend.position = "none")
+
+b=ggplot(df, aes(df ))+
+  geom_histogram(fill="orange", colour="white", binwidth = 1)+
+  geom_vline(aes(xintercept = mea, colour="red"))+
+  geom_vline(aes(xintercept = med, colour="black"))+
+  geom_vline(aes(xintercept = mod, colour="green"))+
+  xlim(95,102)+
+  theme(legend.position = "none")
+
+
+grid.arrange(a,b, ncol=2)
+```
+```
+
+
 
 
 
