@@ -19,7 +19,6 @@ Sys.Date()
 
 ```{r}
 library(ggplot2)
-library(Hmisc)
 ```
 
  
@@ -28,112 +27,52 @@ La información utilizada en este documento proviene en parte del libro *Discove
 
 # Como crear una gráfica de regresión lineal usando ggplot
 
-1.  Subir los datos "ExamAnxiety"
+1.  Subir los datos "Exam Anxiety"
   Los archivos de datos que se usan en el libro se encuentran en este enlace, <https://studysites.sagepub.com/dsur/study/articles.htm>  
-  
-## see page 136 in book
 
-DATA FILE = Exam Anxiety
 
+Seleccionar el archivo **Exam Anxiety**. Note que los datos a la hoja de datos tienen que abrirlo en Excel o otro programa y salvarlo en formato **.csv** antes de seguir los proximos pasos. El siguiente paso es poner el archivo de datos en su proyecto de RStudio.     
+
+## Subir los datos a RStudio
 
 ```{r}
 library(readr)
 Exam_Anxiety <- read_csv("Data_files_csv/Exam Anxiety.csv")
 ```
 
+Para visualizar las primeras y ultimas 6 filas usar **head()** y **tail()** respectivamente.  
 
 ```{r}
-head(Exam_Anxiety, n=1)
-tail(Exam_Anxiety, n=2)
+head(Exam_Anxiety)
+tail(Exam_Anxiety)
 ```
 
 
-
-
-
-```{r the data}
-
-library(readr)
-Anxiety <- read_csv("~/Google Drive/Classes/Biometria/2019_Agosto_Biometria/Anxiety.csv")
-
-examData = Anxiety
-Exam_Anxiety = Anxiety
-```
-
-
-
-
+Parta ver el nombre de las variables en el archivo se usa la función **names**. Vemos que hay cinco columnas, el **Code** que se refiere a un código que identifica el estudiante, **Revise** el tiempo que el estudiante estudio antes de tomar el examen, **Exam** la nota del estidiante, **Anxiety**, un indice de anxiedad antes de tomar el examen, **Gender** el genero del estudiante. 
 
 
 ```{r}
-
-head(Exam_Anxiety)  #cuando no pone n=, se ve los primepors 6
-tail(Exam_Anxiety, n=3)
-```
-
-# Medida de tendencia central
-
-# Calculate the mean
-
-
-
-```{r}
-x=c(1,2,3,4,5,6,7,8,9,10, 1100)
-d=c(2:100)
-mean(x)
-mean(d)
-d
-```
-# range
-
-```{r}
-range(d)
-median(x)
-```
-
-
-#Interquartile Range
-
-```{r}
-quantile(x)
-
-
-
-
-quantile(x, probs = c(0.015, 0.25, 0.50,.75, .975)) #Selecionar los quantiles.  
-```
-
-```{r}
-mean(Exam_Anxiety$Revise)
-range(Exam_Anxiety$Revise)
+names(Exam_Anxiety)
 ```
 
 
 
-```{r}
-y=rnorm(1001)
-y
+# Regresión lineal
 
-quantile(y)
-probs = c(0.01, 0.10, 0.50,.90)
-```
-
-
-
-
-
-
-How to do a simple linear point graph and add text to graph, change the axis name
+El primer gráfico es crear una regresión lineal. Para producir una regresión lineal se necesita dos variables con datos continuos Seleccionamos dos variables continua, el nivel de ansiedad y la nota del examen. Para hacer una regresión lineal que sigue el patrón de y=mx+b, hay que utilizar la función geom_smooth(method=lm), la función **lm** se refiere a modelo lineal o ingles **linear model**. Nota que con el programa ggplot2, hay que primero identificar de donde proviene los datos **Exam_Anxiety**, despúes que hay identificar cual; son las variables de este archivo que se van a utilizar, en este caso **y=Exam, x=Anxiety**.  El proximoo paso es determinar que tipo de gráfico, y este caso es una regresión lineal.     
 
 
 ```{r linear graph}
-library(ggplot2)
-#names(Exam_Anxiety) # para seber el nombre de las columnas
 
 ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety))+ 
-  geom_line(colour="#308A8C")
+  geom_smooth(method=lm, colour="red")
 
 ```
+
+## Añadiendo color por grupo y otras bellezas
+
+En este archivo utilizaremos un archivo que se usa muy comúnmente en los análisis de R, para demostrar un análisis o como hacer gráfico.  El archivo se llama **iris** y contiene información sobre el tamaño de características florales de tres especies del genero *Iris*.  En este gráfico se añade cuatro componente suplementarios, 1) un puntos para cada par de valores **Sepal.Length, Petal.Length**, 2) se cambia los nombres de las leyendas en **y** y **x** con la función **labs()** = labels, 3) se añade un titulo al gráfico con **ggtitle()**, 4) Note que cada especies tiene un color distinto, esto fue muy fácil incluir añadiendo la función **col=Species**, lo que esto significa es que para cada especies de planta se pone un color diferente.  
+
 
 
 ```{r}
@@ -142,20 +81,23 @@ tail(iris)
 
 ggplot(iris, aes(Sepal.Length, Petal.Length)) +
       geom_point(aes(col = Species)) +
-  geom_smooth(method="lm", colour="aquamarine") +  # lm is for linear model 
+  geom_smooth(method="lm", colour="aquamarine") +  
   labs(x = "El largo del Sepalo", y = "El largo del Petalo")+
   ggtitle("Basic geom_point and linear regression")
 
+```
+## Salvar graficos con **ggsave**
 
-# How to add a title, "ggtitle"
+Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de **MS Power Point**.  Se usa la función **ggsave()**.  se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .tiff, .pdf)
 
-# How to save a Graph
-
-ggsave("Iris_size.png") # .jpeg/.jpg/.tiff
-
-
+```{r}
+ggsave("Iris_size.png")
 
 ```
+
+
+
+
 
 
 
@@ -163,34 +105,34 @@ ggsave("Iris_size.png") # .jpeg/.jpg/.tiff
 ```{r more examples}
 
 #Simple scatter with regression line
-scatter <- ggplot(examData, aes(Anxiety, Exam))
+scatter <- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point(shape=20, colour="red") + 
           geom_smooth(method = "lm", colour = "blue", se = F) +  # se = F, remueve el intervalo de confianza
   labs(x = "Exam Anxiety", y = "Exam Performance %")
 
 ```
 
-#Simple scatter with regression line + CI
+# Simple scatter with regression line + CI
 
 ```{r}
-scatter <- ggplot(examData, aes(Anxiety, Exam))
+scatter <- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point() + 
           geom_smooth(method = "lm", colour = "Red")+ 
   labs(x = "Exam Anxiety", y = "Exam Performance %") 
 ```
 
 
-#Regresión lineal más el intervalo de confianza. 
+## Regresión lineal más el intervalo de confianza. 
 
 ```{r}
-scatter <- ggplot(examData, aes(Anxiety, Exam))
+scatter <- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point() + 
   geom_smooth(method = "lm", colour = "Red", alpha = 0.2, fill = "orange") + 
   labs(x = "Exam Anxiety", y = "Exam Performance %") 
 ```
 
 
-#Regresión lineal más el intervalo de confianza, usar "colour" por multiples grupos. 
+## Regresión lineal más el intervalo de confianza, usar "colour" por multiples grupos. 
 ```{r}
 names(Exam_Anxiety)
 ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety, colour=Gender))+ 
@@ -261,6 +203,8 @@ festivalHistogram +
 
 ```
 
+## Graficos de caja **box plots**
+
 How to create boxplots
 
 
@@ -273,7 +217,7 @@ festivalBoxplot + geom_boxplot() + labs(x = "Gender", y = "Hygiene (Day 1 of Fes
 ```
 
 
-Boxplot by Gender
+## Boxplot by Gender
 
 
 ```{r boxplots}

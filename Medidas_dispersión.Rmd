@@ -1,0 +1,51 @@
+---
+title: "Medidas de disperción"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```
+
+```{r}
+library(ggplot2)
+library(Hmisc)
+```
+
+
+
+
+#Interquartile Range
+
+```{r}
+quantile(x)
+
+
+
+
+quantile(x, probs = c(0.015, 0.25, 0.50,.75, .975)) #Selecionar los quantiles.  
+```
+
+```{r}
+mean(Exam_Anxiety$Revise)
+range(Exam_Anxiety$Revise)
+```
+
+
+
+```{r}
+y=rnorm(1001)
+y
+
+quantile(y)
+probs = c(0.01, 0.10, 0.50,.90)
+```

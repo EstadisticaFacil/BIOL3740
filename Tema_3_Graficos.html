@@ -437,43 +437,26 @@ div.tocify {
 
 <h1 class="title toc-ignore">Tema_3_Graficos</h1>
 <h4 class="author">Raymond L. Tremblay</h4>
-<h4 class="date">el 4 de febrero, 2020</h4>
 
 </div>
 
 
 <p>Fecha de la ultima revisión</p>
 <pre><code>## [1] &quot;2020-07-12&quot;</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(Hmisc)</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
 <p>La información utilizada en este documento proviene en parte del libro <em>Discovering Statistics using R</em> por Andy Field, Jeremy Miles y Zoë Field (2014).</p>
 <div id="como-crear-una-gráfica-de-regresión-lineal-usando-ggplot" class="section level1">
 <h1>Como crear una gráfica de regresión lineal usando ggplot</h1>
 <ol style="list-style-type: decimal">
-<li>Subir los datos “ExamAnxiety” Los archivos de datos que se usan en el libro se encuentran en este enlace, <a href="https://studysites.sagepub.com/dsur/study/articles.htm" class="uri">https://studysites.sagepub.com/dsur/study/articles.htm</a></li>
+<li>Subir los datos “Exam Anxiety” Los archivos de datos que se usan en el libro se encuentran en este enlace, <a href="https://studysites.sagepub.com/dsur/study/articles.htm" class="uri">https://studysites.sagepub.com/dsur/study/articles.htm</a></li>
 </ol>
-<div id="see-page-136-in-book" class="section level2">
-<h2>see page 136 in book</h2>
-<p>DATA FILE = Exam Anxiety</p>
+<p>Seleccionar el archivo <strong>Exam Anxiety</strong>. Note que los datos a la hoja de datos tienen que abrirlo en Excel o otro programa y salvarlo en formato <strong>.csv</strong> antes de seguir los proximos pasos. El siguiente paso es poner el archivo de datos en su proyecto de RStudio.</p>
+<div id="subir-los-datos-a-rstudio" class="section level2">
+<h2>Subir los datos a RStudio</h2>
 <pre class="r"><code>library(readr)
 Exam_Anxiety &lt;- read_csv(&quot;Data_files_csv/Exam Anxiety.csv&quot;)</code></pre>
-<pre class="r"><code>head(Exam_Anxiety, n=1)</code></pre>
-<pre><code>## # A tibble: 1 x 5
-##    Code Revise  Exam Anxiety Gender
-##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
-## 1     1      4    40    86.3 Male</code></pre>
-<pre class="r"><code>tail(Exam_Anxiety, n=2)</code></pre>
-<pre><code>## # A tibble: 2 x 5
-##    Code Revise  Exam Anxiety Gender
-##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
-## 1   102      9    40    79.0 Male  
-## 2   103     20    50    91.1 Female</code></pre>
-<pre class="r"><code>library(readr)
-Anxiety &lt;- read_csv(&quot;~/Google Drive/Classes/Biometria/2019_Agosto_Biometria/Anxiety.csv&quot;)
-
-examData = Anxiety
-Exam_Anxiety = Anxiety</code></pre>
-<pre class="r"><code>head(Exam_Anxiety)  #cuando no pone n=, se ve los primepors 6</code></pre>
+<p>Para visualizar las primeras y ultimas 6 filas usar <strong>head()</strong> y <strong>tail()</strong> respectivamente.</p>
+<pre class="r"><code>head(Exam_Anxiety)</code></pre>
 <pre><code>## # A tibble: 6 x 5
 ##    Code Revise  Exam Anxiety Gender
 ##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
@@ -483,265 +466,30 @@ Exam_Anxiety = Anxiety</code></pre>
 ## 4     4     53    80    61.3 Male  
 ## 5     5      4    40    89.5 Male  
 ## 6     6     22    70    60.5 Female</code></pre>
-<pre class="r"><code>tail(Exam_Anxiety, n=3)</code></pre>
-<pre><code>## # A tibble: 3 x 5
+<pre class="r"><code>tail(Exam_Anxiety)</code></pre>
+<pre><code>## # A tibble: 6 x 5
 ##    Code Revise  Exam Anxiety Gender
 ##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
-## 1   101      1     2    82.3 Male  
-## 2   102      9    40    79.0 Male  
-## 3   103     20    50    91.1 Female</code></pre>
+## 1    98     23    70    75.8 Male  
+## 2    99     13    55    71.0 Female
+## 3   100     14    75    78.2 Female
+## 4   101      1     2    82.3 Male  
+## 5   102      9    40    79.0 Male  
+## 6   103     20    50    91.1 Female</code></pre>
+<p>Parta ver el nombre de las variables en el archivo se usa la función <strong>names</strong>. Vemos que hay cinco columnas, el <strong>Code</strong> que se refiere a un código que identifica el estudiante, <strong>Revise</strong> el tiempo que el estudiante estudio antes de tomar el examen, <strong>Exam</strong> la nota del estidiante, <strong>Anxiety</strong>, un indice de anxiedad antes de tomar el examen, <strong>Gender</strong> el genero del estudiante.</p>
+<pre class="r"><code>names(Exam_Anxiety)</code></pre>
+<pre><code>## [1] &quot;Code&quot;    &quot;Revise&quot;  &quot;Exam&quot;    &quot;Anxiety&quot; &quot;Gender&quot;</code></pre>
 </div>
 </div>
-<div id="medida-de-tendencia-central" class="section level1">
-<h1>Medida de tendencia central</h1>
-</div>
-<div id="calculate-the-mean" class="section level1">
-<h1>Calculate the mean</h1>
-<pre class="r"><code>x=c(1,2,3,4,5,6,7,8,9,10, 1100)
-d=c(2:100)
-mean(x)</code></pre>
-<pre><code>## [1] 105</code></pre>
-<pre class="r"><code>mean(d)</code></pre>
-<pre><code>## [1] 51</code></pre>
-<pre class="r"><code>d</code></pre>
-<pre><code>##  [1]   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
-## [20]  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39
-## [39]  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57  58
-## [58]  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74  75  76  77
-## [77]  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96
-## [96]  97  98  99 100</code></pre>
-</div>
-<div id="range" class="section level1">
-<h1>range</h1>
-<pre class="r"><code>range(d)</code></pre>
-<pre><code>## [1]   2 100</code></pre>
-<pre class="r"><code>median(x)</code></pre>
-<pre><code>## [1] 6</code></pre>
-<p>#Interquartile Range</p>
-<pre class="r"><code>quantile(x)</code></pre>
-<pre><code>##     0%    25%    50%    75%   100% 
-##    1.0    3.5    6.0    8.5 1100.0</code></pre>
-<pre class="r"><code>quantile(x, probs = c(0.015, 0.25, 0.50,.75, .975)) #Selecionar los quantiles.  </code></pre>
-<pre><code>##   1.5%    25%    50%    75%  97.5% 
-##   1.15   3.50   6.00   8.50 827.50</code></pre>
-<pre class="r"><code>mean(Exam_Anxiety$Revise)</code></pre>
-<pre><code>## [1] 19.85437</code></pre>
-<pre class="r"><code>range(Exam_Anxiety$Revise)</code></pre>
-<pre><code>## [1]  0 98</code></pre>
-<pre class="r"><code>y=rnorm(1001)
-y</code></pre>
-<pre><code>##    [1]  0.6772693839 -0.3105587943  0.3754462050 -0.2450630981 -0.3611221496
-##    [6] -1.0823465892 -0.1922859662  0.1322697082  0.0926119209  0.1584244897
-##   [11] -0.0200611531  0.9990169527  0.1830676634 -0.7961146531  0.4312836863
-##   [16] -0.3357998200 -0.5264317172  0.7476902613  0.8377337448 -1.0765983198
-##   [21] -2.6561128466  1.4857761053 -1.2127144055 -0.1961247490 -0.5790460347
-##   [26]  0.1051776177 -0.9430371976 -1.5170779311  0.2467939717 -0.8493865191
-##   [31]  0.1650046572 -0.0810607131 -0.1862775256  1.5468848687 -0.7327968248
-##   [36]  0.5418447726 -0.6365438976 -0.1252121176 -0.3732779271  0.6329297207
-##   [41] -0.0469526575  1.2830791765  2.3928180868  0.5693013641 -0.1588797061
-##   [46] -1.0799715902  1.0907779010  0.4074055087  0.3233192319 -1.4088609540
-##   [51] -0.1422740613 -0.2837946019  0.4109909327 -0.5079893258 -2.5917694667
-##   [56]  0.4930623233  0.2141257911 -0.6670763237  0.1568555083  0.0292869365
-##   [61]  0.8934522859 -1.6151041311 -0.1437715334  0.4748410184  0.0514431411
-##   [66] -0.1216504103 -0.7912389742  2.0460157928  0.3886534116  1.8523478530
-##   [71] -0.3907217518 -0.7025814878  1.0290032112  0.2346591036  1.4529321306
-##   [76]  1.9662440078  0.9910768636 -0.3365079743  1.3572351873 -0.7123438558
-##   [81]  0.3547147457 -0.9585149888 -1.3575547526 -1.3727933454 -0.0115742699
-##   [86] -0.1335190585 -0.3067527292 -0.8780777330 -0.5393020313  1.1691414286
-##   [91] -0.4716025454 -1.0377061025 -1.2646664335 -0.5742345484 -0.7642923181
-##   [96]  0.6662745126  0.7489937497  2.1184071370 -0.4448100869  0.7474778582
-##  [101] -2.1238404203 -1.3565062119  1.6580912121  0.1369348137  1.1510390484
-##  [106]  0.7371747519  0.1057997668  0.6099296083 -0.4174599485  1.0207045210
-##  [111] -1.7052603889  0.1115086141  0.7746120937 -0.0429241260 -0.9533387015
-##  [116] -1.5378849974  0.0633364787  1.5848378322  0.1397207875 -2.2559626139
-##  [121] -0.0422571037  0.9891546516 -0.2018182019  1.5681349951 -0.2220817343
-##  [126] -0.9065274526  0.2289256500  0.8814316737  0.8436077287  0.3718390790
-##  [131] -0.5198048600  0.9123769334  0.5120779878  0.4151841162 -0.1485204191
-##  [136]  0.7251057851 -0.9030437866  1.0282115345 -1.4251436947  0.9477834871
-##  [141]  1.7909701643 -0.1735105592 -0.2473619371  1.0307639271  1.9261328833
-##  [146]  0.0694154891 -0.2593753033  0.4170809830  0.7125945405  0.3687511693
-##  [151] -0.0622664911  1.4281648008 -0.1958733375 -0.4258947961 -0.0377103010
-##  [156] -0.4795143634  1.4616821417 -0.3269597977  2.1148421130  1.1545867617
-##  [161] -0.4188028406  1.2684359047 -0.1625297794  0.8895580478 -0.1292490599
-##  [166] -0.6041866993  0.3312612891 -0.2107478465  0.7067360428 -0.7278894014
-##  [171] -0.7637499368 -0.8469753847 -1.9398863866  0.1879865953 -0.0149274919
-##  [176] -0.1790593166 -0.6147738815 -0.6405043837  0.6841803970  0.6992008220
-##  [181] -0.2196107652 -0.7113898200 -0.8478286559  0.3407604083 -0.5636313192
-##  [186]  0.5826368599  1.9921484218  1.4417562420  0.4693949008 -0.6555297561
-##  [191] -1.5789889508  0.8995436296 -0.3302987171 -1.0013287524 -0.4237785606
-##  [196]  0.7574924244  0.1755391514 -0.9270398549  1.0437727747  0.1695993312
-##  [201] -0.4026345961  0.5521443187  2.0063208608 -1.9821374427  1.0528886030
-##  [206]  0.0400493511  0.1789641196  1.3364481792 -0.2744775055  1.1663413291
-##  [211] -0.4189430531 -0.4798674670  0.1373629124 -0.0581554442 -1.8951480259
-##  [216]  0.0472296652 -1.0214575363 -0.6018677889 -0.0707253216 -0.1272917992
-##  [221] -1.3212430155  1.3454951124 -0.4513408208 -1.1562016446 -1.1283027404
-##  [226]  0.8533252322  1.2269313692 -1.3789962253  2.1572393898 -0.4162602925
-##  [231]  0.5225282324 -0.3155390715  0.4835543708 -1.6504564240  0.7199065784
-##  [236]  1.7517203811 -0.2769624920 -0.1073258955  0.2040015082  0.5170096721
-##  [241] -1.7361316941 -1.2880310028  1.4896314761 -0.4490188417 -0.6913483551
-##  [246]  0.1134214064 -0.7166698335  2.1478047199 -0.4200424781 -0.2516980236
-##  [251] -1.2122916047 -0.3369185295  1.8204544759  0.2480993468 -0.0067828349
-##  [256]  1.6057731239  0.2500390031 -0.8397984323 -0.1620937529  0.2179654322
-##  [261] -0.5262195427  0.3696304191 -0.5413805943  1.3803095049 -1.7372479272
-##  [266]  0.3728323552 -1.9449366947  0.6760349939 -0.1024355538  0.3895239328
-##  [271]  0.1398961430 -0.1513413327 -0.4789890581  0.6105257704  0.9394121162
-##  [276] -1.8066831946 -0.7041328829  0.2451201955 -0.6017955697 -0.3433925712
-##  [281]  0.8524260821  1.2388114858 -0.1856013480  2.7059696474  1.1174835593
-##  [286] -1.2582973079  0.6379213559  2.2007084114  0.4891409088  0.6412226507
-##  [291]  0.1300168693  0.0285718381  0.2729629070  1.5202545954  2.1358672158
-##  [296]  0.5113541601  1.5701675914 -0.7666551583 -1.5438164232  0.0814931610
-##  [301] -1.4412212911  0.6264576404  1.0947219152 -0.9043639575 -1.1411893756
-##  [306]  0.1441820480  1.3435394087  0.8980354741  0.7551276100  1.7166640890
-##  [311]  0.5490582411  0.9899473112  0.3439473312 -1.1135136712  0.7370895569
-##  [316]  1.1143461823 -0.7409815431  0.2054581382  0.1559247420 -0.8268919657
-##  [321] -0.2684197734 -0.6452679563  1.6237975854 -0.2114224930 -1.1233941237
-##  [326]  1.8453355752 -0.0570586074  0.5201173983 -1.0756226001 -2.2983692752
-##  [331] -0.7900618978 -1.5262273296 -0.4665726023 -0.0470354235 -1.5735067380
-##  [336]  0.2903665634  0.8743241227 -1.3370425204 -0.0226766214 -1.0997533582
-##  [341]  0.1118469609 -0.1240232066 -0.1410397866 -1.7075941106  1.3389869484
-##  [346] -0.2869595766  0.4876668446  1.7655503190 -0.1765520853  0.9444943838
-##  [351]  1.0347997629  0.7580399876 -0.8311673733  0.2461330818 -1.9645969111
-##  [356]  0.3334058899 -0.9709176988 -0.8186512341  0.2987117182 -0.3852004399
-##  [361] -0.4772820934  0.6678850102  0.6067928473 -0.7269528446  0.0002029749
-##  [366] -0.2198823303  1.0774043588  1.3983882186  0.2062500762  2.3122028222
-##  [371]  0.8727866132  0.3378380200 -0.3670575484 -0.7784988518  1.4276774765
-##  [376]  1.6300423408 -0.3914607877 -0.6284467456  1.0589444210  1.4610951130
-##  [381] -1.8943178565  1.1820486532  0.4929250054 -0.6197907627 -0.1915895172
-##  [386] -0.8444692758 -1.3559417509  0.0452350469  0.5234289109  1.5303986330
-##  [391] -0.1596898677  0.5182616685  0.6642618063 -2.6628229117  1.4343451354
-##  [396] -0.8763498183  0.5010473233  0.6548160443  0.8818936622  0.6066473754
-##  [401]  0.1584612040 -1.1974374973  0.0221190741 -0.1318860634  0.2234055848
-##  [406] -1.0497473294 -0.0390771968 -2.5313104585  0.1769286218 -1.5999935537
-##  [411]  0.2287177754  1.1482645507  0.8875630750  1.0011023943 -0.4116828976
-##  [416]  0.8591619712 -1.5541459229 -1.2226365543  1.1146534096  1.7850844574
-##  [421]  2.0122458937  1.3361501748 -0.4636323706  0.2175210740 -1.0617050861
-##  [426] -0.6540490470  0.4586012146  0.7834264596 -1.1496810983 -1.0410275794
-##  [431]  0.1107885676  1.2650953102  2.1309427079  0.3631327152 -1.7932576237
-##  [436]  0.4934180369  0.3455952391  2.1338700545  0.1406582592 -0.4598292118
-##  [441] -0.1914266188  1.8231710402  0.1053622487 -0.8652200262 -1.9627362227
-##  [446] -1.1110429142 -0.3272077970  0.7362788491  0.1340817063  1.3775269918
-##  [451] -0.6611904596  1.0080344994 -1.0078849712  0.6954557727  0.4469172522
-##  [456]  0.1295075220 -0.8852054833  0.7437710597 -1.2383759322 -1.3958567980
-##  [461]  2.1607100291 -0.7262548632 -0.4698568379  0.6634102582  0.7270461588
-##  [466] -1.3829103186  1.6826993318  0.2864954702 -0.7595458853  0.6660801165
-##  [471] -0.1949672853  1.8286103421 -0.1878068592  1.2672414376 -0.9958010437
-##  [476]  1.7123177583  0.2598555759 -0.1431550525  0.1051979474  0.7827856576
-##  [481]  0.6500216466  0.0371830685  1.2246405420 -0.1048495766  0.9478526316
-##  [486]  0.4715144784 -0.7512210844  1.0960562323 -1.5571434251  0.7543314557
-##  [491] -0.5479136561 -2.6327138300  2.0805317235  0.7767207768  1.3220247493
-##  [496]  0.6327705481 -1.0513304854  0.1379136152  0.7887857059  1.0223264833
-##  [501] -0.6396060528  1.4166206401 -1.8001523644  0.9172862105  1.5810973561
-##  [506]  0.0898975081  1.0432733492  0.2999085852 -0.5859394417  0.5035752835
-##  [511] -0.7163348470 -0.3606643207  1.3080552849  2.2365640190 -1.0765351898
-##  [516] -0.5970410632  0.8514982125  0.9593598203  0.4713119814 -1.9423416493
-##  [521]  0.1624746873  1.6595375036 -1.3079166594  0.9106931119  0.5992080547
-##  [526]  0.0150950581 -0.6126478235  0.1138186470 -1.6938020444  1.1754521373
-##  [531] -0.7068172958 -1.5036128483  1.0293873244  1.9342828820 -1.1175099422
-##  [536]  1.6325221083 -0.5931086010 -0.3589012715  0.3132692787 -0.2305857263
-##  [541] -1.1395163504 -0.4439402011  0.3015939122 -0.2227596884  0.7024130975
-##  [546]  0.8865992418  0.8601719301 -0.3618009937 -0.4363281255 -1.5427048174
-##  [551]  0.0300797607  1.8044564184 -1.9418461677 -1.2210025681 -0.1502086960
-##  [556] -0.6795399411  1.7028334236 -2.0050051829  0.6079927613  0.9695439221
-##  [561] -0.1584624923  0.9937540647  2.0138441361 -0.2979259228 -1.9581967111
-##  [566]  0.7706872044 -0.0193338659 -0.5774921144 -1.0228936657  0.7460714288
-##  [571] -0.2318905619  1.9611810063  0.5045314365 -0.1618700654 -0.4214174378
-##  [576]  0.4660038194 -0.4393427545  0.7857201140 -1.1467391766  1.1782022907
-##  [581]  1.1526163316  0.8985163415  0.7456131931  1.0648026376 -0.0256857659
-##  [586] -0.3040108576  2.4140504101 -0.2732196527  1.4189791709  0.2568505040
-##  [591]  0.4560093594  0.8966187383 -1.1119033881  0.6821274557 -0.7200154121
-##  [596] -0.6969512001 -0.6214920464  0.4775347894  0.3489039655 -0.4304247997
-##  [601] -1.3839787332  0.1658599798  0.1993140368  0.7662385234 -1.2114939951
-##  [606]  1.5670930528 -1.7004967307 -0.3095268604  0.1220828437 -0.5337045014
-##  [611] -1.8658127979 -1.6324848108 -0.3345169489 -1.3976400130 -0.4614421250
-##  [616] -1.4067504654  0.8359844625  0.4117477975  1.2971762049  0.1703205671
-##  [621]  2.6219806794 -0.7840647136  0.0737272624  1.1006055554  0.9285903809
-##  [626]  0.7896995423  0.1845556219  1.7534402523 -0.3770384411 -0.2412310993
-##  [631] -0.3087145537  0.7826950659 -1.2318410740 -0.4732758983  0.1582996300
-##  [636]  0.5855534526  0.3962718312 -1.3370002108  0.0548328310 -0.1690155374
-##  [641]  0.8073011645  1.5873172316  1.0358665410 -1.7907446448 -1.1089619028
-##  [646] -0.0127462388  1.8889399825 -0.8476830654 -0.9895287169 -0.2540422350
-##  [651] -0.7217573453 -0.3764346193  1.2398922648 -1.0591329226 -1.2906677607
-##  [656] -0.0884418224  0.4018173240  0.4408613684 -0.7067563355 -0.0314082759
-##  [661]  0.0635794907 -1.0638122661 -0.5053538005 -0.1496387169  0.6424359894
-##  [666] -0.0513289159  1.1568692221 -1.0357997320  1.0416585902  1.1016430448
-##  [671]  2.0869063506  2.0503274707 -0.1418004663  0.8708845407 -0.3389431717
-##  [676] -0.0566421675 -0.0330745166  0.1391734876 -0.4416381648 -0.4399127714
-##  [681] -1.1757844440  0.7465599427 -0.2325008074  0.9324259045 -1.0039658904
-##  [686]  0.6942877256 -0.0482009714 -0.3737793491 -0.7713373468 -0.1900474702
-##  [691] -0.2476718597 -0.8094095675  0.8548493254  0.7947146602 -1.4248381394
-##  [696]  0.7783376509  0.5085092846  0.3045123535 -0.1860333308 -0.5257798102
-##  [701] -0.0428613751 -0.0404178939 -0.7356256498 -0.1744542101  0.4912267401
-##  [706]  0.1590536595 -0.5210034469  0.0267872515 -1.1687762142 -1.5645715121
-##  [711] -0.1327613967 -1.4178859499  1.6933079381  1.4861414913  0.2518993097
-##  [716] -0.1538938499 -0.1107347593 -0.8824697430 -1.9332842450 -0.1959023729
-##  [721]  1.0022519140  1.0784433016  2.7125995320 -0.5032059208  1.2887041936
-##  [726] -0.0320594918  1.8209655661 -0.5649995117 -0.3423780031 -0.1236512952
-##  [731] -1.9627904421  0.2111876494 -0.9048108231  0.4038766075 -0.4822769204
-##  [736] -0.9527143092 -1.3093173007  0.1370069133  2.2959536087 -0.9949063477
-##  [741]  0.6478794708 -1.6119455634  0.5556643552  0.8301000892  0.1146253481
-##  [746] -0.9432281867  1.1416959468 -0.3703218588  1.5728542717 -0.9369379071
-##  [751] -0.3033708844  1.0422125583  0.3024528894 -1.2899342412 -0.2252371835
-##  [756]  1.3267080367 -0.9334252545  0.6320330565  0.5825243592  0.5153371280
-##  [761]  1.2674434319 -0.2491890023 -0.9212920909 -2.7614181468  0.5108208721
-##  [766] -0.3600132522 -0.1730064833 -0.2763402581 -1.0164011628  1.3983831739
-##  [771]  1.8435020106 -0.4989523083  0.7351171509 -0.5586665980 -0.4724623913
-##  [776]  1.3653513683  0.5311199865 -0.0306423870 -0.0348123695 -0.0582619461
-##  [781]  0.4953067091  0.4084606536 -0.2280518055  0.9781765435  0.7814324109
-##  [786]  0.1129941539 -0.6567696290 -1.0769775892  0.2503964616 -0.2667172223
-##  [791]  1.6804870623 -2.0396292404  1.8059403321 -0.0577922285  0.4325765502
-##  [796] -1.3730905354  0.2685411327 -0.5706282559  1.5163852893 -0.0482886440
-##  [801] -0.4117567962  1.5185157165 -0.3716476868 -0.4022847040  0.6101558139
-##  [806]  1.0830741879 -0.8160683181  0.5460345232 -0.4912784185 -0.1907687636
-##  [811]  1.5441095964  0.7346301490  0.3280595499  0.2581043963 -0.1242480443
-##  [816] -0.2315666831 -0.7403537428 -0.5893763803 -0.7638234429 -1.2859493235
-##  [821]  1.6294625746 -1.0362141326  1.2339813493 -1.0276102439 -1.1025116319
-##  [826]  0.0194328904  1.7850637969 -1.5244810146  0.2321260540  0.9156460311
-##  [831] -0.7699488710  0.1505333821 -1.3305242231  0.2356980481 -0.4857281228
-##  [836] -0.2986622110 -0.4506764171  2.0572396863  0.9215109781 -0.0971697445
-##  [841] -0.4885571126  0.0807418465  1.2376607171  0.4424634689 -1.5800481374
-##  [846] -0.1342136888  1.1030433984 -1.2539048973 -0.4368306367  0.4064673783
-##  [851] -0.7164736682 -0.0872830711  0.0579167792  0.3422516362  0.1435526706
-##  [856] -0.1677037851  0.0947527634 -0.0766430748 -0.4172279682 -0.5004265338
-##  [861] -1.0099285642  1.6693502623  1.1497320917  0.2138776426  0.9144857835
-##  [866] -1.1009221273  2.2747806179 -0.0833111923 -0.6491519480  1.0373094977
-##  [871]  0.0307919350  1.6229101142  0.2081464941 -1.8511190297  0.9566130374
-##  [876] -0.1557492405 -0.0846514661  1.1225493319 -0.8071550045 -1.1458648676
-##  [881]  0.8219981347 -0.6355742438  2.1301562378 -2.1807465024 -1.8996677497
-##  [886]  0.1425421776 -1.2283434604  1.5006157142 -0.5996296181 -1.5410984992
-##  [891] -0.0556154968 -2.2848362837  0.6124296415  0.5854892179 -1.1724573839
-##  [896] -0.4659204717  1.8155334423  0.4711541263  1.0137337411  0.3077851719
-##  [901] -1.8128154348  1.1229460367 -2.0483393787 -0.2008675396 -1.1724770328
-##  [906] -1.0990567450  0.1224206011 -0.0244413356 -0.0936759811 -0.0264879570
-##  [911] -0.9327645823  0.9466908251  0.1849377780  0.3502123214  0.5096588791
-##  [916]  0.6831124453  0.3062099186 -0.6873421177 -0.8434979226  0.5943345958
-##  [921] -0.8588538628  0.2253708695 -0.0031399429  0.6244111752 -1.2195242479
-##  [926]  0.4971967059 -0.0138989075  0.0264050063  2.3725004845  0.3906268210
-##  [931]  0.4413746028  1.0541926117 -0.2460891424  0.7931367465  0.5400183183
-##  [936]  0.7171830904 -1.7600167286 -0.2464005653  1.2421790897 -0.6187924861
-##  [941]  0.0156581420  0.9075404912  0.0073906059 -0.0140340655 -0.9142003466
-##  [946] -0.6223415106 -0.6297258501 -0.0684445636  1.1578565424  0.8895408813
-##  [951] -1.3729061177 -2.2184795433 -0.4567079965  0.3144600502  0.4703934227
-##  [956] -1.8575175012  1.1939132473  0.6372454232  0.0077415625 -0.9853764793
-##  [961]  1.3279086880  0.0420815159 -0.8550332609  0.7703107758 -1.9092139356
-##  [966] -0.9159775405 -0.4183573749  0.8003433567 -0.2681309655  0.0381606541
-##  [971] -0.0635875627 -0.3552120392  1.2763735215  0.8782421672 -0.0582818353
-##  [976] -1.7911554859  0.3275546137 -1.0784567206 -0.7614848538  0.3999115051
-##  [981] -0.2893922897  1.2307947678  0.5765557642  2.0754164550  0.8731094122
-##  [986] -0.5114499369 -1.4925815630 -0.9827051102 -0.5374426027  0.0771525076
-##  [991] -1.2762831559 -0.3784613985  0.4325895292  0.2893313139  0.3915172826
-##  [996]  0.9957001239  1.4645270992 -0.2651332546  2.3642504988 -0.5687499546
-## [1001] -0.1732771977</code></pre>
-<pre class="r"><code>quantile(y)</code></pre>
-<pre><code>##          0%         25%         50%         75%        100% 
-## -2.76141815 -0.60179557  0.01943289  0.74607143  2.71259953</code></pre>
-<pre class="r"><code>probs = c(0.01, 0.10, 0.50,.90)</code></pre>
-<p>How to do a simple linear point graph and add text to graph, change the axis name</p>
-<pre class="r"><code>library(ggplot2)
-#names(Exam_Anxiety) # para seber el nombre de las columnas
-
-ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety))+ 
-  geom_line(colour=&quot;#308A8C&quot;)</code></pre>
+<div id="regresión-lineal" class="section level1">
+<h1>Regresión lineal</h1>
+<p>El primer gráfico es crear una regresión lineal. Para producir una regresión lineal se necesita dos variables con datos continuos Seleccionamos dos variables continua, el nivel de ansiedad y la nota del examen. Para hacer una regresión lineal que sigue el patrón de y=mx+b, hay que utilizar la función geom_smooth(method=lm), la función <strong>lm</strong> se refiere a modelo lineal o ingles <strong>linear model</strong>. Nota que con el programa ggplot2, hay que primero identificar de donde proviene los datos <strong>Exam_Anxiety</strong>, despúes que hay identificar cual; son las variables de este archivo que se van a utilizar, en este caso <strong>y=Exam, x=Anxiety</strong>. El proximoo paso es determinar que tipo de gráfico, y este caso es una regresión lineal.</p>
+<pre class="r"><code>ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety))+ 
+  geom_smooth(method=lm, colour=&quot;red&quot;)</code></pre>
 <p><img src="Tema_3_Graficos_files/figure-html/linear%20graph-1.png" width="672" /></p>
+<div id="añadiendo-color-por-grupo-y-otras-bellezas" class="section level2">
+<h2>Añadiendo color por grupo y otras bellezas</h2>
+<p>En este archivo utilizaremos un archivo que se usa muy comúnmente en los análisis de R, para demostrar un análisis o como hacer gráfico. El archivo se llama <strong>iris</strong> y contiene información sobre el tamaño de características florales de tres especies del genero <em>Iris</em>. En este gráfico se añade cuatro componente suplementarios, 1) un puntos para cada par de valores <strong>Sepal.Length, Petal.Length</strong>, 2) se cambia los nombres de las leyendas en <strong>y</strong> y <strong>x</strong> con la función <strong>labs()</strong> = labels, 3) se añade un titulo al gráfico con <strong>ggtitle()</strong>, 4) Note que cada especies tiene un color distinto, esto fue muy fácil incluir añadiendo la función <strong>col=Species</strong>, lo que esto significa es que para cada especies de planta se pone un color diferente.</p>
 <pre class="r"><code>tail(iris)</code></pre>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 ## 145          6.7         3.3          5.7         2.5 virginica
@@ -752,34 +500,37 @@ ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety))+
 ## 150          5.9         3.0          5.1         1.8 virginica</code></pre>
 <pre class="r"><code>ggplot(iris, aes(Sepal.Length, Petal.Length)) +
       geom_point(aes(col = Species)) +
-  geom_smooth(method=&quot;lm&quot;, colour=&quot;aquamarine&quot;) +  # lm is for linear model 
+  geom_smooth(method=&quot;lm&quot;, colour=&quot;aquamarine&quot;) +  
   labs(x = &quot;El largo del Sepalo&quot;, y = &quot;El largo del Petalo&quot;)+
   ggtitle(&quot;Basic geom_point and linear regression&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<pre class="r"><code># How to add a title, &quot;ggtitle&quot;
-
-# How to save a Graph
-
-ggsave(&quot;Iris_size.png&quot;) # .jpeg/.jpg/.tiff</code></pre>
+<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-6-1.png" width="672" /> ## Salvar graficos con <strong>ggsave</strong></p>
+<p>Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de <strong>MS Power Point</strong>. Se usa la función <strong>ggsave()</strong>. se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .tiff, .pdf)</p>
+<pre class="r"><code>ggsave(&quot;Iris_size.png&quot;)</code></pre>
 <pre class="r"><code>#Simple scatter with regression line
-scatter &lt;- ggplot(examData, aes(Anxiety, Exam))
+scatter &lt;- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point(shape=20, colour=&quot;red&quot;) + 
           geom_smooth(method = &quot;lm&quot;, colour = &quot;blue&quot;, se = F) +  # se = F, remueve el intervalo de confianza
   labs(x = &quot;Exam Anxiety&quot;, y = &quot;Exam Performance %&quot;)</code></pre>
 <p><img src="Tema_3_Graficos_files/figure-html/more%20examples-1.png" width="672" /></p>
-<p>#Simple scatter with regression line + CI</p>
-<pre class="r"><code>scatter &lt;- ggplot(examData, aes(Anxiety, Exam))
+</div>
+</div>
+<div id="simple-scatter-with-regression-line-ci" class="section level1">
+<h1>Simple scatter with regression line + CI</h1>
+<pre class="r"><code>scatter &lt;- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point() + 
           geom_smooth(method = &quot;lm&quot;, colour = &quot;Red&quot;)+ 
   labs(x = &quot;Exam Anxiety&quot;, y = &quot;Exam Performance %&quot;) </code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>#Regresión lineal más el intervalo de confianza.</p>
-<pre class="r"><code>scatter &lt;- ggplot(examData, aes(Anxiety, Exam))
+<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="regresión-lineal-más-el-intervalo-de-confianza." class="section level2">
+<h2>Regresión lineal más el intervalo de confianza.</h2>
+<pre class="r"><code>scatter &lt;- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point() + 
   geom_smooth(method = &quot;lm&quot;, colour = &quot;Red&quot;, alpha = 0.2, fill = &quot;orange&quot;) + 
   labs(x = &quot;Exam Anxiety&quot;, y = &quot;Exam Performance %&quot;) </code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p>#Regresión lineal más el intervalo de confianza, usar “colour” por multiples grupos.</p>
+<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="regresión-lineal-más-el-intervalo-de-confianza-usar-colour-por-multiples-grupos." class="section level2">
+<h2>Regresión lineal más el intervalo de confianza, usar “colour” por multiples grupos.</h2>
 <pre class="r"><code>names(Exam_Anxiety)</code></pre>
 <pre><code>## [1] &quot;Code&quot;    &quot;Revise&quot;  &quot;Exam&quot;    &quot;Anxiety&quot; &quot;Gender&quot;</code></pre>
 <pre class="r"><code>ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety, colour=Gender))+ 
@@ -787,7 +538,8 @@ scatter + geom_point() +
   geom_smooth(method=&quot;lm&quot;) +  # lm is for linear model 
   labs(x = &quot;Exam Anxiety Score&quot;, y = &quot;Exam Performance %&quot;)+
   ggtitle(&quot;Basic geom_point and linear regression&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
 </div>
 <div id="constructing-histograms" class="section level1">
 <h1>Constructing histograms</h1>
@@ -884,11 +636,16 @@ festivalHistogram +
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;) + 
   labs(x = &quot;Hygiene (Day 1 of Festival)&quot;, y = &quot;Frequency&quot;)</code></pre>
 <p><img src="Tema_3_Graficos_files/figure-html/no%20outliers-1.png" width="672" /></p>
+</div>
+<div id="graficos-de-caja-box-plots" class="section level2">
+<h2>Graficos de caja <strong>box plots</strong></h2>
 <p>How to create boxplots</p>
 <pre class="r"><code>festivalBoxplot &lt;- ggplot(Festivalday1, aes(x=1,y=day1))
 festivalBoxplot + geom_boxplot() + labs(x = &quot;Gender&quot;, y = &quot;Hygiene (Day 1 of Festival)&quot;)</code></pre>
 <p><img src="Tema_3_Graficos_files/figure-html/boxplots2-1.png" width="672" /></p>
-<p>Boxplot by Gender</p>
+</div>
+<div id="boxplot-by-gender" class="section level2">
+<h2>Boxplot by Gender</h2>
 <pre class="r"><code>names(Festivalday1)</code></pre>
 <pre><code>## [1] &quot;ticknumb&quot; &quot;gender&quot;   &quot;day1&quot;     &quot;day2&quot;     &quot;day3&quot;</code></pre>
 <pre class="r"><code>festivalBoxplot &lt;- ggplot(Festivalday1, aes(x=gender,y=day2, colour=gender))
@@ -994,13 +751,13 @@ head(hiccups)</code></pre>
   stat_summary(fun.y = &quot;mean&quot;, geom = &quot;line&quot;, aes(group = 1),colour = &quot;Red&quot;, linetype = &quot;dashed&quot;) +      
   stat_summary(fun.data = mean_cl_boot, geom = &quot;errorbar&quot;, width = 0.2, colour=&quot;blue&quot;) + 
   labs(x = &quot;Intervention&quot;, y = &quot;Mean Number of Hiccups&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(hiccups, aes(y=Num_Hiccups,x=Intervention))+ 
   stat_summary(fun.y = mean, geom = &quot;point&quot;) + 
   stat_summary(fun.y = mean, geom = &quot;line&quot;, aes(group = 1),colour = &quot;Red&quot;, linetype = &quot;dashed&quot;) +      
   stat_summary(fun.data = mean_cl_boot, geom = &quot;errorbar&quot;, width = 0.2, colour=&quot;blue&quot;) + 
   labs(x = &quot;Intervention&quot;, y = &quot;Mean Number of Hiccups&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 </div>
 
