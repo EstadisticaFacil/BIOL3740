@@ -443,7 +443,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-12&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-13&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)
 library(Hmisc)</code></pre>
 <hr />
@@ -528,31 +528,144 @@ Data_df</code></pre>
 <pre class="r"><code>sum(Data_df$SS)</code></pre>
 <pre><code>## [1] 17.5</code></pre>
 <pre class="r"><code> #  This is called the Deviation &quot;from the mean&quot;</code></pre>
-<p>Ahora la manera fácil de hacer los análisis, usar la función <strong>var</strong>, y no hay que hacer ninguno de los pasos anteriores. Pero es importante que sepa como es el procedimiento de calcular la varianza.</p>
+</div>
+<div id="calcular-la-varianza-con-var" class="section level2">
+<h2>Calcular la varianza con <strong>var()</strong></h2>
+<p>Ahora la manera fácil de hacer los análisis, usar la función <strong>var</strong>, y no hay que hacer ninguno de los pasos anteriores. Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y y cada valor/ El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero.</p>
 <pre class="r"><code>var(Data)</code></pre>
 <pre><code>## [1] 3.5</code></pre>
 <hr />
 </div>
 </div>
-<div id="standard-deviation" class="section level1">
-<h1>Standard Deviation</h1>
+<div id="la-desviación-estandar" class="section level1">
+<h1>La desviación estandar</h1>
+<p>La varianza es un indice que no esta en la misma unidad que los valores recolectado, por ejemplo si se recolecta los datos en centímetros, la varianza es en centímetros cuadrados. Por consecuencia no es necesariamente el mejor para describir la dispersión. Entonces hay que sacar la raíz cuadra de la varianza.</p>
 <p>The other formula is the standard deviation, which is the square root of the variance. This is a better measure to report, why?</p>
-<p><span class="math display">\[{ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }\]</span></p>
-<pre class="r"><code>sd(Data_df$Data)  # standard deviation</code></pre>
+<p><span class="math display">\[{ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }\]</span> o más sencillo</p>
+<p><span class="math display">\[\sqrt{s^2}\]</span></p>
+<p>la función <strong>sd</strong>, “standard deviation” es sumamente facil de calcular en R.</p>
+<pre class="r"><code>sd(Data_df$Data)  # deviación estandard</code></pre>
 <pre><code>## [1] 1.870829</code></pre>
-</div>
-<div id="now-you-never-have-to-do-the-formula-by-hand-again-just-use-var-and-sd" class="section level1">
-<h1>Now you never have to do the formula by hand again, just use “var” and “sd”</h1>
 </div>
 <div id="el-rango-intertcuartil." class="section level1">
 <h1>El rango intertcuartil.</h1>
-<p>La función básica es</p>
-<pre class="r"><code>quantile(Data) # la función básica</code></pre>
+<p>La función básica es <strong>quantile</strong> si lo dejamos sin más instrucción calcula los siguientes probabilidades 0%, 25%, 50% (mediana), 75%, 100%. Pero si uno quiere los valores que se encuentra en una posición especifica hay que usar <strong>type =1</strong> como se ve en el segundo ejemplo. Hay 9 tipos de cuantiles con esta función, estos se encuentra definido en RStudio. Añade <strong>quantile</strong> en el artea de <strong>help</strong> y vera las otras alternativas.</p>
+<pre class="r"><code>quantile(Data) # la función básica (0%, 25%, 50% (mediana), 75%, 100%)</code></pre>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.00 2.25 3.50 4.75 6.00</code></pre>
-<pre class="r"><code>quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975)) #Seleccionar los cuantiles.  </code></pre>
+<pre class="r"><code># Seleccionar los cuantiles específicos.
+quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975))   </code></pre>
 <pre><code>##  1.5%   25%   50%   75% 97.5% 
 ## 1.075 2.250 3.500 4.750 5.875</code></pre>
+<p>Para explicar estos conceptos mejor visualizamos los datos</p>
+<table>
+<thead>
+<tr class="header">
+<th>i</th>
+<th align="right">x[i]</th>
+<th align="center">Mediana</th>
+<th align="center">Quartiles</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="right">03</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="right">19</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="right">27</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="right">33</td>
+<td align="center"></td>
+<td align="center">Q1=33</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="right">52</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td align="right">60</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td align="right">77</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td align="right">87</td>
+<td align="center">Q2=87</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td align="right">99</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td align="right">101</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td align="right">122</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td align="right">137</td>
+<td align="center"></td>
+<td align="center">Q3=137</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td align="right">140</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td align="right">142</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td align="right">150</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>library(EnvStats)
+dat=c(3,19,27,33,52,60,77,87,99,101,122,137,140,142,150)
+
+quantile(dat, type =1)</code></pre>
+<pre><code>##   0%  25%  50%  75% 100% 
+##    3   33   87  137  150</code></pre>
 <pre class="r"><code>library(readr)
 Exam_Anxiety &lt;- read_csv(&quot;Data_files_csv/Exam Anxiety.csv&quot;)</code></pre>
 <p>Para visualizar las primeras y ultimas 6 filas usar <strong>head()</strong> y <strong>tail()</strong> respectivamente.</p>

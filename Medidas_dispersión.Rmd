@@ -104,8 +104,9 @@ Data_df
 sum(Data_df$SS)
  #  This is called the Deviation "from the mean"
 ```
+## Calcular la varianza con **var()**
 
-Ahora la manera fácil de hacer los análisis, usar la función **var**, y no hay que hacer ninguno de los pasos anteriores.   Pero es importante que sepa como es el procedimiento de calcular la varianza.  
+Ahora la manera fácil de hacer los análisis, usar la función **var**, y no hay que hacer ninguno de los pasos anteriores.   Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y y cada valor/  El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero.    
 
 ```{r}
 var(Data)
@@ -114,36 +115,73 @@ var(Data)
 *** 
 
 
-# Standard Deviation
-The other formula is the standard deviation, which is the square root of the variance.
-  This is a better measure to report, why? 
+# La desviación estandar
+
+La varianza es un indice que no esta en la misma unidad que los valores recolectado, por ejemplo si se recolecta los datos en centímetros, la varianza es en centímetros cuadrados. Por consecuencia no es necesariamente el mejor para describir la dispersión. Entonces hay que sacar la raíz cuadra de la varianza. 
   
-  $${ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }$$
+  $${ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }$$ 
+  o más sencillo
+  
+  $$\sqrt{s^2}$$
+  
+la función **sd**, "standard deviation" es sumamente facil de calcular en R. 
 
 
 
 ```{r}
-sd(Data_df$Data)  # standard deviation
+sd(Data_df$Data)  # deviación estandard
 ```
 
-# Now you never have to do the formula by hand again, just use "var" and "sd"
-
-
-
-
+***
 
 # El rango intertcuartil.
 
-La función básica es 
+La función básica es **quantile** si lo dejamos sin más instrucción calcula los siguientes probabilidades 0%, 25%, 50% (mediana), 75%, 100%.  Pero si uno quiere los valores que se encuentra en una posición especifica hay que usar **type =1** como se ve en el segundo ejemplo.  Hay 9 tipos de cuantiles con esta función, estos se encuentra definido en RStudio. Añade **quantile** en el artea de **help** y vera las otras alternativas.   
 
 ```{r}
-quantile(Data) # la función básica
+quantile(Data) # la función básica (0%, 25%, 50% (mediana), 75%, 100%)
 
-
-
-
-quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975)) #Seleccionar los cuantiles.  
+# Seleccionar los cuantiles específicos.
+quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975))   
 ```
+
+
+Para explicar estos conceptos mejor visualizamos los datos 
+
+
+| i  | x[i]  | Mediana | Quartiles   |
+|----|-------:|:---------:|:-------------:|
+| 1  | 03    |           |  |
+| 2  | 19     |           |          |
+| 3  | 27      |         |             |
+| 4  | 33    |         |    Q1=33         |
+| 5  | 52    |         |             |
+| 6  | 60    |         |            |
+| 7  | 77    |         |             |
+| 8  | 87    |  Q2=87       |             |
+| 9  | 99    |       |             |
+| 10 | 101   |         |             |
+| 11 | 122   |         |             |
+| 12 | 137   |         | Q3=137    |
+| 13 | 140   |         |             |
+| 14 | 142   |         |             |
+| 15 | 150   |         |             |
+
+Ahora usamos la función **quantile** con el type=1 de calcular los cuartiles y vermos si tenemos los mismos resultados.  
+```{r}
+
+dat=c(3,19,27,33,52,60,77,87,99,101,122,137,140,142,150)
+
+quantile(dat, type =1)
+
+
+
+```
+
+
+***
+
+
 
 
 ```{r}
