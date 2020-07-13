@@ -119,7 +119,7 @@ mfv(b)
 
 
 
-# Cuando es que el promedio, merdiana y moda son iguales
+# Cuando es que el promedio, merdiana y moda son iguales?
 
 
 Los tres valores de tendencia central son iguales cuando la distribución es normal, conocida también como en forma de campana. Aquí preparo un lista de datos con distribución normal, y evaluamos donde están los tres valores de tendencia central.  Se usa la función **rpois**, para crear un conjunto de datos al azar con 100000, datos, un promedio de 100.   
@@ -139,7 +139,7 @@ median(df$df)
 mfv(df$df)
 ```
 
-Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda).  En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta.    
+Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda).  En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta.    Se observa que los tres valores son cerca del centro.  
 
 
 ```{r}
@@ -154,24 +154,62 @@ mod=mfv(df$df)
 a=ggplot(df, aes(df ))+
   geom_histogram(fill="orange", colour="white", binwidth = 5)+
   geom_vline(aes(xintercept = mea, colour="red"))+
-  geom_vline(aes(xintercept = med, colour="black"))+
+  geom_vline(aes(xintercept = med, colour="blue"))+
   geom_vline(aes(xintercept = mod, colour="green"))+
   theme(legend.position = "none")
 
 b=ggplot(df, aes(df ))+
   geom_histogram(fill="orange", colour="white", binwidth = 1)+
   geom_vline(aes(xintercept = mea, colour="red"))+
-  geom_vline(aes(xintercept = med, colour="black"))+
+  geom_vline(aes(xintercept = med, colour="blue"))+
   geom_vline(aes(xintercept = mod, colour="green"))+
-  xlim(95,102)+
+  xlim(95,104)+
   theme(legend.position = "none")
 
 
 grid.arrange(a,b, ncol=2)
 ```
+
+
+## Distribucion cuando los tres valores de tendencia centrtal no son iguales.  En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande.  Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro.  
+
+```{r}
+dfb= round(rbeta(100000, 3,1, ncp = 0),3)
+dfb=data.frame(dfb)
+
+dfbb= round(rbeta(100000, 1,3, ncp = 0),3)
+dfbb=data.frame(dfbb)
+
 ```
 
 
+```{r}
+mea=mean(dfb$dfb)
+med=median(dfb$dfb)
+mod=mfv(dfb$dfb)
+mod
+
+meab=mean(dfbb$dfbb)
+medb=median(dfbb$dfbb)
+modb=mfv(dfbb$dfbb)
+
+
+ggplot(dfb, aes(dfb))+
+  geom_histogram(fill="orange", colour="white")+
+  geom_vline(aes(xintercept = mea, colour="red"))+
+  geom_vline(aes(xintercept = med, colour="black"))+
+  geom_vline(aes(xintercept = mod, colour="green"))+
+  theme(legend.position = "none")
+
+d=ggplot(dfbb, aes(dfbb ))+
+  geom_histogram(fill="orange", colour="white")+
+  geom_vline(aes(xintercept = meab, colour="red"))+
+  geom_vline(aes(xintercept = medb, colour="black"))+
+  geom_vline(aes(xintercept = modb, colour="green"))+
+  theme(legend.position = "none")
+
+grid.arrange(c,d, ncol=2)
+```
 
 
 
