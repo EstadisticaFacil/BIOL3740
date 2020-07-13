@@ -22,22 +22,124 @@ library(Hmisc)
 ```
 
 
-```{r}
-x=c(0,1,2,3,4,5,6,7,8,9,1000)
+***
 
-mean(x)
+# Que es la dispersión en estadística
+
+
+Las medidas o indices de dispersión, son indicadores de cuan variable los datos son uno del otro. Si todos los valores tienen el mismo valor no hay dispersión.  Hay múltiples indices de dispersión vamos a evaluar solamente algunos de estos indices, para más información pueden ir al siguiente enlace <https://en.wikipedia.org/wiki/Statistical_dispersion>.  
+
+Los indices que estaremos estudiando son los siguientes
+
+  - el rango
+  - la varianza
+  - la desviación estándar
+  - el error estándar.
+ 
+ 
+# Vizualizando la dispersión 
+  
+Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes.  
+
+
+```{r}
+
+set.seed(869870) # esto es para que los valores se queda igual a cada vez que se corre el analisis
+a=rnorm(5000, 100, 10)
+a=data.frame(a)
+b=rnorm(5000, 100, 30)
+b=data.frame(b)
+```
+
+
+```{r}
+ggplot(a, aes(a))+
+  geom_density(fill="blue", alpha=.5)+
+  geom_density(b, mapping=aes(b,fill="red", alpha=.5 ))+
+  theme(legend.position = "none") +
+  geom_vline(aes(xintercept = 100, colour="red"))
+```
+
+***
+
+# El rango
+
+El rango son los valores mínimo y valor máximo de un conjunto de datos.  Se usa la función **range()**.  Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12.  Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.  
+
+
+```{r}
+range(a$a)
+range(b$b)
 
 ```
 
-#Interquartile Range
+
+## La varianza
+
+Los pasos para calcular la varianza son los siguientes
+
+1. tener un conjunto de datos, aquí lo llamamos **Data**
+2. convertir esta lista en un data frame 
+3. Calcular el promedio de los datos
+4. restar el promedio de cada valor y cuadralos
+5. Sumar y restas de **n-1**, done **n** es la cantidad de datos
+
+
+
+$${ s }^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }$$
 
 ```{r}
-quantile(x)
+library(tidyverse)
+Data=c(1,2,3,4,5,6)
+Data_df=data.frame(Data)
+Data_df
+Data_df$mean_Data=mean(Data)   # here we add the mean to each row
+Data_df
+Data_df$Diff=Data_df$Data-Data_df$mean_Data 
+          # calculate the difference between the data and the mean
+sum(Data_df$Diff) # si los valores no se cuadra la suma sera zero.
+
+Data_df$SS=(Data_df$Data-Data_df$mean_Data)^2 # SS para la suma de los cuadrados 
+Data_df
+sum(Data_df$SS)
+ #  This is called the Deviation "from the mean"
+```
+
+Ahora la manera fácil de hacer los análisis, usar la función **var**, y no hay que hacer ninguno de los pasos anteriores.   Pero es importante que sepa como es el procedimiento de calcular la varianza.  
+
+```{r}
+var(Data)
+```
+
+# Standard Deviation
+The other formula is the standard deviation, which is the square root of the variance.
+  This is a better measure to report, why? 
+  
+  $${ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }$$
+
+
+
+```{r}
+sd(Data_df$Data)  # standard deviation
+```
+
+# Now you never have to do the formula by hand again, just use "var" and "sd"
 
 
 
 
-quantile(x, probs = c(0.015, 0.25, 0.50,.75, .975)) #Seleccionar los quantiles.  
+
+# El rango intertcuartil.
+
+La función básica es 
+
+```{r}
+quantile(Data) # la función básica
+
+
+
+
+quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975)) #Seleccionar los cuantiles.  
 ```
 
 

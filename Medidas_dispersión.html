@@ -379,7 +379,7 @@ div.tocify {
       <a href="Tema_2_Historia.html">Historia breve de la estadística cuantitativa</a>
     </li>
     <li>
-      <a href="Medidas_tendencias_central.html">Medidas de Tedencias Central</a>
+      <a href="Medidas_tendencia_central.html">Medidas de Tedencias Central</a>
     </li>
     <li>
       <a href="Medidas_disperción.html">Medidas de Disperción</a>
@@ -446,17 +446,112 @@ div.tocify {
 <pre><code>## [1] &quot;2020-07-12&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)
 library(Hmisc)</code></pre>
-<pre class="r"><code>x=c(0,1,2,3,4,5,6,7,8,9,1000)
-
-mean(x)</code></pre>
-<pre><code>## [1] 95</code></pre>
-<p>#Interquartile Range</p>
-<pre class="r"><code>quantile(x)</code></pre>
-<pre><code>##     0%    25%    50%    75%   100% 
-##    0.0    2.5    5.0    7.5 1000.0</code></pre>
-<pre class="r"><code>quantile(x, probs = c(0.015, 0.25, 0.50,.75, .975)) #Seleccionar los quantiles.  </code></pre>
-<pre><code>##   1.5%    25%    50%    75%  97.5% 
-##   0.15   2.50   5.00   7.50 752.25</code></pre>
+<hr />
+<div id="que-es-la-dispersión-en-estadística" class="section level1">
+<h1>Que es la dispersión en estadística</h1>
+<p>Las medidas o indices de dispersión, son indicadores de cuan variable los datos son uno del otro. Si todos los valores tienen el mismo valor no hay dispersión. Hay múltiples indices de dispersión vamos a evaluar solamente algunos de estos indices, para más información pueden ir al siguiente enlace <a href="https://en.wikipedia.org/wiki/Statistical_dispersion" class="uri">https://en.wikipedia.org/wiki/Statistical_dispersion</a>.</p>
+<p>Los indices que estaremos estudiando son los siguientes</p>
+<ul>
+<li>el rango</li>
+<li>la varianza</li>
+<li>la desviación estándar</li>
+<li>el error estándar.</li>
+</ul>
+</div>
+<div id="vizualizando-la-dispersión" class="section level1">
+<h1>Vizualizando la dispersión</h1>
+<p>Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes.</p>
+<pre class="r"><code>set.seed(869870) # esto es para que los valores se queda igual a cada vez que se corre el analisis
+a=rnorm(5000, 100, 10)
+a=data.frame(a)
+b=rnorm(5000, 100, 30)
+b=data.frame(b)</code></pre>
+<pre class="r"><code>ggplot(a, aes(a))+
+  geom_density(fill=&quot;blue&quot;, alpha=.5)+
+  geom_density(b, mapping=aes(b,fill=&quot;red&quot;, alpha=.5 ))+
+  theme(legend.position = &quot;none&quot;) +
+  geom_vline(aes(xintercept = 100, colour=&quot;red&quot;))</code></pre>
+<p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="el-rango" class="section level1">
+<h1>El rango</h1>
+<p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
+<pre class="r"><code>range(a$a)</code></pre>
+<pre><code>## [1]  59.17397 137.11983</code></pre>
+<pre class="r"><code>range(b$b)</code></pre>
+<pre><code>## [1]   1.860332 203.878426</code></pre>
+<div id="la-varianza" class="section level2">
+<h2>La varianza</h2>
+<p>Los pasos para calcular la varianza son los siguientes</p>
+<ol style="list-style-type: decimal">
+<li>tener un conjunto de datos, aquí lo llamamos <strong>Data</strong></li>
+<li>convertir esta lista en un data frame</li>
+<li>Calcular el promedio de los datos</li>
+<li>restar el promedio de cada valor y cuadralos</li>
+<li>Sumar y restas de <strong>n-1</strong>, done <strong>n</strong> es la cantidad de datos</li>
+</ol>
+<p><span class="math display">\[{ s }^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }\]</span></p>
+<pre class="r"><code>library(tidyverse)
+Data=c(1,2,3,4,5,6)
+Data_df=data.frame(Data)
+Data_df</code></pre>
+<pre><code>##   Data
+## 1    1
+## 2    2
+## 3    3
+## 4    4
+## 5    5
+## 6    6</code></pre>
+<pre class="r"><code>Data_df$mean_Data=mean(Data)   # here we add the mean to each row
+Data_df</code></pre>
+<pre><code>##   Data mean_Data
+## 1    1       3.5
+## 2    2       3.5
+## 3    3       3.5
+## 4    4       3.5
+## 5    5       3.5
+## 6    6       3.5</code></pre>
+<pre class="r"><code>Data_df$Diff=Data_df$Data-Data_df$mean_Data 
+          # calculate the difference between the data and the mean
+sum(Data_df$Diff) # si los valores no se cuadra la suma sera zero.</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>Data_df$SS=(Data_df$Data-Data_df$mean_Data)^2 # SS para la suma de los cuadrados 
+Data_df</code></pre>
+<pre><code>##   Data mean_Data Diff   SS
+## 1    1       3.5 -2.5 6.25
+## 2    2       3.5 -1.5 2.25
+## 3    3       3.5 -0.5 0.25
+## 4    4       3.5  0.5 0.25
+## 5    5       3.5  1.5 2.25
+## 6    6       3.5  2.5 6.25</code></pre>
+<pre class="r"><code>sum(Data_df$SS)</code></pre>
+<pre><code>## [1] 17.5</code></pre>
+<pre class="r"><code> #  This is called the Deviation &quot;from the mean&quot;</code></pre>
+<p>Ahora la manera fácil de hacer los análisis, usar la función <strong>var</strong>, y no hay que hacer ninguno de los pasos anteriores. Pero es importante que sepa como es el procedimiento de calcular la varianza.</p>
+<pre class="r"><code>var(Data)</code></pre>
+<pre><code>## [1] 3.5</code></pre>
+</div>
+</div>
+<div id="standard-deviation" class="section level1">
+<h1>Standard Deviation</h1>
+<p>The other formula is the standard deviation, which is the square root of the variance. This is a better measure to report, why?</p>
+<p><span class="math display">\[{ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }\]</span></p>
+<pre class="r"><code>sd(Data_df$Data)  # standard deviation</code></pre>
+<pre><code>## [1] 1.870829</code></pre>
+</div>
+<div id="now-you-never-have-to-do-the-formula-by-hand-again-just-use-var-and-sd" class="section level1">
+<h1>Now you never have to do the formula by hand again, just use “var” and “sd”</h1>
+</div>
+<div id="el-rango-intertcuartil." class="section level1">
+<h1>El rango intertcuartil.</h1>
+<p>La función básica es</p>
+<pre class="r"><code>quantile(Data) # la función básica</code></pre>
+<pre><code>##   0%  25%  50%  75% 100% 
+## 1.00 2.25 3.50 4.75 6.00</code></pre>
+<pre class="r"><code>quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975)) #Seleccionar los cuantiles.  </code></pre>
+<pre><code>##  1.5%   25%   50%   75% 97.5% 
+## 1.075 2.250 3.500 4.750 5.875</code></pre>
 <pre class="r"><code>library(readr)
 Exam_Anxiety &lt;- read_csv(&quot;Data_files_csv/Exam Anxiety.csv&quot;)</code></pre>
 <p>Para visualizar las primeras y ultimas 6 filas usar <strong>head()</strong> y <strong>tail()</strong> respectivamente.</p>
@@ -489,8 +584,9 @@ Exam_Anxiety &lt;- read_csv(&quot;Data_files_csv/Exam Anxiety.csv&quot;)</code><
 
 quantile(y)</code></pre>
 <pre><code>##          0%         25%         50%         75%        100% 
-## -2.68895386 -0.60548488  0.00313083  0.68099915  2.96014362</code></pre>
+## -3.06169669 -0.67583592 -0.03992006  0.62939928  3.46709628</code></pre>
 <pre class="r"><code>probs = c(0.01, 0.10, 0.50,.90)</code></pre>
+</div>
 
 
 
