@@ -19,6 +19,8 @@ Sys.Date()
 ```{r}
 library(ggplot2)
 library(Hmisc)
+library(gridExtra) # Un paquete para organizar las figuras de ggplot2
+library(gt)
 ```
 
 
@@ -39,7 +41,7 @@ Los indices que estaremos estudiando son los siguientes
  
 # Vizualizando la dispersión 
   
-Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes.  
+Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes.  En el primer conjunto de datos se usa 5000 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.
 
 
 ```{r}
@@ -47,7 +49,7 @@ Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero 
 set.seed(869870) # esto es para que los valores se queda igual a cada vez que se corre el analisis
 a=rnorm(5000, 100, 10)
 a=data.frame(a)
-b=rnorm(5000, 100, 30)
+b=rnorm(500, 100, 30)
 b=data.frame(b)
 ```
 
@@ -183,7 +185,7 @@ quantile(dat, type =1)
 
 # El error estandard
 
-El indice de error estándar es para describir cual es la posible dispersión del promedio.  En otra palabra cuan confiado estamos con el estimado del promedio.  Más grande el error estándar menos confiado estamos con el promedio.   Se usa el error estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.   
+El termino correcto es el *error de las desviación estándar* pero típicamente acortado a *error estándar*. El indice de error estándar es para describir cual es la posible dispersión del promedio.  En otra palabra cuan confiado estamos con el estimado del promedio.  Más grande el error estándar menos confiado estamos con el promedio.   Se usa el error estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.   
 
 La formula de error estándar es la siguiente usando la desviación estándar
 
@@ -207,13 +209,114 @@ es_b
 
 # El intervalo de confianza de 95% del promedio
 
-Ya que hemos calculado el error estándar podemos calcular la dispersión de los promedios.   Esto quiere decir que si uno repite la recolección de datos el promedio tiene un 95% de probabilidad estar en este rango.  Uno calcula los limites de la dispersión de los promedios usando la siguientes formulas
+Ya que hemos calculado el error estándar podemos calcular la dispersión de los promedios. Esto quiere decir que si uno repite la recolección de datos el promedio tiene un 95% de probabilidad estar en este rango.  Uno calcula los limites de la dispersión de los promedios usando la siguientes formulas.  
 
 $$Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)$$
 
 
 $$Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)$$
 
+```{r}
+Limite_inferior_a=mean(a$a)-(es_a+1.96)
+Limite_superior_a=mean(a$a)+(es_a+1.96)
+
+Limite_inferior_a
+Limite_superior_a
+
+Limite_inferior_b=mean(b$b)-(es_b+1.96)
+Limite_superior_b=mean(b$b)+(es_b+1.96)
+
+mean_b=mean(b$b)
+Limite_inferior_b
+Limite_superior_b
+```
+
+Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.  
+
+```{r}
+CIa=ggplot(a, aes(a))+
+  geom_density(fill="blue", alpha=.5)+
+  theme(legend.position = "none") +
+  geom_vline(aes(xintercept = 100), colour="red")+
+  geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
+  geom_vline(aes(xintercept = Limite_superior_a), colour="black")+
+  xlim(90,110)
+
+CIb=ggplot(b, aes(b))+
+  geom_density(fill="blue", alpha=.5)+
+  theme(legend.position = "none") +
+  geom_vline(aes(xintercept =mean_b), colour="red")+
+  geom_vline(aes(xintercept = Limite_inferior_b), colour="black")+
+  geom_vline(aes(xintercept = Limite_superior_b), colour="black")+
+  xlim(90,110)
+
+grid.arrange(CIa,CIb, ncol=2)
+
+```
+
+
+## El intervalos de confianza de los datos
+
+Para tener una idea de la distribución de los datos y cual es el porcentaje de valores que esté incluido (asumiendo una distribución normal). Podemos crear un gráfico que demuestra el porcentaje incluidos basado en la desviación estándar.  Nota aquí no es la dispersión del promedio pero la dispersión de los datos en la población.  
+
+Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website <https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data>
+
+
+
+```{r}
+library(readr)
+Alturas_Humanos <- read_csv("Data_files_csv/Alturas_Humanos.csv")
+gt(head(Alturas_Humanos))
+```
+
+## Rangos incluidos en intervalos de confianza 
+
+Cálculos el promedio y la desviación estándar de los datos.  Lo haremos por genero.  Si uno calcula el rango de promedio ± 1 sd, esto incluye 68.2% de los datos, si incluimos el promedio ± 2 sd incluye 95.6% de los datos, 
+
+
+```{r table1, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+require(pander)
+panderOptions('table.split.table', Inf)
+set.caption("Rangos incluidos en intervalos de confianza")
+my.data <- "
+| sd  | rango inluido |
+| 0  | el promedio    | 
+| 1 |  68.2% |
+| 2 |  95.6% |
+| 3 | 99.7% |
+| 4 | 99.99% |"
+
+df <- read.delim(textConnection(my.data),header=FALSE,sep="|",strip.white=TRUE,stringsAsFactors=FALSE)
+names(df) <- unname(as.list(df[1,])) # put headers on
+df <- df[-1,c(-1,-4)] # remove first row
+row.names(df)<-NULL
+pander(df, style = 'rmarkdown')
+```
+Calculamos los promedios y las desviación estándar. 
+
+
+```{r}
+promM=Alturas_Humanos%>%
+  select(Genero, Altura_cm)%>%
+  filter(Genero=="Mujer")%>%
+  summarize(Mean=mean(Altura_cm))
+  
+promH=Alturas_Humanos%>%
+  select(Genero, Altura_cm)%>%
+  filter(Genero=="Hombres")%>%
+  summarize(Mean=mean(Altura_cm))
+
+sdM=Alturas_Humanos%>%
+  select(Genero, Altura_cm)%>%
+  filter(Genero=="Mujer")%>%
+  summarize(sd=sd(Altura_cm))
+  
+sdH=Alturas_Humanos%>%
+  select(Genero, Altura_cm)%>%
+  filter(Genero=="Hombres")%>%
+  summarize(sd=sd(Altura_cm))
+
+```
 
 
 

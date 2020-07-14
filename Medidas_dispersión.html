@@ -443,9 +443,11 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-13&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-14&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)
-library(Hmisc)</code></pre>
+library(Hmisc)
+library(gridExtra) # Un paquete para organizar las figuras de ggplot2
+library(gt)</code></pre>
 <hr />
 <div id="que-es-la-dispersión-en-estadística" class="section level1">
 <h1>Que es la dispersión en estadística</h1>
@@ -460,11 +462,11 @@ library(Hmisc)</code></pre>
 </div>
 <div id="vizualizando-la-dispersión" class="section level1">
 <h1>Vizualizando la dispersión</h1>
-<p>Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes.</p>
+<p>Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes. En el primer conjunto de datos se usa 5000 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.</p>
 <pre class="r"><code>set.seed(869870) # esto es para que los valores se queda igual a cada vez que se corre el analisis
 a=rnorm(5000, 100, 10)
 a=data.frame(a)
-b=rnorm(5000, 100, 30)
+b=rnorm(500, 100, 30)
 b=data.frame(b)</code></pre>
 <pre class="r"><code>ggplot(a, aes(a))+
   geom_density(fill=&quot;blue&quot;, alpha=.5)+
@@ -480,7 +482,7 @@ b=data.frame(b)</code></pre>
 <pre class="r"><code>range(a$a)</code></pre>
 <pre><code>## [1]  59.17397 137.11983</code></pre>
 <pre class="r"><code>range(b$b)</code></pre>
-<pre><code>## [1]   1.860332 203.878426</code></pre>
+<pre><code>## [1]   9.987169 181.432611</code></pre>
 <div id="la-varianza" class="section level2">
 <h2>La varianza</h2>
 <p>Los pasos para calcular la varianza son los siguientes</p>
@@ -670,10 +672,10 @@ quantile(dat, type =1)</code></pre>
 </div>
 <div id="el-error-estandard" class="section level1">
 <h1>El error estandard</h1>
-<p>El indice de error estándar es para describir cual es la posible dispersión del promedio. En otra palabra cuan confiado estamos con el estimado del promedio. Más grande el error estándar menos confiado estamos con el promedio. Se usa el error estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
+<p>El termino correcto es el <em>error de las desviación estándar</em> pero típicamente acortado a <em>error estándar</em>. El indice de error estándar es para describir cual es la posible dispersión del promedio. En otra palabra cuan confiado estamos con el estimado del promedio. Más grande el error estándar menos confiado estamos con el promedio. Se usa el error estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
 <p>La formula de error estándar es la siguiente usando la desviación estándar</p>
 <p><span class="math display">\[s_{\overline{x}}=\frac{s}{\sqrt{n}}\]</span> o usando la varianza, donde la <strong>n</strong> es la cantidad de datos</p>
-<p><span class="math display">\[s_{\overline{x}}=\sqrt{\frac{s^2}{n}}\]</span> Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución. er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calular el indice.</p>
+<p><span class="math display">\[s_{\overline{x}}=\sqrt{\frac{s^2}{n}}\]</span> Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución. er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice. Vemos que cuando hay más dispersión el error estándar es más grande.</p>
 <pre class="r"><code>es_a= sd(a$a)/sqrt(length(a$a))
 
 es_b= sd(b$b)/sqrt(length(b$b))
@@ -681,7 +683,484 @@ es_b= sd(b$b)/sqrt(length(b$b))
 es_a</code></pre>
 <pre><code>## [1] 0.1444401</code></pre>
 <pre class="r"><code>es_b</code></pre>
-<pre><code>## [1] 0.4230387</code></pre>
+<pre><code>## [1] 1.363112</code></pre>
+</div>
+<div id="el-intervalo-de-confianza-de-95-del-promedio" class="section level1">
+<h1>El intervalo de confianza de 95% del promedio</h1>
+<p>Ya que hemos calculado el error estándar podemos calcular la dispersión de los promedios. Esto quiere decir que si uno repite la recolección de datos el promedio tiene un 95% de probabilidad estar en este rango. Uno calcula los limites de la dispersión de los promedios usando la siguientes formulas.</p>
+<p><span class="math display">\[Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)\]</span></p>
+<p><span class="math display">\[Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)\]</span></p>
+<pre class="r"><code>Limite_inferior_a=mean(a$a)-(es_a+1.96)
+Limite_superior_a=mean(a$a)+(es_a+1.96)
+
+Limite_inferior_a</code></pre>
+<pre><code>## [1] 97.97153</code></pre>
+<pre class="r"><code>Limite_superior_a</code></pre>
+<pre><code>## [1] 102.1804</code></pre>
+<pre class="r"><code>Limite_inferior_b=mean(b$b)-(es_b+1.96)
+Limite_superior_b=mean(b$b)+(es_b+1.96)
+
+mean_b=mean(b$b)
+Limite_inferior_b</code></pre>
+<pre><code>## [1] 97.689</code></pre>
+<pre class="r"><code>Limite_superior_b</code></pre>
+<pre><code>## [1] 104.3352</code></pre>
+<p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
+<pre class="r"><code>CIa=ggplot(a, aes(a))+
+  geom_density(fill=&quot;blue&quot;, alpha=.5)+
+  theme(legend.position = &quot;none&quot;) +
+  geom_vline(aes(xintercept = 100), colour=&quot;red&quot;)+
+  geom_vline(aes(xintercept = Limite_inferior_a), colour=&quot;black&quot;)+
+  geom_vline(aes(xintercept = Limite_superior_a), colour=&quot;black&quot;)+
+  xlim(90,110)
+
+CIb=ggplot(b, aes(b))+
+  geom_density(fill=&quot;blue&quot;, alpha=.5)+
+  theme(legend.position = &quot;none&quot;) +
+  geom_vline(aes(xintercept =mean_b), colour=&quot;red&quot;)+
+  geom_vline(aes(xintercept = Limite_inferior_b), colour=&quot;black&quot;)+
+  geom_vline(aes(xintercept = Limite_superior_b), colour=&quot;black&quot;)+
+  xlim(90,110)
+
+grid.arrange(CIa,CIb, ncol=2)</code></pre>
+<p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
+<h2>El intervalos de confianza de los datos</h2>
+<p>Para tener una idea de la distribución de los datos y cual es el porcentaje de valores que esté incluido (asumiendo una distribución normal). Podemos crear un gráfico que demuestra el porcentaje incluidos basado en la desviación estándar. Nota aquí no es la dispersión del promedio pero la dispersión de los datos en la población.</p>
+<p>Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website <a href="https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data" class="uri">https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data</a></p>
+<pre class="r"><code>library(readr)
+Alturas_Humanos &lt;- read_csv(&quot;Data_files_csv/Alturas_Humanos.csv&quot;)
+gt(head(Alturas_Humanos))</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#qygvfndivd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qygvfndivd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qygvfndivd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qygvfndivd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qygvfndivd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qygvfndivd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qygvfndivd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qygvfndivd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qygvfndivd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qygvfndivd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qygvfndivd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qygvfndivd .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qygvfndivd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qygvfndivd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qygvfndivd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qygvfndivd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qygvfndivd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qygvfndivd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#qygvfndivd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qygvfndivd .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#qygvfndivd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qygvfndivd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qygvfndivd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qygvfndivd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qygvfndivd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#qygvfndivd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qygvfndivd .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#qygvfndivd .gt_left {
+  text-align: left;
+}
+
+#qygvfndivd .gt_center {
+  text-align: center;
+}
+
+#qygvfndivd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qygvfndivd .gt_font_normal {
+  font-weight: normal;
+}
+
+#qygvfndivd .gt_font_bold {
+  font-weight: bold;
+}
+
+#qygvfndivd .gt_font_italic {
+  font-style: italic;
+}
+
+#qygvfndivd .gt_super {
+  font-size: 65%;
+}
+
+#qygvfndivd .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="qygvfndivd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Genero</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Altura_cm</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Peso_kg</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Hombres</td>
+      <td class="gt_row gt_right">174</td>
+      <td class="gt_row gt_right">96</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Hombres</td>
+      <td class="gt_row gt_right">189</td>
+      <td class="gt_row gt_right">87</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Mujer</td>
+      <td class="gt_row gt_right">185</td>
+      <td class="gt_row gt_right">110</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Mujer</td>
+      <td class="gt_row gt_right">195</td>
+      <td class="gt_row gt_right">104</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Hombres</td>
+      <td class="gt_row gt_right">149</td>
+      <td class="gt_row gt_right">61</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Hombres</td>
+      <td class="gt_row gt_right">189</td>
+      <td class="gt_row gt_right">104</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+<p>Cálculos el promedio y la desviación estándar de los datos. Lo haremos por genero. Si uno calcula el rango de promedio ± 1 sd, esto incluye 68.2% de los datos, si incluimos el promedio ± 2 sd incluye 95.6% de los datos,</p>
+<table>
+<caption>Rangos incluidos en intervalos de confianza</caption>
+<thead>
+<tr class="header">
+<th align="center">sd</th>
+<th align="center">rango inluido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">el promedio</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">68.2%</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">95.6%</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">99.7%</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">99.99%</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>promM=Alturas_Humanos%&gt;%
+  select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Mujer&quot;)%&gt;%
+  summarize(Mean=mean(Altura_cm))
+  
+promH=Alturas_Humanos%&gt;%
+  select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Hombres&quot;)%&gt;%
+  summarize(Mean=mean(Altura_cm))
+
+sdM=Alturas_Humanos%&gt;%
+  select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Mujer&quot;)%&gt;%
+  summarize(sd=sd(Altura_cm))
+  
+sdH=Alturas_Humanos%&gt;%
+  select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Hombres&quot;)%&gt;%
+  summarize(sd=sd(Altura_cm))</code></pre>
+</div>
 </div>
 
 
