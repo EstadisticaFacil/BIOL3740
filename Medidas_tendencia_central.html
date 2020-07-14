@@ -379,10 +379,10 @@ div.tocify {
       <a href="Tema_2_Historia.html">Historia breve de la estadística cuantitativa</a>
     </li>
     <li>
-      <a href="Medidas_tendencias_central.html">Medidas de Tedencias Central</a>
+      <a href="Medidas_tendencia_central.html">Medidas de Tedencias Central</a>
     </li>
     <li>
-      <a href="Medidas_disperción.html">Medidas de Disperción</a>
+      <a href="Medidas_dispersión.html">Medidas de Dispersión</a>
     </li>
     <li>
       <a href="Tema_3_Graficos.html">Explorando los datos con gráficos</a>
@@ -443,7 +443,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-12&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-14&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)
 library(Hmisc)
 library(gridExtra) # Un paquete para organizar las figuras de ggplot2</code></pre>
@@ -512,18 +512,18 @@ b</code></pre>
 </div>
 </div>
 <div id="cuando-es-que-el-promedio-merdiana-y-moda-son-iguales" class="section level1">
-<h1>Cuando es que el promedio, merdiana y moda son iguales</h1>
+<h1>Cuando es que el promedio, merdiana y moda son iguales?</h1>
 <p>Los tres valores de tendencia central son iguales cuando la distribución es normal, conocida también como en forma de campana. Aquí preparo un lista de datos con distribución normal, y evaluamos donde están los tres valores de tendencia central. Se usa la función <strong>rpois</strong>, para crear un conjunto de datos al azar con 100000, datos, un promedio de 100.</p>
 <pre class="r"><code>df=rpois(10000, 100)
 df=data.frame(df)</code></pre>
 <p>Lo que uno observa es que los tres valores son muy cercano uno del otro.</p>
 <pre class="r"><code>mean(df$df)</code></pre>
-<pre><code>## [1] 100.1372</code></pre>
+<pre><code>## [1] 100.1001</code></pre>
 <pre class="r"><code>median(df$df)</code></pre>
 <pre><code>## [1] 100</code></pre>
 <pre class="r"><code>mfv(df$df)</code></pre>
-<pre><code>## [1] 99</code></pre>
-<p>Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda). En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta.</p>
+<pre><code>## [1] 98</code></pre>
+<p>Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda). En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta. Se observa que los tres valores son cerca del centro.</p>
 <pre class="r"><code>mea=mean(df$df)
 med=median(df$df)
 mod=mfv(df$df)
@@ -534,21 +534,55 @@ mod=mfv(df$df)
 a=ggplot(df, aes(df ))+
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;, binwidth = 5)+
   geom_vline(aes(xintercept = mea, colour=&quot;red&quot;))+
-  geom_vline(aes(xintercept = med, colour=&quot;black&quot;))+
+  geom_vline(aes(xintercept = med, colour=&quot;blue&quot;))+
   geom_vline(aes(xintercept = mod, colour=&quot;green&quot;))+
   theme(legend.position = &quot;none&quot;)
 
 b=ggplot(df, aes(df ))+
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;, binwidth = 1)+
   geom_vline(aes(xintercept = mea, colour=&quot;red&quot;))+
-  geom_vline(aes(xintercept = med, colour=&quot;black&quot;))+
+  geom_vline(aes(xintercept = med, colour=&quot;blue&quot;))+
   geom_vline(aes(xintercept = mod, colour=&quot;green&quot;))+
-  xlim(95,102)+
+  xlim(95,104)+
   theme(legend.position = &quot;none&quot;)
 
 
 grid.arrange(a,b, ncol=2)</code></pre>
-<p><img src="Medidas_tendencia_central_files/figure-html/unnamed-chunk-12-1.png" width="672" /> ```</p>
+<p><img src="Medidas_tendencia_central_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div id="distribucion-cuando-los-tres-valores-de-tendencia-centrtal-no-son-iguales.-en-estas-distribuciones-uno-observa-que-hay-exceso-de-vaslores-pequeños-o-grande.-esto-resulta-en-que-los-tres-indices-de-tendencias-centrales-no-se-encuentra-cerca-uno-del-otro." class="section level2">
+<h2>Distribucion cuando los tres valores de tendencia centrtal no son iguales. En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande. Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro.</h2>
+<pre class="r"><code>dfb= round(rbeta(100000, 3,1, ncp = 0),3)
+dfb=data.frame(dfb)
+
+dfbb= round(rbeta(100000, 1,3, ncp = 0),3)
+dfbb=data.frame(dfbb)</code></pre>
+<pre class="r"><code>mea=mean(dfb$dfb)
+med=median(dfb$dfb)
+mod=mfv(dfb$dfb)
+mod</code></pre>
+<pre><code>## [1] 0.998</code></pre>
+<pre class="r"><code>meab=mean(dfbb$dfbb)
+medb=median(dfbb$dfbb)
+modb=mfv(dfbb$dfbb)
+
+
+ggplot(dfb, aes(dfb))+
+  geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;)+
+  geom_vline(aes(xintercept = mea, colour=&quot;red&quot;))+
+  geom_vline(aes(xintercept = med, colour=&quot;black&quot;))+
+  geom_vline(aes(xintercept = mod, colour=&quot;green&quot;))+
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="Medidas_tendencia_central_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>d=ggplot(dfbb, aes(dfbb ))+
+  geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;)+
+  geom_vline(aes(xintercept = meab, colour=&quot;red&quot;))+
+  geom_vline(aes(xintercept = medb, colour=&quot;black&quot;))+
+  geom_vline(aes(xintercept = modb, colour=&quot;green&quot;))+
+  theme(legend.position = &quot;none&quot;)
+
+grid.arrange(c,d, ncol=2)</code></pre>
+<p><img src="Medidas_tendencia_central_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+</div>
 </div>
 
 

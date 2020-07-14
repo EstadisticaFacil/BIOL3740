@@ -205,7 +205,7 @@ es_a
 es_b
 ```
 
-
+***
 
 # El intervalo de confianza de 95% del promedio
 
@@ -254,14 +254,14 @@ grid.arrange(CIa,CIb, ncol=2)
 
 ```
 
-
+***
 ## El intervalos de confianza de los datos
 
 Para tener una idea de la distribución de los datos y cual es el porcentaje de valores que esté incluido (asumiendo una distribución normal). Podemos crear un gráfico que demuestra el porcentaje incluidos basado en la desviación estándar.  Nota aquí no es la dispersión del promedio pero la dispersión de los datos en la población.  
 
 
 
-
+***
 
 
 
@@ -288,6 +288,8 @@ df <- df[-1,c(-1,-4)] # remove first row
 row.names(df)<-NULL
 pander(df, style = 'rmarkdown')
 ```
+
+
 
 Comenzamos con evaluar el intervalo de confianza de los datos con datos teóricos.  Por ejemplo el nivel de colesterol en el plasma varia en los humanos.  En el siguiente articulo *Plasma total cholesterol level and some related factors in northern Iranian people*. <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/>  
 
@@ -351,7 +353,11 @@ geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour="orange")+
 
 ```
 
+***
 
+## Otro ejemplo de los intevalos de confianzas
+
+### La altura de los humanos
 
 
 
@@ -409,7 +415,9 @@ geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour="red")+
   geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour="red")
 ```
 
-## Ahora prepara el mismo gráfico para los hombres.  
+
+
+### Ejercicio: Ahora prepara el mismo gráfico para los hombres.  
 
 
  

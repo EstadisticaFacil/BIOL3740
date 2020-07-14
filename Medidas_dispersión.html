@@ -684,6 +684,7 @@ es_a</code></pre>
 <pre><code>## [1] 0.1444401</code></pre>
 <pre class="r"><code>es_b</code></pre>
 <pre><code>## [1] 1.363112</code></pre>
+<hr />
 </div>
 <div id="el-intervalo-de-confianza-de-95-del-promedio" class="section level1">
 <h1>El intervalo de confianza de 95% del promedio</h1>
@@ -724,9 +725,11 @@ CIb=ggplot(b, aes(b))+
 
 grid.arrange(CIa,CIb, ncol=2)</code></pre>
 <p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<hr />
 <div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
 <h2>El intervalos de confianza de los datos</h2>
 <p>Para tener una idea de la distribución de los datos y cual es el porcentaje de valores que esté incluido (asumiendo una distribución normal). Podemos crear un gráfico que demuestra el porcentaje incluidos basado en la desviación estándar. Nota aquí no es la dispersión del promedio pero la dispersión de los datos en la población.</p>
+<hr />
 </div>
 <div id="rangos-incluidos-en-intervalos-de-confianza" class="section level2">
 <h2>Rangos incluidos en intervalos de confianza</h2>
@@ -773,14 +776,8 @@ promCol=Col%&gt;%
   summarize(Mean=mean(Col))
   
 sdCol=Col%&gt;%
-  summarize(sd=sd(Col))
-
-promCol-3*sdCol</code></pre>
-<pre><code>##       Mean
-## 1 79.30985</code></pre>
-<pre class="r"><code>max(Col$Col)</code></pre>
-<pre><code>## [1] 361.1119</code></pre>
-<p>Visualizar los datos: Uds conoce su nivel de colesterol total? Donde se encuentra en esta distribución?</p>
+  summarize(sd=sd(Col))</code></pre>
+<p>Visualizar los datos: Uds conoce su nivel de colesterol total? Donde se encuentra en esta distribución? Se encuentra en el 68%? Nota que la suma de todos los porcentaje es igual a 100%.</p>
 <pre class="r"><code>library(grid)
 library(gtable)
 
@@ -817,11 +814,12 @@ geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour=&quot;orange&qu
   annotate(&quot;text&quot;, x=70, y = .0005, label=&quot;0.1%&quot;)+
   annotate(&quot;text&quot;, x=330, y = .0005, label=&quot;0.1%&quot;)</code></pre>
 <p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<pre class="r"><code>labels.comb</code></pre>
-<pre><code>##  [1] &quot;0&quot;          &quot;79&quot;         &quot;\n-3sd&quot;     &quot;118&quot;        &quot;\n-2sd&quot;    
-##  [6] &quot;157&quot;        &quot;\n-1sd&quot;     &quot;197&quot;        &quot;\npromedio&quot; &quot;235&quot;       
-## [11] &quot;\n+1sd&quot;     &quot;274&quot;        &quot;\n+2sd&quot;     &quot;314&quot;        &quot;\n+3sd&quot;    
-## [16] &quot;379&quot;</code></pre>
+<hr />
+</div>
+<div id="otro-ejemplo-de-los-intevalos-de-confianzas" class="section level2">
+<h2>Otro ejemplo de los intevalos de confianzas</h2>
+<div id="la-altura-de-los-humanos" class="section level3">
+<h3>La altura de los humanos</h3>
 <p>Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website <a href="https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data" class="uri">https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data</a></p>
 <pre class="r"><code>library(readr)
 Alturas_Humanos &lt;- read_csv(&quot;Data_files_csv/Alturas_Humanos.csv&quot;)
@@ -1238,8 +1236,9 @@ geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour=&quot;red&quot;)+
   geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour=&quot;red&quot;)</code></pre>
 <p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
-<div id="ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level2">
-<h2>Ahora prepara el mismo gráfico para los hombres.</h2>
+<div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level3">
+<h3>Ejercicio: Ahora prepara el mismo gráfico para los hombres.</h3>
+</div>
 </div>
 </div>
 
