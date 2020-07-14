@@ -531,7 +531,7 @@ Data_df</code></pre>
 </div>
 <div id="calcular-la-varianza-con-var" class="section level2">
 <h2>Calcular la varianza con <strong>var()</strong></h2>
-<p>Ahora la manera fácil de hacer los análisis, usar la función <strong>var</strong>, y no hay que hacer ninguno de los pasos anteriores. Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y y cada valor/ El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero.</p>
+<p>Ahora la manera fácil de hacer los análisis, usar la función <strong>var</strong>, y no hay que hacer ninguno de los pasos anteriores. Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y cada valor. El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero. Se usa el variancas cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
 <pre class="r"><code>var(Data)</code></pre>
 <pre><code>## [1] 3.5</code></pre>
 <hr />
@@ -539,13 +539,13 @@ Data_df</code></pre>
 </div>
 <div id="la-desviación-estandar" class="section level1">
 <h1>La desviación estandar</h1>
-<p>La varianza es un indice que no esta en la misma unidad que los valores recolectado, por ejemplo si se recolecta los datos en centímetros, la varianza es en centímetros cuadrados. Por consecuencia no es necesariamente el mejor para describir la dispersión. Entonces hay que sacar la raíz cuadra de la varianza.</p>
-<p>The other formula is the standard deviation, which is the square root of the variance. This is a better measure to report, why?</p>
+<p>La varianza es un indice que no esta en la misma unidad que los valores recolectado, por ejemplo si se recolecta los datos en centímetros, la varianza es en centímetros cuadrados. Por consecuencia no es necesariamente el mejor para describir la dispersión. Entonces hay que sacar la raíz cuadra de la varianza. La desviación estándar es un indice que se usa para describir la dispersión de una población, en otra palabra cuan diferentes son los datos uno del otro. Se usa el desviación estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
 <p><span class="math display">\[{ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }\]</span> o más sencillo</p>
-<p><span class="math display">\[\sqrt{s^2}\]</span></p>
+<p><span class="math display">\[s=\sqrt{s^2}\]</span></p>
 <p>la función <strong>sd</strong>, “standard deviation” es sumamente facil de calcular en R.</p>
 <pre class="r"><code>sd(Data_df$Data)  # deviación estandard</code></pre>
 <pre><code>## [1] 1.870829</code></pre>
+<hr />
 </div>
 <div id="el-rango-intertcuartil." class="section level1">
 <h1>El rango intertcuartil.</h1>
@@ -660,46 +660,28 @@ quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975))   </code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>library(EnvStats)
-dat=c(3,19,27,33,52,60,77,87,99,101,122,137,140,142,150)
+<p>Ahora usamos la función <strong>quantile</strong> con el type=1 de calcular los cuartiles y vermos si tenemos los mismos resultados.</p>
+<pre class="r"><code>dat=c(3,19,27,33,52,60,77,87,99,101,122,137,140,142,150)
 
 quantile(dat, type =1)</code></pre>
 <pre><code>##   0%  25%  50%  75% 100% 
 ##    3   33   87  137  150</code></pre>
-<pre class="r"><code>library(readr)
-Exam_Anxiety &lt;- read_csv(&quot;Data_files_csv/Exam Anxiety.csv&quot;)</code></pre>
-<p>Para visualizar las primeras y ultimas 6 filas usar <strong>head()</strong> y <strong>tail()</strong> respectivamente.</p>
-<pre class="r"><code>head(Exam_Anxiety)</code></pre>
-<pre><code>## # A tibble: 6 x 5
-##    Code Revise  Exam Anxiety Gender
-##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
-## 1     1      4    40    86.3 Male  
-## 2     2     11    65    88.7 Female
-## 3     3     27    80    70.2 Male  
-## 4     4     53    80    61.3 Male  
-## 5     5      4    40    89.5 Male  
-## 6     6     22    70    60.5 Female</code></pre>
-<pre class="r"><code>tail(Exam_Anxiety)</code></pre>
-<pre><code>## # A tibble: 6 x 5
-##    Code Revise  Exam Anxiety Gender
-##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
-## 1    98     23    70    75.8 Male  
-## 2    99     13    55    71.0 Female
-## 3   100     14    75    78.2 Female
-## 4   101      1     2    82.3 Male  
-## 5   102      9    40    79.0 Male  
-## 6   103     20    50    91.1 Female</code></pre>
-<pre class="r"><code>mean(Exam_Anxiety$Revise)</code></pre>
-<pre><code>## [1] 19.85437</code></pre>
-<pre class="r"><code>range(Exam_Anxiety$Revise)</code></pre>
-<pre><code>## [1]  0 98</code></pre>
-<pre class="r"><code>y=rnorm(1001)
+<hr />
+</div>
+<div id="el-error-estandard" class="section level1">
+<h1>El error estandard</h1>
+<p>El indice de error estándar es para describir cual es la posible dispersión del promedio. En otra palabra cuan confiado estamos con el estimado del promedio. Más grande el error estándar menos confiado estamos con el promedio. Se usa el error estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
+<p>La formula de error estándar es la siguiente usando la desviación estándar</p>
+<p><span class="math display">\[s_{\overline{x}}=\frac{s}{\sqrt{n}}\]</span> o usando la varianza, donde la <strong>n</strong> es la cantidad de datos</p>
+<p><span class="math display">\[s_{\overline{x}}=\sqrt{\frac{s^2}{n}}\]</span> Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución. er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calular el indice.</p>
+<pre class="r"><code>es_a= sd(a$a)/sqrt(length(a$a))
 
+es_b= sd(b$b)/sqrt(length(b$b))
 
-quantile(y)</code></pre>
-<pre><code>##          0%         25%         50%         75%        100% 
-## -3.06169669 -0.67583592 -0.03992006  0.62939928  3.46709628</code></pre>
-<pre class="r"><code>probs = c(0.01, 0.10, 0.50,.90)</code></pre>
+es_a</code></pre>
+<pre><code>## [1] 0.1444401</code></pre>
+<pre class="r"><code>es_b</code></pre>
+<pre><code>## [1] 0.4230387</code></pre>
 </div>
 
 

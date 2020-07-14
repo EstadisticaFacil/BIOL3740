@@ -106,7 +106,7 @@ sum(Data_df$SS)
 ```
 ## Calcular la varianza con **var()**
 
-Ahora la manera fácil de hacer los análisis, usar la función **var**, y no hay que hacer ninguno de los pasos anteriores.   Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y y cada valor/  El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero.    
+Ahora la manera fácil de hacer los análisis, usar la función **var**, y no hay que hacer ninguno de los pasos anteriores.   Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y cada valor.  El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero.   Se usa el variancas cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.   
 
 ```{r}
 var(Data)
@@ -117,12 +117,12 @@ var(Data)
 
 # La desviación estandar
 
-La varianza es un indice que no esta en la misma unidad que los valores recolectado, por ejemplo si se recolecta los datos en centímetros, la varianza es en centímetros cuadrados. Por consecuencia no es necesariamente el mejor para describir la dispersión. Entonces hay que sacar la raíz cuadra de la varianza. 
+La varianza es un indice que no esta en la misma unidad que los valores recolectado, por ejemplo si se recolecta los datos en centímetros, la varianza es en centímetros cuadrados. Por consecuencia no es necesariamente el mejor para describir la dispersión. Entonces hay que sacar la raíz cuadra de la varianza. La desviación estándar es un indice que se usa para describir la dispersión de una población, en otra palabra cuan diferentes son los datos uno del otro.   Se usa el desviación estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.   
   
   $${ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }$$ 
   o más sencillo
   
-  $$\sqrt{s^2}$$
+  $$s=\sqrt{s^2}$$
   
 la función **sd**, "standard deviation" es sumamente facil de calcular en R. 
 
@@ -181,33 +181,40 @@ quantile(dat, type =1)
 
 ***
 
+# El error estandard
 
+El indice de error estándar es para describir cual es la posible dispersión del promedio.  En otra palabra cuan confiado estamos con el estimado del promedio.  Más grande el error estándar menos confiado estamos con el promedio.   Se usa el error estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.   
 
+La formula de error estándar es la siguiente usando la desviación estándar
 
-```{r}
-library(readr)
-Exam_Anxiety <- read_csv("Data_files_csv/Exam Anxiety.csv")
-```
+$$s_{\overline{x}}=\frac{s}{\sqrt{n}}$$
+o usando la varianza, donde la **n** es la cantidad de datos
 
-Para visualizar las primeras y ultimas 6 filas usar **head()** y **tail()** respectivamente.  
-
-```{r}
-head(Exam_Anxiety)
-tail(Exam_Anxiety)
-```
-
+$$s_{\overline{x}}=\sqrt{\frac{s^2}{n}}$$
+Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución.  er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice.  Vemos que cuando hay más dispersión el error estándar es más grande.  
 
 ```{r}
-mean(Exam_Anxiety$Revise)
-range(Exam_Anxiety$Revise)
+
+es_a= sd(a$a)/sqrt(length(a$a))
+
+es_b= sd(b$b)/sqrt(length(b$b))
+
+es_a
+es_b
 ```
 
 
 
-```{r}
-y=rnorm(1001)
+# El intervalo de confianza de 95% del promedio
+
+Ya que hemos calculado el error estándar podemos calcular la dispersión de los promedios.   Esto quiere decir que si uno repite la recolección de datos el promedio tiene un 95% de probabilidad estar en este rango.  Uno calcula los limites de la dispersión de los promedios usando la siguientes formulas
+
+$$Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)$$
 
 
-quantile(y)
-probs = c(0.01, 0.10, 0.50,.90)
-```
+$$Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)$$
+
+
+
+
+
