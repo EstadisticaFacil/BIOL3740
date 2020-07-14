@@ -727,6 +727,101 @@ grid.arrange(CIa,CIb, ncol=2)</code></pre>
 <div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
 <h2>El intervalos de confianza de los datos</h2>
 <p>Para tener una idea de la distribución de los datos y cual es el porcentaje de valores que esté incluido (asumiendo una distribución normal). Podemos crear un gráfico que demuestra el porcentaje incluidos basado en la desviación estándar. Nota aquí no es la dispersión del promedio pero la dispersión de los datos en la población.</p>
+</div>
+<div id="rangos-incluidos-en-intervalos-de-confianza" class="section level2">
+<h2>Rangos incluidos en intervalos de confianza</h2>
+<p>Cálculos el promedio y la desviación estándar de los datos. Lo haremos por genero. Si uno calcula el rango de promedio ± 1 sd, esto incluye 68.2% de los datos, si incluimos el promedio ± 2 sd incluye 95.6% de los datos,</p>
+<table>
+<caption>Rangos incluidos en intervalos de confianza</caption>
+<thead>
+<tr class="header">
+<th align="center">sd</th>
+<th align="center">rango inluido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">el promedio</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">68.2%</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">95.6%</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">99.7%</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">99.99%</td>
+</tr>
+</tbody>
+</table>
+<p>Comenzamos con evaluar el intervalo de confianza de los datos con datos teóricos. Por ejemplo el nivel de colesterol en el plasma varia en los humanos. En el siguiente articulo <em>Plasma total cholesterol level and some related factors in northern Iranian people</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/</a></p>
+<p>Usamos los datos para las mujeres con un promedio de 196.7 y una desviación estándar de 39.11. Con estos datos asumimos que esto provienen de una distribución normal y que representa las mujeres en resto del mundo.</p>
+<pre class="r"><code># Creamos un conjunto de datos para los análisis
+
+Col=rnorm(200000, 196.7, 39.11)
+Col=data_frame(Col)
+
+promCol=Col%&gt;%
+  summarize(Mean=mean(Col))
+  
+sdCol=Col%&gt;%
+  summarize(sd=sd(Col))
+
+promCol-3*sdCol</code></pre>
+<pre><code>##       Mean
+## 1 79.30985</code></pre>
+<pre class="r"><code>max(Col$Col)</code></pre>
+<pre><code>## [1] 361.1119</code></pre>
+<p>Visualizar los datos: Uds conoce su nivel de colesterol total? Donde se encuentra en esta distribución?</p>
+<pre class="r"><code>library(grid)
+library(gtable)
+
+lims &lt;- c(28, 350)
+
+breaks.major2&lt;-c(0, 79, 118, 157, 
+                 197, 235, 274, 314)
+breaks.minor2= c(79, 118, 157,197, 
+                235, 274, 314,379)
+breaks.comb &lt;- sort(c(breaks.major2, breaks.minor2-1.0E-6))
+labels.comb&lt;- c(0, 79, &quot;\n-3sd&quot;, 118, &quot;\n-2sd&quot;, 157, &quot;\n-1sd&quot;, 197, &quot;\npromedio&quot;,
+                 235,  &quot;\n+1sd&quot;,274, &quot;\n+2sd&quot;, 314,&quot;\n+3sd&quot;, 379)
+Col%&gt;%
+ggplot(aes(Col))+
+  geom_density(fill=&quot;blue&quot;, colour=&quot;white&quot;,alpha=.5)+
+  theme(legend.position = &quot;none&quot;)+
+  geom_vline(xintercept=as.numeric(promCol), colour=&quot;black&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promCol-sdCol)), colour=&quot;blue&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promCol+sdCol)), colour=&quot;blue&quot;)+
+geom_vline(aes(xintercept = as.numeric(promCol-2*sdCol)), colour=&quot;red&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promCol+2*sdCol)), colour=&quot;red&quot;)+
+geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour=&quot;orange&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promCol+3*sdCol)), colour=&quot;orange&quot;)+ scale_x_continuous(expand=c(0,0), limit=lims, 
+                                minor_breaks=breaks.minor2, 
+                                breaks=breaks.comb,
+                                labels=labels.comb)+
+  xlab(&quot;Nivel de colesterol&quot;)+
+  annotate(&quot;text&quot;, x=180, y = .004, label=&quot;34.1%&quot;)+
+  annotate(&quot;text&quot;, x=210, y = .004, label=&quot;34.1%&quot;)+
+  annotate(&quot;text&quot;, x=140, y = .002, label=&quot;13.6%&quot;)+
+  annotate(&quot;text&quot;, x=250, y = .002, label=&quot;13.6%&quot;)+
+  annotate(&quot;text&quot;, x=90, y = .001, label=&quot;2.1%&quot;)+
+  annotate(&quot;text&quot;, x=295, y = .001, label=&quot;2.1%&quot;)+
+  annotate(&quot;text&quot;, x=70, y = .0005, label=&quot;0.1%&quot;)+
+  annotate(&quot;text&quot;, x=330, y = .0005, label=&quot;0.1%&quot;)</code></pre>
+<p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="r"><code>labels.comb</code></pre>
+<pre><code>##  [1] &quot;0&quot;          &quot;79&quot;         &quot;\n-3sd&quot;     &quot;118&quot;        &quot;\n-2sd&quot;    
+##  [6] &quot;157&quot;        &quot;\n-1sd&quot;     &quot;197&quot;        &quot;\npromedio&quot; &quot;235&quot;       
+## [11] &quot;\n+1sd&quot;     &quot;274&quot;        &quot;\n+2sd&quot;     &quot;314&quot;        &quot;\n+3sd&quot;    
+## [16] &quot;379&quot;</code></pre>
 <p>Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website <a href="https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data" class="uri">https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data</a></p>
 <pre class="r"><code>library(readr)
 Alturas_Humanos &lt;- read_csv(&quot;Data_files_csv/Alturas_Humanos.csv&quot;)
@@ -735,7 +830,7 @@ gt(head(Alturas_Humanos))</code></pre>
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qygvfndivd .gt_table {
+#webfapcfvz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -758,7 +853,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#qygvfndivd .gt_heading {
+#webfapcfvz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -770,7 +865,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#qygvfndivd .gt_title {
+#webfapcfvz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -780,7 +875,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-bottom-width: 0;
 }
 
-#qygvfndivd .gt_subtitle {
+#webfapcfvz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -790,13 +885,13 @@ gt(head(Alturas_Humanos))</code></pre>
   border-top-width: 0;
 }
 
-#qygvfndivd .gt_bottom_border {
+#webfapcfvz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qygvfndivd .gt_col_headings {
+#webfapcfvz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -811,7 +906,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#qygvfndivd .gt_col_heading {
+#webfapcfvz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -831,7 +926,7 @@ gt(head(Alturas_Humanos))</code></pre>
   overflow-x: hidden;
 }
 
-#qygvfndivd .gt_column_spanner_outer {
+#webfapcfvz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -843,15 +938,15 @@ gt(head(Alturas_Humanos))</code></pre>
   padding-right: 4px;
 }
 
-#qygvfndivd .gt_column_spanner_outer:first-child {
+#webfapcfvz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qygvfndivd .gt_column_spanner_outer:last-child {
+#webfapcfvz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qygvfndivd .gt_column_spanner {
+#webfapcfvz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -863,7 +958,7 @@ gt(head(Alturas_Humanos))</code></pre>
   width: 100%;
 }
 
-#qygvfndivd .gt_group_heading {
+#webfapcfvz .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -885,7 +980,7 @@ gt(head(Alturas_Humanos))</code></pre>
   vertical-align: middle;
 }
 
-#qygvfndivd .gt_empty_group_heading {
+#webfapcfvz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -900,19 +995,19 @@ gt(head(Alturas_Humanos))</code></pre>
   vertical-align: middle;
 }
 
-#qygvfndivd .gt_striped {
+#webfapcfvz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qygvfndivd .gt_from_md > :first-child {
+#webfapcfvz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qygvfndivd .gt_from_md > :last-child {
+#webfapcfvz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qygvfndivd .gt_row {
+#webfapcfvz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -931,7 +1026,7 @@ gt(head(Alturas_Humanos))</code></pre>
   overflow-x: hidden;
 }
 
-#qygvfndivd .gt_stub {
+#webfapcfvz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -943,7 +1038,7 @@ gt(head(Alturas_Humanos))</code></pre>
   padding-left: 12px;
 }
 
-#qygvfndivd .gt_summary_row {
+#webfapcfvz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -953,7 +1048,7 @@ gt(head(Alturas_Humanos))</code></pre>
   padding-right: 5px;
 }
 
-#qygvfndivd .gt_first_summary_row {
+#webfapcfvz .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -963,7 +1058,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#qygvfndivd .gt_grand_summary_row {
+#webfapcfvz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -973,7 +1068,7 @@ gt(head(Alturas_Humanos))</code></pre>
   padding-right: 5px;
 }
 
-#qygvfndivd .gt_first_grand_summary_row {
+#webfapcfvz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -983,7 +1078,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#qygvfndivd .gt_table_body {
+#webfapcfvz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -992,7 +1087,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#qygvfndivd .gt_footnotes {
+#webfapcfvz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1006,13 +1101,13 @@ gt(head(Alturas_Humanos))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#qygvfndivd .gt_footnote {
+#webfapcfvz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#qygvfndivd .gt_sourcenotes {
+#webfapcfvz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1026,46 +1121,46 @@ gt(head(Alturas_Humanos))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#qygvfndivd .gt_sourcenote {
+#webfapcfvz .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#qygvfndivd .gt_left {
+#webfapcfvz .gt_left {
   text-align: left;
 }
 
-#qygvfndivd .gt_center {
+#webfapcfvz .gt_center {
   text-align: center;
 }
 
-#qygvfndivd .gt_right {
+#webfapcfvz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qygvfndivd .gt_font_normal {
+#webfapcfvz .gt_font_normal {
   font-weight: normal;
 }
 
-#qygvfndivd .gt_font_bold {
+#webfapcfvz .gt_font_bold {
   font-weight: bold;
 }
 
-#qygvfndivd .gt_font_italic {
+#webfapcfvz .gt_font_italic {
   font-style: italic;
 }
 
-#qygvfndivd .gt_super {
+#webfapcfvz .gt_super {
   font-size: 65%;
 }
 
-#qygvfndivd .gt_footnote_marks {
+#webfapcfvz .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="qygvfndivd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="webfapcfvz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1109,38 +1204,7 @@ gt(head(Alturas_Humanos))</code></pre>
   
   
 </table></div>
-<p>Cálculos el promedio y la desviación estándar de los datos. Lo haremos por genero. Si uno calcula el rango de promedio ± 1 sd, esto incluye 68.2% de los datos, si incluimos el promedio ± 2 sd incluye 95.6% de los datos,</p>
-<table>
-<caption>Rangos incluidos en intervalos de confianza</caption>
-<thead>
-<tr class="header">
-<th align="center">sd</th>
-<th align="center">rango inluido</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">0</td>
-<td align="center">el promedio</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">68.2%</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">95.6%</td>
-</tr>
-<tr class="even">
-<td align="center">3</td>
-<td align="center">99.7%</td>
-</tr>
-<tr class="odd">
-<td align="center">4</td>
-<td align="center">99.99%</td>
-</tr>
-</tbody>
-</table>
+<p>Calculamos los promedios y las desviación estándar para añadirlos al gráfico</p>
 <pre class="r"><code>promM=Alturas_Humanos%&gt;%
   select(Genero, Altura_cm)%&gt;%
   filter(Genero==&quot;Mujer&quot;)%&gt;%
@@ -1160,6 +1224,22 @@ sdH=Alturas_Humanos%&gt;%
   select(Genero, Altura_cm)%&gt;%
   filter(Genero==&quot;Hombres&quot;)%&gt;%
   summarize(sd=sd(Altura_cm))</code></pre>
+<p>Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.</p>
+<pre class="r"><code>Alturas_Humanos%&gt;%
+  select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Mujer&quot;)%&gt;%
+ggplot(aes(Altura_cm))+
+  geom_histogram(fill=&quot;blue&quot;, colour=&quot;white&quot;,alpha=.5)+
+  theme(legend.position = &quot;none&quot;)+
+  geom_vline(xintercept=as.numeric(promM), colour=&quot;black&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promM-sdM)), colour=&quot;blue&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promM+sdM)), colour=&quot;blue&quot;)+
+geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour=&quot;red&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour=&quot;red&quot;)</code></pre>
+<p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level2">
+<h2>Ahora prepara el mismo gráfico para los hombres.</h2>
 </div>
 </div>
 

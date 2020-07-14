@@ -259,15 +259,11 @@ grid.arrange(CIa,CIb, ncol=2)
 
 Para tener una idea de la distribución de los datos y cual es el porcentaje de valores que esté incluido (asumiendo una distribución normal). Podemos crear un gráfico que demuestra el porcentaje incluidos basado en la desviación estándar.  Nota aquí no es la dispersión del promedio pero la dispersión de los datos en la población.  
 
-Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website <https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data>
 
 
 
-```{r}
-library(readr)
-Alturas_Humanos <- read_csv("Data_files_csv/Alturas_Humanos.csv")
-gt(head(Alturas_Humanos))
-```
+
+
 
 ## Rangos incluidos en intervalos de confianza 
 
@@ -292,7 +288,85 @@ df <- df[-1,c(-1,-4)] # remove first row
 row.names(df)<-NULL
 pander(df, style = 'rmarkdown')
 ```
-Calculamos los promedios y las desviación estándar. 
+
+Comenzamos con evaluar el intervalo de confianza de los datos con datos teóricos.  Por ejemplo el nivel de colesterol en el plasma varia en los humanos.  En el siguiente articulo *Plasma total cholesterol level and some related factors in northern Iranian people*. <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/>  
+
+Usamos los datos para las mujeres con un promedio de 196.7 y una desviación estándar de 39.11.  Con estos datos asumimos que esto provienen de una distribución normal y que representa las mujeres en resto del mundo.   
+
+```{r}
+# Creamos un conjunto de datos para los análisis
+
+Col=rnorm(200000, 196.7, 39.11)
+Col=data_frame(Col)
+
+promCol=Col%>%
+  summarize(Mean=mean(Col))
+  
+sdCol=Col%>%
+  summarize(sd=sd(Col))
+
+```
+
+
+Visualizar los datos:  Uds conoce su nivel de colesterol total?  Donde se encuentra en esta distribución?  Se encuentra en el 68%?   Nota que la suma de todos los porcentaje es igual a 100%.  
+
+
+```{r}
+
+library(grid)
+library(gtable)
+
+lims <- c(28, 350)
+
+breaks.major2<-c(0, 79, 118, 157, 
+                 197, 235, 274, 314)
+breaks.minor2= c(79, 118, 157,197, 
+                235, 274, 314,379)
+breaks.comb <- sort(c(breaks.major2, breaks.minor2-1.0E-6))
+labels.comb<- c(0, 79, "\n-3sd", 118, "\n-2sd", 157, "\n-1sd", 197, "\npromedio",
+                 235,  "\n+1sd",274, "\n+2sd", 314,"\n+3sd", 379)
+Col%>%
+ggplot(aes(Col))+
+  geom_density(fill="blue", colour="white",alpha=.5)+
+  theme(legend.position = "none")+
+  geom_vline(xintercept=as.numeric(promCol), colour="black")+
+  geom_vline(aes(xintercept = as.numeric(promCol-sdCol)), colour="blue")+
+  geom_vline(aes(xintercept = as.numeric(promCol+sdCol)), colour="blue")+
+geom_vline(aes(xintercept = as.numeric(promCol-2*sdCol)), colour="red")+
+  geom_vline(aes(xintercept = as.numeric(promCol+2*sdCol)), colour="red")+
+geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour="orange")+
+  geom_vline(aes(xintercept = as.numeric(promCol+3*sdCol)), colour="orange")+ scale_x_continuous(expand=c(0,0), limit=lims, 
+                                minor_breaks=breaks.minor2, 
+                                breaks=breaks.comb,
+                                labels=labels.comb)+
+  xlab("Nivel de colesterol")+
+  annotate("text", x=180, y = .004, label="34.1%")+
+  annotate("text", x=210, y = .004, label="34.1%")+
+  annotate("text", x=140, y = .002, label="13.6%")+
+  annotate("text", x=250, y = .002, label="13.6%")+
+  annotate("text", x=90, y = .001, label="2.1%")+
+  annotate("text", x=295, y = .001, label="2.1%")+
+  annotate("text", x=70, y = .0005, label="0.1%")+
+  annotate("text", x=330, y = .0005, label="0.1%")
+
+```
+
+
+
+
+
+Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website <https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data>
+
+
+
+```{r}
+library(readr)
+Alturas_Humanos <- read_csv("Data_files_csv/Alturas_Humanos.csv")
+gt(head(Alturas_Humanos))
+```
+
+
+Calculamos los promedios y las desviación estándar para añadirlos al gráfico 
 
 
 ```{r}
@@ -318,6 +392,26 @@ sdH=Alturas_Humanos%>%
 
 ```
 
+Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.
 
+
+```{r}
+Alturas_Humanos%>%
+  select(Genero, Altura_cm)%>%
+  filter(Genero=="Mujer")%>%
+ggplot(aes(Altura_cm))+
+  geom_histogram(fill="blue", colour="white",alpha=.5)+
+  theme(legend.position = "none")+
+  geom_vline(xintercept=as.numeric(promM), colour="black")+
+  geom_vline(aes(xintercept = as.numeric(promM-sdM)), colour="blue")+
+  geom_vline(aes(xintercept = as.numeric(promM+sdM)), colour="blue")+
+geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour="red")+
+  geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour="red")
+```
+
+## Ahora prepara el mismo gráfico para los hombres.  
+
+
+ 
 
 
