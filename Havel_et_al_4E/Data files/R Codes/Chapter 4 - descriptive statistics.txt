@@ -1,0 +1,36 @@
+#Descriptive statstics
+
+#general data descriptors
+#Parameter(data$variable)
+
+mean(fish.dat$FishLength)
+median(fish.dat$FishLength)
+length(fish.dat$FishLength)
+sd(fish.dat$FishLength)
+
+#combine these to calculate a coefficient of variation
+(sd(fish.dat$FishLength)/mean(fish.dat$FishLength))*100
+
+#to generate the quartiles visualized in a boxplot
+summary(fish.dat$FishLength)
+
+#for the cow data in example 4.6
+cow <-c(19, 23, 26, 30, 32, 34, 37, 37, 39, 41, 44, 44, 46, 55)
+summary(cow)
+
+#a broader summary of the data using the package ‘psych’
+#you must install psych as a package in R
+#open the library so that R knows you will be using the package
+library(psych)
+
+#now use that package to summarize your data using describe
+describe(fish.dat$FishLength)
+
+#describe the data separated by genders
+#this uses describeBy – note the capitalization of By
+#general code
+DescribeBy(data$variable, data$group)
+
+#for fish length data in digital appendix 2
+#shown in figure 4.5
+describeBy(fish.dat$FishLength, fish.dat$Gender)

@@ -1,0 +1,42 @@
+#Correlation tests
+
+
+#Pearson correlation
+
+#general form 
+cor.test(data$var1, data$var2, method = ‘pearson’)
+
+#for example 13.1
+cor.test(Correlations$Cd, Correlations$Pb, method = "pearson")
+
+
+#Spearman rank-sum correlations
+
+#general form
+cor.test(data$var1, data$var2, method = “spearman”)
+
+#for example 13.3
+cor.test(Correlations$mass, Correlations$territory, method = "spearman")
+
+
+#Correlation matrices
+
+#general form
+#first build a dataset with the variables of interest
+matrix.name <- data.frame(data$var1, data$var2, data$var3, data$var4)
+
+#add variable names (optional but useful)
+names(data) <- c(“name1”, “name2”, “name3”, “name4”)
+ 
+#run correlations on the matrix
+#can use any correlation method here
+cor(matrix.name, method=”pearson”)
+
+#for example 13.2
+data <-data.frame(PCA$Head, PCA$DsSolids, PCA$CHl, PCA$Dissolved_PO3)
+names(data) <-c("Head Spine", "Dissolved Solids", "Log Chlorophyll A", "Dissolved P")
+cor(data, method="pearson")
+
+#to plot all the correlations 
+pairs (data)
+

@@ -1,0 +1,42 @@
+---
+title: "Codigos_basicos_en_R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+```
+
+# Responsabilidad del estudiante
+
+`r colorize("EL ESTUDIANTE es COMPLETAMENTE RESPONSABLE","red")` de ver estos videos y entender como usar la plataforma.
+
+La sugerencias es que deberían ver los vídeos abajo múltiples veces y después compartir con un otro estudiante y hablar de los que entendió.  
+
+
+
+
+
+
+
+[Pagina de Cheatsheets de Base R](https://rstudio.com/resources/cheatsheets/)
+

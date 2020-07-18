@@ -1,0 +1,57 @@
+#Analysis of variance – ANOVA
+
+#general form
+#build a model, request an ANOVA table, summary to get an R-square
+model.name <-aov(response ~ factor, data=dataset)
+anova(model.name)
+summary(lm(model.name))
+
+#ANOVA for example 11.1
+diet.mod <- aov(Gain ~ Diet, data=Mouse.dat)
+anova(diet.mod)
+summary(lm(diet.mod))
+
+#post hoc tests to see where differences lie
+TukeyHSD(diet.mod)
+
+#testing assumptions – normality of residuals
+#visual analysis
+hist(diet.mod$resid)
+library(psych)
+describe(diet.mod$resid)
+
+#statistical analysis
+shapiro.test(diet.mod$resid)
+
+
+#Testing assumptions - homogeneity of variances
+bartlett.test(Gain~Diet, data = Mouse.dat)
+
+
+#Example 11.2 survey data
+location.mod <- aov(Length ~ Location, data=stickleback.dat)
+anova(location.mod)
+summary(lm(location.mod))
+
+TukeyHSD(location.mod)
+
+hist(location.mod$resid)
+library(psych)
+describe(location.mod$resid)
+
+shapiro.test(location.mod$resid)
+qqnorm(location.mod$resid)
+qqline(location.mod$resid)
+
+#homogeneity of variances
+bartlett.test(Length ~ Location, data=stickleback_dat)
+
+
+
+#non-parametric test Kruskal-Wallis test
+
+#general form
+kruskal.test(response ~ factor, data=dataset)
+
+#for example 11.3
+kruskal.test(Time ~ Treatment, data = grasshopper.dat)

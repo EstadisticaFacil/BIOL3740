@@ -1,0 +1,53 @@
+#Graphing in R
+
+#Histograms
+#plots a histogram with data divided into breaks=n bins
+#breaks can be assigned any value
+hist(data$variable, breaks=10)
+ 
+
+#Barplots
+#calculate and place means in a vector based on groups
+group.means <-tapply(data$variable, list(data$group), mean)
+
+#plot the graph
+barplot(group.means) 
+
+
+#Scatterplots
+#y variable first, then the x,then select the dataset
+plot (Y_variable~X_variable, data=dataset)
+
+#to add a reference line
+#use same formula as defined in the plot 
+abline(lm(Y_variable~X_variable, data=dataset))
+
+
+#Pie charts
+#form a dataset
+#may build these as averages using tapply or do so manually
+pie.dat<-c(0.25, 0.60, 0.15)
+
+#adds labels to each piece of the pie
+pielabel<- c("A", "B", "C")
+
+#plots the pie chart with the labels
+pie(pie.dat, labels=pielabel)
+
+
+#Making graphs pretty by controlling some options
+#The code for figure 3.5b
+hist(data$male, beaks=14, main=””, xlab=”length (mm)”, col=“gray”)
+
+#main=”” turns off default title
+#xlab= and ylab= defines the axis labels
+#col= selects a color for the bars
+
+
+#code for time series figure 3.3 
+plot(Year, IceDuration, main="", xlab="Year",  ylab="Ice duration (days)", ylim=c(0, 170))
+
+#xlim= and ylim= set the axis ranges
+#c(min, max) defines the ranges to be applied
+ 
+

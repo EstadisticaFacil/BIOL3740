@@ -1,0 +1,23 @@
+#log transforming a variable
+log_variable <- log10(data$variable)
+
+#if data include values of 0, use a log+1 transform
+log_variable <- log10(data$variable + 1)
+
+#natural log (base e) of data
+log(data$variable) 
+
+
+#rank transformations
+#general form
+rankvariable <- rank(data$variable)
+
+#for example 2.4
+#input the data
+tree <-c(31.3, 29.1, 32.6, 19.5, 37.8, 29.1)
+
+#calculate the rank for each value of tree
+treerank <-rank(tree)					
+
+#view the ranks
+treerank

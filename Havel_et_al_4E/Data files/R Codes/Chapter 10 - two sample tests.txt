@@ -1,0 +1,23 @@
+#Two-sample tests
+
+#two-sample t-test
+#general form
+#leave off the var.equal=TRUE to relax that assumption
+
+#data in two columns
+t.test(data$var1, data$var2, var.equal=TRUE)
+
+#data in one column, group ID in a second
+t.test(data$var~data$group, var.equal=TRUE)
+
+# using data from Table 10.1 on mosquito fish lengths
+t.test(Mosquitofish$FishLength~Mosquitofish$Gender, var.equal=TRUE)
+
+
+#Mann-Whiteney U
+#general form
+#correct=FALSE turns off a correction as in chi-square tests
+Wilcox.test(data$var~data$group, correct=FALSE)
+
+#for example 10.2
+wilcox.test(EX10_2$Size~EX10_2$Location, correct=FALSE)

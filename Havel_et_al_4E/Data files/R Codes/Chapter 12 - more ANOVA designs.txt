@@ -1,0 +1,48 @@
+#Additional ANOVA designs
+
+#models defined as before (chapter 11)
+
+
+#Randomized block design
+#the + adds a term to the model without calculating interactions
+
+#data for example 12.1
+#the factor(variable) treats the litter number as discreet groups
+#by default, R would treat this as a continuous variable
+diet.mod <- aov(Gain ~ Diet + factor(Litter), data=Ex12_1)
+anova(diet.mod)
+summary(lm(diet.mod))
+
+
+#Block design for repeated measures
+
+#data for example 12.2
+brood.mod <- aov(Time ~ factor(Day) + factor(Male), data=Ex12_2)
+anova(brood.mod)
+summary(lm(diet.mod))
+
+
+#Factorial design
+
+# data for example 12.4, a 2-way ANOVA
+#the * between factors will calculate an interaction 
+bill.mod <- aov(Length ~ Region*Gender, data=EX12_5)
+anova(bill.mod)
+summary(lm(bill.mod))
+
+#an interaction plot to visualize the model
+#General form
+interaction.plot(x-axis, lines, response)
+
+#for example 12.4
+interaction.plot(Ex12_5$Region,Ex12_5$Gender, Ex12_5$Length)
+
+
+#Friedman's test – nonparametric randomized block design
+
+#general form
+friedman.test(response~factor | block, data=dataset)
+
+#for example 12.3
+friedman.test(Reaction~Interval| Snake, data=EX12_3)
+

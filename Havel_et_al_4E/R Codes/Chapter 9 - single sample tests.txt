@@ -1,0 +1,40 @@
+#Single sample t-tests
+
+#include the variable to be tested and its hypothesized value (mu)
+#general form
+t.test (data$var, mu=expected.value)
+
+#For the difference between new and old treatments in Table 9.2
+t.test(CH9$difference, mu=0)
+
+#For a one directional test add alternative =”greater” or “less”
+#For differences in Table 9.2
+t.test(CH9$difference, mu=0, alternative = "greater")
+
+
+#Paired t-tests
+
+#general form – data must be aligned as pairs
+t.test(data$var1, data$var2, paired=TRUE)
+
+#For data in Table 9.2, can alter to provide a directional test
+t.test(CH9$old, CH9$new, paired=TRUE, alternative = "greater")
+
+
+#Wilcoxon matched-pairs test
+
+#general form
+wilcox.test(data$var1, data$var2, paired=TRUE)
+
+#For data in example 9.4, modify to directional test
+wilcox.test(CH9$kittens, CH9$nokit, paired=TRUE, alternative = "greater")
+
+
+#Sign test
+#a binomial test where the data are assumed to be split 50:50
+
+#general form
+Binom.test(successes, number of trials)
+
+#for example 9.5
+binom.test(9,10)
