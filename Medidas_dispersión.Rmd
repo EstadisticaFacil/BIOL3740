@@ -277,10 +277,10 @@ set.caption("Rangos incluidos en intervalos de confianza")
 my.data <- "
 | sd  | rango inluido |
 | 0  | el promedio    | 
-| 1 |  68.2% |
-| 2 |  95.6% |
-| 3 | 99.7% |
-| 4 | 99.99% |"
+| ±1 |  68.2% |
+| ±2 |  95.6% |
+| ±3 | 99.7% |
+| ±4 | 99.99% |"
 
 df <- read.delim(textConnection(my.data),header=FALSE,sep="|",strip.white=TRUE,stringsAsFactors=FALSE)
 names(df) <- unname(as.list(df[1,])) # put headers on
@@ -289,7 +289,9 @@ row.names(df)<-NULL
 pander(df, style = 'rmarkdown')
 ```
 
+***
 
+## El intervalo de  confianza de colesterol en los Iranis
 
 Comenzamos con evaluar el intervalo de confianza de los datos con datos teóricos.  Por ejemplo el nivel de colesterol en el plasma varia en los humanos.  En el siguiente articulo *Plasma total cholesterol level and some related factors in northern Iranian people*. <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/>  
 
@@ -415,7 +417,7 @@ geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour="red")+
   geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour="red")
 ```
 
-
+***
 
 ### Ejercicio: Ahora prepara el mismo gráfico para los hombres.  
 

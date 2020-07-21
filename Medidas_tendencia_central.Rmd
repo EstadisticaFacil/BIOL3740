@@ -153,16 +153,16 @@ mod=mfv(df$df)
 
 a=ggplot(df, aes(df ))+
   geom_histogram(fill="orange", colour="white", binwidth = 5)+
-  geom_vline(aes(xintercept = mea, colour="red"))+
-  geom_vline(aes(xintercept = med, colour="blue"))+
-  geom_vline(aes(xintercept = mod, colour="green"))+
+  geom_vline(aes(xintercept = mea), colour="red")+
+  geom_vline(aes(xintercept = med), colour="blue")+
+  geom_vline(aes(xintercept = mod), colour="green")+
   theme(legend.position = "none")
 
 b=ggplot(df, aes(df ))+
   geom_histogram(fill="orange", colour="white", binwidth = 1)+
-  geom_vline(aes(xintercept = mea, colour="red"))+
-  geom_vline(aes(xintercept = med, colour="blue"))+
-  geom_vline(aes(xintercept = mod, colour="green"))+
+  geom_vline(aes(xintercept = mea), colour="red")+
+  geom_vline(aes(xintercept = med), colour="blue")+
+  geom_vline(aes(xintercept = mod), colour="green")+
   xlim(95,104)+
   theme(legend.position = "none")
 
@@ -171,7 +171,9 @@ grid.arrange(a,b, ncol=2)
 ```
 
 
-## Distribucion cuando los tres valores de tendencia centrtal no son iguales.  En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande.  Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro.  
+## Distribución cuando los tres valores de tendencia centrtal no son iguales. 
+
+En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande.  Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro.  
 
 ```{r}
 dfb= round(rbeta(100000, 3,1, ncp = 0),3)
@@ -187,30 +189,56 @@ dfbb=data.frame(dfbb)
 mea=mean(dfb$dfb)
 med=median(dfb$dfb)
 mod=mfv(dfb$dfb)
-mod
 
 meab=mean(dfbb$dfbb)
 medb=median(dfbb$dfbb)
 modb=mfv(dfbb$dfbb)
 
 
-ggplot(dfb, aes(dfb))+
+c=ggplot(dfb, aes(dfb))+
   geom_histogram(fill="orange", colour="white")+
-  geom_vline(aes(xintercept = mea, colour="red"))+
-  geom_vline(aes(xintercept = med, colour="black"))+
-  geom_vline(aes(xintercept = mod, colour="green"))+
+  geom_vline(aes(xintercept = mea), colour="red")+
+  geom_vline(aes(xintercept = med), colour="blue")+
+  geom_vline(aes(xintercept = mod), colour="green")+
   theme(legend.position = "none")
 
 d=ggplot(dfbb, aes(dfbb ))+
   geom_histogram(fill="orange", colour="white")+
-  geom_vline(aes(xintercept = meab, colour="red"))+
-  geom_vline(aes(xintercept = medb, colour="black"))+
-  geom_vline(aes(xintercept = modb, colour="green"))+
+  geom_vline(aes(xintercept = meab), colour="red")+
+  geom_vline(aes(xintercept = medb), colour="blue")+
+  geom_vline(aes(xintercept = modb), colour="green")+
   theme(legend.position = "none")
 
 grid.arrange(c,d, ncol=2)
 ```
 
 
+# Variables binomial
 
+En el siguiente ejemplo podemos ver claramente que las medidas de tendencias central no son adecuada.
+
+Primero producimos un conjunto de datos que tiene solamente dos alternativas 0 y 1.  Para facilitar los datos e imaginar lo que quiere decir estos datos que cuando es un 0 la persona no tiene hijos y cuando es un 1 tiene hijos. 
+
+
+```{r}
+dfBin=replicate(10000,rbinom(length(.6), size=1,prob =0.6))
+dfBin=data.frame(dfBin)
+head(dfBin)
+```
+Ahora vamos a producir el gráfico. Lo que uno observa es que el promedio esta en el centro cerca de .6, pero no hay ningún dato cerca del promedio.  El promedio no representa la "tendencia central" de la distribución.  
+
+```{r}
+mea=mean(dfBin$dfBin)
+med=median(dfBin$dfBin)
+mod=mfv(dfBin$dfBin)
+mea
+
+
+ggplot(dfBin, aes(dfBin))+
+  geom_histogram(fill="orange", colour="white")+
+  geom_vline(aes(xintercept = mea), colour="red")+
+  geom_vline(aes(xintercept = med), colour="blue")+
+  geom_vline(aes(xintercept = mod), colour="green")+
+  theme(legend.position = "none")
+```
 

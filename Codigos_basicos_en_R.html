@@ -11,7 +11,7 @@
 
 
 
-<title>Codigos_basicos_en_R</title>
+<title>Codigos_basicos_en_R.utf8</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -248,6 +251,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -255,6 +321,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -279,7 +355,7 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Intrucción básica
+    Introducción básica
      
     <span class="caret"></span>
   </a>
@@ -367,22 +443,48 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Codigos_basicos_en_R</h1>
 
 </div>
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-17&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-20&quot;</code></pre>
+<div id="códigos-básicos-en-r" class="section level1">
+<h1>Códigos básicos en R</h1>
+<hr />
+</div>
 <div id="responsabilidad-del-estudiante" class="section level1">
 <h1>Responsabilidad del estudiante</h1>
-<p><span style="color: red;">EL ESTUDIANTE es COMPLETAMENTE RESPONSABLE</span> de ver estos videos y entender como usar la plataforma.</p>
+<p><span style="color: red;">EL ESTUDIANTE es COMPLETAMENTE RESPONSABLE</span> de ver estos vídeos y entender como usar la plataforma.</p>
+<hr />
+</div>
+<div id="base-r" class="section level1">
+<h1>Base R</h1>
+<p>Cuando uno se refiere a Base R se refiere a las funciones básicas del programa. Muchas de estas funciones son las primeras que fueron desarrolladas. Es importante entender la sintaxis del programa p[ara poder hacer los análisis con facilidades. Para ayudar con estos pasos hay mucha información en <em>YouTube</em> disponible sugiero que vean lo siguiente. En el enlace hay 47 vídeos de como utilizar las funciones de R. Mi sugerencia es vean los siguientes vídeos primero 1,2,3,4,25,26. No es necesario ver todos al menos que ya encontró su futura dirección de estudios.</p>
+<p>EL enlace es: <a href="https://www.youtube.com/playlist?list=PL0iUxoCEznfixaKofFkoOho26swycdAmy">Aprender Base R</a></p>
 <p>La sugerencias es que deberían ver los vídeos abajo múltiples veces y después compartir con un otro estudiante y hablar de los que entendió.</p>
-<p><a href="https://rstudio.com/resources/cheatsheets/">Pagina de Cheatsheets de Base R</a></p>
+<hr />
+</div>
+<div id="enlace-para-todos-los-cheetsheets" class="section level1">
+<h1>Enlace para todos los Cheetsheets</h1>
+<p>Los <em>cheatsheets</em> son hojas donde se encuentra las funciones principales de algunos paquetes. Son guías para conocer y aplicar las funciones. Abrir el siguiente enlace donde encontrarán muchos “Cheatsheets”, buscan abajo el que se llama “Base R”. Este es la hoja de información básica de como utilizar R.</p>
+<p>En el primer enlace pueden bajar un pdf del <strong>Base R cheatsheet</strong> <a href="https://rstudio.com/resources/cheatsheets/">Página de Cheatsheets</a></p>
+<hr />
+<p>También lo pueden encontrar aquí como imagen.</p>
+<p><img src="Graficos/rbase.png" width="100%" /> La segunda pagina</p>
+<p><img src="Graficos/rbase2.png" width="100%" /></p>
+<hr />
+</div>
+<div id="los-cheatsheets-en-español" class="section level1">
+<h1>Los cheatsheets en Español</h1>
+<p>En el siguiente enlace vaya muy abajo y encontrarán los <em>cheatsheets</em> en otros idiomas incluyendo en español.</p>
+<p>En el primer enlace pueden pajar un pdf del cheatsheet <a href="https://rstudio.com/resources/cheatsheets/">Página de Cheatsheets</a></p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -415,6 +517,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
