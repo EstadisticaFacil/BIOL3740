@@ -1,5 +1,5 @@
 ---
-title: "Tema_3_Graficos"
+title: ""
 author: "Raymond L. Tremblay"
 output: 
   html_document:
@@ -21,7 +21,7 @@ Sys.Date()
 library(ggplot2)
 ```
 
- 
+# Graficos Básicos con ggplot2
 
 Este modulo es una introducción corta para la visualización de los datos.  El paquete principal que se usa es el **ggplot2**.  La visualización de datos es un área especializado y no se podrá hacer justicia al tema al mismo tiempo que se estudia la estadística. Aquí se presenta es una introducción breve del tema.  La visualización ayuda a entender los datos ya que la dispersión de ellos impacta que prueba se puede utilizar y el significado de los analisis.   
 
@@ -100,13 +100,9 @@ ggsave("Iris_size.png")
 
 
 
-
-
-
-
 ```{r more examples}
 
-#Simple scatter with regression line
+#Regressión simple con puntos
 scatter <- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point(shape=20, colour="red") + 
           geom_smooth(method = "lm", colour = "blue", se = F) +  # se = F, remueve el intervalo de confianza

@@ -12,7 +12,7 @@
 <meta name="author" content="Raymond L. Tremblay" />
 
 
-<title>Tema_3_Graficos</title>
+<title>Tema_3_Graficos.utf8</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -444,8 +444,6 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Tema_3_Graficos</h1>
-<h4 class="author">Raymond L. Tremblay</h4>
 
 </div>
 
@@ -453,8 +451,11 @@ div.tocify {
 <p>Fecha de la ultima revisión</p>
 <pre><code>## [1] &quot;2020-07-20&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)</code></pre>
+<div id="graficos-básicos-con-ggplot2" class="section level1">
+<h1>Graficos Básicos con ggplot2</h1>
 <p>Este modulo es una introducción corta para la visualización de los datos. El paquete principal que se usa es el <strong>ggplot2</strong>. La visualización de datos es un área especializado y no se podrá hacer justicia al tema al mismo tiempo que se estudia la estadística. Aquí se presenta es una introducción breve del tema. La visualización ayuda a entender los datos ya que la dispersión de ellos impacta que prueba se puede utilizar y el significado de los analisis.</p>
 <p>La información utilizada en este documento proviene en parte del libro <em>Discovering Statistics using R</em> por Andy Field, Jeremy Miles y Zoë Field (2014).</p>
+</div>
 <div id="como-crear-una-gráfica-de-regresión-lineal-usando-ggplot" class="section level1">
 <h1>Como crear una gráfica de regresión lineal usando ggplot</h1>
 <ol style="list-style-type: decimal">
@@ -516,7 +517,7 @@ Exam_Anxiety &lt;- read_csv(&quot;Data_files_csv/Exam Anxiety.csv&quot;)</code><
 <p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-6-1.png" width="672" /> ## Salvar graficos con <strong>ggsave</strong></p>
 <p>Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de <strong>MS Power Point</strong>. Se usa la función <strong>ggsave()</strong>. se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .tiff, .pdf)</p>
 <pre class="r"><code>ggsave(&quot;Iris_size.png&quot;)</code></pre>
-<pre class="r"><code>#Simple scatter with regression line
+<pre class="r"><code>#Regressión simple con puntos
 scatter &lt;- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point(shape=20, colour=&quot;red&quot;) + 
           geom_smooth(method = &quot;lm&quot;, colour = &quot;blue&quot;, se = F) +  # se = F, remueve el intervalo de confianza
