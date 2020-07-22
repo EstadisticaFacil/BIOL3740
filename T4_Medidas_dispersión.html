@@ -379,22 +379,22 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="Tema_1_Intro.html">Introducción a BIOL 3740</a>
+      <a href="T1_Intro.html">T1 Introducción a BIOL 3740</a>
     </li>
     <li>
-      <a href="Tema_2_Historia.html">Historia breve de la estadística cuantitativa</a>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
     </li>
     <li>
-      <a href="Medidas_tendencia_central.html">Medidas de Tedencias Central</a>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
     </li>
     <li>
-      <a href="Medidas_dispersión.html">Medidas de Dispersión</a>
+      <a href="T4_Medidas_dispersión.html">T4 Medidas de Dispersión</a>
     </li>
     <li>
-      <a href="Tema_3_Graficos.html">Explorando los datos con gráficos</a>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
     </li>
     <li>
-      <a href="Tema_4_Supuestos.html">Los Supuestos de las pruebas parametricas</a>
+      <a href="T6_Supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
     </li>
   </ul>
 </li>
@@ -449,7 +449,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-20&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-21&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)
 library(Hmisc)
 library(gridExtra) # Un paquete para organizar las figuras de ggplot2
@@ -479,7 +479,7 @@ b=data.frame(b)</code></pre>
   geom_density(b, mapping=aes(b,fill=&quot;red&quot;, alpha=.5 ))+
   theme(legend.position = &quot;none&quot;) +
   geom_vline(aes(xintercept = 100, colour=&quot;red&quot;))</code></pre>
-<p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="el-rango" class="section level1">
@@ -730,7 +730,7 @@ CIb=ggplot(b, aes(b))+
   xlim(90,110)
 
 grid.arrange(CIa,CIb, ncol=2)</code></pre>
-<p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <hr />
 <div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
 <h2>El intervalos de confianza de los datos</h2>
@@ -771,6 +771,10 @@ grid.arrange(CIa,CIb, ncol=2)</code></pre>
 </tr>
 </tbody>
 </table>
+<hr />
+</div>
+<div id="el-intervalo-de-confianza-de-colesterol-en-los-iranis" class="section level2">
+<h2>El intervalo de confianza de colesterol en los Iranis</h2>
 <p>Comenzamos con evaluar el intervalo de confianza de los datos con datos teóricos. Por ejemplo el nivel de colesterol en el plasma varia en los humanos. En el siguiente articulo <em>Plasma total cholesterol level and some related factors in northern Iranian people</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/</a></p>
 <p>Usamos los datos para las mujeres con un promedio de 196.7 y una desviación estándar de 39.11. Con estos datos asumimos que esto provienen de una distribución normal y que representa las mujeres en resto del mundo.</p>
 <pre class="r"><code># Creamos un conjunto de datos para los análisis
@@ -819,7 +823,7 @@ geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour=&quot;orange&qu
   annotate(&quot;text&quot;, x=295, y = .001, label=&quot;2.1%&quot;)+
   annotate(&quot;text&quot;, x=70, y = .0005, label=&quot;0.1%&quot;)+
   annotate(&quot;text&quot;, x=330, y = .0005, label=&quot;0.1%&quot;)</code></pre>
-<p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="otro-ejemplo-de-los-intevalos-de-confianzas" class="section level2">
@@ -1240,7 +1244,8 @@ ggplot(aes(Altura_cm))+
   geom_vline(aes(xintercept = as.numeric(promM+sdM)), colour=&quot;blue&quot;)+
 geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour=&quot;red&quot;)+
   geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour=&quot;red&quot;)</code></pre>
-<p><img src="Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<hr />
 </div>
 <div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level3">
 <h3>Ejercicio: Ahora prepara el mismo gráfico para los hombres.</h3>

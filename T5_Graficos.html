@@ -12,7 +12,7 @@
 <meta name="author" content="Raymond L. Tremblay" />
 
 
-<title>Tema_3_Graficos.utf8</title>
+<title>Gráficos con ggplot2</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -356,7 +356,7 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Introducción básica
+    Instalación y Introducción básica
      
     <span class="caret"></span>
   </a>
@@ -380,22 +380,22 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="Tema_1_Intro.html">Introducción a BIOL 3740</a>
+      <a href="T1_Intro.html">T1 Introducción a BIOL 3740</a>
     </li>
     <li>
-      <a href="Tema_2_Historia.html">Historia breve de la estadística cuantitativa</a>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
     </li>
     <li>
-      <a href="Medidas_tendencia_central.html">Medidas de Tedencias Central</a>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
     </li>
     <li>
-      <a href="Medidas_dispersión.html">Medidas de Dispersión</a>
+      <a href="T4_Medidas_dispersión.html">T4 Medidas de Dispersión</a>
     </li>
     <li>
-      <a href="Tema_3_Graficos.html">Explorando los datos con gráficos</a>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
     </li>
     <li>
-      <a href="Tema_4_Supuestos.html">Los Supuestos de las pruebas parametricas</a>
+      <a href="T6_Supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
     </li>
   </ul>
 </li>
@@ -444,12 +444,14 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Gráficos con ggplot2</h1>
+<h4 class="author">Raymond L. Tremblay</h4>
 
 </div>
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-20&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-21&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)</code></pre>
 <div id="graficos-básicos-con-ggplot2" class="section level1">
 <h1>Graficos Básicos con ggplot2</h1>
@@ -497,7 +499,7 @@ Exam_Anxiety &lt;- read_csv(&quot;Data_files_csv/Exam Anxiety.csv&quot;)</code><
 <p>El primer gráfico es crear una regresión lineal. Para producir una regresión lineal se necesita dos variables con datos continuos Seleccionamos dos variables continua, el nivel de ansiedad y la nota del examen. Para hacer una regresión lineal que sigue el patrón de y=mx+b, hay que utilizar la función geom_smooth(method=lm), la función <strong>lm</strong> se refiere a modelo lineal o ingles <strong>linear model</strong>. Nota que con el programa ggplot2, hay que primero identificar de donde proviene los datos <strong>Exam_Anxiety</strong>, despúes que hay identificar cual; son las variables de este archivo que se van a utilizar, en este caso <strong>y=Exam, x=Anxiety</strong>. El proximoo paso es determinar que tipo de gráfico, y este caso es una regresión lineal.</p>
 <pre class="r"><code>ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety))+ 
   geom_smooth(method=lm, colour=&quot;red&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/linear%20graph-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/linear%20graph-1.png" width="672" /></p>
 <div id="añadiendo-color-por-grupo-y-otras-bellezas" class="section level2">
 <h2>Añadiendo color por grupo y otras bellezas</h2>
 <p>En este archivo utilizaremos un archivo que se usa muy comúnmente en los análisis de R, para demostrar un análisis o como hacer gráfico. El archivo se llama <strong>iris</strong> y contiene información sobre el tamaño de características florales de tres especies del genero <em>Iris</em>. En este gráfico se añade cuatro componente suplementarios, 1) un puntos para cada par de valores <strong>Sepal.Length, Petal.Length</strong>, 2) se cambia los nombres de las leyendas en <strong>y</strong> y <strong>x</strong> con la función <strong>labs()</strong> = labels, 3) se añade un titulo al gráfico con <strong>ggtitle()</strong>, 4) Note que cada especies tiene un color distinto, esto fue muy fácil incluir añadiendo la función <strong>col=Species</strong>, lo que esto significa es que para cada especies de planta se pone un color diferente.</p>
@@ -514,7 +516,7 @@ Exam_Anxiety &lt;- read_csv(&quot;Data_files_csv/Exam Anxiety.csv&quot;)</code><
   geom_smooth(method=&quot;lm&quot;, colour=&quot;aquamarine&quot;) +  
   labs(x = &quot;El largo del Sepalo&quot;, y = &quot;El largo del Petalo&quot;)+
   ggtitle(&quot;Basic geom_point and linear regression&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-6-1.png" width="672" /> ## Salvar graficos con <strong>ggsave</strong></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-6-1.png" width="672" /> ## Salvar graficos con <strong>ggsave</strong></p>
 <p>Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de <strong>MS Power Point</strong>. Se usa la función <strong>ggsave()</strong>. se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .tiff, .pdf)</p>
 <pre class="r"><code>ggsave(&quot;Iris_size.png&quot;)</code></pre>
 <pre class="r"><code>#Regressión simple con puntos
@@ -522,7 +524,7 @@ scatter &lt;- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point(shape=20, colour=&quot;red&quot;) + 
           geom_smooth(method = &quot;lm&quot;, colour = &quot;blue&quot;, se = F) +  # se = F, remueve el intervalo de confianza
   labs(x = &quot;Exam Anxiety&quot;, y = &quot;Exam Performance %&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/more%20examples-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/more%20examples-1.png" width="672" /></p>
 </div>
 </div>
 <div id="simple-scatter-with-regression-line-ci" class="section level1">
@@ -531,14 +533,14 @@ scatter + geom_point(shape=20, colour=&quot;red&quot;) +
 scatter + geom_point() + 
           geom_smooth(method = &quot;lm&quot;, colour = &quot;Red&quot;)+ 
   labs(x = &quot;Exam Anxiety&quot;, y = &quot;Exam Performance %&quot;) </code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <div id="regresión-lineal-más-el-intervalo-de-confianza." class="section level2">
 <h2>Regresión lineal más el intervalo de confianza.</h2>
 <pre class="r"><code>scatter &lt;- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point() + 
   geom_smooth(method = &quot;lm&quot;, colour = &quot;Red&quot;, alpha = 0.2, fill = &quot;orange&quot;) + 
   labs(x = &quot;Exam Anxiety&quot;, y = &quot;Exam Performance %&quot;) </code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="regresión-lineal-más-el-intervalo-de-confianza-usar-colour-por-multiples-grupos." class="section level2">
 <h2>Regresión lineal más el intervalo de confianza, usar “colour” por multiples grupos.</h2>
@@ -549,7 +551,7 @@ scatter + geom_point() +
   geom_smooth(method=&quot;lm&quot;) +  # lm is for linear model 
   labs(x = &quot;Exam Anxiety Score&quot;, y = &quot;Exam Performance %&quot;)+
   ggtitle(&quot;Basic geom_point and linear regression&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 </div>
 <div id="constructing-histograms" class="section level1">
@@ -604,7 +606,7 @@ head(FD)  # ver las 6 primeras filas</code></pre>
 <pre class="r"><code> ggplot(FD, aes(day1))+ 
   geom_histogram(colour=&quot;white&quot;, fill=&quot;steelblue&quot;) + 
   labs(x = &quot;Hygiene (Day 1 of Festival)&quot;, y = &quot;Frequency&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/histograms-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/histograms-1.png" width="672" /></p>
 <pre class="r"><code>  summary(DownloadFestival)</code></pre>
 <pre><code>##     ticknumb       gender               day1             day2       
 ##  Min.   :2111   Length:810         Min.   : 0.020   Min.   :0.0000  
@@ -646,14 +648,14 @@ summary(Festivalday1)</code></pre>
 festivalHistogram + 
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;) + 
   labs(x = &quot;Hygiene (Day 1 of Festival)&quot;, y = &quot;Frequency&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/no%20outliers-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/no%20outliers-1.png" width="672" /></p>
 </div>
 <div id="graficos-de-caja-box-plots" class="section level2">
 <h2>Graficos de caja <strong>box plots</strong></h2>
 <p>How to create boxplots</p>
 <pre class="r"><code>festivalBoxplot &lt;- ggplot(Festivalday1, aes(x=1,y=day1))
 festivalBoxplot + geom_boxplot() + labs(x = &quot;Gender&quot;, y = &quot;Hygiene (Day 1 of Festival)&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/boxplots2-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/boxplots2-1.png" width="672" /></p>
 </div>
 <div id="boxplot-by-gender" class="section level2">
 <h2>Boxplot by Gender</h2>
@@ -664,7 +666,7 @@ festivalBoxplot +
   geom_point()+
   geom_boxplot(fill=&quot;yellow&quot;, alpha=0.1) + 
   labs(x = &quot;Gender&quot;, y = &quot;Hygiene (Day 2 of Festival)&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/boxplots-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/boxplots-1.png" width="672" /></p>
 <p>How to detect outliers. Determine the % of data which are outliers (IN Spanish, sesgado) NOTE: that I’m constructing a function, which does not exist</p>
 <pre class="r"><code>#--------OUTLIERS----------
 
@@ -696,7 +698,7 @@ outlierSummary(FD$day3)</code></pre>
 <p>In this figure we show the median and the percentiles and the outliers</p>
 <pre class="r"><code>library(ggplot2)
 ggplot(FD, aes(gender, day1))+ geom_boxplot()</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/boxplot-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/boxplot-1.png" width="672" /></p>
 <p>Now to remove outliers</p>
 <pre class="r"><code>Festivalday1</code></pre>
 <pre><code>## # A tibble: 809 x 5
@@ -714,7 +716,7 @@ ggplot(FD, aes(gender, day1))+ geom_boxplot()</code></pre>
 ## 10     2504 Female  1.11  0.44  0.55 
 ## # … with 799 more rows</code></pre>
 <pre class="r"><code>ggplot(Festivalday1, aes(gender, day1))+ geom_boxplot()</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/boxplot2-1.png" width="672" /> #Line and error bars</p>
+<p><img src="T5_Graficos_files/figure-html/boxplot2-1.png" width="672" /> #Line and error bars</p>
 <ol style="list-style-type: decimal">
 <li>Learn how to reformat data in the correct type of data frame (as the original data set is not in the correct format) with the function “stack”</li>
 <li>How to add the mean of the variable with “stat_summary”</li>
@@ -762,13 +764,13 @@ head(hiccups)</code></pre>
   stat_summary(fun.y = &quot;mean&quot;, geom = &quot;line&quot;, aes(group = 1),colour = &quot;Red&quot;, linetype = &quot;dashed&quot;) +      
   stat_summary(fun.data = mean_cl_boot, geom = &quot;errorbar&quot;, width = 0.2, colour=&quot;blue&quot;) + 
   labs(x = &quot;Intervention&quot;, y = &quot;Mean Number of Hiccups&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(hiccups, aes(y=Num_Hiccups,x=Intervention))+ 
   stat_summary(fun.y = mean, geom = &quot;point&quot;) + 
   stat_summary(fun.y = mean, geom = &quot;line&quot;, aes(group = 1),colour = &quot;Red&quot;, linetype = &quot;dashed&quot;) +      
   stat_summary(fun.data = mean_cl_boot, geom = &quot;errorbar&quot;, width = 0.2, colour=&quot;blue&quot;) + 
   labs(x = &quot;Intervention&quot;, y = &quot;Mean Number of Hiccups&quot;)</code></pre>
-<p><img src="Tema_3_Graficos_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 </div>
 

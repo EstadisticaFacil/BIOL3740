@@ -12,7 +12,7 @@
 <meta name="author" content="Raymond L. Tremblay" />
 
 
-<title>Tema_4_Supuestos</title>
+<title>Supuestos de la pruebas paramétricas</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -280,7 +280,7 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Intrucción básica
+    Introducción básica
      
     <span class="caret"></span>
   </a>
@@ -304,22 +304,22 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="Tema_1_Intro.html">Introducción a BIOL 3740</a>
+      <a href="T1_Intro.html">T1 Introducción a BIOL 3740</a>
     </li>
     <li>
-      <a href="Tema_2_Historia.html">Historia breve de la estadística cuantitativa</a>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
     </li>
     <li>
-      <a href="Medidas_tendencia_central.html">Medidas de Tedencias Central</a>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
     </li>
     <li>
-      <a href="Medidas_dispersión.html">Medidas de Dispersión</a>
+      <a href="T4_Medidas_dispersión.html">T4 Medidas de Dispersión</a>
     </li>
     <li>
-      <a href="Tema_3_Graficos.html">Explorando los datos con gráficos</a>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
     </li>
     <li>
-      <a href="Tema_4_Supuestos.html">Los Supuestos de las pruebas parametricas</a>
+      <a href="T6_Supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
     </li>
   </ul>
 </li>
@@ -368,14 +368,14 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Tema_4_Supuestos</h1>
+<h1 class="title toc-ignore">Supuestos de la pruebas paramétricas</h1>
 <h4 class="author">Raymond L. Tremblay</h4>
 
 </div>
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-17&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-21&quot;</code></pre>
 <p>Add and activate packages. NOTE THE NEW FUNCTION to install all packages ONLY IF Needed…..</p>
 <p>Visualize the distribution of the data “Histogram”</p>
 <p>Los datos son de un festival de Rock y Heavy Metal en UK La categoria son 0 = You smell like a rotting corpse 4 = You smell like of sweet roses</p>
@@ -409,9 +409,9 @@ head(dlf)</code></pre>
 
 hist.day1+ 
   labs(x=&quot;Hygiene score on day 1&quot;, y = &quot;Density&quot;)</code></pre>
-<p><img src="Tema_4_supuestos_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="T6_supuestos_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>hist.day1</code></pre>
-<p><img src="Tema_4_supuestos_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p><img src="T6_supuestos_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 <pre class="r"><code>ggsave(&quot;histogram_festival_hygiene.pdf&quot;) # Can be either be a device function (e.g. png()), or one of &quot;eps&quot;, &quot;ps&quot;, &quot;tex&quot; (pictex), &quot;pdf&quot;, &quot;jpeg&quot;, &quot;tiff&quot;, &quot;png&quot;, &quot;bmp&quot;, &quot;svg&quot; or &quot;wmf&quot; (windows only)</code></pre>
 <p>#Remove the outlier from the day1 hygiene score dlf<span class="math inline">\(day1 &lt;- ifelse(dlf\)</span>day1 &gt; 5, NA, dlf<span class="math inline">\(day1) df\)</span>Column = ifelse(df$column_to_be evaluated, replace_with_NA, otherwise_leave_as_before)</p>
 <pre class="r"><code>dlf$day1 &lt;- ifelse(dlf$day1 &gt; 5, NA, dlf$day1)
@@ -425,7 +425,7 @@ hist.day1 &lt;- ggplot(dlf, aes(day1)) +
   labs(x=&quot;Hygiene score on day 1&quot;, y = &quot;Density&quot;)
 
 hist.day1</code></pre>
-<p><img src="Tema_4_supuestos_files/figure-html/remove%20outlier-1.png" width="672" /></p>
+<p><img src="T6_supuestos_files/figure-html/remove%20outlier-1.png" width="672" /></p>
 <p>The Normal Distribution</p>
 <p><a href="https://en.wikipedia.org/wiki/Normal_distribution" class="uri">https://en.wikipedia.org/wiki/Normal_distribution</a></p>
 <ol style="list-style-type: decimal">
@@ -440,7 +440,7 @@ hist.day1 +
                 args = list(mean = mean(dlf$day1,na.rm = TRUE), 
                 sd = sd(dlf$day1 , na.rm = TRUE)), 
                 colour = &quot;red&quot;, size = 1)</code></pre>
-<p><img src="Tema_4_supuestos_files/figure-html/adding%20the%20normal%20curve-1.png" width="672" /></p>
+<p><img src="T6_supuestos_files/figure-html/adding%20the%20normal%20curve-1.png" width="672" /></p>
 <pre class="r"><code>shapiro.test(dlf$day1)  # don&#39;t use with more than 40 a 200 data point</code></pre>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
@@ -456,7 +456,7 @@ hist.day1 +
 <pre class="r"><code>#Q-Q plot for day 1:
 qqplot.day1 &lt;- qplot(sample = dlf$day3, stat=&quot;qq&quot;)
 qqplot.day1</code></pre>
-<p><img src="Tema_4_supuestos_files/figure-html/qqplot-1.png" width="672" /></p>
+<p><img src="T6_supuestos_files/figure-html/qqplot-1.png" width="672" /></p>
 <p>Add a straight line on the qqplot</p>
 <pre class="r"><code># This function is to add a straight line through the qqplot
 qqplot.data &lt;- function (vec) # argument: vector of numbers
@@ -476,7 +476,7 @@ qqplot.data &lt;- function (vec) # argument: vector of numbers
 }
 
 qqplot.data(dlf$day3)</code></pre>
-<p><img src="Tema_4_supuestos_files/figure-html/qqplot%20and%20line-1.png" width="672" /></p>
+<p><img src="T6_supuestos_files/figure-html/qqplot%20and%20line-1.png" width="672" /></p>
 <pre class="r"><code>ggsave(&quot;qqplot.png&quot;)</code></pre>
 <pre class="r"><code>dlf=DownloadFestival
 #Quantifying normality with numbers
@@ -572,7 +572,7 @@ head(rexam)</code></pre>
 <pre class="r"><code>ggplot(rexam, aes(numeracy, fill=as.factor(uni)))+
   geom_histogram()+
   facet_wrap(~uni)</code></pre>
-<p><img src="Tema_4_supuestos_files/figure-html/levene%20test-1.png" width="672" /></p>
+<p><img src="T6_supuestos_files/figure-html/levene%20test-1.png" width="672" /></p>
 <pre class="r"><code> leveneTest(rexam$lectures, rexam$uni)</code></pre>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##       Df F value Pr(&gt;F)
