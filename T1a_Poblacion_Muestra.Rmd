@@ -49,7 +49,7 @@ Un muestreo es el subgrupo de la población, donde el objetivo es que este muest
 
 # Griego y Latin 
 
-Cuando uno quiere referir a la población uno utiliza las letras del alfabeto griego y cuando nos referimos a un muestreo se usa la letra del alfabeto en latín.  
+Cuando uno quiere referir a la población/parámetro uno utiliza las letras del alfabeto griego y cuando nos referimos a un muestreo se usa la letra del alfabeto en latín.  
 
 En la siguiente tabla se observa algunos de los variables que veremos en los módulos siguientes. En los próximos módulos regresaremos al significado de estos parámetros. 
 
@@ -58,9 +58,9 @@ En la siguiente tabla se observa algunos de los variables que veremos en los mó
 library(gt)
 library(knitr)
 library(kableExtra)
-df <- data.frame(variable = c("Promedio", "Varianza", "Desviación Estandar"),
-                 Griego = c("$$\\mu$$","$$\\sigma_{ }^2$$","$$\\sigma$$"),
-                 Latin = c("$$\\bar{x}$$","$$s_{ }^2$$","$$s$$" ))
+df <- data.frame(variable = c("Promedio", "Mediana","Varianza", "Desviación Estandar", "Proporción"),
+                 Griego = c("$$\\mu$$", "$$\\theta$$", "$$\\sigma_{ }^2$$","$$\\sigma$$", "$$p$$"),
+                 Latin = c("$$\\bar{x}$$","$$M$$","$$s_{ }^2$$","$$s$$" ,"$$\\hat{p}$$"))
 
 kable(df, escape=FALSE)
 
