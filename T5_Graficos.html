@@ -451,7 +451,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-22&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-23&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)</code></pre>
 <div id="gráficos-básicos-con-ggplot2" class="section level1">
 <h1>Gráficos Básicos con ggplot2</h1>
@@ -543,6 +543,7 @@ scatter + geom_point() +
   geom_smooth(method = &quot;lm&quot;, colour = &quot;Red&quot;, alpha = 0.2, fill = &quot;orange&quot;) + 
   labs(x = &quot;Exam Anxiety&quot;, y = &quot;Exam Performance %&quot;) </code></pre>
 <p><img src="T5_Graficos_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<hr />
 </div>
 <div id="regresión-lineal-por-grupo." class="section level2">
 <h2>Regresión lineal por grupo.</h2>
@@ -552,24 +553,21 @@ scatter + geom_point() +
   geom_smooth(method=&quot;lm&quot;) +  # lm (linear model) es para modelos lineales 
   labs(x = &quot;Exam Anxiety Score&quot;, y = &quot;Exam Performance %&quot;)+
   ggtitle(&quot;Basic geom_point and linear regression&quot;)</code></pre>
-<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-10-1.png" width="672" /> ***</p>
 </div>
-</div>
-<div id="histogramas" class="section level1">
-<h1>Histogramas</h1>
-<div id="se-necesita-el-archivo-downloadfestival-que-se-encuentra-dabajo-la-pestaña-de-los-datos" class="section level2">
-<h2>Se necesita el archivo <em>DownloadFestival</em> que se encuentra dabajo la pestaña de <strong>Los Datos</strong></h2>
-<pre><code>Una  biologa 
-
-A biologist was worried about the potential health effects of music festivals. So, one year she went to the Download Festival in UK (Download Festival UK). She measured the higiene of 810 concert goes over the 3 day festival. Each day she attempted find all the individuals she census on the first day.
-+ 0 = you smell like a corpse, that is left to rot
-+ 4 = you smell of sweet roses on fresh spring day</code></pre>
-<p>The hypothesis is that the personal hygiene of the concert goers would go down dramatically over the 3 days of the festival.</p>
+<div id="histogramas" class="section level2">
+<h2>Histogramas</h2>
+<p>Un histograma es un gráfico que representa la frecuencia de los valores de un conjunto de datos. pro consecuencia es el eje de <strong>x</strong> se encuentra una variable continua y en el eje de <strong>y</strong> la frecuencia. La frecuencia es lo mismo que el cantidad de veces que aparece los valores en <strong>x</strong> en el conjunto de datos.</p>
+<p>Se necesita el archivo <em>DownloadFestival</em> que se encuentra debajo la pestaña de <strong>Los Datos</strong>. El ejemplo proviene de Field et al. (2014).</p>
+<pre><code>Una bióloga estaba preocupado por los posibles efectos sobre la salud de los que particpan a un festivales de música. Entonces, un año fue al Download Festival en el Reino Unido (Download Festival UK). Ella midió la higiene del los que participaron al concierto n= 810 durante el festival de 3 días. Cada día intentaba encontrar a todas las personas que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el nivel de limpieza por como olia los participantes
++ 0 = hueles como un cadáver. 
++ 4 = hueles a rosas dulces en un fresco día de primavera</code></pre>
+<p>La hipótesis es que la higiene personal de los asistentes al concierto disminuiría dramáticamente durante los 3 días del festival.</p>
 <pre class="r"><code>library(readr)
 DownloadFestival &lt;- read_csv(&quot;Data_files_csv/DownloadFestival.csv&quot;)
 
 FD=DownloadFestival</code></pre>
-<p>Constructing histograms and detecting outliers</p>
+<p>Construyendo histogramas y detectando valores atípicos. Nota los valores <strong>NA</strong>, estos son los participantes que no se pudieron encontrar en los siguientes días.</p>
 <pre class="r"><code>head(FD, n=2)</code></pre>
 <pre><code>## # A tibble: 2 x 5
 ##   ticknumb gender  day1  day2  day3
@@ -586,21 +584,13 @@ FD=DownloadFestival</code></pre>
 ## 4     4759 Female  1.47 NA       NA
 ## 5     4760 Male    1.28 NA       NA
 ## 6     4765 Female  1.26 NA       NA</code></pre>
-<pre class="r"><code>head(FD)</code></pre>
-<pre><code>## # A tibble: 6 x 5
-##   ticknumb gender  day1  day2   day3
-##      &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1     2111 Male    2.64  1.35  1.61 
-## 2     2229 Female  0.97  1.41  0.290
-## 3     2338 Male    0.84 NA    NA    
-## 4     2384 Female  3.03 NA    NA    
-## 5     2401 Female  0.88  0.08 NA    
-## 6     2405 Male    0.85 NA    NA</code></pre>
+<p>Nota que aquí vemos el resultado, y encontramos un problema. Hay participantes que tienen valores que no son entre 0 y 4, que es la escala de higiene. Aunque es difícil ver, pero debido que el gráfico se extiende mayor de 4, es un indice de un problema ya que sabemos que los valores pueden estar solamente entre 0 y 4.</p>
 <pre class="r"><code> ggplot(FD, aes(day1))+ 
   geom_histogram(colour=&quot;white&quot;, fill=&quot;steelblue&quot;) + 
   labs(x = &quot;Hygiene (Day 1 of Festival)&quot;, y = &quot;Frequency&quot;)</code></pre>
-<p><img src="T5_Graficos_files/figure-html/histograms-1.png" width="672" /></p>
-<pre class="r"><code>  summary(DownloadFestival)</code></pre>
+<p><img src="T5_Graficos_files/figure-html/histograma-1.png" width="672" /></p>
+<p>Evaluar los datos resumidos, para detectar porque el gráfico se extiende a valores mayor de 4. Nota que el día 1, el valor máximo es de 20. Este probablemente fue un error de poner los datos un la hoja de Excel. Lo que se puede hacer es remover este participante del analisis.</p>
+<pre class="r"><code>summary(DownloadFestival)</code></pre>
 <pre><code>##     ticknumb       gender               day1             day2       
 ##  Min.   :2111   Length:810         Min.   : 0.020   Min.   :0.0000  
 ##  1st Qu.:3096   Class :character   1st Qu.: 1.312   1st Qu.:0.4100  
@@ -617,8 +607,8 @@ FD=DownloadFestival</code></pre>
 ##  3rd Qu.:1.5250  
 ##  Max.   :3.4100  
 ##  NA&#39;s   :687</code></pre>
-<pre class="r"><code>#binwidth = 0.6, fill=&quot;orange&quot;, colour=&quot;white&quot;</code></pre>
-<p>Subsetting data = removing values larger than x</p>
+<p>Se puede remueve valores de un conjunto de datos usando la función <strong>subset( )</strong> y en este caso de la columna <strong>day1</strong> se selecciona solamente los valores menor de 5, de esta forma eliminamos el valore de 20.</p>
+<p>Usamos otra vez <strong>summary( )</strong> para asegurarnos que se solucionó el problema. Ahora vemos que el valor máximo es 3.69.</p>
 <pre class="r"><code>Festivalday1=subset(DownloadFestival, day1&lt;5)
 summary(Festivalday1)</code></pre>
 <pre><code>##     ticknumb       gender               day1            day2       
@@ -637,18 +627,20 @@ summary(Festivalday1)</code></pre>
 ##  3rd Qu.:1.5250  
 ##  Max.   :3.4100  
 ##  NA&#39;s   :686</code></pre>
+<p>Ahora usando el nuevo data frame hacemos el gráfico otra vez</p>
 <pre class="r"><code>festivalHistogram &lt;- ggplot(Festivalday1, aes(day1))
 festivalHistogram + 
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;) + 
   labs(x = &quot;Hygiene (Day 1 of Festival)&quot;, y = &quot;Frequency&quot;)</code></pre>
-<p><img src="T5_Graficos_files/figure-html/no%20outliers-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/no%20outliers-1.png" width="672" /> ***</p>
 </div>
-<div id="graficos-de-caja-box-plots" class="section level2">
-<h2>Graficos de caja <strong>box plots</strong></h2>
+<div id="gráficos-de-caja-box-plots" class="section level2">
+<h2>Gráficos de caja <strong>box plots</strong></h2>
 <p>Para crear un gráfico de caja se usa la función <strong>geom_boxplot()</strong>, si hay solamente un grupo en <strong>x</strong> se pone <strong>x=1</strong> y en la <strong>y</strong> la variable continua.</p>
 <pre class="r"><code>festivalBoxplot &lt;- ggplot(Festivalday1, aes(x=1,y=day1))
 festivalBoxplot + geom_boxplot() + labs(x = &quot;Gender&quot;, y = &quot;Hygiene (Day 1 of Festival)&quot;)</code></pre>
 <p><img src="T5_Graficos_files/figure-html/boxplots2-1.png" width="672" /></p>
+<hr />
 </div>
 <div id="gráfico-de-caja-por-grupo" class="section level2">
 <h2>Gráfico de caja por grupo</h2>
@@ -657,12 +649,13 @@ festivalBoxplot + geom_boxplot() + labs(x = &quot;Gender&quot;, y = &quot;Hygien
 festivalBoxplot + 
   geom_point()+
   geom_boxplot(fill=&quot;yellow&quot;, alpha=0.1) + 
-  labs(x = &quot;Gender&quot;, y = &quot;Hygiene (Day 2 of Festival)&quot;)</code></pre>
+  labs(x = &quot;Genero&quot;, y = &quot;Higiene (Día 2 del Festival)&quot;)</code></pre>
 <p><img src="T5_Graficos_files/figure-html/boxplots-1.png" width="672" /></p>
+<hr />
 </div>
 </div>
-<div id="para-detectar-valores-sesgados." class="section level1">
-<h1>Para detectar valores sesgados.</h1>
+<div id="detección-valores-sesgados-o-átipicos." class="section level1">
+<h1>Detección valores sesgados o átipicos.</h1>
 <p>En la función abajo denominado <strong>Valoressesgados</strong> uno puede determinar el porciento de valores que son sesgados. Note que aquí la función no existe y se construye una función para calcularlos porcentajes. Si selecionamos uno de las columnas, el dia 3 del concierto. Vemos que hay 4% de los valores que estén por fuera del intervalo de 95%, y 2.4% de los valores que estén por encima del intervalo de confianza de 99%.</p>
 <pre class="r"><code>Valoressesgados&lt;-function(variable, digits = 2){
   
@@ -688,16 +681,17 @@ Valoressesgados(FD$day3)</code></pre>
 ## Valor absoluto z-score mayor de 2.58 =  2.44 % 
 ## Valor absoluto z-score mayor de 3.29 =  0.81 %</code></pre>
 <hr />
-<p>#Line and error bars</p>
+</div>
+<div id="gráficos-de-línea-y-errores" class="section level1">
+<h1>Gráficos de línea y errores</h1>
 <ol style="list-style-type: decimal">
 <li>Learn how to reformat data in the correct type of data frame (as the original data set is not in the correct format) with the function “stack”</li>
 <li>How to add the mean of the variable with “stat_summary”</li>
 <li>How to connect the mean with a line and change color</li>
 <li>how to add the error bars and color (The 95% confidence intervals, created with the stat_summary() function and the “mean_cl_boot” argument are bootstrap confidence intervals using the smean.cl.boot() function in Hmisc)</li>
 </ol>
-<div id="install-libraryhmisc" class="section level2">
-<h2>Install library(Hmisc)</h2>
-<pre class="r"><code>library(Hmisc) # you need this package to add the confidence interval
+<p>Installar la library(Hmisc)</p>
+<pre class="r"><code>library(Hmisc) # Se necesita este paquete para poner los intervalos de confianza
 
 library(readr)
 Hiccups &lt;- read_csv(&quot;Data_files_csv/Hiccups.csv&quot;)
@@ -707,7 +701,7 @@ head(Hiccups, n=2)</code></pre>
 ##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
 ## 1       15      9       7      2
 ## 2       13     18       7      4</code></pre>
-<p>Es necesario re-organizar los datos, ya que las 4 diferentes variables están diferentes columnas, necesitamos que estean todos los datos en una columna. Se usa la función <strong>stack</strong>. Subseguientemente se asigna un nombre nuevo a las columnas</p>
+<p>Es necesario re-organizar los datos, ya que las 4 diferentes variables están diferentes columnas, necesitamos que están todos los datos en una columna. Se usa la función <strong>stack</strong>. Subseguientemente se asigna un nombre nuevo a las columnas</p>
 <pre class="r"><code>hiccups&lt;-stack(Hiccups) # organizar los datos en dos columnas con la función **stack**
 
 
@@ -721,16 +715,16 @@ head(hiccups)</code></pre>
 ## 4           7     Baseline
 ## 5          11     Baseline
 ## 6          14     Baseline</code></pre>
-</div>
+<hr />
 <div id="la-función-stat_summary-para-calcular-indices-sumativos." class="section level2">
 <h2>La función <strong>stat_summary</strong> para calcular indices sumativos.</h2>
-<p>Nota aquí que el promedio, <em>mean</em> es añadido como un punto y que están uniido tambien por una linea, están a˜ãdido al eje de <strong>y</strong> con la función <strong>fun.y</strong>. Los intervalos de confianza se añaden con la función <strong>fun.data=mean_cl_boot</strong> y <strong>geom="errorbar</strong>.</p>
+<p>Nota aquí que el promedio, <em>mean</em> es añadido como un punto y que están uniido tambien por una linea, están añadido al eje de <strong>y</strong> con la función <strong>fun.y</strong>. Los intervalos de confianza se añaden con la función <strong>fun.data=mean_cl_boot</strong> y <strong>geom="errorbar</strong>.</p>
 <pre class="r"><code>ggplot(hiccups, aes(y=Num_Hiccups,x=Intervention))+ 
   stat_summary(fun.y = &quot;mean&quot;, geom = &quot;point&quot;) + 
   stat_summary(fun.y = &quot;mean&quot;, geom = &quot;line&quot;, aes(group = 1),colour = &quot;Red&quot;, linetype = &quot;dashed&quot;) +      
   stat_summary(fun.data = mean_cl_boot, geom = &quot;errorbar&quot;, width = 0.2, colour=&quot;blue&quot;) + 
   labs(x = &quot;Intervention&quot;, y = &quot;Mean Number of Hiccups&quot;)</code></pre>
-<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 </div>
 
