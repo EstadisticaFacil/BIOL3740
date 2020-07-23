@@ -1,0 +1,56 @@
+#Chi-square goodness of fit test
+#general form 
+#chisq.test (x=observed counts, p=expected probabilities)
+
+#For example 7.1
+#defining the observed and expected data
+observed = c(78, 22)        
+expected = c(0.75, 0.25)      
+
+#running the test
+chisq.test(x = observed,p = expected)
+
+
+#Chi-square test of association
+#general form 
+#chisq.test(table.name, Yate’s correction (TRUE/FALSE))
+
+#Table 7.3 hemoglobin-malaria test
+R1 = c(1, 14)
+R2 = c(13, 2) 
+
+#take the vectors and build a table
+malaria = matrix(c(R1, R2), nrow=2, byrow=TRUE)
+
+#add names to the table if you want
+rownames(malaria) = c("Heterozygotes", "Homozygotes")          
+colnames(malaria) = c("Contracted", "Not_Contracted")  
+
+#view the table you built
+malaria 
+
+#run the chi-square test without Yate’s correction
+chisq.test(malaria, correct=FALSE)
+
+
+
+#Fisher’s exact test
+# analysis of garter snake data from example 7.4
+
+#enters the data and builds a table
+R1 = c(6, 1)
+R2 = c(1, 6) 
+snakes = matrix(c(R1, R2), nrow=2, byrow=TRUE)
+
+#apply names to the table
+rownames(snakes) = c("Overhead", "Lateral")          
+colnames(snakes) = c("Responded", "No_response")  
+
+#run Fisher’s test
+#general form
+#fisher.test(matrix.name, alternative=”direction”)
+#alternative direction can be greater, less, or two.sided
+#two sided is the default
+fisher.test(snakes, alternative = "greater")
+
+

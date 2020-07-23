@@ -1,0 +1,30 @@
+#Z-transformations and assessing normality
+
+#z transformations
+#general form
+Newvar <-scale(data$oldvar)
+
+#for Exercise 3.1 data
+Zheight <-scale(height.dat$height) 
+
+#use describe to see that changes in the values
+#the mean will now be 0 with a standard deviation of 1
+library(psych)
+describe(Zheight)
+
+
+#Assessing normality
+
+#Generate a quantile plot-Figure 8.13
+qqnorm(height.dat$height)
+qqline(height.dat$height)
+
+#statistically testing normality
+shapiro.test(height.dat$height)
+
+#examine the data to see how large any deviation from normality is 
+#examine the skew and kurtosis values (normal = 0)
+library(psych)
+describe(height.dat$height)
+
+

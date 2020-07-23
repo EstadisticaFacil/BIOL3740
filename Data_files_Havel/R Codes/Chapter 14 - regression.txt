@@ -1,0 +1,33 @@
+#regression analyses
+
+#general form
+#similar to ANOVA, but with a continuous independent variable
+model.name <- lm(response ~ predictor, data=dataset)
+anova(model.name)
+summary(model.name)
+
+#for example 14.1
+Heart <-lm(HeartRate~Temp, data=EX14_1)
+anova(Heart)
+summary(Heart)
+
+#testing assumptions
+#use a plot to assess linearity and equal spread along the line
+plot(Heart$resid~EX14_1$Temp)
+
+#assessing the normality of residuals
+library(psych)
+describe(Heart$resid)
+shapiro.test(Heart$resid)
+
+
+#regression for example 14.2
+Eggs <-lm(Eggs~Mass, data=EX14_2)
+anova(Eggs)
+summary(Eggs)
+
+library(psych)
+describe(Eggs$resid)
+shapiro.test(Eggs$resid)
+
+
