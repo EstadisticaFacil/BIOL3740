@@ -208,7 +208,7 @@ festivalHistogram +
 
 ## Graficos de caja **box plots**
 
-How to create boxplots
+Para crear un gráfico de caja se usa la función **geom_boxplot()**, si hay solamente un grupo en **x** se pone **x=1** y en la **y** la variable continua.  
 
 
 ```{r boxplots2}
@@ -220,11 +220,13 @@ festivalBoxplot + geom_boxplot() + labs(x = "Gender", y = "Hygiene (Day 1 of Fes
 ```
 
 
-## Boxplot by Gender
+## Gráfico de caja por grupo
+
+Para producir un gráfico de caja por multiples grupos en **x** se añade la variable categorica y en la **y** la variable continua. Si se quiere un color diferente por caja se usa la función **color** con el nombre en de la variable en **x**.   
 
 
 ```{r boxplots}
-names(Festivalday1)
+
 festivalBoxplot <- ggplot(Festivalday1, aes(x=gender,y=day2, colour=gender))
 festivalBoxplot + 
   geom_point()+
@@ -234,56 +236,37 @@ festivalBoxplot +
 
 ```
 
-How to detect outliers.
-Determine the % of data which are outliers (IN Spanish, sesgado)
-NOTE: that I'm constructing a function, which does not exist  
+# Para detectar valores sesgados. 
+En la función abajo denominado **Valoressesgados** uno puede determinar el porciento de valores que son sesgados.   Note que aquí la función no existe y se construye una función para calcularlos porcentajes. Si selecionamos uno de las columnas, el dia 3 del concierto. Vemos que hay 4% de los valores que estén por fuera del intervalo de 95%, y 2.4% de los valores que estén por encima del intervalo de confianza de 99%.  
 
-```{r outliers}
-#--------OUTLIERS----------
+```{r valoressesgados}
 
-
-outlierSummary<-function(variable, digits = 2){
+Valoressesgados<-function(variable, digits = 2){
   
   zvariable<-(variable-mean(variable, na.rm = TRUE))/sd(variable, na.rm = TRUE)
   
-  outlier95<-abs(zvariable) >= 1.96  # error de 95%
-  outlier99<-abs(zvariable) >= 2.58   # error de 99%
-  outlier999<-abs(zvariable) >= 3.29  # error de 99.9%
+  IC95<-abs(zvariable) >= 1.96  # error de 95%
+  IC99<-abs(zvariable) >= 2.58   # error de 99%
+  IC999<-abs(zvariable) >= 3.29  # error de 99.9%
   
   ncases<-length(na.omit(zvariable))
   
-  percent95<-round(100*length(subset(outlier95, outlier95 == TRUE))/ncases, digits)
-  percent99<-round(100*length(subset(outlier99, outlier99 == TRUE))/ncases, digits)
-  percent999<-round(100*length(subset(outlier999, outlier999 == TRUE))/ncases, digits)
+  percentaje95<-round(100*length(subset(IC95, IC95 == TRUE))/ncases, digits)
+  percentaje99<-round(100*length(subset(IC99, IC99 == TRUE))/ncases, digits)
+  percentaje999<-round(100*length(subset(IC999, IC999 == TRUE))/ncases, digits)
   
-  cat("Absolute z-score greater than 1.96 = ", percent95, "%", "\n")
-  cat("Absolute z-score greater than 2.58 = ",  percent99, "%", "\n")
-  cat("Absolute z-score greater than 3.29 = ",  percent999, "%", "\n")
+  cat("Valor absoluto z-score mayor de 1.96 = ", percentaje95, "%", "\n")
+  cat("Valor absoluto z-score mayor de 2.58 = ",  percentaje99, "%", "\n")
+  cat("Valor absoluto z-score mayor de 3.29 = ",  percentaje999, "%", "\n")
 }
 
-outlierSummary(FD$day3)
+Valoressesgados(FD$day3)
 ```
 
 
-How to do a BOXPLOT of the distribution of the data, no assuming normal distribution.  
+***
 
-In this figure we show the median and the percentiles and the outliers
 
-```{r boxplot}
-
-library(ggplot2)
-ggplot(FD, aes(gender, day1))+ geom_boxplot()
-
-```
-
-Now to remove outliers
-
-```{r boxplot2}
-
-Festivalday1
-ggplot(Festivalday1, aes(gender, day1))+ geom_boxplot()
-
-```
 #Line and error bars
 
 1. Learn how to reformat data in the correct type of data frame (as the original data set is not in the correct format) with the function "stack"
@@ -299,19 +282,23 @@ library(Hmisc) # you need this package to add the confidence interval
 
 library(readr)
 Hiccups <- read_csv("Data_files_csv/Hiccups.csv")
+head(Hiccups, n=2)
 ```
+
+Es necesario re-organizar los datos, ya que las 4 diferentes variables están diferentes columnas, necesitamos que estean todos los datos en una columna.  Se usa la función **stack**.  Subseguientemente se asigna un nombre nuevo a las columnas
 
 ```{r}
-#hiccupsData=Hiccups
 
-hiccups<-stack(Hiccups) # to reorganize the data in two columns 
-head(hiccups)
-tail(hiccups)
-names(hiccups)=c("Num_Hiccups","Intervention") # change the names of columns
-#hiccups$Intervention_Factor <- factor(hiccups$Intervention, levels = hiccups$Intervention)
+hiccups<-stack(Hiccups) # organizar los datos en dos columnas con la función **stack**
+
+
+names(hiccups)=c("Num_Hiccups","Intervention") # Cambiar el nombre de las columnas
+
 head(hiccups)
 ```
+## La función **stat_summary** para calcular indices sumativos.  
 
+Nota aquí que el promedio, *mean* es añadido como un punto y que están uniido tambien por una linea, están a˜ãdido al eje de **y** con la función **fun.y**.  Los intervalos de confianza se añaden con la función **fun.data=mean_cl_boot** y **geom="errorbar**.   
 
 ```{r}
 ggplot(hiccups, aes(y=Num_Hiccups,x=Intervention))+ 
@@ -321,13 +308,7 @@ ggplot(hiccups, aes(y=Num_Hiccups,x=Intervention))+
   labs(x = "Intervention", y = "Mean Number of Hiccups")
 ```
 
-```{r}
-ggplot(hiccups, aes(y=Num_Hiccups,x=Intervention))+ 
-  stat_summary(fun.y = mean, geom = "point") + 
-  stat_summary(fun.y = mean, geom = "line", aes(group = 1),colour = "Red", linetype = "dashed") +      
-  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.2, colour="blue") + 
-  labs(x = "Intervention", y = "Mean Number of Hiccups")
-```
+
 
 
 
