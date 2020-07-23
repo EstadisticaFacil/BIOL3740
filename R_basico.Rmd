@@ -18,20 +18,21 @@ Sys.Date()
 ```
 
 
-En este veremos como se hace cálculos básicos en R.   NOta que aqui estamos usando R, como si fuese una calculadora.  Realmente para la gran mayoría de los ejemplos aquí no hay ninguna necesidad de utilizar R para los siguientes análisis.  Los objetivos son 
+En este modulo veremos como se hace cálculos básicos en R.   Nota que aquí estamos usando R, como si fuese una calculadora.  Realmente para la gran mayoría de los ejemplos aquí no hay ninguna necesidad de utilizar R para los siguientes análisis.  Los objetivos son 
 
-1. Familiarizarse con funciones básica
-2. Reconocer que las función matemáticas en R son igual como los procesos que aprendienron.
-3. Comenzar a aprender unas funciones especializados 
+1. Familiarizarse con funciones básica.
+2. Reconocer que las función matemáticas en R son igual como los procesos que aprendieron en escuela elemental.
+3. Comenzar a aprender unas funciones especializados. 
 
 
 
                         
 # Matemática básica
 
-##, Sumar, restar, dividir y multiplicar
+# Sumar, restar, dividir y multiplicar
 
-### Sumar
+## Sumar
+Se suma usando el **+**. 
 
 ```{r}
 1+1
@@ -39,7 +40,9 @@ En este veremos como se hace cálculos básicos en R.   NOta que aqui estamos us
 1+1+3+4
 ```
 
-### Restar
+## Restar
+
+Se resta usando **-**
 
 ```{r}
 1-1
@@ -48,7 +51,10 @@ En este veremos como se hace cálculos básicos en R.   NOta que aqui estamos us
 
 ```
 
-### Multiplicar
+## Multiplicar
+
+
+Se multiplica usando el "*"
 
 ```{r}
 1*2
@@ -58,7 +64,8 @@ En este veremos como se hace cálculos básicos en R.   NOta que aqui estamos us
 ```
 
 
-### División
+## División
+Se divide usando **/**
 
 
 ```{r}
@@ -71,39 +78,44 @@ En este veremos como se hace cálculos básicos en R.   NOta que aqui estamos us
 
 
 
-### Elevar a una potencia
+## Elevar a una potencia
+
+Se eleva un valor usando el **^** es el acento circunflejo
 
 ```{r}
 
-2^2 # "^" es el acento circunflejo
+2^2  
 
 
 4^2.6756
 ```
 
 
-### factorial
+## factorial
+
+Se usa la función **factorial**, donde el factorial de 4 es la siguiente multiplicación (4x3x2x1). 
 
 ```{r}
 
-factorial(3)
+factorial(4)
 
-factorial(6.4579)
 
 ```
 
-### La raiz cuadrada 
+## La raiz cuadrada 
+
+La raiz cuadrada es la función **sqrt( )**, que se refiere a **square root**
 
 ```{r}
-sqrt(2)    # sqrt es para "square root" 
+sqrt(2)
 
 sqrt(3.86)
 ```
 
 
-### El orden de las operaciones matemáticas
+## El orden de las operaciones matemáticas
 
-Este sigue exactamente el mismo orden que se aprendio en sus clases de matematica básicas.
+Este sigue exactamente el mismo orden que se aprendió en sus clases de matemática básicas.
 
 ```{r}
 6+3^2
@@ -115,7 +127,7 @@ Este sigue exactamente el mismo orden que se aprendio en sus clases de matematic
 # Asigñar variables
 
 
-La ventaja de los programados de análisis es poder asignar variables a valores individuales o conjuntos de valores. En el primer paso asignamos un valor a la variables "x" e "y". Nota que cuando se asigna una 
+La ventaja de los programados de análisis es poder asignar variables a valores individuales o conjuntos de valores. En el primer paso asignamos un valor a la variables "x" e "y". Nota que cuando se asigna una variable para observar hay que llamar esa variable por su nombre, en este caso "x" e "y".  Los nombres de variables pueden ser cualquier "nombre", por ejemplo **gato=7**. 
 
 
 
@@ -125,12 +137,17 @@ x
 
 y=5
 y
+
+gato=7
+gato
 ```
 
-### tMultiplicando dos variables
+## Manipulando variables
+
+Las variables se pueden restar, multiplicar, dividir, sumar o muchas otras funciones.  Por ejemplo aguí se multiplica y se manipula la variable de **y**
 
 ```{r}
-x*y
+x*log10(y)
 ```
 
 ## Conjuntos de datos
@@ -150,8 +167,11 @@ Largo_de_la_Hoja-Ancho_de_la_Hoja
 Largo_de_la_Hoja^Ancho_de_la_Hoja
 ```
 
+
+### Count( )
+Contar cuantos valores en una lista o columna de datos con **count()** 
 ```{r}
-### Contar cuantos valores en una lista o columna de datos con **count()** 
+
 
 
 length(Largo_de_la_Hoja)
@@ -173,6 +193,10 @@ median(bebe)
 ```
 
 
+# Crear una lista con factores y un data frame
+
+Para crear una lista de factores hay utilizar las comillas **"el factor** para clarificar que son factores 
+Con la función **data.frame( )** se puede unir listas en un data frame. 
 
 
 ```{r}
@@ -184,59 +208,15 @@ gender
 ElF_PR=data.frame(bebe, gender)
 ElF_PR
 
-mean(ElF_PR$bebe) # este es la manera de calcular el prmoedio en un data frame
-```
-Suma(ni)/n
-
-```{r}
-mean(bebe)
-median(bebe)
+mean(ElF_PR$bebe) # este es la manera de calcular el promedio en un data frame
 ```
 
 
 
+## Fechas
+Las fechas son un objeto que representa el día desde el 1ro de enero 1970.
+Para tener un valor númerico se utiliza la función **as.numeric(fecha)**. 
 
-
-
-
-
-```{r}
-age=c(20,20,20,20,27,21,21,19,22,21,21,19,21,19,22,26,20,20,19,19,19,19,21, 100)
-age
-mean(age)
-median(age)
-
-```
-
-```{r}
-belleza= c(22,40,53,57,93, 98, 103, 108,116,121,121, 252)
-belleza
-median(belleza)
-mean(belleza)
-```
-
-
-                        
-```{r}
-
-mean(age)
-median(age)
-```
-
-
-
-#4.3 Data type
-
-
-#4.3.1 Numeric Data
-
-
-#4.3.2. Character Data
-
-
-
-#Dates
-# Objects are represented as number of days or seconds since January 1, 1970
 ```{r}
 fecha1=as.Date("2012-06-28")
 fecha2=as.Date("2012-06-30")
@@ -246,11 +226,16 @@ fecha1
 fecha2
 fecha3
 fechaold
-as.numeric(fecha1)   # Day zero is January 1, 1970
+as.numeric(fecha1)   # El dia cero es el 1ro de enero 1970. 
 as.numeric(fecha2)
 as.numeric(fecha3)
 as.numeric(fechaold)
+```
 
+La función **as.POSIXct()** convierte los valores de una fecha en segundo y cuando se pide **as.numeric()** uno tiene el número de segundos desde el 1ro de enero del 1970.   
+
+
+```{r}
 fecha4=as.POSIXct("2012-06-28 17:42:00")
 fecha5=as.POSIXct("2012-06-30 17:42:01")
 fecha6=as.POSIXct("1970-01-01 00:01")
@@ -264,9 +249,8 @@ as.numeric(fecha6)
 
 
 
-#Logical
-#True = 1
-#False = 0
+# Lógico (True o False)
+Cuando se usa **True** es como decir que es un valor de **1**, True = 1, y si tiene un valor de **False** es un valor de cero, False = 0. Evalúan las siguientes ecuaciones para evaluar los que hace estas funciones.  
 
 ```{r}
 
@@ -275,137 +259,95 @@ FALSE*5
 FALSE+7
 TRUE+7
 ```
-## Thus
-# does x == y?
+
+
+##  La función **==**
+
+Esta función evalúa si las variables son iguales.
+
 ```{r}
+# Un ejemplo sencillo
 x=3
 x
 y=5
 y
 x==y
+
+
+# Evaluar dos listas
 m=c(1:10)
 m
-n=c(1,2,4:12)
+n=c(1,2,4:11)
 n
 m
 
 m==n
 
 ```
-# does x != 3 , "does not"
+## La función "no es" con !
+
+Añadiendo el punto de exclamación es el contrario de la función anterior de **==**.  Ahora los que son iguales serán **False** y los disimilares serán **True**. Evalúan las siguientes expresiones.  
+
 
 ```{r}
+# Un ejemplo sencillo
+
 2!=3
+
+# Comparando listas
 m!=n
-x!=3
-x
 
-2<3
-m>=n
+
 
 ```
-#Vectors
 
-# c()
+ 
 
 
-#Vector Operations
-```{r}
-n
-n*3
-sqrt(n)
-#x=c(1,2,3,4,....)
-x=1:10
-d=1:100
-x
-d
-e=x^2^2
-e
-```
 
-```{r}
-z=c(1,2,NA, 8, 3, NA,3)
-z
-is.na(z)
+# data.frames
 
-zChar=c("Hockey", NA, "Volley")
-zChar
-is.na(zChar)
-```
-
-# Chapter 5
-
-#5.1 data.frame
-#create 3 vectors
+Un **data frame** es muy similar a una hoja de Excel, en que tenemos los datos organizando en filas para los individuos y en columnas para las variables.  
 
 ```{r}
 
-x=10:1
-x
-y=-4:5
-y
-q=c("Fajardo", "Carolina", "Luquillo","Gurabo", "Rio_Grande", "Ceiba","Las_Piedras", "Caguas","Maunabo", "Sturgeon_Falls")
-q
+Edad=10:1
+Edad
+Distancia_del_trabajo=rnorm(10, 100, 10)
+Distancia_del_trabajo
+Ciudad=c("Fajardo", "Carolina", "Luquillo","Gurabo", "Rio_Grande", "Ceiba","Las_Piedras", "Caguas","Maunabo", "Sturgeon_Falls")
+Ciudad
 
-theDF=data.frame(x,y,q)  # create the data frame
-theDF
+misDatos=data.frame(Edad,Distancia_del_trabajo,Ciudad)  # La función de unir las listas en un data frame
+misDatos
 ```
 
-# change the name of the columns
-```{r}
-theDF=data.frame(First=x, Second=y, Municipio=q)
-theDF
-
-nrow(theDF) # the number of rows
-ncol(theDF)  # the number of columns
-
-dim(theDF) # the dimension of the data.frame
-
-names(theDF) # the name of the columns
-
-names(theDF)[2:3] # the name of the third column
-
-rownames(theDF)   # the name of the rows
-
-head(theDF)   #first 6 lines
-
-tail(theDF)   # last 6 lines
-
-head(theDF, n=8)   #first 8 lines
-
-class(theDF) 
-class(d)
-```
-
-# list are an object of the same type of information or different information
-#creates a three element list
-```{r}
-list(1,2,3)
-
-
-#creates a single element list where the only element is a vector that has three elements
-list(c(1,2,3))
-
-(list3=list(c(1,2,3),3:7))
-
-list(theDF, 11:20)
-```
-
-# Matrices is similar to a data.frame, however all the elements are of the same type, for example all numeric
+# Funciones comunes
 
 ```{r}
-A=matrix(1:10, nrow=5)
-A
-B=matrix(21:30, nrow=5)
-B
+nrow(misDatos) # el número de filas
+ncol(misDatos)  # el número de columnas
 
-A+B
-A*B
-A==B
-A<B
-```
-# Matrix multiplication
+dim(misDatos) # la dimenciones del data frame (num de filas, num. de columnas)
 
-```{r}
-A%*%t(B)
+names(misDatos) # el nombre de las columnas
+
+names(misDatos)[2:3] # El nombre de la columna 2 y 3
+
+rownames(misDatos)   # El nombre de las filas
+
+head(misDatos)   # ver las primeras 6 filas 
+
+tail(misDatos)   # ver las ultimas 6 filas
+
+head(misDatos, n=8)   # ver las primeras 8 filas
+
+class(misDatos) # saber cual tipo de organización de datos 
 ```
+
+
+
+
+
+
+
