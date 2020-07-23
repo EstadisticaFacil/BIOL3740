@@ -21,7 +21,7 @@ Sys.Date()
 library(ggplot2)
 ```
 
-# Graficos Básicos con ggplot2
+# Gráficos Básicos con ggplot2
 
 Este modulo es una introducción corta para la visualización de los datos.  El paquete principal que se usa es el **ggplot2**.  La visualización de datos es un área especializado y no se podrá hacer justicia al tema al mismo tiempo que se estudia la estadística. Aquí se presenta es una introducción breve del tema.  La visualización ayuda a entender los datos ya que la dispersión de ellos impacta que prueba se puede utilizar y el significado de los analisis.   
 
@@ -34,7 +34,7 @@ La información utilizada en este documento proviene en parte del libro *Discove
 
 
 Seleccionar el archivo **Exam Anxiety**. Note que los datos a la hoja de datos tienen que abrirlo en Excel o otro programa y salvarlo en formato **.csv** antes de seguir los proximos pasos. El siguiente paso es poner el archivo de datos en su proyecto de RStudio.     
-
+***
 ## Subir los datos a RStudio
 
 ```{r}
@@ -57,7 +57,7 @@ Parta ver el nombre de las variables en el archivo se usa la función **names**.
 names(Exam_Anxiety)
 ```
 
-
+***
 
 # Regresión lineal
 
@@ -70,7 +70,7 @@ ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety))+
   geom_smooth(method=lm, colour="red")
 
 ```
-
+***
 ## Añadiendo color por grupo y otras bellezas
 
 En este archivo utilizaremos un archivo que se usa muy comúnmente en los análisis de R, para demostrar un análisis o como hacer gráfico.  El archivo se llama **iris** y contiene información sobre el tamaño de características florales de tres especies del genero *Iris*.  En este gráfico se añade cuatro componente suplementarios, 1) un puntos para cada par de valores **Sepal.Length, Petal.Length**, 2) se cambia los nombres de las leyendas en **y** y **x** con la función **labs()** = labels, 3) se añade un titulo al gráfico con **ggtitle()**, 4) Note que cada especies tiene un color distinto, esto fue muy fácil incluir añadiendo la función **col=Species**, lo que esto significa es que para cada especies de planta se pone un color diferente.  
@@ -88,21 +88,23 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   ggtitle("Basic geom_point and linear regression")
 
 ```
+
+***
 ## Salvar graficos con **ggsave**
 
-Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de **MS Power Point**.  Se usa la función **ggsave()**.  se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .tiff, .pdf)
+Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de **MS Power Point**.  Se usa la función **ggsave()**.  se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .tiff, .pdf). Nota que se salvo en un archivo que se llama "Graficos", es no es necesario, si no lo incluye sera salvado en el proyecto. 
 
 ```{r}
-ggsave("Iris_size.png")
+ggsave("Graficos/Iris_size.png")
 
 ```
 
 
-
+# Regressión simple con puntos
 
 ```{r more examples}
 
-#Regressión simple con puntos
+
 scatter <- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
 scatter + geom_point(shape=20, colour="red") + 
           geom_smooth(method = "lm", colour = "blue", se = F) +  # se = F, remueve el intervalo de confianza
@@ -110,7 +112,7 @@ scatter + geom_point(shape=20, colour="red") +
 
 ```
 
-# Simple scatter with regression line + CI
+# Regressión simple con puntos y intervalo de confianza
 
 ```{r}
 scatter <- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
@@ -120,7 +122,7 @@ scatter + geom_point() +
 ```
 
 
-## Regresión lineal más el intervalo de confianza. 
+### Cambio de color del intervalo de confianza 
 
 ```{r}
 scatter <- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
@@ -130,9 +132,11 @@ scatter + geom_point() +
 ```
 
 
-## Regresión lineal más el intervalo de confianza, usar "colour" por multiples grupos. 
+## Regresión lineal por grupo.
+Para separar y tener una linea por grupo se usa la función **colour** y se añade la variable de factor. En este caso la variable **Gender** para separar entre hombres y mujer.  Se enseña también la función **ggtitle()** para añadir un titulo al gráfico. 
+
 ```{r}
-names(Exam_Anxiety)
+
 ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety, colour=Gender))+ 
   geom_point(colour="coral")+
   geom_smooth(method="lm") +  # lm is for linear model 
@@ -141,13 +145,15 @@ ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety, colour=Gender))+
 
 ```
 
-# Constructing histograms
+# Histogramas
 
-## Data needed are from festivalData
+## Se necesita el archivo *DownloadFestival* que se encuentra dabajo la pestaña de **Los Datos**
 
-A biologist was worried about the potential health effects of music festivals. So, one year she went to the Download Festival in UK (Download Festival UK). She measured the higiene of 810 concert goes over the 3 day festival. Each day she attempted find all the individuals she census on the first day.
- + 0 = you smell like a corpse, that is left to rot
- + 4 = you smell of sweet roses on fresh spring day
+    Una  biologa 
+    
+    A biologist was worried about the potential health effects of music festivals. So, one year she went to the Download Festival in UK (Download Festival UK). She measured the higiene of 810 concert goes over the 3 day festival. Each day she attempted find all the individuals she census on the first day.
+    + 0 = you smell like a corpse, that is left to rot
+    + 4 = you smell of sweet roses on fresh spring day
  
  The hypothesis is that the personal hygiene of the concert goers would go down dramatically over the 3 days of the festival. 
 
@@ -157,8 +163,7 @@ library(readr)
 DownloadFestival <- read_csv("Data_files_csv/DownloadFestival.csv")
 
 FD=DownloadFestival
-head(FD)  # ver las 6 primeras filas
-length(FD$ticknumb)  # cuantas filas
+
 ```
 
 Constructing histograms and detecting outliers
