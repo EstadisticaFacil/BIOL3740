@@ -75,18 +75,52 @@ Fuente de información: <https://www.cancer.gov/espanol/cancer/causas-prevencion
 
 # Inferencias en estadística
 
+El concepto de inferencias en estadística se refiere al proceso de hacer conclusiones basado en un muestreo.  Por ejemplo en el primer ejemplo de la infección de hongos en los coquis, uno podría inferir que la proporción de ranas infectada será igual (o muy similar) en otros bosques nublados y enanos de Puerto Rico.  
 
 # Hipótesis 
+
+En la sección 6.2 del libro de Havel et al.  leer y evaluar la tabla 6.2 para tener unos ejemplos de expresiones que no son una hipótesis y lo que es son.   NOTA: importante es el autor menciona aquí son las hipótesis alterna, en otra palabra los que uno piensa que podría ocurrir.   Pero esa no es la hipótesis que se prueba, lo que se prueba es la hipótesis NULA, Ho. Cuando se dice la hipótesis NULA es que no hay diferencias entre los grupos.  Vea la tabla 6.2 del libro para más ejemplos. 
+
+Ejemplo de hipotesis Nula y Alterna
+
+|  | NULA, Ho  | ALTERNA, Ha | No es una hipotesis  |
+|----|-------:|:---------:|:-------------:|
+| 1  | Tratamiento con la vacuna de Salk no tiene efecto sobre el riesgo de infección de polio en niños   |      El efecto de la vacuna Salk reduce el riesgo de infección de polio en los niños     | El polio es malo |
+| 2  | Los Beatles no vendieron más discos que cualquier otros grupos de rock    |  Los Beatles vendieron más discos que cualquier otro grupo de rock         | La música delos Beatles es obsoleta       |
+
 
 
 # El valor de p
 
+El valor de *p* es la probabilidad de tener una estadística tan extrema si la hipótesis es verdad (en otra palabra la Ho es la correcta).  Uno podría decir que es un indice de la evidencia **CONTRA** la hipótesis NULA.  PERO NOTA es incorrecto decir que es la probabilidad que la Ho es correcta.  
+
+Antes de comenzar a hacer el estudio se debería *a priori* tener una decisión cual sera el nivel de **alpha**, $\alpha$ para rechazar la hipótesis nula. Típicamente el valor critico de $\alpha$ es 0.05 o 5%.  Esto quiere decir que si uno repite el experimento 100 veces 5 veces la investigación nos va a dar una resultado equivocado. Que se rechaza la Ho cuando se debería aceptar. Esto una vez en cada 20 experimentos con las mismas condiciones.  En muchas ramas de investigación como la física el nivel de $\alpha$ es frecuentemente 0.01 o menos.  
 
 # Los errores de tipo I y tipo II
+
+Vea el modulo T1.  
 
 
 # El poder de las pruebas y que es lo que lo influencia
 
+Si la hipótesis nula es falsa es probable que se podría rechazar con cierta confianza. El complemente de beta,  $(1-\beta)$ es la prueba de poder.  La prueba de poder es la probabilidad de correctamente rechazar la hipótesis nula falsa. Para aclara la $\beta$ es la probabilidad de cometer un error tipo II. El Poder es $(1-\beta)$ es la probabilidad de correctamente rechazar una hipótesis nula falsa.  
+
+Evalúa el siguiente gráfico:
+
+La prueba de poder es influenciada por tres propriedades.
+
+1. El nivel d etipo de error I, o sea el $\alpha$.
+2. La differencia entre dos promedios que queremos evaluar.
+3. El tamaño de muestra (n).
+
+La linea vertical entrecortada representa el valor critico. El área gris obscuro representa el error $\alpha$, la probabilidad de rechazar la hipótesis nula cuando debería aceptar la hipótesis nula.  El área gris liviano representa el error $\beta$.   
+
+```{r echo=FALSE, out.width = '50%'}
+knitr::include_graphics("Graficos/6-1 Test Power Increase with Sample Size.jpg")
+```
+Una ilustración de como el $\alpha$ afecta el $\beta$"
 
 
-#  
+
+
+
