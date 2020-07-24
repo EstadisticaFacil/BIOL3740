@@ -71,6 +71,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="custom.css" type="text/css" />
 
 
 
@@ -455,7 +456,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-23&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-24&quot;</code></pre>
 <div id="prueba-de-bondad-de-ajuste" class="section level1">
 <h1>Prueba de Bondad de Ajuste</h1>
 </div>
@@ -464,13 +465,16 @@ div.tocify {
 </div>
 <div id="prueba-de-exacta-de-fisher" class="section level1">
 <h1>Prueba de Exacta de Fisher</h1>
+<hr />
 </div>
 <div id="bondad-de-ajuste-y-table-de-contingencia" class="section level1">
 <h1>Bondad de ajuste y Table de Contingencia</h1>
 <p>Este tipo de prueba es frecuentemente conocido erróneamente como la prueba de Chi cuadrado. Los tipos de datos necesarios son distintos a las pruebas anteriores. En las pruebas que en los próximos módulos siempre habrá por lo menos una variable donde la unidad era el número de individuos, el largo o ancho en una unidad (cm, metro, celsius, etc) o sea una variable continua. Ahora para la pruebas de Bondad de ajuste y Tabla de Contingencia se contabiliza el número de eventos por categoría. En otra palabra es la frecuencia que ocurre un evento.</p>
-<p>Gregory Mendel (1822-1884) el padre de herencia “mendeliana” estaba interesada en determinar como se hereda las características de los organismos. En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia. Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible. Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo “x” hay un individuo del fenotipo “y”.</p>
 <p>En esta sección no estamos interesado en evaluar los valores con datos que son continuos como la altura o el tamaño. Las variables que se usa son variables categóricas, o sea los valores son la frecuencia de un evento (o la ausencia de un evento).</p>
+<blockquote>
 <p>Los datos tienen que caer exactamente en una categoría, por ejemplo</p>
+</blockquote>
+<blockquote>
 <ol style="list-style-type: decimal">
 <li>vivo o muerto.</li>
 <li>presente o ausente.</li>
@@ -479,6 +483,26 @@ div.tocify {
 <li>Tiene el fenotipo dominante o recesivo.</li>
 <li>En una herencia mendeliana, los individuos son homocigóticos recesivo, dominantes o heterocigóticos.</li>
 </ol>
+</blockquote>
+<hr />
+</div>
+<div id="qué-son-supuestos" class="section level1">
+<h1>Qué son supuestos</h1>
+<p>Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para que la prueba sea utilizada. El incumplimiento de de los supuestos resulta en que el los resultados de la prueba tenga un nivel de tipo de error I y tipo de error II más grande que los especificado (por ejemplo si selecciona un <span class="math inline">\(\alpha\)</span> de 0.05, el error seria más grande). Si se usa datos usa datos erróneos puede ser que la prueba sea completamente invalida.</p>
+</div>
+<div id="los-supuestos-de-las-pruebas-de-frecuencias." class="section level1">
+<h1>Los supuestos de las pruebas de frecuencias.</h1>
+<ol style="list-style-type: decimal">
+<li>Los datos son frecuencias.</li>
+<li>Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).</li>
+<li>Las observaciones son independiente una de la otra.</li>
+<li>Cada categoría tiene una frecuencia esperada suficiente grande:
+<ol style="list-style-type: lower-alpha">
+<li>ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o menos categorías</li>
+<li>no más de 20% de las categorías tienen un valor esperado de 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1.</li>
+</ol></li>
+</ol>
+<hr />
 </div>
 <div id="instalar-y-activar-los-siguientes-packages" class="section level1">
 <h1>Instalar y activar los siguientes packages</h1>
@@ -495,7 +519,8 @@ library(MASS)
 library(gt)</code></pre>
 <div id="gregory-mendel-y-sus-guisantes" class="section level2">
 <h2>Gregory Mendel y sus guisantes</h2>
-<p>Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aqui esta la publicación original en aleman y su traducción en ingles.</p>
+<p>Gregory Mendel (1822-1884) el padre de herencia “mendeliana” estaba interesada en determinar como se hereda las características de los organismos. En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia. Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible. Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo “x” hay un individuo del fenotipo “y”.</p>
+<p>Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aquí esta la publicación original en aleman y su traducción en ingles.</p>
 <p>Mendel, J.G. (1866). “Versuche über Pflanzenhybriden”, Verhandlungen des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865, Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.; Bateson, William (1901). “Experiments in plant hybridization” (PDF). Journal of the Royal Horticultural Society. 26: 1–32. Retrieved 9 October 2009.</p>
 <p>Tabla de los resultados de experimentos original de Gregor Mendel con semillas redondas y arrugadas. Cada uno represente un experimento y la cantidad de guisantes redondos o arrugadas.</p>
 <table>
@@ -566,6 +591,130 @@ library(gt)</code></pre>
 </table>
 <p>En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas. Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 deberían ser las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp).</p>
 </div>
+</div>
+<div id="bondad-de-ajuste." class="section level1">
+<h1>Bondad de Ajuste.</h1>
+<p>La prueba de bondad de ajuste y de tabla de contingencia son pruebas que evalúa la cantidad/frecuencia en las categorías y lo compara con un modelo nulo. En este caso lo que se compará es la cantidad de la frecuencia observada <span class="math inline">\(o\)</span>, con la frecuencia esperada <span class="math inline">\(e\)</span>. La formula es la siguiente</p>
+<p><span class="math display">\[\chi^2=\sum_{n=i}^n\frac{\left(o-e\right)^2}{e}\]</span></p>
+<p>Usamos un ejemplo sencillo de los datos de Mendel haciendo los cálculos a mano de una proporción 3:1 de herencia de los fenotipos redonda:arrugada. Los datos son de la primer linea de uno de los experimentos que hizo Mendel.</p>
+<pre class="r"><code>library(gt)
+library(knitr)
+library(kableExtra)
+df &lt;- data.frame(Calculos = c(&quot;Observado&quot;,&quot;Esperado&quot;, &quot;(o-e)&quot;, &quot;(o-e)^2&quot;, &quot;$$\\frac{(o-e)^2}{e}$$&quot;, &quot;$$\\chi_{total}^2$$&quot;),
+                 Redonda = c(45, 42.75, 2.25,5.0625, 0.1184, &quot;&quot;),
+                 Arrugada = c(12,14.25, 2.25,5.0625 ,0.3553, &quot;&quot;),
+                 Total = c(&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,0.4737))
+
+kable(df, escape=FALSE)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Calculos
+</th>
+<th style="text-align:left;">
+Redonda
+</th>
+<th style="text-align:left;">
+Arrugada
+</th>
+<th style="text-align:left;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Observado
+</td>
+<td style="text-align:left;">
+45
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Esperado
+</td>
+<td style="text-align:left;">
+42.75
+</td>
+<td style="text-align:left;">
+14.25
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+(o-e)
+</td>
+<td style="text-align:left;">
+2.25
+</td>
+<td style="text-align:left;">
+2.25
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+(o-e)^2
+</td>
+<td style="text-align:left;">
+5.0625
+</td>
+<td style="text-align:left;">
+5.0625
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math display">\[\frac{(o-e)^2}{e}\]</span>
+</td>
+<td style="text-align:left;">
+0.1184
+</td>
+<td style="text-align:left;">
+0.3553
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math display">\[\chi_{total}^2\]</span>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+0.4737
+</td>
+</tr>
+</tbody>
+</table>
+<p>Los pasos que calcular son:</p>
+<ol style="list-style-type: decimal">
+<li>Los valores esperados, en este caso fue una proporción de 3:1</li>
+<li>Las diferencias</li>
+<li>Cuadrar las diferencias</li>
+<li>División por el valor esperado (da los Chi Square parcial)</li>
+<li>Sumar los valores en #4.</li>
+<li>buscar en una tabla de Chi Square el valor critico de Chi Square para la cantidad de grupos menos 1 y el <span class="math inline">\(\alpha\)</span> correspondiente. En este caso se busca un <span class="math inline">\(\alpha\)</span> de 0.05 y el grado de libertad (n-1) = 2-1, n es el número de grupos.</li>
+</ol>
+<p>Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla). Aquí usamos R para conseguir este valor. NOte aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1. Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula. En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.</p>
+<pre class="r"><code>qchisq(0.95, 1)</code></pre>
+<pre><code>## [1] 3.841459</code></pre>
 <div id="primer-ejemplo" class="section level2">
 <h2>Primer ejemplo</h2>
 <p>Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene un Chi Cuadrado de 0.49, p =.49. Como el valor de <em>p</em> es mayor a 0.05, no se rechaza la hipótesis nula y que la frecuencia no es diferente de una proporción de 3:1.</p>
@@ -615,7 +764,7 @@ catsTable</code></pre>
 <h2>Gráfico de Mosaico</h2>
 <p>Podemos visualizar la frecuencia de los datos con un gráfico de mosaico. Si la hipótesis nula la organización de las cajas deberían ser más o menos del mismo tamaño. En este caso lo que uno observa es que los que reciben comida y no bailan (1.1) la caja es mucha más pequeña que los que bailan y reciben comida. Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender el patrón.</p>
 <pre class="r"><code>mosaicplot(catsTable)</code></pre>
-<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Test if there is independence of data</p>
 <pre class="r"><code>CrossTable(catsTable, fisher = TRUE, chisq = TRUE, 
            expected = TRUE, sresid = TRUE, format = &quot;SPSS&quot;)</code></pre>
@@ -710,7 +859,7 @@ gt(head(catsData, n=10))</code></pre>
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#lngqupohyc .gt_table {
+#avrolwgczn .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -733,7 +882,7 @@ gt(head(catsData, n=10))</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#lngqupohyc .gt_heading {
+#avrolwgczn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -745,7 +894,7 @@ gt(head(catsData, n=10))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lngqupohyc .gt_title {
+#avrolwgczn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -755,7 +904,7 @@ gt(head(catsData, n=10))</code></pre>
   border-bottom-width: 0;
 }
 
-#lngqupohyc .gt_subtitle {
+#avrolwgczn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -765,13 +914,13 @@ gt(head(catsData, n=10))</code></pre>
   border-top-width: 0;
 }
 
-#lngqupohyc .gt_bottom_border {
+#avrolwgczn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lngqupohyc .gt_col_headings {
+#avrolwgczn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -786,7 +935,7 @@ gt(head(catsData, n=10))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lngqupohyc .gt_col_heading {
+#avrolwgczn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -806,7 +955,7 @@ gt(head(catsData, n=10))</code></pre>
   overflow-x: hidden;
 }
 
-#lngqupohyc .gt_column_spanner_outer {
+#avrolwgczn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -818,15 +967,15 @@ gt(head(catsData, n=10))</code></pre>
   padding-right: 4px;
 }
 
-#lngqupohyc .gt_column_spanner_outer:first-child {
+#avrolwgczn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lngqupohyc .gt_column_spanner_outer:last-child {
+#avrolwgczn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lngqupohyc .gt_column_spanner {
+#avrolwgczn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -838,7 +987,7 @@ gt(head(catsData, n=10))</code></pre>
   width: 100%;
 }
 
-#lngqupohyc .gt_group_heading {
+#avrolwgczn .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -860,7 +1009,7 @@ gt(head(catsData, n=10))</code></pre>
   vertical-align: middle;
 }
 
-#lngqupohyc .gt_empty_group_heading {
+#avrolwgczn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -875,19 +1024,19 @@ gt(head(catsData, n=10))</code></pre>
   vertical-align: middle;
 }
 
-#lngqupohyc .gt_striped {
+#avrolwgczn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lngqupohyc .gt_from_md > :first-child {
+#avrolwgczn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lngqupohyc .gt_from_md > :last-child {
+#avrolwgczn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lngqupohyc .gt_row {
+#avrolwgczn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -906,7 +1055,7 @@ gt(head(catsData, n=10))</code></pre>
   overflow-x: hidden;
 }
 
-#lngqupohyc .gt_stub {
+#avrolwgczn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -918,7 +1067,7 @@ gt(head(catsData, n=10))</code></pre>
   padding-left: 12px;
 }
 
-#lngqupohyc .gt_summary_row {
+#avrolwgczn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -928,7 +1077,7 @@ gt(head(catsData, n=10))</code></pre>
   padding-right: 5px;
 }
 
-#lngqupohyc .gt_first_summary_row {
+#avrolwgczn .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -938,7 +1087,7 @@ gt(head(catsData, n=10))</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#lngqupohyc .gt_grand_summary_row {
+#avrolwgczn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -948,7 +1097,7 @@ gt(head(catsData, n=10))</code></pre>
   padding-right: 5px;
 }
 
-#lngqupohyc .gt_first_grand_summary_row {
+#avrolwgczn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -958,7 +1107,7 @@ gt(head(catsData, n=10))</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#lngqupohyc .gt_table_body {
+#avrolwgczn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -967,7 +1116,7 @@ gt(head(catsData, n=10))</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#lngqupohyc .gt_footnotes {
+#avrolwgczn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -981,13 +1130,13 @@ gt(head(catsData, n=10))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lngqupohyc .gt_footnote {
+#avrolwgczn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#lngqupohyc .gt_sourcenotes {
+#avrolwgczn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1001,46 +1150,46 @@ gt(head(catsData, n=10))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lngqupohyc .gt_sourcenote {
+#avrolwgczn .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#lngqupohyc .gt_left {
+#avrolwgczn .gt_left {
   text-align: left;
 }
 
-#lngqupohyc .gt_center {
+#avrolwgczn .gt_center {
   text-align: center;
 }
 
-#lngqupohyc .gt_right {
+#avrolwgczn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lngqupohyc .gt_font_normal {
+#avrolwgczn .gt_font_normal {
   font-weight: normal;
 }
 
-#lngqupohyc .gt_font_bold {
+#avrolwgczn .gt_font_bold {
   font-weight: bold;
 }
 
-#lngqupohyc .gt_font_italic {
+#avrolwgczn .gt_font_italic {
   font-style: italic;
 }
 
-#lngqupohyc .gt_super {
+#avrolwgczn .gt_super {
   font-size: 65%;
 }
 
-#lngqupohyc .gt_footnote_marks {
+#avrolwgczn .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="lngqupohyc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="avrolwgczn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>

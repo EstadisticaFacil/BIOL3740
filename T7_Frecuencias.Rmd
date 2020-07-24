@@ -4,6 +4,7 @@ output:
   html_document:
     toc: yes
     toc_float: yes
+    css: custom.css
 ---
 
 ```{r setup, include=FALSE}
@@ -45,25 +46,39 @@ Sys.Date()
 
 
 
+***
 
 # Bondad de ajuste y Table de Contingencia
 
 Este tipo de prueba es frecuentemente conocido erróneamente como la prueba de Chi cuadrado. Los tipos de datos necesarios son distintos a las pruebas anteriores. En las pruebas que en los próximos módulos siempre habrá por lo menos una variable donde la unidad era el número de individuos, el largo o ancho en una unidad (cm, metro, celsius, etc) o sea una variable continua. Ahora para la pruebas de Bondad de ajuste y Tabla de Contingencia se contabiliza el número de eventos por categoría. En otra palabra es la frecuencia que ocurre un evento.  
 
-Gregory Mendel (1822-1884) el padre de herencia "mendeliana" estaba interesada en determinar como se hereda las características de los organismos.  En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia.  Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible.  Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo "x" hay un individuo del fenotipo "y".
-
 En esta sección no estamos interesado en evaluar los valores con datos que son continuos como la altura o el tamaño.  Las variables que se usa son variables categóricas, o sea los valores son la frecuencia de un evento (o la ausencia de un evento).  
 
-Los datos tienen que caer exactamente en una categoría, por ejemplo
+> Los datos tienen que caer exactamente en una categoría, por ejemplo
 
-1. vivo o muerto.
-2. presente o ausente.
-3. blanco, rojo, verde, azul.
-4. estar embarazada o no.
-5. Tiene el fenotipo dominante o recesivo.
-6. En una herencia mendeliana, los individuos son homocigóticos recesivo, dominantes o heterocigóticos.   
+> 1. vivo o muerto.
+> 2. presente o ausente.
+> 3. blanco, rojo, verde, azul.
+> 4. estar embarazada o no.
+> 5. Tiene el fenotipo dominante o recesivo.
+> 6. En una herencia mendeliana, los individuos son homocigóticos recesivo, dominantes o heterocigóticos.   
 
+***
 
+# Qué son supuestos
+
+Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para que la prueba sea utilizada. El incumplimiento de de los supuestos resulta en que el los resultados de la prueba tenga un nivel de tipo de error I y tipo de error II más grande que los especificado (por ejemplo si selecciona un $\alpha$ de 0.05, el error seria más grande). Si se usa datos usa datos erróneos puede ser que la prueba sea completamente invalida. 
+
+# Los supuestos de las pruebas de frecuencias.
+
+  1. Los datos son frecuencias.
+  2. Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).
+  3. Las observaciones son independiente una de la otra.
+  4. Cada categoría tiene una frecuencia esperada suficiente grande: 
+      a. ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o menos categorías
+      b. no más de 20% de las categorías tienen un valor esperado de 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1. 
+
+***
 
 # Instalar y activar los siguientes packages
 
@@ -84,7 +99,9 @@ library(gt)
 
 ## Gregory Mendel y sus guisantes
 
-Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aqui esta la publicación original en aleman y su traducción en ingles.  
+Gregory Mendel (1822-1884) el padre de herencia "mendeliana" estaba interesada en determinar como se hereda las características de los organismos.  En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia.  Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible.  Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo "x" hay un individuo del fenotipo "y".
+
+Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aquí esta la publicación original en aleman y su traducción en ingles.  
 
  Mendel, J.G. (1866). "Versuche über Pflanzenhybriden", Verhandlungen des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865, Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.; Bateson, William (1901). "Experiments in plant hybridization" (PDF). Journal of the Royal Horticultural Society. 26: 1–32. Retrieved 9 October 2009.
 
@@ -107,6 +124,44 @@ Tabla de los resultados de experimentos original de Gregor Mendel con semillas r
 
 En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas.  Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 deberían ser las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp). 
 
+
+# Bondad de Ajuste.
+
+La prueba de bondad de ajuste y de tabla de contingencia son pruebas que evalúa la cantidad/frecuencia en las categorías y lo compara con un modelo nulo.  En este caso lo que se compará es la cantidad de la frecuencia observada $o$, con la frecuencia esperada $e$.  La formula es la siguiente 
+
+$$\chi^2=\sum_{n=i}^n\frac{\left(o-e\right)^2}{e}$$
+
+Usamos un ejemplo sencillo de los datos de Mendel haciendo los cálculos a mano de una proporción 3:1 de herencia de los fenotipos redonda:arrugada.  Los datos son de la primer linea de uno de los experimentos que hizo Mendel. 
+
+```{r width}
+library(gt)
+library(knitr)
+library(kableExtra)
+df <- data.frame(Calculos = c("Observado","Esperado", "(o-e)", "(o-e)^2", "$$\\frac{(o-e)^2}{e}$$", "$$\\chi_{total}^2$$"),
+                 Redonda = c(45, 42.75, 2.25,5.0625, 0.1184, ""),
+                 Arrugada = c(12,14.25, 2.25,5.0625 ,0.3553, ""),
+                 Total = c("","","","","",0.4737))
+
+kable(df, escape=FALSE)
+
+
+```
+
+Los pasos que calcular son: 
+
+  1. Los valores esperados, en este caso fue una proporción de 3:1
+  2. Las diferencias 
+  3. Cuadrar las diferencias
+  4. División por el valor esperado (da los Chi Square parcial)
+  5. Sumar los valores en #4.
+  6. buscar en una tabla de Chi Square el valor critico de Chi Square para la cantidad de grupos menos 1 y el $\alpha$ correspondiente.  En este caso se busca un $\alpha$ de 0.05 y el grado de libertad (n-1) = 2-1, n es el número de grupos. 
+  
+  Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla).  Aquí usamos R para conseguir este valor.  NOte aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1.  Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula.  En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.  
+  
+```{r}
+qchisq(0.95, 1)
+```
+  
 
 ## Primer ejemplo
 
