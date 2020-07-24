@@ -1,0 +1,310 @@
+---
+title: "Prueba de hipótesis de Fecuencia"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+
+
+```
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```
+
+
+
+# Prueba de Bondad de Ajuste
+
+
+# Prueba de Bondad de AJuste de Asociación
+
+
+# Prueba de Exacta de Fisher
+
+
+
+
+# Bondad de ajuste y Table de Contingencia
+
+Este tipo de prueba es frecuentemente conocido erróneamente como la prueba de Chi cuadrado. Los tipos de datos necesarios son distintos a las pruebas anteriores. En las pruebas que en los próximos módulos siempre habrá por lo menos una variable donde la unidad era el número de individuos, el largo o ancho en una unidad (cm, metro, celsius, etc) o sea una variable continua. Ahora para la pruebas de Bondad de ajuste y Tabla de Contingencia se contabiliza el número de eventos por categoría. En otra palabra es la frecuencia que ocurre un evento.  
+
+Gregory Mendel (1822-1884) el padre de herencia "mendeliana" estaba interesada en determinar como se hereda las características de los organismos.  En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia.  Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible.  Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo "x" hay un individuo del fenotipo "y".
+
+En esta sección no estamos interesado en evaluar los valores con datos que son continuos como la altura o el tamaño.  Las variables que se usa son variables categóricas, o sea los valores son la frecuencia de un evento (o la ausencia de un evento).  
+
+Los datos tienen que caer exactamente en una categoría, por ejemplo
+
+1. vivo o muerto.
+2. presente o ausente.
+3. blanco, rojo, verde, azul.
+4. estar embarazada o no.
+5. Tiene el fenotipo dominante o recesivo.
+6. En una herencia mendeliana, los individuos son homocigóticos recesivo, dominantes o heterocigóticos.   
+
+
+
+# Instalar y activar los siguientes packages
+
+```{r library}
+#----Instalar los paquetes-----
+#install.packages("gmodels")
+#install.packages("MASS")
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(gmodels, MASS, gt)
+
+#------Activar los paquetes-----
+
+library(gmodels) 
+library(MASS) 
+library(gt)
+
+```
+
+## Gregory Mendel y sus guisantes
+
+Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aqui esta la publicación original en aleman y su traducción en ingles.  
+
+ Mendel, J.G. (1866). "Versuche über Pflanzenhybriden", Verhandlungen des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865, Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.; Bateson, William (1901). "Experiments in plant hybridization" (PDF). Journal of the Royal Horticultural Society. 26: 1–32. Retrieved 9 October 2009.
+
+
+Tabla de los resultados de experimentos original de Gregor Mendel con semillas redondas y arrugadas. Cada uno represente un experimento y la cantidad de guisantes redondos o arrugadas.  
+
+| Plantas | redonda | arrugada |
+|---------|---------:|---------:|
+| 1       |      45 |      12 |
+| 2       |      27 |       8 |
+| 3       |      24 |       7 |
+| 4       |      19 |      10 |
+| 5       |      32 |      11 |
+| 6       |      26 |       6 |
+| 7       |      88 |      24 |
+| 8       |      22 |      10 |
+| 9       |      28 |       6 |
+| 10      |      25 |       7 |
+| Total   |    336  |    101  |
+
+En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas.  Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 deberían ser las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp). 
+
+
+## Primer ejemplo
+
+Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene un Chi Cuadrado de 0.49, p =.49. Como el valor de *p* es mayor a 0.05, no se rechaza la hipótesis nula y que la frecuencia no es diferente de una proporción de 3:1.   
+
+```{r}
+obs<-c(45,12)
+esp<-c(0.75,0.25) # este el modelo nulo
+
+chisq.test(x=obs, p=esp)
+
+```
+
+## Segundo ejemplo
+
+Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1.  Se observa un Chi cuadrado de 0.83 y un valor de p de 0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1.  
+
+Vemos que a re-evaluar los experimentos de Mendel tenemos un resultado que apoya su predicciones.  Nota que Mendel NO tenia estadística para determinar si las frecuencias eran diferente o no de 3:1.  El hizo observaciones y llego a unas conclusiones. 
+
+```{r}
+obs<-c(336,101)
+esp<-c(0.75,0.25)
+
+chisq.test(x=obs, p=esp)
+
+```
+
+
+```{r}
+#install.packages("MASS", dependencies = TRUE)
+```
+
+
+
+Los siguientes datos son de Field, Miles and Field 2012.  
+
+Data in a table
+Create a data frame
+
+Este set de datos represente un experimento ficticio de tratar de entrenar 200 gatos para que bailan basado en si se la da una recompensa o no. Este esta basado en el concepto del psicólogo Ruso Ivan Pavlov (1849-1936) de que se puede enseñar o sea motivar a una acción dando una recompensa.  Lo que se llama "condicionar" un proceso de aprendizaje que ocurre entre la asociación de un estimulo ambiental y un comportamiento. 
+
+
+Aquí entramos los datos directamente en una tabla
+
+Los datos son: 
+
+A 38 gatos se la ha dado una recompensa, 28 bailaron y 10 no bailaron
+A 162 no se la dado recompensa, y 48 bailaron y 114 no bailaron.
+
+
+```{r}
+#Crear la tabla de contingencia
+
+food <- c(10, 28)
+affection <- c(114,48)
+catsTable <- cbind(food, affection)
+rownames(catsTable)<-c("No_bailan", "bailan") # Añade el nombre a las filas
+
+catsTable
+```
+
+
+
+
+
+## Gráfico de Mosaico
+
+Podemos visualizar la frecuencia de los datos con un gráfico de mosaico.  Si la hipótesis nula la organización de las cajas deberían ser más o menos del mismo tamaño.  En este caso lo que uno observa es que los que reciben comida y no bailan (1.1) la caja es mucha más pequeña que los que bailan y reciben comida.  Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender  el patrón.  
+
+
+```{r}
+mosaicplot(catsTable)
+
+```
+
+Test if there is independence of data
+
+
+```{r test}
+
+CrossTable(catsTable, fisher = TRUE, chisq = TRUE, 
+           expected = TRUE, sresid = TRUE, format = "SPSS")
+
+```
+
+# Analisios con datos en una tabla
+
+Estos son los mismos datos pero no sumado, en otra palabra es información específica sobre cada gato y su tratamiento y si bailo o no.   La ventaja de este método es que uno no tiene que hacer el calculo, se deja la función **CrossTable** hacer la suma. Miran bien la tabla.  
+
+
+```{r df not summed}
+
+# La data sin sumar
+
+Training<-c(rep(0, 38), rep(1, 162))
+
+Dance<-c(rep(1, 10), rep(0, 28),  rep(1, 114), rep(0, 48))
+
+Training<-factor(Training, labels = c("Food as Reward", "Affection as Reward"))
+
+Dance<-factor(Dance, labels = c("No", "Yes"))
+
+catsData<-data.frame(Training, Dance)
+
+gt(head(catsData, n=10))
+
+
+```
+
+
+# Prueba de independencia 
+
+```{r test2}
+
+CrossTable(catsData$Training, catsData$Dance, 
+           fisher = TRUE, chisq = TRUE, expected = TRUE, 
+           sresid = TRUE, format = "SPSS")
+
+
+# Yes, you can do a figure with the 2nd alternative
+Ta2= xtabs(~Training+Dance, data=catsData)
+Ta2
+mosaicplot(Ta2, shade=TRUE)
+```
+
+
+
+```{r df}
+#Enter contingency table data
+
+No_Disney <- c(122, 25)
+Disney <- c(175,325)
+DTable <- cbind(No_Disney, Disney) 
+DTable
+
+mosaicplot(DTable)
+
+
+CrossTable(DTable, fisher = TRUE, chisq = TRUE, 
+           expected = TRUE, sresid = TRUE, format = "SPSS")
+
+
+```
+
+
+
+
+#  Another example:
+
+Es el color de pello igual entre los estudiantes mujeres y hombres en la UPRH.
+El primer grupo son la mujeres y le sigues los hombre
+
+
+| Color de Pello | Mujer | Hombre |
+|---------------:|------:|-------:|
+| Negro          |    32 |     55 |
+| Marron         |    43 |     65 |
+| Rubio          |    16 |     64 |
+| Rojo           |     9 |     16 |
+
+
+
+```{r hair colour by sex}
+#********* Example*1*********
+#_____________ Contingency Table
+Negro=c(32,55)
+Marron=c(43, 65)
+Rubio=c(16,64)
+Rojo=c(9,16)
+
+HairColour=cbind(Negro,Marron, Rubio,Rojo)
+HairColour
+
+
+```
+
+```{r}
+CrossTable(HairColour, fisher = TRUE, chisq = TRUE, expected = TRUE, sresid = TRUE, format = "SPSS")
+
+```
+
+Car color
+
+What is the hipothesis?
+
+
+```{r}
+WHITE=c(13,16)
+RED=c(12, 11)
+BLUE=c(12,13)
+Other=c(0,11)
+
+CarColour=cbind(WHITE,RED, BLUE, Other)
+CarColour
+```
+
+```{r}
+CrossTable(CarColour, fisher = TRUE, chisq = TRUE, expected = TRUE, sresid = TRUE, format = "SPSS")
+
+```
+
