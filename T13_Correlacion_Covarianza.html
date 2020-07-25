@@ -572,23 +572,23 @@ head(dlf2)</code></pre>
 <div id="while-the-covariance-is-the-cross-product-of-the-deviation" class="section level2">
 <h2>While the Covariance is the cross product of the deviation</h2>
 <p>[Covariance] <span class="math display">\[cov(x,y)=\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1 } \]</span></p>
-<pre class="r"><code>x=c(5,4,4,6,8)
-y=c(8,9,10,13,15)
+<pre class="r"><code>x_val=c(5,4,4,6,8)
+y_val=c(8,9,10,13,15)
 Person=c(1,2,3,4,5)
-meanx=mean(x)
-df=data.frame(Person,x,y)
+meanx=mean(x_val)
+df=data.frame(Person,x_val,y_val)
 df</code></pre>
-<pre><code>##   Person x  y
-## 1      1 5  8
-## 2      2 4  9
-## 3      3 4 10
-## 4      4 6 13
-## 5      5 8 15</code></pre>
+<pre><code>##   Person x_val y_val
+## 1      1     5     8
+## 2      2     4     9
+## 3      3     4    10
+## 4      4     6    13
+## 5      5     8    15</code></pre>
 <pre class="r"><code>ggplot(df)+
-  geom_point(data=df, aes(x=Person,y=x),colour=&quot;Blue&quot;)+
-  geom_point(data=df,aes(x=Person,y=y), colour=&quot;red&quot;)+
-  geom_hline(aes(yintercept=mean(df$x)),colour=&quot;Blue&quot;)+
-geom_hline(aes(yintercept=mean(df$y)),colour=&quot;red&quot;)</code></pre>
+  geom_point(data=df, aes(x=Person,y=x_val),colour=&quot;Blue&quot;)+
+  geom_point(data=df,aes(x=Person,y=y_val), colour=&quot;red&quot;)+
+  geom_hline(aes(yintercept=mean(df$x_val)),colour=&quot;Blue&quot;)+
+geom_hline(aes(yintercept=mean(df$y_val)),colour=&quot;red&quot;)</code></pre>
 <p><img src="T13_Correlacion_Covarianza_files/figure-html/variance-1.png" width="672" /></p>
 <p>Because in most cases variables are collected having different measurement scales we have to standardize using the standard deviation</p>
 </div>
@@ -600,13 +600,13 @@ geom_hline(aes(yintercept=mean(df$y)),colour=&quot;red&quot;)</code></pre>
 <p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1{ s }_{ x }{ s }_{ y } }\]</span></p>
 <p>The function to calculate the correlation coefficient is “cor”</p>
 <p>The function to determine if the correlation vetween the 2 variables is significant (in other words, different from zero) is “cor.test”.</p>
-<pre class="r"><code>cor(df$x, df$y)</code></pre>
+<pre class="r"><code>cor(df$x_val, df$y_val)</code></pre>
 <pre><code>## [1] 0.8711651</code></pre>
-<pre class="r"><code>cor.test(df$x, df$y)</code></pre>
+<pre class="r"><code>cor.test(df$x_val, df$y_val)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
-## data:  df$x and df$y
+## data:  df$x_val and df$y_val
 ## t = 3.0732, df = 3, p-value = 0.05443
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:

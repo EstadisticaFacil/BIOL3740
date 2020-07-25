@@ -352,7 +352,7 @@ div.tocify {
   <a href="Descripción.html">Home</a>
 </li>
 <li>
-  <a href="schedule.html">Schedule</a>
+  <a href="schedule.html">Calendario</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -411,6 +411,9 @@ div.tocify {
     </li>
     <li>
       <a href="T8_Distribucion_Normal.html">T8 La Distribución Normal</a>
+    </li>
+    <li>
+      <a href="T13_Correlacion_Covarianza.html">T13 Correlación y Covarianza</a>
     </li>
   </ul>
 </li>
@@ -614,12 +617,12 @@ x=rnorm(10000, 10, 2)
 dfx=data.frame(x)
 head(dfx)</code></pre>
 <pre><code>##           x
-## 1  5.645687
-## 2 12.185079
-## 3 11.960775
-## 4 12.222828
-## 5 12.814369
-## 6  8.255735</code></pre>
+## 1  7.287769
+## 2  4.199937
+## 3 12.733028
+## 4 10.138977
+## 5 14.340236
+## 6 12.161251</code></pre>
 <pre class="r"><code>library(ggplot2)
 hist.x &lt;- ggplot(dfx, aes(x)) + 
   theme(legend.position = &quot;none&quot;) + 
@@ -698,18 +701,18 @@ ad.test(dlf2$day1)</code></pre>
 x=data.frame(x)
 head(x)</code></pre>
 <pre><code>##    x
-## 1 33
-## 2  5
-## 3 39
-## 4 33
-## 5 20
-## 6  8</code></pre>
+## 1 84
+## 2 15
+## 3 85
+## 4 90
+## 5 44
+## 6 61</code></pre>
 <pre class="r"><code>mean(x$x)</code></pre>
-<pre><code>## [1] 49.91</code></pre>
+<pre><code>## [1] 49.71</code></pre>
 <pre class="r"><code>var(x$x)</code></pre>
-<pre><code>## [1] 837.6989</code></pre>
+<pre><code>## [1] 799.3999</code></pre>
 <pre class="r"><code>sd(x$x)</code></pre>
-<pre><code>## [1] 28.94303</code></pre>
+<pre><code>## [1] 28.27366</code></pre>
 <pre class="r"><code>min(x$x)</code></pre>
 <pre><code>## [1] 1</code></pre>
 <pre class="r"><code>max(x$x)</code></pre>
@@ -735,34 +738,10 @@ head(x)</code></pre>
 <pre class="r"><code># the &quot;describe&quot; function is the &quot;psych&quot; package
 library(psych)
 describe(dlf2[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)]) </code></pre>
-<pre><code>## dlf2[, c(&quot;day1&quot;, &quot;day2&quot;, &quot;day3&quot;)] 
-## 
-##  3  Variables      809  Observations
-## --------------------------------------------------------------------------------
-## day1 
-##        n  missing distinct     Info     Mean      Gmd      .05      .10 
-##      809        0      199        1    1.771   0.7901    0.594    0.848 
-##      .25      .50      .75      .90      .95 
-##    1.310    1.790    2.230    2.670    2.906 
-## 
-## lowest : 0.02 0.05 0.11 0.23 0.26, highest: 3.38 3.41 3.44 3.58 3.69
-## --------------------------------------------------------------------------------
-## day2 
-##        n  missing distinct     Info     Mean      Gmd      .05      .10 
-##      263      546      102        1   0.9553   0.7761    0.140    0.200 
-##      .25      .50      .75      .90      .95 
-##    0.410    0.790    1.335    1.970    2.438 
-## 
-## lowest : 0.00 0.02 0.05 0.06 0.08, highest: 2.91 3.00 3.21 3.35 3.44
-## --------------------------------------------------------------------------------
-## day3 
-##        n  missing distinct     Info     Mean      Gmd      .05      .10 
-##      123      686       65    0.999   0.9765   0.7754    0.170    0.266 
-##      .25      .50      .75      .90      .95 
-##    0.440    0.760    1.525    1.904    2.146 
-## 
-## lowest : 0.02 0.08 0.11 0.14 0.17, highest: 2.29 2.55 2.70 3.02 3.41
-## --------------------------------------------------------------------------------</code></pre>
+<pre><code>##      vars   n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+## day1    1 809 1.77 0.69   1.79    1.77 0.70 0.02 3.69  3.67 0.00    -0.42 0.02
+## day2    2 263 0.96 0.72   0.79    0.86 0.61 0.00 3.44  3.44 1.10     0.83 0.04
+## day3    3 123 0.98 0.71   0.76    0.90 0.61 0.02 3.41  3.39 1.01     0.59 0.06</code></pre>
 <pre class="r"><code># the &quot;stat.desc&quot; function is the &quot;pastec&quot; package
 stat.desc(dlf2[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FALSE,norm=TRUE)</code></pre>
 <pre><code>##                      day1         day2         day3

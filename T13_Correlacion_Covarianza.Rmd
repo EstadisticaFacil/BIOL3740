@@ -107,18 +107,18 @@ $$cov(x,y)=\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y }
 
 ```{r variance, warning=FALSE}
 
-x=c(5,4,4,6,8)
-y=c(8,9,10,13,15)
+x_val=c(5,4,4,6,8)
+y_val=c(8,9,10,13,15)
 Person=c(1,2,3,4,5)
-meanx=mean(x)
-df=data.frame(Person,x,y)
+meanx=mean(x_val)
+df=data.frame(Person,x_val,y_val)
 df
 
 ggplot(df)+
-  geom_point(data=df, aes(x=Person,y=x),colour="Blue")+
-  geom_point(data=df,aes(x=Person,y=y), colour="red")+
-  geom_hline(aes(yintercept=mean(df$x)),colour="Blue")+
-geom_hline(aes(yintercept=mean(df$y)),colour="red")
+  geom_point(data=df, aes(x=Person,y=x_val),colour="Blue")+
+  geom_point(data=df,aes(x=Person,y=y_val), colour="red")+
+  geom_hline(aes(yintercept=mean(df$x_val)),colour="Blue")+
+geom_hline(aes(yintercept=mean(df$y_val)),colour="red")
 
 
 
@@ -144,8 +144,8 @@ The function to calculate the correlation coefficient is "cor"
 The function to determine if the correlation vetween the 2 variables is significant (in other words, different from zero) is "cor.test".
   
 ```{r cor, warning=FALSE}
-cor(df$x, df$y)
-cor.test(df$x, df$y)
+cor(df$x_val, df$y_val)
+cor.test(df$x_val, df$y_val)
 
 ```
  
