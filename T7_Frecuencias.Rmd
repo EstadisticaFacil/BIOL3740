@@ -36,14 +36,6 @@ Sys.Date()
 
 
 
-# Prueba de Bondad de Ajuste
-
-
-# Prueba de Bondad de AJuste de Asociación
-
-
-# Prueba de Exacta de Fisher
-
 
 
 ***
@@ -161,11 +153,12 @@ Los pasos que calcular son:
 ```{r}
 qchisq(0.95, 1)
 ```
-  
+
+No hay ninguna razón de hacer los cálculos a mano si tenemos a R para hacerlo.  Nota aquí se hace la misma prueba con los mismos datos y tenemos el mismo resultado.  
 
 ## Primer ejemplo
 
-Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene un Chi Cuadrado de 0.49, p =.49. Como el valor de *p* es mayor a 0.05, no se rechaza la hipótesis nula y que la frecuencia no es diferente de una proporción de 3:1.   
+Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene un Chi Cuadrado de 0.48, p =.49. Como el valor de *p* es mayor a 0.05, no se rechaza la hipótesis nula y que la frecuencia no es diferente de una proporción de 3:1.   
 
 ```{r}
 obs<-c(45,12)
@@ -177,7 +170,7 @@ chisq.test(x=obs, p=esp)
 
 ## Segundo ejemplo
 
-Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1.  Se observa un Chi cuadrado de 0.83 y un valor de p de 0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1.  
+Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1.  Se observa un Chi cuadrado de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1. se acepta la hipotesis nula.   
 
 Vemos que a re-evaluar los experimentos de Mendel tenemos un resultado que apoya su predicciones.  Nota que Mendel NO tenia estadística para determinar si las frecuencias eran diferente o no de 3:1.  El hizo observaciones y llego a unas conclusiones. 
 
@@ -194,37 +187,41 @@ chisq.test(x=obs, p=esp)
 #install.packages("MASS", dependencies = TRUE)
 ```
 
+***
 
+# Prueba de Bondad de Ajuste de Asociación
+
+Esta prueba se usa para 
 
 Los siguientes datos son de Field, Miles and Field 2012.  
 
-Data in a table
-Create a data frame
-
-Este set de datos represente un experimento ficticio de tratar de entrenar 200 gatos para que bailan basado en si se la da una recompensa o no. Este esta basado en el concepto del psicólogo Ruso Ivan Pavlov (1849-1936) de que se puede enseñar o sea motivar a una acción dando una recompensa.  Lo que se llama "condicionar" un proceso de aprendizaje que ocurre entre la asociación de un estimulo ambiental y un comportamiento. 
+Este conjunto de datos represente un experimento ficticio de tratar de entrenar 200 gatos para que bailan basado en si se la da una recompensa o no. Este esta basado en el concepto del psicólogo Ruso Ivan Pavlov (1849-1936) de que se puede enseñar o sea motivar a una acción dando una recompensa.  Lo que se llama "condicionar" un proceso de aprendizaje que ocurre entre la asociación de un estimulo ambiental y un comportamiento. 
 
 
-Aquí entramos los datos directamente en una tabla
+Primero entramos los datos directamente en una tabla
 
-Los datos son: 
+Los datos son los siguientes: 
 
-A 38 gatos se la ha dado una recompensa, 28 bailaron y 10 no bailaron
+A 38 gatos se la ha dado una recompensa, 28 bailaron y 10 no bailaron.
 A 162 no se la dado recompensa, y 48 bailaron y 114 no bailaron.
 
+Se crea dos listas con los resultados y une estas dos filas con **cbind()** y después se la añade un nombre a las filas con **rownames()**. Vemos ahora la tabla de frecuencias de cuantos gtoa bailaron o no y si fueron entrenado por comido o cariño. Nota que no se puede añadir la tilde **~** a la **n** de cariño. 
 
 ```{r}
 #Crear la tabla de contingencia
 
-food <- c(10, 28)
-affection <- c(114,48)
-catsTable <- cbind(food, affection)
+comida <- c(10, 28)
+carino <- c(114,48)
+catsTable <- cbind(comida, carino)
 rownames(catsTable)<-c("No_bailan", "bailan") # Añade el nombre a las filas
 
 catsTable
+
+
 ```
 
 
-
+***
 
 
 ## Gráfico de Mosaico
@@ -237,19 +234,45 @@ mosaicplot(catsTable)
 
 ```
 
-Test if there is independence of data
+***
 
+# Prueba de Independencia de frecuencia. 
+
+Los valores esperados en esta caso son calculados directamente de la tabla. Para cada celda $E_{ij}$ donde la {i} representa la fila y la {j} las columnas.  El valor esperado se calcula multiplicando la suma de la fila por la suma ${R_i}$ de la suma de la columna ${C_j}$. La formula de los valores esperados es la siguiente, donde la N es la suma total de datos.
+
+$$E_{ij}=\frac{\left(R_i\cdot C_j\right)}{N}$$
+
+Cálculos dos de los valores esperados
+
+1. Los gatos que reciban comida y bailan
+
+$$E_{12}=\frac{\left(R_2\cdot C_1\right)}{N}= \frac{(38*76)}{200}=14.44$$
+2. Los gatos que reciban cariño y no bailan
+
+$$E_{21}=\frac{\left(R_1\cdot C_2\right)}{N}= \frac{(124*162)}{200}=100.44$$
+La prueba es exactamente igual como la anterior donde comparamos el valor observado con el valor esperado.  Por ser más de una fila la formula cambia.
+
+$$\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}$$
+El Chi Cuadrado final es 
+
+$$\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36$$
+
+***
+
+# La función CrossTable
+
+Con esta función se calcula el chi cuadrado con los valores esperados. Nota la leyenda al principio para poder entender la organización de los datos.    El grado de liberta se calcula con la siguiente formula, el numero de filas -1 multiplicado por la cantidad de columnas menos 1, df= (R-1)(C-1). df = es para grado de libertad. 
 
 ```{r test}
 
 CrossTable(catsTable, fisher = TRUE, chisq = TRUE, 
-           expected = TRUE, sresid = TRUE, format = "SPSS")
+           expected = TRUE, sresid = TRUE, format = "SAS")
 
 ```
 
-# Analisios con datos en una tabla
+# Analisis con datos en una tabla
 
-Estos son los mismos datos pero no sumado, en otra palabra es información específica sobre cada gato y su tratamiento y si bailo o no.   La ventaja de este método es que uno no tiene que hacer el calculo, se deja la función **CrossTable** hacer la suma. Miran bien la tabla.  
+Estos son los mismos datos pero no sumado, en otra palabra es información específica sobre cada gato y su tratamiento y si bailo o no.   La ventaja de este método es que uno no tiene que hacer el calculo y sumar la frecuancias, se deja la función **CrossTable** hacer la suma. Miran bien la tabla.  
 
 
 ```{r df not summed}
@@ -270,7 +293,9 @@ gt(head(catsData, n=10))
 
 
 ```
+***
 
+Nota que aquí se llama cada columna aparte en la función (catsData$Training, catsData$Dance). 
 
 # Prueba de independencia 
 
@@ -289,77 +314,86 @@ mosaicplot(Ta2, shade=TRUE)
 
 
 
-```{r df}
-#Enter contingency table data
-
-No_Disney <- c(122, 25)
-Disney <- c(175,325)
-DTable <- cbind(No_Disney, Disney) 
-DTable
-
-mosaicplot(DTable)
-
-
-CrossTable(DTable, fisher = TRUE, chisq = TRUE, 
-           expected = TRUE, sresid = TRUE, format = "SPSS")
-
-
-```
 
 
 
+#  Un ultimo ejemplo
 
-#  Another example:
-
-Es el color de pello igual entre los estudiantes mujeres y hombres en la UPRH.
-El primer grupo son la mujeres y le sigues los hombre
+En la siguiente tabla se encuentra el color de pello de estudiantes de la UPR.  La hipótesis es que el color de pelo no esta asociado al sexo de los estudiantes. 
 
 
 | Color de Pello | Mujer | Hombre |
 |---------------:|------:|-------:|
 | Negro          |    32 |     55 |
-| Marron         |    43 |     65 |
+| Marrón         |    43 |     65 |
 | Rubio          |    16 |     64 |
 | Rojo           |     9 |     16 |
 
 
+Creamos 
 
-```{r hair colour by sex}
-#********* Example*1*********
-#_____________ Contingency Table
+```{r hcolor de pelo por sexo}
+
 Negro=c(32,55)
 Marron=c(43, 65)
 Rubio=c(16,64)
 Rojo=c(9,16)
 
-HairColour=cbind(Negro,Marron, Rubio,Rojo)
+HairColour=cbind(Negro,Marron, Rubio,Rojo) 
+rownames(HairColour)<-c("Mujer", "Hombre") # Añade el nombre a las filas
+
 HairColour
-
-
 ```
+
+ 
+
+¿Cual es la hipótesis nula?
+¿Cual es la hipótesis alterna?
+
+El resultado de la prueba. ¿Se acepta o rechaza la hipótesis nula?
 
 ```{r}
 CrossTable(HairColour, fisher = TRUE, chisq = TRUE, expected = TRUE, sresid = TRUE, format = "SPSS")
 
 ```
 
-Car color
 
-What is the hipothesis?
+# Prueba de Exacta de Fisher
+
+
+La prueba Exacta de Fisher es similar a la prueba de Bondad de Ajuste para evaluar si hay asociación entre dos variables categorías.  La diferencia importante es que no es necesario que el valor esperado sea mayor de 5. Por consecuencia se puede usar con muestras más pequeñas.  
+
+# Los supuestos de las prueba Exacta de Fisher.
+
+  1. Los datos son frecuencias.
+  2. Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).
+  3. Las observaciones son independiente una de la otra.
+  4. La tabla tiene 2 filas y 2 columnas.
+  
+Usando los datos de serpientes del ejemplo 7.4 del libro
+
+```{r}
+responde <- c(6, 1)
+no_responde <- c(1,6)
+serpiente <- cbind(responde, no_responde)
+rownames(serpiente)<-c("Estimulo_ariba", "Estimulo_lateral") # Añade el nombre a las filas
+
+serpiente
+```
+
+Se puede visualizar los datos con el Mosaico
+
+```{r}
+mosaicplot(serpiente)
+
+```
+
+Nota que se usa la misma función que anterior pero en los resultados hay que fijarse en la sección que dice **Fisher's Exact test**. Lo que uno observa es que el valor de **p** es menor de 0.05 por consecuencia se rechaza la hipótesis nula. Lo que significa es que para la serpiente el angulo donde proviene el estimulo resulta en una repuesta diferente. 
+
 
 
 ```{r}
-WHITE=c(13,16)
-RED=c(12, 11)
-BLUE=c(12,13)
-Other=c(0,11)
 
-CarColour=cbind(WHITE,RED, BLUE, Other)
-CarColour
-```
-
-```{r}
-CrossTable(CarColour, fisher = TRUE, chisq = TRUE, expected = TRUE, sresid = TRUE, format = "SPSS")
+fisher.test(serpiente)
 
 ```
-

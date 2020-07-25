@@ -460,9 +460,6 @@ div.tocify {
 <div id="prueba-de-bondad-de-ajuste" class="section level1">
 <h1>Prueba de Bondad de Ajuste</h1>
 </div>
-<div id="prueba-de-bondad-de-ajuste-de-asociación" class="section level1">
-<h1>Prueba de Bondad de AJuste de Asociación</h1>
-</div>
 <div id="prueba-de-exacta-de-fisher" class="section level1">
 <h1>Prueba de Exacta de Fisher</h1>
 <hr />
@@ -715,9 +712,10 @@ Esperado
 <p>Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla). Aquí usamos R para conseguir este valor. NOte aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1. Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula. En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.</p>
 <pre class="r"><code>qchisq(0.95, 1)</code></pre>
 <pre><code>## [1] 3.841459</code></pre>
+<p>No hay ninguna razón de hacer los cálculos a mano si tenemos a R para hacerlo. Nota aquí se hace la misma prueba con los mismos datos y tenemos el mismo resultado.</p>
 <div id="primer-ejemplo" class="section level2">
 <h2>Primer ejemplo</h2>
-<p>Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene un Chi Cuadrado de 0.49, p =.49. Como el valor de <em>p</em> es mayor a 0.05, no se rechaza la hipótesis nula y que la frecuencia no es diferente de una proporción de 3:1.</p>
+<p>Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene un Chi Cuadrado de 0.48, p =.49. Como el valor de <em>p</em> es mayor a 0.05, no se rechaza la hipótesis nula y que la frecuencia no es diferente de una proporción de 3:1.</p>
 <pre class="r"><code>obs&lt;-c(45,12)
 esp&lt;-c(0.75,0.25) # este el modelo nulo
 
@@ -730,7 +728,7 @@ chisq.test(x=obs, p=esp)</code></pre>
 </div>
 <div id="segundo-ejemplo" class="section level2">
 <h2>Segundo ejemplo</h2>
-<p>Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1. Se observa un Chi cuadrado de 0.83 y un valor de p de 0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1.</p>
+<p>Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1. Se observa un Chi cuadrado de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1. se acepta la hipotesis nula.</p>
 <p>Vemos que a re-evaluar los experimentos de Mendel tenemos un resultado que apoya su predicciones. Nota que Mendel NO tenia estadística para determinar si las frecuencias eran diferente o no de 3:1. El hizo observaciones y llego a unas conclusiones.</p>
 <pre class="r"><code>obs&lt;-c(336,101)
 esp&lt;-c(0.75,0.25)
@@ -742,67 +740,92 @@ chisq.test(x=obs, p=esp)</code></pre>
 ## data:  obs
 ## X-squared = 0.83066, df = 1, p-value = 0.3621</code></pre>
 <pre class="r"><code>#install.packages(&quot;MASS&quot;, dependencies = TRUE)</code></pre>
+<hr />
+</div>
+</div>
+<div id="prueba-de-bondad-de-ajuste-de-asociación" class="section level1">
+<h1>Prueba de Bondad de Ajuste de Asociación</h1>
+<p>Esta prueba se usa para</p>
 <p>Los siguientes datos son de Field, Miles and Field 2012.</p>
-<p>Data in a table Create a data frame</p>
-<p>Este set de datos represente un experimento ficticio de tratar de entrenar 200 gatos para que bailan basado en si se la da una recompensa o no. Este esta basado en el concepto del psicólogo Ruso Ivan Pavlov (1849-1936) de que se puede enseñar o sea motivar a una acción dando una recompensa. Lo que se llama “condicionar” un proceso de aprendizaje que ocurre entre la asociación de un estimulo ambiental y un comportamiento.</p>
-<p>Aquí entramos los datos directamente en una tabla</p>
-<p>Los datos son:</p>
-<p>A 38 gatos se la ha dado una recompensa, 28 bailaron y 10 no bailaron A 162 no se la dado recompensa, y 48 bailaron y 114 no bailaron.</p>
+<p>Este conjunto de datos represente un experimento ficticio de tratar de entrenar 200 gatos para que bailan basado en si se la da una recompensa o no. Este esta basado en el concepto del psicólogo Ruso Ivan Pavlov (1849-1936) de que se puede enseñar o sea motivar a una acción dando una recompensa. Lo que se llama “condicionar” un proceso de aprendizaje que ocurre entre la asociación de un estimulo ambiental y un comportamiento.</p>
+<p>Primero entramos los datos directamente en una tabla</p>
+<p>Los datos son los siguientes:</p>
+<p>A 38 gatos se la ha dado una recompensa, 28 bailaron y 10 no bailaron. A 162 no se la dado recompensa, y 48 bailaron y 114 no bailaron.</p>
+<p>Se crea dos listas con los resultados y une estas dos filas con <strong>cbind()</strong> y después se la añade un nombre a las filas con <strong>rownames()</strong>. Vemos ahora la tabla de frecuencias de cuantos gtoa bailaron o no y si fueron entrenado por comido o cariño. Nota que no se puede añadir la tilde <strong>~</strong> a la <strong>n</strong> de cariño.</p>
 <pre class="r"><code>#Crear la tabla de contingencia
 
-food &lt;- c(10, 28)
-affection &lt;- c(114,48)
-catsTable &lt;- cbind(food, affection)
+comida &lt;- c(10, 28)
+carino &lt;- c(114,48)
+catsTable &lt;- cbind(comida, carino)
 rownames(catsTable)&lt;-c(&quot;No_bailan&quot;, &quot;bailan&quot;) # Añade el nombre a las filas
 
 catsTable</code></pre>
-<pre><code>##           food affection
-## No_bailan   10       114
-## bailan      28        48</code></pre>
-</div>
+<pre><code>##           comida carino
+## No_bailan     10    114
+## bailan        28     48</code></pre>
+<hr />
 <div id="gráfico-de-mosaico" class="section level2">
 <h2>Gráfico de Mosaico</h2>
 <p>Podemos visualizar la frecuencia de los datos con un gráfico de mosaico. Si la hipótesis nula la organización de las cajas deberían ser más o menos del mismo tamaño. En este caso lo que uno observa es que los que reciben comida y no bailan (1.1) la caja es mucha más pequeña que los que bailan y reciben comida. Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender el patrón.</p>
 <pre class="r"><code>mosaicplot(catsTable)</code></pre>
 <p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>Test if there is independence of data</p>
+<hr />
+</div>
+</div>
+<div id="prueba-de-independencia-de-frecuencia." class="section level1">
+<h1>Prueba de Independencia de frecuencia.</h1>
+<p>Los valores esperados en esta caso son calculados directamente de la tabla. Para cada celda <span class="math inline">\(E_{ij}\)</span> donde la {i} representa la fila y la {j} las columnas. El valor esperado se calcula multiplicando la suma de la fila por la suma <span class="math inline">\({R_i}\)</span> de la suma de la columna <span class="math inline">\({C_j}\)</span>. La formula de los valores esperados es la siguiente, donde la N es la suma total de datos.</p>
+<p><span class="math display">\[E_{ij}=\frac{\left(R_i\cdot C_j\right)}{N}\]</span></p>
+<p>Cálculos dos de los valores esperados</p>
+<ol style="list-style-type: decimal">
+<li>Los gatos que reciban comida y bailan</li>
+</ol>
+<p><span class="math display">\[E_{12}=\frac{\left(R_2\cdot C_1\right)}{N}= \frac{(38*76)}{200}=14.44\]</span> 2. Los gatos que reciban cariño y no bailan</p>
+<p><span class="math display">\[E_{21}=\frac{\left(R_1\cdot C_2\right)}{N}= \frac{(124*162)}{200}=100.44\]</span> La prueba es exactamente igual como la anterior donde comparamos el valor observado con el valor esperado. Por ser más de una fila la formula cambia.</p>
+<p><span class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}\]</span> El Chi Cuadrado final es</p>
+<p><span class="math display">\[\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36\]</span></p>
+<hr />
+</div>
+<div id="la-función-crosstable" class="section level1">
+<h1>La función CrossTable</h1>
+<p>Con esta función se calcula el chi cuadrado con los valores esperados. Nota la leyenda al principio para poder entender la organización de los datos. El grado de liberta se calcula con la siguiente formula, el numero de filas -1 multiplicado por la cantidad de columnas menos 1, df= (R-1)(C-1). df = es para grado de libertad.</p>
 <pre class="r"><code>CrossTable(catsTable, fisher = TRUE, chisq = TRUE, 
-           expected = TRUE, sresid = TRUE, format = &quot;SPSS&quot;)</code></pre>
+           expected = TRUE, sresid = TRUE, format = &quot;SAS&quot;)</code></pre>
 <pre><code>## 
+##  
 ##    Cell Contents
 ## |-------------------------|
-## |                   Count |
-## |         Expected Values |
+## |                       N |
+## |              Expected N |
 ## | Chi-square contribution |
-## |             Row Percent |
-## |          Column Percent |
-## |           Total Percent |
-## |            Std Residual |
+## |           N / Row Total |
+## |           N / Col Total |
+## |         N / Table Total |
 ## |-------------------------|
 ## 
+##  
 ## Total Observations in Table:  200 
 ## 
+##  
 ##              |  
-##              |      food  | affection  | Row Total | 
+##              |    comida |    carino | Row Total | 
 ## -------------|-----------|-----------|-----------|
-##    No_bailan |       10  |      114  |      124  | 
-##              |   23.560  |  100.440  |           | 
-##              |    7.804  |    1.831  |           | 
-##              |    8.065% |   91.935% |   62.000% | 
-##              |   26.316% |   70.370% |           | 
-##              |    5.000% |   57.000% |           | 
-##              |   -2.794  |    1.353  |           | 
+##    No_bailan |        10 |       114 |       124 | 
+##              |    23.560 |   100.440 |           | 
+##              |     7.804 |     1.831 |           | 
+##              |     0.081 |     0.919 |     0.620 | 
+##              |     0.263 |     0.704 |           | 
+##              |     0.050 |     0.570 |           | 
 ## -------------|-----------|-----------|-----------|
-##       bailan |       28  |       48  |       76  | 
-##              |   14.440  |   61.560  |           | 
-##              |   12.734  |    2.987  |           | 
-##              |   36.842% |   63.158% |   38.000% | 
-##              |   73.684% |   29.630% |           | 
-##              |   14.000% |   24.000% |           | 
-##              |    3.568  |   -1.728  |           | 
+##       bailan |        28 |        48 |        76 | 
+##              |    14.440 |    61.560 |           | 
+##              |    12.734 |     2.987 |           | 
+##              |     0.368 |     0.632 |     0.380 | 
+##              |     0.737 |     0.296 |           | 
+##              |     0.140 |     0.240 |           | 
 ## -------------|-----------|-----------|-----------|
-## Column Total |       38  |      162  |      200  | 
-##              |   19.000% |   81.000% |           | 
+## Column Total |        38 |       162 |       200 | 
+##              |     0.190 |     0.810 |           | 
 ## -------------|-----------|-----------|-----------|
 ## 
 ##  
@@ -835,13 +858,11 @@ catsTable</code></pre>
 ## 95% confidence interval:  0.07015399 Inf 
 ## 
 ## 
-##  
-##        Minimum expected frequency: 14.44</code></pre>
+## </code></pre>
 </div>
-</div>
-<div id="analisios-con-datos-en-una-tabla" class="section level1">
-<h1>Analisios con datos en una tabla</h1>
-<p>Estos son los mismos datos pero no sumado, en otra palabra es información específica sobre cada gato y su tratamiento y si bailo o no. La ventaja de este método es que uno no tiene que hacer el calculo, se deja la función <strong>CrossTable</strong> hacer la suma. Miran bien la tabla.</p>
+<div id="analisis-con-datos-en-una-tabla" class="section level1">
+<h1>Analisis con datos en una tabla</h1>
+<p>Estos son los mismos datos pero no sumado, en otra palabra es información específica sobre cada gato y su tratamiento y si bailo o no. La ventaja de este método es que uno no tiene que hacer el calculo y sumar la frecuancias, se deja la función <strong>CrossTable</strong> hacer la suma. Miran bien la tabla.</p>
 <pre class="r"><code># La data sin sumar
 
 Training&lt;-c(rep(0, 38), rep(1, 162))
@@ -855,11 +876,11 @@ Dance&lt;-factor(Dance, labels = c(&quot;No&quot;, &quot;Yes&quot;))
 catsData&lt;-data.frame(Training, Dance)
 
 gt(head(catsData, n=10))</code></pre>
-<style>html {
+<p><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#avrolwgczn .gt_table {
+#ygbrywugwh .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -882,7 +903,7 @@ gt(head(catsData, n=10))</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#avrolwgczn .gt_heading {
+#ygbrywugwh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -894,7 +915,7 @@ gt(head(catsData, n=10))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#avrolwgczn .gt_title {
+#ygbrywugwh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -904,7 +925,7 @@ gt(head(catsData, n=10))</code></pre>
   border-bottom-width: 0;
 }
 
-#avrolwgczn .gt_subtitle {
+#ygbrywugwh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -914,13 +935,13 @@ gt(head(catsData, n=10))</code></pre>
   border-top-width: 0;
 }
 
-#avrolwgczn .gt_bottom_border {
+#ygbrywugwh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#avrolwgczn .gt_col_headings {
+#ygbrywugwh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -935,7 +956,7 @@ gt(head(catsData, n=10))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#avrolwgczn .gt_col_heading {
+#ygbrywugwh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -955,7 +976,7 @@ gt(head(catsData, n=10))</code></pre>
   overflow-x: hidden;
 }
 
-#avrolwgczn .gt_column_spanner_outer {
+#ygbrywugwh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -967,15 +988,15 @@ gt(head(catsData, n=10))</code></pre>
   padding-right: 4px;
 }
 
-#avrolwgczn .gt_column_spanner_outer:first-child {
+#ygbrywugwh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#avrolwgczn .gt_column_spanner_outer:last-child {
+#ygbrywugwh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#avrolwgczn .gt_column_spanner {
+#ygbrywugwh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -987,7 +1008,7 @@ gt(head(catsData, n=10))</code></pre>
   width: 100%;
 }
 
-#avrolwgczn .gt_group_heading {
+#ygbrywugwh .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1009,7 +1030,7 @@ gt(head(catsData, n=10))</code></pre>
   vertical-align: middle;
 }
 
-#avrolwgczn .gt_empty_group_heading {
+#ygbrywugwh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1024,19 +1045,19 @@ gt(head(catsData, n=10))</code></pre>
   vertical-align: middle;
 }
 
-#avrolwgczn .gt_striped {
+#ygbrywugwh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#avrolwgczn .gt_from_md > :first-child {
+#ygbrywugwh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#avrolwgczn .gt_from_md > :last-child {
+#ygbrywugwh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#avrolwgczn .gt_row {
+#ygbrywugwh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1055,7 +1076,7 @@ gt(head(catsData, n=10))</code></pre>
   overflow-x: hidden;
 }
 
-#avrolwgczn .gt_stub {
+#ygbrywugwh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1067,7 +1088,7 @@ gt(head(catsData, n=10))</code></pre>
   padding-left: 12px;
 }
 
-#avrolwgczn .gt_summary_row {
+#ygbrywugwh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1077,7 +1098,7 @@ gt(head(catsData, n=10))</code></pre>
   padding-right: 5px;
 }
 
-#avrolwgczn .gt_first_summary_row {
+#ygbrywugwh .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1087,7 +1108,7 @@ gt(head(catsData, n=10))</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#avrolwgczn .gt_grand_summary_row {
+#ygbrywugwh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1097,7 +1118,7 @@ gt(head(catsData, n=10))</code></pre>
   padding-right: 5px;
 }
 
-#avrolwgczn .gt_first_grand_summary_row {
+#ygbrywugwh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1107,7 +1128,7 @@ gt(head(catsData, n=10))</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#avrolwgczn .gt_table_body {
+#ygbrywugwh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1116,7 +1137,7 @@ gt(head(catsData, n=10))</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#avrolwgczn .gt_footnotes {
+#ygbrywugwh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1130,13 +1151,13 @@ gt(head(catsData, n=10))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#avrolwgczn .gt_footnote {
+#ygbrywugwh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#avrolwgczn .gt_sourcenotes {
+#ygbrywugwh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1150,46 +1171,46 @@ gt(head(catsData, n=10))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#avrolwgczn .gt_sourcenote {
+#ygbrywugwh .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#avrolwgczn .gt_left {
+#ygbrywugwh .gt_left {
   text-align: left;
 }
 
-#avrolwgczn .gt_center {
+#ygbrywugwh .gt_center {
   text-align: center;
 }
 
-#avrolwgczn .gt_right {
+#ygbrywugwh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#avrolwgczn .gt_font_normal {
+#ygbrywugwh .gt_font_normal {
   font-weight: normal;
 }
 
-#avrolwgczn .gt_font_bold {
+#ygbrywugwh .gt_font_bold {
   font-weight: bold;
 }
 
-#avrolwgczn .gt_font_italic {
+#ygbrywugwh .gt_font_italic {
   font-style: italic;
 }
 
-#avrolwgczn .gt_super {
+#ygbrywugwh .gt_super {
   font-size: 65%;
 }
 
-#avrolwgczn .gt_footnote_marks {
+#ygbrywugwh .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="avrolwgczn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ygbrywugwh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1241,7 +1262,8 @@ gt(head(catsData, n=10))</code></pre>
   </tbody>
   
   
-</table></div>
+</table></div> ***</p>
+<p>Nota que aquí se llama cada columna aparte en la función (catsData<span class="math inline">\(Training, catsData\)</span>Dance).</p>
 </div>
 <div id="prueba-de-independencia" class="section level1">
 <h1>Prueba de independencia</h1>
