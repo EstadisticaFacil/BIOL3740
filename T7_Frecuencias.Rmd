@@ -89,6 +89,7 @@ library(gt)
 
 ```
 
+***
 ## Gregory Mendel y sus guisantes
 
 Gregory Mendel (1822-1884) el padre de herencia "mendeliana" estaba interesada en determinar como se hereda las características de los organismos.  En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia.  Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible.  Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo "x" hay un individuo del fenotipo "y".
@@ -116,7 +117,7 @@ Tabla de los resultados de experimentos original de Gregor Mendel con semillas r
 
 En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas.  Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 deberían ser las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp). 
 
-
+***
 # Bondad de Ajuste.
 
 La prueba de bondad de ajuste y de tabla de contingencia son pruebas que evalúa la cantidad/frecuencia en las categorías y lo compara con un modelo nulo.  En este caso lo que se compará es la cantidad de la frecuencia observada $o$, con la frecuencia esperada $e$.  La formula es la siguiente 
@@ -139,7 +140,7 @@ kable(df, escape=FALSE)
 
 ```
 
-Los pasos que calcular son: 
+Los pasos que calcular el Chi Cuadrado: 
 
   1. Los valores esperados, en este caso fue una proporción de 3:1
   2. Las diferencias 
@@ -156,6 +157,8 @@ qchisq(0.95, 1)
 
 No hay ninguna razón de hacer los cálculos a mano si tenemos a R para hacerlo.  Nota aquí se hace la misma prueba con los mismos datos y tenemos el mismo resultado.  
 
+***
+
 ## Primer ejemplo
 
 Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene un Chi Cuadrado de 0.48, p =.49. Como el valor de *p* es mayor a 0.05, no se rechaza la hipótesis nula y que la frecuencia no es diferente de una proporción de 3:1.   
@@ -168,6 +171,7 @@ chisq.test(x=obs, p=esp)
 
 ```
 
+***
 ## Segundo ejemplo
 
 Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1.  Se observa un Chi cuadrado de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1. se acepta la hipotesis nula.   
@@ -189,7 +193,7 @@ chisq.test(x=obs, p=esp)
 
 ***
 
-# Prueba de Bondad de Ajuste de Asociación
+# Prueba de Bondad de Ajuste
 
 Esta prueba se usa para 
 
@@ -237,6 +241,8 @@ mosaicplot(catsTable)
 ***
 
 # Prueba de Independencia de frecuencia. 
+
+En ingles lo van a ver como "Contingency Tables"
 
 Los valores esperados en esta caso son calculados directamente de la tabla. Para cada celda $E_{ij}$ donde la {i} representa la fila y la {j} las columnas.  El valor esperado se calcula multiplicando la suma de la fila por la suma ${R_i}$ de la suma de la columna ${C_j}$. La formula de los valores esperados es la siguiente, donde la N es la suma total de datos.
 
@@ -289,7 +295,8 @@ Dance<-factor(Dance, labels = c("No", "Yes"))
 
 catsData<-data.frame(Training, Dance)
 
-gt(head(catsData, n=10))
+gt(head(catsData, n=3))
+gt(tail(catsData, n=3))
 
 
 ```
@@ -317,7 +324,7 @@ mosaicplot(Ta2, shade=TRUE)
 
 
 
-#  Un ultimo ejemplo
+#  El color de pello es independiente del sexo 
 
 En la siguiente tabla se encuentra el color de pello de estudiantes de la UPR.  La hipótesis es que el color de pelo no esta asociado al sexo de los estudiantes. 
 
@@ -357,6 +364,7 @@ CrossTable(HairColour, fisher = TRUE, chisq = TRUE, expected = TRUE, sresid = TR
 
 ```
 
+***
 
 # Prueba de Exacta de Fisher
 
@@ -390,7 +398,7 @@ mosaicplot(serpiente)
 
 Nota que se usa la misma función que anterior pero en los resultados hay que fijarse en la sección que dice **Fisher's Exact test**. Lo que uno observa es que el valor de **p** es menor de 0.05 por consecuencia se rechaza la hipótesis nula. Lo que significa es que para la serpiente el angulo donde proviene el estimulo resulta en una repuesta diferente. 
 
-
+***
 
 ```{r}
 
