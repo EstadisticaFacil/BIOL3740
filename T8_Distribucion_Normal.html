@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>T8_Distribucion_Normal</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BIOL 3740</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Descripción.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Instalación y Introducción básica
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Instalar-R-RStudio.html">Instalar R y RStudio</a>
+    </li>
+    <li>
+      <a href="Introducción_RMarkdown.html">RMarkdown</a>
+    </li>
+    <li>
+      <a href="Codigos_basicos_en_R.html">Codigos Básicos en R</a>
+    </li>
+    <li>
+      <a href="R_basico.html">R Básico #2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Temas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="T1_Intro.html">T1 Introducción a la Estadística</a>
+    </li>
+    <li>
+      <a href="T1a_Poblacion_Muestra.html">T1a Población, Muestreo y Sesgo</a>
+    </li>
+    <li>
+      <a href="T1b_Inferencias_hipotesis.html">T1b Inferencias y hipotesis</a>
+    </li>
+    <li>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
+    </li>
+    <li>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
+    </li>
+    <li>
+      <a href="T4_Medidas_dispersión.html">T4 Medidas de Dispersión</a>
+    </li>
+    <li>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
+    </li>
+    <li>
+      <a href="T6_supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
+    </li>
+    <li>
+      <a href="T7_Frecuencias.html">T7 Pruebas de Bondad de Ajuste</a>
+    </li>
+    <li>
+      <a href="T8_Distribucion_Normal.html">T8 La Distribución Normal</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejercicios
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Plataforma.html">Ejercico Plataforma de RStudio</a>
+    </li>
+    <li>
+      <a href="RMarkdown.html">Ejercico Plataforma de RMarkdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Datos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Archivos_de_Datos.html">Archivos de Datos</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">T8_Distribucion_Normal</h1>
+
+</div>
+
+
+<p>Fecha de la ultima revisión</p>
+<pre><code>## [1] &quot;2020-07-24&quot;</code></pre>
+<div id="install-and-load-the-following-packages-before-class" class="section level1">
+<h1>Install and load the following packages before class</h1>
+<p>This first part is to install a series of dependendies for the package “modeest” Chunk #1</p>
+<pre class="r"><code>#source(&quot;http://bioconductor.org/biocLite.R&quot;)
+#biocLite(&quot;genefilter&quot;)</code></pre>
+<p>Chunk #2</p>
+<pre class="r"><code># This &quot;pacman&quot; package, has a function which determine if you have installed the package you need, if they are not installed they will install them.  So RUN the first two lines.  
+
+if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)
+pacman::p_load( car, GGally, ggversa, pastecs, psych, pander, ggplot2, nortest, Hmisc, boot, knitr)</code></pre>
+<p>modeest,</p>
+<p>Chunk #3</p>
+<p>Activar los Packages</p>
+<pre class="r"><code>library(nortest) # package for testing normality
+library(car) # package for correlation analysis
+library(ggplot2) # package for vizualizing data
+library(ggversa) # package of different &quot;data sets&quot;
+#library(modeest) # package for calculating the mode
+library(GGally) # ggplot based package to evaluate correlations among variables
+library(pastecs) # package for analysis of space-time ecological series
+library(psych) # package for procedures for psychometric, psychological and personality research
+library(Hmisc) # A jumble of functions useful for graphics and tables, plus more
+library(boot) # Package to estimate bootstrap intervals
+library(knitr) # for the function kable (to make nice tables)</code></pre>
+</div>
+<div id="objectives-of-the-day" class="section level1">
+<h1>Objectives of the day</h1>
+<ol style="list-style-type: decimal">
+<li>Determine if your data complies with normal distribution and learn how do basic correlations. # 1. Histogram</li>
+</ol>
+<p>This normal distribution equation. Note that there is only two unknowns in this equation, the mean and the variance. The codes need to be written in LaTeX code. <span class="math display">\[P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}\]</span></p>
+<p>The Latex equation appears on a seperate line. Note the double “$ $” before and after the equation.</p>
+<p>For inline equation, you only use one dollar sign before and after the equation.</p>
+<p>For mean of the population <span class="math inline">\(\mu=\frac{\sum{{x}_{i}}}{{n}_{i}}\)</span> , we use the letter “mu”, this refers to the mean of the universe. In other words of all the information without missing any.</p>
+<div id="checking-for-normality-visually" class="section level2">
+<h2>Checking for NORMALITY VISUALLY</h2>
+<p>DATA to be used “DownloadFestival.csv”</p>
+<p>Data collected the Hygiene condition of the festival goers at the 3 days at a Rock and Heavy metal festival in the UK.</p>
+<p>0 = You smell like a “rotting corpse” 4 = You smell like “sweet rose”</p>
+<pre class="r"><code>library(readr)
+DownloadFestival &lt;- read_csv(&quot;Data_files_csv/DownloadFestival.csv&quot;)
+
+
+
+dlf=DownloadFestival  #use shorter data.frame names to make your life easier..... 
+head(dlf)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   ticknumb gender  day1  day2   day3
+##      &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1     2111 Male    2.64  1.35  1.61 
+## 2     2229 Female  0.97  1.41  0.290
+## 3     2338 Male    0.84 NA    NA    
+## 4     2384 Female  3.03 NA    NA    
+## 5     2401 Female  0.88  0.08 NA    
+## 6     2405 Male    0.85 NA    NA</code></pre>
+<pre class="r"><code>tail(dlf)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   ticknumb gender  day1  day2  day3
+##      &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     4749 Female  0.52 NA       NA
+## 2     4756 Female  2.91  0.94    NA
+## 3     4758 Female  2.61  1.44    NA
+## 4     4759 Female  1.47 NA       NA
+## 5     4760 Male    1.28 NA       NA
+## 6     4765 Female  1.26 NA       NA</code></pre>
+<pre class="r"><code>summary(dlf)</code></pre>
+<pre><code>##     ticknumb       gender               day1             day2       
+##  Min.   :2111   Length:810         Min.   : 0.020   Min.   :0.0000  
+##  1st Qu.:3096   Class :character   1st Qu.: 1.312   1st Qu.:0.4100  
+##  Median :3620   Mode  :character   Median : 1.790   Median :0.7900  
+##  Mean   :3616                      Mean   : 1.793   Mean   :0.9609  
+##  3rd Qu.:4155                      3rd Qu.: 2.230   3rd Qu.:1.3500  
+##  Max.   :4765                      Max.   :20.020   Max.   :3.4400  
+##                                                     NA&#39;s   :546     
+##       day3       
+##  Min.   :0.0200  
+##  1st Qu.:0.4400  
+##  Median :0.7600  
+##  Mean   :0.9765  
+##  3rd Qu.:1.5250  
+##  Max.   :3.4100  
+##  NA&#39;s   :687</code></pre>
+<pre class="r"><code>dlf2=subset(dlf, dlf$day1&lt;5)  
+
+ggplot(dlf2, aes(day1))+
+  geom_histogram(color=&quot;white&quot;)</code></pre>
+<p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><span class="math display">\[P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}\]</span></p>
+<pre class="r"><code># let us use a different data set, which has the corrected data. 
+
+library(readr)
+DownloadFestival_No_Outlier_ &lt;- read_csv(&quot;Data_files_csv/DownloadFestival(No Outlier).csv&quot;)
+
+dlfc=DownloadFestival_No_Outlier_  # rename the data frame to something more simple
+
+
+ggplot(dlfc, aes(day1)) + 
+  geom_histogram(aes(), colour=&quot;white&quot;, fill=&quot;red&quot;)</code></pre>
+<p><img src="T8_Distribucion_Normal_files/figure-html/histogram%20and%20normal%20distribution-1.png" width="672" /></p>
+<pre class="r"><code># Note the Y axis are the &quot;count&quot; values
+
+
+hist.dlfc1 &lt;- ggplot(dlf2, aes(day1)) + 
+  geom_histogram(aes(y=..density..), colour=&quot;white&quot;, fill=&quot;red&quot;) + 
+  labs(x=&quot;Hygiene of Day 1&quot;, y = &quot;Density&quot;)
+
+
+hist.dlfc1</code></pre>
+<p><img src="T8_Distribucion_Normal_files/figure-html/histogram%20and%20normal%20distribution-2.png" width="672" /></p>
+<pre class="r"><code># Note the Y axis is now the density of the count values
+
+
+# Now let add the normal distribution line, based on 
+
+hist.dlfc2 &lt;- ggplot(dlf2, aes(day2)) + 
+  geom_histogram(aes(y=..density..), colour=&quot;white&quot;, fill=&quot;red&quot;) + 
+  labs(x=&quot;Hygiene of Day 2&quot;, y = &quot;Density&quot;)+
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(dlf2$day2, na.rm = TRUE), 
+                sd = sd(dlf2$day2, na.rm = TRUE)), 
+                colour = &quot;green&quot;, size = 1)
+
+hist.dlfc2</code></pre>
+<p><img src="T8_Distribucion_Normal_files/figure-html/histogram%20and%20normal%20distribution-3.png" width="672" /></p>
+<pre class="r"><code># dnorm = density of the normal distribution
+# mean = mean of the a data set
+# sd = standard deviation of a data set</code></pre>
+</div>
+<div id="now-change-the-variable-and-re-do-the-figure-for-day-2-and-3" class="section level2">
+<h2>Now change the variable and re-do the figure for Day 2 and 3</h2>
+<pre class="r"><code>hist.dlfc2 &lt;- ggplot(dlfc, aes(day2)) + 
+  geom_histogram(aes(y=..density..), colour=&quot;white&quot;, fill=&quot;red&quot;) + 
+  labs(x=&quot;Hygiene of Day 2&quot;, y = &quot;Density&quot;)+
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(dlfc$day2, na.rm = TRUE), 
+                sd = sd(dlfc$day2, na.rm = TRUE)), 
+                colour = &quot;green&quot;, size = 1)
+
+hist.dlfc2</code></pre>
+<p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+</div>
+<div id="what-would-be-a-normal-distribution-of-your-own-data" class="section level1">
+<h1>What would be a normal distribution of your own data</h1>
+<p>Here I created a function where you can use it to explore what to expect from a random sample a some survey/experiments you are doing.</p>
+<p>We can use the function “rnorm” to create a data set that has a normal distribution, with a specific mean and standard deviation. rnorm(n, mean, sd) rnorm = (select n values, mean of x, sd of x), n= the number of values you want to select</p>
+<p>calculate the mean and sd.</p>
+<pre class="r"><code>#rnorm(10, 100, 10)
+
+x=rnorm(10000, 10, 2)
+
+dfx=data.frame(x)
+head(dfx)</code></pre>
+<pre><code>##           x
+## 1  5.645687
+## 2 12.185079
+## 3 11.960775
+## 4 12.222828
+## 5 12.814369
+## 6  8.255735</code></pre>
+<pre class="r"><code>library(ggplot2)
+hist.x &lt;- ggplot(dfx, aes(x)) + 
+  theme(legend.position = &quot;none&quot;) + 
+  geom_histogram(aes(y=..density..), bins=30,colour=&quot;black&quot;, fill=&quot;white&quot;) + 
+  labs(x=&quot;Variable&quot;, y = &quot;Density&quot;)+
+  stat_function(fun = dnorm, args = list(mean = mean(dfx$x, 
+                na.rm = TRUE), 
+                sd = sd(dfx$x, na.rm = TRUE)), 
+                colour = &quot;red&quot;, size = 1)
+
+hist.x</code></pre>
+<p><img src="T8_Distribucion_Normal_files/figure-html/historgram%20normal-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Normality curve</li>
+<li>qq-plot</li>
+</ol>
+<p>Add a straight line on the qqplot</p>
+<pre class="r"><code># This function is to add a straight line through the qqplot
+qqplot_line.data &lt;- function (vec) # argument: vector of numbers
+{
+  # following four lines from base R&#39;s qqline()
+  y &lt;- quantile(vec[!is.na(vec)], c(0.25, 0.75))
+  x &lt;- qnorm(c(0.25, 0.75))
+  slope &lt;- diff(y)/diff(x)
+  int &lt;- y[1L] - slope * x[1L]
+  
+  d &lt;- data.frame(resids = vec)
+  
+  ggplot(d, aes(sample = resids)) + 
+    stat_qq() + 
+    geom_abline(slope = slope, intercept = int, color=&quot;red&quot;)
+  
+}
+
+
+# This here is the function ready to implement
+qqplot_line.data(dlf2$day3)</code></pre>
+<p><img src="T8_Distribucion_Normal_files/figure-html/qqplot%20and%20line-1.png" width="672" /></p>
+</div>
+<div id="now-check-the-qq-plot-for-day-2-and-day-3" class="section level1">
+<h1>Now check the qq plot for day 2 and day 3</h1>
+<div id="tests-of-normality" class="section level2">
+<h2>Tests of Normality</h2>
+<div id="a." class="section level3">
+<h3>A.</h3>
+<div id="shapiro-wilks-test" class="section level4">
+<h4>Shapiro-Wilks test</h4>
+<p>Problem, sensitive to sample size 1. should not be used with less than 50 data points 2. should not be used for sample size of over 200….</p>
+<pre class="r"><code>shapiro.test(dlf2$day1)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  dlf2$day1
+## W = 0.99591, p-value = 0.03184</code></pre>
+<pre class="r"><code>length(dlf2$day1)</code></pre>
+<pre><code>## [1] 809</code></pre>
+</div>
+</div>
+<div id="b." class="section level3">
+<h3>B.</h3>
+<div id="other-normality-test-use-the-package-nortest" class="section level4">
+<h4>Other normality test, use the package “nortest”</h4>
+<p>Anderson-Darling test for normality,</p>
+<p>The Anderson-Darling test is an EDF omnibus test for the composite hypothesis of normality. Omnibus tests are a kind of statistical test. They test whether the explained variance in a set of data is significantly greater than the unexplained variance, overall.</p>
+<pre class="r"><code>library(nortest)
+
+ad.test(dlf2$day1)</code></pre>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  dlf2$day1
+## A = 0.53546, p-value = 0.17</code></pre>
+<p>Capitulo 15 5. Summary statistics, individual appraoch, summary 1. Mean 2. Median<br />
+3. Mode 4. Skewness and Kurtosis</p>
+<pre class="r"><code>x=sample(1:100, size=100, replace = TRUE)
+x=data.frame(x)
+head(x)</code></pre>
+<pre><code>##    x
+## 1 33
+## 2  5
+## 3 39
+## 4 33
+## 5 20
+## 6  8</code></pre>
+<pre class="r"><code>mean(x$x)</code></pre>
+<pre><code>## [1] 49.91</code></pre>
+<pre class="r"><code>var(x$x)</code></pre>
+<pre><code>## [1] 837.6989</code></pre>
+<pre class="r"><code>sd(x$x)</code></pre>
+<pre><code>## [1] 28.94303</code></pre>
+<pre class="r"><code>min(x$x)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>max(x$x)</code></pre>
+<pre><code>## [1] 100</code></pre>
+<p>Mean = mean Variance =var Standard deviation = sd mimimum value of a variable = min maximum value of a variable = max median value of a variable = median</p>
+<pre class="r"><code>mean(dlf2$day2, na.rm=TRUE)</code></pre>
+<pre><code>## [1] 0.9552852</code></pre>
+<pre class="r"><code>var(dlf2$day1, na.rm=TRUE)</code></pre>
+<pre><code>## [1] 0.4815148</code></pre>
+<pre class="r"><code>sd(dlf2$day1, na.rm=TRUE)</code></pre>
+<pre><code>## [1] 0.6939127</code></pre>
+<pre class="r"><code>min(dlf2$day1, na.rm=TRUE)</code></pre>
+<pre><code>## [1] 0.02</code></pre>
+<pre class="r"><code>max(dlf2$day1, na.rm=TRUE)</code></pre>
+<pre><code>## [1] 3.69</code></pre>
+<pre class="r"><code>median(dlf2$day1, na.rm=TRUE)</code></pre>
+<pre><code>## [1] 1.79</code></pre>
+<p>Start Here</p>
+<p>Summary stats</p>
+<pre class="r"><code>summary(dlf2$day1, na.rm=TRUE)  </code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.020   1.310   1.790   1.771   2.230   3.690</code></pre>
+<pre class="r"><code># the &quot;describe&quot; function is the &quot;psych&quot; package
+library(psych)
+describe(dlf2[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)]) </code></pre>
+<pre><code>## dlf2[, c(&quot;day1&quot;, &quot;day2&quot;, &quot;day3&quot;)] 
+## 
+##  3  Variables      809  Observations
+## --------------------------------------------------------------------------------
+## day1 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##      809        0      199        1    1.771   0.7901    0.594    0.848 
+##      .25      .50      .75      .90      .95 
+##    1.310    1.790    2.230    2.670    2.906 
+## 
+## lowest : 0.02 0.05 0.11 0.23 0.26, highest: 3.38 3.41 3.44 3.58 3.69
+## --------------------------------------------------------------------------------
+## day2 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##      263      546      102        1   0.9553   0.7761    0.140    0.200 
+##      .25      .50      .75      .90      .95 
+##    0.410    0.790    1.335    1.970    2.438 
+## 
+## lowest : 0.00 0.02 0.05 0.06 0.08, highest: 2.91 3.00 3.21 3.35 3.44
+## --------------------------------------------------------------------------------
+## day3 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##      123      686       65    0.999   0.9765   0.7754    0.170    0.266 
+##      .25      .50      .75      .90      .95 
+##    0.440    0.760    1.525    1.904    2.146 
+## 
+## lowest : 0.02 0.08 0.11 0.14 0.17, highest: 2.29 2.55 2.70 3.02 3.41
+## --------------------------------------------------------------------------------</code></pre>
+<pre class="r"><code># the &quot;stat.desc&quot; function is the &quot;pastec&quot; package
+stat.desc(dlf2[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FALSE,norm=TRUE)</code></pre>
+<pre><code>##                      day1         day2         day3
+## median        1.790000000 7.900000e-01 7.600000e-01
+## mean          1.770828183 9.552852e-01 9.765041e-01
+## SE.mean       0.024396670 4.417064e-02 6.404352e-02
+## CI.mean.0.95  0.047888328 8.697463e-02 1.267805e-01
+## var           0.481514784 5.131250e-01 5.044934e-01
+## std.dev       0.693912663 7.163274e-01 7.102770e-01
+## coef.var      0.391857702 7.498572e-01 7.273672e-01
+## skewness     -0.003155393 1.097314e+00 1.007813e+00
+## skew.2SE     -0.018353763 3.653087e+00 2.309035e+00
+## kurtosis     -0.423991408 8.293234e-01 5.945454e-01
+## kurt.2SE     -1.234611514 1.385557e+00 6.862946e-01
+## normtest.W    0.995907065 9.080040e-01 9.077516e-01
+## normtest.p    0.031838626 1.290743e-11 3.804486e-07</code></pre>
+<pre class="r"><code>round(stat.desc(dlf2[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FALSE,norm=TRUE), digits=3) # reduce to 3 significant figures</code></pre>
+<pre><code>##                day1  day2  day3
+## median        1.790 0.790 0.760
+## mean          1.771 0.955 0.977
+## SE.mean       0.024 0.044 0.064
+## CI.mean.0.95  0.048 0.087 0.127
+## var           0.482 0.513 0.504
+## std.dev       0.694 0.716 0.710
+## coef.var      0.392 0.750 0.727
+## skewness     -0.003 1.097 1.008
+## skew.2SE     -0.018 3.653 2.309
+## kurtosis     -0.424 0.829 0.595
+## kurt.2SE     -1.235 1.386 0.686
+## normtest.W    0.996 0.908 0.908
+## normtest.p    0.032 0.000 0.000</code></pre>
+<p>Quantiles</p>
+<pre class="r"><code>quantile(dlf2$day1,probs=c(0.05, 0.1, 0.25, 0.5,.55, 0.75, 0.95, 0.99), na.rm=TRUE)</code></pre>
+<pre><code>##     5%    10%    25%    50%    55%    75%    95%    99% 
+## 0.5940 0.8480 1.3100 1.7900 1.8800 2.2300 2.9060 3.3176</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

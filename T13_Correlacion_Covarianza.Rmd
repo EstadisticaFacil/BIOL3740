@@ -1,0 +1,326 @@
+---
+title: "T13_Correlación_Covarianza"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    css: custom.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+
+
+```
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```  
+
+```{r}
+library(ggplot2)
+```
+
+
+
+Correlations and covariance
+ 
+ 
+ 
+```{r, warning=FALSE}
+
+library(readr)
+DownloadFestival <- read_csv("Data_files_csv/DownloadFestival.csv")
+
+
+
+dlf=DownloadFestival  #use shorter data.frame names to make your life easier..... 
+head(dlf)
+tail(dlf)
+
+summary(dlf)
+
+
+
+
+
+dlf2=subset(dlf, dlf$day1<5)  
+
+ggplot(dlf2, aes(day1))+
+  geom_histogram(color="white")
+```
+ 
+ 
+  
+```{r correlation, warning=FALSE}
+library(ggplot2)
+head(dlf2)
+```
+  
+# A detour in the Murky world of covariance
+
+
+
+The objective is to evaluate whether variables covary, that is if the variable explain in part the part of the other.  
+
+
+| Advert watched 	| 5 	| 4 	| 4  	| 6  	| 8  	|
+|----------------	|---	|---	|----	|----	|----	|
+| Packets bought 	| 8 	| 9 	| 10 	| 13 	| 15 	|
+|                	|   	|   	|    	|    	|    	|
+|                	|   	|   	|    	|    	|    	|
+
+
+## Understanding covariance one needs to understand variance equation.  
+
+
+![Variance of single variable]
+$$s^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x } ) }^{ 2 } }  }{ n-1 }$$
+
+
+
+## While the Covariance is the cross product of the deviation
+
+![Covariance]
+$$cov(x,y)=\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1 } $$
+
+
+
+
+
+```{r variance, warning=FALSE}
+
+x=c(5,4,4,6,8)
+y=c(8,9,10,13,15)
+Person=c(1,2,3,4,5)
+meanx=mean(x)
+df=data.frame(Person,x,y)
+df
+
+ggplot(df)+
+  geom_point(data=df, aes(x=Person,y=x),colour="Blue")+
+  geom_point(data=df,aes(x=Person,y=y), colour="red")+
+  geom_hline(aes(yintercept=mean(df$x)),colour="Blue")+
+geom_hline(aes(yintercept=mean(df$y)),colour="red")
+
+
+
+```
+
+
+
+Because in most cases variables are collected having different measurement scales we have to standardize using the standard deviation
+
+
+## Thus we have to use the Correlation Coefficient: 
+
+## This most common is the Pearson product-moment correlation coefficient or Pearson correlation coeffcient.  
+
+
+$$r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1{ s }_{ x }{ s }_{ y } }$$
+
+
+
+
+The function to calculate the correlation coefficient is "cor"
+
+The function to determine if the correlation vetween the 2 variables is significant (in other words, different from zero) is "cor.test".
+  
+```{r cor, warning=FALSE}
+cor(df$x, df$y)
+cor.test(df$x, df$y)
+
+```
+ 
+ 
+ The correlation of coefficient square ${ R }^{ 2 }$ (known as the coefficient of determination) is a measure of the amount of variability in one variable that is shared by the other. 
+ 
+ 
+ 
+ 
+ Simple table of correlation tests
+ 
+ 1. Pearson test, assumes normal bivariate distribution, 
+ 2. Spearman test, no assumption of normality,
+ 3. Kendall test, no assumption of normality, better when sample size are small
+ 
+ 
+ 
+ Let us a look at Anxiety and exam results.
+ 
+ Choose the data set, examData
+ 
+ 
+```{r graphic, warning=FALSE }
+library(readr)
+Exam_Anxiety <- read_csv("Data_files_csv/Exam Anxiety.csv")
+examData=Exam_Anxiety
+head(examData)
+ggplot(examData, aes(y=Exam, x=Anxiety))+
+  geom_point()
+
+cor.test(examData$Exam,examData$Anxiety)
+
+```
+  
+
+One the basic assumption of the Pearson correlation is that the data be bivariate normally distributed. NOTE: WHAT WE MEAN ABOUT THE "ASSUMPTION" IS THAT WE ARE CONFIDENT THAT THE UNIVERSE IS NORMALLY DISTRIBUTED, NOT NECESARILY THAT OUR DATA ARE (SUBSET).
+
+
+```{r, warning=FALSE}
+
+library(knitr)
+library(png)
+
+img3_path<-"Graficos/Bivariate_normal.png"
+include_graphics(img3_path)
+```
+
+
+## What does that mean
+
+## Here is a really cool graph that does the figures and most of the analysis in one one shot.
+The package GGally, if you omit "ggplot2::aes(colour=Gender)", the figure will be black and white, and not seperated by gender.
+
+ 
+
+```{r graphic 2, warning=FALSE}
+library(GGally)
+head(examData)
+
+
+ggpairs(examData, ggplot2::aes(colour=Gender))
+
+```
+
+
+
+
+
+
+```{r, warning=FALSE}
+ggpairs(examData[,c(2:5)], ggplot2::aes(colour=Gender)) 
+```
+
+
+# in this code I removed the first column, which is just the code of the individual, by examData[,c(2:5)], by removing column #1. 
+ 
+
+
+A table of the correlation coefficients
+
+```{r, warning=FALSE}
+library(Hmisc)
+rcorr(as.matrix(examData[,c("Exam","Anxiety","Revise")]))
+
+```
+
+
+
+
+
+When the data do not comply with the assumption of normality you need to use Spearman or Kendall
+
+Choose "The Biggest Liar.csv" data set, contest, where this occurs every year in a pub.   
+
+World's Biggest Liar is an annual competition for telling lies, held in Cumbria, England at the Stanton Inn Bridge Pub.
+
+
+```{r, out.width="500px"}
+
+library(knitr)
+library(png)
+
+img4_path<-"Graficos/Stanton.png"
+include_graphics(img4_path)
+```
+
+
+```{r}
+library(Hmisc)
+library(readr)
+The_Biggest_Liar <- read_csv("Data_files_csv/The Biggest Liar.csv")
+liarData=The_Biggest_Liar
+
+head(liarData)
+
+cor(liarData$Position, liarData$Creativity, method = "pearson")
+
+cor(liarData$Position, liarData$Creativity, method = "spearman")
+
+cor(liarData$Position, liarData$Creativity, method = "kendall")
+```
+
+
+
+
+
+
+
+# EXTRA Stuff
+
+## Bootstrapping Correlation 
+
+
+THERE is no need to make assumptions of the distribution, you can let your data speak for itself, and construct the correlation coeffcients and 95% confidence interval.
+
+We first create a function
+
+```{r}
+bootTau=function(liarData,i)cor(liarData$Position[i],liarData$Creativity[i],
+                                use="complete.obs",method = "kendall")
+```
+
+
+The function is then called and executed
+
+```{r, eval=FALSE}
+library(boot)
+boot_kendall=boot(liarData,bootTau, 1000)
+boot_kendall
+```
+
+
+To calculate the 95% confidence interval
+
+```{r, eval=FALSE}
+boot.ci(boot_kendall)
+```
+
+
+
+
+
+
+```{r}
+ggplot(liarData, aes(Creativity, Position))+
+  geom_point()
+```
+
+
+
+
+
+
+
+
+
+
+

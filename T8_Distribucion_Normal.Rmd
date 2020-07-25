@@ -1,0 +1,397 @@
+---
+title: "T8_Distribucion_Normal"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    css: custom.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+
+
+```
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```
+
+
+# Install and load the following packages before class
+
+This first part is to install a series of dependendies for the package "modeest"
+Chunk #1
+
+```{r, eval=FALSE}
+#source("http://bioconductor.org/biocLite.R")
+#biocLite("genefilter")
+```
+
+
+Chunk #2
+```{r packages, eval=FALSE}
+# This "pacman" package, has a function which determine if you have installed the package you need, if they are not installed they will install them.  So RUN the first two lines.  
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load( car, GGally, ggversa, pastecs, psych, pander, ggplot2, nortest, Hmisc, boot, knitr)
+
+
+
+
+```
+
+
+
+modeest,
+
+
+Chunk #3
+
+Activar los Packages
+```{r, warning=FALSE}
+library(nortest) # package for testing normality
+library(car) # package for correlation analysis
+library(ggplot2) # package for vizualizing data
+library(ggversa) # package of different "data sets"
+#library(modeest) # package for calculating the mode
+library(GGally) # ggplot based package to evaluate correlations among variables
+library(pastecs) # package for analysis of space-time ecological series
+library(psych) # package for procedures for psychometric, psychological and personality research
+library(Hmisc) # A jumble of functions useful for graphics and tables, plus more
+library(boot) # Package to estimate bootstrap intervals
+library(knitr) # for the function kable (to make nice tables)
+
+```
+
+
+
+
+
+ 
+# Objectives of the day
+1.  Determine if your data complies with normal distribution and learn how do basic correlations. 
+# 1.	Histogram
+
+This normal distribution equation. Note that there is only two unknowns in this equation, the mean and the variance.  The codes need to be written in LaTeX code. 
+ $$P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}$$
+ 
+ 
+ 
+ 
+ 
+
+The Latex equation appears on a seperate line. Note the double "$ $" before and after the equation. 
+
+For inline equation, you only use one dollar sign before and after the equation.  
+
+For mean of the population $\mu=\frac{\sum{{x}_{i}}}{{n}_{i}}$ , we use the letter "mu", this refers to the mean of the universe. In other words of all the information without missing any. 
+
+
+
+
+
+## Checking for NORMALITY VISUALLY
+
+DATA to be used "DownloadFestival.csv"
+
+Data collected the Hygiene condition of the festival goers at the 3 days at a Rock and Heavy metal festival in the UK.
+
+0 = You smell like a "rotting corpse"
+4 = You smell like "sweet rose"
+
+
+
+```{r, warning=FALSE}
+
+library(readr)
+DownloadFestival <- read_csv("Data_files_csv/DownloadFestival.csv")
+
+
+
+dlf=DownloadFestival  #use shorter data.frame names to make your life easier..... 
+head(dlf)
+tail(dlf)
+
+summary(dlf)
+
+
+
+
+
+dlf2=subset(dlf, dlf$day1<5)  
+
+ggplot(dlf2, aes(day1))+
+  geom_histogram(color="white")
+```
+
+$$P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}$$
+
+
+
+```{r histogram and normal distribution, warning=FALSE}
+
+# let us use a different data set, which has the corrected data. 
+
+library(readr)
+DownloadFestival_No_Outlier_ <- read_csv("Data_files_csv/DownloadFestival(No Outlier).csv")
+
+dlfc=DownloadFestival_No_Outlier_  # rename the data frame to something more simple
+
+
+ggplot(dlfc, aes(day1)) + 
+  geom_histogram(aes(), colour="white", fill="red")
+
+# Note the Y axis are the "count" values
+
+
+hist.dlfc1 <- ggplot(dlf2, aes(day1)) + 
+  geom_histogram(aes(y=..density..), colour="white", fill="red") + 
+  labs(x="Hygiene of Day 1", y = "Density")
+
+
+hist.dlfc1
+
+# Note the Y axis is now the density of the count values
+
+
+# Now let add the normal distribution line, based on 
+
+hist.dlfc2 <- ggplot(dlf2, aes(day2)) + 
+  geom_histogram(aes(y=..density..), colour="white", fill="red") + 
+  labs(x="Hygiene of Day 2", y = "Density")+
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(dlf2$day2, na.rm = TRUE), 
+                sd = sd(dlf2$day2, na.rm = TRUE)), 
+                colour = "green", size = 1)
+
+hist.dlfc2
+
+# dnorm = density of the normal distribution
+# mean = mean of the a data set
+# sd = standard deviation of a data set
+```
+
+## Now change the variable and re-do the figure for Day 2 and 3
+
+```{r, warning=FALSE}
+hist.dlfc2 <- ggplot(dlfc, aes(day2)) + 
+  geom_histogram(aes(y=..density..), colour="white", fill="red") + 
+  labs(x="Hygiene of Day 2", y = "Density")+
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(dlfc$day2, na.rm = TRUE), 
+                sd = sd(dlfc$day2, na.rm = TRUE)), 
+                colour = "green", size = 1)
+
+hist.dlfc2
+```
+
+
+
+
+
+
+
+# What would be a normal distribution of your own data
+ Here I created a function where you can use it to explore what to expect from a random sample a some survey/experiments you are doing.  
+
+We can use the function "rnorm" to create a data set that has a normal distribution, with a specific mean and standard deviation. 
+rnorm(n, mean, sd)
+rnorm = (select n values, mean of x, sd of x), n= the number of values you want to select
+
+calculate the mean and sd. 
+
+```{r historgram normal, warning=FALSE}
+
+#rnorm(10, 100, 10)
+
+x=rnorm(10000, 10, 2)
+
+dfx=data.frame(x)
+head(dfx)
+library(ggplot2)
+hist.x <- ggplot(dfx, aes(x)) + 
+  theme(legend.position = "none") + 
+  geom_histogram(aes(y=..density..), bins=30,colour="black", fill="white") + 
+  labs(x="Variable", y = "Density")+
+  stat_function(fun = dnorm, args = list(mean = mean(dfx$x, 
+                na.rm = TRUE), 
+                sd = sd(dfx$x, na.rm = TRUE)), 
+                colour = "red", size = 1)
+
+hist.x
+```
+
+
+
+
+
+
+2.	Normality curve
+3.	qq-plot
+
+
+Add a straight line on the qqplot
+```{r qqplot and line, warning=FALSE}
+
+# This function is to add a straight line through the qqplot
+qqplot_line.data <- function (vec) # argument: vector of numbers
+{
+  # following four lines from base R's qqline()
+  y <- quantile(vec[!is.na(vec)], c(0.25, 0.75))
+  x <- qnorm(c(0.25, 0.75))
+  slope <- diff(y)/diff(x)
+  int <- y[1L] - slope * x[1L]
+  
+  d <- data.frame(resids = vec)
+  
+  ggplot(d, aes(sample = resids)) + 
+    stat_qq() + 
+    geom_abline(slope = slope, intercept = int, color="red")
+  
+}
+
+
+# This here is the function ready to implement
+qqplot_line.data(dlf2$day3)
+
+```
+
+# Now check the qq plot for day 2 and day 3
+
+
+```{r line day 2, warning=FALSE}
+
+```
+
+```{r line day 3, warning=FALSE}
+
+```
+
+
+
+ 
+## Tests of Normality
+### A.
+
+#### Shapiro-Wilks test
+Problem, sensitive to sample size
+ 1. should not be used with less than 50 data points
+ 2. should not be used for sample size of over 200....
+ 
+
+```{r shapiro, warning=FALSE}
+shapiro.test(dlf2$day1)
+length(dlf2$day1)
+```
+
+### B. 
+#### Other normality test, use the package "nortest"
+
+Anderson-Darling test for normality, 
+
+
+The Anderson-Darling test is an EDF omnibus test for the composite hypothesis of normality. 
+Omnibus tests are a kind of statistical test. They test whether the explained variance in a set of data is significantly greater than the unexplained variance, overall.
+
+
+```{r norm test, warning=FALSE}
+library(nortest)
+
+ad.test(dlf2$day1)
+
+```
+
+
+
+
+Capitulo 15
+5.  Summary statistics, individual appraoch, summary
+  1. Mean
+  2. Median  
+  3. Mode
+  4. Skewness and Kurtosis
+ 
+```{r summary stat, warning=FALSE}
+x=sample(1:100, size=100, replace = TRUE)
+x=data.frame(x)
+head(x)
+mean(x$x)
+var(x$x)
+sd(x$x)
+min(x$x)
+max(x$x)
+```
+ 
+Mean = mean
+Variance =var 
+Standard deviation = sd
+mimimum value of a variable = min
+maximum value of a variable = max
+median value of a variable = median
+ 
+```{r summary stat 2, warning=FALSE}
+
+
+mean(dlf2$day2, na.rm=TRUE)
+var(dlf2$day1, na.rm=TRUE)
+sd(dlf2$day1, na.rm=TRUE)
+min(dlf2$day1, na.rm=TRUE)
+max(dlf2$day1, na.rm=TRUE)
+median(dlf2$day1, na.rm=TRUE)
+
+
+```
+
+Start Here
+ 
+
+ Summary stats
+ 
+ 
+```{r summary function, warning=FALSE}
+
+summary(dlf2$day1, na.rm=TRUE)  
+
+# the "describe" function is the "psych" package
+library(psych)
+describe(dlf2[,c("day1","day2","day3")]) 
+
+
+# the "stat.desc" function is the "pastec" package
+stat.desc(dlf2[,c("day1","day2","day3")], basic=FALSE,norm=TRUE)
+
+
+round(stat.desc(dlf2[,c("day1","day2","day3")], basic=FALSE,norm=TRUE), digits=3) # reduce to 3 significant figures
+```
+ 
+ 
+ 
+ Quantiles
+ 
+```{r quantiles, warning=FALSE}
+
+quantile(dlf2$day1,probs=c(0.05, 0.1, 0.25, 0.5,.55, 0.75, 0.95, 0.99), na.rm=TRUE)
+```
+ 
+ 
+
+ 
+ 
