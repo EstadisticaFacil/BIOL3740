@@ -163,7 +163,7 @@ Ahora nota que el eje de **y** no son frecuencias pero son densidades.  La suma 
 ```{r, warning=FALSE, message=FALSE}
 hist.dlfc1 <- ggplot(dlf, aes(day1)) + 
   geom_histogram(aes(y=..density..), colour="white", fill="red") + 
-  labs(x="Hygiene of Day 2", y = "Density")+
+  labs(x="Higiene día 1", y = "Densidad")+
   stat_function(fun = dnorm, 
                 args = list(mean = mean(dlf$day1, na.rm = TRUE), 
                 sd = sd(dlf$day1, na.rm = TRUE)), 
@@ -184,7 +184,7 @@ Evalúa y compara con el día tres
 ```{r, warning=FALSE}
 hist.dlfc2 <- ggplot(dlf, aes(day2)) + 
   geom_histogram(aes(y=..density..), colour="white", fill="blue") + 
-  labs(x="Hygiene of Day 2", y = "Density")+
+  labs(x="Higiene día 2", y = "Densidad")+
   stat_function(fun = dnorm, 
                 args = list(mean = mean(dlf$day2, na.rm = TRUE), 
                 sd = sd(dlf$day2, na.rm = TRUE)), 
@@ -220,7 +220,7 @@ library(ggplot2)
 hist.x <- ggplot(dfx, aes(x)) + 
   theme(legend.position = "none") + 
   geom_histogram(aes(y=..density..), bins=30,colour="black", fill="white") + 
-  labs(x="Variable", y = "Density")+
+  labs(x="Variable", y = "Densidad")+
   stat_function(fun = dnorm, args = list(mean = mean(dfx$x, 
                 na.rm = TRUE), 
                 sd = sd(dfx$x, na.rm = TRUE)), 
