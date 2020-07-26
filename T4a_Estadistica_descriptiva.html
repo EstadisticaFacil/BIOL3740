@@ -519,20 +519,20 @@ head(dlf) # ver las 3 primeras filas</code></pre>
 x=data.frame(x)
 head(x)</code></pre>
 <pre><code>##    x
-## 1 58
-## 2 27
-## 3 23
-## 4 20
-## 5 48
-## 6 84</code></pre>
+## 1 56
+## 2 91
+## 3 65
+## 4 78
+## 5 81
+## 6 43</code></pre>
 <pre class="r"><code>mean(x$x)</code></pre>
-<pre><code>## [1] 53.41</code></pre>
+<pre><code>## [1] 55.74</code></pre>
 <pre class="r"><code>var(x$x)</code></pre>
-<pre><code>## [1] 936.8908</code></pre>
+<pre><code>## [1] 723.5883</code></pre>
 <pre class="r"><code>sd(x$x)</code></pre>
-<pre><code>## [1] 30.60867</code></pre>
+<pre><code>## [1] 26.8996</code></pre>
 <pre class="r"><code>min(x$x)</code></pre>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 2</code></pre>
 <pre class="r"><code>max(x$x)</code></pre>
 <pre><code>## [1] 100</code></pre>
 <p>Mean = mean Variance =var Standard deviation = sd mimimum value of a variable = min maximum value of a variable = max median value of a variable = median</p>
@@ -556,34 +556,10 @@ head(x)</code></pre>
 <pre class="r"><code># the &quot;describe&quot; function is the &quot;psych&quot; package
 library(psych)
 describe(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)]) </code></pre>
-<pre><code>## dlf[, c(&quot;day1&quot;, &quot;day2&quot;, &quot;day3&quot;)] 
-## 
-##  3  Variables      810  Observations
-## --------------------------------------------------------------------------------
-## day1 
-##        n  missing distinct     Info     Mean      Gmd      .05      .10 
-##      810        0      199        1    1.771   0.7896   0.5945   0.8490 
-##      .25      .50      .75      .90      .95 
-##   1.3125   1.7900   2.2300   2.6700   2.9055 
-## 
-## lowest : 0.02 0.05 0.11 0.23 0.26, highest: 3.38 3.41 3.44 3.58 3.69
-## --------------------------------------------------------------------------------
-## day2 
-##        n  missing distinct     Info     Mean      Gmd      .05      .10 
-##      264      546      102        1   0.9609   0.7818    0.140    0.200 
-##      .25      .50      .75      .90      .95 
-##    0.410    0.790    1.350    2.026    2.440 
-## 
-## lowest : 0.00 0.02 0.05 0.06 0.08, highest: 2.91 3.00 3.21 3.35 3.44
-## --------------------------------------------------------------------------------
-## day3 
-##        n  missing distinct     Info     Mean      Gmd      .05      .10 
-##      123      687       65    0.999   0.9765   0.7754    0.170    0.266 
-##      .25      .50      .75      .90      .95 
-##    0.440    0.760    1.525    1.904    2.146 
-## 
-## lowest : 0.02 0.08 0.11 0.14 0.17, highest: 2.29 2.55 2.70 3.02 3.41
-## --------------------------------------------------------------------------------</code></pre>
+<pre><code>##      vars   n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+## day1    1 810 1.77 0.69   1.79    1.77 0.70 0.02 3.69  3.67 0.00    -0.42 0.02
+## day2    2 264 0.96 0.72   0.79    0.87 0.61 0.00 3.44  3.44 1.08     0.76 0.04
+## day3    3 123 0.98 0.71   0.76    0.90 0.61 0.02 3.41  3.39 1.01     0.59 0.06</code></pre>
 <pre class="r"><code># the &quot;stat.desc&quot; function is the &quot;pastec&quot; package
 stat.desc(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FALSE,norm=TRUE)</code></pre>
 <pre><code>##                     day1         day2         day3
