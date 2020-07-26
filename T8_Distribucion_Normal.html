@@ -471,14 +471,10 @@ Chunk #1</p>
     install.packages(&quot;BiocManager&quot;)
 
 BiocManager::install(&quot;genefilter&quot;)</code></pre>
-<p>Chunk #2</p>
-<pre class="r"><code># This &quot;pacman&quot; package, has a function which determine if you have installed the package you need, if they are not installed they will install them.  So RUN the first two lines.  
-
-if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)
+<pre class="r"><code>if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)
 pacman::p_load( car, GGally, ggversa, pastecs, psych, pander, ggplot2, nortest, Hmisc, boot, knitr, modeest)
 R.version</code></pre>
-<p>Chunk #3</p>
-<p>Activar los Packages</p>
+<p>Activar los Paquetes</p>
 <pre class="r"><code>library(nortest) # paquete para probar la normalidad
 library(car) # paquete para análisis de correlación
 library(ggplot2)  # paquete para visualizar los datos
@@ -490,10 +486,11 @@ library(psych) # paquete para análisis psicométrica, psicológica y de persona
 library(Hmisc) # Un grupo de función prácticos para gráficos y tablas
 library(boot) # paquete para calcular los intervalos usando &quot;bootstrap&quot; 
 library(knitr) # un grupo de función para incluyendo tablas bonitas con kable. </code></pre>
+<hr />
 </div>
 <div id="la-distribución-normal" class="section level1">
 <h1>La distribución normal</h1>
-<p>Es modulo está enfocado en entender diferentes aspectos de la distribución normal. Muchas pruebas como la prueba de t, correlaciones, regresiones y ANOVA depende que algunos de los conjuntos de datos cumple con una distribución normal.</p>
+<p>Es modulo está enfocado en entender diferentes aspectos de la distribución normal. Muchas pruebas como la prueba de t, correlaciones, regresiones y ANOVA depende que algunos de los conjuntos de datos cumple con una distribución normal. Este tipo de pruebas se pueden referir a pruebas paramétricas.</p>
 <p>La distribución normal tiene una ecuación que describe su distribución. Lo que que se observa es que la ecuación depende de solamente dos valores desconocidos, el promedio universal, µ y la desviación universal <span class="math inline">\(\sigma\)</span>. Nota que aquí estamos considerando todos los datos sobre un variable. Por ejemplo si esta hablando de del tamaño de un especie de pájaro ( El quetzal), es que tendríamos que tener TODOS los datos de cada uno de ellos. Primero vemos como se ve esta distribución y después explicamos porque aunque no tenemos todos los datos una aproximación es suficiente.</p>
 <p><span class="math display">\[P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}\]</span></p>
 <p>El promedio de la población <span class="math inline">\(\mu=\frac{\sum{{x}_{i}}}{{n}_{i}}\)</span>, se usa la letra “mu”, y se refiere al promedio universal. Esto quiere decir que no falta ningún dato. Nota que la distribución es en forma de campana, donde 50% de los datos están por encima del promedio y 50% están por debajo el promedio. Debido que la distribución tiene unos parámetros específico se puede predecir información cuando los datos cumple con tal distribución.</p>
@@ -509,6 +506,7 @@ ggplot(dfnorm,(aes(x=dfnorm)))+
   xlab(&quot;algun valor&quot;)+
   ylab(&quot;densidad&quot;)</code></pre>
 <p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<hr />
 <div id="evaluando-visualmente-la-distribución" class="section level2">
 <h2>Evaluando visualmente la distribución</h2>
 <p>El primer paso de cada investigación es evaluar si los supuestos se cumplen. Si las pruebas necesitan tener una distribución normal uno de los métodos más sencillo construir un histograma de los datos.</p>
@@ -542,49 +540,42 @@ head(dlf) # ver las 3 primeras filas</code></pre>
 <p>Se nota en el histograma que la mayoría de los datos de la higiene de los participantes en el primer día se parece bastante a una distribución normal. Nota que los valores en el eje de <strong>y</strong> es la frecuencia de los valores en el conjunto de datos.</p>
 <pre class="r"><code>ggplot(dlf, aes(day1))+
   geom_histogram(color=&quot;white&quot;, fill=&quot;red&quot;)</code></pre>
-<p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-7-1.png" width="672" /> ***</p>
+</div>
+</div>
+<div id="añadiendo-la-distribución-teórica-al-histograma" class="section level1">
+<h1>Añadiendo la distribución teórica al histograma</h1>
 <p>Ahora vamos a añadir la siguiente formula al gráfico <span class="math inline">\(P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}\)</span>. De esta forma podemos comparar los datos reales (las barras roja) con la distribución teorica si el promedio y la desviación estandar es igual a los datos.</p>
-<pre class="r"><code># Note the Y axis are the &quot;count&quot; values
-
-
-hist.dlfc1 &lt;- ggplot(dlf, aes(day1)) + 
+<p>Se añade el promedio y la desviación estándar con la siguientes funciones. La función *stat_function()** es para calcular parámetros.</p>
+<pre><code>            stat_function(fun = dnorm,   # dnorm = la densidad de la distribución normal
+            args = list(
+            mean = mean(dlf$day2, na.rm = TRUE), # mean = el promedio de los datos
+            sd = sd(dlf$day2, na.rm = TRUE))) # sd = la desviación estandar de los datos</code></pre>
+<p>Ahora nota que el eje de <strong>y</strong> no son frecuencias pero son densidades. La suma de todas las densidades es igual a 1.0. Vea que la linea teórica se acerca bastante a las barras del histograma. Este proceso NO es una prueba para determinar si los datos cumple con una distribución normal. Aunque con experiencia visualizando los datos uno puede tener un buen apreciación si los datos cumple suficientemente con la distribución normal para usar las pruebas paramétricas.</p>
+<pre class="r"><code>hist.dlfc1 &lt;- ggplot(dlf, aes(day1)) + 
   geom_histogram(aes(y=..density..), colour=&quot;white&quot;, fill=&quot;red&quot;) + 
-  labs(x=&quot;Hygiene of Day 1&quot;, y = &quot;Density&quot;)
-
+  labs(x=&quot;Hygiene of Day 2&quot;, y = &quot;Density&quot;)+
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(dlf$day1, na.rm = TRUE), 
+                sd = sd(dlf$day1, na.rm = TRUE)), 
+                colour = &quot;green&quot;, size = 1)
 
 hist.dlfc1</code></pre>
-<p><img src="T8_Distribucion_Normal_files/figure-html/histogram%20and%20normal%20distribution-1.png" width="672" /></p>
-<pre class="r"><code># Note the Y axis is now the density of the count values
-
-
-# Now let add the normal distribution line, based on 
-
-hist.dlfc2 &lt;- ggplot(dlf, aes(day2)) + 
-  geom_histogram(aes(y=..density..), colour=&quot;white&quot;, fill=&quot;red&quot;) + 
-  labs(x=&quot;Hygiene of Day 2&quot;, y = &quot;Density&quot;)+
-  stat_function(fun = dnorm, 
-                args = list(mean = mean(dlf$day2, na.rm = TRUE), 
-                sd = sd(dlf$day2, na.rm = TRUE)), 
-                colour = &quot;green&quot;, size = 1)
-
-hist.dlfc2</code></pre>
-<p><img src="T8_Distribucion_Normal_files/figure-html/histogram%20and%20normal%20distribution-2.png" width="672" /></p>
-<pre class="r"><code># dnorm = density of the normal distribution
-# mean = mean of the a data set
-# sd = standard deviation of a data set</code></pre>
-</div>
-<div id="now-change-the-variable-and-re-do-the-figure-for-day-2-and-3" class="section level2">
-<h2>Now change the variable and re-do the figure for Day 2 and 3</h2>
-<pre class="r"><code>hist.dlfc2 &lt;- ggplot(dlf, aes(day2)) + 
-  geom_histogram(aes(y=..density..), colour=&quot;white&quot;, fill=&quot;red&quot;) + 
-  labs(x=&quot;Hygiene of Day 2&quot;, y = &quot;Density&quot;)+
-  stat_function(fun = dnorm, 
-                args = list(mean = mean(dlf$day2, na.rm = TRUE), 
-                sd = sd(dlf$day2, na.rm = TRUE)), 
-                colour = &quot;green&quot;, size = 1)
-
-hist.dlfc2</code></pre>
 <p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="evaluando-otros-datos" class="section level2">
+<h2>Evaluando otros datos</h2>
+<p>Usamos los datos del segundo día y comparamos con el primer día. En este caso vemos que los datos no siguen una distribución normal están sesgados a la izquierda y vemos que “falta” valores pequeños, en otra palabra en este caso los valores negativos.</p>
+<p>Evalúa y compara con el día tres</p>
+<pre class="r"><code>hist.dlfc2 &lt;- ggplot(dlf, aes(day2)) + 
+  geom_histogram(aes(y=..density..), colour=&quot;white&quot;, fill=&quot;blue&quot;) + 
+  labs(x=&quot;Hygiene of Day 2&quot;, y = &quot;Density&quot;)+
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(dlf$day2, na.rm = TRUE), 
+                sd = sd(dlf$day2, na.rm = TRUE)), 
+                colour = &quot;yellow&quot;, size = 2)
+
+hist.dlfc2</code></pre>
+<p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 </div>
 <div id="what-would-be-a-normal-distribution-of-your-own-data" class="section level1">
@@ -617,31 +608,13 @@ hist.x &lt;- ggplot(dfx, aes(x)) +
 
 hist.x</code></pre>
 <p><img src="T8_Distribucion_Normal_files/figure-html/historgram%20normal-1.png" width="672" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Normality curve</li>
-<li>qq-plot</li>
-</ol>
+</div>
+<div id="qqplot" class="section level1">
+<h1>qqplot</h1>
 <p>Add a straight line on the qqplot</p>
-<pre class="r"><code># This function is to add a straight line through the qqplot
-qqplot_line.data &lt;- function (vec) # argument: vector of numbers
-{
-  # following four lines from base R&#39;s qqline()
-  y &lt;- quantile(vec[!is.na(vec)], c(0.25, 0.75))
-  x &lt;- qnorm(c(0.25, 0.75))
-  slope &lt;- diff(y)/diff(x)
-  int &lt;- y[1L] - slope * x[1L]
-  
-  d &lt;- data.frame(resids = vec)
-  
-  ggplot(d, aes(sample = resids)) + 
-    stat_qq() + 
-    geom_abline(slope = slope, intercept = int, color=&quot;red&quot;)
-  
-}
-
-
-# This here is the function ready to implement
-qqplot_line.data(dlf$day3)</code></pre>
+<pre class="r"><code>ggplot(dlf, aes(sample=day1))+
+  geom_qq()+
+  geom_qq_line()</code></pre>
 <p><img src="T8_Distribucion_Normal_files/figure-html/qqplot%20and%20line-1.png" width="672" /></p>
 </div>
 <div id="now-check-the-qq-plot-for-day-2-and-day-3" class="section level1">
