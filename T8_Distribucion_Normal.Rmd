@@ -35,170 +35,160 @@ Sys.Date()
 ```
 
 
-# Install and load the following packages before class
+# Instalar y activar los siguientes paquete
 
-This first part is to install a series of dependendies for the package "modeest"
+Para instalar el paquete **modeest** es necesario instalar foes otros paquetes antes, **BiocManager** y **genefilter**.  Usando el siguiente script pora instalar los paquetes.  Nota que en la consola tendrá que aceptar a instalar y seleccionar la "a" para "all".  
 Chunk #1
 
 ```{r, eval=FALSE}
-#source("http://bioconductor.org/biocLite.R")
-#biocLite("genefilter")
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("genefilter")
+
+
 ```
 
 
-Chunk #2
 ```{r packages, eval=FALSE}
-# This "pacman" package, has a function which determine if you have installed the package you need, if they are not installed they will install them.  So RUN the first two lines.  
 
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load( car, GGally, ggversa, pastecs, psych, pander, ggplot2, nortest, Hmisc, boot, knitr)
-
-
-
+pacman::p_load( car, GGally, ggversa, pastecs, psych, pander, ggplot2, nortest, Hmisc, boot, knitr, modeest)
+R.version
 
 ```
 
 
-
-modeest,
-
-
-Chunk #3
-
-Activar los Packages
+Activar los Paquetes
 ```{r, warning=FALSE}
-library(nortest) # package for testing normality
-library(car) # package for correlation analysis
-library(ggplot2) # package for vizualizing data
-library(ggversa) # package of different "data sets"
-#library(modeest) # package for calculating the mode
-library(GGally) # ggplot based package to evaluate correlations among variables
-library(pastecs) # package for analysis of space-time ecological series
-library(psych) # package for procedures for psychometric, psychological and personality research
-library(Hmisc) # A jumble of functions useful for graphics and tables, plus more
-library(boot) # Package to estimate bootstrap intervals
-library(knitr) # for the function kable (to make nice tables)
+library(nortest) # paquete para probar la normalidad
+library(car) # paquete para análisis de correlación
+library(ggplot2)  # paquete para visualizar los datos
+library(ggversa) # paquete para diferentes conjuntos de datos
+library(modeest) # paquete para calcular la moda 
+library(GGally) # Un paquete basado un ggplot2 para visualizar correlaciones 
+library(pastecs) # paquete para análisis tiempo-espacial usado en ecología 
+library(psych) # paquete para análisis psicométrica, psicológica y de personalidad 
+library(Hmisc) # Un grupo de función prácticos para gráficos y tablas
+library(boot) # paquete para calcular los intervalos usando "bootstrap" 
+library(knitr) # un grupo de función para incluyendo tablas bonitas con kable. 
 
 ```
 
+***
 
-
-
+# La distribución normal 
 
  
-# Objectives of the day
-1.  Determine if your data complies with normal distribution and learn how do basic correlations. 
-# 1.	Histogram
+Es modulo está enfocado en entender diferentes aspectos de la distribución normal. Muchas pruebas como la prueba de t, correlaciones, regresiones y ANOVA depende que algunos de los conjuntos de datos cumple con una distribución normal. Este tipo de pruebas se pueden referir a pruebas paramétricas.  
 
-This normal distribution equation. Note that there is only two unknowns in this equation, the mean and the variance.  The codes need to be written in LaTeX code. 
+La distribución normal tiene una ecuación que describe su distribución.  Lo que que se observa es que la ecuación depende de solamente dos valores desconocidos, el promedio universal, µ y la desviación universal $\sigma$. Nota que aquí estamos considerando todos los datos sobre un variable. Por ejemplo si esta hablando de del tamaño de un especie de pájaro ( El quetzal), es que tendríamos que tener TODOS los datos de cada uno de ellos.   Primero vemos como se ve esta distribución y después explicamos porque aunque no tenemos todos los datos una aproximación es suficiente.   
+
+
  $$P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}$$
  
- 
- 
- 
- 
-
-The Latex equation appears on a seperate line. Note the double "$ $" before and after the equation. 
-
-For inline equation, you only use one dollar sign before and after the equation.  
-
-For mean of the population $\mu=\frac{\sum{{x}_{i}}}{{n}_{i}}$ , we use the letter "mu", this refers to the mean of the universe. In other words of all the information without missing any. 
 
 
+El promedio de la población $\mu=\frac{\sum{{x}_{i}}}{{n}_{i}}$, se usa la letra "mu", y se refiere al promedio universal.  Esto quiere decir que no falta ningún dato.  Nota que la distribución es en forma de campana, donde 50% de los datos están por encima del promedio y 50% están por debajo el promedio. Debido que la distribución tiene unos parámetros específico se puede predecir información cuando los datos cumple con tal distribución.      
 
 
+```{r}
+set.seed(12345)
+dfnorm=rnorm(1000000, 0,1)
+dfnorm=data.frame(dfnorm)
 
-## Checking for NORMALITY VISUALLY
-
-DATA to be used "DownloadFestival.csv"
-
-Data collected the Hygiene condition of the festival goers at the 3 days at a Rock and Heavy metal festival in the UK.
-
-0 = You smell like a "rotting corpse"
-4 = You smell like "sweet rose"
-
-
-
-```{r, warning=FALSE}
-
-library(readr)
-DownloadFestival <- read_csv("Data_files_csv/DownloadFestival.csv")
-
-
-
-dlf=DownloadFestival  #use shorter data.frame names to make your life easier..... 
-head(dlf)
-tail(dlf)
-
-summary(dlf)
-
-
-
-
-
-dlf2=subset(dlf, dlf$day1<5)  
-
-ggplot(dlf2, aes(day1))+
-  geom_histogram(color="white")
+ggplot(dfnorm,(aes(x=dfnorm)))+
+  geom_density()+
+  geom_vline(xintercept = 0, colour="red")+
+  annotate("text", x=.8, y = .1, label="50% de los \n valores")+
+  annotate("text", x=-.8, y = .1, label="50% de los \n valores")+
+  xlab("algun valor")+
+  ylab("densidad")
 ```
 
-$$P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}$$
+***
+
+## Evaluando visualmente la distribución
+
+El primer paso de cada investigación es evaluar si los supuestos se cumplen. Si las pruebas necesitan tener una distribución normal uno de los métodos más sencillo construir un histograma de los datos.  
+
+Usaremos datos que hemos visto en el modulo T5.  
+
+Se necesita el archivo **DownloadFestival** que se encuentra debajo la pestaña de **Los Datos**. El ejemplo proviene de Field et al. (2014).
 
 
+>  Una bióloga estaba preocupado por los posibles efectos sobre la salud de los que particpan a un festivales de música. Entonces, un año fue al Download Festival en el Reino Unido (Download Festival UK). Ella midió la higiene del los que participaron al concierto n= 810 durante el festival de 3 días. Cada día intentaba encontrar a todas las personas que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el nivel de limpieza por como olia los participantes
 
-```{r histogram and normal distribution, warning=FALSE}
+>    + 0 = hueles como un cadáver. 
+>    + 4 = hueles a rosas dulces en un fresco día de primavera
+    
 
-# let us use a different data set, which has the corrected data. 
+```{r, warning=FALSE}
 
 library(readr)
 DownloadFestival_No_Outlier_ <- read_csv("Data_files_csv/DownloadFestival(No Outlier).csv")
 
-dlfc=DownloadFestival_No_Outlier_  # rename the data frame to something more simple
 
 
-ggplot(dlfc, aes(day1)) + 
-  geom_histogram(aes(), colour="white", fill="red")
+dlf=DownloadFestival_No_Outlier_  #usamos un nombre más corta para facilitar  
+head(dlf) # ver las 3 primeras filas
 
-# Note the Y axis are the "count" values
+```
+
+Se nota en el histograma que la mayoría de los datos de la higiene de los participantes en el primer día se parece bastante a una distribución normal.  Nota que los valores en el eje de **y** es la frecuencia de los valores en el conjunto de datos.  
+
+```{r}
+ggplot(dlf, aes(day1))+
+  geom_histogram(color="white", fill="red")
+```
+***
+
+# Añadiendo la distribución teórica al histograma
 
 
-hist.dlfc1 <- ggplot(dlf2, aes(day1)) + 
+Ahora vamos a añadir la siguiente formula al gráfico  $P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}$.  De esta forma podemos comparar los datos reales (las barras roja) con la distribución teorica si el promedio y la desviación estandar es igual a los datos.  
+
+Se añade el promedio y la desviación estándar con la siguientes funciones.  La función *stat_function()** es para calcular parámetros.  
+                
+                stat_function(fun = dnorm,   # dnorm = la densidad de la distribución normal
+                args = list(
+                mean = mean(dlf$day2, na.rm = TRUE), # mean = el promedio de los datos
+                sd = sd(dlf$day2, na.rm = TRUE))) # sd = la desviación estandar de los datos
+
+
+Ahora nota que el eje de **y** no son frecuencias pero son densidades.  La suma de todas las densidades es igual a 1.0.  Vea que la linea teórica se acerca bastante a las barras del histograma.   Este proceso NO es una prueba para determinar si los datos cumple con una distribución normal. Aunque con experiencia visualizando los datos uno puede tener un buen apreciación si los datos cumple suficientemente con la distribución normal para usar las pruebas paramétricas.   
+
+ 
+```{r, warning=FALSE, message=FALSE}
+hist.dlfc1 <- ggplot(dlf, aes(day1)) + 
   geom_histogram(aes(y=..density..), colour="white", fill="red") + 
-  labs(x="Hygiene of Day 1", y = "Density")
-
+  labs(x="Hygiene of Day 2", y = "Density")+
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(dlf$day1, na.rm = TRUE), 
+                sd = sd(dlf$day1, na.rm = TRUE)), 
+                colour = "green", size = 1)
 
 hist.dlfc1
 
-# Note the Y axis is now the density of the count values
 
-
-# Now let add the normal distribution line, based on 
-
-hist.dlfc2 <- ggplot(dlf2, aes(day2)) + 
-  geom_histogram(aes(y=..density..), colour="white", fill="red") + 
-  labs(x="Hygiene of Day 2", y = "Density")+
-  stat_function(fun = dnorm, 
-                args = list(mean = mean(dlf2$day2, na.rm = TRUE), 
-                sd = sd(dlf2$day2, na.rm = TRUE)), 
-                colour = "green", size = 1)
-
-hist.dlfc2
-
-# dnorm = density of the normal distribution
-# mean = mean of the a data set
-# sd = standard deviation of a data set
 ```
 
-## Now change the variable and re-do the figure for Day 2 and 3
+
+## Evaluando otros datos 
+
+Usamos los datos del segundo día y comparamos con el primer día.  En este caso vemos que los datos no siguen una distribución normal están sesgados a la izquierda y vemos que "falta" valores pequeños, en otra palabra en este caso los valores negativos.   
+
+Evalúa y compara con el día tres
 
 ```{r, warning=FALSE}
-hist.dlfc2 <- ggplot(dlfc, aes(day2)) + 
-  geom_histogram(aes(y=..density..), colour="white", fill="red") + 
+hist.dlfc2 <- ggplot(dlf, aes(day2)) + 
+  geom_histogram(aes(y=..density..), colour="white", fill="blue") + 
   labs(x="Hygiene of Day 2", y = "Density")+
   stat_function(fun = dnorm, 
-                args = list(mean = mean(dlfc$day2, na.rm = TRUE), 
-                sd = sd(dlfc$day2, na.rm = TRUE)), 
-                colour = "green", size = 1)
+                args = list(mean = mean(dlf$day2, na.rm = TRUE), 
+                sd = sd(dlf$day2, na.rm = TRUE)), 
+                colour = "yellow", size = 2)
 
 hist.dlfc2
 ```
@@ -241,36 +231,18 @@ hist.x
 
 
 
+#  qqplot
 
 
-
-2.	Normality curve
-3.	qq-plot
 
 
 Add a straight line on the qqplot
 ```{r qqplot and line, warning=FALSE}
 
-# This function is to add a straight line through the qqplot
-qqplot_line.data <- function (vec) # argument: vector of numbers
-{
-  # following four lines from base R's qqline()
-  y <- quantile(vec[!is.na(vec)], c(0.25, 0.75))
-  x <- qnorm(c(0.25, 0.75))
-  slope <- diff(y)/diff(x)
-  int <- y[1L] - slope * x[1L]
-  
-  d <- data.frame(resids = vec)
-  
-  ggplot(d, aes(sample = resids)) + 
-    stat_qq() + 
-    geom_abline(slope = slope, intercept = int, color="red")
-  
-}
 
-
-# This here is the function ready to implement
-qqplot_line.data(dlf2$day3)
+ggplot(dlf, aes(sample=day1))+
+  geom_qq()+
+  geom_qq_line()
 
 ```
 
@@ -298,8 +270,8 @@ Problem, sensitive to sample size
  
 
 ```{r shapiro, warning=FALSE}
-shapiro.test(dlf2$day1)
-length(dlf2$day1)
+shapiro.test(dlf$day1)
+length(dlf$day1)
 ```
 
 ### B. 
@@ -315,7 +287,7 @@ Omnibus tests are a kind of statistical test. They test whether the explained va
 ```{r norm test, warning=FALSE}
 library(nortest)
 
-ad.test(dlf2$day1)
+ad.test(dlf$day1)
 
 ```
 
@@ -350,12 +322,12 @@ median value of a variable = median
 ```{r summary stat 2, warning=FALSE}
 
 
-mean(dlf2$day2, na.rm=TRUE)
-var(dlf2$day1, na.rm=TRUE)
-sd(dlf2$day1, na.rm=TRUE)
-min(dlf2$day1, na.rm=TRUE)
-max(dlf2$day1, na.rm=TRUE)
-median(dlf2$day1, na.rm=TRUE)
+mean(dlf$day2, na.rm=TRUE)
+var(dlf$day1, na.rm=TRUE)
+sd(dlf$day1, na.rm=TRUE)
+min(dlf$day1, na.rm=TRUE)
+max(dlf$day1, na.rm=TRUE)
+median(dlf$day1, na.rm=TRUE)
 
 
 ```
@@ -368,18 +340,18 @@ Start Here
  
 ```{r summary function, warning=FALSE}
 
-summary(dlf2$day1, na.rm=TRUE)  
+summary(dlf$day1, na.rm=TRUE)  
 
 # the "describe" function is the "psych" package
 library(psych)
-describe(dlf2[,c("day1","day2","day3")]) 
+describe(dlf[,c("day1","day2","day3")]) 
 
 
 # the "stat.desc" function is the "pastec" package
-stat.desc(dlf2[,c("day1","day2","day3")], basic=FALSE,norm=TRUE)
+stat.desc(dlf[,c("day1","day2","day3")], basic=FALSE,norm=TRUE)
 
 
-round(stat.desc(dlf2[,c("day1","day2","day3")], basic=FALSE,norm=TRUE), digits=3) # reduce to 3 significant figures
+round(stat.desc(dlf[,c("day1","day2","day3")], basic=FALSE,norm=TRUE), digits=3) # reduce to 3 significant figures
 ```
  
  
@@ -388,7 +360,7 @@ round(stat.desc(dlf2[,c("day1","day2","day3")], basic=FALSE,norm=TRUE), digits=3
  
 ```{r quantiles, warning=FALSE}
 
-quantile(dlf2$day1,probs=c(0.05, 0.1, 0.25, 0.5,.55, 0.75, 0.95, 0.99), na.rm=TRUE)
+quantile(dlf$day1,probs=c(0.05, 0.1, 0.25, 0.5,.55, 0.75, 0.95, 0.99), na.rm=TRUE)
 ```
  
  
