@@ -72,7 +72,10 @@ library(pastecs) # paquete para análisis tiempo-espacial usado en ecología
 library(psych) # paquete para análisis psicométrica, psicológica y de personalidad 
 library(Hmisc) # Un grupo de función prácticos para gráficos y tablas
 library(boot) # paquete para calcular los intervalos usando "bootstrap" 
-library(knitr) # un grupo de función para incluyendo tablas bonitas con kable. 
+library(knitr) # un grupo de función para incluyendo tablas bonitas con kable.
+library(tidyverse)
+library(gt)
+library(gridExtra)
 
 ```
 
@@ -175,7 +178,7 @@ hist.dlfc1
 ```
 
 
-## Evaluando otros datos 
+## Evaluando datos no normal 
 
 Usamos los datos del segundo día y comparamos con el primer día.  En este caso vemos que los datos no siguen una distribución normal están sesgados a la izquierda y vemos que "falta" valores pequeños, en otra palabra en este caso los valores negativos.   
 
@@ -197,16 +200,20 @@ hist.dlfc2
 
 
 
-# Datos teoricos con histograma y la función de normalidad
+# Datos teóricos con histograma y la función de normalidad
 
 
- Here I created a function where you can use it to explore what to expect from a random sample a some survey/experiments you are doing.  
+Aquí creo una conjunto de datos al azar con la función **rnorm** y se presenta un histograma y se añade la linea teórica de la distribución normal.  
+  
 
-We can use the function "rnorm" to create a data set that has a normal distribution, with a specific mean and standard deviation. 
-rnorm(n, mean, sd)
-rnorm = (select n values, mean of x, sd of x), n= the number of values you want to select
+La función **rnorm** creea una lista de datos una promedio y una dispersión específica.  
 
-calculate the mean and sd. 
+    rnorm(n, mean, sd)
+    rnorm = (la cantidad de datos generados, promedio, la desviación estandard)
+
+Es necesario convertir la lista en un **data.frame** en un **tibble** para usar los datos en **ggplot2**. Como los datos provienen de una distribución normal la linea teórica (casi) sigue perfectamente las barras de frecuencia.  Más datos que uno tiene más similar las distribución observada (las barras) a la distribución teórica (la linea). 
+
+Haz unos ejercicio de reducir y aumentar el tamaño de muestra, **n** y compara las distribuciones.  Evalúa cuando cuando son muy pequeño  (n de 30 o menos). 
 
 ```{r historgram normal, warning=FALSE}
 
@@ -214,16 +221,19 @@ calculate the mean and sd.
 
 x=rnorm(10000, 10, 2)
 
-dfx=data.frame(x)
-head(dfx)
+dfx=as.tibble(x)
+
+gt(head(dfx, n=3)) # Los primeros 3 datos del tibble 
 library(ggplot2)
-hist.x <- ggplot(dfx, aes(x)) + 
+
+
+hist.x <- ggplot(dfx, aes(value)) + 
   theme(legend.position = "none") + 
-  geom_histogram(aes(y=..density..), bins=30,colour="black", fill="white") + 
+  geom_histogram(aes(y=..density..), bins=40,colour="black", fill="white") + 
   labs(x="Variable", y = "Densidad")+
-  stat_function(fun = dnorm, args = list(mean = mean(dfx$x, 
+  stat_function(fun = dnorm, args = list(mean = mean(dfx$value, 
                 na.rm = TRUE), 
-                sd = sd(dfx$x, na.rm = TRUE)), 
+                sd = sd(dfx$value, na.rm = TRUE)), 
                 colour = "red", size = 1)
 
 hist.x
@@ -233,56 +243,73 @@ hist.x
 
 #  qqplot
 
+El gráfico Q-Q, o gráfico cuantil-cuantil, es una herramienta gráfica que nos ayuda a evaluar si un conjunto de datos proviene de alguna distribución teórica. Por ejemplo, si ejecutamos un análisis estadístico que asume que nuestra variable dependiente está normalmente distribuida, podemos usar un gráfico Q-Q normal para verificar esa suposición, se puede también evaluar otras distribuciones. Nota que es solo una verificación visual, no una prueba estadística. Esto nos permite visualizar si los datos cumple si o no con la distribución teórica.  
+
+Un diagrama Q-Q es un diagrama de dispersión y compara dos conjuntos de cuantiles uno observado y el otro teórico. Si ambos conjuntos de cuantiles provienen de una distribución normal, deberíamos ver los puntos formando una línea que es más o menos recta. Usamos los datos del primer y el segundo día de la higiene de los participantes al concierto de rock.  Vean que los puntos están en el primer gráfico siguen una linea recta y la linea teórica (`r colorize("color azul", "blue")`) sigue estos puntos.  Esto sugiere que los datos siguen una distribución normal.  En el segundo gráfico vemos que los datos observados no siguen los datos teóricos (`r colorize("color rojo", "red")`). 
 
 
-
-Add a straight line on the qqplot
-```{r qqplot and line, warning=FALSE}
+```{r qqplot y la linea, warning=FALSE}
 
 
-ggplot(dlf, aes(sample=day1))+
+d=ggplot(dlf, aes(sample=day1))+
   geom_qq()+
-  geom_qq_line()
+  geom_qq_line(colour="blue")
 
-```
+e=ggplot(dlf, aes(sample=day2))+
+  geom_qq()+
+  geom_qq_line(colour="red")
 
-# Now check the qq plot for day 2 and day 3
-
-
-```{r line day 2, warning=FALSE}
-
-```
-
-```{r line day 3, warning=FALSE}
+grid.arrange(d,e, ncol=2)
 
 ```
 
 
 
  
-## Tests of Normality
-### A.
+# Pruebas de normalidad.
 
-#### Shapiro-Wilks test
-Problem, sensitive to sample size
- 1. should not be used with less than 50 data points
- 2. should not be used for sample size of over 200....
- 
+Los ejemplos arriba no son pruebas, son visualización de los datos y con experiencia uno puede reconocer los con juntos de datos que cumple o no con una distribución normal.  Al principio, cuando uno comienza a estudiar la estadística esto puede ser un poco confuso.  Hay pruebas donde uno puede utiliza para evaluar y rechazar o aceptar si los datos cumple con distribución normal.  Estos se introduce ahora por qué muchas de estas pruebas tienden a tener un tipo de error Tipo II alto.  En otra palabra se rechaza la hipótesis nula (los datos provienen de una distribución normal) cuando son suficiente normal para las pruebas que se van a usar.  Vamos a ver dos de estas pruebas aunque hay muchos en la literatura.  
+
+Por ejemplo Wikipedia menciona por lo menos 8 diferentes pruebas de normalidad <https://en.wikipedia.org/wiki/Normality_test>.
+
+## La prueba de Shapiro-Wilks
+
+La prueba de Shapiro-Wilk es un prueba para determinar si un muestreo proviene de una distribución normal. Los datos se ponen en orden de los valores y se calcula el estadística de **W**. Aqui no vamos enseñar como hacer los cálculos los que le interesa pueden ir al a la siguiente pagina de <https://en.wikipedia.org/wiki/Shapiro–Wilk_test>.  Lo imprtante es que 
+
+Ho: los datos no son diferentes de una distribución normal
+Ha: los datos no concuerda con una distribución normal.
+
+Por consecuencia si se rechaza la hipótesis nula uno dice que los datos no cumplen con una distribución normal. 
+
+Problemas con la prueba. La prueba es sensitiva al tamaño de muestra. Esto quiere decir que cando el tamaño de muestra es demasiado pequeño o grande tiende a dar errores de Tipo II y Tipo I respectivamente.  
+
+Reglas básica.  
+  1. no utilizar la prueba si el tamaño de muestra es menor de 50
+  2. no utilizar la prueba si el tamaño de muestra de muy grande (mayor de 200)
+    a. Nota que algunos programa han podido hacer modificación a la formula y ahora se puede utilizar tamaño de muestra hasta 2000  (Stata, SPSS, SAS).  
+
+
+ La función **shapiro.test()** es para evaluar una variable a la vez.  Nota que aquí los datos de higiene del primer día sugiere que no cumple con una distribución normal. Cuando las dos alternativas anteriores los daots se ven bastante norma (histograma y qqplot)
 
 ```{r shapiro, warning=FALSE}
 shapiro.test(dlf$day1)
 length(dlf$day1)
 ```
 
-### B. 
-#### Other normality test, use the package "nortest"
-
-Anderson-Darling test for normality, 
+## La prueba de normalidad de Anderson-Darling
 
 
-The Anderson-Darling test is an EDF omnibus test for the composite hypothesis of normality. 
-Omnibus tests are a kind of statistical test. They test whether the explained variance in a set of data is significantly greater than the unexplained variance, overall.
 
+La prueba de Anderson-Darling es una prueba omnibus (una prueba general) EDF para la hipótesis que los datos provienen de una distribución normal. Las pruebas ómnibus son una especie de prueba estadística. Prueban si la varianza explicada en un conjunto de datos es significativamente mayor que la varianza inexplicada, en general. Para más detalle sobre esta prueba vea <https://en.wikipedia.org/wiki/Anderson–Darling_test>. 
+
+Se necesita la librería **nortest** y la función **ad.test**
+
+Miran ahora que la distribución de los datos cumplen con normalidad cuando la de Shapiro-Wilk rechaza la hipótesis nula.  
+El mensaje es que es posible que diferentes pruebas le den información distinta y hay que estar claro sobre los supuestos y la sensitividad de estas pruebas. 
+
+La prueba de Anderson Darling es una de las más poderosas para evaluar si los datos provienen de una distribución normal.  D'Agostino (1986) sugiere que la prueba puede ser utilizada con tamaño de muestra tan bajo como n=8.  
+
+    *Ralph B. D'Agostino (1986). "Tests for the Normal Distribution". In D'Agostino, R.B.; Stephens, M.A. (eds.). Goodness-of-Fit Techniques. New York: Marcel Dekker. ISBN 0-8247-7487-6.* 
 
 ```{r norm test, warning=FALSE}
 library(nortest)
@@ -294,74 +321,7 @@ ad.test(dlf$day1)
 
 
 
-Capitulo 15
-5.  Summary statistics, individual appraoch, summary
-  1. Mean
-  2. Median  
-  3. Mode
-  4. Skewness and Kurtosis
- 
-```{r summary stat, warning=FALSE}
-x=sample(1:100, size=100, replace = TRUE)
-x=data.frame(x)
-head(x)
-mean(x$x)
-var(x$x)
-sd(x$x)
-min(x$x)
-max(x$x)
-```
- 
-Mean = mean
-Variance =var 
-Standard deviation = sd
-mimimum value of a variable = min
-maximum value of a variable = max
-median value of a variable = median
- 
-```{r summary stat 2, warning=FALSE}
 
-
-mean(dlf$day2, na.rm=TRUE)
-var(dlf$day1, na.rm=TRUE)
-sd(dlf$day1, na.rm=TRUE)
-min(dlf$day1, na.rm=TRUE)
-max(dlf$day1, na.rm=TRUE)
-median(dlf$day1, na.rm=TRUE)
-
-
-```
-
-Start Here
- 
-
- Summary stats
- 
- 
-```{r summary function, warning=FALSE}
-
-summary(dlf$day1, na.rm=TRUE)  
-
-# the "describe" function is the "psych" package
-library(psych)
-describe(dlf[,c("day1","day2","day3")]) 
-
-
-# the "stat.desc" function is the "pastec" package
-stat.desc(dlf[,c("day1","day2","day3")], basic=FALSE,norm=TRUE)
-
-
-round(stat.desc(dlf[,c("day1","day2","day3")], basic=FALSE,norm=TRUE), digits=3) # reduce to 3 significant figures
-```
- 
- 
- 
- Quantiles
- 
-```{r quantiles, warning=FALSE}
-
-quantile(dlf$day1,probs=c(0.05, 0.1, 0.25, 0.5,.55, 0.75, 0.95, 0.99), na.rm=TRUE)
-```
  
  
 

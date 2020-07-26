@@ -1,0 +1,153 @@
+---
+title: "T4a_Estadistica_descriptiva"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    css: custom.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
+
+
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+
+
+```
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```
+
+
+Activar los Paquetes
+```{r, warning=FALSE}
+
+library(ggplot2)  # paquete para visualizar los datos
+library(ggversa) # paquete para diferentes conjuntos de datos
+library(modeest) # paquete para calcular la moda 
+library(GGally) # Un paquete basado un ggplot2 para visualizar correlaciones 
+library(pastecs) # paquete para análisis tiempo-espacial usado en ecología 
+library(psych) # paquete para análisis psicométrica, psicológica y de personalidad 
+library(Hmisc) # Un grupo de función prácticos para gráficos y tablas
+library(boot) # paquete para calcular los intervalos usando "bootstrap" 
+library(knitr) # un grupo de función para incluyendo tablas bonitas con kable.
+library(tidyverse)
+library(gt)
+library(gridExtra)
+
+```
+
+
+
+El primer paso de cada investigación es evaluar si los supuestos se cumplen. Si las pruebas necesitan tener una distribución normal uno de los métodos más sencillo construir un histograma de los datos.  
+
+Usaremos datos que hemos visto en el modulo T5.  
+
+Se necesita el archivo **DownloadFestival** que se encuentra debajo la pestaña de **Los Datos**. El ejemplo proviene de Field et al. (2014).
+
+
+>  Una bióloga estaba preocupado por los posibles efectos sobre la salud de los que particpan a un festivales de música. Entonces, un año fue al Download Festival en el Reino Unido (Download Festival UK). Ella midió la higiene del los que participaron al concierto n= 810 durante el festival de 3 días. Cada día intentaba encontrar a todas las personas que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el nivel de limpieza por como olia los participantes
+
+>    + 0 = hueles como un cadáver. 
+>    + 4 = hueles a rosas dulces en un fresco día de primavera
+    
+
+```{r, warning=FALSE}
+
+library(readr)
+DownloadFestival_No_Outlier_ <- read_csv("Data_files_csv/DownloadFestival(No Outlier).csv")
+
+
+
+dlf=DownloadFestival_No_Outlier_  #usamos un nombre más corta para facilitar  
+head(dlf) # ver las 3 primeras filas
+
+```
+
+
+
+
+5.  Summary statistics, individual appraoch, summary
+  1. Mean
+  2. Median  
+  3. Mode
+  4. Skewness and Kurtosis
+ 
+```{r summary stat, warning=FALSE}
+x=sample(1:100, size=100, replace = TRUE)
+x=data.frame(x)
+head(x)
+mean(x$x)
+var(x$x)
+sd(x$x)
+min(x$x)
+max(x$x)
+```
+ 
+Mean = mean
+Variance =var 
+Standard deviation = sd
+mimimum value of a variable = min
+maximum value of a variable = max
+median value of a variable = median
+ 
+```{r summary stat 2, warning=FALSE}
+
+
+mean(dlf$day2, na.rm=TRUE)
+var(dlf$day1, na.rm=TRUE)
+sd(dlf$day1, na.rm=TRUE)
+min(dlf$day1, na.rm=TRUE)
+max(dlf$day1, na.rm=TRUE)
+median(dlf$day1, na.rm=TRUE)
+
+
+```
+
+Start Here
+ 
+
+ Summary stats
+ 
+ 
+```{r summary function, warning=FALSE}
+
+summary(dlf$day1, na.rm=TRUE)  
+
+# the "describe" function is the "psych" package
+library(psych)
+describe(dlf[,c("day1","day2","day3")]) 
+
+
+# the "stat.desc" function is the "pastec" package
+stat.desc(dlf[,c("day1","day2","day3")], basic=FALSE,norm=TRUE)
+
+
+round(stat.desc(dlf[,c("day1","day2","day3")], basic=FALSE,norm=TRUE), digits=3) # reduce to 3 significant figures
+```
+ 
+ 
+ 
+ Quantiles
+ 
+```{r quantiles, warning=FALSE}
+
+quantile(dlf$day1,probs=c(0.05, 0.1, 0.25, 0.5,.55, 0.75, 0.95, 0.99), na.rm=TRUE)
+```

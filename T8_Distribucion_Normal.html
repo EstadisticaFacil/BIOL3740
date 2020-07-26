@@ -462,7 +462,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-25&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-26&quot;</code></pre>
 <div id="instalar-y-activar-los-siguientes-paquete" class="section level1">
 <h1>Instalar y activar los siguientes paquete</h1>
 <p>Para instalar el paquete <strong>modeest</strong> es necesario instalar foes otros paquetes antes, <strong>BiocManager</strong> y <strong>genefilter</strong>. Usando el siguiente script pora instalar los paquetes. Nota que en la consola tendrá que aceptar a instalar y seleccionar la “a” para “all”.<br />
@@ -485,7 +485,10 @@ library(pastecs) # paquete para análisis tiempo-espacial usado en ecología
 library(psych) # paquete para análisis psicométrica, psicológica y de personalidad 
 library(Hmisc) # Un grupo de función prácticos para gráficos y tablas
 library(boot) # paquete para calcular los intervalos usando &quot;bootstrap&quot; 
-library(knitr) # un grupo de función para incluyendo tablas bonitas con kable. </code></pre>
+library(knitr) # un grupo de función para incluyendo tablas bonitas con kable.
+library(tidyverse)
+library(gt)
+library(gridExtra)</code></pre>
 <hr />
 </div>
 <div id="la-distribución-normal" class="section level1">
@@ -562,8 +565,8 @@ head(dlf) # ver las 3 primeras filas</code></pre>
 
 hist.dlfc1</code></pre>
 <p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<div id="evaluando-otros-datos" class="section level2">
-<h2>Evaluando otros datos</h2>
+<div id="evaluando-datos-no-normal" class="section level2">
+<h2>Evaluando datos no normal</h2>
 <p>Usamos los datos del segundo día y comparamos con el primer día. En este caso vemos que los datos no siguen una distribución normal están sesgados a la izquierda y vemos que “falta” valores pequeños, en otra palabra en este caso los valores negativos.</p>
 <p>Evalúa y compara con el día tres</p>
 <pre class="r"><code>hist.dlfc2 &lt;- ggplot(dlf, aes(day2)) + 
@@ -578,32 +581,386 @@ hist.dlfc2</code></pre>
 <p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 </div>
-<div id="what-would-be-a-normal-distribution-of-your-own-data" class="section level1">
-<h1>What would be a normal distribution of your own data</h1>
-<p>Here I created a function where you can use it to explore what to expect from a random sample a some survey/experiments you are doing.</p>
-<p>We can use the function “rnorm” to create a data set that has a normal distribution, with a specific mean and standard deviation. rnorm(n, mean, sd) rnorm = (select n values, mean of x, sd of x), n= the number of values you want to select</p>
-<p>calculate the mean and sd.</p>
+<div id="datos-teóricos-con-histograma-y-la-función-de-normalidad" class="section level1">
+<h1>Datos teóricos con histograma y la función de normalidad</h1>
+<p>Aquí creo una conjunto de datos al azar con la función <strong>rnorm</strong> y se presenta un histograma y se añade la linea teórica de la distribución normal.</p>
+<p>La función <strong>rnorm</strong> creea una lista de datos una promedio y una dispersión específica.</p>
+<pre><code>rnorm(n, mean, sd)
+rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</code></pre>
+<p>Es necesario convertir la lista en un <strong>data.frame</strong> en un <strong>tibble</strong> para usar los datos en <strong>ggplot2</strong>. Como los datos provienen de una distribución normal la linea teórica (casi) sigue perfectamente las barras de frecuencia. Más datos que uno tiene más similar las distribución observada (las barras) a la distribución teórica (la linea).</p>
+<p>Haz unos ejercicio de reducir y aumentar el tamaño de muestra, <strong>n</strong> y compara las distribuciones. Evalúa cuando cuando son muy pequeño (n de 30 o menos).</p>
 <pre class="r"><code>#rnorm(10, 100, 10)
 
 x=rnorm(10000, 10, 2)
 
-dfx=data.frame(x)
-head(dfx)</code></pre>
-<pre><code>##          x
-## 1 8.776594
-## 2 6.691068
-## 3 9.287899
-## 4 8.203027
-## 5 9.954209
-## 6 8.074014</code></pre>
+dfx=as.tibble(x)
+
+gt(head(dfx, n=3)) # Los primeros 3 datos del tibble </code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#djmqwlxojf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#djmqwlxojf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#djmqwlxojf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#djmqwlxojf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#djmqwlxojf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#djmqwlxojf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#djmqwlxojf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#djmqwlxojf .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#djmqwlxojf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#djmqwlxojf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#djmqwlxojf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#djmqwlxojf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#djmqwlxojf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#djmqwlxojf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#djmqwlxojf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#djmqwlxojf .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#djmqwlxojf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#djmqwlxojf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#djmqwlxojf .gt_left {
+  text-align: left;
+}
+
+#djmqwlxojf .gt_center {
+  text-align: center;
+}
+
+#djmqwlxojf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#djmqwlxojf .gt_font_normal {
+  font-weight: normal;
+}
+
+#djmqwlxojf .gt_font_bold {
+  font-weight: bold;
+}
+
+#djmqwlxojf .gt_font_italic {
+  font-style: italic;
+}
+
+#djmqwlxojf .gt_super {
+  font-size: 65%;
+}
+
+#djmqwlxojf .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="djmqwlxojf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_right">8.776594</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_right">6.691068</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_right">9.287899</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
 <pre class="r"><code>library(ggplot2)
-hist.x &lt;- ggplot(dfx, aes(x)) + 
+
+
+hist.x &lt;- ggplot(dfx, aes(value)) + 
   theme(legend.position = &quot;none&quot;) + 
-  geom_histogram(aes(y=..density..), bins=30,colour=&quot;black&quot;, fill=&quot;white&quot;) + 
+  geom_histogram(aes(y=..density..), bins=40,colour=&quot;black&quot;, fill=&quot;white&quot;) + 
   labs(x=&quot;Variable&quot;, y = &quot;Densidad&quot;)+
-  stat_function(fun = dnorm, args = list(mean = mean(dfx$x, 
+  stat_function(fun = dnorm, args = list(mean = mean(dfx$value, 
                 na.rm = TRUE), 
-                sd = sd(dfx$x, na.rm = TRUE)), 
+                sd = sd(dfx$value, na.rm = TRUE)), 
                 colour = &quot;red&quot;, size = 1)
 
 hist.x</code></pre>
@@ -611,21 +968,32 @@ hist.x</code></pre>
 </div>
 <div id="qqplot" class="section level1">
 <h1>qqplot</h1>
-<p>Add a straight line on the qqplot</p>
-<pre class="r"><code>ggplot(dlf, aes(sample=day1))+
+<p>El gráfico Q-Q, o gráfico cuantil-cuantil, es una herramienta gráfica que nos ayuda a evaluar si un conjunto de datos proviene de alguna distribución teórica. Por ejemplo, si ejecutamos un análisis estadístico que asume que nuestra variable dependiente está normalmente distribuida, podemos usar un gráfico Q-Q normal para verificar esa suposición, se puede también evaluar otras distribuciones. Nota que es solo una verificación visual, no una prueba estadística. Esto nos permite visualizar si los datos cumple si o no con la distribución teórica.</p>
+<p>Un diagrama Q-Q es un diagrama de dispersión y compara dos conjuntos de cuantiles uno observado y el otro teórico. Si ambos conjuntos de cuantiles provienen de una distribución normal, deberíamos ver los puntos formando una línea que es más o menos recta. Usamos los datos del primer y el segundo día de la higiene de los participantes al concierto de rock. Vean que los puntos están en el primer gráfico siguen una linea recta y la linea teórica (<span style="color: blue;">color azul</span>) sigue estos puntos. Esto sugiere que los datos siguen una distribución normal. En el segundo gráfico vemos que los datos observados no siguen los datos teóricos (<span style="color: red;">color rojo</span>).</p>
+<pre class="r"><code>d=ggplot(dlf, aes(sample=day1))+
   geom_qq()+
-  geom_qq_line()</code></pre>
-<p><img src="T8_Distribucion_Normal_files/figure-html/qqplot%20and%20line-1.png" width="672" /></p>
+  geom_qq_line(colour=&quot;blue&quot;)
+
+e=ggplot(dlf, aes(sample=day2))+
+  geom_qq()+
+  geom_qq_line(colour=&quot;red&quot;)
+
+grid.arrange(d,e, ncol=2)</code></pre>
+<p><img src="T8_Distribucion_Normal_files/figure-html/qqplot%20y%20la%20linea-1.png" width="672" /></p>
 </div>
-<div id="now-check-the-qq-plot-for-day-2-and-day-3" class="section level1">
-<h1>Now check the qq plot for day 2 and day 3</h1>
-<div id="tests-of-normality" class="section level2">
-<h2>Tests of Normality</h2>
-<div id="a." class="section level3">
-<h3>A.</h3>
-<div id="shapiro-wilks-test" class="section level4">
-<h4>Shapiro-Wilks test</h4>
-<p>Problem, sensitive to sample size 1. should not be used with less than 50 data points 2. should not be used for sample size of over 200….</p>
+<div id="pruebas-de-normalidad." class="section level1">
+<h1>Pruebas de normalidad.</h1>
+<p>Los ejemplos arriba no son pruebas, son visualización de los datos y con experiencia uno puede reconocer los con juntos de datos que cumple o no con una distribución normal. Al principio, cuando uno comienza a estudiar la estadística esto puede ser un poco confuso. Hay pruebas donde uno puede utiliza para evaluar y rechazar o aceptar si los datos cumple con distribución normal. Estos se introduce ahora por qué muchas de estas pruebas tienden a tener un tipo de error Tipo II alto. En otra palabra se rechaza la hipótesis nula (los datos provienen de una distribución normal) cuando son suficiente normal para las pruebas que se van a usar. Vamos a ver dos de estas pruebas aunque hay muchos en la literatura.</p>
+<p>Por ejemplo Wikipedia menciona por lo menos 8 diferentes pruebas de normalidad <a href="https://en.wikipedia.org/wiki/Normality_test" class="uri">https://en.wikipedia.org/wiki/Normality_test</a>.</p>
+<div id="la-prueba-de-shapiro-wilks" class="section level2">
+<h2>La prueba de Shapiro-Wilks</h2>
+<p>La prueba de Shapiro-Wilk es un prueba para determinar si un muestreo proviene de una distribución normal. Los datos se ponen en orden de los valores y se calcula el estadística de <strong>W</strong>. Aqui no vamos enseñar como hacer los cálculos los que le interesa pueden ir al a la siguiente pagina de <a href="https://en.wikipedia.org/wiki/Shapiro–Wilk_test" class="uri">https://en.wikipedia.org/wiki/Shapiro–Wilk_test</a>. Lo imprtante es que</p>
+<p>Ho: los datos no son diferentes de una distribución normal Ha: los datos no concuerda con una distribución normal.</p>
+<p>Por consecuencia si se rechaza la hipótesis nula uno dice que los datos no cumplen con una distribución normal.</p>
+<p>Problemas con la prueba. La prueba es sensitiva al tamaño de muestra. Esto quiere decir que cando el tamaño de muestra es demasiado pequeño o grande tiende a dar errores de Tipo II y Tipo I respectivamente.</p>
+<p>Reglas básica.<br />
+1. no utilizar la prueba si el tamaño de muestra es menor de 50 2. no utilizar la prueba si el tamaño de muestra de muy grande (mayor de 200) a. Nota que algunos programa han podido hacer modificación a la formula y ahora se puede utilizar tamaño de muestra hasta 2000 (Stata, SPSS, SAS).</p>
+<p>La función <strong>shapiro.test()</strong> es para evaluar una variable a la vez. Nota que aquí los datos de higiene del primer día sugiere que no cumple con una distribución normal. Cuando las dos alternativas anteriores los daots se ven bastante norma (histograma y qqplot)</p>
 <pre class="r"><code>shapiro.test(dlf$day1)</code></pre>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
@@ -635,13 +1003,14 @@ hist.x</code></pre>
 <pre class="r"><code>length(dlf$day1)</code></pre>
 <pre><code>## [1] 810</code></pre>
 </div>
-</div>
-<div id="b." class="section level3">
-<h3>B.</h3>
-<div id="other-normality-test-use-the-package-nortest" class="section level4">
-<h4>Other normality test, use the package “nortest”</h4>
-<p>Anderson-Darling test for normality,</p>
-<p>The Anderson-Darling test is an EDF omnibus test for the composite hypothesis of normality. Omnibus tests are a kind of statistical test. They test whether the explained variance in a set of data is significantly greater than the unexplained variance, overall.</p>
+<div id="la-prueba-de-normalidad-de-anderson-darling" class="section level2">
+<h2>La prueba de normalidad de Anderson-Darling</h2>
+<p>La prueba de Anderson-Darling es una prueba omnibus (una prueba general) EDF para la hipótesis que los datos provienen de una distribución normal. Las pruebas ómnibus son una especie de prueba estadística. Prueban si la varianza explicada en un conjunto de datos es significativamente mayor que la varianza inexplicada, en general. Para más detalle sobre esta prueba vea <a href="https://en.wikipedia.org/wiki/Anderson–Darling_test" class="uri">https://en.wikipedia.org/wiki/Anderson–Darling_test</a>.</p>
+<p>Se necesita la librería <strong>nortest</strong> y la función <strong>ad.test</strong></p>
+<p>Miran ahora que la distribución de los datos cumplen con normalidad cuando la de Shapiro-Wilk rechaza la hipótesis nula.<br />
+El mensaje es que es posible que diferentes pruebas le den información distinta y hay que estar claro sobre los supuestos y la sensitividad de estas pruebas.</p>
+<p>La prueba de Anderson Darling es una de las más poderosas para evaluar si los datos provienen de una distribución normal. D’Agostino (1986) sugiere que la prueba puede ser utilizada con tamaño de muestra tan bajo como n=8.</p>
+<pre><code>*Ralph B. D&#39;Agostino (1986). &quot;Tests for the Normal Distribution&quot;. In D&#39;Agostino, R.B.; Stephens, M.A. (eds.). Goodness-of-Fit Techniques. New York: Marcel Dekker. ISBN 0-8247-7487-6.* </code></pre>
 <pre class="r"><code>library(nortest)
 
 ad.test(dlf$day1)</code></pre>
@@ -656,18 +1025,18 @@ ad.test(dlf$day1)</code></pre>
 x=data.frame(x)
 head(x)</code></pre>
 <pre><code>##    x
-## 1 36
-## 2 96
-## 3 77
-## 4 93
-## 5 27
-## 6 44</code></pre>
+## 1 51
+## 2 35
+## 3  9
+## 4 33
+## 5 83
+## 6 13</code></pre>
 <pre class="r"><code>mean(x$x)</code></pre>
-<pre><code>## [1] 52.98</code></pre>
+<pre><code>## [1] 51.64</code></pre>
 <pre class="r"><code>var(x$x)</code></pre>
-<pre><code>## [1] 799.1915</code></pre>
+<pre><code>## [1] 815.7479</code></pre>
 <pre class="r"><code>sd(x$x)</code></pre>
-<pre><code>## [1] 28.26998</code></pre>
+<pre><code>## [1] 28.5613</code></pre>
 <pre class="r"><code>min(x$x)</code></pre>
 <pre><code>## [1] 2</code></pre>
 <pre class="r"><code>max(x$x)</code></pre>
@@ -693,10 +1062,34 @@ head(x)</code></pre>
 <pre class="r"><code># the &quot;describe&quot; function is the &quot;psych&quot; package
 library(psych)
 describe(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)]) </code></pre>
-<pre><code>##      vars   n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-## day1    1 810 1.77 0.69   1.79    1.77 0.70 0.02 3.69  3.67 0.00    -0.42 0.02
-## day2    2 264 0.96 0.72   0.79    0.87 0.61 0.00 3.44  3.44 1.08     0.76 0.04
-## day3    3 123 0.98 0.71   0.76    0.90 0.61 0.02 3.41  3.39 1.01     0.59 0.06</code></pre>
+<pre><code>## dlf[, c(&quot;day1&quot;, &quot;day2&quot;, &quot;day3&quot;)] 
+## 
+##  3  Variables      810  Observations
+## --------------------------------------------------------------------------------
+## day1 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##      810        0      199        1    1.771   0.7896   0.5945   0.8490 
+##      .25      .50      .75      .90      .95 
+##   1.3125   1.7900   2.2300   2.6700   2.9055 
+## 
+## lowest : 0.02 0.05 0.11 0.23 0.26, highest: 3.38 3.41 3.44 3.58 3.69
+## --------------------------------------------------------------------------------
+## day2 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##      264      546      102        1   0.9609   0.7818    0.140    0.200 
+##      .25      .50      .75      .90      .95 
+##    0.410    0.790    1.350    2.026    2.440 
+## 
+## lowest : 0.00 0.02 0.05 0.06 0.08, highest: 2.91 3.00 3.21 3.35 3.44
+## --------------------------------------------------------------------------------
+## day3 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##      123      687       65    0.999   0.9765   0.7754    0.170    0.266 
+##      .25      .50      .75      .90      .95 
+##    0.440    0.760    1.525    1.904    2.146 
+## 
+## lowest : 0.02 0.08 0.11 0.14 0.17, highest: 2.29 2.55 2.70 3.02 3.41
+## --------------------------------------------------------------------------------</code></pre>
 <pre class="r"><code># the &quot;stat.desc&quot; function is the &quot;pastec&quot; package
 stat.desc(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FALSE,norm=TRUE)</code></pre>
 <pre><code>##                     day1         day2         day3
@@ -732,8 +1125,6 @@ stat.desc(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FAL
 <pre class="r"><code>quantile(dlf$day1,probs=c(0.05, 0.1, 0.25, 0.5,.55, 0.75, 0.95, 0.99), na.rm=TRUE)</code></pre>
 <pre><code>##     5%    10%    25%    50%    55%    75%    95%    99% 
 ## 0.5945 0.8490 1.3125 1.7900 1.8800 2.2300 2.9055 3.3173</code></pre>
-</div>
-</div>
 </div>
 </div>
 
