@@ -465,22 +465,52 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-26&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-27&quot;</code></pre>
 <p>Activar los Paquetes</p>
 <pre class="r"><code>library(ggplot2)  # paquete para visualizar los datos
 library(ggversa) # paquete para diferentes conjuntos de datos
 library(modeest) # paquete para calcular la moda 
-library(GGally) # Un paquete basado un ggplot2 para visualizar correlaciones 
+
 library(pastecs) # paquete para análisis tiempo-espacial usado en ecología 
 library(psych) # paquete para análisis psicométrica, psicológica y de personalidad 
-library(Hmisc) # Un grupo de función prácticos para gráficos y tablas
-library(boot) # paquete para calcular los intervalos usando &quot;bootstrap&quot; 
 library(knitr) # un grupo de función para incluyendo tablas bonitas con kable.
 library(tidyverse)
-library(gt)
-library(gridExtra)</code></pre>
-<p>El primer paso de cada investigación es evaluar si los supuestos se cumplen. Si las pruebas necesitan tener una distribución normal uno de los métodos más sencillo construir un histograma de los datos.</p>
-<p>Usaremos datos que hemos visto en el modulo T5.</p>
+library(gridExtra)
+library(e1071)</code></pre>
+<hr />
+<div id="estadistica-descriptiva" class="section level1">
+<h1>Estadistica descriptiva</h1>
+<p>En los módulos de “Medidas de Tendencias Central” y “Medidas de Dipersión” se explicó donde proviene estos parámetros y como calcular estos. En este módulo aprenderemos diferentes funciones como calcular estos parámetros individualmente y herramienta como calcular todos y otros parámetros todo juntos.</p>
+<p>Los indices que veremos aquí incluye</p>
+<ol style="list-style-type: decimal">
+<li>el promedio</li>
+<li>la mediana</li>
+<li>la desviación estándar</li>
+<li>el mínimo</li>
+<li>el máximo</li>
+<li>los cuantiles</li>
+<li>el indice Oblicuidad (en ingles “Skewness”)</li>
+<li>el indice de Curtosis ( en ingles “Kurtosis”)</li>
+</ol>
+<p>Aqui creamos un conjunto de datos de 100 datos con un promedio de 100 y una desviación estándar de 10. Nota que la función <strong>set.seed()</strong> es que el comienzo la simulación sea igual a cada vez que se corre, y se el mismo resultado. Esto se añade solamente cuando uno esta enseñando y que los resultados sean consistente.</p>
+<pre class="r"><code>set.seed(765765)
+
+x=rnorm(100, 100, 10) #(100 datos, x=100, sd=10)
+x=data.frame(x)
+
+
+mean(x$x) # el promedio</code></pre>
+<pre><code>## [1] 101.0949</code></pre>
+<pre class="r"><code>sd(x$x) # la desviación estándar</code></pre>
+<pre><code>## [1] 9.819889</code></pre>
+<pre class="r"><code>min(x$x) # el valor mínimo</code></pre>
+<pre><code>## [1] 78.64092</code></pre>
+<pre class="r"><code>max(x$x) # el valor máximo</code></pre>
+<pre><code>## [1] 123.2455</code></pre>
+<hr />
+<div id="ejercicio-práctico" class="section level2">
+<h2>Ejercicio práctico</h2>
+<p>Usaremos datos que hemos visto en el modulo Producción de Gráficos.</p>
 <p>Se necesita el archivo <strong>DownloadFestival</strong> que se encuentra debajo la pestaña de <strong>Los Datos</strong>. El ejemplo proviene de Field et al. (2014).</p>
 <blockquote>
 <p>Una bióloga estaba preocupado por los posibles efectos sobre la salud de los que particpan a un festivales de música. Entonces, un año fue al Download Festival en el Reino Unido (Download Festival UK). Ella midió la higiene del los que participaron al concierto n= 810 durante el festival de 3 días. Cada día intentaba encontrar a todas las personas que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el nivel de limpieza por como olia los participantes</p>
@@ -507,39 +537,13 @@ head(dlf) # ver las 3 primeras filas</code></pre>
 ## 4     2384 Female  3.03 NA    NA    
 ## 5     2401 Female  0.88  0.08 NA    
 ## 6     2405 Male    0.85 NA    NA</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Summary statistics, individual appraoch, summary</li>
-<li>Mean</li>
-<li>Median<br />
-</li>
-<li>Mode</li>
-<li>Skewness and Kurtosis</li>
-</ol>
-<pre class="r"><code>x=sample(1:100, size=100, replace = TRUE)
-x=data.frame(x)
-head(x)</code></pre>
-<pre><code>##    x
-## 1 56
-## 2 91
-## 3 65
-## 4 78
-## 5 81
-## 6 43</code></pre>
-<pre class="r"><code>mean(x$x)</code></pre>
-<pre><code>## [1] 55.74</code></pre>
-<pre class="r"><code>var(x$x)</code></pre>
-<pre><code>## [1] 723.5883</code></pre>
-<pre class="r"><code>sd(x$x)</code></pre>
-<pre><code>## [1] 26.8996</code></pre>
-<pre class="r"><code>min(x$x)</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>max(x$x)</code></pre>
-<pre><code>## [1] 100</code></pre>
-<p>Mean = mean Variance =var Standard deviation = sd mimimum value of a variable = min maximum value of a variable = max median value of a variable = median</p>
+</div>
+</div>
+<div id="na-removerlo-del-análisis" class="section level1">
+<h1>NA: removerlo del análisis</h1>
+<p>Con los datos de los participantes al festival como en algunos diá hay participantes donde no tienen los datos se añadió un <strong>NA</strong>, es estos casos para que el análisis se logra hay que añadir a la función <strong>na.rm=TRUE</strong> que significa remover la <strong>NA</strong>. Para dar se cuenta remueve <strong>na.rm=TRUE</strong> cuando se usa el “día2” o “día3”, y evalúa que pasa.</p>
 <pre class="r"><code>mean(dlf$day2, na.rm=TRUE)</code></pre>
 <pre><code>## [1] 0.9609091</code></pre>
-<pre class="r"><code>var(dlf$day1, na.rm=TRUE)</code></pre>
-<pre><code>## [1] 0.4809962</code></pre>
 <pre class="r"><code>sd(dlf$day1, na.rm=TRUE)</code></pre>
 <pre><code>## [1] 0.6935389</code></pre>
 <pre class="r"><code>min(dlf$day1, na.rm=TRUE)</code></pre>
@@ -548,35 +552,34 @@ head(x)</code></pre>
 <pre><code>## [1] 3.69</code></pre>
 <pre class="r"><code>median(dlf$day1, na.rm=TRUE)</code></pre>
 <pre><code>## [1] 1.79</code></pre>
-<p>Start Here</p>
-<p>Summary stats</p>
-<pre class="r"><code>summary(dlf$day1, na.rm=TRUE)  </code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.020   1.312   1.790   1.771   2.230   3.690</code></pre>
-<pre class="r"><code># the &quot;describe&quot; function is the &quot;psych&quot; package
-library(psych)
-describe(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)]) </code></pre>
-<pre><code>##      vars   n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-## day1    1 810 1.77 0.69   1.79    1.77 0.70 0.02 3.69  3.67 0.00    -0.42 0.02
-## day2    2 264 0.96 0.72   0.79    0.87 0.61 0.00 3.44  3.44 1.08     0.76 0.04
-## day3    3 123 0.98 0.71   0.76    0.90 0.61 0.02 3.41  3.39 1.01     0.59 0.06</code></pre>
-<pre class="r"><code># the &quot;stat.desc&quot; function is the &quot;pastec&quot; package
-stat.desc(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FALSE,norm=TRUE)</code></pre>
-<pre><code>##                     day1         day2         day3
-## median        1.79000000 7.900000e-01 7.600000e-01
-## mean          1.77113580 9.609091e-01 9.765041e-01
-## SE.mean       0.02436847 4.436095e-02 6.404352e-02
-## CI.mean.0.95  0.04783289 8.734781e-02 1.267805e-01
-## var           0.48099624 5.195239e-01 5.044934e-01
-## std.dev       0.69353892 7.207801e-01 7.102770e-01
-## coef.var      0.39157862 7.501022e-01 7.273672e-01
-## skewness     -0.00442835 1.082811e+00 1.007813e+00
-## skew.2SE     -0.02577395 3.611574e+00 2.309035e+00
-## kurtosis     -0.42159405 7.554615e-01 5.945454e-01
-## kurt.2SE     -1.22838457 1.264508e+00 6.862946e-01
-## normtest.W    0.99591522 9.083191e-01 9.077516e-01
-## normtest.p    0.03198482 1.281630e-11 3.804486e-07</code></pre>
-<pre class="r"><code>round(stat.desc(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FALSE,norm=TRUE), digits=3) # reduce to 3 significant figures</code></pre>
+<hr />
+</div>
+<div id="resumen-estadístico-de-una-variable" class="section level1">
+<h1>Resumen estadístico de una variable</h1>
+<p>Para ver los estadístico mencionado arriba (menos la moda, oblicuidad y curtosis) se puede usar la función <strong>stat.desc()</strong> del paquete <strong>pastecs</strong>. Para facilitar la lectura de los valores se usa la función "round(x, 3), el tres en esta caso representa la cantidad de valores significativos que se demuestra. Si no usamos <strong>round()</strong> los valores aparece en notación científicas.</p>
+<p>Nota que hay muchos más parámetros calculados. Aparece en la lista en orden el valor mínimo: min, el valor máximo: max, la mediana: median, el promedio: mean, la deviación estandar; std.dev entre otros.</p>
+<pre class="r"><code>round(stat.desc(dlf[,c(&quot;day1&quot;)]), 3)  </code></pre>
+<pre><code>##                  day1
+## nbr.val       810.000
+## nbr.null        0.000
+## nbr.na          0.000
+## min             0.020
+## max             3.690
+## range           3.670
+## sum          1434.620
+## median          1.790
+## mean            1.771
+## SE.mean         0.024
+## CI.mean.0.95    0.048
+## var             0.481
+## std.dev         0.694
+## coef.var        0.392</code></pre>
+<hr />
+</div>
+<div id="resumen-estadistico-de-multiples-variables" class="section level1">
+<h1>Resumen Estadistico de multiples variables</h1>
+<p>Si uno quiere evaluar múltiples variables continua todas juntos se puede usar la misma función pero el componente <strong>c()</strong> se añade todas las variables de interes.</p>
+<pre class="r"><code>round(stat.desc(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FALSE,norm=TRUE), digits=3) # reduce a 3 valores significativo</code></pre>
 <pre><code>##                day1  day2  day3
 ## median        1.790 0.790 0.760
 ## mean          1.771 0.961 0.977
@@ -591,10 +594,81 @@ stat.desc(dlf[,c(&quot;day1&quot;,&quot;day2&quot;,&quot;day3&quot;)], basic=FAL
 ## kurt.2SE     -1.228 1.265 0.686
 ## normtest.W    0.996 0.908 0.908
 ## normtest.p    0.032 0.000 0.000</code></pre>
-<p>Quantiles</p>
-<pre class="r"><code>quantile(dlf$day1,probs=c(0.05, 0.1, 0.25, 0.5,.55, 0.75, 0.95, 0.99), na.rm=TRUE)</code></pre>
-<pre><code>##     5%    10%    25%    50%    55%    75%    95%    99% 
-## 0.5945 0.8490 1.3125 1.7900 1.8800 2.2300 2.9055 3.3173</code></pre>
+<hr />
+</div>
+<div id="los-cuantiles" class="section level1">
+<h1>Los Cuantiles</h1>
+<p>Los cuantiles son los valores a intervalos específicos de una variable aleatoria continua. Los cuantiles son frecuentemente una mejor interpretación de la distribución cuando los valores no tienen una distribución normal. Típicamente, la distribución se divide en 4 partes con las siguientes partes (los cuantiles 0.25, 0.50 = la mediana, 0.75) y se define como <strong>cuartiles</strong>. Para meas detalle pueden ver el siguiente enlace <a href="https://en.wikipedia.org/wiki/Quantile" class="uri">https://en.wikipedia.org/wiki/Quantile</a>.</p>
+<p>En el siguiente ejemplo se demuestra como tulizar la función <strong>quantiles</strong> y seleccionar los cuantiles deseados con el comopnente de <strong>probs=c(x,x,x)</strong>.</p>
+<pre class="r"><code>quantile(dlf$day1,probs=c(0.05, 0.1, 0.25, 0.5, 0.75, 0.95, 0.99), na.rm=TRUE)</code></pre>
+<pre><code>##     5%    10%    25%    50%    75%    95%    99% 
+## 0.5945 0.8490 1.3125 1.7900 2.2300 2.9055 3.3173</code></pre>
+<p>Se puede usar también la función <strong>describe</strong> en el paquete <strong>pshych</strong> que le da automáticamente estos cuantiles.</p>
+<pre class="r"><code>describe(dlf$day1)</code></pre>
+<pre><code>##    vars   n mean   sd median trimmed mad  min  max range skew kurtosis   se
+## X1    1 810 1.77 0.69   1.79    1.77 0.7 0.02 3.69  3.67    0    -0.42 0.02</code></pre>
+<hr />
+</div>
+<div id="el-indice-de-oblicuidad-skewness" class="section level1">
+<h1>El indice de Oblicuidad: Skewness</h1>
+<p>Primero voy a crear tres conjuntos de datos</p>
+<ol style="list-style-type: decimal">
+<li>con distribución normal</li>
+<li>oblicuidad a la izquierda</li>
+<li>oblicuidad a la derecha</li>
+</ol>
+<pre class="r"><code>normal=rnorm(100000, .5, .15)
+obliz=rbeta(100000, 1.5,5)
+obldr=rbeta(100000, 5.5,2)
+
+normal=as.tibble(normal)
+
+obliz=as.tibble(obliz)
+
+obldr=as.tibble(obldr)</code></pre>
+<p>Ahora unimos los data frames y se añade nombres a las columnas</p>
+<pre class="r"><code>df=cbind(normal, obliz, obldr)
+head(df, n=2)</code></pre>
+<pre><code>##       value      value     value
+## 1 0.5455762 0.04812412 0.7432032
+## 2 0.5928262 0.02001689 0.9152117</code></pre>
+<pre class="r"><code>df &lt;- setNames(df, c(&quot;normal&quot;,&quot;obliz&quot;,&quot;obldr&quot;))
+
+head(df, n=2)</code></pre>
+<pre><code>##      normal      obliz     obldr
+## 1 0.5455762 0.04812412 0.7432032
+## 2 0.5928262 0.02001689 0.9152117</code></pre>
+<p>El próximo paso es apilar cada columna una sobre la otra. La razón que queremos esto es que deseamos reproducir las variables en un mismo gráfico</p>
+<pre class="r"><code>library(tidyverse)
+df2=df%&gt;%
+  gather(key = &quot;Distribución&quot;, value=&quot;valor&quot;, c(normal, obliz, obldr))
+head(df2, n=3)</code></pre>
+<pre><code>##   Distribución     valor
+## 1       normal 0.5455762
+## 2       normal 0.5928262
+## 3       normal 0.6755666</code></pre>
+<pre class="r"><code># unique(df2$Distribución) función  para ver el nombre de las variables en la columna Distribución</code></pre>
+<p>Ahora vamos a ver los datos un gráfico. Vemos que la distribución de los datos son muy diferentes, tanto la distribución en azul y verde están sesgado a unos valores y tienen una cola o valores más grande (azul) o pequeños (verde) que si fuese una distribución normal.</p>
+<pre class="r"><code>ggplot(df2, (aes(valor, colour=Distribución)))+
+  geom_density()+
+  xlim(-.01,1)</code></pre>
+<p><img src="T4a_Estadistica_descriptiva_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Ahora se calcula el indice de oblicuidad y comparamos los valores. Como regla cuando el nivel de oblicuidad esta entre</p>
+<ol style="list-style-type: decimal">
+<li>-0.5 y 0.5 se considera dentro de una distribución simétrica (normal).</li>
+<li>-1.0 y -0.5 o entre 0.5 y 1.o los valores tienen una oblicuidad moderada.</li>
+<li>Menor de -1.0 o mayor de 1.0 los datos tienen una oblicuidad grande.</li>
+</ol>
+<p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de <strong>skewness</strong> en el paquete <strong>e1071</strong></p>
+<p>Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos sesgado a la izquierda el indice de oblicuidad es positivo y el sesgado a derecha es negativo.</p>
+<pre class="r"><code>library(e1071)
+e1071::skewness(normal$value) # la oblicuidad de los datos de una distribución normal</code></pre>
+<pre><code>## [1] 0.008323573</code></pre>
+<pre class="r"><code>e1071::skewness(obliz$value) # la oblicuidad de los datos sesgado a la izquierda</code></pre>
+<pre><code>## [1] 0.8330537</code></pre>
+<pre class="r"><code>e1071::skewness(obldr$value) # la oblicuidad de los datos sesgado a la derecha</code></pre>
+<pre><code>## [1] -0.6469248</code></pre>
+</div>
 
 
 
