@@ -732,8 +732,8 @@ head(df2, n=3)</code></pre>
 ## 2       normal  0.7267074
 ## 3       normal  0.6100281</code></pre>
 <pre class="r"><code># unique(df2$Distribución) #función  para ver el nombre de las variables en la columna Distribución</code></pre>
-<p>Ahora vamos a ver los datos un gráfico. Vemos que la distribución de los datos son muy diferentes, los que tiene que concentrar no es el pico de la distribución pero las colas de los datos. Nota la distribución normal que es de color amarillo, y comparar si la colas estan por debajo o por encima de esta distribución normal.</p>
-<p>Tanto la distribución uniforme y normal reducido (normalR) las curva va de bajo la curva normal. Esto indica que hay Los datos con la distribución azul, tienen los datos concentrado alrededor del promedio mucho más que los la linea roja. Al contrarío la linea verde demuestra que los datos están muy diferentes del promedio.</p>
+<p>Ahora vamos a ver los datos en un gráfico. Vemos que la distribución de los datos son muy diferentes, Tiene que concentrar no en el pico de la distribución pero las colas de los datos. Nota la distribución normal que es de color amarillo, y comparar si la colas están por debajo o por encima de esta distribución normal.</p>
+<p>Tanto la distribución uniforme (color rosa) y normal reducido (normalR, color azul) las curvas pasan de bajo la curva normal. Al contrarío la linea verde y roja son distribuciones que pasan por encima de la curva normal, entonces las colas son más predominante.</p>
 <pre class="r"><code>whole=ggplot(df2, (aes(valor, colour=Distribución)))+
   geom_density(adjust=5)+
   xlim(-5,5) 
@@ -741,22 +741,22 @@ head(df2, n=3)</code></pre>
 sub=ggplot(df2, (aes(valor, colour=Distribución)))+
   geom_density()+
    theme_bw() +
-  scale_x_continuous(limits=c(-3, 1)) + 
+  scale_x_continuous(limits=c(-5, 1)) + 
   scale_y_continuous(limits=c(0, .1)) +
   theme(legend.position= &quot;none&quot;)
 
 
 sub + annotation_custom(
     ggplotGrob(whole),
-    xmin = -1, xmax = 1, ymin = 0.025, ymax = 0.075)</code></pre>
+    xmin = -1.8, xmax = 1.4, ymin = 0.005, ymax = 0.075)</code></pre>
 <p><img src="T4a_Estadistica_descriptiva_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p>Ahora se calcula el indice de curtosis y comparamos los valores. Como regla cuando el nivel de curtosis esta significativo si los valores de curtosis se enuentra en los siguientes rangos, y se acerca cero no hay curtosis (lo que uno espera para una distribución normal.</p>
+<p>Ahora se calcula el indice de curtosis y comparamos los valores. Como regla el nivel de curtosis esta significativo si los valores de curtosis se enuentra en los siguientes rangos, y se acerca cero no hay curtosis (lo que uno espera para una distribución normal.</p>
 <ol style="list-style-type: decimal">
 <li>Menor de -1.0 los datos están muy aplanados (Uniforme, normalR).</li>
-<li>Mayor de 1.0 (la distribución de Laplace)</li>
+<li>Mayor de 1.0 (la distribución de Laplace).</li>
 </ol>
-<p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de <strong>skewness</strong> en el paquete <strong>e1071</strong></p>
-<p>Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos sesgado a la izquierda el indice de oblicuidad es positivo y el sesgado a derecha es negativo.</p>
+<p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de <strong>kurtosis</strong> en el paquete <strong>e1071</strong></p>
+<p>Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos que tienen exceso de cola el valor de curtosis es negativos y cuando el valor de curtosis es positivo hay exceso de datos en la cola.</p>
 <pre class="r"><code>library(e1071)
 e1071::kurtosis(normal$value) # la oblicuidad de los datos de una distribución normal</code></pre>
 <pre><code>## [1] 0.006270625</code></pre>

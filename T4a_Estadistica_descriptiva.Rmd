@@ -347,15 +347,15 @@ sub + annotation_custom(
 ```
 
 
-Ahora se calcula el indice de curtosis y comparamos los valores.  Como regla cuando el nivel de curtosis esta significativo si los valores de curtosis se enuentra en los siguientes rangos, y se acerca cero no hay curtosis (lo que uno espera para una distribución normal.
+Ahora se calcula el indice de curtosis y comparamos los valores.  Como regla el nivel de curtosis esta significativo si los valores de curtosis se enuentra en los siguientes rangos, y se acerca cero no hay curtosis (lo que uno espera para una distribución normal.
 
 1. Menor de -1.0 los datos están muy aplanados (Uniforme, normalR).
-2. Mayor de 1.0 (la distribución de Laplace)
+2. Mayor de 1.0 (la distribución de Laplace).  
 
 
-Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de **skewness** en el paquete **e1071**
+Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de **kurtosis** en el paquete **e1071**
 
-Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos sesgado a la izquierda el indice de oblicuidad es positivo y el sesgado a derecha es negativo.  
+Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos que tienen exceso de cola el valor de curtosis es negativos y cuando el valor de curtosis es positivo hay exceso de datos en la cola.
 
 ```{r}
 library(e1071)
