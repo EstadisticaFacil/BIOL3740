@@ -359,11 +359,11 @@ Para los datos de una distribución normal el valor es muy cerca a cero. Para lo
 
 ```{r}
 library(e1071)
-e1071::kurtosis(normal$value) # la oblicuidad de los datos de una distribución normal
-e1071::kurtosis(normalR$value) # la oblicuidad de los datos sesgado a la izquierda
-e1071::kurtosis(normalE$value) # la oblicuidad de los datos sesgado a la derecha
-e1071::kurtosis(Unif$value)
-e1071::kurtosis(laplace$value) 
+e1071::kurtosis(normal$value) # curtosis de los datos de una distribución normal
+e1071::kurtosis(normalR$value) # curtosis de los datos restringido
+e1071::kurtosis(normalE$value) # curtosis de los datos con más colas
+e1071::kurtosis(Unif$value) # curtosis de distribución informe, falta de colas
+e1071::kurtosis(laplace$value) # curtosis de distribución Laplace, exceso de colas
 
 ```
 

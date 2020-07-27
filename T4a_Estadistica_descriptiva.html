@@ -758,15 +758,15 @@ sub + annotation_custom(
 <p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de <strong>kurtosis</strong> en el paquete <strong>e1071</strong></p>
 <p>Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos que tienen exceso de cola el valor de curtosis es negativos y cuando el valor de curtosis es positivo hay exceso de datos en la cola.</p>
 <pre class="r"><code>library(e1071)
-e1071::kurtosis(normal$value) # la oblicuidad de los datos de una distribución normal</code></pre>
+e1071::kurtosis(normal$value) # curtosis de los datos de una distribución normal</code></pre>
 <pre><code>## [1] 0.006270625</code></pre>
-<pre class="r"><code>e1071::kurtosis(normalR$value) # la oblicuidad de los datos sesgado a la izquierda</code></pre>
+<pre class="r"><code>e1071::kurtosis(normalR$value) # curtosis de los datos restringido</code></pre>
 <pre><code>## [1] -0.9963403</code></pre>
-<pre class="r"><code>e1071::kurtosis(normalE$value) # la oblicuidad de los datos sesgado a la derecha</code></pre>
+<pre class="r"><code>e1071::kurtosis(normalE$value) # curtosis de los datos con más colas</code></pre>
 <pre><code>## [1] 0.9434295</code></pre>
-<pre class="r"><code>e1071::kurtosis(Unif$value)</code></pre>
+<pre class="r"><code>e1071::kurtosis(Unif$value) # curtosis de distribución informe, falta de colas</code></pre>
 <pre><code>## [1] -1.189785</code></pre>
-<pre class="r"><code>e1071::kurtosis(laplace$value) </code></pre>
+<pre class="r"><code>e1071::kurtosis(laplace$value) # curtosis de distribución Laplace, exceso de colas</code></pre>
 <pre><code>## [1] 3.033305</code></pre>
 </div>
 

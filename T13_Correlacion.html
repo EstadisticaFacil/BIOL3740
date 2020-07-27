@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>T13_Correlacion</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BIOL 3740</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Descripción.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Calendario</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Instalación y Introducción básica
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Instalar-R-RStudio.html">Instalar R y RStudio</a>
+    </li>
+    <li>
+      <a href="Introducción_RMarkdown.html">RMarkdown</a>
+    </li>
+    <li>
+      <a href="Codigos_basicos_en_R.html">Codigos Básicos en R</a>
+    </li>
+    <li>
+      <a href="R_basico.html">R Básico #2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Temas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="T1_Intro.html">T1 Introducción a la Estadística</a>
+    </li>
+    <li>
+      <a href="T1a_Poblacion_Muestra.html">T1a Población, Muestreo y Sesgo</a>
+    </li>
+    <li>
+      <a href="T1b_Inferencias_hipotesis.html">T1b Inferencias y hipotesis</a>
+    </li>
+    <li>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
+    </li>
+    <li>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
+    </li>
+    <li>
+      <a href="T4_Medidas_dispersión.html">T4 Medidas de Dispersión</a>
+    </li>
+    <li>
+      <a href="T4a_Estadistica_descriptiva.html">T4a Estadística Descriptiva</a>
+    </li>
+    <li>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
+    </li>
+    <li>
+      <a href="T6_supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
+    </li>
+    <li>
+      <a href="T7_Frecuencias.html">T7 Pruebas de Bondad de Ajuste</a>
+    </li>
+    <li>
+      <a href="T8_Distribucion_Normal.html">T8 La Distribución Normal</a>
+    </li>
+    <li>
+      <a href="T13_Correlacion_Covarianza.html">T13 Correlación y Covarianza</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejercicios
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Plataforma.html">Ejercico Plataforma de RStudio</a>
+    </li>
+    <li>
+      <a href="RMarkdown.html">Ejercico Plataforma de RMarkdown</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Datos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Archivos_de_Datos.html">Archivos de Datos</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">T13_Correlacion</h1>
+
+</div>
+
+
+<p>Fecha de la ultima revisión</p>
+<pre><code>## [1] &quot;2020-07-27&quot;</code></pre>
+<div id="install-packages" class="section level2">
+<h2>Install packages</h2>
+<p>La correlaciones son métodos para evaluar la relación entre dos o más variables.</p>
+<p>Ejemplos</p>
+<ol style="list-style-type: decimal">
+<li>La cantidad de colesterol, LDL (lipoproteínas de baja densidad) y HDL (lipoproteínas de alta densidad).</li>
+<li>La concentración de vitamina C y la absorción de calcio.</li>
+<li>La consumo de alcohol y la concentración de alcohol en la sangre.</li>
+</ol>
+<p>Los analísis se hacen comparando las variables continuas en pares. La covarianza es la medida de variabilidad conjunta entre dos variables.</p>
+<p>Primero recordamos la formula para calcular la varianza de una variable</p>
+<p><span class="math display">\[s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{ (x_{ i }-\bar { x } ) } ^{ 2 } }{ n-1 }\]</span></p>
+<p>Ahora la vamos a descomponer</p>
+<p><span class="math display">\[s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{ (x_{ i }-\bar{ x } ) } (x_{ i }-\bar { x } ) }{ n-1 }\]</span></p>
+</div>
+<div id="correlación-de-pearson" class="section level1">
+<h1>Correlación de Pearson</h1>
+<p>Esta la más común y conocida como el Coeficiente de correlación de Pearson. Nota ahora que tenemos dos variables <strong>x</strong> y <strong>y</strong>.</p>
+<p>Podemos ver cual es la relación entre la edad de los estudiantes y cuantas veces fueron a Disney en Orlando, Florida. El objetivo es evaluar el covarianza entre una variable y otra.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Personas</th>
+<th>Maria</th>
+<th>Juan</th>
+<th>José</th>
+<th>Carla</th>
+<th>Luis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Edad (x)</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>13</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>Veces a Disney (y)</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td>6</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>La siguiente formula muestra el calculo para el coeffciente de Pearson <span class="math inline">\(\rho\)</span> que se dice <strong>rho</strong></p>
+<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1({ s }_{ x }{ s }_{ y }) }\]</span></p>
+<p>Ceamos</p>
+<pre class="r"><code>Edad&lt;-c(8,9,10,13,15)
+Disney&lt;-c(5,4,4,6,8)
+dfDisney&lt;-data.frame(Edad, Disney) # unir las listas en un data frame
+dfDisney</code></pre>
+<pre><code>##   Edad Disney
+## 1    8      5
+## 2    9      4
+## 3   10      4
+## 4   13      6
+## 5   15      8</code></pre>
+<p>Un gráfico de Correlacion sencilla</p>
+<pre class="r"><code>scatter&lt;-ggplot(dfDisney, aes(x=Edad, y=Disney))
+scatter + geom_point(colour=&quot;purple&quot;)+
+  geom_hline(aes(yintercept=mean(Disney)))+ # las lineas representa el promedio de la variable en *y* los valores
+  geom_vline(aes(xintercept=mean(Edad))) # las lineas representa el promedio de la variable en *x* los valores</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/graph%20correlations-1.png" width="60%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="el-rango-del-coeficiente-pearson" class="section level1">
+<h1>El rango del coeficiente Pearson</h1>
+<p>El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta positiva, en otra palabra la <strong>x</strong> predice exactamente el valor de <strong>y</strong>. Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la <strong>x</strong> y <strong>y</strong>. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.</p>
+<p>Los supuestos del modelo</p>
+<ol style="list-style-type: decimal">
+<li>Uno de los supuestos de la prueba de análisis de Pearson, es que las dos variables tenga una distribución normal, <strong>Nornal bivariada</strong>.</li>
+<li>Las variables tienen que tener una correlación lineal (no por cuadrática o logarítmica).</li>
+</ol>
+<p>Para visualizar una distribución vea lo siguiente. Nota que ls dos variables tienen una distribución normal.</p>
+<p>Este gráfico proviene del siguiente website <a href="http://lertap5.com/RMCS2017/HTML/bivariate-normal.html" class="uri">http://lertap5.com/RMCS2017/HTML/bivariate-normal.html</a></p>
+<p><img src="Graficos/Bivariate_normal.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Dealing with missing values use the following function use = “pairwise.complete.obs”.</p>
+<div id="kendall-correlation" class="section level2">
+<h2>Kendall Correlation</h2>
+<p>In statistics, the Kendall rank correlation coefficient, commonly referred to as Kendall’s tau coefficient (after the Greek letter τ), is a statistic used to measure the ordinal association between two measured quantities. A tau test is a non-parametric hypothesis test for statistical dependence based on the tau coefficient.</p>
+<p>It is a measure of rank correlation: the similarity of the orderings of the data when ranked by each of the quantities. It is named after Maurice Kendall, who developed it in 1938,[1] though Gustav Fechner had proposed a similar measure in the context of time series in 1897.</p>
+<p>Intuitively, the Kendall correlation between two variables will be high when observations have a similar (or identical for a correlation of 1) rank (i.e. relative position label of the observations within the variable: 1st, 2nd, 3rd, etc.) between the two variables, and low when observations have a dissimilar (or fully different for a correlation of -1) rank between the two variables.</p>
+</div>
+<div id="spearman-correlation" class="section level2">
+<h2>Spearman Correlation</h2>
+<p>In statistics, Spearman’s rank correlation coefficient or Spearman’s rho, named after Charles Spearman and often denoted by the Greek letter ρ(rho), is a nonparametric measure of rank correlation (statistical dependence between the rankings of two variables). It assesses how well the relationship between two variables can be described using a monotonic function.</p>
+<p>The Spearman correlation between two variables is equal to the Pearson correlation between the rank values of those two variables; while Pearson’s correlation assesses linear relationships, Spearman’s correlation assesses monotonic relationships (whether linear or not). If there are no repeated data values, a perfect Spearman correlation of +1 or −1 occurs when each of the variables is a perfect monotone function of the other.</p>
+<p>Intuitively, the Spearman correlation between two variables will be high when observations have a similar (or identical for a correlation of 1) rank (i.e. relative position label of the observations within the variable: 1st, 2nd, 3rd, etc.) between the two variables, and low when observations have a dissimilar (or fully opposed for a correlation of −1) rank between the two variables.</p>
+</div>
+</div>
+<div id="the-strenght-of-the-correlation-is-based-on-the-absolute-number" class="section level1">
+<h1>THE STRENGHT of the correlation is based on the ABSOLUTE NUMBER</h1>
+<p>Using use = “everything”, Si Hay 1 “NA” en la los datos, elimina la variable completa use = “complete.obs”, Si hay 1 “NA”, Elimina el individuo que tiene NA para todas los calculos use = “pairwise.complete.obs”, Si hay un “NA”, Elimina el individuo solamente si el par evaluado tiene un “NA”.</p>
+<p>Whereas with use=“pairwise.complete.obs” , the cases with missing values are only removed during the calculation of each pairwise correlation. Thus we see that the correlation between x and z is the same in both matrices but the correlation between y and both x and z depends on the use method (with dramatic effect).</p>
+<pre class="r"><code>#-----Dealing with misisng cases
+
+adverts&lt;-c(15,14,14,6,2)
+comprasNA&lt;-c(8,9,10,NA,15)
+age&lt;-c(5, 12, 16, 9, 14)
+advertNA&lt;-data.frame(adverts, comprasNA, age)
+
+head(advertNA)</code></pre>
+<pre><code>##   adverts comprasNA age
+## 1      15         8   5
+## 2      14         9  12
+## 3      14        10  16
+## 4       6        NA   9
+## 5       2        15  14</code></pre>
+<pre class="r"><code>cor(advertNA, use = &quot;everything&quot;,  method = &quot;pearson&quot;)</code></pre>
+<pre><code>##              adverts comprasNA        age
+## adverts    1.0000000        NA -0.2194619
+## comprasNA         NA         1         NA
+## age       -0.2194619        NA  1.0000000</code></pre>
+<pre class="r"><code>cor(advertNA, use = &quot;complete.obs&quot;,  method = &quot;pearson&quot;)</code></pre>
+<pre><code>##              adverts  comprasNA        age
+## adverts    1.0000000 -0.9794293 -0.3799803
+## comprasNA -0.9794293  1.0000000  0.5486947
+## age       -0.3799803  0.5486947  1.0000000</code></pre>
+<pre class="r"><code>cor(advertNA, use = &quot;pairwise.complete.obs&quot;,  method = &quot;pearson&quot;) # Comunente usado.  </code></pre>
+<pre><code>##              adverts  comprasNA        age
+## adverts    1.0000000 -0.9794293 -0.2194619
+## comprasNA -0.9794293  1.0000000  0.5486947
+## age       -0.2194619  0.5486947  1.0000000</code></pre>
+<pre class="r"><code>cor(advertNA, use = &quot;pairwise.complete.obs&quot;,  method = &quot;kendall&quot;)   </code></pre>
+<pre><code>##              adverts  comprasNA        age
+## adverts    1.0000000 -0.9128709 -0.3162278
+## comprasNA -0.9128709  1.0000000  0.6666667
+## age       -0.3162278  0.6666667  1.0000000</code></pre>
+<pre class="r"><code>cor(advertNA, use = &quot;pairwise.complete.obs&quot;,  method = &quot;spearman&quot;) # n= 30 or more</code></pre>
+<pre><code>##              adverts  comprasNA        age
+## adverts    1.0000000 -0.9486833 -0.4103913
+## comprasNA -0.9486833  1.0000000  0.8000000
+## age       -0.4103913  0.8000000  1.0000000</code></pre>
+<p>Anxiety data</p>
+<pre class="r"><code>library(readr)
+Exam_Anxiety &lt;- read_csv(&quot;~/Google Drive/Biometry/Biometria 2015/Biometria_2015_RStudio/Data files/Exam_Anxiety.csv&quot;)
+examData=Exam_Anxiety
+head(examData)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##    Code Revise  Exam Anxiety Gender
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
+## 1     1      4    40    86.3 Male  
+## 2     2     11    65    88.7 Female
+## 3     3     27    80    70.2 Male  
+## 4     4     53    80    61.3 Male  
+## 5     5      4    40    89.5 Male  
+## 6     6     22    70    60.5 Female</code></pre>
+<p>Correlation anaylisis between anxiety, Exam and time for study (revise)</p>
+<pre class="r"><code>cor(examData$Exam, examData$Anxiety, use = &quot;complete.obs&quot;,
+    method = &#39;pearson&#39;)</code></pre>
+<pre><code>## [1] -0.4409934</code></pre>
+<pre class="r"><code>examData2 &lt;- examData[, c(&quot;Exam&quot;, &quot;Anxiety&quot;, &quot;Revise&quot;)]
+head(examData2)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##    Exam Anxiety Revise
+##   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1    40    86.3      4
+## 2    65    88.7     11
+## 3    80    70.2     27
+## 4    80    61.3     53
+## 5    40    89.5      4
+## 6    70    60.5     22</code></pre>
+<pre class="r"><code>cor(examData2)  # range from -1 to + 1</code></pre>
+<pre><code>##               Exam    Anxiety     Revise
+## Exam     1.0000000 -0.4409934  0.3967207
+## Anxiety -0.4409934  1.0000000 -0.7092493
+## Revise   0.3967207 -0.7092493  1.0000000</code></pre>
+<pre class="r"><code>cor(examData[, c(&quot;Exam&quot;, &quot;Anxiety&quot;, &quot;Revise&quot;)])</code></pre>
+<pre><code>##               Exam    Anxiety     Revise
+## Exam     1.0000000 -0.4409934  0.3967207
+## Anxiety -0.4409934  1.0000000 -0.7092493
+## Revise   0.3967207 -0.7092493  1.0000000</code></pre>
+<pre class="r"><code>cor(examData2)^2 * 100 # Ranges from 0 to 100  The proportion of the variance explained</code></pre>
+<pre><code>##              Exam   Anxiety    Revise
+## Exam    100.00000  19.44752  15.73873
+## Anxiety  19.44752 100.00000  50.30345
+## Revise   15.73873  50.30345 100.00000</code></pre>
+<pre class="r"><code>#Coeficiente de determinación</code></pre>
+<p>Using the corr.test function</p>
+<pre class="r"><code>ggplot(examData2,aes(Revise, Anxiety))+
+  geom_point()</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(examData,aes(Revise, Exam, colour=Gender))+
+  geom_point()</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>cor.test(examData$Anxiety, examData$Exam)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  examData$Anxiety and examData$Exam
+## t = -4.938, df = 101, p-value = 3.128e-06
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.5846244 -0.2705591
+## sample estimates:
+##        cor 
+## -0.4409934</code></pre>
+<pre class="r"><code>cor.test(examData$Revise, examData$Exam)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  examData$Revise and examData$Exam
+## t = 4.3434, df = 101, p-value = 3.343e-05
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.2200938 0.5481602
+## sample estimates:
+##       cor 
+## 0.3967207</code></pre>
+<pre class="r"><code>cor.test(examData$Anxiety, examData$Revise)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  examData$Anxiety and examData$Revise
+## t = -10.111, df = 101, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.7938168 -0.5977733
+## sample estimates:
+##        cor 
+## -0.7092493</code></pre>
+</div>
+<div id="bivariate-plot-to-evaluate-the-distribution-of-both-variables" class="section level1">
+<h1>Bivariate plot to evaluate the distribution of both variables</h1>
+<p><a href="https://deanattali.com/2015/03/29/ggExtra-r-package/" class="uri">https://deanattali.com/2015/03/29/ggExtra-r-package/</a></p>
+<p>Remember this code from chapter 5</p>
+<pre class="r"><code>library(tidyverse)
+a=rnorm(400, 0, 1)
+b=rnorm(400, 0, 1.1)
+#b=rbeta(400, 3, 1)
+df=data.frame(a,b)
+head(df)</code></pre>
+<pre><code>##             a           b
+## 1 -0.27459678 -1.12045180
+## 2  0.95042947  1.07616685
+## 3  0.69398492  1.42233531
+## 4 -0.01744583 -1.42360119
+## 5  0.44309324  0.01058994
+## 6  0.97674117 -0.03268944</code></pre>
+<pre class="r"><code>out &lt;- stack(df)
+out  </code></pre>
+<pre><code>##            values ind
+## 1   -0.2745967819   a
+## 2    0.9504294721   a
+## 3    0.6939849212   a
+## 4   -0.0174458323   a
+## 5    0.4430932438   a
+## 6    0.9767411651   a
+## 7    1.3586678770   a
+## 8    2.3731041136   a
+## 9   -2.1535869253   a
+## 10   0.7431171952   a
+## 11  -3.2351823949   a
+## 12   0.7820248067   a
+## 13   1.4566454390   a
+## 14  -0.5738215483   a
+## 15  -0.8791843544   a
+## 16   0.8488400961   a
+## 17   1.0535740685   a
+## 18  -1.0656444110   a
+## 19   0.3478661888   a
+## 20   1.9398483800   a
+## 21  -0.6618739869   a
+## 22  -0.7742460688   a
+## 23  -0.2009666602   a
+## 24   0.0496643146   a
+## 25  -0.4535009797   a
+## 26  -0.3919817380   a
+## 27  -0.2038484066   a
+## 28  -1.5059946174   a
+## 29  -1.1268615288   a
+## 30   0.6387620912   a
+## 31   3.0328136316   a
+## 32   1.1423853911   a
+## 33   0.1444279988   a
+## 34  -0.0600566390   a
+## 35   0.2316358735   a
+## 36   0.0454440533   a
+## 37   0.1140232372   a
+## 38   1.0048564637   a
+## 39  -0.3865626791   a
+## 40   0.1080425883   a
+## 41  -0.2194326353   a
+## 42  -0.1685376467   a
+## 43   0.1374647539   a
+## 44  -0.5401962810   a
+## 45   0.8091938568   a
+## 46  -0.4177451231   a
+## 47  -0.3561001465   a
+## 48  -0.4105593617   a
+## 49  -0.0595008194   a
+## 50   1.6396220229   a
+## 51  -0.7395307539   a
+## 52   0.9125150521   a
+## 53   0.1550836733   a
+## 54  -1.9569461865   a
+## 55  -1.5549729693   a
+## 56   1.3493925936   a
+## 57  -0.9477501261   a
+## 58  -0.9231020261   a
+## 59  -0.3460991835   a
+## 60  -0.5317586857   a
+## 61  -0.0866641608   a
+## 62  -0.3039537736   a
+## 63  -0.5812512727   a
+## 64  -1.6636391478   a
+## 65  -0.7333973230   a
+## 66   0.9428877608   a
+## 67  -0.5213913124   a
+## 68   0.9349000456   a
+## 69   0.3638122759   a
+## 70   0.9762627957   a
+## 71   0.4164266027   a
+## 72  -0.8076760975   a
+## 73   1.0850514189   a
+## 74  -0.3348310678   a
+## 75   0.3548655921   a
+## 76  -0.2302436839   a
+## 77   0.7489898310   a
+## 78   0.5081872652   a
+## 79  -0.7743044684   a
+## 80   1.6436421503   a
+## 81   0.7131021729   a
+## 82  -0.9183368580   a
+## 83   0.1894011693   a
+## 84   2.2772760027   a
+## 85   1.2452049776   a
+## 86   1.4057503630   a
+## 87  -0.8998633912   a
+## 88  -1.3468449106   a
+## 89   1.3061737858   a
+## 90   1.6571978152   a
+## 91   0.3770981760   a
+## 92   0.3895803853   a
+## 93   0.6997020862   a
+## 94  -1.3980640031   a
+## 95  -0.1002694628   a
+## 96  -0.2032714317   a
+## 97   2.6692876538   a
+## 98   1.4480388716   a
+## 99  -0.0353585119   a
+## 100  0.9056697865   a
+## 101  0.3476987040   a
+## 102  0.2662452557   a
+## 103 -0.4340768263   a
+## 104 -0.2515163436   a
+## 105  0.6183394678   a
+## 106 -0.1318190374   a
+## 107  1.3281827981   a
+## 108  2.2322618513   a
+## 109  0.6673660097   a
+## 110 -0.0543454853   a
+## 111 -0.1713886453   a
+## 112  1.5980030956   a
+## 113  1.8998251640   a
+## 114 -0.9720491980   a
+## 115  0.5768242796   a
+## 116  0.4906412707   a
+## 117 -0.5979560067   a
+## 118  1.5087553060   a
+## 119  0.5474796228   a
+## 120 -0.4555114237   a
+## 121 -0.2002610304   a
+## 122 -0.6806998634   a
+## 123 -0.4930649544   a
+## 124 -0.7864507244   a
+## 125  0.7698578820   a
+## 126 -2.1347027515   a
+## 127 -0.3305912902   a
+## 128 -0.5772459943   a
+## 129 -0.2027354055   a
+## 130  1.6327075413   a
+## 131  0.1128999106   a
+## 132 -1.7767176972   a
+## 133 -0.1188976848   a
+## 134  0.8083540360   a
+## 135  0.8823148503   a
+## 136 -0.3786620379   a
+## 137 -0.7578578540   a
+## 138 -0.1972562350   a
+## 139 -0.7750676858   a
+## 140 -1.1060172249   a
+## 141 -0.4788873420   a
+## 142 -1.4293519673   a
+## 143  0.5902419689   a
+## 144 -0.0466308886   a
+## 145 -2.1376707179   a
+## 146 -0.0259175983   a
+## 147  0.6799375286   a
+## 148  0.5741239473   a
+## 149  0.2041064659   a
+## 150 -1.8874562556   a
+## 151 -1.4252540575   a
+## 152  1.1140937578   a
+## 153  0.3797293192   a
+## 154 -0.8284974571   a
+## 155 -0.8301743633   a
+## 156 -0.1127424215   a
+## 157 -2.2680356506   a
+## 158 -1.0086609172   a
+## 159 -0.0916449192   a
+## 160 -0.6658685422   a
+## 161 -1.2970604091   a
+## 162  0.1029552574   a
+## 163  1.7632524013   a
+## 164  0.0200518217   a
+## 165 -0.3304748575   a
+## 166 -0.9176635657   a
+## 167 -2.2489290966   a
+## 168  0.1735529268   a
+## 169 -0.9847580334   a
+## 170 -2.0434736285   a
+## 171  0.2416003448   a
+## 172 -0.1398523060   a
+## 173  0.8076370122   a
+## 174 -0.6575170503   a
+## 175  0.2946063929   a
+## 176  0.4592428770   a
+## 177 -0.3206287014   a
+## 178  0.3894153073   a
+## 179 -0.1967747123   a
+## 180  1.3487224494   a
+## 181 -0.5154906182   a
+## 182  0.9012368982   a
+## 183  0.4647494080   a
+## 184 -0.7549196235   a
+## 185  0.2261773963   a
+## 186 -1.8540667137   a
+## 187  1.7716306869   a
+## 188  0.6790127334   a
+## 189 -0.4023870225   a
+## 190  0.6469203045   a
+## 191  0.3435233713   a
+## 192  1.6779479007   a
+## 193 -0.7922542593   a
+## 194  0.4667190188   a
+## 195  0.5913356932   a
+## 196 -0.7817959030   a
+## 197  0.0912695893   a
+## 198  0.7757822959   a
+## 199  0.4265389137   a
+## 200 -0.3678943471   a
+## 201 -2.0131870657   a
+## 202 -0.2384155701   a
+## 203  0.6662050989   a
+## 204 -1.3850448385   a
+## 205  0.0024111778   a
+## 206  0.4753911810   a
+## 207  0.2404593482   a
+## 208  1.3267226351   a
+## 209  1.5956941963   a
+## 210  1.4997446986   a
+## 211 -0.6261388289   a
+## 212  0.2206967219   a
+## 213 -2.3734114848   a
+## 214  1.1420258595   a
+## 215  0.5217850131   a
+## 216  1.2731838197   a
+## 217  0.8168507369   a
+## 218 -0.2929149253   a
+## 219 -2.3923622009   a
+## 220 -1.2082949498   a
+## 221 -1.5300552669   a
+## 222  0.2791868272   a
+## 223  0.4454341735   a
+## 224 -0.2472743074   a
+## 225 -0.2586844049   a
+## 226 -0.1002662513   a
+## 227 -0.4683162371   a
+## 228  1.5279422351   a
+## 229 -0.5674889429   a
+## 230 -0.0245939684   a
+## 231 -0.6099176452   a
+## 232 -1.0553900625   a
+## 233 -0.9485437693   a
+## 234 -0.3594921283   a
+## 235  0.4816260798   a
+## 236 -1.4547035755   a
+## 237 -0.1192155443   a
+## 238 -0.6399998185   a
+## 239 -1.0800647805   a
+## 240 -0.3608023153   a
+## 241 -1.1079102410   a
+## 242  0.2109093161   a
+## 243  0.6989671722   a
+## 244 -0.3965826323   a
+## 245 -0.4565925645   a
+## 246  1.2635990843   a
+## 247  0.3091611800   a
+## 248 -1.1626716771   a
+## 249  2.0311391794   a
+## 250  0.1157698728   a
+## 251 -0.2272180836   a
+## 252  1.6544171022   a
+## 253  2.0270243911   a
+## 254 -0.2050304804   a
+## 255 -0.2270170436   a
+## 256  0.7602617058   a
+## 257  0.1198582648   a
+## 258  0.4948381562   a
+## 259 -0.7634168076   a
+## 260 -1.3292476380   a
+## 261 -0.4330469871   a
+## 262  1.6157360175   a
+## 263 -0.6388774620   a
+## 264 -1.8826880180   a
+## 265  0.9294321862   a
+## 266 -1.5941919844   a
+## 267  2.0117628392   a
+## 268  1.4287624321   a
+## 269  0.6635358147   a
+## 270 -0.1672590024   a
+## 271  0.9528514428   a
+## 272 -0.0537753648   a
+## 273  1.4105273815   a
+## 274  1.4460969897   a
+## 275 -0.8593518769   a
+## 276 -0.5158059988   a
+## 277  1.1373983902   a
+## 278 -0.4565791306   a
+## 279  0.5378880082   a
+## 280  0.4138017916   a
+## 281  0.8773425457   a
+## 282  0.1361681469   a
+## 283  0.2828637839   a
+## 284  0.4227839206   a
+## 285 -1.0733569654   a
+## 286  0.4213316907   a
+## 287  0.5040601884   a
+## 288  0.4252670283   a
+## 289 -0.1997658879   a
+## 290 -0.6286812392   a
+## 291  1.0464643823   a
+## 292 -0.6429860671   a
+## 293  1.3554205487   a
+## 294  0.1817575959   a
+## 295 -1.1459902939   a
+## 296 -1.2230754842   a
+## 297  1.9914710120   a
+## 298  1.0281863708   a
+## 299 -0.2669891525   a
+## 300 -2.4638344390   a
+## 301  0.0509958200   a
+## 302  1.4469195081   a
+## 303  0.1727762514   a
+## 304 -0.1995306344   a
+## 305 -0.2588310652   a
+## 306 -0.6264327261   a
+## 307  0.0838528857   a
+## 308 -1.2444249731   a
+## 309 -1.3874258270   a
+## 310  0.4500225958   a
+## 311  0.5590860302   a
+## 312 -1.8854918579   a
+## 313 -0.5483333688   a
+## 314  1.9696542501   a
+## 315 -2.0675110909   a
+## 316 -1.1115101340   a
+## 317  0.5837087638   a
+## 318 -0.4060030914   a
+## 319 -0.1120551880   a
+## 320  0.3255846526   a
+## 321  0.9129877791   a
+## 322  1.4478691892   a
+## 323  0.3929861458   a
+## 324 -0.5321448737   a
+## 325 -0.9151878328   a
+## 326  0.4638066754   a
+## 327  0.0014097637   a
+## 328 -0.4978803211   a
+## 329  0.9019887124   a
+## 330  1.1365116329   a
+## 331 -1.0364937000   a
+## 332  1.0512653183   a
+## 333 -0.2391009087   a
+## 334  1.6883115162   a
+## 335 -0.5417543621   a
+## 336 -0.3696205052   a
+## 337 -0.6481279076   a
+## 338 -1.4335096231   a
+## 339  0.5497790474   a
+## 340  0.0190689873   a
+## 341 -0.0854917849   a
+## 342 -0.6589004501   a
+## 343  0.4947461022   a
+## 344  0.6777751196   a
+## 345  0.3542198219   a
+## 346  0.1840892547   a
+## 347 -1.7227276168   a
+## 348  0.8408591576   a
+## 349 -1.8972599928   a
+## 350  0.1793992170   a
+## 351 -1.7137759627   a
+## 352 -2.0039282990   a
+## 353  1.4501886129   a
+## 354  0.7226691843   a
+## 355  0.6872549759   a
+## 356 -1.1424521885   a
+## 357 -0.9935078179   a
+## 358 -2.0678086457   a
+## 359 -1.4736132163   a
+## 360 -0.9505979409   a
+## 361  0.1824308727   a
+## 362  0.6724015017   a
+## 363 -0.3671021564   a
+## 364 -0.5992271301   a
+## 365 -0.6101887158   a
+## 366 -0.4621569244   a
+## 367 -2.0577088379   a
+## 368  0.7495352363   a
+## 369 -0.4256850451   a
+## 370 -0.2024704547   a
+## 371 -0.6404758896   a
+## 372  0.8205959865   a
+## 373  1.6419417586   a
+## 374 -0.2004136506   a
+## 375 -0.2109242530   a
+## 376  0.3089814539   a
+## 377 -0.8573834654   a
+## 378  0.6176143555   a
+## 379  1.2957231233   a
+## 380 -0.1636618937   a
+## 381 -1.6225930657   a
+## 382 -1.6144598711   a
+## 383 -0.5814630502   a
+## 384 -0.1965968308   a
+## 385 -0.7441724490   a
+## 386  0.5952648564   a
+## 387 -0.2447205216   a
+## 388  0.9164610073   a
+## 389 -1.2439565910   a
+## 390 -1.2230295758   a
+## 391 -1.5375895058   a
+## 392  1.3967052651   a
+## 393 -0.0646382075   a
+## 394  0.7904039378   a
+## 395 -0.1328337551   a
+## 396  1.4345855362   a
+## 397 -0.9529926867   a
+## 398 -0.1033605425   a
+## 399  0.7425405258   a
+## 400 -1.2989647482   a
+## 401 -1.1204517958   b
+## 402  1.0761668516   b
+## 403  1.4223353118   b
+## 404 -1.4236011890   b
+## 405  0.0105899409   b
+## 406 -0.0326894407   b
+## 407  1.4255371505   b
+## 408 -0.1497573199   b
+## 409  0.8315988248   b
+## 410 -0.7037780168   b
+## 411  2.8267354677   b
+## 412  1.5682288223   b
+## 413 -0.1712295022   b
+## 414 -0.9813392725   b
+## 415 -0.2118725649   b
+## 416  0.7472141030   b
+## 417 -2.3992328894   b
+## 418  2.1550514924   b
+## 419 -0.3539248092   b
+## 420  0.9378533050   b
+## 421  0.9692843287   b
+## 422  0.5267746296   b
+## 423  0.0165435303   b
+## 424  0.1985013294   b
+## 425 -0.7214313354   b
+## 426 -1.4546702515   b
+## 427 -1.1688663494   b
+## 428 -0.1092125323   b
+## 429  0.9021043549   b
+## 430  0.9471613848   b
+## 431  0.1751093724   b
+## 432 -0.6620052484   b
+## 433  0.9779543252   b
+## 434 -0.4338612138   b
+## 435 -1.5674428627   b
+## 436  0.7993815761   b
+## 437  1.1141183144   b
+## 438  1.1401242737   b
+## 439 -0.7859703412   b
+## 440 -0.3670816564   b
+## 441 -0.2611709137   b
+## 442 -0.3547973202   b
+## 443 -0.4467410127   b
+## 444 -0.7300494232   b
+## 445  2.5596224695   b
+## 446 -0.0214545369   b
+## 447 -1.6267975295   b
+## 448  1.7038654481   b
+## 449  2.1392359104   b
+## 450  0.3268490795   b
+## 451 -1.2485036519   b
+## 452 -0.2860464457   b
+## 453 -0.0385205377   b
+## 454  0.1079941322   b
+## 455 -0.8413724573   b
+## 456  0.7847243896   b
+## 457  0.4083169511   b
+## 458 -0.7723220601   b
+## 459 -1.0013913063   b
+## 460  0.5147076720   b
+## 461 -0.9467409218   b
+## 462  0.8605818969   b
+## 463 -0.1977723479   b
+## 464 -0.5637773390   b
+## 465 -2.0575801838   b
+## 466 -1.7135659910   b
+## 467  2.1463405855   b
+## 468 -1.7125980627   b
+## 469 -0.4668861362   b
+## 470  0.4339717178   b
+## 471 -0.1562024958   b
+## 472 -0.3502628268   b
+## 473 -0.9939304943   b
+## 474 -0.4712914198   b
+## 475  1.2002040444   b
+## 476 -0.2755289758   b
+## 477  0.9271646625   b
+## 478 -2.1352667351   b
+## 479  0.0139911475   b
+## 480  0.1871387617   b
+## 481  0.9416587276   b
+## 482 -2.2401071873   b
+## 483 -1.0094594619   b
+## 484 -1.8263868794   b
+## 485 -1.5216229618   b
+## 486  0.8998673283   b
+## 487  0.5306357350   b
+## 488 -0.7639796680   b
+## 489  0.2738446550   b
+## 490 -0.2138330363   b
+## 491 -0.4864740441   b
+## 492 -1.4164598793   b
+## 493 -1.0233824480   b
+## 494  0.9112004666   b
+## 495  0.7336487171   b
+## 496 -0.3852553588   b
+## 497 -1.5962217145   b
+## 498 -0.4611845080   b
+## 499  0.3131630315   b
+## 500 -0.8164618750   b
+## 501  0.1049956817   b
+## 502 -1.8059938772   b
+## 503  0.3160395642   b
+## 504  0.9163966782   b
+## 505 -0.8500277072   b
+## 506  0.0215098834   b
+## 507  1.8165519606   b
+## 508 -0.2806892748   b
+## 509 -1.8068629419   b
+## 510 -1.3357738894   b
+## 511 -0.0452975204   b
+## 512 -0.5903776768   b
+## 513 -0.0439566770   b
+## 514  0.4426303519   b
+## 515  0.2184420677   b
+## 516 -0.2849279628   b
+## 517 -0.3596115686   b
+## 518 -1.2394932625   b
+## 519 -0.9031870445   b
+## 520 -0.8556836000   b
+## 521  1.5605658993   b
+## 522 -0.9321670846   b
+## 523 -1.5489679888   b
+## 524  1.2896395057   b
+## 525 -0.3044416425   b
+## 526  1.3987928019   b
+## 527  0.0265132469   b
+## 528  1.1422176062   b
+## 529  0.2222320910   b
+## 530 -0.3974323535   b
+## 531  0.3095726066   b
+## 532 -1.5182333197   b
+## 533  0.8418265202   b
+## 534  0.4044001662   b
+## 535  0.7472825267   b
+## 536 -0.9994952094   b
+## 537 -0.2786455248   b
+## 538 -0.3796732909   b
+## 539  0.0212133116   b
+## 540 -1.4934294706   b
+## 541  0.5661654730   b
+## 542  0.1463735752   b
+## 543  1.8330210606   b
+## 544  1.2568550273   b
+## 545  1.5005461984   b
+## 546  0.1437077973   b
+## 547 -0.0240392553   b
+## 548 -2.4813946276   b
+## 549 -0.5701539029   b
+## 550 -0.8122890729   b
+## 551 -0.6473898760   b
+## 552  0.7987297073   b
+## 553  1.8496589031   b
+## 554  1.9093382825   b
+## 555  0.2640197386   b
+## 556 -0.1388228697   b
+## 557 -2.1919263594   b
+## 558 -1.2647960582   b
+## 559  0.2257388907   b
+## 560 -2.4353182234   b
+## 561 -0.0492914316   b
+## 562  0.1212277532   b
+## 563 -1.6001258568   b
+## 564 -0.5156743731   b
+## 565  0.3273464764   b
+## 566  0.5773106996   b
+## 567  0.8333549393   b
+## 568  0.9444499221   b
+## 569 -0.8103793260   b
+## 570 -2.1144767487   b
+## 571 -0.4437779500   b
+## 572 -0.6087483980   b
+## 573  1.8895284649   b
+## 574  2.1974695964   b
+## 575 -0.9257826940   b
+## 576  0.2773039038   b
+## 577 -0.1575693411   b
+## 578 -1.1711699415   b
+## 579 -0.3471041214   b
+## 580  1.3800519524   b
+## 581  1.3908320262   b
+## 582  0.4184603945   b
+## 583  1.1104093537   b
+## 584  0.9297183778   b
+## 585  0.9558246600   b
+## 586  0.7866345179   b
+## 587  0.8245099482   b
+## 588  0.8001717681   b
+## 589 -1.2793967873   b
+## 590  0.4846223417   b
+## 591  0.9526534205   b
+## 592 -0.6170148188   b
+## 593  1.9596012420   b
+## 594  1.2409865139   b
+## 595  0.2528005343   b
+## 596  0.3890799255   b
+## 597  0.7922769074   b
+## 598 -0.9631058234   b
+## 599 -0.4610158526   b
+## 600  0.8474881576   b
+## 601  0.2336053821   b
+## 602 -0.6118903381   b
+## 603  1.5884004771   b
+## 604 -0.8108378451   b
+## 605 -0.0705637178   b
+## 606  0.0504210581   b
+## 607 -1.6533270160   b
+## 608  1.3977888703   b
+## 609 -0.6499892295   b
+## 610  0.8353503506   b
+## 611 -1.3140521406   b
+## 612 -2.3770935527   b
+## 613 -0.7702994948   b
+## 614 -0.2759141539   b
+## 615  0.2319688387   b
+## 616 -2.1227624003   b
+## 617 -1.1775366721   b
+## 618 -0.8822479137   b
+## 619  0.2386262922   b
+## 620 -1.3769333872   b
+## 621 -0.4364150706   b
+## 622  0.2242278904   b
+## 623 -2.5116685686   b
+## 624 -2.3993786279   b
+## 625  1.7512119499   b
+## 626 -0.3501947155   b
+## 627 -1.2250690698   b
+## 628  0.8470063462   b
+## 629  1.3570957033   b
+## 630 -1.2551388359   b
+## 631  0.3092420105   b
+## 632  0.1861463467   b
+## 633  1.9035226577   b
+## 634  1.0592166610   b
+## 635 -0.6356438599   b
+## 636 -0.8889292183   b
+## 637 -1.1768677892   b
+## 638 -1.0280447019   b
+## 639  1.1209106398   b
+## 640 -1.4068439274   b
+## 641  0.8553506343   b
+## 642  0.5449678989   b
+## 643 -0.8056131272   b
+## 644 -1.7045129924   b
+## 645  0.5571282693   b
+## 646  1.3757422553   b
+## 647 -0.0997147866   b
+## 648 -0.3822593888   b
+## 649  1.1867847284   b
+## 650  0.9081344321   b
+## 651  0.1600065652   b
+## 652 -1.6249428142   b
+## 653 -0.8050428730   b
+## 654 -0.2729341486   b
+## 655  0.3216556290   b
+## 656  5.6942615911   b
+## 657  2.5891274795   b
+## 658  0.6987323557   b
+## 659 -0.7576874573   b
+## 660 -0.5836949952   b
+## 661  0.0243475538   b
+## 662  0.1823028773   b
+## 663  0.2009464479   b
+## 664  0.4877445513   b
+## 665  0.5202499829   b
+## 666  0.9509608124   b
+## 667 -0.3815244429   b
+## 668  0.6744398973   b
+## 669  0.0434649973   b
+## 670 -0.1347855531   b
+## 671  0.9021860979   b
+## 672  0.4317256059   b
+## 673  1.2185205721   b
+## 674  0.7908183029   b
+## 675 -1.7501844945   b
+## 676  0.5340648203   b
+## 677 -1.1736383764   b
+## 678 -1.5676200849   b
+## 679 -1.1745872011   b
+## 680  1.5267187883   b
+## 681  0.3905721679   b
+## 682 -0.4973166426   b
+## 683 -0.4710399257   b
+## 684 -1.0921303591   b
+## 685  1.5340931867   b
+## 686  0.2957811582   b
+## 687  0.5105059828   b
+## 688  0.7398102223   b
+## 689  0.8169751515   b
+## 690  0.2018697796   b
+## 691  2.3365610842   b
+## 692  1.4586299431   b
+## 693  0.5928107607   b
+## 694 -1.1409119920   b
+## 695  1.1745806585   b
+## 696  1.1780613214   b
+## 697  0.3851273840   b
+## 698  0.1850581938   b
+## 699  0.3617428702   b
+## 700 -1.1415541405   b
+## 701  1.6426321887   b
+## 702 -0.3865650000   b
+## 703  1.2628208121   b
+## 704 -0.9990407318   b
+## 705 -0.6520164681   b
+## 706 -1.5580338775   b
+## 707  0.2346822313   b
+## 708  1.9481185214   b
+## 709 -0.3374596603   b
+## 710  1.0047990215   b
+## 711  0.1486019236   b
+## 712 -0.4068000615   b
+## 713  1.5646778292   b
+## 714  2.7573542545   b
+## 715 -1.7434934979   b
+## 716  0.2708250633   b
+## 717 -0.2533897679   b
+## 718 -0.0519435122   b
+## 719  1.3525370301   b
+## 720 -0.0006844306   b
+## 721  1.3967772246   b
+## 722 -0.5610607344   b
+## 723 -0.3880445366   b
+## 724 -0.6455919286   b
+## 725  0.7079371710   b
+## 726 -0.3162290655   b
+## 727  0.0012574105   b
+## 728 -1.3384962243   b
+## 729 -0.4847867161   b
+## 730  1.4929957725   b
+## 731 -3.4055860859   b
+## 732 -1.4653483969   b
+## 733  0.3020940845   b
+## 734  0.7523579978   b
+## 735  0.7953393829   b
+## 736  0.6845542790   b
+## 737  0.5637470711   b
+## 738 -0.8772710650   b
+## 739  1.4869552567   b
+## 740  0.7824805308   b
+## 741 -0.9574625898   b
+## 742 -1.1406089460   b
+## 743  0.3014893866   b
+## 744 -1.1100686924   b
+## 745  0.3327923022   b
+## 746  0.5980517125   b
+## 747 -1.7121249781   b
+## 748  1.5682136591   b
+## 749  0.1686057319   b
+## 750  1.7506111282   b
+## 751  0.8609345131   b
+## 752  1.9525105704   b
+## 753 -0.2363675250   b
+## 754  0.0562009307   b
+## 755 -3.2429615513   b
+## 756 -0.5640396207   b
+## 757 -0.5553051640   b
+## 758  0.6768429248   b
+## 759  0.8971892982   b
+## 760 -0.2943725677   b
+## 761  0.4386855200   b
+## 762  0.4559587612   b
+## 763  0.2377725670   b
+## 764 -2.1104005734   b
+## 765 -1.3521023138   b
+## 766 -0.8476380480   b
+## 767 -1.1519532435   b
+## 768  0.8358829996   b
+## 769 -2.6493522609   b
+## 770 -1.2511512420   b
+## 771 -0.4075404439   b
+## 772  0.4854790473   b
+## 773 -0.6174196711   b
+## 774  0.7705422168   b
+## 775 -1.1861617628   b
+## 776  2.3179086173   b
+## 777  0.0869351648   b
+## 778  0.0688482169   b
+## 779  0.7370244783   b
+## 780 -0.5055156453   b
+## 781 -1.7304674503   b
+## 782 -0.7711096272   b
+## 783 -1.7375858989   b
+## 784  1.6562632810   b
+## 785  0.5673932148   b
+## 786  0.4190260499   b
+## 787  1.2144553292   b
+## 788 -1.9297312237   b
+## 789 -0.5943147084   b
+## 790 -0.3205781605   b
+## 791 -0.4158385244   b
+## 792 -1.6848030245   b
+## 793 -1.6021552600   b
+## 794  2.0596087995   b
+## 795  0.7506587499   b
+## 796 -0.2243915261   b
+## 797  1.1978201537   b
+## 798  0.7065547601   b
+## 799  1.6385769599   b
+## 800 -0.9210098361   b</code></pre>
+<pre class="r"><code>ggplot(out, aes(values, colour=ind, fill=ind))+
+  geom_histogram()+
+  facet_wrap(~ind)</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>library(car)
+
+leveneTest(out$values, out$ind)</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##        Df F value  Pr(&gt;F)  
+## group   1   4.947 0.02642 *
+##       798                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>#install.packages(&quot;ggExtra&quot;, dependencies = TRUE)
+library(ggExtra)
+
+p &lt;- ggplot(df, aes(a, b)) + geom_point() + 
+  theme_classic()
+# add marginal histograms
+ggExtra::ggMarginal(p, type = &quot;histogram&quot;)</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The biggest liar data</p>
+<pre class="r"><code>library(ggplot2)
+library(readr)
+The_Biggest_Liar &lt;- read_csv(&quot;~/Google Drive/Biometry/Biometria 2015/Biometria_2015_RStudio/Data files/The Biggest Liar.csv&quot;)
+
+liarData=The_Biggest_Liar 
+liarData</code></pre>
+<pre><code>## # A tibble: 68 x 3
+##    Creativity Position Novice
+##         &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+##  1         53        1      0
+##  2         36        3      1
+##  3         31        4      0
+##  4         43        2      0
+##  5         30        4      1
+##  6         41        1      0
+##  7         32        4      0
+##  8         54        1      1
+##  9         47        2      1
+## 10         50        2      0
+## # … with 58 more rows</code></pre>
+<pre class="r"><code>length(liarData$Creativity)</code></pre>
+<pre><code>## [1] 68</code></pre>
+<pre class="r"><code>summary(liarData)</code></pre>
+<pre><code>##    Creativity       Position         Novice      
+##  Min.   :21.00   Min.   :1.000   Min.   :0.0000  
+##  1st Qu.:35.00   1st Qu.:1.000   1st Qu.:0.0000  
+##  Median :39.00   Median :2.000   Median :1.0000  
+##  Mean   :39.99   Mean   :2.221   Mean   :0.5147  
+##  3rd Qu.:45.25   3rd Qu.:3.000   3rd Qu.:1.0000  
+##  Max.   :56.00   Max.   :6.000   Max.   :1.0000</code></pre>
+<p>Como cambiar el nombre de la variables</p>
+<pre class="r"><code>names(liarData)</code></pre>
+<pre><code>## [1] &quot;Creativity&quot; &quot;Position&quot;   &quot;Novice&quot;</code></pre>
+<pre class="r"><code>names(liarData)[1]=paste(&quot;Creatividad&quot;)  # se cambia el nombre de la columna
+names(liarData)</code></pre>
+<pre><code>## [1] &quot;Creatividad&quot; &quot;Position&quot;    &quot;Novice&quot;</code></pre>
+<pre class="r"><code>names(liarData)[2]=paste(&quot;Posición&quot;)
+names(liarData)[3]=paste(&quot;Principiante&quot;)
+head(liarData)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   Creatividad Posición Principiante
+##         &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;
+## 1          53        1            0
+## 2          36        3            1
+## 3          31        4            0
+## 4          43        2            0
+## 5          30        4            1
+## 6          41        1            0</code></pre>
+<p>Evaluar si las variables tienen distribución normal</p>
+<pre class="r"><code>p &lt;- ggplot(liarData, aes(Creatividad, Posición)) + 
+  geom_point() + 
+  theme_classic()
+p
+# add marginal histograms
+ggExtra::ggMarginal(p, type = &quot;histogram&quot;)</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(liarData, aes(Posición))+ 
+  geom_histogram(fill=&quot;blue&quot;, colour=&quot;white&quot;)</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(liarData, aes(Creatividad))+
+  geom_histogram()</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p>Spearman Correlations</p>
+<pre class="r"><code>library(knitr)
+library(png)
+
+img4_path&lt;-&quot;Graficos/Stanton.png&quot;
+include_graphics(img4_path)</code></pre>
+<p><img src="Graficos/Stanton.png" width="500px" /></p>
+<pre class="r"><code>#-------Spearman correlation-----Use when data are not normal, 
+# such as ordinal data
+
+cor(liarData$Posición, liarData$Creatividad, method = &quot;spearman&quot;)</code></pre>
+<pre><code>## [1] -0.3732184</code></pre>
+<pre class="r"><code>cor.test(liarData$Posición, liarData$Creatividad, method = &quot;spearman&quot;)</code></pre>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  liarData$Posición and liarData$Creatividad
+## S = 71948, p-value = 0.00172
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## -0.3732184</code></pre>
+<pre class="r"><code>cor.test(liarData$Posición, liarData$Creatividad, alternative = &quot;less&quot;, method = &quot;kendall&quot;)</code></pre>
+<pre><code>## 
+##  Kendall&#39;s rank correlation tau
+## 
+## data:  liarData$Posición and liarData$Creatividad
+## z = -3.2252, p-value = 0.0006294
+## alternative hypothesis: true tau is less than 0
+## sample estimates:
+##        tau 
+## -0.3002413</code></pre>
+<pre class="r"><code>ggplot(liarData,aes(Posición, Creatividad))+
+  geom_point()</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/Spearman-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(liarData, aes(Posición, Creatividad))+
+  geom_point()</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Another alternative</p>
+<pre class="r"><code>library(Hmisc)  # for the function rcorr
+liarMatrix&lt;-as.matrix(liarData[, c(&quot;Posición&quot;, &quot;Creatividad&quot;, &quot;Principiante&quot;)])
+liarMatrix</code></pre>
+<pre><code>##       Posición Creatividad Principiante
+##  [1,]        1          53            0
+##  [2,]        3          36            1
+##  [3,]        4          31            0
+##  [4,]        2          43            0
+##  [5,]        4          30            1
+##  [6,]        1          41            0
+##  [7,]        4          32            0
+##  [8,]        1          54            1
+##  [9,]        2          47            1
+## [10,]        2          50            0
+## [11,]        1          56            0
+## [12,]        1          50            0
+## [13,]        1          34            1
+## [14,]        4          41            0
+## [15,]        5          52            0
+## [16,]        1          38            0
+## [17,]        2          35            1
+## [18,]        3          35            1
+## [19,]        1          48            0
+## [20,]        1          38            1
+## [21,]        2          43            1
+## [22,]        3          38            1
+## [23,]        1          39            1
+## [24,]        1          51            0
+## [25,]        3          26            0
+## [26,]        4          31            1
+## [27,]        1          45            0
+## [28,]        3          31            0
+## [29,]        2          34            1
+## [30,]        5          35            1
+## [31,]        2          39            1
+## [32,]        2          50            1
+## [33,]        1          53            1
+## [34,]        2          38            0
+## [35,]        3          37            0
+## [36,]        2          34            1
+## [37,]        1          30            0
+## [38,]        6          46            0
+## [39,]        2          36            1
+## [40,]        1          26            1
+## [41,]        1          41            1
+## [42,]        6          50            1
+## [43,]        1          43            0
+## [44,]        2          54            0
+## [45,]        1          39            1
+## [46,]        2          51            0
+## [47,]        1          47            0
+## [48,]        3          38            1
+## [49,]        1          32            0
+## [50,]        4          28            1
+## [51,]        1          39            0
+## [52,]        1          42            1
+## [53,]        2          44            0
+## [54,]        5          21            1
+## [55,]        1          43            1
+## [56,]        3          39            1
+## [57,]        1          42            1
+## [58,]        2          35            0
+## [59,]        1          52            0
+## [60,]        1          39            0
+## [61,]        1          45            0
+## [62,]        4          25            1
+## [63,]        1          41            1
+## [64,]        3          35            1
+## [65,]        3          27            0
+## [66,]        4          44            0
+## [67,]        3          37            1
+## [68,]        1          40            1</code></pre>
+<pre class="r"><code>rcorr(liarMatrix, type=c(&quot;spearman&quot;)) # si no pone nada asume distribución normal y usa Pearson</code></pre>
+<pre><code>##              Posición Creatividad Principiante
+## Posición         1.00       -0.37         0.11
+## Creatividad     -0.37        1.00        -0.27
+## Principiante     0.11       -0.27         1.00
+## 
+## n= 68 
+## 
+## 
+## P
+##              Posición Creatividad Principiante
+## Posición              0.0017      0.3777      
+## Creatividad  0.0017               0.0281      
+## Principiante 0.3777   0.0281</code></pre>
+<pre class="r"><code>#--------Kendall&#39;s Tau----------Use with small sample size with tied ranks
+# use &quot;less&quot; or &quot;greater&quot;, depending if you 
+# predict that the correlation will be less or greater than zero
+
+#cor(liarData$Posición, liarData$Creatividad, method = &quot;kendall&quot;)
+#cor.test(liarData$Posición, liarData$Creatividad, alternative = &quot;less&quot;, method = &quot;kendall&quot;)</code></pre>
+<pre class="r"><code>ggplot(examData, aes(Exam))+
+         geom_histogram()</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/hist%20anxiety-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(examData, aes(Anxiety))+
+         geom_histogram()</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/hist%20anxiety-2.png" width="672" /></p>
+<pre class="r"><code>cor.test(examData$Anxiety, examData$Exam, method = &quot;kendall&quot;)</code></pre>
+<pre><code>## 
+##  Kendall&#39;s rank correlation tau
+## 
+## data:  examData$Anxiety and examData$Exam
+## z = -4.113, p-value = 3.906e-05
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##        tau 
+## -0.2847919</code></pre>
+<pre class="r"><code>ggplot(examData, aes(Anxiety, Exam))+
+  geom_point()</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/kendall%20exam%20anxiety-1.png" width="672" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
