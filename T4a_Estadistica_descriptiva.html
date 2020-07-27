@@ -480,7 +480,7 @@ library(e1071)</code></pre>
 <hr />
 <div id="estadistica-descriptiva" class="section level1">
 <h1>Estadistica descriptiva</h1>
-<p>En los módulos de “Medidas de Tendencias Central” y “Medidas de Dipersión” se explicó donde proviene estos parámetros y como calcular estos. En este módulo aprenderemos diferentes funciones como calcular estos parámetros individualmente y herramienta como calcular todos y otros parámetros todo juntos.</p>
+<p>En los módulos de “Medidas de Tendencias Central” y “Medidas de Dispersión” se explicó donde proviene estos parámetros y como calcular estos. En este módulo aprenderemos diferentes funciones como calcular estos parámetros individualmente y herramienta como calcular todos y otros parámetros todo juntos.</p>
 <p>Los indices que veremos aquí incluye</p>
 <ol style="list-style-type: decimal">
 <li>el promedio</li>
@@ -611,6 +611,9 @@ head(dlf) # ver las 3 primeras filas</code></pre>
 </div>
 <div id="el-indice-de-oblicuidad-skewness" class="section level1">
 <h1>El indice de Oblicuidad: Skewness</h1>
+<p>El indice de oblicuidad es un indice que describe la simetría en una distribución alrededor de su promedio. Otra manera de describirlo es el tercer momento, por que los datos se poner a un exponente elevado al ^3.</p>
+<p>La formula es la siguiente. Lo que se darán cuenta es muy similar a la varianza pero note que las diferencias se poner al ^3. Para meas información vea este enlace <a href="https://en.wikipedia.org/wiki/Skewness" class="uri">https://en.wikipedia.org/wiki/Skewness</a>.</p>
+<p><span class="math display">\[\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^3\]</span></p>
 <p>Primero voy a crear tres conjuntos de datos</p>
 <ol style="list-style-type: decimal">
 <li>con distribución normal</li>
@@ -647,7 +650,7 @@ head(df2, n=3)</code></pre>
 ## 1       normal 0.5455762
 ## 2       normal 0.5928262
 ## 3       normal 0.6755666</code></pre>
-<pre class="r"><code># unique(df2$Distribución) función  para ver el nombre de las variables en la columna Distribución</code></pre>
+<pre class="r"><code># unique(df2$Distribución) # función  para ver el nombre de las variables en la columna Distribución</code></pre>
 <p>Ahora vamos a ver los datos un gráfico. Vemos que la distribución de los datos son muy diferentes, tanto la distribución en azul y verde están sesgado a unos valores y tienen una cola o valores más grande (azul) o pequeños (verde) que si fuese una distribución normal.</p>
 <pre class="r"><code>ggplot(df2, (aes(valor, colour=Distribución)))+
   geom_density()+
@@ -668,6 +671,103 @@ e1071::skewness(normal$value) # la oblicuidad de los datos de una distribución 
 <pre><code>## [1] 0.8330537</code></pre>
 <pre class="r"><code>e1071::skewness(obldr$value) # la oblicuidad de los datos sesgado a la derecha</code></pre>
 <pre><code>## [1] -0.6469248</code></pre>
+<hr />
+</div>
+<div id="el-indice-de-curtosis-kurtosis" class="section level1">
+<h1>El indice de Curtosis: Kurtosis</h1>
+<p>El indice de curtosis es un índice que describe la cola de la una distribución alrededor de su promedio. Otra manera de describirlo es el cuarto momento, por que los datos se poner a un exponente elevado al ^4. El curtosis mide la propensidad de tener daos atípicos.</p>
+<p>La formula es la siguiente. Lo que se darán cuenta es muy similar a la varianza pero note que las diferencias se poner al ^4. Para meas información vea este enlace <a href="https://www.wikiwand.com/en/Kurtosis" class="uri">https://www.wikiwand.com/en/Kurtosis</a>.</p>
+<p><span class="math display">\[\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^3\]</span></p>
+<p>Primero voy a crear tres conjuntos de datos</p>
+<ol style="list-style-type: decimal">
+<li>con distribución normal</li>
+<li>con distribución normal, con cola reducida</li>
+<li>con distribución normal, con cola extendida</li>
+<li>distribución uniforme</li>
+<li></li>
+</ol>
+<pre class="r"><code>library(PearsonDS)
+library(rmutil)
+
+momentsR=c(mean=0, variance=1, skewness=0, kurtosis=2)
+momentsE=c(mean=0, variance=1, skewness=0, kurtosis=4)  
+
+normalR=rpearson(100000, moments=momentsR)
+normalE=rpearson(100000, moments=momentsE)
+
+
+Unif=runif(100000, -2,2)
+normal=rnorm(100000, 0,1)
+laplace=rlaplace(500000, m=0, s=1)
+
+
+normal=as.tibble(normal)
+
+normalR=as.tibble(normalR)
+
+normalE=as.tibble(normalE)
+
+Unif=as.tibble(Unif)
+
+laplace=as.tibble(laplace)</code></pre>
+<p>Ahora unimos los data frames y se añade nombres a las columnas</p>
+<pre class="r"><code>df=cbind(normal, normalR, normalE, Unif, laplace)
+head(df, n=2)</code></pre>
+<pre><code>##        value      value      value      value      value
+## 1 -0.4670118 -0.2931655 -3.8457571 -0.7715171 -0.2002109
+## 2  0.7267074 -0.5153200  0.2269799  0.3217797  0.1247302</code></pre>
+<pre class="r"><code>df &lt;- setNames(df, c(&quot;normal&quot;,&quot;normalR&quot;,&quot;normalE&quot;, &quot;Unif&quot;, &quot;laplace&quot;))
+
+head(df, n=2)</code></pre>
+<pre><code>##       normal    normalR    normalE       Unif    laplace
+## 1 -0.4670118 -0.2931655 -3.8457571 -0.7715171 -0.2002109
+## 2  0.7267074 -0.5153200  0.2269799  0.3217797  0.1247302</code></pre>
+<p>El próximo paso es apilar cada columna una sobre la otra. La razón que queremos esto es que deseamos reproducir las variables en un mismo gráfico</p>
+<pre class="r"><code>library(tidyverse)
+df2=df%&gt;%
+  gather(key = &quot;Distribución&quot;, value=&quot;valor&quot;, c(normal, normalR, normalE, Unif, laplace))
+head(df2, n=3)</code></pre>
+<pre><code>##   Distribución      valor
+## 1       normal -0.4670118
+## 2       normal  0.7267074
+## 3       normal  0.6100281</code></pre>
+<pre class="r"><code># unique(df2$Distribución) #función  para ver el nombre de las variables en la columna Distribución</code></pre>
+<p>Ahora vamos a ver los datos un gráfico. Vemos que la distribución de los datos son muy diferentes, los que tiene que concentrar no es el pico de la distribución pero las colas de los datos. Nota la distribución normal que es de color amarillo, y comparar si la colas estan por debajo o por encima de esta distribución normal.</p>
+<p>Tanto la distribución uniforme y normal reducido (normalR) las curva va de bajo la curva normal. Esto indica que hay Los datos con la distribución azul, tienen los datos concentrado alrededor del promedio mucho más que los la linea roja. Al contrarío la linea verde demuestra que los datos están muy diferentes del promedio.</p>
+<pre class="r"><code>whole=ggplot(df2, (aes(valor, colour=Distribución)))+
+  geom_density(adjust=5)+
+  xlim(-5,5) 
+
+sub=ggplot(df2, (aes(valor, colour=Distribución)))+
+  geom_density()+
+   theme_bw() +
+  scale_x_continuous(limits=c(-3, 1)) + 
+  scale_y_continuous(limits=c(0, .1)) +
+  theme(legend.position= &quot;none&quot;)
+
+
+sub + annotation_custom(
+    ggplotGrob(whole),
+    xmin = -1, xmax = 1, ymin = 0.025, ymax = 0.075)</code></pre>
+<p><img src="T4a_Estadistica_descriptiva_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Ahora se calcula el indice de curtosis y comparamos los valores. Como regla cuando el nivel de curtosis esta significativo si los valores de curtosis se enuentra en los siguientes rangos, y se acerca cero no hay curtosis (lo que uno espera para una distribución normal.</p>
+<ol style="list-style-type: decimal">
+<li>Menor de -1.0 los datos están muy aplanados (Uniforme, normalR).</li>
+<li>Mayor de 1.0 (la distribución de Laplace)</li>
+</ol>
+<p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de <strong>skewness</strong> en el paquete <strong>e1071</strong></p>
+<p>Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos sesgado a la izquierda el indice de oblicuidad es positivo y el sesgado a derecha es negativo.</p>
+<pre class="r"><code>library(e1071)
+e1071::kurtosis(normal$value) # la oblicuidad de los datos de una distribución normal</code></pre>
+<pre><code>## [1] 0.006270625</code></pre>
+<pre class="r"><code>e1071::kurtosis(normalR$value) # la oblicuidad de los datos sesgado a la izquierda</code></pre>
+<pre><code>## [1] -0.9963403</code></pre>
+<pre class="r"><code>e1071::kurtosis(normalE$value) # la oblicuidad de los datos sesgado a la derecha</code></pre>
+<pre><code>## [1] 0.9434295</code></pre>
+<pre class="r"><code>e1071::kurtosis(Unif$value)</code></pre>
+<pre><code>## [1] -1.189785</code></pre>
+<pre class="r"><code>e1071::kurtosis(laplace$value) </code></pre>
+<pre><code>## [1] 3.033305</code></pre>
 </div>
 
 

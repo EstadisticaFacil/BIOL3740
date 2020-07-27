@@ -55,7 +55,7 @@ library(e1071)
 ***
 # Estadistica descriptiva
 
-En los módulos de "Medidas de Tendencias Central" y "Medidas de Dipersión" se explicó donde proviene estos parámetros y como calcular estos.  En este módulo aprenderemos diferentes funciones como calcular estos parámetros individualmente y herramienta como calcular todos y otros parámetros todo juntos.  
+En los módulos de "Medidas de Tendencias Central" y "Medidas de Dispersión" se explicó donde proviene estos parámetros y como calcular estos.  En este módulo aprenderemos diferentes funciones como calcular estos parámetros individualmente y herramienta como calcular todos y otros parámetros todo juntos.  
 
 
 Los indices que veremos aquí incluye
@@ -177,6 +177,11 @@ describe(dlf$day1)
 
 # El indice de Oblicuidad: Skewness
 
+El indice de oblicuidad es un indice que describe la simetría en una distribución alrededor de su promedio. Otra manera de describirlo es el tercer momento, por que los datos se poner a un exponente elevado al ^3. 
+
+La formula es la siguiente.  Lo que se darán cuenta es muy similar a la varianza pero note que las diferencias se poner al ^3. Para meas información vea este enlace <https://en.wikipedia.org/wiki/Skewness>.     
+
+$$\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^3$$
 
 Primero voy a crear tres conjuntos de datos
 
@@ -216,7 +221,7 @@ library(tidyverse)
 df2=df%>%
   gather(key = "Distribución", value="valor", c(normal, obliz, obldr))
 head(df2, n=3)
-# unique(df2$Distribución) función  para ver el nombre de las variables en la columna Distribución
+# unique(df2$Distribución) # función  para ver el nombre de las variables en la columna Distribución
 ```
 
 Ahora vamos a ver los datos un gráfico. Vemos que la distribución de los datos son muy diferentes, tanto la distribución en azul y verde están sesgado a unos valores y tienen una cola o valores más grande (azul) o pequeños (verde) que si fuese una distribución normal.   
@@ -247,5 +252,119 @@ e1071::skewness(obliz$value) # la oblicuidad de los datos sesgado a la izquierda
 e1071::skewness(obldr$value) # la oblicuidad de los datos sesgado a la derecha
 ```
 
+
+
+
+***
+
+# El indice de Curtosis: Kurtosis
+
+El indice de curtosis es un índice que describe la cola de la una distribución alrededor de su promedio. Otra manera de describirlo es el cuarto momento, por que los datos se poner a un exponente elevado al ^4. El curtosis mide la propensidad de tener daos atípicos.  
+
+La formula es la siguiente.  Lo que se darán cuenta es muy similar a la varianza pero note que las diferencias se poner al ^4. Para meas información vea este enlace <https://www.wikiwand.com/en/Kurtosis>.     
+
+$$\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^3$$
+
+Primero voy a crear tres conjuntos de datos
+
+1. con distribución normal
+2. con distribución normal, con cola reducida
+3. con distribución normal, con cola extendida
+4. distribución uniforme
+5. 
+
+```{r}
+library(PearsonDS)
+library(rmutil)
+
+momentsR=c(mean=0, variance=1, skewness=0, kurtosis=2)
+momentsE=c(mean=0, variance=1, skewness=0, kurtosis=4)  
+
+normalR=rpearson(100000, moments=momentsR)
+normalE=rpearson(100000, moments=momentsE)
+
+
+Unif=runif(100000, -2,2)
+normal=rnorm(100000, 0,1)
+laplace=rlaplace(500000, m=0, s=1)
+
+
+normal=as.tibble(normal)
+
+normalR=as.tibble(normalR)
+
+normalE=as.tibble(normalE)
+
+Unif=as.tibble(Unif)
+
+laplace=as.tibble(laplace)
+
+```
+
+
+Ahora unimos los data frames y se añade nombres a las columnas
+
+```{r}
+df=cbind(normal, normalR, normalE, Unif, laplace)
+head(df, n=2)
+df <- setNames(df, c("normal","normalR","normalE", "Unif", "laplace"))
+
+head(df, n=2)
+
+```
+El próximo paso es apilar cada columna una sobre la otra.  La razón que queremos esto es que deseamos reproducir las variables en un mismo gráfico 
+
+
+```{r}
+library(tidyverse)
+df2=df%>%
+  gather(key = "Distribución", value="valor", c(normal, normalR, normalE, Unif, laplace))
+head(df2, n=3)
+# unique(df2$Distribución) #función  para ver el nombre de las variables en la columna Distribución
+```
+
+Ahora vamos a ver los datos en un gráfico. Vemos que la distribución de los datos son muy diferentes, Tiene que concentrar no en el pico de la distribución pero las colas de los datos. Nota la distribución normal que es de color amarillo, y comparar si la colas están por debajo o por encima de esta distribución normal.  
+
+Tanto la distribución uniforme (color rosa) y normal reducido (normalR, color azul) las curvas pasan de bajo la curva normal.  Al contrarío la linea verde y roja son distribuciones que pasan por encima de la curva normal, entonces las colas son más predominante. 
+
+
+```{r}
+whole=ggplot(df2, (aes(valor, colour=Distribución)))+
+  geom_density(adjust=5)+
+  xlim(-5,5) 
+
+sub=ggplot(df2, (aes(valor, colour=Distribución)))+
+  geom_density()+
+   theme_bw() +
+  scale_x_continuous(limits=c(-5, 1)) + 
+  scale_y_continuous(limits=c(0, .1)) +
+  theme(legend.position= "none")
+
+
+sub + annotation_custom(
+    ggplotGrob(whole),
+    xmin = -1.8, xmax = 1.4, ymin = 0.005, ymax = 0.075)
+```
+
+
+Ahora se calcula el indice de curtosis y comparamos los valores.  Como regla cuando el nivel de curtosis esta significativo si los valores de curtosis se enuentra en los siguientes rangos, y se acerca cero no hay curtosis (lo que uno espera para una distribución normal.
+
+1. Menor de -1.0 los datos están muy aplanados (Uniforme, normalR).
+2. Mayor de 1.0 (la distribución de Laplace)
+
+
+Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de **skewness** en el paquete **e1071**
+
+Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos sesgado a la izquierda el indice de oblicuidad es positivo y el sesgado a derecha es negativo.  
+
+```{r}
+library(e1071)
+e1071::kurtosis(normal$value) # la oblicuidad de los datos de una distribución normal
+e1071::kurtosis(normalR$value) # la oblicuidad de los datos sesgado a la izquierda
+e1071::kurtosis(normalE$value) # la oblicuidad de los datos sesgado a la derecha
+e1071::kurtosis(Unif$value)
+e1071::kurtosis(laplace$value) 
+
+```
 
 
