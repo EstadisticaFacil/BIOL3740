@@ -295,7 +295,7 @@ head(df)
 
 
 out <- stack(df)
-out  
+ 
 
 
 ggplot(out, aes(values, colour=ind, fill=ind))+
@@ -414,7 +414,7 @@ Another alternative
 ```{r rcorr}
 library(Hmisc)  # for the function rcorr
 liarMatrix<-as.matrix(liarData[, c("Posición", "Creatividad", "Principiante")])
-liarMatrix
+
 rcorr(liarMatrix, type=c("spearman")) # si no pone nada asume distribución normal y usa Pearson
 #--------Kendall's Tau----------Use with small sample size with tied ranks
 # use "less" or "greater", depending if you 
