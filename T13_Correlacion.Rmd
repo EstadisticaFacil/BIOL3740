@@ -85,14 +85,6 @@ Podemos ver cual es la relación entre la edad de los estudiantes y cuantas vece
 | Veces a Disney (y) | 5 	| 4 	| 4  	| 6  	| 8  	|
 
 
-|Personas | Edad (x) | x^2 | Veces a Disney (y) | y^2  | xy |
-|----------	|---	|---	|----	|----	|----	|
-| María   | 8 	| 9 	| 10 	| 13 	| 15 	|
-| Juan | 9 	| 4 	| 4  	| 6  	| 8  	|
-| José | 10 |
-| Carla |13|
-| Luis |15 |
-|Sumas | 
 
 La siguiente formula muestra el calculo para el coeficiente de Pearson $\rho$ que se dice **rho** que es el parámetro (el universo). Para significar el coeficiente de una muestra se usa la **r**.   
 
@@ -103,29 +95,32 @@ $$r=\frac{\sum_{ }^{ }xy-\left(\frac{\sum_{ }^{ }x\sum_{ }^{ }y}{n}\right)}{\sqr
 
 
 
-Creamos un conjunto de datos para demostrar como se calcula 
+Creamos un conjunto de datos en R para demostrar como se calcula a mano.  
 
 
 ```{r simple example}
 Edad<-c(8,9,10,13,15)
 Disney<-c(5,4,4,6,8)
 dfDisney<-data.frame(Edad, Disney) # unir las listas en un data frame
-dfDisney$Edad2=dfDisney$Edad^2
-dfDisney$Disney2=dfDisney$Disney^2
-dfDisney$Edad_por_Disney=dfDisney$Edad*dfDisney$Disney
+dfDisney$Edad2=dfDisney$Edad^2 # cuadrar las x
+dfDisney$Disney2=dfDisney$Disney^2 # cuadrar las y
+dfDisney$Edad_por_Disney=dfDisney$Edad*dfDisney$Disney # productos cruzados x*y
 dfDisney
 ```
 Lo que necesitamos ahora es calcular cada una de las variables
 
 
-```{r width}
+```{r, fig.align='center' }
 
 library(knitr)
 library(kableExtra)
-df <- data.frame(Formulas = c("$$\\sum x $$","$$\\sum y$$", "$$\\sum x^2$$", "$$\\sum y^2$$", "$$\\sum xy$$"),
+df <- data.frame(Formulas = c("$$\\sum x $$","$$\\sum y$$",
+                              "$$\\sum x^2$$", "$$\\sum y^2$$", 
+                              "$$\\sum xy$$"),
                  Sumas = c(55, 27, 639,157, 314))
 
-kable(df, escape=FALSE)
+knitr::kable(df,  align="lr",  escape=FALSE,
+             booktabs=TRUE)
 
 ```
 
