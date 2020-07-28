@@ -33,7 +33,7 @@ Fecha de la ultima revisión
 
 Sys.Date()
 ```
-
+***
 
 ## Install packages
 
@@ -70,7 +70,7 @@ $$s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{ (x_{ i }-\bar { x } ) } ^{ 2 } }{ n-1 }$$
 Ahora la vamos a descomponer 
 
 $$s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{ (x_{ i }-\bar{ x } ) } (x_{ i }-\bar { x } ) }{ n-1 }$$
-
+***
 # Correlación de Pearson
 
 Esta la más común y conocida como el Coeficiente de correlación de Pearson. Nota ahora que tenemos dos variables **x** y **y**.   
@@ -126,16 +126,18 @@ knitr::kable(df,  align="lr",  escape=FALSE)
 Ahora sustituir los valores en la ecuación para calcular el coeficiente de Pearson.
 
 $$r=\frac{314-\left(\frac{55\cdot27}{5}\right)}{\sqrt{\left(639-\frac{\left(55\right)^2}{5}\right)\left(157-\frac{\left(27\right)^2}{5}\right)}}=0.871$$
-La función para hacer todos estos calculo es **cor**. Con una correlación de 0.87, esto significa que hay buena correlación positiva entre la edad y la cantidad de veces que han ido a Disney.   
+La función para hacer todos estos calculo es **cor**. Con una correlación de 0.87, esto significa que hay buena correlación positiva entre la edad y la cantidad de veces que han ido a Disney.    
 
 ```{r}
 cor(Edad, Disney)
 ```
 
 
+***
 
+### Un gráfico de Correlación sencilla. 
 
-Un gráfico de Correlación sencilla. Miran que parece haber un patrón de cuando aumenta una variable aumenta la otra. 
+Parece haber un patrón de cuando aumenta una variable aumenta la otra. 
 
 ```{r graph correlations,  out.width = '60%',fig.align='center'}
 scatter<-ggplot(dfDisney, aes(x=Edad, y=Disney))
@@ -145,74 +147,153 @@ scatter + geom_point(colour="purple")+
 
 
 ```
-
+***
 # El rango del coeficiente Pearson
 
-El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta positiva, en otra palabra la **x** predice exactamente el valor de **y**.  Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la **x** y **y**. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.
+El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta y positiva, en otra palabra la **x** predice exactamente el valor de **y**.  Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la **x** y **y**. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.
 
-Los supuestos del modelo
+***
+## Los Supuestos de la prueba de Pearson
 
 
 1. Uno de los supuestos de la prueba de análisis de Pearson, es que las dos variables tenga una distribución normal,  **Nornal bivariada**.
-2. Las variables tienen que tener una correlación lineal (no por cuadrática o logarítmica).
+2. Las variables tienen que tener una correlación lineal (por ejemplo: no puede ser cuadrática o logarítmica).
 
-Para visualizar una distribución vea lo siguiente. Nota que ls dos variables tienen una distribución normal. 
+3. Ausencia de valores átipicos (o por lo menos sesgan el resultado)
 
-Este gráfico proviene del siguiente website <http://lertap5.com/RMCS2017/HTML/bivariate-normal.html>
+Para visualizar una distribución vea lo siguiente. Nota que las dos variables tienen una distribución normal. 
 
-```{r echo=FALSE,  out.width = '60%',fig.align='center'}
-knitr::include_graphics("Graficos/Bivariate_normal.png")
+***
+## Gráfico Bivariado Normal
+
+
+https://deanattali.com/2015/03/29/ggExtra-r-package/
+
+Para visualizar que quiere decir "bivariado normal"  Vamos a crear dos conjuntos de datos cada una con una distribución normal, pero con promedio diferentes y desviación estandar.  
+```{r}
+library(tidyverse)
+a=rnorm(8000, 0, 1)
+b=rnorm(8000, 1, 1.1)
+
+df=data.frame(a,b)
+
+out <- stack(df)
+ 
+ggplot(out, aes(values, colour=ind, fill=ind))+
+  geom_histogram(bins=50)+
+  facet_wrap(~ind)
+
+
+```
+Ahora visualizamos las dos variables en el mismo gráfico. y se añade en el margen.  
+
+```{r}
+
+#install.packages("ggExtra", dependencies = TRUE)
+library(ggExtra)
+
+p <- ggplot(df, aes(a, b)) + geom_point() + 
+  theme_classic()
+# add marginal histograms
+ggExtra::ggMarginal(p, type = "histogram")
+
 ```
 
+***
+
+# Correlación no-paramétricas
+
+## Correlación de Kendall
 
 
-Dealing with missing values use the following function use = "pairwise.complete.obs". 
+En estadística, el coeficiente de correlación de Kendall se calcula usando los rangos y no los valores originales, es conocido como el coeficiente tau de Kendall (letra griega τ), es una estadística para medir la asociación ordinal ( en otra palabra el orden de los valores) entre dos variables. La prueba de Kendall es una prueba de hipótesis no paramétrica.  Entonces no asumo que los datos tenga una distribución normal.  El nombre de la prueba proviene de Maurice Kendall quien desarrolló el método en 1938.  
 
-## Kendall Correlation
+La diferencias entre este prueba es que los valores se poner en orden del más pequeño al más grande (en cada variable) y se usa el número del ordenamiento para hacer la prueba.   
 
-In statistics, the Kendall rank correlation coefficient, commonly referred to as Kendall's tau coefficient (after the Greek letter τ), is a statistic used to measure the ordinal association between two measured quantities. A tau test is a non-parametric hypothesis test for statistical dependence based on the tau coefficient.
+La correlación de Kendall entre dos variables será alta cuando las observaciones tengan un rango similar (o idéntico para una correlación de +1) (es decir, la posición relativa de las observaciones dentro de la variable: primero, segundo, tercero, etc.) entre las dos variables, y bajo cuando las observaciones tienen un rango diferente (o completamente diferente para una correlación de -1) entre las dos variables.
 
-It is a measure of rank correlation: the similarity of the orderings of the data when ranked by each of the quantities. It is named after Maurice Kendall, who developed it in 1938,[1] though Gustav Fechner had proposed a similar measure in the context of time series in 1897.
-
-Intuitively, the Kendall correlation between two variables will be high when observations have a similar (or identical for a correlation of 1) rank (i.e. relative position label of the observations within the variable: 1st, 2nd, 3rd, etc.) between the two variables, and low when observations have a dissimilar (or fully different for a correlation of -1) rank between the two variables.
+Aquí un pequeño conjunto de datos como ejemplo de ordenar los datos.  Nota que después de ordenarlos datos son estos que se usan para al calculo.  La edad de la persona, el número de veces que fueron a Disney y el orden de cada variable.  
 
 
-## Spearman Correlation
-In statistics, Spearman's rank correlation coefficient or Spearman's rho, named after Charles Spearman and often denoted by the Greek letter ρ\rho  (rho), is a nonparametric measure of rank correlation (statistical dependence between the rankings of two variables). It assesses how well the relationship between two variables can be described using a monotonic function.
+| Edad | Disney | Orden Edad | Orden Disney |
+|------:|--------:|------------:|--------------:|
+| 8    | 8      | 3          | 4            |
+| 2    | 2      | 1          | 2            |
+| 10   | 12     | 4          | 5            |
+| 54   | 0      | 5          | 1            |
+| 3    | 6      | 2          | 3            |
 
-The Spearman correlation between two variables is equal to the Pearson correlation between the rank values of those two variables; while Pearson's correlation assesses linear relationships, Spearman's correlation assesses monotonic relationships (whether linear or not). If there are no repeated data values, a perfect Spearman correlation of +1 or −1 occurs when each of the variables is a perfect monotone function of the other.
+***
 
-Intuitively, the Spearman correlation between two variables will be high when observations have a similar (or identical for a correlation of 1) rank (i.e. relative position label of the observations within the variable: 1st, 2nd, 3rd, etc.) between the two variables, and low when observations have a dissimilar (or fully opposed for a correlation of −1) rank between the two variables.
+### Los supuestos de Kendall
+
+ 1. Los pares de observaciones son independientes.
+ 2. Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.
+ 3. Se supone que existe una relación monotónica entre las dos variables.
+ 
+***
+
+## Correlación de Spearman
 
 
+El coeficiente de correlación de rango de Spearman o el $\rho$ rho de Spearman, desarrollado por Charles Spearman en 1904 era un psicologo.  Es una medida no paramétrica de correlación de rango (como la correlación de Kendall). Igual como,la de Kendall usa los rangos para hacer el estadístico, pero usan formulas distinctas.  
 
-# THE STRENGHT of the correlation is based on the ABSOLUTE NUMBER
+La correlación de Spearman entre dos variables será alta cuando las observaciones tengan un rango similar (o idéntico para una correlación de +1) (es decir, la posición relativa de las observaciones dentro de la variable: primero, segundo, tercero, etc.) entre las dos variables, y bajo cuando las observaciones tienen un rango diferente (o completamente diferente para una correlación de -1) entre las dos variables.
 
-Using 
+***
+### Los supuestos de Spearman
+
+ 1. Los pares de observaciones son independientes.
+ 2. Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.
+ 3. Se supone que existe una relación monotónica entre las dos variables.
+ 
+*** 
+## Comparación entre Kendall y Spearman
+
+La prueba de Kendall tiende a ser más robusta que la Spearman. Lo que esto significa es que cuando el tamaño de muestra es pequeña o hay valores átipicos la prueba de Kendall es preferible.  
+
+***
+
+# Los codigos en R para correlación
+
+## Como lidiar con "NA" alternativas
+Se usa diferentes 
+
 use = "everything",   Si Hay 1 "NA" en la los datos, elimina la variable completa
-use = "complete.obs", Si hay 1 "NA", Elimina el individuo que tiene NA para todas los calculos
+use = "complete.obs", Si hay 1 "NA", Elimina el individuo que tiene "NA" para todas los cálculos
 use = "pairwise.complete.obs", Si hay un "NA", Elimina el individuo solamente si el par evaluado tiene un "NA". 
 
-Whereas with use="pairwise.complete.obs" , the cases with missing values are only removed during the calculation of each pairwise correlation. Thus we see that the correlation between x and z is the same in both matrices but the correlation between y and both x and z depends on the use method (with dramatic effect).
+
 
 ```{r missing values}
-#-----Dealing with misisng cases
+#-----Como lidiar con los "NA"
 
 adverts<-c(15,14,14,6,2)
 comprasNA<-c(8,9,10,NA,15)
 age<-c(5, 12, 16, 9, 14)
-advertNA<-data.frame(adverts, comprasNA, age)
+advertNA<-data.frame(adverts, comprasNA, age) # el data frame
+
+# "everything", "complete.obs", "pairwise.complete.obs"
 
 head(advertNA)
 cor(advertNA, use = "everything",  method = "pearson")
 cor(advertNA, use = "complete.obs",  method = "pearson")
-cor(advertNA, use = "pairwise.complete.obs",  method = "pearson") # Comunente usado.  
+cor(advertNA, use = "pairwise.complete.obs",  method = "pearson") # Comúnmente usado.  
 
+```
+*** 
+# La pruebas con los métodos de Kendall y Spearman
+
+```{r, kendall and Spearman}
 cor(advertNA, use = "pairwise.complete.obs",  method = "kendall")   
 cor(advertNA, use = "pairwise.complete.obs",  method = "spearman") # n= 30 or more
 
 
 ```
+
+## Ejemplo de Anxiedad y correlaciones
+
+Corelación entre anxiedad, la nota de examen y el tiempo que estudio el estudiante. 
 
 
 Anxiety data
@@ -274,48 +355,13 @@ cor.test(examData$Anxiety, examData$Revise)
 
 
 
-# Bivariate plot to evaluate the distribution of both variables
-
-https://deanattali.com/2015/03/29/ggExtra-r-package/
-
-Remember this code from chapter 5
-```{r}
-library(tidyverse)
-a=rnorm(400, 0, 1)
-b=rnorm(400, 0, 1.1)
-#b=rbeta(400, 3, 1)
-df=data.frame(a,b)
-head(df)
-
-
-out <- stack(df)
- 
-
-
-ggplot(out, aes(values, colour=ind, fill=ind))+
-  geom_histogram()+
-  facet_wrap(~ind)
-
-library(car)
-
-leveneTest(out$values, out$ind)
-```
 
 
 
 
 
-```{r}
 
-#install.packages("ggExtra", dependencies = TRUE)
-library(ggExtra)
 
-p <- ggplot(df, aes(a, b)) + geom_point() + 
-  theme_classic()
-# add marginal histograms
-ggExtra::ggMarginal(p, type = "histogram")
-
-```
 
 
 

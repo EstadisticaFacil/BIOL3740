@@ -61,6 +61,7 @@ En esta sección no estamos interesado en evaluar los valores con datos que son 
 
 Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para que la prueba sea utilizada. El incumplimiento de de los supuestos resulta en que el los resultados de la prueba tenga un nivel de tipo de error I y tipo de error II más grande que los especificado (por ejemplo si selecciona un $\alpha$ de 0.05, el error seria más grande). Si se usa datos usa datos erróneos puede ser que la prueba sea completamente invalida. 
 
+***
 # Los supuestos de las pruebas de frecuencias.
 
   1. Los datos son frecuencias.
@@ -140,7 +141,7 @@ kable(df, escape=FALSE)
 
 ```
 
-Los pasos que calcular el Chi Cuadrado: 
+Los pasos para calcular el Chi Cuadrado: 
 
   1. Los valores esperados, en este caso fue una proporción de 3:1
   2. Las diferencias 
@@ -321,7 +322,7 @@ mosaicplot(Ta2, shade=TRUE)
 
 
 
-
+***
 
 
 #  El color de pello es independiente del sexo 
@@ -371,6 +372,7 @@ CrossTable(HairColour, fisher = TRUE, chisq = TRUE, expected = TRUE, sresid = TR
 
 La prueba Exacta de Fisher es similar a la prueba de Bondad de Ajuste para evaluar si hay asociación entre dos variables categorías.  La diferencia importante es que no es necesario que el valor esperado sea mayor de 5. Por consecuencia se puede usar con muestras más pequeñas.  
 
+***
 # Los supuestos de las prueba Exacta de Fisher.
 
   1. Los datos son frecuencias.
