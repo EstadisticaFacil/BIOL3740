@@ -539,11 +539,11 @@ b</code></pre>
 df=data.frame(df)</code></pre>
 <p>Lo que uno observa es que los tres valores son muy cercano uno del otro.</p>
 <pre class="r"><code>mean(df$df)</code></pre>
-<pre><code>## [1] 99.9838</code></pre>
+<pre><code>## [1] 99.8823</code></pre>
 <pre class="r"><code>median(df$df)</code></pre>
 <pre><code>## [1] 100</code></pre>
 <pre class="r"><code>mfv(df$df)</code></pre>
-<pre><code>## [1] 100</code></pre>
+<pre><code>## [1] 99</code></pre>
 <p>Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda). En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta. Se observa que los tres valores son cerca del centro.</p>
 <pre class="r"><code>mea=mean(df$df)
 med=median(df$df)
@@ -616,15 +616,15 @@ head(dfBin)</code></pre>
 ## 1     0
 ## 2     1
 ## 3     1
-## 4     0
-## 5     0
-## 6     1</code></pre>
+## 4     1
+## 5     1
+## 6     0</code></pre>
 <p>Ahora vamos a producir el gráfico. Lo que uno observa es que el promedio esta en el centro cerca de .6, pero no hay ningún dato cerca del promedio. El promedio no representa la “tendencia central” de la distribución.</p>
 <pre class="r"><code>mea=mean(dfBin$dfBin)
 med=median(dfBin$dfBin)
 mod=mfv(dfBin$dfBin)
 mea</code></pre>
-<pre><code>## [1] 0.6129</code></pre>
+<pre><code>## [1] 0.5976</code></pre>
 <pre class="r"><code>ggplot(dfBin, aes(dfBin))+
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;)+
   geom_vline(aes(xintercept = mea), colour=&quot;red&quot;)+
