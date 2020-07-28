@@ -85,23 +85,63 @@ Podemos ver cual es la relación entre la edad de los estudiantes y cuantas vece
 | Veces a Disney (y) | 5 	| 4 	| 4  	| 6  	| 8  	|
 
 
+|Personas | Edad (x) | x^2 | Veces a Disney (y) | y^2  | xy |
+|----------	|---	|---	|----	|----	|----	|
+| María   | 8 	| 9 	| 10 	| 13 	| 15 	|
+| Juan | 9 	| 4 	| 4  	| 6  	| 8  	|
+| José | 10 |
+| Carla |13|
+| Luis |15 |
+|Sumas | 
+
 La siguiente formula muestra el calculo para el coeficiente de Pearson $\rho$ que se dice **rho** que es el parámetro (el universo). Para significar el coeficiente de una muestra se usa la **r**.   
 
 $$r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1({ s }_{ x }{ s }_{ y }) }$$
+Una otra manera de ver como se calcula el coeficiente es usar la siguiente formula.  
+
+$$r=\frac{\sum_{ }^{ }xy-\left(\frac{\sum_{ }^{ }x\sum_{ }^{ }y}{n}\right)}{\sqrt{\left(\sum_{ }^{ }x^2-\frac{\left(\sum_{ }^{ }x\right)^2}{n}\right)\left(\sum_{ }^{ }y^2-\frac{\left(\sum_{ }^{ }y\right)^2}{n}\right)}}$$
 
 
-Ceamos 
 
+Creamos un conjunto de datos para demostrar como se calcula 
 
 
 ```{r simple example}
 Edad<-c(8,9,10,13,15)
 Disney<-c(5,4,4,6,8)
 dfDisney<-data.frame(Edad, Disney) # unir las listas en un data frame
+dfDisney$Edad2=dfDisney$Edad^2
+dfDisney$Disney2=dfDisney$Disney^2
+dfDisney$Edad_por_Disney=dfDisney$Edad*dfDisney$Disney
 dfDisney
 ```
+Lo que necesitamos ahora es calcular cada una de las variables
 
-Un gráfico de Correlacion sencilla
+
+```{r width}
+
+library(knitr)
+library(kableExtra)
+df <- data.frame(Formulas = c("$$\\sum x $$","$$\\sum y$$", "$$\\sum x^2$$", "$$\\sum y^2$$", "$$\\sum xy$$"),
+                 Sumas = c(55, 27, 639,157, 314))
+
+kable(df, escape=FALSE)
+
+```
+
+Ahora sustituir los valores en la ecuación para calcular el coeficiente de Pearson.
+
+$$r=\frac{314-\left(\frac{55\cdot27}{5}\right)}{\sqrt{\left(639-\frac{\left(55\right)^2}{5}\right)\left(157-\frac{\left(27\right)^2}{5}\right)}}=0.871$$
+La función para hacer todos estos calculo es **cor**. Con una correlación de 0.87, esto significa que hay buena correlación positiva entre la edad y la cantidad de veces que han ido a Disney.   
+
+```{r}
+cor(Edad, Disney)
+```
+
+
+
+
+Un gráfico de Correlación sencilla. Miran que parece haber un patrón de cuando aumenta una variable aumenta la otra. 
 
 ```{r graph correlations,  out.width = '60%',fig.align='center'}
 scatter<-ggplot(dfDisney, aes(x=Edad, y=Disney))
