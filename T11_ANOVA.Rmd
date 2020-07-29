@@ -2,15 +2,23 @@
 title: "T11_ANOVA"
 output: 
   html_document:
+    highlight: kate
     toc: yes
     toc_float: yes
     css: custom.css
+    use_bookdown: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+knitr::opts_chunk$set(
+  class.source = "numberLines lineAnchors", 
+  class.output = c("numberLines lineAnchors chunkout") 
+)
 
 ```
+
+
 
 
 ```{r, eval=TRUE, echo=FALSE}
@@ -33,3 +41,436 @@ Fecha de la ultima revisión
 
 Sys.Date()
 ```
+
+
+
+
+
+```{css, echo = FALSE}
+div.sourceCode pre.chunkout {
+  background: white;
+}
+```
+
+Chunk para poder cambiar el color del texto
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+```
+
+## Instalar libreria si es necesario
+```{r install libraries}
+#install.packages("granova")
+#install.packages("car")
+#install.packages("pastecs")
+#install.packages("multcomp")
+#install.packages("compute.es")
+#install.packages("WRS2", repos="http://R-Forge.R-project.org")
+```
+
+# Activar libreria
+```{r activar librerias}
+library(ggplot2)
+library(granova)
+library(car)
+
+library(pastecs)
+library(multcomp)
+library(compute.es)
+library(WRS2) 
+```
+
+ANOVA= Analisis of Variance
+
+3 o más grupos, k >=3 
+
+Ho: G1=G2=G3, p = 0.05
+Ha: Por lo menos uno de estos grupos no es igual a los demas
+
+
+Ha: No es G1=/G2=/G3
+
+Un ejemplo 
+G1=G2, G1=G3, pero G2 no es igual a G3..... la Ho se rechaza
+
+
+La razon principal no usamos t-test,
+
+t-test 1= p=.05
+t-test 2= p=.05
+t-test 3= p=.05
+
+p=0.05   
+
+Si repite el exp. 100, es probable que 5 la prueba no lo va a dar el resultado correcto. 
+
+Para determinar la probabilidad de error tipo uno o alpha, se puede usar la siguiente formalua
+
+P(at least one significant result) = 1 − P(no significant results) = 1−(1−0.05)i
+≈ 0.64
+
+Vamoa a asumir que tenemos que hacer multiples comparación 
+
+```{r}
+# Un par solamente
+
+1-(1-.05)^1
+
+# 3 grupos, por consecuencia 3 t-test, a, b, c.   A con B, A con C, B con C
+
+1-(1-.05)^3
+
+# 4 grupos, por consecuencia 3 t-test, A vs B, A vs.C, A vs. D, B vs C, B vs D, C vs D. 
+
+1-(1-.05)^6
+
+# 10 grupos
+1-(1-.05)^10
+```
+
+
+# Crear un conjunto de datos
+
+## Aqui observamos la cantidad de fosforo por parte de million observado en la misma especie de planta cerca tres lagos de Puerto Rico . Los datos son ficticios es para demostrar 
+
+```{r ejemplo}
+
+
+id<-(1:16)
+Cant_Fos<-c(55,56,64,45,44,
+            37,36,35,38,39,
+            12,28,15,16,11,9)
+Lagos<-c(rep(1,5),rep(2,5), rep(3,6))
+Lagos<-factor(Lagos, levels = c(1:3), 
+              labels = c("Caraizo", "DosBocas", "Guineo"))
+fosforo<-data.frame(id,Cant_Fos,Lagos)
+fosforo
+
+```
+
+
+Hacer un gráfico de los datos.  Si calculamos el promedio de todos los valores de "Y" y lo graficamos, vemos que muchos de los valores del municipio "b" son muy por debajo los valores de la linea y muchos de los valores del municipio "u" son muy por encima.    
+
+```{r plot}
+
+mean_fosforo=mean(fosforo$Cant_Fos)
+mean_fosforo
+
+ggplot(fosforo, aes(Lagos, Cant_Fos, colour=Lagos))+
+  geom_jitter(width = 0.11)+
+  geom_hline(yintercept = mean_fosforo)
+
+# geom_hline = linea horizontal
+```
+
+Otra alternativa de verlo es ver la diferencias entre el valor de la "y" y el promedio, o sea los residuales. `r colorize("Nota que esto se parece a la grafica de residuales de la regresión lineal", "blue")`. Vimos tambien este tipo de grafico para la prueba de t. 
+
+
+```{r}
+plot(1:16, Cant_Fos, ylim=c(0, 60), ylab="y", xlab = "order", pch=21, bg="red")
+abline(h=mean(Cant_Fos), col="blue")
+for(i in 1:16) lines(c(i,i), c(mean(Cant_Fos), Cant_Fos[i]), col="green")
+
+#plot(1:36, dist, ylim=c(0, 100), ylab="y", xlab = "order", pch=21, bg="red")
+#abline(h=mean(dist), col="blue")
+#for(i in 1:36) lines(c(i,i), c(mean(dist), dist[i]), col="green")
+```
+
+
+Ahora vamos a separar la grafica y ver los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo.  
+
+
+```{r}
+
+plot(1:16, Cant_Fos, ylim=c(0, 70), ylab="y", xlab = "order", pch=21, bg="black")
+abline(h=mean(Cant_Fos[Lagos=="Caraizo"]), col="blue")
+abline(h=mean(Cant_Fos[Lagos=="DosBocas"]), col="red")
+abline(h=mean(Cant_Fos[Lagos=="Guineo"]), col="orange")
+
+index<- 1:length(Cant_Fos)
+for (i in 1:length(index)){
+  if(Lagos[i]=="Caraizo")
+    lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="Caraizo"]), Cant_Fos[i]), col="blue")
+  else if (Lagos[i]=="Guineo")
+    lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="Guineo"]), Cant_Fos[i]), col="orange")
+  else
+    lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="DosBocas"]), Cant_Fos[i]), col="red")
+} 
+
+
+```
+
+# Ejemplo de grupos donde los promedios no van a ser diferentes
+## creamos un set de datos
+
+```{r primer ejemplo}
+
+
+id<-(1:16)
+Cant_Fos<-c(65,66,64,65,64,
+            56,58,65,49,43,
+            21,24,22,21,21,21)
+Lagos<-c(rep(1,5),rep(2,5), rep(3,6))
+Lagos<-factor(Lagos, levels = c(1:3), 
+              labels = c("Caraizo", "DosBocas", "Guineo"))
+fosforo2<-data.frame(id,Cant_Fos,Lagos)
+
+attach(fosforo2)
+```
+
+
+```{r}
+
+plot(1:16, Cant_Fos, ylim=c(0, 70), ylab="y", xlab = "order", pch=21, bg="black")
+abline(h=mean(Cant_Fos[Lagos=="Caraizo"]), col="blue")
+abline(h=mean(Cant_Fos[Lagos=="DosBocas"]), col="red")
+abline(h=mean(Cant_Fos[Lagos=="Guineo"]), col="orange")
+
+index<- 1:length(Cant_Fos)
+for (i in 1:length(index)){
+  if(Lagos[i]=="Caraizo")
+    lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="Caraizo"]), Cant_Fos[i]), col="blue")
+  else if (Lagos[i]=="Guineo")
+    lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="Guineo"]), Cant_Fos[i]), col="orange")
+  else
+    lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="DosBocas"]), Cant_Fos[i]), col="red")
+} 
+```
+
+
+Graficar de los datos
+
+NOTA Aqui que tengo
+  1. los datos con geom_point
+  2. los promedios con stat_summary
+  3. Una linea que une los promedios con stat_summary
+
+```{r graficar fosforo}
+library(ggplot2)
+ggplot(fosforo, aes(x=Lagos, y=Cant_Fos))+
+geom_point()+
+  stat_summary(fun.y = mean, geom = "point", size = 1, 
+                    aes(group=1), colour = "#FF6633")+
+  stat_summary(fun.y = mean, geom = "line", size = 1, 
+             aes(group=1), colour = "red")
+
+```
+
+### Crear un data frame de los resultados con el package "Rmisc" y la función "summarySE"
+
+```{r summary data}
+library(Rmisc)   # this is a function to create 
+#a data frame of summary data
+
+head(fosforo)
+
+sum = summarySE(fosforo, 
+                measurevar="Cant_Fos", 
+                groupvars=c("Lagos"))
+sum
+
+
+```
+52.8000000    3.7336309   10.3662213
+
+
+## Graficar con nuestro nuevo data frame "sum".
+
+Nota, se = standard error, el error del promedio (donde esta el promedio?)
+      sd = la desviación estandard, para evaluar el error de la población (donde esta la distribución de los datos?)
+      ci = el intervalo de confianza
+      
+      95% intervalo de confianza del promedio
+```{r grafica2}
+ggplot(sum, aes(x=Lagos, 
+                y=Cant_Fos)) +
+  geom_point(colour="blue")+ 
+  geom_errorbar(aes(ymin=Cant_Fos-2*se, 
+                    ymax=Cant_Fos+2*se), 
+                width=.2, size=0.7)
+
+
+```
+ ymin=Cant_Fos-2*se, 
+ymax=Cant_Fos+2*se
+
+Esto dara el intervalo de confianza de 95%
+
+Descriptive statistics
+
+```{r descriptive stats}
+#Descriptives
+library(pastecs)
+by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)
+
+```
+
+
+#Levene's test (test of equality of variance), to test for homogeneity of variance among groups
+
+## Para comprobar si hay igualdad de varianza entre los grupos
+
+
+$$Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k$$
+
+
+
+```{r levene test}
+
+library(car)
+leveneTest(fosforo$Cant_Fos, fosforo$Lagos, 
+           center = median)
+```
+
+# La prueba de ANOVA
+
+```{r ANOVA}
+LagosModel<-aov(Cant_Fos~Lagos-1, data = fosforo)
+
+# limited information
+summary(LagosModel)
+
+
+#Here
+# Complete model
+summary.lm(LagosModel)  # Nota que los coefficientes son los promedios, comparan con la tabla ariba. 
+```
+
+```{r ANOVA residuals}
+plot(LagosModel)
+
+
+```
+
+
+## PRUEBA de POST HOC *(Se hace solamente si se rechaza la hipotesis nula de la prueba de ANOVA)*
+1. the Bonferroni test
+2. Tukey test
+
+```{r post-hoc2 test}
+pairwise.t.test(fosforo$Cant_Fos, fosforo$Lagos, p.adjust.method = "bonferroni") # Nota aqui se usa los datos originales, el error de todos las pruenas se limita a 5%.  
+
+
+
+library(multcomp)
+postHocs.1<-glht(LagosModel, linfct = mcp(Lagos = "Tukey"))  # nota que aqui se usa el modelo
+summary(postHocs.1)
+
+```
+
+
+
+## SUPER HEROES and INJURIES
+
+```{r data super heroes}
+
+library(readr)
+Superhero <- read_csv("~/Google Drive/Biometry/Biometria 2017/Data_FILES/Superhero.csv")
+tail(Superhero)
+
+unique(Superhero$heronames)
+```
+
+
+
+####Rename the categories with super hero names
+
+```{r rename variables}
+#Superhero
+Superhero$heronames<-factor(Superhero$hero, levels = c(1:4), 
+     labels = c("Spiderman","Superman", "Hulk", "Ninja Turtle"))
+Superhero
+names(Superhero)
+```
+
+
+
+
+
+
+1. Evaluar la distribución de los datos de respuestas (los en Y)
+2. Evaluar la homogeneidad de varianza
+3. Visualizar los datos Puntos y promedios y intervalo de confianza
+4. Hacer la prueba de ANOVA con aov()
+5. Evaluar la figura de residuales
+6. Evaluar la gráfica de qq, para la normalidad
+7. Hacer la prueba de post-hoc si es necesario!!!!!
+
+```{r hero1}
+library(ggplot2)
+line <- ggplot(Superhero, aes(heronames, injury))
+line +geom_point()+
+  stat_summary(fun.y = mean, geom = "line", size = 1, 
+                    aes(group=1), colour = "#FF6633")+
+  stat_summary(fun.y = mean, geom = "point", size = 3, 
+             aes(group=1), colour = "red")
+
+```
+
+Homogeneity of variance
+```{r hero levene test}
+
+library(car)
+leveneTest(Superhero$injury, Superhero$heronames, 
+           center = median)
+```
+
+```{r grafica3}
+
+library(Rmisc)   # this is a function to create 
+#a data frame of summary data
+sum2 = summarySE(Superhero, 
+                measurevar="injury", 
+                groupvars=c("heronames"))
+sum2
+
+
+
+
+
+ggplot(sum2, aes(x=heronames, 
+                y=injury)) + 
+  geom_errorbar(aes(ymin=injury-2*se, 
+                    ymax=injury+2*se), 
+                width=.2, size=0.7)+
+  geom_point(colour="blue")
+
+
+```
+
+4. Hacer la prueba de ANOVA con aov()
+
+```{r Hero ANOVA}
+SuperHeroModel<-aov(injury~heronames, data = Superhero)
+
+summary(SuperHeroModel)
+summary.lm(SuperHeroModel)
+```
+5. Evaluar la figura de residuales
+6. Evaluar la grafica de qq
+
+```{r hero residuals}
+plot(SuperHeroModel)
+
+
+```
+
+7. Hacer la prueba de post-hoc si es necesario!!!!!
+
+```{r post-hoc test}
+pairwise.t.test(Superhero$injury, Superhero$heronames, p.adjust.method = "bonferroni")
+
+
+postHocs.2<-glht(SuperHeroModel, linfct = mcp(heronames = "Tukey"))
+summary(postHocs.2)
+
+```
+
+
