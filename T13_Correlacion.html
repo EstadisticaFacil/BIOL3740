@@ -486,7 +486,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-28&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-29&quot;</code></pre>
 <hr />
 <div id="install-packages" class="section level2">
 <h2>Install packages</h2>
@@ -534,10 +534,10 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<p>La siguiente formula muestra el calculo para el coeficiente de Pearson <span class="math inline">\(\rho\)</span> que se dice <strong>rho</strong> que es el parámetro (el universo). Para significar el coeficiente de una muestra se usa la <strong>r</strong>.</p>
-<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1({ s }_{ x }{ s }_{ y }) }\]</span> Una otra manera de ver como se calcula el coeficiente es usar la siguiente formula.</p>
+<p>La siguiente formula muestra el calculo para el coeficiente de Pearson <span class="math inline">\(\rho\)</span> que se dice <strong>rho</strong> que es el parámetro (el universo). Para significar el coeficiente de una muestra se usa la <strong>r</strong>. Note el numerador y comparalo con la formula anterior. ven que ahora se toma en cuenta tanto el valor en <strong>x</strong> y en <strong>y</strong>.</p>
+<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1({ s }_{ x }{ s }_{ y }) }\]</span> Una otra manera de ver como se calcula el coeficiente de Pearson es usar la siguiente formula.</p>
 <p><span class="math display">\[r=\frac{\sum_{ }^{ }xy-\left(\frac{\sum_{ }^{ }x\sum_{ }^{ }y}{n}\right)}{\sqrt{\left(\sum_{ }^{ }x^2-\frac{\left(\sum_{ }^{ }x\right)^2}{n}\right)\left(\sum_{ }^{ }y^2-\frac{\left(\sum_{ }^{ }y\right)^2}{n}\right)}}\]</span></p>
-<p>Creamos un conjunto de datos en R para demostrar como se calcula a mano.</p>
+<p>Creamos un conjunto de datos en R para demostrar como se calcula a mano. Necesitamos calcular la suma de <strong>x</strong>, la suma de <strong>y</strong>, la suma de los cuadrados de <strong>x</strong> y <strong>y</strong> y la suma los productos cruzados (<strong>xy</strong>).</p>
 <pre class="r"><code>Edad&lt;-c(8,9,10,13,15)
 Disney&lt;-c(5,4,4,6,8)
 dfDisney&lt;-data.frame(Edad, Disney) # unir las listas en un data frame
@@ -627,7 +627,7 @@ scatter + geom_point(colour=&quot;purple&quot;)+
   geom_hline(aes(yintercept=mean(Disney)))+ # las lineas representa el promedio de la variable en *y* los valores
   geom_vline(aes(xintercept=mean(Edad))) # las lineas representa el promedio de la variable en *x* los valores</code></pre>
 <p><img src="T13_Correlacion_files/figure-html/graph%20correlations-1.png" width="60%" style="display: block; margin: auto;" /> *** # El rango del coeficiente Pearson</p>
-<p>El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta y positiva, en otra palabra la <strong>x</strong> predice exactamente el valor de <strong>y</strong>. Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la <strong>x</strong> y <strong>y</strong>. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.</p>
+<p>El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta y positiva, en otra palabra la <strong>x</strong> predice exactamente el valor de <strong>y</strong>. Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la <strong>x</strong> e <strong>y</strong>. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.</p>
 <hr />
 </div>
 </div>
@@ -796,14 +796,15 @@ head(advertNA)</code></pre>
 ## adverts    1.0000000 -0.9128709 -0.3162278
 ## comprasNA -0.9128709  1.0000000  0.6666667
 ## age       -0.3162278  0.6666667  1.0000000</code></pre>
-<pre class="r"><code>cor(advertNA, use = &quot;pairwise.complete.obs&quot;,  method = &quot;spearman&quot;) # n= 30 or more</code></pre>
+<pre class="r"><code>cor(advertNA, use = &quot;pairwise.complete.obs&quot;,  method = &quot;spearman&quot;) # n=30 o más</code></pre>
 <pre><code>##              adverts  comprasNA        age
 ## adverts    1.0000000 -0.9486833 -0.4103913
 ## comprasNA -0.9486833  1.0000000  0.8000000
 ## age       -0.4103913  0.8000000  1.0000000</code></pre>
+<hr />
 <div id="ejemplo-de-anxiedad-y-correlaciones" class="section level2">
 <h2>Ejemplo de Anxiedad y correlaciones</h2>
-<p>Corelación entre anxiedad, la nota de examen y el tiempo que estudio el estudiante.</p>
+<p>Correlación entre ansiedad, la nota de examen y el tiempo que estudio el estudiante.</p>
 <p>Anxiety data</p>
 <pre class="r"><code>library(readr)
 Exam_Anxiety &lt;- read_csv(&quot;~/Google Drive/Biometry/Biometria 2015/Biometria_2015_RStudio/Data files/Exam_Anxiety.csv&quot;)
@@ -818,10 +819,12 @@ head(examData)</code></pre>
 ## 4     4     53    80    61.3 Male  
 ## 5     5      4    40    89.5 Male  
 ## 6     6     22    70    60.5 Female</code></pre>
-<p>Correlation anaylisis between anxiety, Exam and time for study (revise)</p>
-<pre class="r"><code>cor(examData$Exam, examData$Anxiety, use = &quot;complete.obs&quot;,
+<p>Correlación entre anxiedad, la nota del examen y el tiempo de estudio (revise) para 103 estudiantes.</p>
+<p>En el primer chunk se demuestra como se hace el análisis entre dos variables</p>
+<pre class="r"><code>cor(examData$Exam, examData$Anxiety, use = &quot;pairwise.complete.obs&quot;,
     method = &#39;pearson&#39;)</code></pre>
 <pre><code>## [1] -0.4409934</code></pre>
+<p>Ahora podemos hacer el calculo de las tres variables junta.esta función permite hacer todos los calculos.</p>
 <pre class="r"><code>examData2 &lt;- examData[, c(&quot;Exam&quot;, &quot;Anxiety&quot;, &quot;Revise&quot;)]
 head(examData2)</code></pre>
 <pre><code>## # A tibble: 6 x 3
@@ -833,7 +836,7 @@ head(examData2)</code></pre>
 ## 4    80    61.3     53
 ## 5    40    89.5      4
 ## 6    70    60.5     22</code></pre>
-<pre class="r"><code>cor(examData2)  # range from -1 to + 1</code></pre>
+<pre class="r"><code>cor(examData2)  # rango entre -1 to + 1, 0 o cerca significa que no hay patrón. </code></pre>
 <pre><code>##               Exam    Anxiety     Revise
 ## Exam     1.0000000 -0.4409934  0.3967207
 ## Anxiety -0.4409934  1.0000000 -0.7092493
@@ -843,19 +846,77 @@ head(examData2)</code></pre>
 ## Exam     1.0000000 -0.4409934  0.3967207
 ## Anxiety -0.4409934  1.0000000 -0.7092493
 ## Revise   0.3967207 -0.7092493  1.0000000</code></pre>
-<pre class="r"><code>cor(examData2)^2 * 100 # Ranges from 0 to 100  The proportion of the variance explained</code></pre>
-<pre><code>##              Exam   Anxiety    Revise
-## Exam    100.00000  19.44752  15.73873
-## Anxiety  19.44752 100.00000  50.30345
-## Revise   15.73873  50.30345 100.00000</code></pre>
-<pre class="r"><code>#Coeficiente de determinación</code></pre>
-<p>Using the corr.test function</p>
+<hr />
+</div>
+</div>
+<div id="r2-el-coeficiente-de-determinación." class="section level1">
+<h1>R^2: El coeficiente de determinación.</h1>
+<p>El coeficiente de determinación es una medida de la proporción de la varianza explica por la variable dependiente (en <strong>x</strong>). La correlación explica la influencia de la relación entre la <strong>x</strong> e <strong>y</strong>, la <span class="math display">\[R^2\]</span> explica cuanto de la varianza en una variable explica la varianza en la otra variable. El rango es 0 a 100, un <span class="math display">\[R^2=0.20\]</span> es que la dependiente explica solamente 20% de la varianza da la independiente.</p>
+<p>Podemos visualizar el coeficiente de determinación con unos gráficos.</p>
+<ol style="list-style-type: decimal">
+<li>Se crea dos conjunto de datos uno que tiene más variación que el otro</li>
+<li>Calcula el coeficiente de Pearson y el coeficiente de determinación</li>
+<li>Se añade todo los gráficos.</li>
+</ol>
+<pre class="r"><code>library(tidyverse)
+x=runif(100, 0, 30)
+y=rnorm(100, 1, .1)*x+rnorm(100,0,5)
+
+xy=tibble(x,y)
+
+y2=rnorm(100, 1, .01)*x+rnorm(100,0,1)
+
+xycorD=(cor(x,y))^2
+xycorD</code></pre>
+<pre><code>## [1] 0.777184</code></pre>
+<pre class="r"><code>xycorD2=(cor(x,y2))^2
+xycorD2</code></pre>
+<pre><code>## [1] 0.9876439</code></pre>
+<p>La diferencia no es la pendiente es solamente cuan disperso están los datos alrededor de la correlación lineal.</p>
+<pre class="r"><code>R2a=ggplot(xy, aes(x,y))+
+  geom_smooth(method = lm)+
+  geom_point()+
+  annotate(geom = &quot;text&quot;, x=5, y=35, label=&quot;R^2=0.669&quot;)+
+  ylim(0,40)
+
+
+R2b=ggplot(xy, aes(x,y2))+
+  geom_smooth(method = lm)+
+  geom_point()+
+  annotate(geom = &quot;text&quot;, x=5, y=35, label=&quot;R^2=.989&quot;)+
+  ylim(0,40)
+
+library(gridExtra)
+grid.arrange(R2a,R2b,ncol=2)</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-9-1.png" width="672" /> ***</p>
+</div>
+<div id="la-prueba-de-correlación" class="section level1">
+<h1>La prueba de correlación</h1>
+<p>Uno puede hacer una prueba para determinar si la correlación es significativamente diferente de cero. Recuerda que cuando el coeficiente es en cero o cerca de cero esto significa que NO hay correlación entre las dos variables.</p>
+<p>Entonces la hipótesis nula y alterna son las siguientes.</p>
+<ol style="list-style-type: decimal">
+<li>Ho: r = 0 (es cerca de cero considerando la variación)</li>
+<li>Ha: r ≠ 0 (entonces la correlación es positiva o negativa)</li>
+</ol>
+<p>La función es <strong>corr.test()</strong></p>
+<pre class="r"><code>cor.test(x, y, method=&quot;pearson&quot;)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  x and y
+## t = 18.489, df = 98, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8286500 0.9188858
+## sample estimates:
+##       cor 
+## 0.8815804</code></pre>
 <pre class="r"><code>ggplot(examData2,aes(Revise, Anxiety))+
   geom_point()</code></pre>
-<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(examData,aes(Revise, Exam, colour=Gender))+
   geom_point()</code></pre>
-<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre class="r"><code>cor.test(examData$Anxiety, examData$Exam)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
@@ -948,13 +1009,13 @@ head(liarData)</code></pre>
 p
 # add marginal histograms
 ggExtra::ggMarginal(p, type = &quot;histogram&quot;)</code></pre>
-<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(liarData, aes(Posición))+ 
   geom_histogram(fill=&quot;blue&quot;, colour=&quot;white&quot;)</code></pre>
-<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(liarData, aes(Creatividad))+
   geom_histogram()</code></pre>
-<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
 <p>Spearman Correlations</p>
 <pre class="r"><code>library(knitr)
 library(png)
@@ -992,7 +1053,7 @@ cor(liarData$Posición, liarData$Creatividad, method = &quot;spearman&quot;)</co
 <p><img src="T13_Correlacion_files/figure-html/Spearman-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(liarData, aes(Posición, Creatividad))+
   geom_point()</code></pre>
-<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Another alternative</p>
 <pre class="r"><code>library(Hmisc)  # for the function rcorr
 liarMatrix&lt;-as.matrix(liarData[, c(&quot;Posición&quot;, &quot;Creatividad&quot;, &quot;Principiante&quot;)])
@@ -1036,7 +1097,6 @@ rcorr(liarMatrix, type=c(&quot;spearman&quot;)) # si no pone nada asume distribu
 <pre class="r"><code>ggplot(examData, aes(Anxiety, Exam))+
   geom_point()</code></pre>
 <p><img src="T13_Correlacion_files/figure-html/kendall%20exam%20anxiety-1.png" width="672" /></p>
-</div>
 </div>
 
 

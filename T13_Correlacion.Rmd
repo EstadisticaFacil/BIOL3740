@@ -44,6 +44,7 @@ pacman::p_load(Hmisc, pastecs)
 library(Hmisc)
 library(pastecs)
 library(ggplot2)
+library(gridExtra)
 
 ```
 
@@ -58,8 +59,6 @@ Ejemplos
 
 
 Los analísis se hacen comparando las variables continuas en pares. La covarianza es la medida de variabilidad conjunta entre dos variables. 
-
-
 
 
 Primero recordamos la formula para calcular la varianza de una variable
@@ -86,16 +85,14 @@ Podemos ver cual es la relación entre la edad de los estudiantes y cuantas vece
 
 
 
-La siguiente formula muestra el calculo para el coeficiente de Pearson $\rho$ que se dice **rho** que es el parámetro (el universo). Para significar el coeficiente de una muestra se usa la **r**.   
+La siguiente formula muestra el calculo para el coeficiente de Pearson $\rho$ que se dice **rho** que es el parámetro (el universo). Para significar el coeficiente de una muestra se usa la **r**.   Note el numerador y comparalo con la formula anterior. ven que ahora se toma en cuenta tanto el valor en **x** y en **y**.  
 
 $$r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1({ s }_{ x }{ s }_{ y }) }$$
-Una otra manera de ver como se calcula el coeficiente es usar la siguiente formula.  
+Una otra manera de ver como se calcula el coeficiente de Pearson es usar la siguiente formula.  
 
 $$r=\frac{\sum_{ }^{ }xy-\left(\frac{\sum_{ }^{ }x\sum_{ }^{ }y}{n}\right)}{\sqrt{\left(\sum_{ }^{ }x^2-\frac{\left(\sum_{ }^{ }x\right)^2}{n}\right)\left(\sum_{ }^{ }y^2-\frac{\left(\sum_{ }^{ }y\right)^2}{n}\right)}}$$
 
-
-
-Creamos un conjunto de datos en R para demostrar como se calcula a mano.  
+Creamos un conjunto de datos en R para demostrar como se calcula a mano. Necesitamos calcular la suma de **x**, la suma de **y**, la suma de los cuadrados de **x** y **y** y la suma los productos cruzados (**xy**).  
 
 
 ```{r simple example}
@@ -150,7 +147,7 @@ scatter + geom_point(colour="purple")+
 ***
 # El rango del coeficiente Pearson
 
-El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta y positiva, en otra palabra la **x** predice exactamente el valor de **y**.  Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la **x** y **y**. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.
+El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta y positiva, en otra palabra la **x** predice exactamente el valor de **y**.  Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la **x** e **y**. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.
 
 ***
 ## Los Supuestos de la prueba de Pearson
@@ -286,14 +283,14 @@ cor(advertNA, use = "pairwise.complete.obs",  method = "pearson") # Comúnmente 
 
 ```{r, kendall and Spearman}
 cor(advertNA, use = "pairwise.complete.obs",  method = "kendall")   
-cor(advertNA, use = "pairwise.complete.obs",  method = "spearman") # n= 30 or more
+cor(advertNA, use = "pairwise.complete.obs",  method = "spearman") # n=30 o más
 
 
 ```
-
+***
 ## Ejemplo de Anxiedad y correlaciones
 
-Corelación entre anxiedad, la nota de examen y el tiempo que estudio el estudiante. 
+Correlación entre ansiedad, la nota de examen y el tiempo que estudio el estudiante. 
 
 
 Anxiety data
@@ -306,28 +303,93 @@ head(examData)
 
 ```
 
+Correlación entre anxiedad, la nota del examen y el tiempo de estudio (revise) para 103 estudiantes.  
 
-Correlation anaylisis between anxiety, Exam and time for study (revise)
-
+En el primer chunk se demuestra como se hace el análisis entre dos variables
 
 ```{r correlation anxiety}
-cor(examData$Exam, examData$Anxiety, use = "complete.obs",
+cor(examData$Exam, examData$Anxiety, use = "pairwise.complete.obs",
     method = 'pearson')
-
-
-
-examData2 <- examData[, c("Exam", "Anxiety", "Revise")]
-head(examData2)
-cor(examData2)  # range from -1 to + 1
-cor(examData[, c("Exam", "Anxiety", "Revise")])
-
-cor(examData2)^2 * 100 # Ranges from 0 to 100  The proportion of the variance explained
-
-#Coeficiente de determinación
 ```
 
-Using the corr.test function
+Ahora podemos hacer el calculo de las tres variables junta.esta función permite hacer todos los calculos.  
 
+```{r}
+examData2 <- examData[, c("Exam", "Anxiety", "Revise")]
+head(examData2)
+cor(examData2)  # rango entre -1 to + 1, 0 o cerca significa que no hay patrón. 
+cor(examData[, c("Exam", "Anxiety", "Revise")])
+```
+***
+# R^2: El coeficiente de determinación.
+
+El coeficiente de determinación es una medida de la proporción de la varianza explica por la variable dependiente (en **x**). La correlación explica la influencia de la relación entre la **x** e **y**, la $$R^2$$ explica cuanto de la varianza en una variable explica la varianza en la otra variable.  El rango es 0 a 100, un $$R^2=0.20$$ es que la dependiente explica solamente 20% de la varianza da la independiente. 
+
+Podemos visualizar el coeficiente de determinación con unos gráficos. 
+
+1. Se crea dos conjunto de datos uno que tiene más variación que el otro
+2. Calcula el coeficiente de Pearson y el coeficiente de determinación
+3. Se añade todo los gráficos.  
+
+
+```{r}
+library(tidyverse)
+x=runif(100, 0, 30)
+y=rnorm(100, 1, .1)*x+rnorm(100,0,5)
+
+xy=tibble(x,y)
+
+y2=rnorm(100, 1, .01)*x+rnorm(100,0,1)
+
+xycorD=(cor(x,y))^2
+xycorD
+
+xycorD2=(cor(x,y2))^2
+xycorD2
+```
+
+La diferencia no es la pendiente es solamente cuan disperso están los datos alrededor de la correlación lineal.  
+
+```{r}
+R2a=ggplot(xy, aes(x,y))+
+  geom_smooth(method = lm)+
+  geom_point()+
+  annotate(geom = "text", x=5, y=35, label="R^2=0.669")+
+  ylim(0,40)
+
+
+R2b=ggplot(xy, aes(x,y2))+
+  geom_smooth(method = lm)+
+  geom_point()+
+  annotate(geom = "text", x=5, y=35, label="R^2=.989")+
+  ylim(0,40)
+
+library(gridExtra)
+grid.arrange(R2a,R2b,ncol=2)
+
+```
+***
+
+# La prueba de correlación
+
+Uno puede hacer una prueba para determinar si la correlación es significativamente diferente de cero.  Recuerda que cuando el coeficiente es en cero o cerca de cero esto significa que NO hay correlación entre las dos variables.
+
+Entonces la hipótesis nula y alterna son las siguientes.   
+
+1. Ho: r = 0  (es cerca de cero considerando la variación)
+2. Ha: r ≠ 0 (entonces la correlación es positiva o negativa)
+
+
+
+La función es **corr.test()**
+
+
+
+```{r}
+
+cor.test(x, y, method="pearson")
+
+```
 
 ```{r}
 ggplot(examData2,aes(Revise, Anxiety))+
