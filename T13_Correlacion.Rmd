@@ -383,101 +383,18 @@ Entonces la hipótesis nula y alterna son las siguientes.
 
 La función es **corr.test()**
 
-
+En adición de determinar si el coeficiente es diferente de cero esta función calcula el intervalo de 95% de confianza del coeficiente.  Nota que el coeficiente es 0.81 con un intervalo de confianza entre 0.74-0.87.  Si el intervalo solapa el cero la hipótesis nula no sera rechazado. 
 
 ```{r}
 
 cor.test(x, y, method="pearson")
 
 ```
+***
 
-```{r}
-ggplot(examData2,aes(Revise, Anxiety))+
-  geom_point()
-```
+# El mejor mentiroso.  
 
-```{r}
-ggplot(examData,aes(Revise, Exam, colour=Gender))+
-  geom_point()
-```
-
-
-
-```{r corr.test function}
-cor.test(examData$Anxiety, examData$Exam)
-cor.test(examData$Revise, examData$Exam)
-cor.test(examData$Anxiety, examData$Revise)
-
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-The biggest liar data
-
-
-```{r liar data}
-library(ggplot2)
-library(readr)
-The_Biggest_Liar <- read_csv("~/Google Drive/Biometry/Biometria 2015/Biometria_2015_RStudio/Data files/The Biggest Liar.csv")
-
-liarData=The_Biggest_Liar 
-liarData
-length(liarData$Creativity)
-summary(liarData)
-```
-
-Como cambiar el nombre de la variables
-
-```{r}
-names(liarData)
-names(liarData)[1]=paste("Creatividad")  # se cambia el nombre de la columna
-names(liarData)
-names(liarData)[2]=paste("Posición")
-names(liarData)[3]=paste("Principiante")
-head(liarData)
-```
-
-Evaluar si las variables tienen distribución normal
-
-```{r}
-
-p <- ggplot(liarData, aes(Creatividad, Posición)) + 
-  geom_point() + 
-  theme_classic()
-p
-# add marginal histograms
-ggExtra::ggMarginal(p, type = "histogram")
-```
-
-
-```{r}
-ggplot(liarData, aes(Posición))+ 
-  geom_histogram(fill="blue", colour="white")
-
-ggplot(liarData, aes(Creatividad))+
-  geom_histogram()
-
-```
-
-
-Spearman Correlations
-
+El mentiroso más grande del mundo es una competencia anual para decir mentiras, que se celebra en Cumbria, Inglaterra, en el Stanton Inn Bridge Pub. Aquí ben el pub (bar) donde tiene la competencia.  Este cuento proviene del libro de Field et al. y de <http://lakelandhuntingmemories.com/auldWillRitson2New.html>. 
 
 ```{r, out.width="500px"}
 
@@ -487,61 +404,70 @@ library(png)
 img4_path<-"Graficos/Stanton.png"
 include_graphics(img4_path)
 ```
-
-```{r Spearman}
-#-------Spearman correlation-----Use when data are not normal, 
-# such as ordinal data
-
-cor(liarData$Posición, liarData$Creatividad, method = "spearman")
+***
+Esta competencia es en honor a un hombre que era dueño o que tenia a cargo un "pub" en el siglo 19, su nombre era "Auld Will Ritson; b. 1808-1890 ".  El era conocido por sus cuentos y historia de folclor de la región. Muchas de estas história no se sabia si eran ciertas o no estos cuentos. Por ejemplo el aseguraba que se acordaba del día que fue bautizado (puede ser que si porque en estos momentos no todos los bautizado se hacia los primeros día del nacer.    
 
 
+Creatividad = variable continua
+Posición = es una variable ordenal que va de 1 al 6, recuerda que si está en posición uno es que gano el concurso. 
+Principiante - es una variable binomial, hay solamente dos alternativas. o es principiante (0) o participado en el concurso antes (1).  
 
-cor.test(liarData$Posición, liarData$Creatividad, method = "spearman")
-cor.test(liarData$Posición, liarData$Creatividad, alternative = "less", method = "kendall")
+Se usa el conjunto de datos de "The biggest liar" data
 
 
-ggplot(liarData,aes(Posición, Creatividad))+
-  geom_point()
+```{r liar data}
+library(ggplot2)
+library(readr)
+The_Biggest_Liar <- read_csv("Data_files_csv/The Biggest Liar.csv")
+
+mentirosos=The_Biggest_Liar 
+summary(mentirosos)
 ```
+***
+Como cambiar el nombre de la variables
 
 ```{r}
-ggplot(liarData, aes(Posición, Creatividad))+
+
+names(mentirosos)[1]=paste("Creatividad")  # se cambia el nombre de la primera columna
+names(mentirosos)[2]=paste("Posición") # se cambia el nombre de la segunda columna
+names(mentirosos)[3]=paste("Principiante") # se cambia el nombre de la tercera columna
+head(mentirosos)
+```
+
+***
+Primer paso evaluar si las variables tienen distribución normal bivariado. Si lo es entonces se usa Pearson, si no se debería usar Kendall or Spearman.  Lo que uno observa es la variable de creatividad se acerca a un normal, pero la variable de posición. Por consecuencia no se debería usar la correlación de Pearson. 
+
+```{r}
+
+p <- ggplot(mentirosos, aes(Creatividad, Posición)) + 
+  geom_point() + 
+  theme_classic()
+p
+# add marginal histograms
+ggExtra::ggMarginal(p, type = "histogram")
+```
+
+***
+Prueba de correlación entre la creatividad y la posición en el concurso. Vemos que este caso ambas pruebas tiene el mismo resultado que se rechaza la hipótesis nula y que la creatividad esta relacionado con la posición en el concurso. 
+
+
+```{r Spearman y Kendall}
+
+cor.test(mentirosos$Posición, mentirosos$Creatividad, method = "spearman")
+cor.test(mentirosos$Posición, mentirosos$Creatividad, method = "kendall")
+```
+***
+La visualización de la corelación entre las dos variables
+
+```{r}
+ggplot(mentirosos,aes(Creatividad, Posición))+
   geom_point()
 ```
 
 
 
-Another alternative
-
-```{r rcorr}
-library(Hmisc)  # for the function rcorr
-liarMatrix<-as.matrix(liarData[, c("Posición", "Creatividad", "Principiante")])
-
-rcorr(liarMatrix, type=c("spearman")) # si no pone nada asume distribución normal y usa Pearson
-#--------Kendall's Tau----------Use with small sample size with tied ranks
-# use "less" or "greater", depending if you 
-# predict that the correlation will be less or greater than zero
-
-#cor(liarData$Posición, liarData$Creatividad, method = "kendall")
-#cor.test(liarData$Posición, liarData$Creatividad, alternative = "less", method = "kendall")
-
-```
-
-```{r hist anxiety}
-ggplot(examData, aes(Exam))+
-         geom_histogram()
-
-ggplot(examData, aes(Anxiety))+
-         geom_histogram()
-```
 
 
-```{r kendall exam anxiety}
-cor.test(examData$Anxiety, examData$Exam, method = "kendall")
-
-ggplot(examData, aes(Anxiety, Exam))+
-  geom_point()
-```
 
 
 
