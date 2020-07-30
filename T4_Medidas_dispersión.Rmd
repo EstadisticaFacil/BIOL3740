@@ -388,23 +388,24 @@ Calculamos los promedios y las desviación estándar para añadirlos al gráfico
 
 
 ```{r, 1}
+library(tidyverse)
 promM=Alturas_Humanos%>%
-  select(Genero, Altura_cm)%>%
+  dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
   summarise(Mean=mean(Altura_cm))
-  
+promM 
 promH=Alturas_Humanos%>%
-  select(Genero, Altura_cm)%>%
+  dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Hombres")%>%
   summarise(Mean=mean(Altura_cm))
 
 sdM=Alturas_Humanos%>%
-  select(Genero, Altura_cm)%>%
+  dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
   summarise(sd=sd(Altura_cm))
   
 sdH=Alturas_Humanos%>%
-  select(Genero, Altura_cm)%>%
+  dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Hombres")%>%
   summarise(sd=sd(Altura_cm))
 
@@ -415,7 +416,7 @@ Aquí el gráfico de la distribución de los datos con un histograma, y promedio
 
 ```{r, 2}
 Alturas_Humanos%>%
-  select(Genero, Altura_cm)%>%
+  dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
 ggplot(aes(Altura_cm))+
   geom_histogram(fill="blue", colour="white",alpha=.5)+

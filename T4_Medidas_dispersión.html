@@ -1284,29 +1284,36 @@ gt(head(Alturas_Humanos))</code></pre>
   
 </table></div>
 <p>Calculamos los promedios y las desviación estándar para añadirlos al gráfico</p>
-<pre class="r"><code>promM=Alturas_Humanos%&gt;%
-  select(Genero, Altura_cm)%&gt;%
+<pre class="r"><code>library(tidyverse)
+promM=Alturas_Humanos%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
   filter(Genero==&quot;Mujer&quot;)%&gt;%
-  summarize(Mean=mean(Altura_cm))</code></pre>
-<pre><code>## Error in select(., Genero, Altura_cm): unused arguments (Genero, Altura_cm)</code></pre>
+  summarise(Mean=mean(Altura_cm))
+promM </code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:1">
+<col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Mean</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">170</td></tr>
+</table>
+
 <pre class="r"><code>promH=Alturas_Humanos%&gt;%
-  select(Genero, Altura_cm)%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
   filter(Genero==&quot;Hombres&quot;)%&gt;%
-  summarize(Mean=mean(Altura_cm))</code></pre>
-<pre><code>## Error in select(., Genero, Altura_cm): unused arguments (Genero, Altura_cm)</code></pre>
-<pre class="r"><code>sdM=Alturas_Humanos%&gt;%
-  select(Genero, Altura_cm)%&gt;%
+  summarise(Mean=mean(Altura_cm))
+
+sdM=Alturas_Humanos%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
   filter(Genero==&quot;Mujer&quot;)%&gt;%
-  summarize(sd=sd(Altura_cm))</code></pre>
-<pre><code>## Error in select(., Genero, Altura_cm): unused arguments (Genero, Altura_cm)</code></pre>
-<pre class="r"><code>sdH=Alturas_Humanos%&gt;%
-  select(Genero, Altura_cm)%&gt;%
+  summarise(sd=sd(Altura_cm))
+  
+sdH=Alturas_Humanos%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
   filter(Genero==&quot;Hombres&quot;)%&gt;%
-  summarize(sd=sd(Altura_cm))</code></pre>
-<pre><code>## Error in select(., Genero, Altura_cm): unused arguments (Genero, Altura_cm)</code></pre>
+  summarise(sd=sd(Altura_cm))</code></pre>
 <p>Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.</p>
 <pre class="r"><code>Alturas_Humanos%&gt;%
-  select(Genero, Altura_cm)%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
   filter(Genero==&quot;Mujer&quot;)%&gt;%
 ggplot(aes(Altura_cm))+
   geom_histogram(fill=&quot;blue&quot;, colour=&quot;white&quot;,alpha=.5)+
@@ -1316,7 +1323,7 @@ ggplot(aes(Altura_cm))+
   geom_vline(aes(xintercept = as.numeric(promM+sdM)), colour=&quot;blue&quot;)+
 geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour=&quot;red&quot;)+
   geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour=&quot;red&quot;)</code></pre>
-<pre><code>## Error in select(., Genero, Altura_cm): unused arguments (Genero, Altura_cm)</code></pre>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/2-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level3">
