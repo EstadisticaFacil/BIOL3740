@@ -7,7 +7,10 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+knitr::opts_chunk$set(error=TRUE, 
+                      echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
 ```
 
 Fecha de la ultima revisión
@@ -384,33 +387,33 @@ gt(head(Alturas_Humanos))
 Calculamos los promedios y las desviación estándar para añadirlos al gráfico 
 
 
-```{r}
+```{r, 1}
 promM=Alturas_Humanos%>%
   select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
-  summarize(Mean=mean(Altura_cm))
+  summarise(Mean=mean(Altura_cm))
   
 promH=Alturas_Humanos%>%
   select(Genero, Altura_cm)%>%
   filter(Genero=="Hombres")%>%
-  summarize(Mean=mean(Altura_cm))
+  summarise(Mean=mean(Altura_cm))
 
 sdM=Alturas_Humanos%>%
   select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
-  summarize(sd=sd(Altura_cm))
+  summarise(sd=sd(Altura_cm))
   
 sdH=Alturas_Humanos%>%
   select(Genero, Altura_cm)%>%
   filter(Genero=="Hombres")%>%
-  summarize(sd=sd(Altura_cm))
+  summarise(sd=sd(Altura_cm))
 
 ```
 
 Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.
 
 
-```{r}
+```{r, 2}
 Alturas_Humanos%>%
   select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
