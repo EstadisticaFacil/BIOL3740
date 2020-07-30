@@ -584,257 +584,316 @@ div.sourceCode pre.chunkout {
 </div>
 <div id="activar-libreria" class="section level1">
 <h1>Activar libreria</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">library</span>(granova)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">library</span>(car)</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="kw">library</span>(pastecs)</span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">library</span>(multcomp)</span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="kw">library</span>(compute.es)</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="kw">library</span>(WRS2) </span></code></pre></div>
-<p>ANOVA= Analisis of Variance</p>
-<p>3 o más grupos, k &gt;=3</p>
-<p>Ho: G1=G2=G3, p = 0.05 Ha: Por lo menos uno de estos grupos no es igual a los demas</p>
-<p>Ha: No es G1=/G2=/G3</p>
-<p>Un ejemplo G1=G2, G1=G3, pero G2 no es igual a G3….. la Ho se rechaza</p>
-<p>La razon principal no usamos t-test,</p>
-<p>t-test 1= p=.05 t-test 2= p=.05 t-test 3= p=.05</p>
-<p>p=0.05</p>
-<p>Si repite el exp. 100, es probable que 5 la prueba no lo va a dar el resultado correcto.</p>
-<p>Para determinar la probabilidad de error tipo uno o alpha, se puede usar la siguiente formalua</p>
-<p>P(at least one significant result) = 1 − P(no significant results) = 1−(1−0.05)i ≈ 0.64</p>
-<p>Vamoa a asumir que tenemos que hacer multiples comparación</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Un par solamente</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="dv">1</span><span class="op">-</span>(<span class="dv">1</span><span class="fl">-.05</span>)<span class="op">^</span><span class="dv">1</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>## [1] 0.05</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 3 grupos, por consecuencia 3 t-test, a, b, c.   A con B, A con C, B con C</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="dv">1</span><span class="op">-</span>(<span class="dv">1</span><span class="fl">-.05</span>)<span class="op">^</span><span class="dv">3</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>## [1] 0.142625</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 4 grupos, por consecuencia 3 t-test, A vs B, A vs.C, A vs. D, B vs C, B vs D, C vs D. </span></span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="dv">1</span><span class="op">-</span>(<span class="dv">1</span><span class="fl">-.05</span>)<span class="op">^</span><span class="dv">6</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>## [1] 0.2649081</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 10 grupos</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="dv">1</span><span class="op">-</span>(<span class="dv">1</span><span class="fl">-.05</span>)<span class="op">^</span><span class="dv">10</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>## [1] 0.4012631</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">library</span>(granova)</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">library</span>(huxtable)</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="kw">library</span>(car)</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">library</span>(pastecs)</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="kw">library</span>(multcomp)</span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="kw">library</span>(compute.es)</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">library</span>(WRS2) </span></code></pre></div>
+</div>
+<div id="anova" class="section level1">
+<h1>ANOVA</h1>
+<p>Análisis de varianza es un método para comparar 3 o más promedios, al contrario de la prueba de t que es para comparar 2 promedios solamente. Entonces ANOVA es una extensión de la prueba t. La hipótesis nula es Ho: los promedios de los grupos son iguales. ANOVA fue desarrollado por Ronald Fisher y es basado en evaluar la varianza total del experimento y comparar esta con la varianza en los grupos. Típicamente si la varianza explicado entre los grupos es más grande que la varianza dentro los grupos se rechaza la hipótesis nula. A continuación veremos como hacer estos cálculos.</p>
+<p>Primero hay que explicar porque es necesario ANOVA y no hacer múltiples prueba de t. Recuerda que típicamente rechazamos la hipótesis nula cuando el valor de p es menor de 0.05, el tipo de error I. A cada vez que se hace una prueba t hay 5% de error. Por consecuencia si uno hace múltiples pruebas t, hay una posibilidad que se recheza la hipótesis nula cuando se debería aceptar. Cuan grande es ese error si uno hace múltiples pruebas t.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>Tipo_errorI=<span class="kw">tribble</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="op">~</span>Cantidad_Grupo_k, <span class="op">~</span>C, <span class="op">~</span><span class="st">&quot;0.05&quot;</span>, <span class="op">~</span><span class="st">&quot;0.01&quot;</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="st">&quot;2&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;0.05&quot;</span>, <span class="st">&quot;0.01&quot;</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="st">&quot;3&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;0.14&quot;</span>, <span class="st">&quot;0.03&quot;</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="st">&quot;4&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;0.26&quot;</span>, <span class="st">&quot;0.06&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="st">&quot;5&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;0.40&quot;</span>, <span class="st">&quot;0.10&quot;</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="st">&quot;6&quot;</span>, <span class="st">&quot;15&quot;</span>, <span class="st">&quot;0.54&quot;</span>, <span class="st">&quot;0.14&quot;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="kw">huxtable</span>(Tipo_errorI)<span class="op">%&gt;%</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="st">    </span><span class="kw">theme_article</span>(<span class="dt">header_col =</span> <span class="ot">FALSE</span>)<span class="op">%&gt;%</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="st">  </span><span class="kw">set_bottom_border</span>(<span class="dt">row =</span> <span class="dv">1</span>, <span class="dt">col =</span> everywhere, <span class="dt">value =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="st">  </span><span class="kw">set_caption</span>(<span class="st">&quot;La probabilidad de cometer un error tipo I usando la prueba de t para cada pares de prueba (C)&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="st">  </span><span class="kw">add_footnote</span>(<span class="st">&quot;* C=(k-1)/2, que es la cantidad de comparación&quot;)</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
+<caption style="caption-side: top; text-align: center;">La probabilidad de cometer un error tipo I usando la prueba de t para cada pares de prueba (C)</caption><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: bold;">Cantidad_Grupo_k</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">C</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">0.05</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: bold;">0.01</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.05</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 1pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: normal;">0.01</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 0pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.14</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 0pt 6pt 6pt; font-weight: normal;">0.03</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 0pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.26</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 0pt 6pt 6pt; font-weight: normal;">0.06</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 0pt; font-weight: normal;">5</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">10</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.40</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 0pt 6pt 6pt; font-weight: normal;">0.10</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">15</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.54</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: normal;">0.14</td></tr>
+<tr>
+<td colspan="4" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">* C=(k-1)/2, que es la cantidad de comparación</td></tr>
+</table>
+
+<p>Nota que si tienes 4 grupos tendrá que hacer 6 pruebas de t, y eso eleva la probabilidad de cometer un tipo de error I a 26%, mucho más alto que el 5% que uno quisiera. Cuando uno hace la prueba de ANOVA y selecciona el nivel de error de 5%, es que el conjunto de todas las pruebas tiene ese nivel error posible.</p>
+<div id="hipótesis-en-anova" class="section level2">
+<h2>Hipótesis en ANOVA</h2>
+<p>La hipótesis nula es, que todos los grupos tienen el mismo promedio, o mejor dicho que no hay evidencia que los promedios sean distintos.</p>
+<p>H0: <span class="math inline">\(H_o:\ \mu_1=\mu_2=\mu_3=...=\mu_k\)</span> Ha: Por lo menos uno de los grupos no es igual a los demas.</p>
+<p>NOTA importante la hipótesis alterna NO ES que los grupos sean distintos, es que por los menos uno de ellos es distinto.</p>
+<p>Ejemplo: Vamos asumir que tenemos 3 grupos, k =3</p>
+<p>Ho: G1=G2=G3, p &gt;= 0.05 Ha: Por lo menos uno de estos grupos no es igual a los demas.</p>
+<p>Si encontramos un valor de p &lt;0.05, aceptamos la hipotesis nula una de una de las posibles combinaciones pudiese ser G1=G2, G1=G3, pero G2 no es igual a G3.</p>
+</div>
 </div>
 <div id="crear-un-conjunto-de-datos" class="section level1">
 <h1>Crear un conjunto de datos</h1>
-<div id="aqui-observamos-la-cantidad-de-fosforo-por-parte-de-million-observado-en-la-misma-especie-de-planta-cerca-tres-lagos-de-puerto-rico-.-los-datos-son-ficticios-es-para-demostrar" class="section level2">
-<h2>Aqui observamos la cantidad de fosforo por parte de million observado en la misma especie de planta cerca tres lagos de Puerto Rico . Los datos son ficticios es para demostrar</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>id&lt;-(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a>Cant_Fos&lt;-<span class="kw">c</span>(<span class="dv">55</span>,<span class="dv">56</span>,<span class="dv">64</span>,<span class="dv">45</span>,<span class="dv">44</span>,</span>
-<span id="cb12-3"><a href="#cb12-3"></a>            <span class="dv">37</span>,<span class="dv">36</span>,<span class="dv">35</span>,<span class="dv">38</span>,<span class="dv">39</span>,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>            <span class="dv">12</span>,<span class="dv">28</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">11</span>,<span class="dv">9</span>)</span>
-<span id="cb12-5"><a href="#cb12-5"></a>Lagos&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>))</span>
-<span id="cb12-6"><a href="#cb12-6"></a>Lagos&lt;-<span class="kw">factor</span>(Lagos, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), </span>
-<span id="cb12-7"><a href="#cb12-7"></a>              <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Caraizo&quot;</span>, <span class="st">&quot;DosBocas&quot;</span>, <span class="st">&quot;Guineo&quot;</span>))</span>
-<span id="cb12-8"><a href="#cb12-8"></a>fosforo&lt;-<span class="kw">data.frame</span>(id,Cant_Fos,Lagos)</span>
-<span id="cb12-9"><a href="#cb12-9"></a>fosforo</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb13-1"><a href="#cb13-1"></a>##    id Cant_Fos    Lagos</span>
-<span id="cb13-2"><a href="#cb13-2"></a>## 1   1       55  Caraizo</span>
-<span id="cb13-3"><a href="#cb13-3"></a>## 2   2       56  Caraizo</span>
-<span id="cb13-4"><a href="#cb13-4"></a>## 3   3       64  Caraizo</span>
-<span id="cb13-5"><a href="#cb13-5"></a>## 4   4       45  Caraizo</span>
-<span id="cb13-6"><a href="#cb13-6"></a>## 5   5       44  Caraizo</span>
-<span id="cb13-7"><a href="#cb13-7"></a>## 6   6       37 DosBocas</span>
-<span id="cb13-8"><a href="#cb13-8"></a>## 7   7       36 DosBocas</span>
-<span id="cb13-9"><a href="#cb13-9"></a>## 8   8       35 DosBocas</span>
-<span id="cb13-10"><a href="#cb13-10"></a>## 9   9       38 DosBocas</span>
-<span id="cb13-11"><a href="#cb13-11"></a>## 10 10       39 DosBocas</span>
-<span id="cb13-12"><a href="#cb13-12"></a>## 11 11       12   Guineo</span>
-<span id="cb13-13"><a href="#cb13-13"></a>## 12 12       28   Guineo</span>
-<span id="cb13-14"><a href="#cb13-14"></a>## 13 13       15   Guineo</span>
-<span id="cb13-15"><a href="#cb13-15"></a>## 14 14       16   Guineo</span>
-<span id="cb13-16"><a href="#cb13-16"></a>## 15 15       11   Guineo</span>
-<span id="cb13-17"><a href="#cb13-17"></a>## 16 16        9   Guineo</span></code></pre></div>
-<p>Hacer un gráfico de los datos. Si calculamos el promedio de todos los valores de “Y” y lo graficamos, vemos que muchos de los valores del municipio “b” son muy por debajo los valores de la linea y muchos de los valores del municipio “u” son muy por encima.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>mean_fosforo=<span class="kw">mean</span>(fosforo<span class="op">$</span>Cant_Fos)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>mean_fosforo</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb15-1"><a href="#cb15-1"></a>## [1] 33.75</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">ggplot</span>(fosforo, <span class="kw">aes</span>(Lagos, Cant_Fos, <span class="dt">colour=</span>Lagos))<span class="op">+</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.11</span>)<span class="op">+</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_fosforo)</span></code></pre></div>
+<p>Aquí observamos la cantidad de fósforo por parte de millión observado en la misma especie de planta cerca tres lagos de Puerto Rico . Los datos son ficticios es para demostrar el proceso de hacer los análisis. Se observa datos de plantas 3 lagos (Caraizo, DosBocas y Guineo).</p>
+<p>Nuestra hipótesis nula es que la cantidad de fósforo en la plantas es igual en los tres lagos.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(H_o:\ \mu_C=\mu_{DB}=\mu_G\)</span></li>
+<li>Por lo menos en uno de estos lagos las plantas tienen una concentración de fósforo diferente</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>id&lt;-(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>Cant_Fos&lt;-<span class="kw">c</span>(<span class="dv">55</span>,<span class="dv">56</span>,<span class="dv">64</span>,<span class="dv">45</span>,<span class="dv">44</span>,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>            <span class="dv">37</span>,<span class="dv">36</span>,<span class="dv">35</span>,<span class="dv">38</span>,<span class="dv">39</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>            <span class="dv">12</span>,<span class="dv">28</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">11</span>,<span class="dv">9</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>Lagos&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>))</span>
+<span id="cb5-6"><a href="#cb5-6"></a>Lagos&lt;-<span class="kw">factor</span>(Lagos, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), </span>
+<span id="cb5-7"><a href="#cb5-7"></a>              <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Caraizo&quot;</span>, <span class="st">&quot;DosBocas&quot;</span>, <span class="st">&quot;Guineo&quot;</span>))</span>
+<span id="cb5-8"><a href="#cb5-8"></a>fosforo&lt;-<span class="kw">data.frame</span>(id,Cant_Fos,Lagos)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>fosforo</span></code></pre></div>
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:ejemplo">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">id</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Cant_Fos</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Lagos</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">55</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">56</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">64</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">45</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">44</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">37</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">DosBocas</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">7</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">36</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">DosBocas</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">35</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">DosBocas</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">9</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">38</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">DosBocas</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">10</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">39</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">DosBocas</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">11</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">12</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Guineo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">12</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">28</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Guineo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">13</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">15</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Guineo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">14</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">16</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Guineo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">15</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">11</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Guineo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">16</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Guineo</td></tr>
+</table>
+ ## Visualizar los datos</p>
+<p>Hacer un gráfico de los datos. Calculamos el promedio de todos los valores de “Y” (concentración de fósforo en las plantas) y se gráfica, vemos que muchos de los valores de las plantas son por debajo los valores de la linea y muchos de los valores están por encima.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mean_fosforo=<span class="kw">mean</span>(fosforo<span class="op">$</span>Cant_Fos)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>mean_fosforo</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>## [1] 33.75</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">ggplot</span>(fosforo, <span class="kw">aes</span>(Lagos, Cant_Fos, <span class="dt">colour=</span>Lagos))<span class="op">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>)<span class="op">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_fosforo) <span class="co"># geom_hline = linea horizontal</span></span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/plot-1.png" width="672" /></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># geom_hline = linea horizontal</span></span></code></pre></div>
-<p>Otra alternativa de verlo es ver la diferencias entre el valor de la “y” y el promedio, o sea los residuales. <span style="color: blue;">Nota que esto se parece a la grafica de residuales de la regresión lineal</span>. Vimos tambien este tipo de grafico para la prueba de t.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, Cant_Fos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">60</span>), <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">16</span>) <span class="kw">lines</span>(<span class="kw">c</span>(i,i), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+<p>Otra alternativa de verlo es observar la diferencias entre el valor de la “y” y el promedio, o sea los residuales. <span style="color: blue;">Nota que esto se parece a la grafica de residuales de la regresión lineal</span>. Vimos también este tipo de gráfico para la prueba de t.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, Cant_Fos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">60</span>), <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">16</span>) <span class="kw">lines</span>(<span class="kw">c</span>(i,i), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;green&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">#plot(1:36, dist, ylim=c(0, 100), ylab=&quot;y&quot;, xlab = &quot;order&quot;, pch=21, bg=&quot;red&quot;)</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="co">#abline(h=mean(dist), col=&quot;blue&quot;)</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="co">#for(i in 1:36) lines(c(i,i), c(mean(dist), dist[i]), col=&quot;green&quot;)</span></span></code></pre></div>
-<p>Ahora vamos a separar la grafica y ver los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, Cant_Fos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb20-5"><a href="#cb20-5"></a></span>
-<span id="cb20-6"><a href="#cb20-6"></a>index&lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(Cant_Fos)</span>
-<span id="cb20-7"><a href="#cb20-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(index)){</span>
-<span id="cb20-8"><a href="#cb20-8"></a>  <span class="cf">if</span>(Lagos[i]<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>)</span>
-<span id="cb20-9"><a href="#cb20-9"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb20-10"><a href="#cb20-10"></a>  <span class="cf">else</span> <span class="cf">if</span> (Lagos[i]<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>)</span>
-<span id="cb20-11"><a href="#cb20-11"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb20-12"><a href="#cb20-12"></a>  <span class="cf">else</span></span>
-<span id="cb20-13"><a href="#cb20-13"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb20-14"><a href="#cb20-14"></a>} </span></code></pre></div>
+<p>Ahora vamos a separar el gráfico y ver los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo. Este es un indice que los lagos explica (en parte) la varianza en concentración de fósforo.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, Cant_Fos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a>index&lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(Cant_Fos)</span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(index)){</span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="cf">if</span>(Lagos[i]<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>)</span>
+<span id="cb10-9"><a href="#cb10-9"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="cf">else</span> <span class="cf">if</span> (Lagos[i]<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>)</span>
+<span id="cb10-11"><a href="#cb10-11"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb10-12"><a href="#cb10-12"></a>  <span class="cf">else</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb10-14"><a href="#cb10-14"></a>} </span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-</div>
 </div>
 <div id="ejemplo-de-grupos-donde-los-promedios-no-van-a-ser-diferentes" class="section level1">
 <h1>Ejemplo de grupos donde los promedios no van a ser diferentes</h1>
 <div id="creamos-un-set-de-datos" class="section level2">
 <h2>creamos un set de datos</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>id&lt;-(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a>Cant_Fos&lt;-<span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">66</span>,<span class="dv">64</span>,<span class="dv">65</span>,<span class="dv">64</span>,</span>
-<span id="cb21-3"><a href="#cb21-3"></a>            <span class="dv">56</span>,<span class="dv">58</span>,<span class="dv">65</span>,<span class="dv">49</span>,<span class="dv">43</span>,</span>
-<span id="cb21-4"><a href="#cb21-4"></a>            <span class="dv">21</span>,<span class="dv">24</span>,<span class="dv">22</span>,<span class="dv">21</span>,<span class="dv">21</span>,<span class="dv">21</span>)</span>
-<span id="cb21-5"><a href="#cb21-5"></a>Lagos&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>))</span>
-<span id="cb21-6"><a href="#cb21-6"></a>Lagos&lt;-<span class="kw">factor</span>(Lagos, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), </span>
-<span id="cb21-7"><a href="#cb21-7"></a>              <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Caraizo&quot;</span>, <span class="st">&quot;DosBocas&quot;</span>, <span class="st">&quot;Guineo&quot;</span>))</span>
-<span id="cb21-8"><a href="#cb21-8"></a>fosforo2&lt;-<span class="kw">data.frame</span>(id,Cant_Fos,Lagos)</span>
-<span id="cb21-9"><a href="#cb21-9"></a></span>
-<span id="cb21-10"><a href="#cb21-10"></a><span class="kw">attach</span>(fosforo2)</span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, Cant_Fos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb22-5"><a href="#cb22-5"></a></span>
-<span id="cb22-6"><a href="#cb22-6"></a>index&lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(Cant_Fos)</span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(index)){</span>
-<span id="cb22-8"><a href="#cb22-8"></a>  <span class="cf">if</span>(Lagos[i]<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>)</span>
-<span id="cb22-9"><a href="#cb22-9"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb22-10"><a href="#cb22-10"></a>  <span class="cf">else</span> <span class="cf">if</span> (Lagos[i]<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>)</span>
-<span id="cb22-11"><a href="#cb22-11"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb22-12"><a href="#cb22-12"></a>  <span class="cf">else</span></span>
-<span id="cb22-13"><a href="#cb22-13"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb22-14"><a href="#cb22-14"></a>} </span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>id&lt;-(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>Cant_Fos&lt;-<span class="kw">c</span>(<span class="dv">65</span>,<span class="dv">66</span>,<span class="dv">64</span>,<span class="dv">65</span>,<span class="dv">64</span>,</span>
+<span id="cb11-3"><a href="#cb11-3"></a>            <span class="dv">56</span>,<span class="dv">58</span>,<span class="dv">65</span>,<span class="dv">49</span>,<span class="dv">43</span>,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>            <span class="dv">21</span>,<span class="dv">24</span>,<span class="dv">22</span>,<span class="dv">21</span>,<span class="dv">21</span>,<span class="dv">21</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>Lagos&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>))</span>
+<span id="cb11-6"><a href="#cb11-6"></a>Lagos&lt;-<span class="kw">factor</span>(Lagos, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), </span>
+<span id="cb11-7"><a href="#cb11-7"></a>              <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Caraizo&quot;</span>, <span class="st">&quot;DosBocas&quot;</span>, <span class="st">&quot;Guineo&quot;</span>))</span>
+<span id="cb11-8"><a href="#cb11-8"></a>fosforo2&lt;-<span class="kw">data.frame</span>(id,Cant_Fos,Lagos)</span>
+<span id="cb11-9"><a href="#cb11-9"></a></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="kw">attach</span>(fosforo2)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, Cant_Fos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>index&lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(Cant_Fos)</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(index)){</span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="cf">if</span>(Lagos[i]<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>)</span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="cf">else</span> <span class="cf">if</span> (Lagos[i]<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>)</span>
+<span id="cb12-11"><a href="#cb12-11"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb12-12"><a href="#cb12-12"></a>  <span class="cf">else</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb12-14"><a href="#cb12-14"></a>} </span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Graficar de los datos</p>
 <p>NOTA Aqui que tengo 1. los datos con geom_point 2. los promedios con stat_summary 3. Una linea que une los promedios con stat_summary</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="kw">ggplot</span>(fosforo, <span class="kw">aes</span>(<span class="dt">x=</span>Lagos, <span class="dt">y=</span>Cant_Fos))<span class="op">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
-<span id="cb23-5"><a href="#cb23-5"></a>                    <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;#FF6633&quot;</span>)<span class="op">+</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
-<span id="cb23-7"><a href="#cb23-7"></a>             <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">ggplot</span>(fosforo, <span class="kw">aes</span>(<span class="dt">x=</span>Lagos, <span class="dt">y=</span>Cant_Fos))<span class="op">+</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="kw">geom_point</span>()<span class="op">+</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
+<span id="cb13-5"><a href="#cb13-5"></a>                    <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;#FF6633&quot;</span>)<span class="op">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
+<span id="cb13-7"><a href="#cb13-7"></a>             <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/graficar%20fosforo-1.png" width="672" /></p>
 <div id="crear-un-data-frame-de-los-resultados-con-el-package-rmisc-y-la-función-summaryse" class="section level3">
 <h3>Crear un data frame de los resultados con el package “Rmisc” y la función “summarySE”</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">library</span>(Rmisc)   <span class="co"># this is a function to create </span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="co">#a data frame of summary data</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="kw">head</span>(fosforo)</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb25-1"><a href="#cb25-1"></a>##   id Cant_Fos    Lagos</span>
-<span id="cb25-2"><a href="#cb25-2"></a>## 1  1       55  Caraizo</span>
-<span id="cb25-3"><a href="#cb25-3"></a>## 2  2       56  Caraizo</span>
-<span id="cb25-4"><a href="#cb25-4"></a>## 3  3       64  Caraizo</span>
-<span id="cb25-5"><a href="#cb25-5"></a>## 4  4       45  Caraizo</span>
-<span id="cb25-6"><a href="#cb25-6"></a>## 5  5       44  Caraizo</span>
-<span id="cb25-7"><a href="#cb25-7"></a>## 6  6       37 DosBocas</span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>sum =<span class="st"> </span><span class="kw">summarySE</span>(fosforo, </span>
-<span id="cb26-2"><a href="#cb26-2"></a>                <span class="dt">measurevar=</span><span class="st">&quot;Cant_Fos&quot;</span>, </span>
-<span id="cb26-3"><a href="#cb26-3"></a>                <span class="dt">groupvars=</span><span class="kw">c</span>(<span class="st">&quot;Lagos&quot;</span>))</span>
-<span id="cb26-4"><a href="#cb26-4"></a>sum</span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb27-1"><a href="#cb27-1"></a>##      Lagos N Cant_Fos       sd        se        ci</span>
-<span id="cb27-2"><a href="#cb27-2"></a>## 1  Caraizo 5 52.80000 8.348653 3.7336309 10.366221</span>
-<span id="cb27-3"><a href="#cb27-3"></a>## 2 DosBocas 5 37.00000 1.581139 0.7071068  1.963243</span>
-<span id="cb27-4"><a href="#cb27-4"></a>## 3   Guineo 6 15.16667 6.794606 2.7738862  7.130501</span></code></pre></div>
-<p>52.8000000 3.7336309 10.3662213</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">library</span>(Rmisc)   <span class="co"># this is a function to create </span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#a data frame of summary data</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="kw">head</span>(fosforo)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:summary data">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">id</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Cant_Fos</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Lagos</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">55</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">56</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">64</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">45</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">44</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Caraizo</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">37</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">DosBocas</td></tr>
+</table>
+
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>sum =<span class="st"> </span><span class="kw">summarySE</span>(fosforo, </span>
+<span id="cb15-2"><a href="#cb15-2"></a>                <span class="dt">measurevar=</span><span class="st">&quot;Cant_Fos&quot;</span>, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>                <span class="dt">groupvars=</span><span class="kw">c</span>(<span class="st">&quot;Lagos&quot;</span>))</span>
+<span id="cb15-4"><a href="#cb15-4"></a>sum</span></code></pre></div>
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:summary data">
+<col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Lagos</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">N</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Cant_Fos</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">se</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ci</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Caraizo</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">52.8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8.35</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.73&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10.4&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">DosBocas</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">37&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.58</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.707</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.96</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Guineo</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">15.2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6.79</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.77&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">7.13</td></tr>
+</table>
+ 52.8000000 3.7336309 10.3662213</p>
 </div>
 </div>
 <div id="graficar-con-nuestro-nuevo-data-frame-sum." class="section level2">
 <h2>Graficar con nuestro nuevo data frame “sum”.</h2>
 <p>Nota, se = standard error, el error del promedio (donde esta el promedio?) sd = la desviación estandard, para evaluar el error de la población (donde esta la distribución de los datos?) ci = el intervalo de confianza</p>
 <pre><code>  95% intervalo de confianza del promedio</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">ggplot</span>(sum, <span class="kw">aes</span>(<span class="dt">x=</span>Lagos, </span>
-<span id="cb29-2"><a href="#cb29-2"></a>                <span class="dt">y=</span>Cant_Fos)) <span class="op">+</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span><span class="st"> </span></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>Cant_Fos<span class="dv">-2</span><span class="op">*</span>se, </span>
-<span id="cb29-5"><a href="#cb29-5"></a>                    <span class="dt">ymax=</span>Cant_Fos<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se), </span>
-<span id="cb29-6"><a href="#cb29-6"></a>                <span class="dt">width=</span>.<span class="dv">2</span>, <span class="dt">size=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">ggplot</span>(sum, <span class="kw">aes</span>(<span class="dt">x=</span>Lagos, </span>
+<span id="cb17-2"><a href="#cb17-2"></a>                <span class="dt">y=</span>Cant_Fos)) <span class="op">+</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>Cant_Fos<span class="dv">-2</span><span class="op">*</span>se, </span>
+<span id="cb17-5"><a href="#cb17-5"></a>                    <span class="dt">ymax=</span>Cant_Fos<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se), </span>
+<span id="cb17-6"><a href="#cb17-6"></a>                <span class="dt">width=</span>.<span class="dv">2</span>, <span class="dt">size=</span><span class="fl">0.7</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/grafica2-1.png" width="672" /> ymin=Cant_Fos-2<em>se, ymax=Cant_Fos+2</em>se</p>
 <p>Esto dara el intervalo de confianza de 95%</p>
 <p>Descriptive statistics</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">#Descriptives</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="kw">library</span>(pastecs)</span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="kw">by</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos, stat.desc)</span></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>## fosforo$Lagos: Caraizo</span>
-<span id="cb31-2"><a href="#cb31-2"></a>##      nbr.val     nbr.null       nbr.na          min          max        range </span>
-<span id="cb31-3"><a href="#cb31-3"></a>##    5.0000000    0.0000000    0.0000000   44.0000000   64.0000000   20.0000000 </span>
-<span id="cb31-4"><a href="#cb31-4"></a>##          sum       median         mean      SE.mean CI.mean.0.95          var </span>
-<span id="cb31-5"><a href="#cb31-5"></a>##  264.0000000   55.0000000   52.8000000    3.7336309   10.3662213   69.7000000 </span>
-<span id="cb31-6"><a href="#cb31-6"></a>##      std.dev     coef.var </span>
-<span id="cb31-7"><a href="#cb31-7"></a>##    8.3486526    0.1581184 </span>
-<span id="cb31-8"><a href="#cb31-8"></a>## ------------------------------------------------------------ </span>
-<span id="cb31-9"><a href="#cb31-9"></a>## fosforo$Lagos: DosBocas</span>
-<span id="cb31-10"><a href="#cb31-10"></a>##      nbr.val     nbr.null       nbr.na          min          max        range </span>
-<span id="cb31-11"><a href="#cb31-11"></a>##   5.00000000   0.00000000   0.00000000  35.00000000  39.00000000   4.00000000 </span>
-<span id="cb31-12"><a href="#cb31-12"></a>##          sum       median         mean      SE.mean CI.mean.0.95          var </span>
-<span id="cb31-13"><a href="#cb31-13"></a>## 185.00000000  37.00000000  37.00000000   0.70710678   1.96324316   2.50000000 </span>
-<span id="cb31-14"><a href="#cb31-14"></a>##      std.dev     coef.var </span>
-<span id="cb31-15"><a href="#cb31-15"></a>##   1.58113883   0.04273348 </span>
-<span id="cb31-16"><a href="#cb31-16"></a>## ------------------------------------------------------------ </span>
-<span id="cb31-17"><a href="#cb31-17"></a>## fosforo$Lagos: Guineo</span>
-<span id="cb31-18"><a href="#cb31-18"></a>##      nbr.val     nbr.null       nbr.na          min          max        range </span>
-<span id="cb31-19"><a href="#cb31-19"></a>##     6.000000     0.000000     0.000000     9.000000    28.000000    19.000000 </span>
-<span id="cb31-20"><a href="#cb31-20"></a>##          sum       median         mean      SE.mean CI.mean.0.95          var </span>
-<span id="cb31-21"><a href="#cb31-21"></a>##    91.000000    13.500000    15.166667     2.773886     7.130501    46.166667 </span>
-<span id="cb31-22"><a href="#cb31-22"></a>##      std.dev     coef.var </span>
-<span id="cb31-23"><a href="#cb31-23"></a>##     6.794606     0.447996</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">#Descriptives</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">library</span>(pastecs)</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="kw">by</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos, stat.desc)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb19-1"><a href="#cb19-1"></a>## fosforo$Lagos: Caraizo</span>
+<span id="cb19-2"><a href="#cb19-2"></a>##      nbr.val     nbr.null       nbr.na          min          max        range </span>
+<span id="cb19-3"><a href="#cb19-3"></a>##    5.0000000    0.0000000    0.0000000   44.0000000   64.0000000   20.0000000 </span>
+<span id="cb19-4"><a href="#cb19-4"></a>##          sum       median         mean      SE.mean CI.mean.0.95          var </span>
+<span id="cb19-5"><a href="#cb19-5"></a>##  264.0000000   55.0000000   52.8000000    3.7336309   10.3662213   69.7000000 </span>
+<span id="cb19-6"><a href="#cb19-6"></a>##      std.dev     coef.var </span>
+<span id="cb19-7"><a href="#cb19-7"></a>##    8.3486526    0.1581184 </span>
+<span id="cb19-8"><a href="#cb19-8"></a>## ------------------------------------------------------------ </span>
+<span id="cb19-9"><a href="#cb19-9"></a>## fosforo$Lagos: DosBocas</span>
+<span id="cb19-10"><a href="#cb19-10"></a>##      nbr.val     nbr.null       nbr.na          min          max        range </span>
+<span id="cb19-11"><a href="#cb19-11"></a>##   5.00000000   0.00000000   0.00000000  35.00000000  39.00000000   4.00000000 </span>
+<span id="cb19-12"><a href="#cb19-12"></a>##          sum       median         mean      SE.mean CI.mean.0.95          var </span>
+<span id="cb19-13"><a href="#cb19-13"></a>## 185.00000000  37.00000000  37.00000000   0.70710678   1.96324316   2.50000000 </span>
+<span id="cb19-14"><a href="#cb19-14"></a>##      std.dev     coef.var </span>
+<span id="cb19-15"><a href="#cb19-15"></a>##   1.58113883   0.04273348 </span>
+<span id="cb19-16"><a href="#cb19-16"></a>## ------------------------------------------------------------ </span>
+<span id="cb19-17"><a href="#cb19-17"></a>## fosforo$Lagos: Guineo</span>
+<span id="cb19-18"><a href="#cb19-18"></a>##      nbr.val     nbr.null       nbr.na          min          max        range </span>
+<span id="cb19-19"><a href="#cb19-19"></a>##     6.000000     0.000000     0.000000     9.000000    28.000000    19.000000 </span>
+<span id="cb19-20"><a href="#cb19-20"></a>##          sum       median         mean      SE.mean CI.mean.0.95          var </span>
+<span id="cb19-21"><a href="#cb19-21"></a>##    91.000000    13.500000    15.166667     2.773886     7.130501    46.166667 </span>
+<span id="cb19-22"><a href="#cb19-22"></a>##      std.dev     coef.var </span>
+<span id="cb19-23"><a href="#cb19-23"></a>##     6.794606     0.447996</span></code></pre></div>
 <p>#Levene’s test (test of equality of variance), to test for homogeneity of variance among groups</p>
 </div>
 <div id="para-comprobar-si-hay-igualdad-de-varianza-entre-los-grupos" class="section level2">
 <h2>Para comprobar si hay igualdad de varianza entre los grupos</h2>
 <p><span class="math display">\[Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k\]</span></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">library</span>(car)</span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="kw">leveneTest</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos, </span>
-<span id="cb32-3"><a href="#cb32-3"></a>           <span class="dt">center =</span> median)</span></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb33-1"><a href="#cb33-1"></a>## Levene&#39;s Test for Homogeneity of Variance (center = median)</span>
-<span id="cb33-2"><a href="#cb33-2"></a>##       Df F value Pr(&gt;F)</span>
-<span id="cb33-3"><a href="#cb33-3"></a>## group  2  1.7606 0.2105</span>
-<span id="cb33-4"><a href="#cb33-4"></a>##       13</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">library</span>(car)</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="kw">leveneTest</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos, </span>
+<span id="cb20-3"><a href="#cb20-3"></a>           <span class="dt">center =</span> median)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:levene test">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.76</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.211</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">13</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+
 </div>
 </div>
 <div id="la-prueba-de-anova" class="section level1">
 <h1>La prueba de ANOVA</h1>
-<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>LagosModel&lt;-<span class="kw">aov</span>(Cant_Fos<span class="op">~</span>Lagos<span class="dv">-1</span>, <span class="dt">data =</span> fosforo)</span>
-<span id="cb34-2"><a href="#cb34-2"></a></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="co"># limited information</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="kw">summary</span>(LagosModel)</span></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb35-1"><a href="#cb35-1"></a>##           Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
-<span id="cb35-2"><a href="#cb35-2"></a>## Lagos      3  22164    7388   184.8 6.58e-11 ***</span>
-<span id="cb35-3"><a href="#cb35-3"></a>## Residuals 13    520      40                     </span>
-<span id="cb35-4"><a href="#cb35-4"></a>## ---</span>
-<span id="cb35-5"><a href="#cb35-5"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co">#Here</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="co"># Complete model</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="kw">summary.lm</span>(LagosModel)  <span class="co"># Nota que los coefficientes son los promedios, comparan con la tabla ariba. </span></span></code></pre></div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb37-1"><a href="#cb37-1"></a>## </span>
-<span id="cb37-2"><a href="#cb37-2"></a>## Call:</span>
-<span id="cb37-3"><a href="#cb37-3"></a>## aov(formula = Cant_Fos ~ Lagos - 1, data = fosforo)</span>
-<span id="cb37-4"><a href="#cb37-4"></a>## </span>
-<span id="cb37-5"><a href="#cb37-5"></a>## Residuals:</span>
-<span id="cb37-6"><a href="#cb37-6"></a>##     Min      1Q  Median      3Q     Max </span>
-<span id="cb37-7"><a href="#cb37-7"></a>## -8.8000 -3.4167 -0.0833  2.0500 12.8333 </span>
-<span id="cb37-8"><a href="#cb37-8"></a>## </span>
-<span id="cb37-9"><a href="#cb37-9"></a>## Coefficients:</span>
-<span id="cb37-10"><a href="#cb37-10"></a>##               Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb37-11"><a href="#cb37-11"></a>## LagosCaraizo    52.800      2.827  18.674 9.01e-11 ***</span>
-<span id="cb37-12"><a href="#cb37-12"></a>## LagosDosBocas   37.000      2.827  13.086 7.34e-09 ***</span>
-<span id="cb37-13"><a href="#cb37-13"></a>## LagosGuineo     15.167      2.581   5.876 5.45e-05 ***</span>
-<span id="cb37-14"><a href="#cb37-14"></a>## ---</span>
-<span id="cb37-15"><a href="#cb37-15"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
-<span id="cb37-16"><a href="#cb37-16"></a>## </span>
-<span id="cb37-17"><a href="#cb37-17"></a>## Residual standard error: 6.322 on 13 degrees of freedom</span>
-<span id="cb37-18"><a href="#cb37-18"></a>## Multiple R-squared:  0.9771, Adjusted R-squared:  0.9718 </span>
-<span id="cb37-19"><a href="#cb37-19"></a>## F-statistic: 184.8 on 3 and 13 DF,  p-value: 6.58e-11</span></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">plot</span>(LagosModel)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>LagosModel&lt;-<span class="kw">aov</span>(Cant_Fos<span class="op">~</span>Lagos<span class="dv">-1</span>, <span class="dt">data =</span> fosforo)</span>
+<span id="cb21-2"><a href="#cb21-2"></a></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="co"># limited information</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="kw">summary</span>(LagosModel)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb22-1"><a href="#cb22-1"></a>##           Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
+<span id="cb22-2"><a href="#cb22-2"></a>## Lagos      3  22164    7388   184.8 6.58e-11 ***</span>
+<span id="cb22-3"><a href="#cb22-3"></a>## Residuals 13    520      40                     </span>
+<span id="cb22-4"><a href="#cb22-4"></a>## ---</span>
+<span id="cb22-5"><a href="#cb22-5"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">#Here</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="co"># Complete model</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="kw">summary.lm</span>(LagosModel)  <span class="co"># Nota que los coefficientes son los promedios, comparan con la tabla ariba. </span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>## </span>
+<span id="cb24-2"><a href="#cb24-2"></a>## Call:</span>
+<span id="cb24-3"><a href="#cb24-3"></a>## aov(formula = Cant_Fos ~ Lagos - 1, data = fosforo)</span>
+<span id="cb24-4"><a href="#cb24-4"></a>## </span>
+<span id="cb24-5"><a href="#cb24-5"></a>## Residuals:</span>
+<span id="cb24-6"><a href="#cb24-6"></a>##     Min      1Q  Median      3Q     Max </span>
+<span id="cb24-7"><a href="#cb24-7"></a>## -8.8000 -3.4167 -0.0833  2.0500 12.8333 </span>
+<span id="cb24-8"><a href="#cb24-8"></a>## </span>
+<span id="cb24-9"><a href="#cb24-9"></a>## Coefficients:</span>
+<span id="cb24-10"><a href="#cb24-10"></a>##               Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span id="cb24-11"><a href="#cb24-11"></a>## LagosCaraizo    52.800      2.827  18.674 9.01e-11 ***</span>
+<span id="cb24-12"><a href="#cb24-12"></a>## LagosDosBocas   37.000      2.827  13.086 7.34e-09 ***</span>
+<span id="cb24-13"><a href="#cb24-13"></a>## LagosGuineo     15.167      2.581   5.876 5.45e-05 ***</span>
+<span id="cb24-14"><a href="#cb24-14"></a>## ---</span>
+<span id="cb24-15"><a href="#cb24-15"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span id="cb24-16"><a href="#cb24-16"></a>## </span>
+<span id="cb24-17"><a href="#cb24-17"></a>## Residual standard error: 6.322 on 13 degrees of freedom</span>
+<span id="cb24-18"><a href="#cb24-18"></a>## Multiple R-squared:  0.9771, Adjusted R-squared:  0.9718 </span>
+<span id="cb24-19"><a href="#cb24-19"></a>## F-statistic: 184.8 on 3 and 13 DF,  p-value: 6.58e-11</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">plot</span>(LagosModel)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-1.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-2.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-3.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-4.png" width="672" /></p>
 <div id="prueba-de-post-hoc-se-hace-solamente-si-se-rechaza-la-hipotesis-nula-de-la-prueba-de-anova" class="section level2">
 <h2>PRUEBA de POST HOC <em>(Se hace solamente si se rechaza la hipotesis nula de la prueba de ANOVA)</em></h2>
@@ -842,74 +901,133 @@ div.sourceCode pre.chunkout {
 <li>the Bonferroni test</li>
 <li>Tukey test</li>
 </ol>
-<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="kw">pairwise.t.test</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="co"># Nota aqui se usa los datos originales, el error de todos las pruenas se limita a 5%.  </span></span></code></pre></div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb40-1"><a href="#cb40-1"></a>## </span>
-<span id="cb40-2"><a href="#cb40-2"></a>##  Pairwise comparisons using t tests with pooled SD </span>
-<span id="cb40-3"><a href="#cb40-3"></a>## </span>
-<span id="cb40-4"><a href="#cb40-4"></a>## data:  fosforo$Cant_Fos and fosforo$Lagos </span>
-<span id="cb40-5"><a href="#cb40-5"></a>## </span>
-<span id="cb40-6"><a href="#cb40-6"></a>##          Caraizo DosBocas</span>
-<span id="cb40-7"><a href="#cb40-7"></a>## DosBocas 0.00497 -       </span>
-<span id="cb40-8"><a href="#cb40-8"></a>## Guineo   6.6e-07 0.00022 </span>
-<span id="cb40-9"><a href="#cb40-9"></a>## </span>
-<span id="cb40-10"><a href="#cb40-10"></a>## P value adjustment method: bonferroni</span></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="kw">library</span>(multcomp)</span>
-<span id="cb41-2"><a href="#cb41-2"></a>postHocs<span class="fl">.1</span>&lt;-<span class="kw">glht</span>(LagosModel, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">Lagos =</span> <span class="st">&quot;Tukey&quot;</span>))  <span class="co"># nota que aqui se usa el modelo</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a><span class="kw">summary</span>(postHocs<span class="fl">.1</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb42-1"><a href="#cb42-1"></a>## </span>
-<span id="cb42-2"><a href="#cb42-2"></a>##   Simultaneous Tests for General Linear Hypotheses</span>
-<span id="cb42-3"><a href="#cb42-3"></a>## </span>
-<span id="cb42-4"><a href="#cb42-4"></a>## Multiple Comparisons of Means: Tukey Contrasts</span>
-<span id="cb42-5"><a href="#cb42-5"></a>## </span>
-<span id="cb42-6"><a href="#cb42-6"></a>## </span>
-<span id="cb42-7"><a href="#cb42-7"></a>## Fit: aov(formula = Cant_Fos ~ Lagos - 1, data = fosforo)</span>
-<span id="cb42-8"><a href="#cb42-8"></a>## </span>
-<span id="cb42-9"><a href="#cb42-9"></a>## Linear Hypotheses:</span>
-<span id="cb42-10"><a href="#cb42-10"></a>##                         Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb42-11"><a href="#cb42-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00466 ** </span>
-<span id="cb42-12"><a href="#cb42-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***</span>
-<span id="cb42-13"><a href="#cb42-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***</span>
-<span id="cb42-14"><a href="#cb42-14"></a>## ---</span>
-<span id="cb42-15"><a href="#cb42-15"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
-<span id="cb42-16"><a href="#cb42-16"></a>## (Adjusted p values reported -- single-step method)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">pairwise.t.test</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="co"># Nota aqui se usa los datos originales, el error de todos las pruenas se limita a 5%.  </span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb27-1"><a href="#cb27-1"></a>## </span>
+<span id="cb27-2"><a href="#cb27-2"></a>##  Pairwise comparisons using t tests with pooled SD </span>
+<span id="cb27-3"><a href="#cb27-3"></a>## </span>
+<span id="cb27-4"><a href="#cb27-4"></a>## data:  fosforo$Cant_Fos and fosforo$Lagos </span>
+<span id="cb27-5"><a href="#cb27-5"></a>## </span>
+<span id="cb27-6"><a href="#cb27-6"></a>##          Caraizo DosBocas</span>
+<span id="cb27-7"><a href="#cb27-7"></a>## DosBocas 0.00497 -       </span>
+<span id="cb27-8"><a href="#cb27-8"></a>## Guineo   6.6e-07 0.00022 </span>
+<span id="cb27-9"><a href="#cb27-9"></a>## </span>
+<span id="cb27-10"><a href="#cb27-10"></a>## P value adjustment method: bonferroni</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">library</span>(multcomp)</span>
+<span id="cb28-2"><a href="#cb28-2"></a>postHocs<span class="fl">.1</span>&lt;-<span class="kw">glht</span>(LagosModel, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">Lagos =</span> <span class="st">&quot;Tukey&quot;</span>))  <span class="co"># nota que aqui se usa el modelo</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="kw">summary</span>(postHocs<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb29-1"><a href="#cb29-1"></a>## </span>
+<span id="cb29-2"><a href="#cb29-2"></a>##   Simultaneous Tests for General Linear Hypotheses</span>
+<span id="cb29-3"><a href="#cb29-3"></a>## </span>
+<span id="cb29-4"><a href="#cb29-4"></a>## Multiple Comparisons of Means: Tukey Contrasts</span>
+<span id="cb29-5"><a href="#cb29-5"></a>## </span>
+<span id="cb29-6"><a href="#cb29-6"></a>## </span>
+<span id="cb29-7"><a href="#cb29-7"></a>## Fit: aov(formula = Cant_Fos ~ Lagos - 1, data = fosforo)</span>
+<span id="cb29-8"><a href="#cb29-8"></a>## </span>
+<span id="cb29-9"><a href="#cb29-9"></a>## Linear Hypotheses:</span>
+<span id="cb29-10"><a href="#cb29-10"></a>##                         Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span id="cb29-11"><a href="#cb29-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00434 ** </span>
+<span id="cb29-12"><a href="#cb29-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***</span>
+<span id="cb29-13"><a href="#cb29-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***</span>
+<span id="cb29-14"><a href="#cb29-14"></a>## ---</span>
+<span id="cb29-15"><a href="#cb29-15"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span id="cb29-16"><a href="#cb29-16"></a>## (Adjusted p values reported -- single-step method)</span></code></pre></div>
 </div>
 <div id="super-heroes-and-injuries" class="section level2">
 <h2>SUPER HEROES and INJURIES</h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="kw">library</span>(readr)</span>
-<span id="cb43-2"><a href="#cb43-2"></a>Superhero &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;~/Google Drive/Biometry/Biometria 2017/Data_FILES/Superhero.csv&quot;</span>)</span>
-<span id="cb43-3"><a href="#cb43-3"></a><span class="kw">tail</span>(Superhero)</span></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb44-1"><a href="#cb44-1"></a>## # A tibble: 6 x 3</span>
-<span id="cb44-2"><a href="#cb44-2"></a>##   BLANK  hero injury</span>
-<span id="cb44-3"><a href="#cb44-3"></a>##   &lt;lgl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span id="cb44-4"><a href="#cb44-4"></a>## 1 NA        4     30</span>
-<span id="cb44-5"><a href="#cb44-5"></a>## 2 NA        4     30</span>
-<span id="cb44-6"><a href="#cb44-6"></a>## 3 NA        4     30</span>
-<span id="cb44-7"><a href="#cb44-7"></a>## 4 NA        4     41</span>
-<span id="cb44-8"><a href="#cb44-8"></a>## 5 NA        4     18</span>
-<span id="cb44-9"><a href="#cb44-9"></a>## 6 NA        4     25</span></code></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="kw">unique</span>(Superhero<span class="op">$</span>heronames)</span></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb46-1"><a href="#cb46-1"></a>## NULL</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>Superhero &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;~/Google Drive/Biometry/Biometria 2017/Data_FILES/Superhero.csv&quot;</span>)</span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="kw">tail</span>(Superhero)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:data super heroes">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">BLANK</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">hero</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">injury</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">30</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">30</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">30</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">41</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">18</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">25</td></tr>
+</table>
+
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">unique</span>(Superhero<span class="op">$</span>heronames)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb32-1"><a href="#cb32-1"></a>## NULL</span></code></pre></div>
 <p>####Rename the categories with super hero names</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="co">#Superhero</span></span>
-<span id="cb47-2"><a href="#cb47-2"></a>Superhero<span class="op">$</span>heronames&lt;-<span class="kw">factor</span>(Superhero<span class="op">$</span>hero, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), </span>
-<span id="cb47-3"><a href="#cb47-3"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Spiderman&quot;</span>,<span class="st">&quot;Superman&quot;</span>, <span class="st">&quot;Hulk&quot;</span>, <span class="st">&quot;Ninja Turtle&quot;</span>))</span>
-<span id="cb47-4"><a href="#cb47-4"></a>Superhero</span></code></pre></div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb48-1"><a href="#cb48-1"></a>## # A tibble: 30 x 4</span>
-<span id="cb48-2"><a href="#cb48-2"></a>##    BLANK  hero injury heronames</span>
-<span id="cb48-3"><a href="#cb48-3"></a>##    &lt;lgl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    </span>
-<span id="cb48-4"><a href="#cb48-4"></a>##  1 NA        1     51 Spiderman</span>
-<span id="cb48-5"><a href="#cb48-5"></a>##  2 NA        1     31 Spiderman</span>
-<span id="cb48-6"><a href="#cb48-6"></a>##  3 NA        1     58 Spiderman</span>
-<span id="cb48-7"><a href="#cb48-7"></a>##  4 NA        1     20 Spiderman</span>
-<span id="cb48-8"><a href="#cb48-8"></a>##  5 NA        1     47 Spiderman</span>
-<span id="cb48-9"><a href="#cb48-9"></a>##  6 NA        1     37 Spiderman</span>
-<span id="cb48-10"><a href="#cb48-10"></a>##  7 NA        1     49 Spiderman</span>
-<span id="cb48-11"><a href="#cb48-11"></a>##  8 NA        1     40 Spiderman</span>
-<span id="cb48-12"><a href="#cb48-12"></a>##  9 NA        2     69 Superman </span>
-<span id="cb48-13"><a href="#cb48-13"></a>## 10 NA        2     32 Superman </span>
-<span id="cb48-14"><a href="#cb48-14"></a>## # … with 20 more rows</span></code></pre></div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="kw">names</span>(Superhero)</span></code></pre></div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb50-1"><a href="#cb50-1"></a>## [1] &quot;BLANK&quot;     &quot;hero&quot;      &quot;injury&quot;    &quot;heronames&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co">#Superhero</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>Superhero<span class="op">$</span>heronames&lt;-<span class="kw">factor</span>(Superhero<span class="op">$</span>hero, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), </span>
+<span id="cb33-3"><a href="#cb33-3"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Spiderman&quot;</span>,<span class="st">&quot;Superman&quot;</span>, <span class="st">&quot;Hulk&quot;</span>, <span class="st">&quot;Ninja Turtle&quot;</span>))</span>
+<span id="cb33-4"><a href="#cb33-4"></a>Superhero</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:rename variables">
+<col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">BLANK</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">hero</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">injury</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">heronames</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">51</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Spiderman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">31</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Spiderman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">58</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Spiderman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">20</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Spiderman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">47</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Spiderman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">37</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Spiderman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">49</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Spiderman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">40</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Spiderman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">69</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Superman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">32</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Superman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">85</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Superman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">66</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Superman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">58</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Superman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">52</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Superman</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">26</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hulk</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">43</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Hulk</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hulk</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">45</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Hulk</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">30</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hulk</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">35</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Hulk</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">53</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hulk</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">41</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Hulk</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">18</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Ninja Turtle</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">18</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Ninja Turtle</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">30</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Ninja Turtle</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">30</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Ninja Turtle</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">30</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Ninja Turtle</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">41</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Ninja Turtle</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">18</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Ninja Turtle</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">25</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Ninja Turtle</td></tr>
+</table>
+
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">names</span>(Superhero)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb35-1"><a href="#cb35-1"></a>## [1] &quot;BLANK&quot;     &quot;hero&quot;      &quot;injury&quot;    &quot;heronames&quot;</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Evaluar la distribución de los datos de respuestas (los en Y)</li>
 <li>Evaluar la homogeneidad de varianza</li>
@@ -919,114 +1037,127 @@ div.sourceCode pre.chunkout {
 <li>Evaluar la gráfica de qq, para la normalidad</li>
 <li>Hacer la prueba de post-hoc si es necesario!!!!!</li>
 </ol>
-<div class="sourceCode" id="cb51"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb51-2"><a href="#cb51-2"></a>line &lt;-<span class="st"> </span><span class="kw">ggplot</span>(Superhero, <span class="kw">aes</span>(heronames, injury))</span>
-<span id="cb51-3"><a href="#cb51-3"></a>line <span class="op">+</span><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb51-4"><a href="#cb51-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
-<span id="cb51-5"><a href="#cb51-5"></a>                    <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;#FF6633&quot;</span>)<span class="op">+</span></span>
-<span id="cb51-6"><a href="#cb51-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>, </span>
-<span id="cb51-7"><a href="#cb51-7"></a>             <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb36-2"><a href="#cb36-2"></a>line &lt;-<span class="st"> </span><span class="kw">ggplot</span>(Superhero, <span class="kw">aes</span>(heronames, injury))</span>
+<span id="cb36-3"><a href="#cb36-3"></a>line <span class="op">+</span><span class="kw">geom_point</span>()<span class="op">+</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
+<span id="cb36-5"><a href="#cb36-5"></a>                    <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;#FF6633&quot;</span>)<span class="op">+</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>, </span>
+<span id="cb36-7"><a href="#cb36-7"></a>             <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/hero1-1.png" width="672" /></p>
 <p>Homogeneity of variance</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="kw">library</span>(car)</span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="kw">leveneTest</span>(Superhero<span class="op">$</span>injury, Superhero<span class="op">$</span>heronames, </span>
-<span id="cb52-3"><a href="#cb52-3"></a>           <span class="dt">center =</span> median)</span></code></pre></div>
-<div class="sourceCode" id="cb53"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb53-1"><a href="#cb53-1"></a>## Levene&#39;s Test for Homogeneity of Variance (center = median)</span>
-<span id="cb53-2"><a href="#cb53-2"></a>##       Df F value Pr(&gt;F)</span>
-<span id="cb53-3"><a href="#cb53-3"></a>## group  3   0.827  0.491</span>
-<span id="cb53-4"><a href="#cb53-4"></a>##       26</span></code></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="kw">library</span>(Rmisc)   <span class="co"># this is a function to create </span></span>
-<span id="cb54-2"><a href="#cb54-2"></a><span class="co">#a data frame of summary data</span></span>
-<span id="cb54-3"><a href="#cb54-3"></a>sum2 =<span class="st"> </span><span class="kw">summarySE</span>(Superhero, </span>
-<span id="cb54-4"><a href="#cb54-4"></a>                <span class="dt">measurevar=</span><span class="st">&quot;injury&quot;</span>, </span>
-<span id="cb54-5"><a href="#cb54-5"></a>                <span class="dt">groupvars=</span><span class="kw">c</span>(<span class="st">&quot;heronames&quot;</span>))</span>
-<span id="cb54-6"><a href="#cb54-6"></a>sum2</span></code></pre></div>
-<div class="sourceCode" id="cb55"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb55-1"><a href="#cb55-1"></a>##      heronames N   injury        sd       se        ci</span>
-<span id="cb55-2"><a href="#cb55-2"></a>## 1    Spiderman 8 41.62500 12.211675 4.317479 10.209216</span>
-<span id="cb55-3"><a href="#cb55-3"></a>## 2     Superman 6 60.33333 17.851237 7.287737 18.733724</span>
-<span id="cb55-4"><a href="#cb55-4"></a>## 3         Hulk 8 35.37500 13.383759 4.731873 11.189102</span>
-<span id="cb55-5"><a href="#cb55-5"></a>## 4 Ninja Turtle 8 26.25000  8.154753 2.883141  6.817544</span></code></pre></div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="kw">ggplot</span>(sum2, <span class="kw">aes</span>(<span class="dt">x=</span>heronames, </span>
-<span id="cb56-2"><a href="#cb56-2"></a>                <span class="dt">y=</span>injury)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb56-3"><a href="#cb56-3"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>injury<span class="dv">-2</span><span class="op">*</span>se, </span>
-<span id="cb56-4"><a href="#cb56-4"></a>                    <span class="dt">ymax=</span>injury<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se), </span>
-<span id="cb56-5"><a href="#cb56-5"></a>                <span class="dt">width=</span>.<span class="dv">2</span>, <span class="dt">size=</span><span class="fl">0.7</span>)<span class="op">+</span></span>
-<span id="cb56-6"><a href="#cb56-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">library</span>(car)</span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="kw">leveneTest</span>(Superhero<span class="op">$</span>injury, Superhero<span class="op">$</span>heronames, </span>
+<span id="cb37-3"><a href="#cb37-3"></a>           <span class="dt">center =</span> median)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:hero levene test">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.827</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.491</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">26</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+
+<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">library</span>(Rmisc)   <span class="co"># this is a function to create </span></span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="co">#a data frame of summary data</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>sum2 =<span class="st"> </span><span class="kw">summarySE</span>(Superhero, </span>
+<span id="cb38-4"><a href="#cb38-4"></a>                <span class="dt">measurevar=</span><span class="st">&quot;injury&quot;</span>, </span>
+<span id="cb38-5"><a href="#cb38-5"></a>                <span class="dt">groupvars=</span><span class="kw">c</span>(<span class="st">&quot;heronames&quot;</span>))</span>
+<span id="cb38-6"><a href="#cb38-6"></a>sum2</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:grafica3">
+<col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">heronames</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">N</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">injury</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">se</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ci</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Spiderman</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">41.6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">12.2&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4.32</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10.2&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Superman</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">60.3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">17.9&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7.29</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">18.7&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hulk</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">35.4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">13.4&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4.73</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">11.2&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Ninja Turtle</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">26.2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8.15</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.88</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6.82</td></tr>
+</table>
+
+<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="kw">ggplot</span>(sum2, <span class="kw">aes</span>(<span class="dt">x=</span>heronames, </span>
+<span id="cb39-2"><a href="#cb39-2"></a>                <span class="dt">y=</span>injury)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>injury<span class="dv">-2</span><span class="op">*</span>se, </span>
+<span id="cb39-4"><a href="#cb39-4"></a>                    <span class="dt">ymax=</span>injury<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se), </span>
+<span id="cb39-5"><a href="#cb39-5"></a>                <span class="dt">width=</span>.<span class="dv">2</span>, <span class="dt">size=</span><span class="fl">0.7</span>)<span class="op">+</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/grafica3-1.png" width="672" /></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Hacer la prueba de ANOVA con aov()</li>
 </ol>
-<div class="sourceCode" id="cb57"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>SuperHeroModel&lt;-<span class="kw">aov</span>(injury<span class="op">~</span>heronames, <span class="dt">data =</span> Superhero)</span>
-<span id="cb57-2"><a href="#cb57-2"></a></span>
-<span id="cb57-3"><a href="#cb57-3"></a><span class="kw">summary</span>(SuperHeroModel)</span></code></pre></div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb58-1"><a href="#cb58-1"></a>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
-<span id="cb58-2"><a href="#cb58-2"></a>## heronames    3   4181  1393.5   8.317 0.000483 ***</span>
-<span id="cb58-3"><a href="#cb58-3"></a>## Residuals   26   4357   167.6                     </span>
-<span id="cb58-4"><a href="#cb58-4"></a>## ---</span>
-<span id="cb58-5"><a href="#cb58-5"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></code></pre></div>
-<div class="sourceCode" id="cb59"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="kw">summary.lm</span>(SuperHeroModel)</span></code></pre></div>
-<div class="sourceCode" id="cb60"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb60-1"><a href="#cb60-1"></a>## </span>
-<span id="cb60-2"><a href="#cb60-2"></a>## Call:</span>
-<span id="cb60-3"><a href="#cb60-3"></a>## aov(formula = injury ~ heronames, data = Superhero)</span>
-<span id="cb60-4"><a href="#cb60-4"></a>## </span>
-<span id="cb60-5"><a href="#cb60-5"></a>## Residuals:</span>
-<span id="cb60-6"><a href="#cb60-6"></a>##     Min      1Q  Median      3Q     Max </span>
-<span id="cb60-7"><a href="#cb60-7"></a>## -28.333  -8.250   1.688   7.562  24.667 </span>
-<span id="cb60-8"><a href="#cb60-8"></a>## </span>
-<span id="cb60-9"><a href="#cb60-9"></a>## Coefficients:</span>
-<span id="cb60-10"><a href="#cb60-10"></a>##                       Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb60-11"><a href="#cb60-11"></a>## (Intercept)             41.625      4.577   9.095 1.47e-09 ***</span>
-<span id="cb60-12"><a href="#cb60-12"></a>## heronamesSuperman       18.708      6.991   2.676   0.0127 *  </span>
-<span id="cb60-13"><a href="#cb60-13"></a>## heronamesHulk           -6.250      6.472  -0.966   0.3431    </span>
-<span id="cb60-14"><a href="#cb60-14"></a>## heronamesNinja Turtle  -15.375      6.472  -2.376   0.0252 *  </span>
-<span id="cb60-15"><a href="#cb60-15"></a>## ---</span>
-<span id="cb60-16"><a href="#cb60-16"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
-<span id="cb60-17"><a href="#cb60-17"></a>## </span>
-<span id="cb60-18"><a href="#cb60-18"></a>## Residual standard error: 12.94 on 26 degrees of freedom</span>
-<span id="cb60-19"><a href="#cb60-19"></a>## Multiple R-squared:  0.4897, Adjusted R-squared:  0.4308 </span>
-<span id="cb60-20"><a href="#cb60-20"></a>## F-statistic: 8.317 on 3 and 26 DF,  p-value: 0.0004828</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>SuperHeroModel&lt;-<span class="kw">aov</span>(injury<span class="op">~</span>heronames, <span class="dt">data =</span> Superhero)</span>
+<span id="cb40-2"><a href="#cb40-2"></a></span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="kw">summary</span>(SuperHeroModel)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb41-1"><a href="#cb41-1"></a>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
+<span id="cb41-2"><a href="#cb41-2"></a>## heronames    3   4181  1393.5   8.317 0.000483 ***</span>
+<span id="cb41-3"><a href="#cb41-3"></a>## Residuals   26   4357   167.6                     </span>
+<span id="cb41-4"><a href="#cb41-4"></a>## ---</span>
+<span id="cb41-5"><a href="#cb41-5"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="kw">summary.lm</span>(SuperHeroModel)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb43-1"><a href="#cb43-1"></a>## </span>
+<span id="cb43-2"><a href="#cb43-2"></a>## Call:</span>
+<span id="cb43-3"><a href="#cb43-3"></a>## aov(formula = injury ~ heronames, data = Superhero)</span>
+<span id="cb43-4"><a href="#cb43-4"></a>## </span>
+<span id="cb43-5"><a href="#cb43-5"></a>## Residuals:</span>
+<span id="cb43-6"><a href="#cb43-6"></a>##     Min      1Q  Median      3Q     Max </span>
+<span id="cb43-7"><a href="#cb43-7"></a>## -28.333  -8.250   1.688   7.562  24.667 </span>
+<span id="cb43-8"><a href="#cb43-8"></a>## </span>
+<span id="cb43-9"><a href="#cb43-9"></a>## Coefficients:</span>
+<span id="cb43-10"><a href="#cb43-10"></a>##                       Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span id="cb43-11"><a href="#cb43-11"></a>## (Intercept)             41.625      4.577   9.095 1.47e-09 ***</span>
+<span id="cb43-12"><a href="#cb43-12"></a>## heronamesSuperman       18.708      6.991   2.676   0.0127 *  </span>
+<span id="cb43-13"><a href="#cb43-13"></a>## heronamesHulk           -6.250      6.472  -0.966   0.3431    </span>
+<span id="cb43-14"><a href="#cb43-14"></a>## heronamesNinja Turtle  -15.375      6.472  -2.376   0.0252 *  </span>
+<span id="cb43-15"><a href="#cb43-15"></a>## ---</span>
+<span id="cb43-16"><a href="#cb43-16"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span id="cb43-17"><a href="#cb43-17"></a>## </span>
+<span id="cb43-18"><a href="#cb43-18"></a>## Residual standard error: 12.94 on 26 degrees of freedom</span>
+<span id="cb43-19"><a href="#cb43-19"></a>## Multiple R-squared:  0.4897, Adjusted R-squared:  0.4308 </span>
+<span id="cb43-20"><a href="#cb43-20"></a>## F-statistic: 8.317 on 3 and 26 DF,  p-value: 0.0004828</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Evaluar la figura de residuales</li>
 <li>Evaluar la grafica de qq</li>
 </ol>
-<div class="sourceCode" id="cb61"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="kw">plot</span>(SuperHeroModel)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">plot</span>(SuperHeroModel)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/hero%20residuals-1.png" width="672" /><img src="T11_ANOVA_files/figure-html/hero%20residuals-2.png" width="672" /><img src="T11_ANOVA_files/figure-html/hero%20residuals-3.png" width="672" /><img src="T11_ANOVA_files/figure-html/hero%20residuals-4.png" width="672" /></p>
 <ol start="7" style="list-style-type: decimal">
 <li>Hacer la prueba de post-hoc si es necesario!!!!!</li>
 </ol>
-<div class="sourceCode" id="cb62"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="kw">pairwise.t.test</span>(Superhero<span class="op">$</span>injury, Superhero<span class="op">$</span>heronames, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb63"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb63-1"><a href="#cb63-1"></a>## </span>
-<span id="cb63-2"><a href="#cb63-2"></a>##  Pairwise comparisons using t tests with pooled SD </span>
-<span id="cb63-3"><a href="#cb63-3"></a>## </span>
-<span id="cb63-4"><a href="#cb63-4"></a>## data:  Superhero$injury and Superhero$heronames </span>
-<span id="cb63-5"><a href="#cb63-5"></a>## </span>
-<span id="cb63-6"><a href="#cb63-6"></a>##              Spiderman Superman Hulk   </span>
-<span id="cb63-7"><a href="#cb63-7"></a>## Superman     0.07632   -        -      </span>
-<span id="cb63-8"><a href="#cb63-8"></a>## Hulk         1.00000   0.00851  -      </span>
-<span id="cb63-9"><a href="#cb63-9"></a>## Ninja Turtle 0.15109   0.00028  1.00000</span>
-<span id="cb63-10"><a href="#cb63-10"></a>## </span>
-<span id="cb63-11"><a href="#cb63-11"></a>## P value adjustment method: bonferroni</span></code></pre></div>
-<div class="sourceCode" id="cb64"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>postHocs<span class="fl">.2</span>&lt;-<span class="kw">glht</span>(SuperHeroModel, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">heronames =</span> <span class="st">&quot;Tukey&quot;</span>))</span>
-<span id="cb64-2"><a href="#cb64-2"></a><span class="kw">summary</span>(postHocs<span class="fl">.2</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb65"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb65-1"><a href="#cb65-1"></a>## </span>
-<span id="cb65-2"><a href="#cb65-2"></a>##   Simultaneous Tests for General Linear Hypotheses</span>
-<span id="cb65-3"><a href="#cb65-3"></a>## </span>
-<span id="cb65-4"><a href="#cb65-4"></a>## Multiple Comparisons of Means: Tukey Contrasts</span>
-<span id="cb65-5"><a href="#cb65-5"></a>## </span>
-<span id="cb65-6"><a href="#cb65-6"></a>## </span>
-<span id="cb65-7"><a href="#cb65-7"></a>## Fit: aov(formula = injury ~ heronames, data = Superhero)</span>
-<span id="cb65-8"><a href="#cb65-8"></a>## </span>
-<span id="cb65-9"><a href="#cb65-9"></a>## Linear Hypotheses:</span>
-<span id="cb65-10"><a href="#cb65-10"></a>##                               Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb65-11"><a href="#cb65-11"></a>## Superman - Spiderman == 0       18.708      6.991   2.676  0.05750 .  </span>
-<span id="cb65-12"><a href="#cb65-12"></a>## Hulk - Spiderman == 0           -6.250      6.472  -0.966  0.76953    </span>
-<span id="cb65-13"><a href="#cb65-13"></a>## Ninja Turtle - Spiderman == 0  -15.375      6.472  -2.376  0.10706    </span>
-<span id="cb65-14"><a href="#cb65-14"></a>## Hulk - Superman == 0           -24.958      6.991  -3.570  0.00706 ** </span>
-<span id="cb65-15"><a href="#cb65-15"></a>## Ninja Turtle - Superman == 0   -34.083      6.991  -4.875  &lt; 0.001 ***</span>
-<span id="cb65-16"><a href="#cb65-16"></a>## Ninja Turtle - Hulk == 0        -9.125      6.472  -1.410  0.50419    </span>
-<span id="cb65-17"><a href="#cb65-17"></a>## ---</span>
-<span id="cb65-18"><a href="#cb65-18"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
-<span id="cb65-19"><a href="#cb65-19"></a>## (Adjusted p values reported -- single-step method)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="kw">pairwise.t.test</span>(Superhero<span class="op">$</span>injury, Superhero<span class="op">$</span>heronames, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb46-1"><a href="#cb46-1"></a>## </span>
+<span id="cb46-2"><a href="#cb46-2"></a>##  Pairwise comparisons using t tests with pooled SD </span>
+<span id="cb46-3"><a href="#cb46-3"></a>## </span>
+<span id="cb46-4"><a href="#cb46-4"></a>## data:  Superhero$injury and Superhero$heronames </span>
+<span id="cb46-5"><a href="#cb46-5"></a>## </span>
+<span id="cb46-6"><a href="#cb46-6"></a>##              Spiderman Superman Hulk   </span>
+<span id="cb46-7"><a href="#cb46-7"></a>## Superman     0.07632   -        -      </span>
+<span id="cb46-8"><a href="#cb46-8"></a>## Hulk         1.00000   0.00851  -      </span>
+<span id="cb46-9"><a href="#cb46-9"></a>## Ninja Turtle 0.15109   0.00028  1.00000</span>
+<span id="cb46-10"><a href="#cb46-10"></a>## </span>
+<span id="cb46-11"><a href="#cb46-11"></a>## P value adjustment method: bonferroni</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>postHocs<span class="fl">.2</span>&lt;-<span class="kw">glht</span>(SuperHeroModel, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">heronames =</span> <span class="st">&quot;Tukey&quot;</span>))</span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="kw">summary</span>(postHocs<span class="fl">.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb48-1"><a href="#cb48-1"></a>## </span>
+<span id="cb48-2"><a href="#cb48-2"></a>##   Simultaneous Tests for General Linear Hypotheses</span>
+<span id="cb48-3"><a href="#cb48-3"></a>## </span>
+<span id="cb48-4"><a href="#cb48-4"></a>## Multiple Comparisons of Means: Tukey Contrasts</span>
+<span id="cb48-5"><a href="#cb48-5"></a>## </span>
+<span id="cb48-6"><a href="#cb48-6"></a>## </span>
+<span id="cb48-7"><a href="#cb48-7"></a>## Fit: aov(formula = injury ~ heronames, data = Superhero)</span>
+<span id="cb48-8"><a href="#cb48-8"></a>## </span>
+<span id="cb48-9"><a href="#cb48-9"></a>## Linear Hypotheses:</span>
+<span id="cb48-10"><a href="#cb48-10"></a>##                               Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span id="cb48-11"><a href="#cb48-11"></a>## Superman - Spiderman == 0       18.708      6.991   2.676  0.05789 .  </span>
+<span id="cb48-12"><a href="#cb48-12"></a>## Hulk - Spiderman == 0           -6.250      6.472  -0.966  0.76953    </span>
+<span id="cb48-13"><a href="#cb48-13"></a>## Ninja Turtle - Spiderman == 0  -15.375      6.472  -2.376  0.10702    </span>
+<span id="cb48-14"><a href="#cb48-14"></a>## Hulk - Superman == 0           -24.958      6.991  -3.570  0.00723 ** </span>
+<span id="cb48-15"><a href="#cb48-15"></a>## Ninja Turtle - Superman == 0   -34.083      6.991  -4.875  &lt; 0.001 ***</span>
+<span id="cb48-16"><a href="#cb48-16"></a>## Ninja Turtle - Hulk == 0        -9.125      6.472  -1.410  0.50427    </span>
+<span id="cb48-17"><a href="#cb48-17"></a>## ---</span>
+<span id="cb48-18"><a href="#cb48-18"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span id="cb48-19"><a href="#cb48-19"></a>## (Adjusted p values reported -- single-step method)</span></code></pre></div>
 </div>
 </div>
 
