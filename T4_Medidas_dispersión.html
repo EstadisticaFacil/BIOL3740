@@ -489,7 +489,8 @@ div.tocify {
 <pre class="r"><code>library(ggplot2)
 library(Hmisc)
 library(gridExtra) # Un paquete para organizar las figuras de ggplot2
-library(gt)</code></pre>
+library(gt)
+library(tidyverse)</code></pre>
 <hr />
 <div id="que-es-la-dispersión-en-estadística" class="section level1">
 <h1>Que es la dispersión en estadística</h1>
@@ -823,10 +824,10 @@ Col=rnorm(200000, 196.7, 39.11)
 Col=data_frame(Col)
 
 promCol=Col%&gt;%
-  summarize(Mean=mean(Col))
+  summarise(Mean=mean(Col))
   
 sdCol=Col%&gt;%
-  summarize(sd=sd(Col))</code></pre>
+  summarise(sd=sd(Col))</code></pre>
 <p>Visualizar los datos: Uds conoce su nivel de colesterol total? Donde se encuentra en esta distribución? Se encuentra en el 68%? Nota que la suma de todos los porcentaje es igual a 100%.</p>
 <pre class="r"><code>library(grid)
 library(gtable)

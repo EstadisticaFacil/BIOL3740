@@ -17,10 +17,13 @@ Sys.Date()
 ```
 
 ```{r}
+
+
 library(ggplot2)
 library(Hmisc)
 library(gridExtra) # Un paquete para organizar las figuras de ggplot2
 library(gt)
+library(tidyverse)
 ```
 
 
@@ -307,10 +310,10 @@ Col=rnorm(200000, 196.7, 39.11)
 Col=data_frame(Col)
 
 promCol=Col%>%
-  summarize(Mean=mean(Col))
+  summarise(Mean=mean(Col))
   
 sdCol=Col%>%
-  summarize(sd=sd(Col))
+  summarise(sd=sd(Col))
 
 ```
 
