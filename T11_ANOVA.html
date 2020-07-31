@@ -754,8 +754,8 @@ by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)</code></pre>
 <p>Este paso es uno de diseño experimental. Que los datos sean representativos de la poblaciones de interés, y que no sean sesgados a un subgrupo. Por ejemplo uno esta probando una vacuno para COVID-19 y la prueba evalúa solamente con gente en muy buena condición física (por ejemplos atletas). La selección de los participantes tiene que reflejar la población a quien se estaría ofreciendo la vacuna.</p>
 <hr />
 <div id="datos-continuos" class="section level2">
-<h2>Datos Continuos</h2>
-<p>Los datos tienen que valores continuos, no pueden ser discretos. Por ejemplo, no pueden ser binarios (vivo/muerto), tampoco no pueden ser conteos (0,1,2,3), si hay poca variación. *** ## Igualdad de varianza</p>
+<h2>1. Datos Continuos</h2>
+<p>Los datos tienen que valores continuos, no pueden ser discretos. Por ejemplo, no pueden ser binarios (vivo/muerto), tampoco no pueden ser conteos (0,1,2,3), si hay poca variación. *** ## 2. Igualdad de varianza</p>
 <p>La cantidad de dispersión en cada grupo tiene que ser bien similar uno al otro. Esto lo podemos comprobar con una prueba. La hipótesis nula es que cada grupo tiene una varianza igual. La hipotesis alterna es que por lo menos uno de los grupos no tiene la misma varianza.</p>
 <ol style="list-style-type: decimal">
 <li><span class="math display">\[Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k\]</span></li>
@@ -764,8 +764,8 @@ by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)</code></pre>
 <hr />
 </div>
 <div id="la-prueba-de-levenes-test" class="section level2">
-<h2>La prueba de Levene’s test</h2>
-<p>La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <a href="https://en.wikipedia.org/wiki/Levene%27s_test" class="uri">https://en.wikipedia.org/wiki/Levene%27s_test</a>. Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función <strong>leveneTest()</strong>. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula. <span style="color: red;">Si no cumple con el supuesto de igualdad de varianza ver el modulo de Krukal-Wallis para una alternariva como evaluar los datos</span></p>
+<h2>3. La prueba de Levene’s test</h2>
+<p>La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <a href="https://en.wikipedia.org/wiki/Levene%27s_test" class="uri">https://en.wikipedia.org/wiki/Levene%27s_test</a>. Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función <strong>leveneTest()</strong>. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula. <span style="color: red;">Si no cumple con el supuesto de igualdad de varianza ver el modulo de Kruskal-Wallis para una alternariva como evaluar los datos</span></p>
 <p>Con los datos de la concentración de fósforo en las plantas de tres lagos, la prueba de Levene da un resultado de p &gt; 0.21, lo que indica que no hay evidencia que la varianza es distinta entre los grupos, por consecuencia se acepta la hipótesis nula.</p>
 <pre class="r numberLines lineAnchors"><code>library(car)
 leveneTest(fosforo$Cant_Fos, fosforo$Lagos, 
@@ -781,45 +781,36 @@ leveneTest(fosforo$Cant_Fos, fosforo$Lagos,
 
 <hr />
 </div>
+<div id="normalidad" class="section level2">
+<h2>4. Normalidad</h2>
+<p>Tenemos que evaluar si los datos tienen una distribución normal. Como se ha discutido en un modulo anterior hay múltiples alternativas. Vamos a limitarnos a usar la prueba de qqplot. Vemos que los datos más o menos siguen la linea, entonces podemos usar ANOVA. En este caso tenemos pocos datos pero si tuviesemos más seria apropiado evaluar cada una aparte. Lo más sencillo seria de cambiar la primera linea del siguiente script <strong>ggplot(fosforo, aes(sample = Cant_Fos, group=Lagos))</strong>. En este caso tendríamos 3 lineas. <span style="color: red;">Si no cumple con el supuesto de normalidad ver el modulo de Kruskal-Wallis para una alternariva como evaluar los datos</span></p>
+<pre class="r numberLines lineAnchors"><code>ggplot(fosforo, aes(sample = Cant_Fos)) +
+  stat_qq() +
+  stat_qq_line(colour=&quot;blue&quot;)+
+  xlab(&quot;Valores teóricos&quot;)+
+  ylab(&quot;Valores observados&quot;)</code></pre>
+<p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-9-1.png" width="672" /> ***</p>
+</div>
 </div>
 <div id="la-prueba-de-anova" class="section level1">
 <h1>La prueba de ANOVA</h1>
-<p>Finalmente llegamos a la prueba de ANOVA, se usa la función <strong>aov()</strong>.</p>
+<p>Finalmente llegamos a la prueba de ANOVA, se usa la función <strong>aov()</strong>. Vemos que se rechaza la hipótesis nula (p &lt;0.05). Ya sabemos que por lo menos uno de los grupos no es igual a los demás. Pero todavía no sabemos que pares son diferentes o si todos.</p>
 <pre class="r numberLines lineAnchors"><code>LagosModel&lt;-aov(Cant_Fos~Lagos, data = fosforo)
 
-# limited information
+
 summary(LagosModel)</code></pre>
 <pre class="numberLines lineAnchors chunkout"><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## Lagos        2   3939    1970   49.28 8.55e-07 ***
 ## Residuals   13    520      40                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r numberLines lineAnchors"><code>#Here
-# Complete model
-summary.lm(LagosModel)  # Nota que los coefficientes son los promedios, comparan con la tabla ariba. </code></pre>
-<pre class="numberLines lineAnchors chunkout"><code>## 
-## Call:
-## aov(formula = Cant_Fos ~ Lagos, data = fosforo)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -8.8000 -3.4167 -0.0833  2.0500 12.8333 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)     52.800      2.827  18.674 9.01e-11 ***
-## LagosDosBocas  -15.800      3.999  -3.951  0.00166 ** 
-## LagosGuineo    -37.633      3.828  -9.830 2.19e-07 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 6.322 on 13 degrees of freedom
-## Multiple R-squared:  0.8835, Adjusted R-squared:  0.8655 
-## F-statistic: 49.28 on 2 and 13 DF,  p-value: 8.55e-07</code></pre>
+<p>tycvhbjnk</p>
 <pre class="r numberLines lineAnchors"><code>plot(LagosModel)</code></pre>
 <p><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-1.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-2.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-3.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-4.png" width="672" /></p>
-<div id="prueba-de-post-hoc-se-hace-solamente-si-se-rechaza-la-hipotesis-nula-de-la-prueba-de-anova" class="section level2">
-<h2>PRUEBA de POST HOC <em>(Se hace solamente si se rechaza la hipotesis nula de la prueba de ANOVA)</em></h2>
+<div id="prueba-de-post-hoc" class="section level2">
+<h2>PRUEBA de Post-Hoc</h2>
+<p>Importante este paso <span style="color: blue;">Se hace solamente si se rechaza la hipótesis nula de la prueba de ANOVA</span>. Si aceptamos la hipótesis nula ya se acabo, no hay más nada que hacer y este paso aquí no se evalúa. Este tipo de prueba Post-Hoc se refiere a una prueba que se hace despues de otra. Ya se hizo la de ANOVA se rechazo y ahora queremos evaluar cual de los grupos es distincto uno al otro.</p>
+<p>Hay en la literatura más de 10 pruebas que se puede utilizar después de un ANOVA, para tener un poco más de información pueden ir al siguiente website <a href="https://www.statisticshowto.com/post-hoc/" class="uri">https://www.statisticshowto.com/post-hoc/</a>. Aquí vamos a presentar solamente dos de estás. Estas dos son frecuentemente utilizadas en ciencias medicas por ser las primeras haber sido desarrolladas.</p>
 <ol style="list-style-type: decimal">
 <li>the Bonferroni test</li>
 <li>Tukey test</li>
@@ -848,7 +839,7 @@ summary(postHocs.1)</code></pre>
 ## 
 ## Linear Hypotheses:
 ##                         Estimate Std. Error t value Pr(&gt;|t|)    
-## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00429 ** 
+## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00444 ** 
 ## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***
 ## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***
 ## ---
@@ -1072,12 +1063,12 @@ summary(postHocs.2)</code></pre>
 ## 
 ## Linear Hypotheses:
 ##                               Estimate Std. Error t value Pr(&gt;|t|)    
-## Superman - Spiderman == 0       18.708      6.991   2.676  0.05756 .  
-## Hulk - Spiderman == 0           -6.250      6.472  -0.966  0.76954    
+## Superman - Spiderman == 0       18.708      6.991   2.676  0.05774 .  
+## Hulk - Spiderman == 0           -6.250      6.472  -0.966  0.76950    
 ## Ninja Turtle - Spiderman == 0  -15.375      6.472  -2.376  0.10690    
-## Hulk - Superman == 0           -24.958      6.991  -3.570  0.00728 ** 
+## Hulk - Superman == 0           -24.958      6.991  -3.570  0.00723 ** 
 ## Ninja Turtle - Superman == 0   -34.083      6.991  -4.875  &lt; 0.001 ***
-## Ninja Turtle - Hulk == 0        -9.125      6.472  -1.410  0.50434    
+## Ninja Turtle - Hulk == 0        -9.125      6.472  -1.410  0.50422    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
