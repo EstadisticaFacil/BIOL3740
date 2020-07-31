@@ -109,29 +109,27 @@ Nota que si tienes 4 grupos tendrá que hacer 6 pruebas de t, y eso eleva la pro
 
 ## Hipótesis en ANOVA
 
-La hipótesis nula es, que todos los grupos tienen el mismo promedio, o mejor dicho que no hay evidencia que los promedios sean distintos. 
+La hipótesis nula en ANOVA, es que todos los grupos tienen el mismo promedio, o mejor dicho que no hay evidencia que los promedios sean distintos. Filosoficamente uno NUNCA uede decir que algo es similar es que uno puede decir que no hay evidencia que sean diferentes.  Esto proviene de el punto imprtante que uno hace un muestreo de la población, por consecuencia siempre hay la posibilidad que los datos (el muestreo) NO representa la población y hay un tipo de error II (que no se rechaza la hipótesis nula cuando se debería rechazar).
 
 H0: $H_o:\ \mu_1=\mu_2=\mu_3=...=\mu_k$
-Ha: Por lo menos uno de los grupos no es igual a los demas.
+Ha: Por lo menos uno de los grupos no es igual a los demás.
 
-NOTA importante la hipótesis alterna NO ES que los grupos sean distintos, es que por los menos uno de ellos es distinto.  
+NOTA importante la hipótesis alterna `r colorize("NO es que los grupos sean distintos", "red")`, es que por los menos uno de ellos es distinto.  
 
 Ejemplo: 
-Vamos asumir que tenemos 3 grupos, k =3 
+Vamos asumir que tenemos 3 grupos, k=3 y que la hipótesis nula es la siguiente  
 
 Ho: G1=G2=G3, p >= 0.05
 Ha: Por lo menos uno de estos grupos no es igual a los demas.  
 
-Si encontramos un valor de p <0.05, aceptamos la hipotesis nula una de una de las posibles combinaciones pudiese ser G1=G2, G1=G3, pero G2 no es igual a G3.
-
-
+Si encontramos un valor de p <0.05, rechazamos la hipótesis nula y de una de las posibles combinaciones pudiese ser G1=G2, G1=G3, pero G2 no es igual a G3. ¿Qué son las otras posibles combinaciones que resultaría en que se rechaza la hipótesis nula?
 
 
 
 
 # Crear un conjunto de datos
 
-Aquí observamos la cantidad de fósforo por parte de millión observado en la misma especie de planta cerca tres lagos de Puerto Rico . Los datos son ficticios es para demostrar el proceso de hacer los análisis. Se observa datos de plantas 3 lagos (Caraizo, DosBocas y Guineo).  
+Aquí observamos la cantidad de fósforo por parte de millón observado en la misma especie de planta cerca tres lagos de Puerto Rico . Los datos son ficticios es para demostrar el proceso de hacer los análisis. Se observa datos de plantas 3 lagos en Pueto Rico (Caraizo, DosBocas y Guineo).  
 
 Nuestra hipótesis nula es que la cantidad de fósforo en la plantas es igual en los tres lagos. 
 
@@ -156,7 +154,7 @@ fosforo
 ```
 ## Visualizar los datos
 
-Hacer un gráfico de los datos.  Calculamos el promedio de todos los valores de "Y" (concentración de fósforo en las plantas) y se gráfica, vemos que muchos de los valores de las plantas son por debajo los valores de la linea y muchos de los valores están por encima.    
+Hacemos un gráfico de los datos.  Calculamos el promedio de todos los valores de "Y" (concentración de fósforo en las plantas) y se gráfica, vemos que muchos de los valores de las plantas son por debajo los valores de la linea y muchos de los valores están por encima.    Se observa que la concentración de fósforo en plantas que provienen de los lagos Caraizo y Guineo son lejos del promedio.  
 
 ```{r plot}
 
@@ -169,7 +167,7 @@ ggplot(fosforo, aes(Lagos, Cant_Fos, colour=Lagos))+
 
 ```
 
-Otra alternativa de verlo es observar la diferencias entre el valor de la "y" y el promedio, o sea los residuales. `r colorize("Nota que esto se parece a la grafica de residuales de la regresión lineal", "blue")`. Vimos también este tipo de gráfico para la prueba de t. 
+Otra alternativa y una que ayuda a entender como se hace el cálculos es observar la diferencias entre el valor de la "y" y el promedio, o sea los residuales. `r colorize("Nota que esto se parece a la grafica de residuales de la regresión lineal", "blue")`. Vimos también este tipo de gráfico para la prueba de t. 
 
 
 ```{r}
@@ -180,7 +178,7 @@ for(i in 1:16) lines(c(i,i), c(mean(Cant_Fos), Cant_Fos[i]), col="green")
 ```
 
 
-Ahora vamos a separar el gráfico y ver los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo.  Este es un indice que los lagos explica (en parte) la varianza en concentración de fósforo.  
+Ahora vamos a separar el gráfico y ver los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo.  Este es un indice que los lagos explica la varianza (en parte) en concentración de fósforo en las plantas.  
 
 
 ```{r}
@@ -202,16 +200,17 @@ for (i in 1:length(index)){
 
 
 ```
+***
+Daros donde los grupos son iguales
 
-# Ejemplo de grupos donde los promedios no van a ser diferentes
-## creamos un set de datos
+En este ejemplo de vemos dos de los grupos donde los residuales solapan, este es probable que resulta que estos dos grupos (azul y rojo) no sean diferentes.  
 
-```{r primer ejemplo}
+```{r residuales segundo grupo}
 
 
 id<-(1:16)
-Cant_Fos<-c(65,66,64,65,64,
-            56,58,65,49,43,
+Cant_Fos<-c(52,66,60,54,64,
+            56,58,65,49,58,
             21,24,22,21,21,21)
 Lagos<-c(rep(1,5),rep(2,5), rep(3,6))
 Lagos<-factor(Lagos, levels = c(1:3), 
@@ -241,49 +240,48 @@ for (i in 1:length(index)){
 ```
 
 
-Graficar de los datos
+# Gráficar los datos 
 
-NOTA Aqui que tengo
+Gráfica de los datos para observar si hay un patrón observable.  Repito este punto múltiples veces ya que en mi carrera he visto mucha gente haciendo análisis de datos y hacen un análisis estadístico y rechazan la hipótesis nula. Si habría tomado el tiempo de visualizar los datos se habrían dado cuenta que no era posible este resultado porque los datos de los grupos solapan completamente.   
+
+NOTA Aquí los tres pasos para producir un gráfico con el promedio de cada grupo. 
   1. los datos con geom_point
-  2. los promedios con stat_summary
-  3. Una linea que une los promedios con stat_summary
+  2. los promedios con stat_summary(fun.y = mean, geom = "point"), para calcular el promedio del grupo
+  3. Una linea que une los promedios con stat_summary(fun.y = mean, geom = "line"), note la diferencia entre los dos uno usa "point" el otro usa "line". 
 
 ```{r graficar fosforo}
 library(ggplot2)
-ggplot(fosforo, aes(x=Lagos, y=Cant_Fos))+
+ggplot(fosforo, aes(x=Lagos, y=Cant_Fos, colour=Lagos))+
 geom_point()+
-  stat_summary(fun.y = mean, geom = "point", size = 1, 
-                    aes(group=1), colour = "#FF6633")+
+  stat_summary(fun.y = mean, geom = "point", size = 2, 
+                    aes(group=1), colour = "black")+
   stat_summary(fun.y = mean, geom = "line", size = 1, 
              aes(group=1), colour = "red")
 
 ```
 
-### Crear un data frame de los resultados con el package "Rmisc" y la función "summarySE"
+## Un gráfico con el intervalo de confianza. 
+
+Crear un data frame de los resultados con el package "Rmisc" y la función "summarySE".  Los pasos son identificar la variable continua (en este caso measurevar="Cant_Fos") y la variable discreta que identifica los grupos groupvars="Lagos".  Esto crea un nuevo data frame con los datos resumidos que incluye, el nombre de los grupos (Lagos), el tamaño de muestra (N), el promedio de la variable (Cant_Fos), la desviación estandar (sd), el error estandar (se) y intervalo de confianza (ci). 
 
 ```{r summary data}
-library(Rmisc)   # this is a function to create 
-#a data frame of summary data
-
-head(fosforo)
+library(Rmisc)
 
 sum = summarySE(fosforo, 
                 measurevar="Cant_Fos", 
-                groupvars=c("Lagos"))
+                groupvars="Lagos")
 sum
 
 
 ```
-52.8000000    3.7336309   10.3662213
+
 
 
 ## Graficar con nuestro nuevo data frame "sum".
 
-Nota, se = standard error, el error del promedio (donde esta el promedio?)
-      sd = la desviación estandard, para evaluar el error de la población (donde esta la distribución de los datos?)
-      ci = el intervalo de confianza
+Para calcular el 95% del intervalo de confianza del promedio se usa la siguiente formula $\overline{x}\ \pm2\cdot se$. Las barras representa el 95% de donde pudiese estar el promedio si repetimos el mismo experimento 100 veces.  
       
-      95% intervalo de confianza del promedio
+  
 ```{r grafica2}
 ggplot(sum, aes(x=Lagos, 
                 y=Cant_Fos)) +
@@ -294,27 +292,46 @@ ggplot(sum, aes(x=Lagos,
 
 
 ```
- ymin=Cant_Fos-2*se, 
-ymax=Cant_Fos+2*se
 
-Esto dara el intervalo de confianza de 95%
 
-Descriptive statistics
+##E Estadística descriptiva de los Lagos
 
 ```{r descriptive stats}
-#Descriptives
+
 library(pastecs)
 by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)
 
 ```
+# Los supuestos de ANOVA
+
+Hay 4 supuestos que tenemos que evaluar cuando se hace un ANOVA.
+
+1. Los datos de cada grupo es una muestra al azar de la poblaciones
+2. La característica medida es son continuas.
+3. Igualdad de varianza: el error en la varianza en cada grupo es igual
+4. La variables continuas tienen una distribución normal.
+
+## Datos al azar
+
+Este paso es uno de diseño experimental.  Que los datos sean representativos de la poblaciones de interés, y que no sean sesgados a un subgrupo.
+  Por ejemplo uno esta probando una vacuno para COVID-19 y la prueba evalúa solamente con gente en muy buena condición física (por ejemplos atletas).  La selección de los participantes tiene que reflejar la población a quien se estaría ofreciendo la vacuna. 
+  
+  
+## Datos Continuos
+ Los datos tienen que valores continuos, no pueden ser discretos.
+ Por ejemplo, no pueden ser binarios (vivo/muerto), tampoco no pueden ser conteos (0,1,2,3), si hay poca variación.
+ 
+## Igualdad de varianza
+  
+La cantidad de dispersión en cada grupo tiene que ser bien similar uno al otro.  Esto lo podemos comprobar con una prueba. La hipótesis nula es que cada grupo tiene una varianza igual.  La hipotesis alterna es que por lo menos uno de los grupos no tiene la misma varianza.   
+
+1. $$Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k$$
+2. Ha: Por lo menos uno d elos grupos no tiene la misma varianza que los otros. (similar a la Ha de ANOVA)
 
 
-#Levene's test (test of equality of variance), to test for homogeneity of variance among groups
+## La prueba de Levene's test 
 
-## Para comprobar si hay igualdad de varianza entre los grupos
-
-
-$$Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k$$
+La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <https://en.wikipedia.org/wiki/Levene%27s_test>.  Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función **leveneTest()**. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula.  
 
 
 

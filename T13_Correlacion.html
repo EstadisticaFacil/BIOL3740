@@ -486,7 +486,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-29&quot;</code></pre>
+<pre><code>## [1] &quot;2020-07-30&quot;</code></pre>
 <hr />
 <div id="install-packages" class="section level2">
 <h2>Install packages</h2>
@@ -901,10 +901,10 @@ y2=rnorm(100, 1, .01)*x+rnorm(100,0,1)
 
 xycorD=(cor(x,y))^2
 xycorD</code></pre>
-<pre><code>## [1] 0.7619006</code></pre>
+<pre><code>## [1] 0.7058419</code></pre>
 <pre class="r"><code>xycorD2=(cor(x,y2))^2
 xycorD2</code></pre>
-<pre><code>## [1] 0.986302</code></pre>
+<pre><code>## [1] 0.9859625</code></pre>
 <p>La diferencia no es la pendiente es solamente cuan disperso están los datos alrededor de la correlación lineal.</p>
 <pre class="r"><code>R2a=ggplot(xy, aes(x,y))+
   geom_smooth(method = lm)+
@@ -938,13 +938,13 @@ grid.arrange(R2a,R2b,ncol=2)</code></pre>
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  x and y
-## t = 17.709, df = 98, p-value &lt; 2.2e-16
+## t = 15.335, df = 98, p-value &lt; 2.2e-16
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.8164249 0.9127916
+##  0.7709472 0.8897380
 ## sample estimates:
-##       cor 
-## 0.8728692</code></pre>
+##      cor 
+## 0.840144</code></pre>
 <hr />
 </div>
 <div id="el-mejor-mentiroso." class="section level1">
