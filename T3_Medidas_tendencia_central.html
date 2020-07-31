@@ -560,18 +560,15 @@ b</code></pre>
 df=data.frame(df)</code></pre>
 <p>Lo que uno observa es que los tres valores son muy cercano uno del otro.</p>
 <pre class="r"><code>mean(df$df)</code></pre>
-<pre><code>## [1] 99.9605</code></pre>
+<pre><code>## [1] 99.9661</code></pre>
 <pre class="r"><code>median(df$df)</code></pre>
 <pre><code>## [1] 100</code></pre>
 <pre class="r"><code>mfv(df$df)</code></pre>
-<pre><code>## [1] 99</code></pre>
+<pre><code>## [1] 97</code></pre>
 <p>Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda). En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta. Se observa que los tres valores son cerca del centro.</p>
 <pre class="r"><code>mea=mean(df$df)
 med=median(df$df)
 mod=mfv(df$df)
-
-
-
 
 a=ggplot(df, aes(df ))+
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;, binwidth = 5)+
@@ -587,7 +584,6 @@ b=ggplot(df, aes(df ))+
   geom_vline(aes(xintercept = mod), colour=&quot;green&quot;)+
   xlim(95,104)+
   theme(legend.position = &quot;none&quot;)
-
 
 grid.arrange(a,b, ncol=2)</code></pre>
 <p><img src="T3_Medidas_tendencia_central_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
@@ -639,7 +635,7 @@ head(dfBin)</code></pre>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
 <tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td></tr>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
 <tr>
@@ -654,7 +650,7 @@ head(dfBin)</code></pre>
 med=median(dfBin$dfBin)
 mod=mfv(dfBin$dfBin)
 mea</code></pre>
-<pre><code>## [1] 0.6</code></pre>
+<pre><code>## [1] 0.5996</code></pre>
 <pre class="r"><code>ggplot(dfBin, aes(dfBin))+
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;)+
   geom_vline(aes(xintercept = mea), colour=&quot;red&quot;)+

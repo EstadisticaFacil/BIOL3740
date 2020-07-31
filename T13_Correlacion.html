@@ -901,10 +901,10 @@ y2=rnorm(100, 1, .01)*x+rnorm(100,0,1)
 
 xycorD=(cor(x,y))^2
 xycorD</code></pre>
-<pre><code>## [1] 0.7058419</code></pre>
+<pre><code>## [1] 0.6397772</code></pre>
 <pre class="r"><code>xycorD2=(cor(x,y2))^2
 xycorD2</code></pre>
-<pre><code>## [1] 0.9859625</code></pre>
+<pre><code>## [1] 0.9826742</code></pre>
 <p>La diferencia no es la pendiente es solamente cuan disperso están los datos alrededor de la correlación lineal.</p>
 <pre class="r"><code>R2a=ggplot(xy, aes(x,y))+
   geom_smooth(method = lm)+
@@ -938,13 +938,13 @@ grid.arrange(R2a,R2b,ncol=2)</code></pre>
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  x and y
-## t = 15.335, df = 98, p-value &lt; 2.2e-16
+## t = 13.193, df = 98, p-value &lt; 2.2e-16
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.7709472 0.8897380
+##  0.7159185 0.8610083
 ## sample estimates:
-##      cor 
-## 0.840144</code></pre>
+##       cor 
+## 0.7998607</code></pre>
 <hr />
 </div>
 <div id="el-mejor-mentiroso." class="section level1">

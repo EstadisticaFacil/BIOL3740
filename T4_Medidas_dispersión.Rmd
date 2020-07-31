@@ -165,7 +165,7 @@ quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975))
 Para explicar estos conceptos mejor visualizamos los datos 
 
 
-| i  | x[i]  | Mediana | Quartiles   |
+| i  | x[i]  | Mediana | Cuartiles   |
 |----|-------:|:---------:|:-------------:|
 | 1  | 03    |           |  |
 | 2  | 19     |           |          |
@@ -264,7 +264,7 @@ CIb=ggplot(b, aes(b))+
   geom_vline(aes(xintercept = Limite_superior_b), colour="black")+
   xlim(90,110)
 
-grid.arrange(CIa,CIb, ncol=1)
+grid.arrange(CIa,CIb, ncol=2)
 
 ```
 
