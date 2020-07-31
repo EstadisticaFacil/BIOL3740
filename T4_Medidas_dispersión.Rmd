@@ -61,11 +61,17 @@ b=data.frame(b)
 
 
 ```{r, out.width = '60%'}
-ggplot(a, aes(a))+
+dispersion=ggplot(a, aes(a))+
   geom_density(fill="blue", alpha=.5)+
   geom_density(b, mapping=aes(b,fill="red", alpha=.5 ))+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept = 100, colour="red"))
+ggsave("Graficos/dispersion.png")
+```
+
+```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '60%'}
+knitr::include_graphics("Graficos/dispersion.png")
+```
 ```
 
 ***

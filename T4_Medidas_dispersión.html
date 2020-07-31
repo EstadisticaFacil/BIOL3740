@@ -511,18 +511,29 @@ a=rnorm(5000, 100, 10)
 a=data.frame(a)
 b=rnorm(500, 100, 30)
 b=data.frame(b)</code></pre>
-<pre class="r"><code>ggplot(a, aes(a))+
+<pre class="r"><code>dispersion=ggplot(a, aes(a))+
   geom_density(fill=&quot;blue&quot;, alpha=.5)+
   geom_density(b, mapping=aes(b,fill=&quot;red&quot;, alpha=.5 ))+
   theme(legend.position = &quot;none&quot;) +
-  geom_vline(aes(xintercept = 100, colour=&quot;red&quot;))</code></pre>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-4-1.png" width="60%" /></p>
-<hr />
+  geom_vline(aes(xintercept = 100, colour=&quot;red&quot;))
+ggsave(&quot;Graficos/dispersion.png&quot;)</code></pre>
+<div class="figure">
+<img src="Graficos/dispersion.png" alt="El proceso de Investigación" width="60%" />
+<p class="caption">
+El proceso de Investigación
+</p>
 </div>
-<div id="el-rango" class="section level1">
-<h1>El rango</h1>
-<p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
-<pre class="r"><code>range(a$a)</code></pre>
+<pre><code>
+***
+
+# El rango
+
+El rango son los valores mínimo y valor máximo de un conjunto de datos.  Se usa la función **range()**.  Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12.  Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.  
+
+
+
+```r
+range(a$a)</code></pre>
 <pre><code>## [1]  59.17397 137.11983</code></pre>
 <pre class="r"><code>range(b$b)</code></pre>
 <pre><code>## [1]   9.987169 181.432611</code></pre>
@@ -768,7 +779,7 @@ CIb=ggplot(b, aes(b))+
   xlim(90,110)
 
 grid.arrange(CIa,CIb, ncol=2)</code></pre>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-13-1.png" width="70%" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-14-1.png" width="70%" /></p>
 <hr />
 <div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
 <h2>El intervalos de confianza de los datos</h2>
@@ -864,7 +875,7 @@ geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour=&quot;orange&qu
   annotate(&quot;text&quot;, x=295, y = .001, label=&quot;2.1%&quot;)+
   annotate(&quot;text&quot;, x=70, y = .0005, label=&quot;0.1%&quot;)+
   annotate(&quot;text&quot;, x=330, y = .0005, label=&quot;0.1%&quot;)</code></pre>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="otro-ejemplo-de-los-intevalos-de-confianzas" class="section level2">
