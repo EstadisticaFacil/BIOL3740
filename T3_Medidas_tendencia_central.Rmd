@@ -148,9 +148,6 @@ mea=mean(df$df)
 med=median(df$df)
 mod=mfv(df$df)
 
-
-
-
 a=ggplot(df, aes(df ))+
   geom_histogram(fill="orange", colour="white", binwidth = 5)+
   geom_vline(aes(xintercept = mea), colour="red")+
@@ -165,7 +162,6 @@ b=ggplot(df, aes(df ))+
   geom_vline(aes(xintercept = mod), colour="green")+
   xlim(95,104)+
   theme(legend.position = "none")
-
 
 grid.arrange(a,b, ncol=2)
 ```

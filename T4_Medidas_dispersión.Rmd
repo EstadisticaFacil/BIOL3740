@@ -52,7 +52,7 @@ Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero 
 
 ```{r}
 
-set.seed(869870) # esto es para que los valores se queda igual a cada vez que se corre el analisis
+set.seed(8690) # esto es para que los valores se queda igual a cada vez que se corre el analisis
 a=rnorm(5000, 100, 10)
 a=data.frame(a)
 b=rnorm(500, 100, 30)
@@ -247,7 +247,7 @@ Limite_superior_b
 
 Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.  
 
-```{r, out.width = '50%'}
+```{r, out.width = '100%'}
 CIa=ggplot(a, aes(a))+
   geom_density(fill="blue", alpha=.5)+
   theme(legend.position = "none") +
@@ -264,9 +264,7 @@ CIb=ggplot(b, aes(b))+
   geom_vline(aes(xintercept = Limite_superior_b), colour="black")+
   xlim(90,110)
 
-grid.arrange(CIa,CIb, ncol=2)
-
-
+grid.arrange(CIa,CIb, ncol=1)
 
 ```
 

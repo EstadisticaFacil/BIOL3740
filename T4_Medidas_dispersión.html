@@ -506,7 +506,7 @@ library(tidyverse)</code></pre>
 <div id="vizualizando-la-dispersión" class="section level1">
 <h1>Vizualizando la dispersión</h1>
 <p>Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes. En el primer conjunto de datos se usa 5000 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.</p>
-<pre class="r"><code>set.seed(869870) # esto es para que los valores se queda igual a cada vez que se corre el analisis
+<pre class="r"><code>set.seed(8690) # esto es para que los valores se queda igual a cada vez que se corre el analisis
 a=rnorm(5000, 100, 10)
 a=data.frame(a)
 b=rnorm(500, 100, 30)
@@ -529,9 +529,9 @@ El proceso de Investigación
 <h1>El rango</h1>
 <p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
 <pre class="r"><code>range(a$a)</code></pre>
-<pre><code>## [1]  59.17397 137.11983</code></pre>
+<pre><code>## [1]  67.77126 133.87095</code></pre>
 <pre class="r"><code>range(b$b)</code></pre>
-<pre><code>## [1]   9.987169 181.432611</code></pre>
+<pre><code>## [1]  -8.410994 190.670576</code></pre>
 <div id="la-varianza" class="section level2">
 <h2>La varianza</h2>
 <p>Los pasos para calcular la varianza son los siguientes</p>
@@ -731,9 +731,9 @@ quantile(dat, type =1)</code></pre>
 es_b= sd(b$b)/sqrt(length(b$b))
 
 es_a</code></pre>
-<pre><code>## [1] 0.1444401</code></pre>
+<pre><code>## [1] 0.1405601</code></pre>
 <pre class="r"><code>es_b</code></pre>
-<pre><code>## [1] 1.363112</code></pre>
+<pre><code>## [1] 1.32255</code></pre>
 <hr />
 </div>
 <div id="el-intervalo-de-confianza-de-95-del-promedio" class="section level1">
@@ -745,17 +745,17 @@ es_a</code></pre>
 Limite_superior_a=mean(a$a)+(es_a+1.96)
 
 Limite_inferior_a</code></pre>
-<pre><code>## [1] 97.97153</code></pre>
+<pre><code>## [1] 97.90828</code></pre>
 <pre class="r"><code>Limite_superior_a</code></pre>
-<pre><code>## [1] 102.1804</code></pre>
+<pre><code>## [1] 102.1094</code></pre>
 <pre class="r"><code>Limite_inferior_b=mean(b$b)-(es_b+1.96)
 Limite_superior_b=mean(b$b)+(es_b+1.96)
 
 mean_b=mean(b$b)
 Limite_inferior_b</code></pre>
-<pre><code>## [1] 97.689</code></pre>
+<pre><code>## [1] 96.19911</code></pre>
 <pre class="r"><code>Limite_superior_b</code></pre>
-<pre><code>## [1] 104.3352</code></pre>
+<pre><code>## [1] 102.7642</code></pre>
 <p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
 <pre class="r"><code>CIa=ggplot(a, aes(a))+
   geom_density(fill=&quot;blue&quot;, alpha=.5)+
@@ -773,8 +773,8 @@ CIb=ggplot(b, aes(b))+
   geom_vline(aes(xintercept = Limite_superior_b), colour=&quot;black&quot;)+
   xlim(90,110)
 
-grid.arrange(CIa,CIb, ncol=2)</code></pre>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-14-1.png" width="50%" /></p>
+grid.arrange(CIa,CIb, ncol=1)</code></pre>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-14-1.png" width="100%" /></p>
 <hr />
 <div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
 <h2>El intervalos de confianza de los datos</h2>
@@ -885,7 +885,7 @@ gt(head(Alturas_Humanos))</code></pre>
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#webfapcfvz .gt_table {
+#fzkzxgcbyu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -908,7 +908,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#webfapcfvz .gt_heading {
+#fzkzxgcbyu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -920,7 +920,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#webfapcfvz .gt_title {
+#fzkzxgcbyu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -930,7 +930,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-bottom-width: 0;
 }
 
-#webfapcfvz .gt_subtitle {
+#fzkzxgcbyu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -940,13 +940,13 @@ gt(head(Alturas_Humanos))</code></pre>
   border-top-width: 0;
 }
 
-#webfapcfvz .gt_bottom_border {
+#fzkzxgcbyu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#webfapcfvz .gt_col_headings {
+#fzkzxgcbyu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -961,7 +961,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#webfapcfvz .gt_col_heading {
+#fzkzxgcbyu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -981,7 +981,7 @@ gt(head(Alturas_Humanos))</code></pre>
   overflow-x: hidden;
 }
 
-#webfapcfvz .gt_column_spanner_outer {
+#fzkzxgcbyu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -993,15 +993,15 @@ gt(head(Alturas_Humanos))</code></pre>
   padding-right: 4px;
 }
 
-#webfapcfvz .gt_column_spanner_outer:first-child {
+#fzkzxgcbyu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#webfapcfvz .gt_column_spanner_outer:last-child {
+#fzkzxgcbyu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#webfapcfvz .gt_column_spanner {
+#fzkzxgcbyu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1013,7 +1013,7 @@ gt(head(Alturas_Humanos))</code></pre>
   width: 100%;
 }
 
-#webfapcfvz .gt_group_heading {
+#fzkzxgcbyu .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1035,7 +1035,7 @@ gt(head(Alturas_Humanos))</code></pre>
   vertical-align: middle;
 }
 
-#webfapcfvz .gt_empty_group_heading {
+#fzkzxgcbyu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1050,19 +1050,19 @@ gt(head(Alturas_Humanos))</code></pre>
   vertical-align: middle;
 }
 
-#webfapcfvz .gt_striped {
+#fzkzxgcbyu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#webfapcfvz .gt_from_md > :first-child {
+#fzkzxgcbyu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#webfapcfvz .gt_from_md > :last-child {
+#fzkzxgcbyu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#webfapcfvz .gt_row {
+#fzkzxgcbyu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1081,7 +1081,7 @@ gt(head(Alturas_Humanos))</code></pre>
   overflow-x: hidden;
 }
 
-#webfapcfvz .gt_stub {
+#fzkzxgcbyu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1093,7 +1093,7 @@ gt(head(Alturas_Humanos))</code></pre>
   padding-left: 12px;
 }
 
-#webfapcfvz .gt_summary_row {
+#fzkzxgcbyu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1103,7 +1103,7 @@ gt(head(Alturas_Humanos))</code></pre>
   padding-right: 5px;
 }
 
-#webfapcfvz .gt_first_summary_row {
+#fzkzxgcbyu .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1113,7 +1113,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#webfapcfvz .gt_grand_summary_row {
+#fzkzxgcbyu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1123,7 +1123,7 @@ gt(head(Alturas_Humanos))</code></pre>
   padding-right: 5px;
 }
 
-#webfapcfvz .gt_first_grand_summary_row {
+#fzkzxgcbyu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1133,7 +1133,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#webfapcfvz .gt_table_body {
+#fzkzxgcbyu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1142,7 +1142,7 @@ gt(head(Alturas_Humanos))</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#webfapcfvz .gt_footnotes {
+#fzkzxgcbyu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1156,13 +1156,13 @@ gt(head(Alturas_Humanos))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#webfapcfvz .gt_footnote {
+#fzkzxgcbyu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#webfapcfvz .gt_sourcenotes {
+#fzkzxgcbyu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1176,46 +1176,46 @@ gt(head(Alturas_Humanos))</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#webfapcfvz .gt_sourcenote {
+#fzkzxgcbyu .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#webfapcfvz .gt_left {
+#fzkzxgcbyu .gt_left {
   text-align: left;
 }
 
-#webfapcfvz .gt_center {
+#fzkzxgcbyu .gt_center {
   text-align: center;
 }
 
-#webfapcfvz .gt_right {
+#fzkzxgcbyu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#webfapcfvz .gt_font_normal {
+#fzkzxgcbyu .gt_font_normal {
   font-weight: normal;
 }
 
-#webfapcfvz .gt_font_bold {
+#fzkzxgcbyu .gt_font_bold {
   font-weight: bold;
 }
 
-#webfapcfvz .gt_font_italic {
+#fzkzxgcbyu .gt_font_italic {
   font-style: italic;
 }
 
-#webfapcfvz .gt_super {
+#fzkzxgcbyu .gt_super {
   font-size: 65%;
 }
 
-#webfapcfvz .gt_footnote_marks {
+#fzkzxgcbyu .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="webfapcfvz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="fzkzxgcbyu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
