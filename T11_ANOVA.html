@@ -667,7 +667,7 @@ for (i in 1:length(index)){
   else
     lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos==&quot;DosBocas&quot;]), Cant_Fos[i]), col=&quot;red&quot;)
 } </code></pre>
-<p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-8-1.png" width="672" /> ***</p>
 </div>
 <div id="gráficar-los-datos" class="section level1">
 <h1>Gráficar los datos</h1>
@@ -680,9 +680,7 @@ geom_point()+
                     aes(group=1), colour = &quot;black&quot;)+
   stat_summary(fun.y = mean, geom = &quot;line&quot;, size = 1, 
              aes(group=1), colour = &quot;red&quot;)</code></pre>
-<p><img src="T11_ANOVA_files/figure-html/graficar%20fosforo-1.png" width="672" /></p>
-<div id="un-gráfico-con-el-intervalo-de-confianza." class="section level2">
-<h2>Un gráfico con el intervalo de confianza.</h2>
+<p><img src="T11_ANOVA_files/figure-html/graficar%20fosforo-1.png" width="672" /> *** ## Un gráfico con el intervalo de confianza.</p>
 <p>Crear un data frame de los resultados con el package “Rmisc” y la función “summarySE”. Los pasos son identificar la variable continua (en este caso measurevar=“Cant_Fos”) y la variable discreta que identifica los grupos groupvars=“Lagos”. Esto crea un nuevo data frame con los datos resumidos que incluye, el nombre de los grupos (Lagos), el tamaño de muestra (N), el promedio de la variable (Cant_Fos), la desviación estandar (sd), el error estandar (se) y intervalo de confianza (ci).</p>
 <pre class="r numberLines lineAnchors"><code>library(Rmisc)
 
@@ -701,7 +699,7 @@ sum</code></pre>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Guineo</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">15.2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6.79</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.77&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">7.13</td></tr>
 </table>
 
-</div>
+<hr />
 <div id="graficar-con-nuestro-nuevo-data-frame-sum." class="section level2">
 <h2>Graficar con nuestro nuevo data frame “sum”.</h2>
 <p>Para calcular el 95% del intervalo de confianza del promedio se usa la siguiente formula <span class="math inline">\(\overline{x}\ \pm2\cdot se\)</span>. Las barras representa el 95% de donde pudiese estar el promedio si repetimos el mismo experimento 100 veces.</p>
@@ -712,7 +710,10 @@ sum</code></pre>
                     ymax=Cant_Fos+2*se), 
                 width=.2, size=0.7)</code></pre>
 <p><img src="T11_ANOVA_files/figure-html/grafica2-1.png" width="672" /></p>
-<p>##E Estadística descriptiva de los Lagos</p>
+<hr />
+</div>
+<div id="estadística-descriptiva-de-los-lagos" class="section level2">
+<h2>Estadística descriptiva de los Lagos</h2>
 <pre class="r numberLines lineAnchors"><code>library(pastecs)
 by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)</code></pre>
 <pre class="numberLines lineAnchors chunkout"><code>## fosforo$Lagos: Caraizo
@@ -738,6 +739,7 @@ by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)</code></pre>
 ##    91.000000    13.500000    15.166667     2.773886     7.130501    46.166667 
 ##      std.dev     coef.var 
 ##     6.794606     0.447996</code></pre>
+<hr />
 </div>
 </div>
 <div id="los-supuestos-de-anova" class="section level1">
@@ -747,27 +749,24 @@ by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)</code></pre>
 <li>Los datos de cada grupo es una muestra al azar de la poblaciones</li>
 <li>La característica medida es son continuas.</li>
 <li>Igualdad de varianza: el error en la varianza en cada grupo es igual</li>
-<li>La variables continuas tienen una distribución normal.</li>
+<li>La variables continuas tienen una distribución normal. *** ## Datos al azar</li>
 </ol>
-<div id="datos-al-azar" class="section level2">
-<h2>Datos al azar</h2>
 <p>Este paso es uno de diseño experimental. Que los datos sean representativos de la poblaciones de interés, y que no sean sesgados a un subgrupo. Por ejemplo uno esta probando una vacuno para COVID-19 y la prueba evalúa solamente con gente en muy buena condición física (por ejemplos atletas). La selección de los participantes tiene que reflejar la población a quien se estaría ofreciendo la vacuna.</p>
-</div>
+<hr />
 <div id="datos-continuos" class="section level2">
 <h2>Datos Continuos</h2>
-<p>Los datos tienen que valores continuos, no pueden ser discretos. Por ejemplo, no pueden ser binarios (vivo/muerto), tampoco no pueden ser conteos (0,1,2,3), si hay poca variación.</p>
-</div>
-<div id="igualdad-de-varianza" class="section level2">
-<h2>Igualdad de varianza</h2>
+<p>Los datos tienen que valores continuos, no pueden ser discretos. Por ejemplo, no pueden ser binarios (vivo/muerto), tampoco no pueden ser conteos (0,1,2,3), si hay poca variación. *** ## Igualdad de varianza</p>
 <p>La cantidad de dispersión en cada grupo tiene que ser bien similar uno al otro. Esto lo podemos comprobar con una prueba. La hipótesis nula es que cada grupo tiene una varianza igual. La hipotesis alterna es que por lo menos uno de los grupos no tiene la misma varianza.</p>
 <ol style="list-style-type: decimal">
 <li><span class="math display">\[Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k\]</span></li>
 <li>Ha: Por lo menos uno d elos grupos no tiene la misma varianza que los otros. (similar a la Ha de ANOVA)</li>
 </ol>
+<hr />
 </div>
 <div id="la-prueba-de-levenes-test" class="section level2">
 <h2>La prueba de Levene’s test</h2>
-<p>La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <a href="https://en.wikipedia.org/wiki/Levene%27s_test" class="uri">https://en.wikipedia.org/wiki/Levene%27s_test</a>. Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función <strong>leveneTest()</strong>. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula.</p>
+<p>La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <a href="https://en.wikipedia.org/wiki/Levene%27s_test" class="uri">https://en.wikipedia.org/wiki/Levene%27s_test</a>. Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función <strong>leveneTest()</strong>. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula. <span style="color: red;">Si no cumple con el supuesto de igualdad de varianza ver el modulo de Krukal-Wallis para una alternariva como evaluar los datos</span></p>
+<p>Con los datos de la concentración de fósforo en las plantas de tres lagos, la prueba de Levene da un resultado de p &gt; 0.21, lo que indica que no hay evidencia que la varianza es distinta entre los grupos, por consecuencia se acepta la hipótesis nula.</p>
 <pre class="r numberLines lineAnchors"><code>library(car)
 leveneTest(fosforo$Cant_Fos, fosforo$Lagos, 
            center = median)</code></pre>
@@ -780,17 +779,19 @@ leveneTest(fosforo$Cant_Fos, fosforo$Lagos,
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">13</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
 </table>
 
+<hr />
 </div>
 </div>
 <div id="la-prueba-de-anova" class="section level1">
 <h1>La prueba de ANOVA</h1>
-<pre class="r numberLines lineAnchors"><code>LagosModel&lt;-aov(Cant_Fos~Lagos-1, data = fosforo)
+<p>Finalmente llegamos a la prueba de ANOVA, se usa la función <strong>aov()</strong>.</p>
+<pre class="r numberLines lineAnchors"><code>LagosModel&lt;-aov(Cant_Fos~Lagos, data = fosforo)
 
 # limited information
 summary(LagosModel)</code></pre>
-<pre class="numberLines lineAnchors chunkout"><code>##           Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-## Lagos      3  22164    7388   184.8 6.58e-11 ***
-## Residuals 13    520      40                     
+<pre class="numberLines lineAnchors chunkout"><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Lagos        2   3939    1970   49.28 8.55e-07 ***
+## Residuals   13    520      40                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <pre class="r numberLines lineAnchors"><code>#Here
@@ -798,7 +799,7 @@ summary(LagosModel)</code></pre>
 summary.lm(LagosModel)  # Nota que los coefficientes son los promedios, comparan con la tabla ariba. </code></pre>
 <pre class="numberLines lineAnchors chunkout"><code>## 
 ## Call:
-## aov(formula = Cant_Fos ~ Lagos - 1, data = fosforo)
+## aov(formula = Cant_Fos ~ Lagos, data = fosforo)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -806,15 +807,15 @@ summary.lm(LagosModel)  # Nota que los coefficientes son los promedios, comparan
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(&gt;|t|)    
-## LagosCaraizo    52.800      2.827  18.674 9.01e-11 ***
-## LagosDosBocas   37.000      2.827  13.086 7.34e-09 ***
-## LagosGuineo     15.167      2.581   5.876 5.45e-05 ***
+## (Intercept)     52.800      2.827  18.674 9.01e-11 ***
+## LagosDosBocas  -15.800      3.999  -3.951  0.00166 ** 
+## LagosGuineo    -37.633      3.828  -9.830 2.19e-07 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 6.322 on 13 degrees of freedom
-## Multiple R-squared:  0.9771, Adjusted R-squared:  0.9718 
-## F-statistic: 184.8 on 3 and 13 DF,  p-value: 6.58e-11</code></pre>
+## Multiple R-squared:  0.8835, Adjusted R-squared:  0.8655 
+## F-statistic: 49.28 on 2 and 13 DF,  p-value: 8.55e-07</code></pre>
 <pre class="r numberLines lineAnchors"><code>plot(LagosModel)</code></pre>
 <p><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-1.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-2.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-3.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-4.png" width="672" /></p>
 <div id="prueba-de-post-hoc-se-hace-solamente-si-se-rechaza-la-hipotesis-nula-de-la-prueba-de-anova" class="section level2">
@@ -843,11 +844,11 @@ summary(postHocs.1)</code></pre>
 ## Multiple Comparisons of Means: Tukey Contrasts
 ## 
 ## 
-## Fit: aov(formula = Cant_Fos ~ Lagos - 1, data = fosforo)
+## Fit: aov(formula = Cant_Fos ~ Lagos, data = fosforo)
 ## 
 ## Linear Hypotheses:
 ##                         Estimate Std. Error t value Pr(&gt;|t|)    
-## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00425 ** 
+## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00429 ** 
 ## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***
 ## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***
 ## ---
@@ -1071,12 +1072,12 @@ summary(postHocs.2)</code></pre>
 ## 
 ## Linear Hypotheses:
 ##                               Estimate Std. Error t value Pr(&gt;|t|)    
-## Superman - Spiderman == 0       18.708      6.991   2.676  0.05750 .  
-## Hulk - Spiderman == 0           -6.250      6.472  -0.966  0.76951    
-## Ninja Turtle - Spiderman == 0  -15.375      6.472  -2.376  0.10697    
-## Hulk - Superman == 0           -24.958      6.991  -3.570  0.00736 ** 
+## Superman - Spiderman == 0       18.708      6.991   2.676  0.05756 .  
+## Hulk - Spiderman == 0           -6.250      6.472  -0.966  0.76954    
+## Ninja Turtle - Spiderman == 0  -15.375      6.472  -2.376  0.10690    
+## Hulk - Superman == 0           -24.958      6.991  -3.570  0.00728 ** 
 ## Ninja Turtle - Superman == 0   -34.083      6.991  -4.875  &lt; 0.001 ***
-## Ninja Turtle - Hulk == 0        -9.125      6.472  -1.410  0.50424    
+## Ninja Turtle - Hulk == 0        -9.125      6.472  -1.410  0.50434    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>

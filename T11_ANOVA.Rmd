@@ -238,7 +238,7 @@ for (i in 1:length(index)){
     lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="DosBocas"]), Cant_Fos[i]), col="red")
 } 
 ```
-
+***
 
 # Gráficar los datos 
 
@@ -259,7 +259,7 @@ geom_point()+
              aes(group=1), colour = "red")
 
 ```
-
+***
 ## Un gráfico con el intervalo de confianza. 
 
 Crear un data frame de los resultados con el package "Rmisc" y la función "summarySE".  Los pasos son identificar la variable continua (en este caso measurevar="Cant_Fos") y la variable discreta que identifica los grupos groupvars="Lagos".  Esto crea un nuevo data frame con los datos resumidos que incluye, el nombre de los grupos (Lagos), el tamaño de muestra (N), el promedio de la variable (Cant_Fos), la desviación estandar (sd), el error estandar (se) y intervalo de confianza (ci). 
@@ -275,7 +275,7 @@ sum
 
 ```
 
-
+***
 
 ## Graficar con nuestro nuevo data frame "sum".
 
@@ -293,8 +293,8 @@ ggplot(sum, aes(x=Lagos,
 
 ```
 
-
-##E Estadística descriptiva de los Lagos
+***
+## Estadística descriptiva de los Lagos
 
 ```{r descriptive stats}
 
@@ -302,6 +302,7 @@ library(pastecs)
 by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)
 
 ```
+***
 # Los supuestos de ANOVA
 
 Hay 4 supuestos que tenemos que evaluar cuando se hace un ANOVA.
@@ -310,30 +311,30 @@ Hay 4 supuestos que tenemos que evaluar cuando se hace un ANOVA.
 2. La característica medida es son continuas.
 3. Igualdad de varianza: el error en la varianza en cada grupo es igual
 4. La variables continuas tienen una distribución normal.
-
+***
 ## Datos al azar
 
 Este paso es uno de diseño experimental.  Que los datos sean representativos de la poblaciones de interés, y que no sean sesgados a un subgrupo.
   Por ejemplo uno esta probando una vacuno para COVID-19 y la prueba evalúa solamente con gente en muy buena condición física (por ejemplos atletas).  La selección de los participantes tiene que reflejar la población a quien se estaría ofreciendo la vacuna. 
   
-  
-## Datos Continuos
+***  
+## 1. Datos Continuos
  Los datos tienen que valores continuos, no pueden ser discretos.
  Por ejemplo, no pueden ser binarios (vivo/muerto), tampoco no pueden ser conteos (0,1,2,3), si hay poca variación.
- 
-## Igualdad de varianza
+*** 
+## 2. Igualdad de varianza
   
 La cantidad de dispersión en cada grupo tiene que ser bien similar uno al otro.  Esto lo podemos comprobar con una prueba. La hipótesis nula es que cada grupo tiene una varianza igual.  La hipotesis alterna es que por lo menos uno de los grupos no tiene la misma varianza.   
 
 1. $$Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k$$
 2. Ha: Por lo menos uno d elos grupos no tiene la misma varianza que los otros. (similar a la Ha de ANOVA)
 
+***
+## 3. La prueba de Levene's test 
 
-## La prueba de Levene's test 
+La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <https://en.wikipedia.org/wiki/Levene%27s_test>.  Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función **leveneTest()**. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula. `r colorize("Si no cumple con el supuesto de igualdad de varianza ver el modulo de Kruskal-Wallis para una alternariva como evaluar los datos", "red")`
 
-La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <https://en.wikipedia.org/wiki/Levene%27s_test>.  Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función **leveneTest()**. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula.  
-
-
+Con los datos de la concentración de fósforo en las plantas de tres lagos, la prueba de Levene da un resultado de p > 0.21, lo que indica que no hay evidencia que la varianza es distinta entre los grupos, por consecuencia se acepta la hipótesis nula. 
 
 ```{r levene test}
 
@@ -342,19 +343,37 @@ leveneTest(fosforo$Cant_Fos, fosforo$Lagos,
            center = median)
 ```
 
+***
+## 4. Normalidad 
+
+Tenemos que evaluar si los datos tienen una distribución normal. Como se ha discutido en un modulo anterior hay múltiples alternativas.  Vamos a limitarnos a usar la prueba de qqplot. Vemos que los datos más o menos siguen la linea, entonces podemos usar ANOVA.  En este caso tenemos pocos datos pero si tuviesemos más seria apropiado evaluar cada una aparte.  Lo más sencillo seria de cambiar la primera linea del siguiente script **ggplot(fosforo, aes(sample = Cant_Fos, group=Lagos))**. En este caso tendríamos 3 lineas. `r colorize("Si no cumple con el supuesto de normalidad ver el modulo de Kruskal-Wallis para una alternariva como evaluar los datos", "red")`
+
+```{r}
+ggplot(fosforo, aes(sample = Cant_Fos)) +
+  stat_qq() +
+  stat_qq_line(colour="blue")+
+  xlab("Valores teóricos")+
+  ylab("Valores observados")
+```
+***
+
+
 # La prueba de ANOVA
 
-```{r ANOVA}
-LagosModel<-aov(Cant_Fos~Lagos-1, data = fosforo)
+Finalmente llegamos a la prueba de ANOVA, se usa la función **aov()**. Vemos que se rechaza la hipótesis nula (p <0.05).  Ya sabemos que por lo menos uno de los grupos no es igual a los demás.  Pero todavía no sabemos que pares son diferentes o si todos.   
 
-# limited information
+```{r ANOVA}
+LagosModel<-aov(Cant_Fos~Lagos, data = fosforo)
+
+
 summary(LagosModel)
 
 
-#Here
-# Complete model
-summary.lm(LagosModel)  # Nota que los coefficientes son los promedios, comparan con la tabla ariba. 
+
 ```
+
+tycvhbjnk
+
 
 ```{r ANOVA residuals}
 plot(LagosModel)
@@ -363,7 +382,12 @@ plot(LagosModel)
 ```
 
 
-## PRUEBA de POST HOC *(Se hace solamente si se rechaza la hipotesis nula de la prueba de ANOVA)*
+## PRUEBA de Post-Hoc 
+
+Importante este paso `r colorize("Se hace solamente si se rechaza la hipótesis nula de la prueba de ANOVA", "blue")`. Si aceptamos la hipótesis nula ya se acabo, no hay más nada que hacer y este paso aquí no se evalúa.   Este tipo de prueba Post-Hoc se refiere a una prueba que se hace despues de otra.  Ya se hizo la de ANOVA se rechazo y ahora queremos evaluar cual de los grupos es distincto uno al otro.
+
+Hay en la literatura más de 10 pruebas que se puede utilizar después de un ANOVA, para tener un poco más de información pueden ir al siguiente website <https://www.statisticshowto.com/post-hoc/>.  Aquí vamos a presentar solamente dos de estás.  Estas dos son frecuentemente utilizadas en ciencias medicas por ser las primeras haber sido desarrolladas.  
+ 
 1. the Bonferroni test
 2. Tukey test
 
