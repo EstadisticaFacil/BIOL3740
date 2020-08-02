@@ -9,10 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Raymond L. Tremblay" />
 
 
-<title>Archivos de datos</title>
+<title>SUPERHEROES</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -481,142 +480,65 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Archivos de datos</h1>
-<h4 class="author">Raymond L. Tremblay</h4>
+<h1 class="title toc-ignore">SUPERHEROES</h1>
 
 </div>
 
 
-<p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-08-02&quot;</code></pre>
-<div id="discovering-statistics-using-r." class="section level1">
-<h1>Discovering Statistics Using R.</h1>
-<p>Los siguientes archivos son de Andy Field, Jeremy Miles and Zoë Field son identificado con las diglas “FMF”.</p>
-<p>Lista de archivos de datos</p>
-<ol style="list-style-type: decimal">
-<li><a href="Data_files_csv/DownloadFestival.csv">DownloadFestival_FMF.csv</a></li>
-<li><a href="Data_files_csv/Alturas_Humanos.csv">Alturas_Humanos.csv</a></li>
-<li><a href="Data_files_csv/Exam%20Anxiety.csv">Exam Anxiety_FMF</a></li>
-<li><a href="Data_files_csv/Hiccups.csv">Hiccups_FMF.csv</a></li>
-<li><a href="Data_files_csv/DownloadFestival(No%20Ouliers).csv">DownloadFestival_Outliers_FMF.csv</a></li>
-<li><a href="Data_files_csv/Superhero.csv">Superhero.csv</a></li>
-</ol>
+<p>En este documentos .rmd tiene lo beasico para comenzar el ejercicio.</p>
+<div id="superheroes-y-lesiones" class="section level2">
+<h2>Superheroes y Lesiones</h2>
+<p>Los datos representa la gravedad de lesiones que tienen niños que se disfrazan de su superheroes favorito y después llegan a un hospital por alguna lesión. Los niños son categorizados con un nivel gravedad de lesión, más alto el valor más serio era la lesión. Los datos provienen de Field et al. </p>
+<p>Subir los datos de <strong>Superhero.csv</strong></p>
+<pre class="r numberLines lineAnchors"><code>library(readr)
+Superhero &lt;- read_csv(&quot;Data_files_csv/Superhero.csv&quot;)
+
+head(Superhero)</code></pre>
+<pre class="numberLines lineAnchors chunkout"><code>## # A tibble: 6 x 2
+##    hero injury
+##   &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1     51
+## 2     1     31
+## 3     1     58
+## 4     1     20
+## 5     1     47
+## 6     1     37</code></pre>
+<pre class="r numberLines lineAnchors"><code>unique(Superhero$heronames)</code></pre>
+<pre class="numberLines lineAnchors chunkout"><code>## NULL</code></pre>
+<p>Renombrar los nombres de las categorías para los tipos de Superheroes. En el archivo como están identificados las categorías de superheroes?</p>
+<pre class="r numberLines lineAnchors"><code>#Superhero
+Superhero$heronames&lt;-factor(Superhero$hero, levels = c(1:4), 
+     labels = c(&quot;Spiderman&quot;,&quot;Superman&quot;, &quot;Hulk&quot;, &quot;Ninja Turtle&quot;))
+Superhero</code></pre>
+<pre class="numberLines lineAnchors chunkout"><code>## # A tibble: 30 x 3
+##     hero injury heronames
+##    &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    
+##  1     1     51 Spiderman
+##  2     1     31 Spiderman
+##  3     1     58 Spiderman
+##  4     1     20 Spiderman
+##  5     1     47 Spiderman
+##  6     1     37 Spiderman
+##  7     1     49 Spiderman
+##  8     1     40 Spiderman
+##  9     2     69 Superman 
+## 10     2     32 Superman 
+## # … with 20 more rows</code></pre>
+<pre class="r numberLines lineAnchors"><code>names(Superhero)</code></pre>
+<pre class="numberLines lineAnchors chunkout"><code>## [1] &quot;hero&quot;      &quot;injury&quot;    &quot;heronames&quot;</code></pre>
 </div>
-<div id="introductory-biological-statistics" class="section level1">
-<h1>Introductory Biological Statistics</h1>
-<p>Los siguientes archivos son de John E. Havel, Raymond E. Hampton y Scott J. Meiners (2019).</p>
-<blockquote>
-<blockquote>
-<p>Agredezco a John E. Havel para el permiso de añadir los archivos de datos en este website, Jul 25th, 2020.</p>
-</blockquote>
-</blockquote>
-<p>Lista de archivos por capítulo</p>
-<div id="capítulo-3" class="section level3">
-<h3>Capítulo 3</h3>
+<div id="la-preguntas" class="section level2">
+<h2>La preguntas</h2>
+<p>Contestar cada una de las siguientes preguntas.</p>
 <ol style="list-style-type: decimal">
-<li><a href="Data_files_Havel/Chapter%203/EX_3.1.csv">EX 3.1.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%203/EX_3.6.csv">EX 3.6.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%203/Table_3.3.csv">Table_3.3.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%203/Table_3.4.csv">Table_3.4.csv</a></li>
+<li>Evaluar la distribución de los datos de respuestas (los en Y)</li>
+<li>Evaluar la homogeneidad de varianza</li>
+<li>Visualizar los datos Puntos y promedios y intervalo de confianza</li>
+<li>Hacer la prueba de ANOVA con aov()</li>
+<li>Evaluar la figura de residuales</li>
+<li>Evaluar la gráfica de qq, para la normalidad</li>
+<li>Hacer la prueba de post-hoc si es necesario!!!!!</li>
 </ol>
-<hr />
-</div>
-<div id="capítulo-4" class="section level3">
-<h3>Capítulo 4</h3>
-<ol style="list-style-type: decimal">
-<li><a href="Data_files_Havel/Chapter%204/EX%204.2.csv">EX 4.2.csv</a></li>
-</ol>
-<hr />
-</div>
-<div id="capítulo-9" class="section level3">
-<h3>Capítulo 9</h3>
-<ol style="list-style-type: decimal">
-<li><a href="Data_files_Havel/Chapter%209/Table%209.2.csv">Table 9.2.csv</a></li>
-</ol>
-<hr />
-</div>
-<div id="capítulo-10" class="section level3">
-<h3>Capítulo 10</h3>
-<ol style="list-style-type: decimal">
-<li><a href="Data_files_Havel/Chapter%2010/EX%2010.17.csv">Table 10.17.csv</a></li>
-</ol>
-<hr />
-</div>
-<div id="capítulo-11" class="section level3">
-<h3>Capítulo 11</h3>
-<ol style="list-style-type: decimal">
-<li><a href="Data_files_Havel/Chapter%2011/EX11.1.csv">EX 11.1.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.2.csv">EX 11.2.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.3.csv">EX 11.3.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.4.csv">EX 11.4.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.5.csv">EX 11.5.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.6.csv">EX 11.6.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.7.csv">EX 11.7.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.8.csv">EX 11.8.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.9.csv">EX 11.9.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.10.csv">EX 11.10.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.11.csv">EX 11.11.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.12.csv">EX 11.12.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.13.csv">EX 11.13.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/EX11.14.csv">EX 11.14.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/Table%2011.3.csv">Table 11.3.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2011/Table%2011.10.csv">Table 11.10.csv</a></li>
-</ol>
-<hr />
-</div>
-<div id="capítulo-12" class="section level3">
-<h3>Capítulo 12</h3>
-<ol style="list-style-type: decimal">
-<li><a href="Data_files_Havel/Chapter%2012/EX12.1.csv">EX 12.1.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.2.csv">EX 12.2.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.3.csv">EX 12.3.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.4.csv">EX 12.4.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.5.csv">EX 12.5.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.6.csv">EX 12.6.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.7.csv">EX 12.7.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.8.csv">EX 12.8.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.9.csv">EX 12.9.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.10.csv">EX 12.10.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.11.csv">EX 12.11.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.12.csv">EX 12.12.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.13.csv">EX 12.13.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.14.csv">EX 12.14.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/EX12.16.csv">EX 12.16.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/Table%2012.1.csv">Table 12.1.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/Table%2012.3.csv">Table 12.3.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/Table%2012.5.csv">Table 12.5.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/Table%2012.7.csv">Table 12.7.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2012/Table%2012.9.csv">Table 12.9.csv</a></li>
-</ol>
-<hr />
-</div>
-<div id="capítulo-13" class="section level3">
-<h3>Capítulo 13</h3>
-<ol style="list-style-type: decimal">
-<li><a href="Data_files_Havel/Chapter%2013/EX13.1.csv">EX 13.1.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2013/EX13.2.csv">EX 13.2.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2013/EX13.3.csv">EX 13.3.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2013/EX13.4.csv">EX 13.4.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2013/EX13.5.csv">EX 13.5.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2013/EX13.6.csv">EX 13.6.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2013/EX13.8.csv">EX 13.8.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2013/Table%2013.1.csv">Table 13.1.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2013/Table%2013.3.csv">Table 13.3.csv</a></li>
-</ol>
-<hr />
-</div>
-<div id="capítulo-14" class="section level3">
-<h3>Capítulo 14</h3>
-<ol style="list-style-type: decimal">
-<li><a href="Data_files_Havel/Chapter%2014/EX14.3.csv">EX 14.2.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2014/EX14.3.csv">EX 14.3.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2014/EX14.6.csv">EX 14.6.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2014/EX14.7.csv">EX 14.7.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2014/EX14.8.csv">EX 14.8.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2014/Table%2014.1.csv">Table 14.1.csv</a></li>
-<li><a href="Data_files_Havel/Chapter%2014/Table%2014.3.csv">Table 14.3.csv</a></li>
-</ol>
-</div>
 </div>
 
 

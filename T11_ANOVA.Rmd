@@ -360,7 +360,7 @@ ggplot(fosforo, aes(sample = Cant_Fos)) +
 
 # La prueba de ANOVA
 
-Finalmente llegamos a la prueba de ANOVA, se usa la función **aov()**. Vemos que se rechaza la hipótesis nula (p <0.05).  Ya sabemos que por lo menos uno de los grupos no es igual a los demás.  Pero todavía no sabemos que pares son diferentes o si todos.   
+Finalmente llegamos a la prueba de ANOVA, se usa la función **aov()**. En la primera linea vemos el resultado de comparar los tres lagos, ven que hay 2 grados de libertad (df=2), esto quiere decir que esta incluido en el analisis 3 grapos, porque el grado de libertad de calcula tomando la suma de la cantidad de grupos k-1, y este ejercicio tenemos 3-1=2.  En la misma linea obsertva el valor de p, vemos que se rechaza la hipótesis nula (p <0.05).  Ya sabemos que por lo menos uno de los grupos no es igual a los demás.  Pero todavía no sabemos que pares son diferentes o si todos.   En la segunda linea se observa lo otros datos del experimento, lo que aquí se llama los residuales.  
 
 ```{r ANOVA}
 LagosModel<-aov(Cant_Fos~Lagos, data = fosforo)
@@ -372,7 +372,9 @@ summary(LagosModel)
 
 ```
 
-tycvhbjnk
+Una alternativa para evaluar si los datos tienen una igualdad de varianza y normalidad es usar la función **plot()**, esta función presenta 4 gráficos donde vamos aquí explicar solamente las dos primeras.  En el primer gráfico se observa una distribución de los residuales por grupo.  Si los datos están más o menos distribuido de forma similar entre los grupos (que los datos de cada grupo tiene más o menos la misma cantidad de datos negativos y positivos alrededor del residual cero y que esta distribución se ve similar) se suguiere que hay igualdad de varianza entre los grupos.  
+
+En el segundo gráfico se observa en qqplot.  Si los datos están cerca de la linea entrecortada se asume que tiene una distribución normal.  Nota que hay tres datos que tienen números (5, 3, 12), estos son datos que posiblemente sean atípicos, y hay que evaluar si estos datos impacta el resultados (veremos esto más tarde, con la prueba de Cooks).   
 
 
 ```{r ANOVA residuals}
@@ -384,20 +386,29 @@ plot(LagosModel)
 
 ## PRUEBA de Post-Hoc 
 
-Importante este paso `r colorize("Se hace solamente si se rechaza la hipótesis nula de la prueba de ANOVA", "blue")`. Si aceptamos la hipótesis nula ya se acabo, no hay más nada que hacer y este paso aquí no se evalúa.   Este tipo de prueba Post-Hoc se refiere a una prueba que se hace despues de otra.  Ya se hizo la de ANOVA se rechazo y ahora queremos evaluar cual de los grupos es distincto uno al otro.
+Importante este paso `r colorize("se hace solamente si se rechaza la hipótesis nula de la prueba de ANOVA", "blue")`. Si aceptamos la hipótesis nula ya se acabo, no hay más nada que hacer y este paso aquí no se evalúa.   Este tipo de prueba Post-Hoc se refiere a una prueba que se hace después de otra.  Ya se hizo la de ANOVA y se rechazo y ahora queremos evaluar cual de los grupos es distinto uno al otro.
 
-Hay en la literatura más de 10 pruebas que se puede utilizar después de un ANOVA, para tener un poco más de información pueden ir al siguiente website <https://www.statisticshowto.com/post-hoc/>.  Aquí vamos a presentar solamente dos de estás.  Estas dos son frecuentemente utilizadas en ciencias medicas por ser las primeras haber sido desarrolladas.  
+Hay en la literatura más de 10 pruebas que se puede utilizar después de un ANOVA, para tener un poco más de información pueden ir al siguiente website <https://www.statisticshowto.com/post-hoc/>.  Aquí vamos a presentar solamente dos de estás.  Estas dos son frecuentemente utilizadas en ciencias medicas por ser las primeras haber sido desarrolladas.  Nota que el nivel de tipo de error I, es por el conjunto total de las pruebas hecha.  Si selecciona un alfa de 0.05, entonces la probabilidad de cometer el error tipo I es de 5% para el total de pruebas.  
  
-1. the Bonferroni test
+1. Bonferroni test
 2. Tukey test
 
+## Prueba de Bonferroni 
+
+Vemos ahora el se hizo 3 pruebas, y cada una tiene un valor de p menor de 5%, por consecuencia cada grupo es distinto uno del otro.  
+
 ```{r post-hoc2 test}
-pairwise.t.test(fosforo$Cant_Fos, fosforo$Lagos, p.adjust.method = "bonferroni") # Nota aqui se usa los datos originales, el error de todos las pruenas se limita a 5%.  
+pairwise.t.test(fosforo$Cant_Fos, fosforo$Lagos, p.adjust.method = "bonferroni") # Nota aqui se usa los datos originales, el error de todos las pruebas se limita a 5%.  
 
+```
 
+## Prueba de Tukey
 
+En la prueba de Tukey vemos el resultado de las pruebas Post-Hoc. El resultado es lo mismo que la prueba anterior donde cada grupo es significativamente diferente uno del otro.  En mucha ocasiones el resulto puede diferir.  Si esto ocurre hay que evaluar bien cual es el nivel de confiabilidad que queremos.  Algunos pruebas Post_Hoc tienden a rechazar con meas frecuencia que otra.  
+
+```{r}
 library(multcomp)
-postHocs.1<-glht(LagosModel, linfct = mcp(Lagos = "Tukey"))  # nota que aqui se usa el modelo
+postHocs.1<-glht(LagosModel, linfct = mcp(Lagos = "Tukey"))  
 summary(postHocs.1)
 
 ```
@@ -406,7 +417,9 @@ summary(postHocs.1)
 
 ## SUPER HEROES and INJURIES
 
-```{r data super heroes}
+Vea la sección de ejercicio
+
+```{r data super heroes, eval=FALSE, echo=FALSE}
 
 library(readr)
 Superhero <- read_csv("~/Google Drive/Biometry/Biometria 2017/Data_FILES/Superhero.csv")
@@ -419,7 +432,7 @@ unique(Superhero$heronames)
 
 ####Rename the categories with super hero names
 
-```{r rename variables}
+```{r rename variables, eval=FALSE,echo=FALSE}
 #Superhero
 Superhero$heronames<-factor(Superhero$hero, levels = c(1:4), 
      labels = c("Spiderman","Superman", "Hulk", "Ninja Turtle"))
@@ -440,7 +453,7 @@ names(Superhero)
 6. Evaluar la gráfica de qq, para la normalidad
 7. Hacer la prueba de post-hoc si es necesario!!!!!
 
-```{r hero1}
+```{r hero1, eval=FALSE,echo=FALSE}
 library(ggplot2)
 line <- ggplot(Superhero, aes(heronames, injury))
 line +geom_point()+
@@ -452,14 +465,14 @@ line +geom_point()+
 ```
 
 Homogeneity of variance
-```{r hero levene test}
+```{r hero levene test, eval=FALSE, echo=FALSE}
 
 library(car)
 leveneTest(Superhero$injury, Superhero$heronames, 
            center = median)
 ```
 
-```{r grafica3}
+```{r grafica3, eval=FALSE, echo=FALSE}
 
 library(Rmisc)   # this is a function to create 
 #a data frame of summary data
@@ -484,7 +497,7 @@ ggplot(sum2, aes(x=heronames,
 
 4. Hacer la prueba de ANOVA con aov()
 
-```{r Hero ANOVA}
+```{r Hero ANOVA, eval=FALSE, echo=FALSE}
 SuperHeroModel<-aov(injury~heronames, data = Superhero)
 
 summary(SuperHeroModel)
@@ -493,7 +506,7 @@ summary.lm(SuperHeroModel)
 5. Evaluar la figura de residuales
 6. Evaluar la grafica de qq
 
-```{r hero residuals}
+```{r hero residuals, eval=FALSE, echo=FALSE}
 plot(SuperHeroModel)
 
 
@@ -501,7 +514,7 @@ plot(SuperHeroModel)
 
 7. Hacer la prueba de post-hoc si es necesario!!!!!
 
-```{r post-hoc test}
+```{r post-hoc test, eval=FALSE, echo=FALSE}
 pairwise.t.test(Superhero$injury, Superhero$heronames, p.adjust.method = "bonferroni")
 
 
