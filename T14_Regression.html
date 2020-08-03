@@ -454,6 +454,9 @@ div.tocify {
     <li>
       <a href="RMarkdown.html">Ejercico Plataforma de RMarkdown</a>
     </li>
+    <li>
+      <a href="Ejercicio_ANOVA.html">Ejercicio de ANOVA</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -486,7 +489,601 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-07-30&quot;</code></pre>
+<pre><code>## [1] &quot;2020-08-02&quot;</code></pre>
+<hr />
+<p>Activar las librerias, averiguar que TIENE instalado estos paquetes</p>
+<pre class="r"><code>library(QuantPsyc)
+library(car)
+library(boot)
+library(ggplot2)
+library(tidyverse)
+library(sjPlot)</code></pre>
+<hr />
+<div id="regresión-lineal" class="section level1">
+<h1>Regresión Lineal</h1>
+<p>La regresión lineal es el modelo básico de evaluar si hay una relación <em>lineal</em> o sea <em>recta</em> entre dos variable. Esta relación entre las variables puedes ser positiva o negativa. Hay otro tipos de regresión, que incluye regresión no lineal tal como cuadrática <span class="math display">\[x^2\]</span> o cúbica <span class="math display">\[x^3\]</span>, logarítmica <span class="math display">\[log(x)\]</span> entre muchas otras alternativas.</p>
+<p>Aquí estaremos evaluando solamente la regresión lineal</p>
+<p>Primer paso Subir los datos:</p>
+<p>El números de barres en un bario y la cantidad de asesinados en este barrio (Datos ficticios)</p>
+<pre class="r"><code>library(readr)
+pubs &lt;- read_csv(&quot;Data_files_csv/pubs.csv&quot;)
+pubs</code></pre>
+<pre><code>## # A tibble: 8 x 2
+##    pubs mortality
+##   &lt;dbl&gt;     &lt;dbl&gt;
+## 1    10      1000
+## 2    20      2000
+## 3    30      3000
+## 4    40      4000
+## 5    50      5000
+## 6    60      6000
+## 7    70      7000
+## 8   500     10000</code></pre>
+<pre class="r"><code># Cambiamos los nombres de las columnas
+
+pubs=pubs%&gt;%
+  rename(barres=pubs, mortalidad=mortality)</code></pre>
+<hr />
+</div>
+<div id="la-función-lm" class="section level1">
+<h1>la función lm()</h1>
+<p>Como hacer un regresión lineal (Linear Regression) simple, usando la función <strong>lm()</strong>, para “linear model”= modelo lineal. Una regresión necesita dos variable continuas (vea el módulo de correlación). Es importante que estas variable tenga una distribución normales. La diferencia entre una correlación y una regresión es que la primera es un análisis que describe el patrón y en la segunda es que no solamente describe el patrón pero hace predicción sobre la relación entre las variables. Usando la regresión uno calcula tambien una linea que describe la relación entre las variables. Esta variable se puede describe como <span class="math inline">\(y=m_x+b\)</span> donde la <strong>m</strong> representa la pendiente y la <em>b</em> representa el intercepto. También lo pueden ver en libros de la siguiente forma <span class="math inline">\(y=\alpha+\beta_x\)</span> donde la <span class="math inline">\(\beta\)</span> <em>beta</em> representa la pendiente y la <span class="math inline">\(\alpha\)</span> el intercepto.</p>
+<p>La formula de lm() se compone de lm(y~x, data= “df”). Nota la tilde <strong>~</strong>. Hay dos pruebas la priemra para determinar si <span class="math inline">\(\alpha\)</span> es distinto de cero. La hipótesis nula es</p>
+<p>Ho: el intercepto <span class="math inline">\(\alpha\)</span> es igual a cero Ha: el intercepto, <span class="math inline">\(\alpha\)</span> no es igual a cero. Entonces el punto donde la linea intercepta el cero puede estar mayor de o menor de cero.</p>
+<p>La segunda hipótesis nula es que la pendiente es diferente de cero, esto quiere decir que la pendiente no sugiere un patrón de aumentar y disminuir entre las dos variables.</p>
+<p>Ho: la pendiente <span class="math inline">\(\beta\)</span> es igual a cero Ha: la pendiente, <span class="math inline">\(\alpha\)</span> no es igual a cero. Entonces la relación entre las dos variables es o positiva o negativa.</p>
+<p>Ahora evaluamos los resultados de la regresión entre el número de barres en un vecindarios y la mortalidad en este mismo sector. Se observa que los coeficientes de la linea son <span class="math inline">\(y=3352+14.3*x\)</span>. Entonce el intercepto en cero comienza en 3352 fatalidades y por cada bar suplementario hay 14.3 más fatalidad.</p>
+<p>Ahora para determinar si estos valores son significativo hay que evaluar el valor de <strong>p</strong> en cada linea. La hipótesis nula del intercepto tiene un valor de p =0.005, que sugiere que se debería rechazar la hipótesis nula, y por consecuencia aceptamos la hipótesis alterna. La pendiente tiene un valor de p=0.015 y también se rechaza la hipotesis nula.</p>
+<pre class="r"><code>pubReg &lt;- lm(mortalidad~barres, data = pubs) 
+
+#summary(pubReg) # Si no se acuerda de la funcíon que sigue
+
+tab_model(
+  pubReg,show.df = TRUE,
+  CSS = list(
+    css.depvarhead = &#39;color: red;&#39;,
+    css.centeralign = &#39;text-align: left;&#39;, 
+    css.firsttablecol = &#39;font-weight: bold;&#39;, 
+    css.summary = &#39;color: blue;&#39;
+  )
+)</code></pre>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
+ 
+</th>
+<th colspan="4" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
+mortalidad
+</th>
+</tr>
+<tr>
+<td style=" color: red; border-bottom:1px solid black; font-weight: bold; ">
+Predictors
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+Estimates
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+CI
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+p
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+df
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+3351.96
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+1440.34 – 5263.57
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+<strong>0.005</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+6.00
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
+barres
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+14.34
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+3.82 – 24.86
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+<strong>0.016</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+6.00
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="4">
+8
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="4">
+0.649 / 0.591
+</td>
+</tr>
+</table>
+<hr />
+</div>
+<div id="visualización-de-la-regresión" class="section level1">
+<h1>Visualización de la regresión</h1>
+<p>Se observa que hay un aumento en fatalidades con aumento en el número de barres. Pero nota el valor a la derecha que parece ser muy atípico comparado a los otros.</p>
+<pre class="r"><code>ggplot(pubs, aes(x=barres, y=mortalidad))+
+  geom_smooth(method = lm)+ # modelo lineal
+  geom_point()</code></pre>
+<p><img src="T14_Regression_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="el-impacto-de-valores-atípico" class="section level1">
+<h1>El impacto de valores atípico</h1>
+<p>En cierta ocasiones valores fuera de lo normal pueden hacer grandes cambios en el resultado, en este caso la regresión. ¿Cual es el efecto del valor grande? Removemos ese valor del archivo de datos y revaluamos el modelo (la regresión lineal). Nota que ahora el modelo es sumamente diferente <span class="math inline">\(y=-163.7+103.2*x\)</span>. ¿Ahora se rechaza las dos hipótesis?</p>
+<pre class="r"><code>pubsnew &lt;- pubs[ which(pubs$barres&lt;80), ]  # remover el valor grande
+
+pubsnew=pubsnew %&gt;% 
+  add_row(barres = 4, mortalidad = 0) # Añadiendo un par de valores
+
+
+pubRegNew &lt;- lm(mortalidad~barres, data = pubsnew)
+#summary(pubRegNew)
+
+tab_model(
+  pubRegNew,show.df = TRUE,
+  CSS = list(
+    css.depvarhead = &#39;color: red;&#39;,
+    css.centeralign = &#39;text-align: left;&#39;, 
+    css.firsttablecol = &#39;font-weight: bold;&#39;, 
+    css.summary = &#39;color: blue;&#39;
+  )
+)</code></pre>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
+ 
+</th>
+<th colspan="4" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
+mortalidad
+</th>
+</tr>
+<tr>
+<td style=" color: red; border-bottom:1px solid black; font-weight: bold; ">
+Predictors
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+Estimates
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+CI
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+p
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+df
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+-163.70
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+-374.14 – 46.73
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+0.106
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+6.00
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
+barres
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+103.20
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+98.18 – 108.23
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+6.00
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="4">
+8
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="4">
+0.998 / 0.997
+</td>
+</tr>
+</table>
+<pre class="r"><code>ggplot(pubsnew,aes(x=barres, y=mortalidad))+
+  geom_smooth(method=lm)+
+  geom_point()</code></pre>
+<p><img src="T14_Regression_files/figure-html/remover%20valores-1.png" width="672" /> ***</p>
+</div>
+<div id="la-venta-de-discos-de-música" class="section level1">
+<h1>La venta de discos de música</h1>
+<p>Ahora un set de datos más complejo y más realista a los que uno encontraría en un estudio de en medicina, sociología o ecológica.</p>
+<p>Los datos representa la cantidad de dinero dedicado a la promoción de diferentes CD’s de una compañia de música y la cantidad de CD (CD/downloads) vendido. El la primera linea se observa la cantidad de libras esterlina, <strong>£</strong> (UK) dedicado a la promoción del album de música, en la primera linea vemos que se gasto £10,256, y después la cantidad de CD vendido fue 330.</p>
+<pre class="r"><code>library(readr)
+Album_Sales_1_new &lt;- read_csv(&quot;~/Google Drive/Biometry/Biometria 2017/Data_FILES/Album_Sales_1_new.csv&quot;)
+head(Album_Sales_1_new)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   Count adverts sales
+##   &lt;lgl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 NA       10.3   330
+## 2 NA      986.    120
+## 3 NA     1446.    360
+## 4 NA     1188.    270
+## 5 NA      575.    220
+## 6 NA      569.    170</code></pre>
+<pre class="r"><code>length(Album_Sales_1_new$adverts)  # cuantas files de datos hay en el data frame</code></pre>
+<pre><code>## [1] 200</code></pre>
+<p>Comenzamos con hacer un gráfico entre las dos variables. Nota que en la parte de <strong>geom_smooth()</strong>, tiene que incluir <strong>method=lm</strong>, esto significa que el método de construir la linea usara la regresión lineal. Se añade a la función lineal <span class="math inline">\(\epsilon\)</span> que representa los errores de los valores al comparar con la linea que representa el mejor modelo.</p>
+<p><span class="math display">\[Y_{ i }=\beta _{ 0 }+\beta _{ 1 }X_{ i }+\epsilon _{ i }\]</span> Recuerda que <span class="math inline">\(\beta _{ 0 }\)</span> es el intercepto y el <span class="math inline">\(\beta _{ 1 }X_{ i }\)</span> es la pendiente. El área sombreada es el área de 95 de intervalo de confianza. Esto quiere decir que la mejor linea, intercepto y pendiente podría variar en este rango si repetimos el experimento. Nota aquí todas las alternativas, añadí los dos extremos, con una pendiente mayor (roja) y una menor (violeta). Cada punto representa la venta de CD con su correspondiente cantidad dedicada a la promoción. Los <span class="math inline">\(epsilon\)</span> seria la diferencia entre la mejor linea y el valor original, esto se llama tambien los residuales.</p>
+<pre class="r"><code>library(ggplot2)
+ggplot(Album_Sales_1_new,aes(x=adverts, y=sales))+
+  geom_smooth(method=lm, se = TRUE)+
+  geom_point()+
+  geom_segment(aes(x=0, y=120, xend=2250, yend=380), colour=&quot;red&quot;)+
+  geom_segment(aes(x=0, y=150, xend=2250, yend=320), colour=&quot;purple&quot;)</code></pre>
+<p><img src="T14_Regression_files/figure-html/avertizing%20graph-1.png" width="672" /></p>
+<p>El modelo lineal con la función <strong>lm()</strong>. ¿Como interpretas los coeficientes y si estos son significativos, si se rechaza la hipótesis nula?</p>
+<pre class="r"><code>library(sjPlot)
+model1=lm(sales~adverts, Album_Sales_1_new)
+
+#summary(model1)
+
+tab_model(
+  model1,show.df = TRUE,
+  CSS = list(
+    css.depvarhead = &#39;color: red;&#39;,
+    css.centeralign = &#39;text-align: left;&#39;, 
+    css.firsttablecol = &#39;font-weight: bold;&#39;, 
+    css.summary = &#39;color: blue;&#39;
+  )
+)</code></pre>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
+ 
+</th>
+<th colspan="4" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
+sales
+</th>
+</tr>
+<tr>
+<td style=" color: red; border-bottom:1px solid black; font-weight: bold; ">
+Predictors
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+Estimates
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+CI
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+p
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+df
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+134.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+119.28 – 149.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+198.00
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
+adverts
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+0.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+0.08 – 0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+198.00
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="4">
+200
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="4">
+0.335 / 0.331
+</td>
+</tr>
+</table>
+<hr />
+</div>
+<div id="supuestos-de-la-regresión-lineal" class="section level1">
+<h1>Supuestos de la regresión lineal</h1>
+<ol style="list-style-type: decimal">
+<li>Igualdad de varianza</li>
+</ol>
+<p>En el primer gráfico evaluar si los datos están distribuido más o menos igual. y que no un más variación un un área del gráfico que otro.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Normalidad de los datos</li>
+</ol>
+<p>En el segundo gráfico evaluar la figura de qqplot.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Evaluar si hay datos sesgados (atípicos) que influencia los resultados.</li>
+</ol>
+<p>En el cuarto gráfico evaluar si hay valores que tienen mucho peso si se incluyen o no en el análisis. Estos van a ser identificado En el presente gráfico hay tres valores que hay que evaluar (1,42,169), estos valores se tiene que asegurar que son correctos. Siempre es bueno remover los valores sesgados y rehacer el análisis para observar cuan diferente son los resultas.</p>
+<pre class="r"><code>plot(model1)  # Evaluar los supuestos, 1. Igualdad de varianza, 2. Normalidad, 4. Datos sesgados (Cook&#39;s Distance)</code></pre>
+<p><img src="T14_Regression_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-4-2.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-4-3.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
+<hr />
+</div>
+<div id="cooks-distance" class="section level1">
+<h1>Cook’s Distance</h1>
+<p>Evaluar si hay unos valores que sesgan los resultados.</p>
+<p>FROM WIKIPEDIA Definition. Data points with large residuals (outliers) and/or high leverage may distort the outcome and accuracy of a regression. Cook’s distance measures the effect of deleting a given observation. Points with a large Cook’s distance are considered to merit closer examination in the analysis.</p>
+<p>Detecting highly influential observations There are different opinions regarding what cut-off values to use for spotting highly influential points. A simple operational guideline of D_i&gt;1 has been suggested.</p>
+<p>Others have indicated that D_i&gt;4/n, where n is the number of observations, might be used.</p>
+<p>Aqui enseño como añadir 1. los valores de “cook.distance” a su archivo 2. Añadir una columna de “secuencia” de los datos 3. Crear una gráfica de las distancia de Cook.<br />
+4. Which values have Di larger than 1, which values have Cook’s distances larger 4/n?</p>
+<pre class="r"><code>4/length(Album_Sales_1_new$adverts)</code></pre>
+<pre><code>## [1] 0.02</code></pre>
+<pre class="r"><code>Album_Sales_1_new$cooks.distance&lt;-cooks.distance(model1)
+head(Album_Sales_1_new)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   Count adverts sales cooks.distance
+##   &lt;lgl&gt;   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;
+## 1 NA       10.3   330       0.0572  
+## 2 NA      986.    120       0.0110  
+## 3 NA     1446.    360       0.0178  
+## 4 NA     1188.    270       0.000662
+## 5 NA      575.    220       0.000548
+## 6 NA      569.    170       0.000207</code></pre>
+<pre class="r"><code>Album_Sales_1_new$sequence=c(1:200)
+head(Album_Sales_1_new)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   Count adverts sales cooks.distance sequence
+##   &lt;lgl&gt;   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;int&gt;
+## 1 NA       10.3   330       0.0572          1
+## 2 NA      986.    120       0.0110          2
+## 3 NA     1446.    360       0.0178          3
+## 4 NA     1188.    270       0.000662        4
+## 5 NA      575.    220       0.000548        5
+## 6 NA      569.    170       0.000207        6</code></pre>
+<pre class="r"><code>tail(Album_Sales_1_new)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   Count adverts sales cooks.distance sequence
+##   &lt;lgl&gt;   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;int&gt;
+## 1 NA       701.   250       0.00141       195
+## 2 NA       911.   190       0.000804      196
+## 3 NA       889.   240       0.000321      197
+## 4 NA       801.   250       0.00101       198
+## 5 NA      1500    230       0.00608       199
+## 6 NA       786.   110       0.00649       200</code></pre>
+<pre class="r"><code>ggplot(Album_Sales_1_new, aes(sequence, cooks.distance))+
+  geom_point()+
+  geom_hline(aes(yintercept=4/length(Album_Sales_1_new$adverts), colour=&quot;red&quot;))</code></pre>
+<p><img src="T14_Regression_files/figure-html/Cook%20distance-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="repaso-de-los-pasos" class="section level1">
+<h1>Repaso de los PASOS</h1>
+<div id="paso-1" class="section level2">
+<h2>Paso 1</h2>
+<p>Primer paso, mirar los coeficientes.</p>
+<p>El resultado: El coeficiente (intercepto) y la pendiente del <em>model1</em></p>
+</div>
+<div id="paso-2" class="section level2">
+<h2>Paso 2</h2>
+<ol start="2" style="list-style-type: decimal">
+<li>Evaluar si los coeficientes son diferentes de cero.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>La primera hipótesis, Determinar si el intercepto es igual a cero. Mira el valor de p, Pr(&gt;|t|), determinar si el valor es menor de 0.05, si lo es se rechaza la Ho y por consecuencia tenemos confianza que el intercepto no incluye cero.</p></li>
+<li><p>La segunda hipótesis nula Deteminar si la pendiente es igual a cero. Mira el valor de p, Pr(&gt;|t|), como el valor es menor de p=0.05, se rechaza la Ho y por consecuencia tenemos confianza que la pendiente no incluye cero.</p></li>
+</ol>
+</div>
+<div id="paso-3" class="section level2">
+<h2>Paso 3</h2>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Evaluar si los datos cumple con los supuestos.</p></li>
+<li><p>Igualdad de varianza, usa la gráfica de residuales</p></li>
+<li><p>Normalidad, qqplot</p></li>
+<li><p>Valores sesgados, la prueba de Cook’s</p></li>
+</ol>
+<pre class="r"><code>advertizingReg &lt;- lm(sales~adverts, data = Album_Sales_1_new)
+summary(advertizingReg)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = sales ~ adverts, data = Album_Sales_1_new)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -152.949  -43.796   -0.393   37.040  211.866 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1.341e+02  7.537e+00  17.799   &lt;2e-16 ***
+## adverts     9.612e-02  9.632e-03   9.979   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 65.99 on 198 degrees of freedom
+## Multiple R-squared:  0.3346, Adjusted R-squared:  0.3313 
+## F-statistic: 99.59 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>tab_model(
+  advertizingReg,show.df = TRUE,
+  CSS = list(
+    css.depvarhead = &#39;color: red;&#39;,
+    css.centeralign = &#39;text-align: left;&#39;, 
+    css.firsttablecol = &#39;font-weight: bold;&#39;, 
+    css.summary = &#39;color: blue;&#39;
+  )
+)</code></pre>
+<table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
+ 
+</th>
+<th colspan="4" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
+sales
+</th>
+</tr>
+<tr>
+<td style=" color: red; border-bottom:1px solid black; font-weight: bold; ">
+Predictors
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+Estimates
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+CI
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+p
+</td>
+<td style=" color: red; border-bottom:1px solid black; ">
+df
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+134.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+119.28 – 149.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+198.00
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
+adverts
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+0.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+0.08 – 0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+<strong>&lt;0.001
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
+198.00
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="4">
+200
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="4">
+0.335 / 0.331
+</td>
+</tr>
+</table>
+<hr />
+</div>
+</div>
+<div id="alternativa-para-gráficar-los-residuales" class="section level1">
+<h1>Alternativa para Gráficar los residuales</h1>
+<div id="plot-the-residuals-and-the-fitted-values" class="section level2">
+<h2>Plot the residuals and the fitted values</h2>
+<div id="evaluating-residuals" class="section level3">
+<h3>Evaluating residuals:</h3>
+<p>If we observe that the residuals are randomly distributed (no pattern, a straigth line), then we can assume that there is equality of variance along the “x” axis.</p>
+<div id="definition-of-residuals" class="section level4">
+<h4>Definition of Residuals</h4>
+<p>A quantity remaining after other things have been subtracted or allowed for. <strong>FROM Wikipedia</strong></p>
+<p>A residual (or fitting deviation), on the other hand, is an observable estimate of the unobservable statistical error.</p>
+<pre class="r"><code># &quot;advertizingReg&quot;, nota que este no es un data frame pero un modelo
+# The main figure
+ggplot(Album_Sales_1_new,aes(x=adverts, y=sales))+
+  geom_smooth(method=lm, se = TRUE)+
+  geom_point()</code></pre>
+<p><img src="T14_Regression_files/figure-html/evaluate%20the%20residuals-1.png" width="672" /></p>
+<pre class="r"><code># Graficando los residuales, metodo 1
+ggplot(model1, aes(x=.fitted, y=.resid))+geom_point()+
+  geom_smooth(method=lm)</code></pre>
+<p><img src="T14_Regression_files/figure-html/evaluate%20the%20residuals-2.png" width="672" /></p>
+</div>
+</div>
+</div>
+</div>
 
 
 
