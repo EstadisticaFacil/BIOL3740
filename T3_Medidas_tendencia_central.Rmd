@@ -107,6 +107,7 @@ Activar el packete
 
 ```{r}
 library(modeest)
+library(statip)
 ```
 
 
@@ -114,7 +115,7 @@ Ya pueden ahora usar la **mfv** para encontrar la moda de conjunto de datos. Lo 
 
 
 ```{r}
-mfv(b)
+statip::mfv(b)
 ```
 
 
@@ -126,17 +127,18 @@ Los tres valores de tendencia central son iguales cuando la distribución es nor
 
 ```{r}
 df=rpois(10000, 100)
-df=data.frame(df)
+df1=data.frame(df)
+head(df1, n=2)
 ```
 
 
 Lo que uno observa es que los tres valores son muy cercano uno del otro.   
 
 ```{r}
-
-mean(df$df)
-median(df$df)
-mfv(df$df)
+library(statip)
+mean(df1$df)
+median(df1$df)
+statip::mfv(df1$df)
 ```
 
 Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda).  En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta.    Se observa que los tres valores son cerca del centro.  
@@ -144,18 +146,18 @@ Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquier
 
 ```{r}
 
-mea=mean(df$df)
-med=median(df$df)
-mod=mfv(df$df)
+mea=mean(df1$df)
+med=median(df1$df)
+mod=statip::mfv(df1$df)
 
-a=ggplot(df, aes(df ))+
+a=ggplot(df1, aes(df ))+
   geom_histogram(fill="orange", colour="white", binwidth = 5)+
   geom_vline(aes(xintercept = mea), colour="red")+
   geom_vline(aes(xintercept = med), colour="blue")+
   geom_vline(aes(xintercept = mod), colour="green")+
   theme(legend.position = "none")
 
-b=ggplot(df, aes(df ))+
+b=ggplot(df1, aes(df ))+
   geom_histogram(fill="orange", colour="white", binwidth = 1)+
   geom_vline(aes(xintercept = mea), colour="red")+
   geom_vline(aes(xintercept = med), colour="blue")+
@@ -184,11 +186,11 @@ dfbb=data.frame(dfbb)
 ```{r}
 mea=mean(dfb$dfb)
 med=median(dfb$dfb)
-mod=mfv(dfb$dfb)
+mod=statip::mfv(dfb$dfb)
 
 meab=mean(dfbb$dfbb)
 medb=median(dfbb$dfbb)
-modb=mfv(dfbb$dfbb)
+modb=statip::mfv(dfbb$dfbb)
 
 
 c=ggplot(dfb, aes(dfb))+
