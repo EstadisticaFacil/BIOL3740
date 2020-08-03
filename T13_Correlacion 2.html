@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>T13_Correlacion</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BIOL 3740</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Descripción.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Calendario</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Instalación y Introducción básica
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Instalar-R-RStudio.html">Instalar R y RStudio</a>
+    </li>
+    <li>
+      <a href="Introducción_RMarkdown.html">RMarkdown</a>
+    </li>
+    <li>
+      <a href="Codigos_basicos_en_R.html">Codigos Básicos en R</a>
+    </li>
+    <li>
+      <a href="R_basico.html">R Básico #2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Temas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="T1_Intro.html">T1 Introducción a la Estadística</a>
+    </li>
+    <li>
+      <a href="T1a_Poblacion_Muestra.html">T1a Población, Muestreo y Sesgo</a>
+    </li>
+    <li>
+      <a href="T1b_Inferencias_hipotesis.html">T1b Inferencias y hipotesis</a>
+    </li>
+    <li>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
+    </li>
+    <li>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
+    </li>
+    <li>
+      <a href="T4_Medidas_dispersión.html">T4 Medidas de Dispersión</a>
+    </li>
+    <li>
+      <a href="T4a_Estadistica_descriptiva.html">T4a Estadística Descriptiva</a>
+    </li>
+    <li>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
+    </li>
+    <li>
+      <a href="T6_supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
+    </li>
+    <li>
+      <a href="T7_Frecuencias.html">T7 Pruebas de Bondad de Ajuste</a>
+    </li>
+    <li>
+      <a href="T8_Distribucion_Normal.html">T8 La Distribución Normal</a>
+    </li>
+    <li>
+      <a href="T9_Pruebas_una_muestra.html">T9 Prueba de una muestra</a>
+    </li>
+    <li>
+      <a href="T9a_Pruebas_t-Pareados.html">T9a Prueba-t Pareados</a>
+    </li>
+    <li>
+      <a href="T10_Pruebas_t_Independiente.html">T10 Prueba-t No pareados</a>
+    </li>
+    <li>
+      <a href="T11_ANOVA.html">T11 ANOVA</a>
+    </li>
+    <li>
+      <a href="T13_Correlacion.html">T13 Correlación y Covarianza</a>
+    </li>
+    <li>
+      <a href="T14_Regression.html">T14 Regressión</a>
+    </li>
+    <li>
+      <a href="T14a_Regression_logistica.html">T14a Regressión Logística</a>
+    </li>
+    <li>
+      <a href="T15_Selecionar_Pruebas.html">T15a Selección de pruebas corectas</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejercicios
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Plataforma.html">Ejercico Plataforma de RStudio</a>
+    </li>
+    <li>
+      <a href="RMarkdown.html">Ejercico Plataforma de RMarkdown</a>
+    </li>
+    <li>
+      <a href="Ejercicio_ANOVA.html">Ejercicio de ANOVA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Datos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Archivos_de_Datos.html">Archivos de Datos</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">T13_Correlacion</h1>
+
+</div>
+
+
+<p>Fecha de la ultima revisión</p>
+<pre><code>## [1] &quot;2020-08-02&quot;</code></pre>
+<hr />
+<div id="install-packages" class="section level2">
+<h2>Install packages</h2>
+<p>La correlaciones son métodos para evaluar la relación entre dos o más variables.</p>
+<p>Ejemplos</p>
+<ol style="list-style-type: decimal">
+<li>La cantidad de colesterol, LDL (lipoproteínas de baja densidad) y HDL (lipoproteínas de alta densidad).</li>
+<li>La concentración de vitamina C y la absorción de calcio.</li>
+<li>La consumo de alcohol y la concentración de alcohol en la sangre.</li>
+</ol>
+<p>Los analísis se hacen comparando las variables continuas en pares. La covarianza es la medida de variabilidad conjunta entre dos variables.</p>
+<p>Primero recordamos la formula para calcular la varianza de una variable</p>
+<p><span class="math display">\[s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{ (x_{ i }-\bar { x } ) } ^{ 2 } }{ n-1 }\]</span></p>
+<p>Ahora la vamos a descomponer</p>
+<p><span class="math display">\[s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{ (x_{ i }-\bar{ x } ) } (x_{ i }-\bar { x } ) }{ n-1 }\]</span> *** # Correlación de Pearson</p>
+<p>Esta la más común y conocida como el Coeficiente de correlación de Pearson. Nota ahora que tenemos dos variables <strong>x</strong> y <strong>y</strong>.</p>
+<p>Podemos ver cual es la relación entre la edad de los estudiantes y cuantas veces fueron a Disney en Orlando, Florida. El objetivo es evaluar el covarianza entre una variable y otra.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Personas</th>
+<th>Maria</th>
+<th>Juan</th>
+<th>José</th>
+<th>Carla</th>
+<th>Luis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Edad (x)</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>13</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>Veces a Disney (y)</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td>6</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>La siguiente formula muestra el calculo para el coeficiente de Pearson <span class="math inline">\(\rho\)</span> que se dice <strong>rho</strong> que es el parámetro (el universo). Para significar el coeficiente de una muestra se usa la <strong>r</strong>. Note el numerador y comparalo con la formula anterior. ven que ahora se toma en cuenta tanto el valor en <strong>x</strong> y en <strong>y</strong>.</p>
+<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1({ s }_{ x }{ s }_{ y }) }\]</span> Una otra manera de ver como se calcula el coeficiente de Pearson es usar la siguiente formula.</p>
+<p><span class="math display">\[r=\frac{\sum_{ }^{ }xy-\left(\frac{\sum_{ }^{ }x\sum_{ }^{ }y}{n}\right)}{\sqrt{\left(\sum_{ }^{ }x^2-\frac{\left(\sum_{ }^{ }x\right)^2}{n}\right)\left(\sum_{ }^{ }y^2-\frac{\left(\sum_{ }^{ }y\right)^2}{n}\right)}}\]</span></p>
+<p>Creamos un conjunto de datos en R para demostrar como se calcula a mano. Necesitamos calcular la suma de <strong>x</strong>, la suma de <strong>y</strong>, la suma de los cuadrados de <strong>x</strong> y <strong>y</strong> y la suma los productos cruzados (<strong>xy</strong>).</p>
+<pre class="r"><code>Edad&lt;-c(8,9,10,13,15)
+Disney&lt;-c(5,4,4,6,8)
+dfDisney&lt;-data.frame(Edad, Disney) # unir las listas en un data frame
+dfDisney$Edad2=dfDisney$Edad^2 # cuadrar las x
+dfDisney$Disney2=dfDisney$Disney^2 # cuadrar las y
+dfDisney$Edad_por_Disney=dfDisney$Edad*dfDisney$Disney # productos cruzados x*y
+dfDisney</code></pre>
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:simple example">
+<col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Edad</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Disney</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Edad2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Disney2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Edad_por_Disney</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">64</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">25</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">40</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">81</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">16</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">100</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">16</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">40</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">13</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">169</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">78</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">15</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">225</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">64</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">120</td></tr>
+</table>
+ Lo que necesitamos ahora es calcular cada una de las variables</p>
+<pre class="r"><code>library(knitr)
+library(kableExtra)
+df &lt;- data.frame(Formulas = c(&quot;$$\\sum x $$&quot;,&quot;$$\\sum y$$&quot;,
+                              &quot;$$\\sum x^2$$&quot;, &quot;$$\\sum y^2$$&quot;, 
+                              &quot;$$\\sum xy$$&quot;),
+                 Sumas = c(55, 27, 639,157, 314))
+
+knitr::kable(df,  align=&quot;lr&quot;,  escape=FALSE)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Formulas
+</th>
+<th style="text-align:right;">
+Sumas
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span class="math display">\[\sum x \]</span>
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math display">\[\sum y\]</span>
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math display">\[\sum x^2\]</span>
+</td>
+<td style="text-align:right;">
+639
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math display">\[\sum y^2\]</span>
+</td>
+<td style="text-align:right;">
+157
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math display">\[\sum xy\]</span>
+</td>
+<td style="text-align:right;">
+314
+</td>
+</tr>
+</tbody>
+</table>
+<p>Ahora sustituir los valores en la ecuación para calcular el coeficiente de Pearson.</p>
+<p><span class="math display">\[r=\frac{314-\left(\frac{55\cdot27}{5}\right)}{\sqrt{\left(639-\frac{\left(55\right)^2}{5}\right)\left(157-\frac{\left(27\right)^2}{5}\right)}}=0.871\]</span> La función para hacer todos estos calculo es <strong>cor</strong>. Con una correlación de 0.87, esto significa que hay buena correlación positiva entre la edad y la cantidad de veces que han ido a Disney.</p>
+<pre class="r"><code>cor(Edad, Disney)</code></pre>
+<pre><code>## [1] 0.8711651</code></pre>
+<hr />
+<div id="un-gráfico-de-correlación-sencilla." class="section level3">
+<h3>Un gráfico de Correlación sencilla.</h3>
+<p>Parece haber un patrón de cuando aumenta una variable aumenta la otra.</p>
+<pre class="r"><code>scatter&lt;-ggplot(dfDisney, aes(x=Edad, y=Disney))
+scatter + geom_point(colour=&quot;purple&quot;)+
+  geom_hline(aes(yintercept=mean(Disney)))+ # las lineas representa el promedio de la variable en *y* los valores
+  geom_vline(aes(xintercept=mean(Edad))) # las lineas representa el promedio de la variable en *x* los valores</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/graph%20correlations-1.png" width="60%" style="display: block; margin: auto;" /> *** # El rango del coeficiente Pearson</p>
+<p>El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta y positiva, en otra palabra la <strong>x</strong> predice exactamente el valor de <strong>y</strong>. Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la <strong>x</strong> e <strong>y</strong>. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.</p>
+<hr />
+</div>
+</div>
+<div id="los-supuestos-de-la-prueba-de-pearson" class="section level2">
+<h2>Los Supuestos de la prueba de Pearson</h2>
+<ol style="list-style-type: decimal">
+<li><p>Uno de los supuestos de la prueba de análisis de Pearson, es que las dos variables tenga una distribución normal, <strong>Nornal bivariada</strong>.</p></li>
+<li><p>Las variables tienen que tener una correlación lineal (por ejemplo: no puede ser cuadrática o logarítmica).</p></li>
+<li><p>Ausencia de valores átipicos (o por lo menos sesgan el resultado)</p></li>
+</ol>
+<p>Para visualizar una distribución vea lo siguiente. Nota que las dos variables tienen una distribución normal.</p>
+<hr />
+</div>
+<div id="gráfico-bivariado-normal" class="section level2">
+<h2>Gráfico Bivariado Normal</h2>
+<p><a href="https://deanattali.com/2015/03/29/ggExtra-r-package/" class="uri">https://deanattali.com/2015/03/29/ggExtra-r-package/</a></p>
+<p>Para visualizar que quiere decir “bivariado normal” Vamos a crear dos conjuntos de datos cada una con una distribución normal, pero con promedio diferentes y desviación estandar.</p>
+<pre class="r"><code>library(tidyverse)
+a=rnorm(8000, 0, 1)
+b=rnorm(8000, 1, 1.1)
+
+df=data.frame(a,b)
+
+out &lt;- stack(df)
+ 
+ggplot(out, aes(values, colour=ind, fill=ind))+
+  geom_histogram(bins=50)+
+  facet_wrap(~ind)</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-5-1.png" width="672" /> Ahora visualizamos las dos variables en el mismo gráfico. y se añade en el margen.</p>
+<pre class="r"><code>#install.packages(&quot;ggExtra&quot;, dependencies = TRUE)
+library(ggExtra)
+
+p &lt;- ggplot(df, aes(a, b)) + geom_point() + 
+  theme_classic()
+# add marginal histograms
+ggExtra::ggMarginal(p, type = &quot;histogram&quot;)</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="correlación-no-paramétricas" class="section level1">
+<h1>Correlación no-paramétricas</h1>
+<div id="correlación-de-kendall" class="section level2">
+<h2>Correlación de Kendall</h2>
+<p>En estadística, el coeficiente de correlación de Kendall se calcula usando los rangos y no los valores originales, es conocido como el coeficiente tau de Kendall (letra griega τ), es una estadística para medir la asociación ordinal ( en otra palabra el orden de los valores) entre dos variables. La prueba de Kendall es una prueba de hipótesis no paramétrica. Entonces no asumo que los datos tenga una distribución normal. El nombre de la prueba proviene de Maurice Kendall quien desarrolló el método en 1938.</p>
+<p>La diferencias entre este prueba es que los valores se poner en orden del más pequeño al más grande (en cada variable) y se usa el número del ordenamiento para hacer la prueba.</p>
+<p>La correlación de Kendall entre dos variables será alta cuando las observaciones tengan un rango similar (o idéntico para una correlación de +1) (es decir, la posición relativa de las observaciones dentro de la variable: primero, segundo, tercero, etc.) entre las dos variables, y bajo cuando las observaciones tienen un rango diferente (o completamente diferente para una correlación de -1) entre las dos variables.</p>
+<p>Aquí un pequeño conjunto de datos como ejemplo de ordenar los datos. Nota que después de ordenarlos datos son estos que se usan para al calculo. La edad de la persona, el número de veces que fueron a Disney y el orden de cada variable.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Edad</th>
+<th align="right">Disney</th>
+<th align="right">Orden Edad</th>
+<th align="right">Orden Disney</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">10</td>
+<td align="right">12</td>
+<td align="right">4</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">54</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div id="los-supuestos-de-kendall" class="section level3">
+<h3>Los supuestos de Kendall</h3>
+<ol style="list-style-type: decimal">
+<li>Los pares de observaciones son independientes.</li>
+<li>Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.</li>
+<li>Se supone que existe una relación monotónica entre las dos variables.</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="correlación-de-spearman" class="section level2">
+<h2>Correlación de Spearman</h2>
+<p>El coeficiente de correlación de rango de Spearman o el <span class="math inline">\(\rho\)</span> rho de Spearman, desarrollado por Charles Spearman en 1904 era un psicologo. Es una medida no paramétrica de correlación de rango (como la correlación de Kendall). Igual como,la de Kendall usa los rangos para hacer el estadístico, pero usan formulas distinctas.</p>
+<p>La correlación de Spearman entre dos variables será alta cuando las observaciones tengan un rango similar (o idéntico para una correlación de +1) (es decir, la posición relativa de las observaciones dentro de la variable: primero, segundo, tercero, etc.) entre las dos variables, y bajo cuando las observaciones tienen un rango diferente (o completamente diferente para una correlación de -1) entre las dos variables.</p>
+<hr />
+<div id="los-supuestos-de-spearman" class="section level3">
+<h3>Los supuestos de Spearman</h3>
+<ol style="list-style-type: decimal">
+<li>Los pares de observaciones son independientes.</li>
+<li>Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.</li>
+<li>Se supone que existe una relación monotónica entre las dos variables.</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="comparación-entre-kendall-y-spearman" class="section level2">
+<h2>Comparación entre Kendall y Spearman</h2>
+<p>La prueba de Kendall tiende a ser más robusta que la Spearman. Lo que esto significa es que cuando el tamaño de muestra es pequeña o hay valores átipicos la prueba de Kendall es preferible.</p>
+<hr />
+</div>
+</div>
+<div id="los-codigos-en-r-para-correlación" class="section level1">
+<h1>Los codigos en R para correlación</h1>
+<div id="como-lidiar-con-na-alternativas" class="section level2">
+<h2>Como lidiar con “NA” alternativas</h2>
+<p>Se usa diferentes</p>
+<p>use = “everything”, Si Hay 1 “NA” en la los datos, elimina la variable completa use = “complete.obs”, Si hay 1 “NA”, Elimina el individuo que tiene “NA” para todas los cálculos use = “pairwise.complete.obs”, Si hay un “NA”, Elimina el individuo solamente si el par evaluado tiene un “NA”.</p>
+<pre class="r"><code>#-----Como lidiar con los &quot;NA&quot;
+
+adverts&lt;-c(15,14,14,6,2)
+comprasNA&lt;-c(8,9,10,NA,15)
+age&lt;-c(5, 12, 16, 9, 14)
+advertNA&lt;-data.frame(adverts, comprasNA, age) # el data frame
+
+# &quot;everything&quot;, &quot;complete.obs&quot;, &quot;pairwise.complete.obs&quot;
+
+head(advertNA)</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:missing values">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">adverts</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">comprasNA</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">age</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">15</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">14</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">12</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">14</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">16</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">15</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">14</td></tr>
+</table>
+
+<pre class="r"><code>cor(advertNA, use = &quot;everything&quot;,  method = &quot;pearson&quot;)</code></pre>
+<pre><code>##              adverts comprasNA        age
+## adverts    1.0000000        NA -0.2194619
+## comprasNA         NA         1         NA
+## age       -0.2194619        NA  1.0000000</code></pre>
+<pre class="r"><code>cor(advertNA, use = &quot;complete.obs&quot;,  method = &quot;pearson&quot;)</code></pre>
+<pre><code>##              adverts  comprasNA        age
+## adverts    1.0000000 -0.9794293 -0.3799803
+## comprasNA -0.9794293  1.0000000  0.5486947
+## age       -0.3799803  0.5486947  1.0000000</code></pre>
+<pre class="r"><code>cor(advertNA, use = &quot;pairwise.complete.obs&quot;,  method = &quot;pearson&quot;) # Comúnmente usado.  </code></pre>
+<pre><code>##              adverts  comprasNA        age
+## adverts    1.0000000 -0.9794293 -0.2194619
+## comprasNA -0.9794293  1.0000000  0.5486947
+## age       -0.2194619  0.5486947  1.0000000</code></pre>
+<hr />
+</div>
+</div>
+<div id="la-pruebas-con-los-métodos-de-kendall-y-spearman" class="section level1">
+<h1>La pruebas con los métodos de Kendall y Spearman</h1>
+<pre class="r"><code>cor(advertNA, use = &quot;pairwise.complete.obs&quot;,  method = &quot;kendall&quot;)   </code></pre>
+<pre><code>##              adverts  comprasNA        age
+## adverts    1.0000000 -0.9128709 -0.3162278
+## comprasNA -0.9128709  1.0000000  0.6666667
+## age       -0.3162278  0.6666667  1.0000000</code></pre>
+<pre class="r"><code>cor(advertNA, use = &quot;pairwise.complete.obs&quot;,  method = &quot;spearman&quot;) # n=30 o más</code></pre>
+<pre><code>##              adverts  comprasNA        age
+## adverts    1.0000000 -0.9486833 -0.4103913
+## comprasNA -0.9486833  1.0000000  0.8000000
+## age       -0.4103913  0.8000000  1.0000000</code></pre>
+<hr />
+<div id="ejemplo-de-anxiedad-y-correlaciones" class="section level2">
+<h2>Ejemplo de Anxiedad y correlaciones</h2>
+<p>Correlación entre ansiedad, la nota de examen y el tiempo que estudio el estudiante.</p>
+<p>Anxiety data</p>
+<pre class="r"><code>library(readr)
+Exam_Anxiety &lt;- read_csv(&quot;~/Google Drive/Biometry/Biometria 2015/Biometria_2015_RStudio/Data files/Exam_Anxiety.csv&quot;)
+examData=Exam_Anxiety
+head(examData)</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:example with anxiety">
+<col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Code</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Revise</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Exam</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Anxiety</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Gender</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">40</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">86.3</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Male</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">65</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">88.7</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">27</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">80</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">70.2</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Male</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">53</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">80</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">61.3</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">40</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">89.5</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Male</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">70</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">60.5</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td></tr>
+</table>
+
+<p>Correlación entre anxiedad, la nota del examen y el tiempo de estudio (revise) para 103 estudiantes.</p>
+<p>En el primer chunk se demuestra como se hace el análisis entre dos variables</p>
+<pre class="r"><code>cor(examData$Exam, examData$Anxiety, use = &quot;pairwise.complete.obs&quot;,
+    method = &#39;pearson&#39;)</code></pre>
+<pre><code>## [1] -0.4409934</code></pre>
+<p>Ahora podemos hacer el calculo de las tres variables junta.esta función permite hacer todos los calculos.</p>
+<pre class="r"><code>examData2 &lt;- examData[, c(&quot;Exam&quot;, &quot;Anxiety&quot;, &quot;Revise&quot;)]
+head(examData2)</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Exam</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Anxiety</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Revise</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">40</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">86.3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">65</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">88.7</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">80</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">70.2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">27</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">80</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">61.3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">53</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">40</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">89.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">70</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">60.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22</td></tr>
+</table>
+
+<pre class="r"><code>cor(examData2)  # rango entre -1 to + 1, 0 o cerca significa que no hay patrón. </code></pre>
+<pre><code>##               Exam    Anxiety     Revise
+## Exam     1.0000000 -0.4409934  0.3967207
+## Anxiety -0.4409934  1.0000000 -0.7092493
+## Revise   0.3967207 -0.7092493  1.0000000</code></pre>
+<pre class="r"><code>cor(examData[, c(&quot;Exam&quot;, &quot;Anxiety&quot;, &quot;Revise&quot;)])</code></pre>
+<pre><code>##               Exam    Anxiety     Revise
+## Exam     1.0000000 -0.4409934  0.3967207
+## Anxiety -0.4409934  1.0000000 -0.7092493
+## Revise   0.3967207 -0.7092493  1.0000000</code></pre>
+<hr />
+</div>
+</div>
+<div id="r2-el-coeficiente-de-determinación." class="section level1">
+<h1>R^2: El coeficiente de determinación.</h1>
+<p>El coeficiente de determinación es una medida de la proporción de la varianza explica por la variable dependiente (en <strong>x</strong>). La correlación explica la influencia de la relación entre la <strong>x</strong> e <strong>y</strong>, la <span class="math display">\[R^2\]</span> explica cuanto de la varianza en una variable explica la varianza en la otra variable. El rango es 0 a 100, un <span class="math display">\[R^2=0.20\]</span> es que la dependiente explica solamente 20% de la varianza da la independiente.</p>
+<p>Podemos visualizar el coeficiente de determinación con unos gráficos.</p>
+<ol style="list-style-type: decimal">
+<li>Se crea dos conjunto de datos uno que tiene más variación que el otro</li>
+<li>Calcula el coeficiente de Pearson y el coeficiente de determinación</li>
+<li>Se añade todo los gráficos.</li>
+</ol>
+<pre class="r"><code>library(tidyverse)
+x=runif(100, 0, 30)
+y=rnorm(100, 1, .1)*x+rnorm(100,0,5)
+
+xy=tibble(x,y)
+
+y2=rnorm(100, 1, .01)*x+rnorm(100,0,1)
+
+xycorD=(cor(x,y))^2
+xycorD</code></pre>
+<pre><code>## [1] 0.765347</code></pre>
+<pre class="r"><code>xycorD2=(cor(x,y2))^2
+xycorD2</code></pre>
+<pre><code>## [1] 0.9871214</code></pre>
+<p>La diferencia no es la pendiente es solamente cuan disperso están los datos alrededor de la correlación lineal.</p>
+<pre class="r"><code>R2a=ggplot(xy, aes(x,y))+
+  geom_smooth(method = lm)+
+  geom_point()+
+  annotate(geom = &quot;text&quot;, x=5, y=35, label=&quot;R^2=0.669&quot;)+
+  ylim(0,40)
+
+
+R2b=ggplot(xy, aes(x,y2))+
+  geom_smooth(method = lm)+
+  geom_point()+
+  annotate(geom = &quot;text&quot;, x=5, y=35, label=&quot;R^2=.989&quot;)+
+  ylim(0,40)
+
+library(gridExtra)
+grid.arrange(R2a,R2b,ncol=2)</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-9-1.png" width="672" /> ***</p>
+</div>
+<div id="la-prueba-de-correlación" class="section level1">
+<h1>La prueba de correlación</h1>
+<p>Uno puede hacer una prueba para determinar si la correlación es significativamente diferente de cero. Recuerda que cuando el coeficiente es en cero o cerca de cero esto significa que NO hay correlación entre las dos variables.</p>
+<p>Entonces la hipótesis nula y alterna son las siguientes.</p>
+<ol style="list-style-type: decimal">
+<li>Ho: r = 0 (es cerca de cero considerando la variación)</li>
+<li>Ha: r ≠ 0 (entonces la correlación es positiva o negativa)</li>
+</ol>
+<p>La función es <strong>corr.test()</strong></p>
+<p>En adición de determinar si el coeficiente es diferente de cero esta función calcula el intervalo de 95% de confianza del coeficiente. Nota que el coeficiente es 0.81 con un intervalo de confianza entre 0.74-0.87. Si el intervalo solapa el cero la hipótesis nula no sera rechazado.</p>
+<pre class="r"><code>cor.test(x, y, method=&quot;pearson&quot;)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  x and y
+## t = 17.878, df = 98, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8191879 0.9141727
+## sample estimates:
+##       cor 
+## 0.8748412</code></pre>
+<hr />
+</div>
+<div id="el-mejor-mentiroso." class="section level1">
+<h1>El mejor mentiroso.</h1>
+<p>El mentiroso más grande del mundo es una competencia anual para decir mentiras, que se celebra en Cumbria, Inglaterra, en el Stanton Inn Bridge Pub. Aquí ben el pub (bar) donde tiene la competencia. Este cuento proviene del libro de Field et al. y de <a href="http://lakelandhuntingmemories.com/auldWillRitson2New.html" class="uri">http://lakelandhuntingmemories.com/auldWillRitson2New.html</a>.</p>
+<pre class="r"><code>library(knitr)
+library(png)
+
+img4_path&lt;-&quot;Graficos/Stanton.png&quot;
+include_graphics(img4_path)</code></pre>
+<p><img src="Graficos/Stanton.png" width="500px" /> *** Esta competencia es en honor a un hombre que era dueño o que tenia a cargo un “pub” en el siglo 19, su nombre era “Auld Will Ritson; b. 1808-1890”. El era conocido por sus cuentos y historia de folclor de la región. Muchas de estas história no se sabia si eran ciertas o no estos cuentos. Por ejemplo el aseguraba que se acordaba del día que fue bautizado (puede ser que si porque en estos momentos no todos los bautizado se hacia los primeros día del nacer.</p>
+<p>Creatividad = variable continua Posición = es una variable ordenal que va de 1 al 6, recuerda que si está en posición uno es que gano el concurso. Principiante - es una variable binomial, hay solamente dos alternativas. o es principiante (0) o participado en el concurso antes (1).</p>
+<p>Se usa el conjunto de datos de “The biggest liar” data</p>
+<pre class="r"><code>library(ggplot2)
+library(readr)
+The_Biggest_Liar &lt;- read_csv(&quot;Data_files_csv/The Biggest Liar.csv&quot;)
+
+mentirosos=The_Biggest_Liar 
+summary(mentirosos)</code></pre>
+<pre><code>##    Creativity       Position         Novice      
+##  Min.   :21.00   Min.   :1.000   Min.   :0.0000  
+##  1st Qu.:35.00   1st Qu.:1.000   1st Qu.:0.0000  
+##  Median :39.00   Median :2.000   Median :1.0000  
+##  Mean   :39.99   Mean   :2.221   Mean   :0.5147  
+##  3rd Qu.:45.25   3rd Qu.:3.000   3rd Qu.:1.0000  
+##  Max.   :56.00   Max.   :6.000   Max.   :1.0000</code></pre>
+<hr />
+<p>Como cambiar el nombre de la variables</p>
+<pre class="r"><code>names(mentirosos)[1]=paste(&quot;Creatividad&quot;)  # se cambia el nombre de la primera columna
+names(mentirosos)[2]=paste(&quot;Posición&quot;) # se cambia el nombre de la segunda columna
+names(mentirosos)[3]=paste(&quot;Principiante&quot;) # se cambia el nombre de la tercera columna
+head(mentirosos)</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-12">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Creatividad</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Posición</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Principiante</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">53</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">36</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">31</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">43</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">30</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">41</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td></tr>
+</table>
+
+<hr />
+<p>Primer paso evaluar si las variables tienen distribución normal bivariado. Si lo es entonces se usa Pearson, si no se debería usar Kendall or Spearman. Lo que uno observa es la variable de creatividad se acerca a un normal, pero la variable de posición. Por consecuencia no se debería usar la correlación de Pearson.</p>
+<pre class="r"><code>p &lt;- ggplot(mentirosos, aes(Creatividad, Posición)) + 
+  geom_point() + 
+  theme_classic()
+p
+# add marginal histograms
+ggExtra::ggMarginal(p, type = &quot;histogram&quot;)</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<hr />
+<p>Prueba de correlación entre la creatividad y la posición en el concurso. Vemos que este caso ambas pruebas tiene el mismo resultado que se rechaza la hipótesis nula y que la creatividad esta relacionado con la posición en el concurso.</p>
+<pre class="r"><code>cor.test(mentirosos$Posición, mentirosos$Creatividad, method = &quot;spearman&quot;)</code></pre>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  mentirosos$Posición and mentirosos$Creatividad
+## S = 71948, p-value = 0.00172
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## -0.3732184</code></pre>
+<pre class="r"><code>cor.test(mentirosos$Posición, mentirosos$Creatividad, method = &quot;kendall&quot;)</code></pre>
+<pre><code>## 
+##  Kendall&#39;s rank correlation tau
+## 
+## data:  mentirosos$Posición and mentirosos$Creatividad
+## z = -3.2252, p-value = 0.001259
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##        tau 
+## -0.3002413</code></pre>
+<hr />
+<p>La visualización de la corelación entre las dos variables</p>
+<pre class="r"><code>ggplot(mentirosos,aes(Creatividad, Posición))+
+  geom_point()</code></pre>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

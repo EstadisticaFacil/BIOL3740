@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="RLTremblay" />
+
+
+<title>Introducción</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BIOL 3740</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Descripción.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Calendario</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Instalación y Introducción básica
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Instalar-R-RStudio.html">Instalar R y RStudio</a>
+    </li>
+    <li>
+      <a href="Introducción_RMarkdown.html">RMarkdown</a>
+    </li>
+    <li>
+      <a href="Codigos_basicos_en_R.html">Codigos Básicos en R</a>
+    </li>
+    <li>
+      <a href="R_basico.html">R Básico #2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Temas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="T1_Intro.html">T1 Introducción a la Estadística</a>
+    </li>
+    <li>
+      <a href="T1a_Poblacion_Muestra.html">T1a Población, Muestreo y Sesgo</a>
+    </li>
+    <li>
+      <a href="T1b_Inferencias_hipotesis.html">T1b Inferencias y hipotesis</a>
+    </li>
+    <li>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
+    </li>
+    <li>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
+    </li>
+    <li>
+      <a href="T4_Medidas_dispersión.html">T4 Medidas de Dispersión</a>
+    </li>
+    <li>
+      <a href="T4a_Estadistica_descriptiva.html">T4a Estadística Descriptiva</a>
+    </li>
+    <li>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
+    </li>
+    <li>
+      <a href="T6_supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
+    </li>
+    <li>
+      <a href="T7_Frecuencias.html">T7 Pruebas de Bondad de Ajuste</a>
+    </li>
+    <li>
+      <a href="T8_Distribucion_Normal.html">T8 La Distribución Normal</a>
+    </li>
+    <li>
+      <a href="T9_Pruebas_una_muestra.html">T9 Prueba de una muestra</a>
+    </li>
+    <li>
+      <a href="T9a_Pruebas_t-Pareados.html">T9a Prueba-t Pareados</a>
+    </li>
+    <li>
+      <a href="T10_Pruebas_t_Independiente.html">T10 Prueba-t No pareados</a>
+    </li>
+    <li>
+      <a href="T11_ANOVA.html">T11 ANOVA</a>
+    </li>
+    <li>
+      <a href="T13_Correlacion.html">T13 Correlación y Covarianza</a>
+    </li>
+    <li>
+      <a href="T14_Regression.html">T14 Regressión</a>
+    </li>
+    <li>
+      <a href="T14a_Regression_logistica.html">T14a Regressión Logística</a>
+    </li>
+    <li>
+      <a href="T15_Selecionar_Pruebas.html">T15a Selección de pruebas corectas</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejercicios
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Plataforma.html">Ejercico Plataforma de RStudio</a>
+    </li>
+    <li>
+      <a href="RMarkdown.html">Ejercico Plataforma de RMarkdown</a>
+    </li>
+    <li>
+      <a href="Ejercicio_ANOVA.html">Ejercicio de ANOVA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Datos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Archivos_de_Datos.html">Archivos de Datos</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Introducción</h1>
+<h4 class="author">RLTremblay</h4>
+
+</div>
+
+
+<div id="el-libro-de-la-clase" class="section level1">
+<h1>El libro de la clase</h1>
+<p><a href="https://www.amazon.com/Introductory-Biological-Statistics-Fourth-Havel/dp/1478638184/ref=sr_1_1?dchild=1&amp;keywords=Introductory+Biological+Statistics&amp;qid=1594323793&amp;s=books&amp;sr=1-1">Introductory Biological Statistics by Havel, Hampton and Meiners</a> Presione en el titulo para dirigirlo a Amazon.</p>
+<div style="page-break-after: always;"></div>
+<hr />
+<p>Fecha de la ultima revisión</p>
+<pre><code>## [1] &quot;2020-08-02&quot;</code></pre>
+</div>
+<div id="el-proceso-de-investigación" class="section level1">
+<h1>El proceso de investigación:</h1>
+<p>En este curso se estará enfatizando los análisis cuantitativo, esto es simplemente que analizamos los datos para llegar a una conclusión o interpretación sobre un tema. Naturalmente el proceso de seleccionar los datos puede ser un reto grande. Como uno selecciona los datos y el desarrollo de la investigación depende del diseño experimental. El diseño es el procedimiento de como uno recolecta los datos y como los vamos a analizar. En este curso no estaremos evaluando métodos cualitativos de análisis. Este método cuantitativo se refiere a evaluar principalmente opiniones, motivaciones o razones que influencia o impacta una situación. En los métodos cuantitativos es necesario que los resultados sean de una forma o otra numéricos o categóricos.</p>
+<p>El proceso de investigación cuantitativo tiene múltiples pasos y podemos visualizar los pasos con un diagrama de flujo.</p>
+<div class="figure">
+<img src="Graficos/Proceso_Investigacion.png" alt="El proceso de Investigación" width="60%" />
+<p class="caption">
+El proceso de Investigación
+</p>
+</div>
+<hr />
+<div id="el-primer-paso" class="section level2">
+<h2>El primer paso:</h2>
+<ol style="list-style-type: decimal">
+<li>Todo comienza con una pregunta que te llama la intención. Esta pregunta proviene de haber observado tu ambiente. Puede que sea algo muy sencillo (por ejemplo: si la cantidad de estudiantes por salón impacta su rendimiento), o puede ser una pregunta más complicada (por ejemplo cual es el impacto de la lactancia sobre el desarrollo de las células, la bioquímica y inteligencia de los niños).</li>
+</ol>
+<hr />
+</div>
+<div id="el-segundo-paso" class="section level2">
+<h2>El segundo paso</h2>
+<ol start="2" style="list-style-type: decimal">
+<li>Es desarrollar una hipótesis. Hay dos tipos de hipótesis, la hipótesis nula y la hipótesis alterna. SIEMPRE uno comprueba la hipótesis NULA. La nula en la en forma más sencilla es que los grupos son iguales. En otra palabra, si regresamos a la pregunta del primer paso, el rendimiento de los estudiantes es irrelevante de la cantidad de estudiantes en el salón en otra palabra es igual si hay pocos o muchos estudiantes. La hipótesis alterna es que “que la cantidad de estudiante en un salón impacta el rendimiento de los estudiantes”. Hay otros tipos de hipótesis nula que veremos más tarde.</li>
+</ol>
+<ul>
+<li>Si se acepta la hipótesis nula esto quiere decir que NO hay evidencia que los grupos sean diferentes</li>
+<li>Si se rechaza la hipótesis nula es que hay evidencia que los dos grupos sean diferentes.</li>
+</ul>
+</div>
+<div id="el-tercer-paso" class="section level2">
+<h2>El tercer paso:</h2>
+<ol start="3" style="list-style-type: decimal">
+<li>Ahora hay que definir cual son las variables (datos) que se van a recolectar para evaluar la hipótesis. Por ejemplo, cuantos grupos de estudiantes se seleccionará (2, 3, 10 salones?), La información se recolectará de cuantos estudiantes por salones (todos, la mitad, los que se aparece, o se seleccionará los estudiantes al azar, y si selecciona al azar cual es el mecanismo para seleccionarlos de esta forma). Cual sera el indice de “rendimiento” (el entusiasmo de cada estudiante, la nota de un examen, de un trabajo, la nota final). Si se selecciona la nota final la información sera la nota numérica o alfabética (A, B, C, D, o F).</li>
+</ol>
+<p>Tomando la información anterior en consideración esto determinará el diseño experimental y las pruebas estadisticas que se deberá utiliza en el quinto paso.</p>
+<hr />
+</div>
+<div id="el-cuarto-paso" class="section level2">
+<h2>El cuarto paso:</h2>
+<ol start="4" style="list-style-type: decimal">
+<li>Recolectar los datos. Este se debe hacer de una forma sistemática, con la información bien apuntado y subir la información en una hoja de calculo (spreadsheet), como MS Excel, Google Sheet y Numbers. Es mi sugerencia de <strong>NUNCA</strong> utilizar un programa como SPSS o JMP para poner los datos, ya que con estos programas si en el futuro se quiere tener acceso a los datos, y no tiene el programado o el programado ha cambiado de versión muchas veces los datos no se pueden leer (experiencia personal).</li>
+</ol>
+<hr />
+</div>
+<div id="el-quinto-paso" class="section level2">
+<h2>El quinto paso:</h2>
+<ol start="5" style="list-style-type: decimal">
+<li>En este paso se hará los gráficos y los análisis estadísticos para evaluar la hipótesis.</li>
+</ol>
+<hr />
+</div>
+<div id="el-sexto-paso" class="section level2">
+<h2>El sexto paso:</h2>
+<ol start="6" style="list-style-type: decimal">
+<li>Aceptar o rechazar la hipótesis NULA.</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="tipo-de-error-de-interpretación-en-estadística" class="section level1">
+<h1>Tipo de error de interpretación en estadística</h1>
+<p>El concepto básico en estadística, y probablemente el más difícil a captar para algunos es que en el mundo existe la <em>verdad</em>, pero cuando uno recolecta datos, no necesariamente los datos de la muestra representa la <em>verdad</em> o sea la realidad. Por consecuencia siempre hay una posibilidad que los datos nos engaña, y si nos engaña estamos haciendo un error en rechazar o aceptar la hipótesis nula. Por consecuencia aun que uno tome todas las precauciones para tener un diseño experimental adecuado es posible que los datos no representan el universo de los datos (la verdad).</p>
+<p>Típicamente se rechaza la hipótesis nula si el valor de <strong>p</strong> es menor de 0.05. No es necesario que el valor sea menor de 0.05 para rechazar la hipótesis, en cierta condiciones el valor crítico pudiese ser mayor o menor de 0.05. El valor de <strong>p</strong> represente la probabilidad de rechazar la hipótesis nula cuando se debería aceptar. Por consecuencia un valor de <strong>p</strong> = 0.05, significa que hay 5% de probabilidad de cometer un error en que rechazamos la hipótesis cuando se debería aceptar si repetimos la investigación 100 veces (una razón de 1:20). Entonces este representa un tipo de error posible, frecuentemente nominado tipo de error 1 o alfa. En otra palabras significa la probabilidad de rechazar la hipótesis cuando uno debería aceptar la hipótesis. El otro tipo de error 2 o beta representa el error de aceptar la hipótesis nula cuando se debería rechazar.</p>
+<p>Los tres términos usado en estadística para de los dos tipos de errores</p>
+<ul>
+<li>Tipo de error I, alfa, falso positivos</li>
+<li>Tipo de error II, beta, falso negativos</li>
+</ul>
+<p>Aquí un gráfico de los tipos de errores. El par de gráficos representa los dos tipos de error y las dos condiciones en que no se hace un error.</p>
+<div class="figure">
+<img src="Graficos/Hipothesis_Grid.png" alt="El proceso de Investigación" width="70%" />
+<p class="caption">
+El proceso de Investigación
+</p>
+</div>
+<hr />
+<p>Ahora vamos a considerar un ejemplo básico de preguntas que se podría evaluar. En este tiempo moderno un tipo de programas a la televisión bien común son los “Reality Shows”. Donde típicamente participa individuos supuestamente “normal” que no sean actores profesionales. Aquí una lista de algunos de los “Reality Shows”.</p>
+<div id="consideramos-los-reality-shows" class="section level3">
+<h3>Consideramos los Reality Shows:</h3>
+<ol style="list-style-type: decimal">
+<li>Kardashians</li>
+<li>The Bachelorette</li>
+<li>Survivors</li>
+<li>Big Brother</li>
+<li>Shark Tank</li>
+<li>Skin Wars</li>
+<li>Hell’s Kitchen</li>
+</ol>
+</div>
+<div id="personalidad-de-las-personas" class="section level3">
+<h3>Personalidad de las personas</h3>
+<p>Uno se podría preguntar que tipo de persona son seleccionado para participar en estos tipos de programas. Una hipótesis que son gente con tipo de personalidad bien específica. Una hipótesis es que son gente que cumple con unas características tal como <em>Trastorno de personalidad narcisista</em> (TPN): estas personas de vez en cuando caracterizado como megalomanía, demuestran un patrón a largo plazo de comportamiento anormal caracterizado por sentimientos exagerados de importancia personal, necesidad excesiva de admiración y falta de empatía.</p>
+<hr />
+<p>En un ejemplo de <strong>Field et al. 2014</strong> se demuestra la siguiente información sobre personas que solicitaron ser parte de uno de estos <em>Reality Show</em> que se llama <em>Big Brother</em>.</p>
+<p>Una hipótesis es que los productores de estos <em>Reality Shows</em> seleccionan gente con características de TPN más a menudo que las gente que no tienen esta condición. Podemos comprobar esto recolectando datos de los que solicitan y los que fueron aceptado o no a participar en Big Brother (United Kingdom). Se entrevistaron 7662 personas para seleccionar 12, a cada uno se le hizo una prueba si tenia síntomas de TPN.<br />
+***</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">No TNP</th>
+<th align="right">TPN</th>
+<th align="right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Seleccionado</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td>Rechazado</td>
+<td align="right">6805</td>
+<td align="right">845</td>
+<td align="right">7650</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td align="right">6808</td>
+<td align="right">854</td>
+<td align="right">7662</td>
+</tr>
+</tbody>
+</table>
+<p>Lo que uno observa es que la gente que son identificado que tiene características con que cumple con TPN son más propenso a ser seleccionado para participar en el programa. Si fuese que la selección hubiese sido al azar, uno esperaría solamente 1 o 2 personas al máximo con la condición de TPN, no 9 personas. Más tarde aprenderemos como calcular el valor esperado exacto.<br />
+***</p>
+</div>
+<div id="cuando-que-una-hipotesis-no-es-una-hipotesis" class="section level2">
+<h2>Cuando que una hipotesis no es una hipotesis?</h2>
+<div id="una-hippotesis-tiene-que-ser-falsificable" class="section level3">
+<h3>Una hippotesis tiene que ser falsificable</h3>
+<p>Esto quiere decir hay que tener un mecanismo para determinar la veracidad de una expresión. Por ejemplo en las 4 expresiones siguiente hay 2 que no pueden ser falsificable. El concepto de hipótesis falsificable proviene del filósofo Karl Popper en su libro <em>Logik der Forschung</em> (1934), traducido al español <strong>La lógica de la investigación científica</strong>. Ahora toma el tiempo de evaluar las siguientes expresiones y trate de determinar si son hipótesis falsificable. En nuestra sociedad donde cualquier persona se puede llamar un periodista y especialista en un tema los comentarios no falsificable dominan y resulta en confusión para la gente. Es importante en ciencia que los temas, las áreas de investigación sean falsificable.</p>
+</div>
+<div id="ejercicio-1" class="section level3">
+<h3>Ejercicio #1</h3>
+<ol style="list-style-type: decimal">
+<li>Lin Manuel es el mejor actor del mundo</li>
+<li>Todos la cisnes son blancos</li>
+<li>El aumento en producción de semillas en una planta X aumenta con el tamaño poblacional de esta especie.</li>
+<li>Los Beatles vendieron más discos que cualquier otro grupo artístico.</li>
+</ol>
+<hr />
+</div>
+<div id="evaluación-de-las-expresiones-falsificables" class="section level3">
+<h3>Evaluación de las expresiones falsificables</h3>
+<ol style="list-style-type: decimal">
+<li>Lin Manuel es el mejor actor del mundo.</li>
+</ol>
+<p>Esta expresión no es una hipótesis falsificable porque el concepto de <strong>mejor</strong> es uno que es basado en un juicio individual. En otra palabra como se mide "<strong>mejor</strong>, y quien toma la decisión sobre este medida cualitativa. Si Ud. proviene de una cultura diferente la apreciación a la música cambia drasticamente.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Todos los cisnes son blancos</li>
+</ol>
+<p>El problema con esta expresión es la palabra “Todos”. En ningún momento aun que uno trate nunca se podría encontrar “Todos” los cisnes para evaluar sin son blancos o no. Por consecuencia no es falsificable. El concepto de “Todos” aquí asume que ni uno no sera evaluado, que es imposible.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>El aumento en producción de semillas en una planta X aumenta el tamaño poblacional de esta especie.</li>
+</ol>
+<p>Este es una hipótesis falsificable por que uno puede hacer un experimento para evaluar la relación que hay entre la producción de semillas y el tamaño poblacional de una especie de plantas.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Los Beatles vendieron más discos que cualquier otro grupo artístico.</li>
+</ol>
+<p>Este es una hipótesis falsificable porque se puede contabilizar la cantidad de discos vendidos por los Beatles y otros grupos y determinar si es cierto o no.</p>
+</div>
+</div>
+<div id="variables-independientes-y-dependientes" class="section level2">
+<h2>Variables Independientes y Dependientes</h2>
+<p>-La variable Independiente: es la variable que impacta (teóricamente) la variable dependiente (puede ser que no impacta es resultado). Típicamente la <strong>x</strong> en un modelo es la variable independiente.</p>
+<p>-La variable Dependiente: es la variable que recibe el efecto (teóricamente) de la variable independiente. La variable dependiente depende de la variable independiente. Las <strong>y’s</strong> en un modelo son las variables dependientes.</p>
+<hr />
+</div>
+<div id="niveles-de-mediciones" class="section level2">
+<h2>Niveles de mediciones</h2>
+<div id="variables-continuas" class="section level3">
+<h3>Variables continuas</h3>
+<ul>
+<li><p>Las variables con datos continuos:</p>
+<ul>
+<li><p>Son valores que son contiguos o por lo menos existe o pudiese existir los valores intermedios.</p></li>
+<li><p>Ejemplo #1</p></li>
+<li><p>la distancia entre el valor 13 y 15 es igual que 101 y 103, hay dos unidades que los separa.</p></li>
+<li><p>En adición aunque no se haya observado el 14 ni el 102 en un recogido de datos estos valores tienen que potencial de existir, en otra palabra estos valores son posibles en el universo de los datos.</p></li>
+<li><p>Ejemplo #2</p>
+<ul>
+<li>Si se mide el tamaño de una célula biológicas en micrómetros (µm, <span class="math inline">\(10^{-6}\)</span>). Los valores intermedios y contiguos existen. Por ejemplo, el largo de las células de <em>Escherichia coli</em> (<em>E. coli</em>) adulta son de 5.27µm en promedio con una desviación estándar de 0.87µm. Esto significa que hay células de diferentes tamaños que van de menos de 2µm a más de 10µm de largo, y todos los valores pueden existir en este rango (ref: <a href="https://doi.org/10.1098/rsos.160417" class="uri">https://doi.org/10.1098/rsos.160417</a>)</li>
+</ul></li>
+</ul>
+<p>Ejemplo #2</p>
+<ul>
+<li>El número de hermanos, si por ejemplo yo pregunto a seis estudiantes cuantos hermanos tiene. Yo podría tener la siguiente lista. Aunque que no hubo ningún estudiante que tenga 1 hermano o 6 hermanos, es posible esta alternativas. Note algo especial aquí es que nadie puede tener 2.4 hermanos, los valores tienen que ser números enteros. Cuando son conteos así, la distribución de los datos provienen frecuentemente de una distribución <strong>Poisson</strong> (veremos más tarde).<br />
+</li>
+<li>Números de hermanos (0, 2, 5, 3, 8, 4)</li>
+</ul></li>
+</ul>
+</div>
+<div id="varriables-discretas" class="section level3">
+<h3>Varriables Discretas</h3>
+<ul>
+<li>Categórica o Discreta
+<ul>
+<li>Variables Nominales]
+<ul>
+<li>Hombres y Mujeres</li>
+<li>Omnívoro, vegetariano, vegano, carnívoro</li>
+</ul></li>
+</ul></li>
+<li>Variable Ordinal
+<ul>
+<li>Datos donde hay un orden en los valores
+<ul>
+<li>primero, segundo, tercero, etc.</li>
+<li>A, B, C, D, F (nota de estudiantes)</li>
+</ul></li>
+</ul></li>
+<li>Variable Binomio
+<ul>
+<li>Tiene solamente dos alternativas
+<ul>
+<li>Vivo o muerto</li>
+<li>Vive en PR o No vive en PR</li>
+<li>Esta embrazada o No esta embarazada</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
