@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Medidas de disperción</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BIOL 3740</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Descripción.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Calendario</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Instalación y Introducción básica
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Instalar-R-RStudio.html">Instalar R y RStudio</a>
+    </li>
+    <li>
+      <a href="Introducción_RMarkdown.html">RMarkdown</a>
+    </li>
+    <li>
+      <a href="Codigos_basicos_en_R.html">Codigos Básicos en R</a>
+    </li>
+    <li>
+      <a href="R_basico.html">R Básico #2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Temas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="T1_Intro.html">T1 Introducción a la Estadística</a>
+    </li>
+    <li>
+      <a href="T1a_Poblacion_Muestra.html">T1a Población, Muestreo y Sesgo</a>
+    </li>
+    <li>
+      <a href="T1b_Inferencias_hipotesis.html">T1b Inferencias y hipotesis</a>
+    </li>
+    <li>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
+    </li>
+    <li>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
+    </li>
+    <li>
+      <a href="T4_Medidas_dispersión.html">T4 Medidas de Dispersión</a>
+    </li>
+    <li>
+      <a href="T4a_Estadistica_descriptiva.html">T4a Estadística Descriptiva</a>
+    </li>
+    <li>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
+    </li>
+    <li>
+      <a href="T6_supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
+    </li>
+    <li>
+      <a href="T7_Frecuencias.html">T7 Pruebas de Bondad de Ajuste</a>
+    </li>
+    <li>
+      <a href="T8_Distribucion_Normal.html">T8 La Distribución Normal</a>
+    </li>
+    <li>
+      <a href="T9_Pruebas_una_muestra.html">T9 Prueba de una muestra</a>
+    </li>
+    <li>
+      <a href="T9a_Pruebas_t-Pareados.html">T9a Prueba-t Pareados</a>
+    </li>
+    <li>
+      <a href="T10_Pruebas_t_Independiente.html">T10 Prueba-t No pareados</a>
+    </li>
+    <li>
+      <a href="T11_ANOVA.html">T11 ANOVA</a>
+    </li>
+    <li>
+      <a href="T13_Correlacion.html">T13 Correlación y Covarianza</a>
+    </li>
+    <li>
+      <a href="T14_Regression.html">T14 Regressión</a>
+    </li>
+    <li>
+      <a href="T14a_Regression_logistica.html">T14a Regressión Logística</a>
+    </li>
+    <li>
+      <a href="T15_Selecionar_Pruebas.html">T15a Selección de pruebas corectas</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejercicios
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Plataforma.html">Ejercico Plataforma de RStudio</a>
+    </li>
+    <li>
+      <a href="RMarkdown.html">Ejercico Plataforma de RMarkdown</a>
+    </li>
+    <li>
+      <a href="Ejercicio_ANOVA.html">Ejercicio de ANOVA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Datos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Archivos_de_Datos.html">Archivos de Datos</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Medidas de disperción</h1>
+
+</div>
+
+
+<p>Fecha de la ultima revisión</p>
+<pre><code>## [1] &quot;2020-08-02&quot;</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(Hmisc)
+library(gridExtra) # Un paquete para organizar las figuras de ggplot2
+library(gt)
+library(tidyverse)</code></pre>
+<hr />
+<div id="que-es-la-dispersión-en-estadística" class="section level1">
+<h1>Que es la dispersión en estadística</h1>
+<p>Las medidas o indices de dispersión, son indicadores de cuan variable los datos son uno del otro. Si todos los valores tienen el mismo valor no hay dispersión. Hay múltiples indices de dispersión vamos a evaluar solamente algunos de estos indices, para más información pueden ir al siguiente enlace <a href="https://en.wikipedia.org/wiki/Statistical_dispersion" class="uri">https://en.wikipedia.org/wiki/Statistical_dispersion</a>.</p>
+<p>Los indices que estaremos estudiando son los siguientes</p>
+<ul>
+<li>el rango</li>
+<li>la varianza</li>
+<li>la desviación estándar</li>
+<li>el error estándar.</li>
+</ul>
+</div>
+<div id="vizualizando-la-dispersión" class="section level1">
+<h1>Vizualizando la dispersión</h1>
+<p>Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes. En el primer conjunto de datos se usa 5000 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.</p>
+<pre class="r"><code>set.seed(8690) # esto es para que los valores se queda igual a cada vez que se corre el analisis
+a=rnorm(5000, 100, 10)
+a=data.frame(a)
+b=rnorm(500, 100, 30)
+b=data.frame(b)</code></pre>
+<pre class="r"><code>dispersion=ggplot(a, aes(a))+
+  geom_density(fill=&quot;blue&quot;, alpha=.5)+
+  geom_density(b, mapping=aes(b,fill=&quot;red&quot;, alpha=.5 ))+
+  theme(legend.position = &quot;none&quot;) +
+  geom_vline(aes(xintercept = 100, colour=&quot;red&quot;))
+ggsave(&quot;Graficos/dispersion.png&quot;)</code></pre>
+<div class="figure">
+<img src="Graficos/dispersion.png" alt="El proceso de Investigación" width="60%" />
+<p class="caption">
+El proceso de Investigación
+</p>
+</div>
+<hr />
+</div>
+<div id="el-rango" class="section level1">
+<h1>El rango</h1>
+<p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
+<pre class="r"><code>range(a$a)</code></pre>
+<pre><code>## [1]  67.77126 133.87095</code></pre>
+<pre class="r"><code>range(b$b)</code></pre>
+<pre><code>## [1]  -8.410994 190.670576</code></pre>
+<div id="la-varianza" class="section level2">
+<h2>La varianza</h2>
+<p>Los pasos para calcular la varianza son los siguientes</p>
+<ol style="list-style-type: decimal">
+<li>tener un conjunto de datos, aquí lo llamamos <strong>Data</strong></li>
+<li>convertir esta lista en un data frame</li>
+<li>Calcular el promedio de los datos</li>
+<li>restar el promedio de cada valor y cuadralos</li>
+<li>Sumar y restas de <strong>n-1</strong>, done <strong>n</strong> es la cantidad de datos</li>
+</ol>
+<p><span class="math display">\[{ s }^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }\]</span></p>
+<pre class="r"><code>library(tidyverse)
+Data=c(1,2,3,4,5,6)
+Data_df=data.frame(Data)
+Data_df</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
+<col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Data</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td></tr>
+</table>
+
+<pre class="r"><code>Data_df$mean_Data=mean(Data)   # here we add the mean to each row
+Data_df</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
+<col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Data</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean_Data</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td></tr>
+</table>
+
+<pre class="r"><code>Data_df$Diff=Data_df$Data-Data_df$mean_Data 
+          # calculate the difference between the data and the mean
+sum(Data_df$Diff) # si los valores no se cuadra la suma sera zero.</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>Data_df$SS=(Data_df$Data-Data_df$mean_Data)^2 # SS para la suma de los cuadrados 
+Data_df</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
+<col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Data</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean_Data</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Diff</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SS</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-2.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6.25</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-1.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.25</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.25</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.25</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.25</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6.25</td></tr>
+</table>
+
+<pre class="r"><code>sum(Data_df$SS)</code></pre>
+<pre><code>## [1] 17.5</code></pre>
+<pre class="r"><code> #  This is called the Deviation &quot;from the mean&quot;</code></pre>
+<hr />
+</div>
+<div id="calcular-la-varianza-con-var" class="section level2">
+<h2>Calcular la varianza con <strong>var()</strong></h2>
+<p>Ahora la manera fácil de hacer los análisis, usar la función <strong>var</strong>, y no hay que hacer ninguno de los pasos anteriores. Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y cada valor. El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero. Se usa el variancas cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
+<pre class="r"><code>var(Data)</code></pre>
+<pre><code>## [1] 3.5</code></pre>
+<hr />
+</div>
+</div>
+<div id="la-desviación-estandar" class="section level1">
+<h1>La desviación estandar</h1>
+<p>La varianza es un indice que no esta en la misma unidad que los valores recolectado, por ejemplo si se recolecta los datos en centímetros, la varianza es en centímetros cuadrados. Por consecuencia no es necesariamente el mejor para describir la dispersión. Entonces hay que sacar la raíz cuadra de la varianza. La desviación estándar es un indice que se usa para describir la dispersión de una población, en otra palabra cuan diferentes son los datos uno del otro. Se usa el desviación estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
+<p><span class="math display">\[{ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }\]</span> o más sencillo</p>
+<p><span class="math display">\[s=\sqrt{s^2}\]</span></p>
+<p>la función <strong>sd</strong>, “standard deviation” es sumamente facil de calcular en R.</p>
+<pre class="r"><code>sd(Data_df$Data)  # deviación estandard</code></pre>
+<pre><code>## [1] 1.870829</code></pre>
+<hr />
+</div>
+<div id="el-rango-intertcuartil." class="section level1">
+<h1>El rango intertcuartil.</h1>
+<p>La función básica es <strong>quantile</strong> si lo dejamos sin más instrucción calcula los siguientes probabilidades 0%, 25%, 50% (mediana), 75%, 100%. Pero si uno quiere los valores que se encuentra en una posición especifica hay que usar <strong>type =1</strong> como se ve en el segundo ejemplo. Hay 9 tipos de cuantiles con esta función, estos se encuentra definido en RStudio. Añade <strong>quantile</strong> en el artea de <strong>help</strong> y vera las otras alternativas.</p>
+<pre class="r"><code>quantile(Data) # la función básica (0%, 25%, 50% (mediana), 75%, 100%)</code></pre>
+<pre><code>##   0%  25%  50%  75% 100% 
+## 1.00 2.25 3.50 4.75 6.00</code></pre>
+<pre class="r"><code># Seleccionar los cuantiles específicos.
+quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975))   </code></pre>
+<pre><code>##  1.5%   25%   50%   75% 97.5% 
+## 1.075 2.250 3.500 4.750 5.875</code></pre>
+<p>Para explicar estos conceptos mejor visualizamos los datos</p>
+<table>
+<thead>
+<tr class="header">
+<th>i</th>
+<th align="right">x[i]</th>
+<th align="center">Mediana</th>
+<th align="center">Cuartiles</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="right">03</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="right">19</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="right">27</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="right">33</td>
+<td align="center"></td>
+<td align="center">Q1=33</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="right">52</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td align="right">60</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td align="right">77</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td align="right">87</td>
+<td align="center">Q2=87</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td align="right">99</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td align="right">101</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td align="right">122</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td align="right">137</td>
+<td align="center"></td>
+<td align="center">Q3=137</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td align="right">140</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td align="right">142</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td align="right">150</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Ahora usamos la función <strong>quantile</strong> con el type=1 de calcular los cuartiles y vermos si tenemos los mismos resultados.</p>
+<pre class="r"><code>dat=c(3,19,27,33,52,60,77,87,99,101,122,137,140,142,150)
+
+quantile(dat, type =1)</code></pre>
+<pre><code>##   0%  25%  50%  75% 100% 
+##    3   33   87  137  150</code></pre>
+<hr />
+</div>
+<div id="el-error-estandard" class="section level1">
+<h1>El error estandard</h1>
+<p>El termino correcto es el <em>error de las desviación estándar</em> pero típicamente acortado a <em>error estándar</em>. El indice de error estándar es para describir cual es la posible dispersión del promedio. En otra palabra cuan confiado estamos con el estimado del promedio. Más grande el error estándar menos confiado estamos con el promedio. Se usa el error estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
+<p>La formula de error estándar es la siguiente usando la desviación estándar</p>
+<p><span class="math display">\[s_{\overline{x}}=\frac{s}{\sqrt{n}}\]</span> o usando la varianza, donde la <strong>n</strong> es la cantidad de datos</p>
+<p><span class="math display">\[s_{\overline{x}}=\sqrt{\frac{s^2}{n}}\]</span> Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución. er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice. Vemos que cuando hay más dispersión el error estándar es más grande.</p>
+<pre class="r"><code>es_a= sd(a$a)/sqrt(length(a$a))
+
+es_b= sd(b$b)/sqrt(length(b$b))
+
+es_a</code></pre>
+<pre><code>## [1] 0.1405601</code></pre>
+<pre class="r"><code>es_b</code></pre>
+<pre><code>## [1] 1.32255</code></pre>
+<hr />
+</div>
+<div id="el-intervalo-de-confianza-de-95-del-promedio" class="section level1">
+<h1>El intervalo de confianza de 95% del promedio</h1>
+<p>Ya que hemos calculado el error estándar podemos calcular la dispersión de los promedios. Esto quiere decir que si uno repite la recolección de datos el promedio tiene un 95% de probabilidad estar en este rango. Uno calcula los limites de la dispersión de los promedios usando la siguientes formulas.</p>
+<p><span class="math display">\[Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)\]</span></p>
+<p><span class="math display">\[Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)\]</span></p>
+<pre class="r"><code>Limite_inferior_a=mean(a$a)-(es_a+1.96)
+Limite_superior_a=mean(a$a)+(es_a+1.96)
+
+Limite_inferior_a</code></pre>
+<pre><code>## [1] 97.90828</code></pre>
+<pre class="r"><code>Limite_superior_a</code></pre>
+<pre><code>## [1] 102.1094</code></pre>
+<pre class="r"><code>Limite_inferior_b=mean(b$b)-(es_b+1.96)
+Limite_superior_b=mean(b$b)+(es_b+1.96)
+
+mean_b=mean(b$b)
+Limite_inferior_b</code></pre>
+<pre><code>## [1] 96.19911</code></pre>
+<pre class="r"><code>Limite_superior_b</code></pre>
+<pre><code>## [1] 102.7642</code></pre>
+<p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
+<pre class="r"><code>CIa=ggplot(a, aes(a))+
+  geom_density(fill=&quot;blue&quot;, alpha=.5)+
+  theme(legend.position = &quot;none&quot;) +
+  geom_vline(aes(xintercept = 100), colour=&quot;red&quot;)+
+  geom_vline(aes(xintercept = Limite_inferior_a), colour=&quot;black&quot;)+
+  geom_vline(aes(xintercept = Limite_superior_a), colour=&quot;black&quot;)+
+  xlim(90,110)
+
+CIb=ggplot(b, aes(b))+
+  geom_density(fill=&quot;blue&quot;, alpha=.5)+
+  theme(legend.position = &quot;none&quot;) +
+  geom_vline(aes(xintercept =mean_b), colour=&quot;red&quot;)+
+  geom_vline(aes(xintercept = Limite_inferior_b), colour=&quot;black&quot;)+
+  geom_vline(aes(xintercept = Limite_superior_b), colour=&quot;black&quot;)+
+  xlim(90,110)
+
+grid.arrange(CIa,CIb, ncol=2)</code></pre>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-14-1.png" width="100%" /></p>
+<hr />
+<div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
+<h2>El intervalos de confianza de los datos</h2>
+<p>Para tener una idea de la distribución de los datos y cual es el porcentaje de valores que esté incluido (asumiendo una distribución normal). Podemos crear un gráfico que demuestra el porcentaje incluidos basado en la desviación estándar. Nota aquí no es la dispersión del promedio pero la dispersión de los datos en la población.</p>
+<hr />
+</div>
+<div id="rangos-incluidos-en-intervalos-de-confianza" class="section level2">
+<h2>Rangos incluidos en intervalos de confianza</h2>
+<p>Cálculos el promedio y la desviación estándar de los datos. Lo haremos por genero. Si uno calcula el rango de promedio ± 1 sd, esto incluye 68.2% de los datos, si incluimos el promedio ± 2 sd incluye 95.6% de los datos,</p>
+<table>
+<caption>Rangos incluidos en intervalos de confianza</caption>
+<thead>
+<tr class="header">
+<th align="center">sd</th>
+<th align="center">rango inluido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">el promedio</td>
+</tr>
+<tr class="even">
+<td align="center">±1</td>
+<td align="center">68.2%</td>
+</tr>
+<tr class="odd">
+<td align="center">±2</td>
+<td align="center">95.6%</td>
+</tr>
+<tr class="even">
+<td align="center">±3</td>
+<td align="center">99.7%</td>
+</tr>
+<tr class="odd">
+<td align="center">±4</td>
+<td align="center">99.99%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="ejemplo-del-intervalo-de-confianza" class="section level1">
+<h1>Ejemplo del intervalo de confianza</h1>
+<div id="el-intervalo-de-confianza-de-colesterol-en-los-iranis" class="section level2">
+<h2>El intervalo de confianza de colesterol en los Iranis</h2>
+<p>Comenzamos con evaluar el intervalo de confianza de los datos con datos teóricos. Por ejemplo el nivel de colesterol en el plasma varia en los humanos. En el siguiente articulo <em>Plasma total cholesterol level and some related factors in northern Iranian people</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/</a></p>
+<p>Usamos los datos para las mujeres con un promedio de 196.7 y una desviación estándar de 39.11. Con estos datos asumimos que esto provienen de una distribución normal y que representa las mujeres en resto del mundo.</p>
+<pre class="r"><code># Creamos un conjunto de datos para los análisis
+
+Col=rnorm(200000, 196.7, 39.11)
+Col=data_frame(Col)
+
+promCol=Col%&gt;%
+  summarise(Mean=mean(Col))
+  
+sdCol=Col%&gt;%
+  summarise(sd=sd(Col))</code></pre>
+<p>Visualizar los datos: Uds conoce su nivel de colesterol total? Donde se encuentra en esta distribución? Se encuentra en el 68%? Nota que la suma de todos los porcentaje es igual a 100%.</p>
+<pre class="r"><code>library(grid)
+library(gtable)
+
+lims &lt;- c(28, 350)
+
+breaks.major2&lt;-c(0, 79, 118, 157, 
+                 197, 235, 274, 314)
+breaks.minor2= c(79, 118, 157,197, 
+                235, 274, 314,379)
+breaks.comb &lt;- sort(c(breaks.major2, breaks.minor2-1.0E-6))
+labels.comb&lt;- c(0, 79, &quot;\n-3sd&quot;, 118, &quot;\n-2sd&quot;, 157, &quot;\n-1sd&quot;, 197, &quot;\npromedio&quot;,
+                 235,  &quot;\n+1sd&quot;,274, &quot;\n+2sd&quot;, 314,&quot;\n+3sd&quot;, 379)
+Col%&gt;%
+ggplot(aes(Col))+
+  geom_density(fill=&quot;blue&quot;, colour=&quot;white&quot;,alpha=.5)+
+  theme(legend.position = &quot;none&quot;)+
+  geom_vline(xintercept=as.numeric(promCol), colour=&quot;black&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promCol-sdCol)), colour=&quot;blue&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promCol+sdCol)), colour=&quot;blue&quot;)+
+geom_vline(aes(xintercept = as.numeric(promCol-2*sdCol)), colour=&quot;red&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promCol+2*sdCol)), colour=&quot;red&quot;)+
+geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour=&quot;orange&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promCol+3*sdCol)), colour=&quot;orange&quot;)+ scale_x_continuous(expand=c(0,0), limit=lims, 
+                                minor_breaks=breaks.minor2, 
+                                breaks=breaks.comb,
+                                labels=labels.comb)+
+  xlab(&quot;Nivel de colesterol&quot;)+
+  annotate(&quot;text&quot;, x=180, y = .004, label=&quot;34.1%&quot;)+
+  annotate(&quot;text&quot;, x=210, y = .004, label=&quot;34.1%&quot;)+
+  annotate(&quot;text&quot;, x=140, y = .002, label=&quot;13.6%&quot;)+
+  annotate(&quot;text&quot;, x=250, y = .002, label=&quot;13.6%&quot;)+
+  annotate(&quot;text&quot;, x=90, y = .001, label=&quot;2.1%&quot;)+
+  annotate(&quot;text&quot;, x=295, y = .001, label=&quot;2.1%&quot;)+
+  annotate(&quot;text&quot;, x=70, y = .0005, label=&quot;0.1%&quot;)+
+  annotate(&quot;text&quot;, x=330, y = .0005, label=&quot;0.1%&quot;)</code></pre>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="otro-ejemplo-de-los-intevalos-de-confianzas" class="section level2">
+<h2>Otro ejemplo de los intevalos de confianzas</h2>
+<div id="la-altura-de-los-humanos" class="section level3">
+<h3>La altura de los humanos</h3>
+<p>Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website. Están disponible en debajo la pestaña de “Los Datos”. <a href="https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data" class="uri">https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data</a></p>
+<pre class="r"><code>library(readr)
+Alturas_Humanos &lt;- read_csv(&quot;Data_files_csv/Alturas_Humanos.csv&quot;)
+gt(head(Alturas_Humanos))</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#fzkzxgcbyu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#fzkzxgcbyu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fzkzxgcbyu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#fzkzxgcbyu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#fzkzxgcbyu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fzkzxgcbyu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fzkzxgcbyu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#fzkzxgcbyu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#fzkzxgcbyu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#fzkzxgcbyu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#fzkzxgcbyu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#fzkzxgcbyu .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fzkzxgcbyu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fzkzxgcbyu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#fzkzxgcbyu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#fzkzxgcbyu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#fzkzxgcbyu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#fzkzxgcbyu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#fzkzxgcbyu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fzkzxgcbyu .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#fzkzxgcbyu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fzkzxgcbyu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#fzkzxgcbyu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fzkzxgcbyu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fzkzxgcbyu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#fzkzxgcbyu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fzkzxgcbyu .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#fzkzxgcbyu .gt_left {
+  text-align: left;
+}
+
+#fzkzxgcbyu .gt_center {
+  text-align: center;
+}
+
+#fzkzxgcbyu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#fzkzxgcbyu .gt_font_normal {
+  font-weight: normal;
+}
+
+#fzkzxgcbyu .gt_font_bold {
+  font-weight: bold;
+}
+
+#fzkzxgcbyu .gt_font_italic {
+  font-style: italic;
+}
+
+#fzkzxgcbyu .gt_super {
+  font-size: 65%;
+}
+
+#fzkzxgcbyu .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="fzkzxgcbyu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Genero</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Altura_cm</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Peso_kg</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Hombres</td>
+      <td class="gt_row gt_right">174</td>
+      <td class="gt_row gt_right">96</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Hombres</td>
+      <td class="gt_row gt_right">189</td>
+      <td class="gt_row gt_right">87</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Mujer</td>
+      <td class="gt_row gt_right">185</td>
+      <td class="gt_row gt_right">110</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Mujer</td>
+      <td class="gt_row gt_right">195</td>
+      <td class="gt_row gt_right">104</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Hombres</td>
+      <td class="gt_row gt_right">149</td>
+      <td class="gt_row gt_right">61</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Hombres</td>
+      <td class="gt_row gt_right">189</td>
+      <td class="gt_row gt_right">104</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+<p>Calculamos los promedios y las desviación estándar para añadirlos al gráfico</p>
+<pre class="r"><code>library(tidyverse)
+promM=Alturas_Humanos%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Mujer&quot;)%&gt;%
+  summarise(Mean=mean(Altura_cm))
+promM </code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:1">
+<col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Mean</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">170</td></tr>
+</table>
+
+<pre class="r"><code>promH=Alturas_Humanos%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Hombres&quot;)%&gt;%
+  summarise(Mean=mean(Altura_cm))
+
+sdM=Alturas_Humanos%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Mujer&quot;)%&gt;%
+  summarise(sd=sd(Altura_cm))
+  
+sdH=Alturas_Humanos%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Hombres&quot;)%&gt;%
+  summarise(sd=sd(Altura_cm))</code></pre>
+<p>Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.</p>
+<pre class="r"><code>Alturas_Humanos%&gt;%
+  dplyr::select(Genero, Altura_cm)%&gt;%
+  filter(Genero==&quot;Mujer&quot;)%&gt;%
+ggplot(aes(Altura_cm))+
+  geom_histogram(fill=&quot;blue&quot;, colour=&quot;white&quot;,alpha=.5)+
+  theme(legend.position = &quot;none&quot;)+
+  geom_vline(xintercept=as.numeric(promM), colour=&quot;black&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promM-sdM)), colour=&quot;blue&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promM+sdM)), colour=&quot;blue&quot;)+
+geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour=&quot;red&quot;)+
+  geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour=&quot;red&quot;)</code></pre>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/2-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level3">
+<h3>Ejercicio: Ahora prepara el mismo gráfico para los hombres.</h3>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

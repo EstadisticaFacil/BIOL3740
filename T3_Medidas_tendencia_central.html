@@ -563,9 +563,15 @@ library(statip)</code></pre>
 <pre class="r"><code>df=rpois(10000, 100)
 df1=data.frame(df)
 head(df1, n=2)</code></pre>
-<pre><code>##    df
-## 1 106
-## 2  94</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:rpois">
+<col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">df</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">103</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">110</td></tr>
+</table>
+
 <p>Lo que uno observa es que los tres valores son muy cercano uno del otro.</p>
 <pre class="r"><code>library(statip)
 #mean(df1$df)
@@ -574,25 +580,22 @@ head(df1, n=2)</code></pre>
 <p>Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda). En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta. Se observa que los tres valores son cerca del centro.</p>
 <pre class="r"><code>pro=mean(df1$df)
 med=median(df1$df)
-mod=statip::mfv(df1$df)
-
-a=ggplot(df1, aes(df ))+
-  geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;, binwidth = 5)+
+mod=statip::mfv(df1$df)</code></pre>
+<pre class="r"><code>a=ggplot(df1, aes(df))+
+  geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;, binwidth = 3)+
   geom_vline(aes(xintercept = pro), colour=&quot;red&quot;)+
   geom_vline(aes(xintercept = med), colour=&quot;blue&quot;)+
   geom_vline(aes(xintercept = mod), colour=&quot;green&quot;)+
-  theme(legend.position = &quot;none&quot;)
-
-b=ggplot(df1, aes(df ))+
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<pre class="r"><code>b=ggplot(df1, aes(df))+
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;, binwidth = 1)+
   geom_vline(aes(xintercept = pro), colour=&quot;red&quot;)+
   geom_vline(aes(xintercept = med), colour=&quot;blue&quot;)+
   geom_vline(aes(xintercept = mod), colour=&quot;green&quot;)+
   xlim(94,105)+
-  theme(legend.position = &quot;none&quot;)
-
-grid.arrange(a,b, ncol=2)</code></pre>
-<p><img src="T3_Medidas_tendencia_central_files/figure-html/viszual-1.png" width="672" /></p>
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<pre class="r"><code>gridExtra::grid.arrange(a,b, ncol=1)</code></pre>
+<p><img src="T3_Medidas_tendencia_central_files/figure-html/together-1.png" width="672" /></p>
 <div id="distribución-cuando-los-tres-valores-de-tendencia-centrtal-no-son-iguales." class="section level2">
 <h2>Distribución cuando los tres valores de tendencia centrtal no son iguales.</h2>
 <p>En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande. Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro.</p>
@@ -635,19 +638,28 @@ grid.arrange(c,d, ncol=2)</code></pre>
 <pre class="r"><code>dfBin=replicate(10000,rbinom(length(.6), size=1,prob =0.6))
 dfBin=data.frame(dfBin)
 head(dfBin)</code></pre>
-<pre><code>##   dfBin
-## 1     1
-## 2     0
-## 3     0
-## 4     0
-## 5     1
-## 6     0</code></pre>
-<p>Ahora vamos a producir el gráfico. Lo que uno observa es que el promedio esta en el centro cerca de .6, pero no hay ningún dato cerca del promedio. El promedio no representa la “tendencia central” de la distribución.</p>
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:rbinom">
+<col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">dfBin</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+</table>
+ Ahora vamos a producir el gráfico. Lo que uno observa es que el promedio esta en el centro cerca de .6, pero no hay ningún dato cerca del promedio. El promedio no representa la “tendencia central” de la distribución.</p>
 <pre class="r"><code>mea=mean(dfBin$dfBin)
 med=median(dfBin$dfBin)
 mod=mfv(dfBin$dfBin)
 mea</code></pre>
-<pre><code>## [1] 0.5998</code></pre>
+<pre><code>## [1] 0.6023</code></pre>
 <pre class="r"><code>ggplot(dfBin, aes(dfBin))+
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;)+
   geom_vline(aes(xintercept = mea), colour=&quot;red&quot;)+

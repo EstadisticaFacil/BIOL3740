@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Prueba de hipótesis de Fecuencia</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BIOL 3740</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Descripción.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Calendario</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Instalación y Introducción básica
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Instalar-R-RStudio.html">Instalar R y RStudio</a>
+    </li>
+    <li>
+      <a href="Introducción_RMarkdown.html">RMarkdown</a>
+    </li>
+    <li>
+      <a href="Codigos_basicos_en_R.html">Codigos Básicos en R</a>
+    </li>
+    <li>
+      <a href="R_basico.html">R Básico #2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Temas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="T1_Intro.html">T1 Introducción a la Estadística</a>
+    </li>
+    <li>
+      <a href="T1a_Poblacion_Muestra.html">T1a Población, Muestreo y Sesgo</a>
+    </li>
+    <li>
+      <a href="T1b_Inferencias_hipotesis.html">T1b Inferencias y hipotesis</a>
+    </li>
+    <li>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
+    </li>
+    <li>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
+    </li>
+    <li>
+      <a href="T4_Medidas_dispersión.html">T4 Medidas de Dispersión</a>
+    </li>
+    <li>
+      <a href="T4a_Estadistica_descriptiva.html">T4a Estadística Descriptiva</a>
+    </li>
+    <li>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
+    </li>
+    <li>
+      <a href="T6_supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
+    </li>
+    <li>
+      <a href="T7_Frecuencias.html">T7 Pruebas de Bondad de Ajuste</a>
+    </li>
+    <li>
+      <a href="T8_Distribucion_Normal.html">T8 La Distribución Normal</a>
+    </li>
+    <li>
+      <a href="T9_Pruebas_una_muestra.html">T9 Prueba de una muestra</a>
+    </li>
+    <li>
+      <a href="T9a_Pruebas_t-Pareados.html">T9a Prueba-t Pareados</a>
+    </li>
+    <li>
+      <a href="T10_Pruebas_t_Independiente.html">T10 Prueba-t No pareados</a>
+    </li>
+    <li>
+      <a href="T11_ANOVA.html">T11 ANOVA</a>
+    </li>
+    <li>
+      <a href="T13_Correlacion.html">T13 Correlación y Covarianza</a>
+    </li>
+    <li>
+      <a href="T14_Regression.html">T14 Regressión</a>
+    </li>
+    <li>
+      <a href="T14a_Regression_logistica.html">T14a Regressión Logística</a>
+    </li>
+    <li>
+      <a href="T15_Selecionar_Pruebas.html">T15a Selección de pruebas corectas</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejercicios
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Plataforma.html">Ejercico Plataforma de RStudio</a>
+    </li>
+    <li>
+      <a href="RMarkdown.html">Ejercico Plataforma de RMarkdown</a>
+    </li>
+    <li>
+      <a href="Ejercicio_ANOVA.html">Ejercicio de ANOVA</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Datos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Archivos_de_Datos.html">Archivos de Datos</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Prueba de hipótesis de Fecuencia</h1>
+
+</div>
+
+
+<p>Fecha de la ultima revisión</p>
+<pre><code>## [1] &quot;2020-08-02&quot;</code></pre>
+<hr />
+<div id="bondad-de-ajuste-y-table-de-contingencia" class="section level1">
+<h1>Bondad de ajuste y Table de Contingencia</h1>
+<p>Este tipo de prueba es frecuentemente conocido erróneamente como la prueba de Chi cuadrado. Los tipos de datos necesarios son distintos a las pruebas anteriores. En las pruebas que en los próximos módulos siempre habrá por lo menos una variable donde la unidad era el número de individuos, el largo o ancho en una unidad (cm, metro, celsius, etc) o sea una variable continua. Ahora para la pruebas de Bondad de ajuste y Tabla de Contingencia se contabiliza el número de eventos por categoría. En otra palabra es la frecuencia que ocurre un evento.</p>
+<p>En esta sección no estamos interesado en evaluar los valores con datos que son continuos como la altura o el tamaño. Las variables que se usa son variables categóricas, o sea los valores son la frecuencia de un evento (o la ausencia de un evento).</p>
+<blockquote>
+<p>Los datos tienen que caer exactamente en una categoría, por ejemplo</p>
+</blockquote>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>vivo o muerto.</li>
+<li>presente o ausente.</li>
+<li>blanco, rojo, verde, azul.</li>
+<li>estar embarazada o no.</li>
+<li>Tiene el fenotipo dominante o recesivo.</li>
+<li>En una herencia mendeliana, los individuos son homocigóticos recesivo, dominantes o heterocigóticos.</li>
+</ol>
+</blockquote>
+<hr />
+</div>
+<div id="qué-son-supuestos" class="section level1">
+<h1>Qué son supuestos</h1>
+<p>Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para que la prueba sea utilizada. El incumplimiento de de los supuestos resulta en que el los resultados de la prueba tenga un nivel de tipo de error I y tipo de error II más grande que los especificado (por ejemplo si selecciona un <span class="math inline">\(\alpha\)</span> de 0.05, el error seria más grande). Si se usa datos usa datos erróneos puede ser que la prueba sea completamente invalida.</p>
+<hr />
+</div>
+<div id="los-supuestos-de-las-pruebas-de-frecuencias." class="section level1">
+<h1>Los supuestos de las pruebas de frecuencias.</h1>
+<ol style="list-style-type: decimal">
+<li>Los datos son frecuencias.</li>
+<li>Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).</li>
+<li>Las observaciones son independiente una de la otra.</li>
+<li>Cada categoría tiene una frecuencia esperada suficiente grande:
+<ol style="list-style-type: lower-alpha">
+<li>ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o menos categorías</li>
+<li>no más de 20% de las categorías tienen un valor esperado de 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1.</li>
+</ol></li>
+</ol>
+<hr />
+</div>
+<div id="instalar-y-activar-los-siguientes-packages" class="section level1">
+<h1>Instalar y activar los siguientes packages</h1>
+<pre class="r"><code>#----Instalar los paquetes-----
+#install.packages(&quot;gmodels&quot;)
+#install.packages(&quot;MASS&quot;)
+if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;)
+pacman::p_load(gmodels, MASS, gt)
+
+#------Activar los paquetes-----
+
+library(gmodels) 
+library(MASS) 
+library(gt)</code></pre>
+<hr />
+<div id="gregory-mendel-y-sus-guisantes" class="section level2">
+<h2>Gregory Mendel y sus guisantes</h2>
+<p>Gregory Mendel (1822-1884) el padre de herencia “mendeliana” estaba interesada en determinar como se hereda las características de los organismos. En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia. Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible. Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo “x” hay un individuo del fenotipo “y”.</p>
+<p>Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aquí esta la publicación original en aleman y su traducción en ingles.</p>
+<p>Mendel, J.G. (1866). “Versuche über Pflanzenhybriden”, Verhandlungen des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865, Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.; Bateson, William (1901). “Experiments in plant hybridization” (PDF). Journal of the Royal Horticultural Society. 26: 1–32. Retrieved 9 October 2009.</p>
+<p>Tabla de los resultados de experimentos original de Gregor Mendel con semillas redondas y arrugadas. Cada uno represente un experimento y la cantidad de guisantes redondos o arrugadas.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Plantas</th>
+<th align="right">redonda</th>
+<th align="right">arrugada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="right">45</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="right">27</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="right">24</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td align="right">19</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td align="right">32</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td align="right">26</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td align="right">88</td>
+<td align="right">24</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td align="right">22</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td align="right">28</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td align="right">25</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td align="right">336</td>
+<td align="right">101</td>
+</tr>
+</tbody>
+</table>
+<p>En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas. Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 deberían ser las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp).</p>
+<hr />
+</div>
+</div>
+<div id="bondad-de-ajuste." class="section level1">
+<h1>Bondad de Ajuste.</h1>
+<p>La prueba de bondad de ajuste y de tabla de contingencia son pruebas que evalúa la cantidad/frecuencia en las categorías y lo compara con un modelo nulo. En este caso lo que se compará es la cantidad de la frecuencia observada <span class="math inline">\(o\)</span>, con la frecuencia esperada <span class="math inline">\(e\)</span>. La formula es la siguiente</p>
+<p><span class="math display">\[\chi^2=\sum_{n=i}^n\frac{\left(o-e\right)^2}{e}\]</span></p>
+<p>Usamos un ejemplo sencillo de los datos de Mendel haciendo los cálculos a mano de una proporción 3:1 de herencia de los fenotipos redonda:arrugada. Los datos son de la primer linea de uno de los experimentos que hizo Mendel.</p>
+<pre class="r"><code>library(knitr)
+library(kableExtra)
+df &lt;- data.frame(Calculos = c(&quot;Observado&quot;,&quot;Esperado&quot;, &quot;(o-e)&quot;, &quot;(o-e)^2&quot;, &quot;$$\\frac{(o-e)^2}{e}$$&quot;, &quot;$$\\chi_{total}^2$$&quot;),
+                 Redonda = c(45, 42.75, 2.25,5.0625, 0.1184, &quot;&quot;),
+                 Arrugada = c(12,14.25, 2.25,5.0625 ,0.3553, &quot;&quot;),
+                 Total = c(&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,0.4737))
+
+kable(df, escape=FALSE)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Calculos
+</th>
+<th style="text-align:left;">
+Redonda
+</th>
+<th style="text-align:left;">
+Arrugada
+</th>
+<th style="text-align:left;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Observado
+</td>
+<td style="text-align:left;">
+45
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Esperado
+</td>
+<td style="text-align:left;">
+42.75
+</td>
+<td style="text-align:left;">
+14.25
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+(o-e)
+</td>
+<td style="text-align:left;">
+2.25
+</td>
+<td style="text-align:left;">
+2.25
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+(o-e)^2
+</td>
+<td style="text-align:left;">
+5.0625
+</td>
+<td style="text-align:left;">
+5.0625
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math display">\[\frac{(o-e)^2}{e}\]</span>
+</td>
+<td style="text-align:left;">
+0.1184
+</td>
+<td style="text-align:left;">
+0.3553
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math display">\[\chi_{total}^2\]</span>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+0.4737
+</td>
+</tr>
+</tbody>
+</table>
+<p>Los pasos para calcular el Chi Cuadrado:</p>
+<ol style="list-style-type: decimal">
+<li>Los valores esperados, en este caso fue una proporción de 3:1</li>
+<li>Las diferencias</li>
+<li>Cuadrar las diferencias</li>
+<li>División por el valor esperado (da los Chi Square parcial)</li>
+<li>Sumar los valores en #4.</li>
+<li>buscar en una tabla de Chi Square el valor critico de Chi Square para la cantidad de grupos menos 1 y el <span class="math inline">\(\alpha\)</span> correspondiente. En este caso se busca un <span class="math inline">\(\alpha\)</span> de 0.05 y el grado de libertad (n-1) = 2-1, n es el número de grupos.</li>
+</ol>
+<p>Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla). Aquí usamos R para conseguir este valor. NOte aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1. Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula. En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.</p>
+<pre class="r"><code>qchisq(0.95, 1)</code></pre>
+<pre><code>## [1] 3.841459</code></pre>
+<p>No hay ninguna razón de hacer los cálculos a mano si tenemos a R para hacerlo. Nota aquí se hace la misma prueba con los mismos datos y tenemos el mismo resultado.</p>
+<hr />
+<div id="primer-ejemplo" class="section level2">
+<h2>Primer ejemplo</h2>
+<p>Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene un Chi Cuadrado de 0.48, p =.49. Como el valor de <em>p</em> es mayor a 0.05, no se rechaza la hipótesis nula y que la frecuencia no es diferente de una proporción de 3:1.</p>
+<pre class="r"><code>obs&lt;-c(45,12)
+esp&lt;-c(0.75,0.25) # este el modelo nulo
+
+chisq.test(x=obs, p=esp)</code></pre>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  obs
+## X-squared = 0.47368, df = 1, p-value = 0.4913</code></pre>
+<hr />
+</div>
+<div id="segundo-ejemplo" class="section level2">
+<h2>Segundo ejemplo</h2>
+<p>Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1. Se observa un Chi cuadrado de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1. se acepta la hipotesis nula.</p>
+<p>Vemos que a re-evaluar los experimentos de Mendel tenemos un resultado que apoya su predicciones. Nota que Mendel NO tenia estadística para determinar si las frecuencias eran diferente o no de 3:1. El hizo observaciones y llego a unas conclusiones.</p>
+<pre class="r"><code>obs&lt;-c(336,101)
+esp&lt;-c(0.75,0.25)
+
+chisq.test(x=obs, p=esp)</code></pre>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  obs
+## X-squared = 0.83066, df = 1, p-value = 0.3621</code></pre>
+<pre class="r"><code>#install.packages(&quot;MASS&quot;, dependencies = TRUE)</code></pre>
+<hr />
+</div>
+</div>
+<div id="prueba-de-bondad-de-ajuste" class="section level1">
+<h1>Prueba de Bondad de Ajuste</h1>
+<p>Esta prueba se usa para</p>
+<p>Los siguientes datos son de Field, Miles and Field 2012.</p>
+<p>Este conjunto de datos represente un experimento ficticio de tratar de entrenar 200 gatos para que bailan basado en si se la da una recompensa o no. Este esta basado en el concepto del psicólogo Ruso Ivan Pavlov (1849-1936) de que se puede enseñar o sea motivar a una acción dando una recompensa. Lo que se llama “condicionar” un proceso de aprendizaje que ocurre entre la asociación de un estimulo ambiental y un comportamiento.</p>
+<p>Primero entramos los datos directamente en una tabla</p>
+<p>Los datos son los siguientes:</p>
+<p>A 38 gatos se la ha dado una recompensa, 28 bailaron y 10 no bailaron. A 162 no se la dado recompensa, y 48 bailaron y 114 no bailaron.</p>
+<p>Se crea dos listas con los resultados y une estas dos filas con <strong>cbind()</strong> y después se la añade un nombre a las filas con <strong>rownames()</strong>. Vemos ahora la tabla de frecuencias de cuantos gtoa bailaron o no y si fueron entrenado por comido o cariño. Nota que no se puede añadir la tilde <strong>~</strong> a la <strong>n</strong> de cariño.</p>
+<pre class="r"><code>#Crear la tabla de contingencia
+
+comida &lt;- c(10, 28)
+carino &lt;- c(114,48)
+catsTable &lt;- cbind(comida, carino)
+rownames(catsTable)&lt;-c(&quot;No_bailan&quot;, &quot;bailan&quot;) # Añade el nombre a las filas
+
+catsTable</code></pre>
+<pre><code>##           comida carino
+## No_bailan     10    114
+## bailan        28     48</code></pre>
+<hr />
+<div id="gráfico-de-mosaico" class="section level2">
+<h2>Gráfico de Mosaico</h2>
+<p>Podemos visualizar la frecuencia de los datos con un gráfico de mosaico. Si la hipótesis nula la organización de las cajas deberían ser más o menos del mismo tamaño. En este caso lo que uno observa es que los que reciben comida y no bailan (1.1) la caja es mucha más pequeña que los que bailan y reciben comida. Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender el patrón.</p>
+<pre class="r"><code>mosaicplot(catsTable)</code></pre>
+<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="prueba-de-independencia-de-frecuencia." class="section level1">
+<h1>Prueba de Independencia de frecuencia.</h1>
+<p>En ingles lo van a ver como “Contingency Tables”</p>
+<p>Los valores esperados en esta caso son calculados directamente de la tabla. Para cada celda <span class="math inline">\(E_{ij}\)</span> donde la {i} representa la fila y la {j} las columnas. El valor esperado se calcula multiplicando la suma de la fila por la suma <span class="math inline">\({R_i}\)</span> de la suma de la columna <span class="math inline">\({C_j}\)</span>. La formula de los valores esperados es la siguiente, donde la N es la suma total de datos.</p>
+<p><span class="math display">\[E_{ij}=\frac{\left(R_i\cdot C_j\right)}{N}\]</span></p>
+<p>Cálculos dos de los valores esperados</p>
+<ol style="list-style-type: decimal">
+<li>Los gatos que reciban comida y bailan</li>
+</ol>
+<p><span class="math display">\[E_{12}=\frac{\left(R_2\cdot C_1\right)}{N}= \frac{(38*76)}{200}=14.44\]</span> 2. Los gatos que reciban cariño y no bailan</p>
+<p><span class="math display">\[E_{21}=\frac{\left(R_1\cdot C_2\right)}{N}= \frac{(124*162)}{200}=100.44\]</span> La prueba es exactamente igual como la anterior donde comparamos el valor observado con el valor esperado. Por ser más de una fila la formula cambia.</p>
+<p><span class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}\]</span> El Chi Cuadrado final es</p>
+<p><span class="math display">\[\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36\]</span></p>
+<hr />
+</div>
+<div id="la-función-crosstable" class="section level1">
+<h1>La función CrossTable</h1>
+<p>Con esta función se calcula el chi cuadrado con los valores esperados. Nota la leyenda al principio para poder entender la organización de los datos. El grado de liberta se calcula con la siguiente formula, el numero de filas -1 multiplicado por la cantidad de columnas menos 1, df= (R-1)(C-1). df = es para grado de libertad.</p>
+<pre class="r"><code>CrossTable(catsTable, fisher = TRUE, chisq = TRUE, 
+           expected = TRUE, sresid = TRUE, format = &quot;SAS&quot;)</code></pre>
+<pre><code>## 
+##  
+##    Cell Contents
+## |-------------------------|
+## |                       N |
+## |              Expected N |
+## | Chi-square contribution |
+## |           N / Row Total |
+## |           N / Col Total |
+## |         N / Table Total |
+## |-------------------------|
+## 
+##  
+## Total Observations in Table:  200 
+## 
+##  
+##              |  
+##              |    comida |    carino | Row Total | 
+## -------------|-----------|-----------|-----------|
+##    No_bailan |        10 |       114 |       124 | 
+##              |    23.560 |   100.440 |           | 
+##              |     7.804 |     1.831 |           | 
+##              |     0.081 |     0.919 |     0.620 | 
+##              |     0.263 |     0.704 |           | 
+##              |     0.050 |     0.570 |           | 
+## -------------|-----------|-----------|-----------|
+##       bailan |        28 |        48 |        76 | 
+##              |    14.440 |    61.560 |           | 
+##              |    12.734 |     2.987 |           | 
+##              |     0.368 |     0.632 |     0.380 | 
+##              |     0.737 |     0.296 |           | 
+##              |     0.140 |     0.240 |           | 
+## -------------|-----------|-----------|-----------|
+## Column Total |        38 |       162 |       200 | 
+##              |     0.190 |     0.810 |           | 
+## -------------|-----------|-----------|-----------|
+## 
+##  
+## Statistics for All Table Factors
+## 
+## 
+## Pearson&#39;s Chi-squared test 
+## ------------------------------------------------------------
+## Chi^2 =  25.35569     d.f. =  1     p =  4.767434e-07 
+## 
+## Pearson&#39;s Chi-squared test with Yates&#39; continuity correction 
+## ------------------------------------------------------------
+## Chi^2 =  23.52028     d.f. =  1     p =  1.236041e-06 
+## 
+##  
+## Fisher&#39;s Exact Test for Count Data
+## ------------------------------------------------------------
+## Sample estimate odds ratio:  0.1519927 
+## 
+## Alternative hypothesis: true odds ratio is not equal to 1
+## p =  1.311709e-06 
+## 95% confidence interval:  0.06086544 0.352389 
+## 
+## Alternative hypothesis: true odds ratio is less than 1
+## p =  7.7122e-07 
+## 95% confidence interval:  0 0.3131634 
+## 
+## Alternative hypothesis: true odds ratio is greater than 1
+## p =  0.9999999 
+## 95% confidence interval:  0.07015399 Inf 
+## 
+## 
+## </code></pre>
+</div>
+<div id="analisis-con-datos-en-una-tabla" class="section level1">
+<h1>Analisis con datos en una tabla</h1>
+<p>Estos son los mismos datos pero no sumado, en otra palabra es información específica sobre cada gato y su tratamiento y si bailo o no. La ventaja de este método es que uno no tiene que hacer el calculo y sumar la frecuancias, se deja la función <strong>CrossTable</strong> hacer la suma. Miran bien la tabla.</p>
+<pre class="r"><code># La data sin sumar
+
+Training&lt;-c(rep(0, 38), rep(1, 162))
+
+Dance&lt;-c(rep(1, 10), rep(0, 28),  rep(1, 114), rep(0, 48))
+
+Training&lt;-factor(Training, labels = c(&quot;Food as Reward&quot;, &quot;Affection as Reward&quot;))
+
+Dance&lt;-factor(Dance, labels = c(&quot;No&quot;, &quot;Yes&quot;))
+
+catsData&lt;-data.frame(Training, Dance)
+
+gt(head(catsData, n=3))</code></pre>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#mcrdjejryu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mcrdjejryu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mcrdjejryu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mcrdjejryu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mcrdjejryu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcrdjejryu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mcrdjejryu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mcrdjejryu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mcrdjejryu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mcrdjejryu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mcrdjejryu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mcrdjejryu .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mcrdjejryu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mcrdjejryu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mcrdjejryu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mcrdjejryu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mcrdjejryu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mcrdjejryu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#mcrdjejryu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcrdjejryu .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#mcrdjejryu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcrdjejryu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mcrdjejryu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcrdjejryu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mcrdjejryu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#mcrdjejryu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mcrdjejryu .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#mcrdjejryu .gt_left {
+  text-align: left;
+}
+
+#mcrdjejryu .gt_center {
+  text-align: center;
+}
+
+#mcrdjejryu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mcrdjejryu .gt_font_normal {
+  font-weight: normal;
+}
+
+#mcrdjejryu .gt_font_bold {
+  font-weight: bold;
+}
+
+#mcrdjejryu .gt_font_italic {
+  font-style: italic;
+}
+
+#mcrdjejryu .gt_super {
+  font-size: 65%;
+}
+
+#mcrdjejryu .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="mcrdjejryu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Training</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Dance</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_center">Food as Reward</td>
+      <td class="gt_row gt_center">Yes</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">Food as Reward</td>
+      <td class="gt_row gt_center">Yes</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">Food as Reward</td>
+      <td class="gt_row gt_center">Yes</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+<pre class="r"><code>gt(tail(catsData, n=3))</code></pre>
+<p><style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#pzqvpqtumw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pzqvpqtumw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pzqvpqtumw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pzqvpqtumw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pzqvpqtumw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pzqvpqtumw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pzqvpqtumw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pzqvpqtumw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pzqvpqtumw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pzqvpqtumw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pzqvpqtumw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pzqvpqtumw .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pzqvpqtumw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pzqvpqtumw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pzqvpqtumw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pzqvpqtumw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pzqvpqtumw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pzqvpqtumw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pzqvpqtumw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pzqvpqtumw .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pzqvpqtumw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pzqvpqtumw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pzqvpqtumw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pzqvpqtumw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pzqvpqtumw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pzqvpqtumw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pzqvpqtumw .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#pzqvpqtumw .gt_left {
+  text-align: left;
+}
+
+#pzqvpqtumw .gt_center {
+  text-align: center;
+}
+
+#pzqvpqtumw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pzqvpqtumw .gt_font_normal {
+  font-weight: normal;
+}
+
+#pzqvpqtumw .gt_font_bold {
+  font-weight: bold;
+}
+
+#pzqvpqtumw .gt_font_italic {
+  font-style: italic;
+}
+
+#pzqvpqtumw .gt_super {
+  font-size: 65%;
+}
+
+#pzqvpqtumw .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="pzqvpqtumw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Training</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Dance</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_center">Affection as Reward</td>
+      <td class="gt_row gt_center">No</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">Affection as Reward</td>
+      <td class="gt_row gt_center">No</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">Affection as Reward</td>
+      <td class="gt_row gt_center">No</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div> ***</p>
+<p>Nota que aquí se llama cada columna aparte en la función (catsData<span class="math inline">\(Training, catsData\)</span>Dance).</p>
+</div>
+<div id="prueba-de-independencia" class="section level1">
+<h1>Prueba de independencia</h1>
+<pre class="r"><code>CrossTable(catsData$Training, catsData$Dance, 
+           fisher = TRUE, chisq = TRUE, expected = TRUE, 
+           sresid = TRUE, format = &quot;SPSS&quot;)</code></pre>
+<pre><code>## 
+##    Cell Contents
+## |-------------------------|
+## |                   Count |
+## |         Expected Values |
+## | Chi-square contribution |
+## |             Row Percent |
+## |          Column Percent |
+## |           Total Percent |
+## |            Std Residual |
+## |-------------------------|
+## 
+## Total Observations in Table:  200 
+## 
+##                     | catsData$Dance 
+##   catsData$Training |       No  |      Yes  | Row Total | 
+## --------------------|-----------|-----------|-----------|
+##      Food as Reward |       28  |       10  |       38  | 
+##                     |   14.440  |   23.560  |           | 
+##                     |   12.734  |    7.804  |           | 
+##                     |   73.684% |   26.316% |   19.000% | 
+##                     |   36.842% |    8.065% |           | 
+##                     |   14.000% |    5.000% |           | 
+##                     |    3.568  |   -2.794  |           | 
+## --------------------|-----------|-----------|-----------|
+## Affection as Reward |       48  |      114  |      162  | 
+##                     |   61.560  |  100.440  |           | 
+##                     |    2.987  |    1.831  |           | 
+##                     |   29.630% |   70.370% |   81.000% | 
+##                     |   63.158% |   91.935% |           | 
+##                     |   24.000% |   57.000% |           | 
+##                     |   -1.728  |    1.353  |           | 
+## --------------------|-----------|-----------|-----------|
+##        Column Total |       76  |      124  |      200  | 
+##                     |   38.000% |   62.000% |           | 
+## --------------------|-----------|-----------|-----------|
+## 
+##  
+## Statistics for All Table Factors
+## 
+## 
+## Pearson&#39;s Chi-squared test 
+## ------------------------------------------------------------
+## Chi^2 =  25.35569     d.f. =  1     p =  4.767434e-07 
+## 
+## Pearson&#39;s Chi-squared test with Yates&#39; continuity correction 
+## ------------------------------------------------------------
+## Chi^2 =  23.52028     d.f. =  1     p =  1.236041e-06 
+## 
+##  
+## Fisher&#39;s Exact Test for Count Data
+## ------------------------------------------------------------
+## Sample estimate odds ratio:  6.579265 
+## 
+## Alternative hypothesis: true odds ratio is not equal to 1
+## p =  1.311709e-06 
+## 95% confidence interval:  2.837773 16.42969 
+## 
+## Alternative hypothesis: true odds ratio is less than 1
+## p =  0.9999999 
+## 95% confidence interval:  0 14.25436 
+## 
+## Alternative hypothesis: true odds ratio is greater than 1
+## p =  7.7122e-07 
+## 95% confidence interval:  3.193221 Inf 
+## 
+## 
+##  
+##        Minimum expected frequency: 14.44</code></pre>
+<pre class="r"><code># Yes, you can do a figure with the 2nd alternative
+Ta2= xtabs(~Training+Dance, data=catsData)
+Ta2</code></pre>
+<pre><code>##                      Dance
+## Training               No Yes
+##   Food as Reward       28  10
+##   Affection as Reward  48 114</code></pre>
+<pre class="r"><code>mosaicplot(Ta2, shade=TRUE)</code></pre>
+<p><img src="T7_Frecuencias_files/figure-html/test2-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="el-color-de-pello-es-independiente-del-sexo" class="section level1">
+<h1>El color de pello es independiente del sexo</h1>
+<p>En la siguiente tabla se encuentra el color de pello de estudiantes de la UPR. La hipótesis es que el color de pelo no esta asociado al sexo de los estudiantes.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Color de Pello</th>
+<th align="right">Mujer</th>
+<th align="right">Hombre</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">Negro</td>
+<td align="right">32</td>
+<td align="right">55</td>
+</tr>
+<tr class="even">
+<td align="right">Marrón</td>
+<td align="right">43</td>
+<td align="right">65</td>
+</tr>
+<tr class="odd">
+<td align="right">Rubio</td>
+<td align="right">16</td>
+<td align="right">64</td>
+</tr>
+<tr class="even">
+<td align="right">Rojo</td>
+<td align="right">9</td>
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+<p>Creamos</p>
+<pre class="r"><code>Negro=c(32,55)
+Marron=c(43, 65)
+Rubio=c(16,64)
+Rojo=c(9,16)
+
+HairColour=cbind(Negro,Marron, Rubio,Rojo) 
+rownames(HairColour)&lt;-c(&quot;Mujer&quot;, &quot;Hombre&quot;) # Añade el nombre a las filas
+
+HairColour</code></pre>
+<pre><code>##        Negro Marron Rubio Rojo
+## Mujer     32     43    16    9
+## Hombre    55     65    64   16</code></pre>
+<p>¿Cual es la hipótesis nula? ¿Cual es la hipótesis alterna?</p>
+<p>El resultado de la prueba. ¿Se acepta o rechaza la hipótesis nula?</p>
+<pre class="r"><code>CrossTable(HairColour, fisher = TRUE, chisq = TRUE, expected = TRUE, sresid = TRUE, format = &quot;SPSS&quot;)</code></pre>
+<pre><code>## 
+##    Cell Contents
+## |-------------------------|
+## |                   Count |
+## |         Expected Values |
+## | Chi-square contribution |
+## |             Row Percent |
+## |          Column Percent |
+## |           Total Percent |
+## |            Std Residual |
+## |-------------------------|
+## 
+## Total Observations in Table:  300 
+## 
+##              |  
+##              |    Negro  |   Marron  |    Rubio  |     Rojo  | Row Total | 
+## -------------|-----------|-----------|-----------|-----------|-----------|
+##        Mujer |       32  |       43  |       16  |        9  |      100  | 
+##              |   29.000  |   36.000  |   26.667  |    8.333  |           | 
+##              |    0.310  |    1.361  |    4.267  |    0.053  |           | 
+##              |   32.000% |   43.000% |   16.000% |    9.000% |   33.333% | 
+##              |   36.782% |   39.815% |   20.000% |   36.000% |           | 
+##              |   10.667% |   14.333% |    5.333% |    3.000% |           | 
+##              |    0.557  |    1.167  |   -2.066  |    0.231  |           | 
+## -------------|-----------|-----------|-----------|-----------|-----------|
+##       Hombre |       55  |       65  |       64  |       16  |      200  | 
+##              |   58.000  |   72.000  |   53.333  |   16.667  |           | 
+##              |    0.155  |    0.681  |    2.133  |    0.027  |           | 
+##              |   27.500% |   32.500% |   32.000% |    8.000% |   66.667% | 
+##              |   63.218% |   60.185% |   80.000% |   64.000% |           | 
+##              |   18.333% |   21.667% |   21.333% |    5.333% |           | 
+##              |   -0.394  |   -0.825  |    1.461  |   -0.163  |           | 
+## -------------|-----------|-----------|-----------|-----------|-----------|
+## Column Total |       87  |      108  |       80  |       25  |      300  | 
+##              |   29.000% |   36.000% |   26.667% |    8.333% |           | 
+## -------------|-----------|-----------|-----------|-----------|-----------|
+## 
+##  
+## Statistics for All Table Factors
+## 
+## 
+## Pearson&#39;s Chi-squared test 
+## ------------------------------------------------------------
+## Chi^2 =  8.987184     d.f. =  3     p =  0.02946177 
+## 
+## 
+##  
+## Fisher&#39;s Exact Test for Count Data
+## ------------------------------------------------------------
+## Alternative hypothesis: two.sided
+## p =  0.02410446 
+## 
+##  
+##        Minimum expected frequency: 8.333333</code></pre>
+<hr />
+</div>
+<div id="prueba-de-exacta-de-fisher" class="section level1">
+<h1>Prueba de Exacta de Fisher</h1>
+<p>La prueba Exacta de Fisher es similar a la prueba de Bondad de Ajuste para evaluar si hay asociación entre dos variables categorías. La diferencia importante es que no es necesario que el valor esperado sea mayor de 5. Por consecuencia se puede usar con muestras más pequeñas.</p>
+<hr />
+</div>
+<div id="los-supuestos-de-las-prueba-exacta-de-fisher." class="section level1">
+<h1>Los supuestos de las prueba Exacta de Fisher.</h1>
+<ol style="list-style-type: decimal">
+<li>Los datos son frecuencias.</li>
+<li>Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).</li>
+<li>Las observaciones son independiente una de la otra.</li>
+<li>La tabla tiene 2 filas y 2 columnas.</li>
+</ol>
+<p>Usando los datos de serpientes del ejemplo 7.4 del libro</p>
+<pre class="r"><code>responde &lt;- c(6, 1)
+no_responde &lt;- c(1,6)
+serpiente &lt;- cbind(responde, no_responde)
+rownames(serpiente)&lt;-c(&quot;Estimulo_ariba&quot;, &quot;Estimulo_lateral&quot;) # Añade el nombre a las filas
+
+serpiente</code></pre>
+<pre><code>##                  responde no_responde
+## Estimulo_ariba          6           1
+## Estimulo_lateral        1           6</code></pre>
+<p>Se puede visualizar los datos con el Mosaico</p>
+<pre class="r"><code>mosaicplot(serpiente)</code></pre>
+<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Nota que se usa la misma función que anterior pero en los resultados hay que fijarse en la sección que dice <strong>Fisher’s Exact test</strong>. Lo que uno observa es que el valor de <strong>p</strong> es menor de 0.05 por consecuencia se rechaza la hipótesis nula. Lo que significa es que para la serpiente el angulo donde proviene el estimulo resulta en una repuesta diferente.</p>
+<hr />
+<pre class="r"><code>fisher.test(serpiente)</code></pre>
+<pre><code>## 
+##  Fisher&#39;s Exact Test for Count Data
+## 
+## data:  serpiente
+## p-value = 0.02914
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##     1.250285 1881.881639
+## sample estimates:
+## odds ratio 
+##    23.4961</code></pre>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
