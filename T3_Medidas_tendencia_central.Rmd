@@ -114,7 +114,7 @@ library(statip)
 Ya pueden ahora usar la **mfv** para encontrar la moda de conjunto de datos. Lo que vemos es que el valor de **7** es el más comun en la lista de datos.   
 
 
-```{r}
+```{r, mode}
 statip::mfv(b)
 ```
 
@@ -125,7 +125,7 @@ statip::mfv(b)
 
 Los tres valores de tendencia central son iguales cuando la distribución es normal, conocida también como en forma de campana. Aquí preparo un lista de datos con distribución normal, y evaluamos donde están los tres valores de tendencia central.  Se usa la función **rpois**, para crear un conjunto de datos al azar con 100000, datos, un promedio de 100.   
 
-```{r}
+```{r, rpois}
 df=rpois(10000, 100)
 df1=data.frame(df)
 head(df1, n=2)
@@ -134,35 +134,35 @@ head(df1, n=2)
 
 Lo que uno observa es que los tres valores son muy cercano uno del otro.   
 
-```{r}
+```{r, parameter poisson}
 library(statip)
-mean(df1$df)
-median(df1$df)
-statip::mfv(df1$df)
+#mean(df1$df)
+#median(df1$df)
+#statip::mfv(df1$df)
 ```
 
 Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda).  En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta.    Se observa que los tres valores son cerca del centro.  
 
 
-```{r}
+```{r, visual}
 
-mea=mean(df1$df)
+pro=mean(df1$df)
 med=median(df1$df)
 mod=statip::mfv(df1$df)
 
-a=ggplot(df1, aes(df ))+
+a=ggplot(df1, aes(df))+
   geom_histogram(fill="orange", colour="white", binwidth = 5)+
-  geom_vline(aes(xintercept = mea), colour="red")+
+  geom_vline(aes(xintercept = pro), colour="red")+
   geom_vline(aes(xintercept = med), colour="blue")+
   geom_vline(aes(xintercept = mod), colour="green")+
   theme(legend.position = "none")
 
-b=ggplot(df1, aes(df ))+
+b=ggplot(df1, aes(df))+
   geom_histogram(fill="orange", colour="white", binwidth = 1)+
-  geom_vline(aes(xintercept = mea), colour="red")+
+  geom_vline(aes(xintercept = pro), colour="red")+
   geom_vline(aes(xintercept = med), colour="blue")+
   geom_vline(aes(xintercept = mod), colour="green")+
-  xlim(95,104)+
+  xlim(94,105)+
   theme(legend.position = "none")
 
 grid.arrange(a,b, ncol=2)
@@ -173,7 +173,7 @@ grid.arrange(a,b, ncol=2)
 
 En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande.  Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro.  
 
-```{r}
+```{r, rbeta}
 dfb= round(rbeta(100000, 3,1, ncp = 0),3)
 dfb=data.frame(dfb)
 
@@ -183,7 +183,7 @@ dfbb=data.frame(dfbb)
 ```
 
 
-```{r}
+```{r, visual beta}
 mea=mean(dfb$dfb)
 med=median(dfb$dfb)
 mod=statip::mfv(dfb$dfb)
@@ -218,14 +218,14 @@ En el siguiente ejemplo podemos ver claramente que las medidas de tendencias cen
 Primero producimos un conjunto de datos que tiene solamente dos alternativas 0 y 1.  Para facilitar los datos e imaginar lo que quiere decir estos datos que cuando es un 0 la persona no tiene hijos y cuando es un 1 tiene hijos. 
 
 
-```{r}
+```{r, rbinom}
 dfBin=replicate(10000,rbinom(length(.6), size=1,prob =0.6))
 dfBin=data.frame(dfBin)
 head(dfBin)
 ```
 Ahora vamos a producir el gráfico. Lo que uno observa es que el promedio esta en el centro cerca de .6, pero no hay ningún dato cerca del promedio.  El promedio no representa la "tendencia central" de la distribución.  
 
-```{r}
+```{r, visual rbinomial}
 mea=mean(dfBin$dfBin)
 med=median(dfBin$dfBin)
 mod=mfv(dfBin$dfBin)
