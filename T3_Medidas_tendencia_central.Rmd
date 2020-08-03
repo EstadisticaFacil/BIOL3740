@@ -149,14 +149,20 @@ Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquier
 pro=mean(df1$df)
 med=median(df1$df)
 mod=statip::mfv(df1$df)
+```
 
+```{r, g1}
 a=ggplot(df1, aes(df))+
-  geom_histogram(fill="orange", colour="white", binwidth = 5)+
+  geom_histogram(fill="orange", colour="white", binwidth = 3)+
   geom_vline(aes(xintercept = pro), colour="red")+
   geom_vline(aes(xintercept = med), colour="blue")+
   geom_vline(aes(xintercept = mod), colour="green")+
   theme(legend.position = "none")
+```
 
+
+
+```{r, g2}
 b=ggplot(df1, aes(df))+
   geom_histogram(fill="orange", colour="white", binwidth = 1)+
   geom_vline(aes(xintercept = pro), colour="red")+
@@ -165,7 +171,10 @@ b=ggplot(df1, aes(df))+
   xlim(94,105)+
   theme(legend.position = "none")
 
-grid.arrange(a,b, ncol=2)
+```
+
+```{r, together}
+gridExtra::grid.arrange(a,b, ncol=1)
 ```
 
 
