@@ -488,7 +488,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-08-02&quot;</code></pre>
+<pre><code>## [1] &quot;2020-08-03&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)
 library(Hmisc)
 library(gridExtra) # Un paquete para organizar las figuras de ggplot2</code></pre>
@@ -563,9 +563,9 @@ library(statip)</code></pre>
 <pre class="r"><code>df=rpois(10000, 100)
 df1=data.frame(df)
 head(df1, n=2)</code></pre>
-<pre><code>##    df
-## 1 110
-## 2  89</code></pre>
+<pre><code>##   df
+## 1 94
+## 2 95</code></pre>
 <p>Lo que uno observa es que los tres valores son muy cercano uno del otro.</p>
 <pre class="r"><code>library(statip)
 #mean(df1$df)
@@ -634,17 +634,17 @@ dfBin=data.frame(dfBin)
 head(dfBin)</code></pre>
 <pre><code>##   dfBin
 ## 1     1
-## 2     1
+## 2     0
 ## 3     1
-## 4     0
-## 5     1
+## 4     1
+## 5     0
 ## 6     1</code></pre>
 <p>Ahora vamos a producir el gráfico. Lo que uno observa es que el promedio esta en el centro cerca de .6, pero no hay ningún dato cerca del promedio. El promedio no representa la “tendencia central” de la distribución.</p>
 <pre class="r"><code>mea=mean(dfBin$dfBin)
 med=median(dfBin$dfBin)
 mod=mfv(dfBin$dfBin)
 mea</code></pre>
-<pre><code>## [1] 0.6028</code></pre>
+<pre><code>## [1] 0.5958</code></pre>
 <pre class="r"><code>ggplot(dfBin, aes(dfBin))+
   geom_histogram(fill=&quot;orange&quot;, colour=&quot;white&quot;)+
   geom_vline(aes(xintercept = mea), colour=&quot;red&quot;)+
