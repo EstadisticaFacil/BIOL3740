@@ -13,6 +13,45 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 ```
 
 
+```{r}
+library(gridExtra)
+```
+
+
+```{r, echo=FALSE}
+library(tidyverse)
+
+rlt_theme <- theme(axis.title.y = element_text(colour="grey20",size=15,face="bold"),
+        axis.text.x = element_text(colour="grey20",size=10, face="bold"),
+        axis.text.y = element_text(colour="grey20",size=15,face="bold"),  
+        axis.title.x = element_text(colour="grey20",size=15,face="bold"))+
+  theme(
+  # Remove panel border
+  panel.border = element_blank(),  
+  # Remove panel grid lines
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  # Remove panel background
+  panel.background = element_blank(),
+  # add thicker border lines
+    axis.line.x = element_line(colour = "black", size = 1),
+    axis.line.y = element_line(colour = "black", size = 1)
+  )
+
+# The palette with grey:
+cbPalette1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# The palette with black:
+cbPalette2 <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# To use for fills, add
+#  scale_fill_manual(values=cbPalette)
+
+# To use for line and point colors, add
+  #scale_colour_manual(values=cbPalette)
+
+```
+
 ```{r, eval=TRUE, echo=FALSE}
 colorize <- function(x, color) {
   if (knitr::is_latex_output()) {
@@ -35,5 +74,237 @@ Sys.Date()
 ```
 
 
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
 
-fcgvhjbnkm
+#`r colorize("some words in red", "red")`
+
+
+```
+
+
+***
+
+# El promedio, un estimado
+
+En este modulo se evalúa el promedio y la propriedades de una distribución normal y el muestreo de para estimar el promedio. En el módulo se evalúa la hipótesis de un muestreo y se estima el intervalo de confianza para estimar el posible rango del promedio.  Es importante reconocer que el muestreo para estimar el promedio $\overline{x}$ es solamente un estimado.  En otra palabra no es necesariamente la VERDAD, o dicho de forma estadística, el promedio del universo, $\mu$ de esta variable. 
+
+
+Con frecuencia se quiere saber conocer información sobre el verdadero promedio, $\mu$ basado en un muestreo.  Por ejemplo cual es promedio de la edad de las Palmas de Sierra en Puerto Rico, cual es el promedio de la presión arterial de los humanos, cual es la producción promedio de mangos en los arboles de mangos.  En cada caso no sabemos cual es el promedio universal, $\mu$ y tampoco no sabemos el valor exacto de la desviación estándar $\sigma$.  
+
+Para evaluar la hipótesis sobre el promedio de la población $\mu$, uno puede utilizar datos recogido al azar, un muestreo y usar estos para inferir cual es el promedio y desviación estándar del universo.
+
+## Ejemplo 9.1 y 9.2. 
+
+Leen estos dos ejercicios, y considera cual es son los valores del universo,$\mu$ y $\sigma$ y el promedio del muestreo $\overline{x}$. 
+
+# La distribución de t
+
+Cuando queremos inferir información del promedio o la desviación del universo de un muestreo hay que utilizar la distribución de t.  La razón es que la forma de la distribución normal cambia con el tamaño de muestra cuando no sabemos cual es la desviación estándar del universo.  A medida que uno reduce el tamaño de muestra la distribución se desvía de una distribución normal.  Para tomar esto en cuenta no usamos la distribución normal la de distribución de t, también se dice la distribución de t de estudiante.  
+
+
+```{r include=FALSE}
+x <- seq(from=-5, to=5, by=0.1)
+
+df1=plot(function(x) dt(x, df = 1), -7, 7, ylim = c(0, 0.42),
+     main="", yaxs="i")
+df1x=df1$x
+df1y=df1$y
+
+df=cbind(df1x, df1y)
+df
+
+df3=plot(function(x) dt(x, df = 3), -7, 7, ylim = c(0, 0.42),
+     main="", yaxs="i")
+df3x=df3$x
+df3y=df3$y
+
+df3=cbind(df3x, df3y)
+
+df5=plot(function(x) dt(x, df = 5), -7, 7, ylim = c(0, 0.42),
+     main="", yaxs="i")
+
+df5x=df5$x
+df5y=df5$y
+
+df5=cbind(df5x, df5y)
+
+dfinf=plot(function(x) dt(x, df = 1000000), -7, 7, ylim = c(0, 0.42),
+     main="", yaxs="i")
+
+dfinfx=dfinf$x
+dfinfy=dfinf$y
+
+dfinf=cbind(dfinfx, dfinfy)
+
+
+
+```
+
+```{r include=FALSE}
+dfc=cbind(df1x, df1y, df3y, df5y, dfinfy )
+dfcc=as.data.frame(dfc)
+dfcc
+head(dfcc, n=4)
+
+```
+
+
+
+```{r include=FALSE}
+library(tidyverse)
+out <- dfcc %>% 
+         gather(key=df, val, -df1x)%>%
+  arrange(desc(df1x))
+head(out, 12)
+```
+
+
+
+```{r}
+ggplot(out,aes(df1x, val, colour=df) )+
+  geom_line()+
+  rlt_theme+
+  scale_colour_manual(name = "Grado de \nlibertad", values = c("blue", "red", "springgreen4", "black"), 
+                     labels = expression(nu[1], nu[2],nu[5], nu[infinity]))+
+                     theme(legend.position = c(0.8, 0.8))+
+                     xlab("Valores")+
+                     ylab("Densidad")
+```
+
+Observa que la distribución de t, cambia dependiendo la forma de la densidades con el tamaño de muestra, (grado de libertad es $\nu=n-1$).  Tiene que observar dos componentes 1. hay menos datos en  centrado en el promedio y 2. hay más datos en la colas.  
+
+Se usa la distribución de t para calcular el intervalo de confianza y la hipótesis del promedio de una muestra, debido que la forma de la distribución de t cambia con el tamaño de muestra $\nu=n-1$ y también con la razón de error Tipo I, $\alpha$.  
+
+# Cuando es que uno rechaza la hipótesis nula
+
+Regresamos a la idea de Tipo de error I.  Cuando se selecciona un $\alpha=0.05$, lo que estamos diciendo es que hay 5% de probabilidad de cometer un error Tipo 1, que es `r colorize("de rechazar la hipótesis nula cuando uno debería aceptarla", "blue")`. Ahora este 5% puede estar divido en dos componentes, uno cuando el valor es más pequeño o más grande que el valor observado. Por consecuencia el área de rechazar la hipótesis nula es 0.025 en la parte negativa y positiva.
+
+Seleccionamos la curva con un grado de libertad de 5 y evaluamos el área de la curva que esta dentro del 95% del intervalo de confianza y lo fuera de este rango.  Si el promedio estimado de una prueba de t es dentro del área en gris se aceptará la hipótesis nula, si esta en el área rojo se rechazara la hipótesis nula.  NOta que para esta hipótesis hay son maneras de rechazar la hipótesis nula.   
+
+
+
+
+
+```{r include=FALSE}
+library(tidyverse)
+
+
+subdf5=out%>%
+  select(df, df1x,val)%>%
+filter(df=="df5y")
+subdf5
+  
+ d5=ggplot(subdf5, aes(df5x, val) )+
+  geom_area(fill="grey")+
+  xlab("Valores")+
+  ylab("Densidad")
+d5
+
+rand5=2.571
+
+# subset region and plot
+db5 <- ggplot_build(d5)$data[[1]]
+db5
+```
+
+```{r echo=FALSE}
+
+d6 <- d5 + geom_area(data = subset(db5, x > rand5), aes(x=x, y=y), fill="red")+
+  geom_area(data = subset(db5, x < -rand5), aes(x=x, y=y), fill="red")+
+  rlt_theme
+d6
+
+```
+***
+
+La alternativa es que nuestra hipótesis sea nada más de un lado donde el total del 5% es en la parte inferior o superior.  En esta caso se rechaza solamente si se encuentra en esta proporción de los valores de t.  Nota ahora que el área en esta sección es más grande (incluye más valores, no solamente el 2.5% pero el 5% de los valores).  
+
+
+
+
+```{r echo=FALSE}
+
+randsup=2.015
+d7 <- d5 + geom_area(data = subset(db5, x > randsup), aes(x=x, y=y), fill="red")+
+  rlt_theme
+
+
+d8 <- d5 + 
+  geom_area(data = subset(db5, x < -randsup), aes(x=x, y=y), fill="red")+
+  rlt_theme
+
+gridExtra::grid.arrange(d7,d8, ncol=2)
+```
+***
+
+# El intervalo de confianza de $\mu$
+
+
+Ahora se demuestra como calcular el intervalo de confianza de $\mu$.  Seleccionando un conjunto de datos al azar **n** se puede calcular el promedio $\overline{x}$ y el estimado de la desviación estándar **s**, con estos valores podemos calcular el rango donde pudiese estar el promedio del universo $\mu$ con cieto nivel de confianza (Tipo de Error I, $\alpha$).  
+
+## Ejamplo 9.3
+
+  Se selecciona 20 peces machos de una misma especie en un riachuelo de Puerto Rico y se mide el largo en millimetros. El promedio es $\overline{x}=21.0mm$ y una desviación estándar $s=1.76mm$. Queremos construir in intervalo de confianza de 95%. El tamaño de los peces es aproximadamente normal.  
+
+Queremos calcular intervalo que incluye 95%, por consecuencia es el rango que hay en el área gris de la primera figura.  
+
+## El limite superior
+Evaluando las variables necesarias se necesita solamente el valor de t con la tipo de error I de 95% y que corresponde a un tamaño de muestra de 20, $t_{0.05,\ n-1}$. Para conocer este valor hay que ir a una tabla de la distribución de t (vea p. 217 en el libro) o usar R para calcular el valor.  En la tabla busca el error deseado (0.05) y se busca el grado de libertad *n-1*, $t_{0.05,\ 19}$. El valor del libro es $t = 2.093$.  
+ 
+```{r}
+qt(0.025, 19) # nota que se usa la mitad de 0.05, por que es una prueba de dos lados. 
+```
+ 
+ Ahora falta sustituir los valores en la formula
+
+$$UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$$
+$$UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.825$$
+## El limite inferior
+
+$LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
+
+
+$$LL_{0.95}=20-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.175$$
+
+El intervalo de confianza del $\mu$ es entre 20.175-21.825 con un 95% de probabilidad. 
+***
+
+## Menos o más grados de libertad
+
+Nota lo que pasa si uno tiene menos datos o más datos con el intervalo de confianza. 
+
+Con un tamaño de muestra solamente de 5 datos el IC de 95% es entre 17.824-22.185. Por tener menos datos tenemos menos confianza donde se entra el promedio del universo. 
+
+```{r}
+UL=20+qt(0.025, 4)*1.76/sqrt(5)
+LL=20-qt(0.025, 4)*1.76/sqrt(5)
+UL
+LL
+```
+
+Ahora con en tamaño de muestra de 100. Ahora el intervalo de confianza esta más estrecho 19.651-20.349
+
+```{r}
+UL=20+qt(0.025, 99)*1.76/sqrt(100)
+LL=20-qt(0.025, 99)*1.76/sqrt(100)
+UL
+LL
+```
+
+***
+
+# Muchos muestreos y el universo
+
+Para demostrar lo que quiere decir el intervalo de confianza evaluamos el siguiente gráfico. Cada linea horizontal representa un muestreo independiente, la pequeña linea vertical representa el promedio de este muestreo $\overline{x}$, y la linea vertical que cruza todos los muestreos representa el promedio universal $\mu$.  Nota que este caso el intervalo de confianza casi siempre cruza el $\mu$, aparte de uno. El muestreo aunque proviene de la misma población no incluyo el promedio del universo.   
+
+```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '70%'}
+knitr::include_graphics("Havel_Figures/9-3 Series - Confidence Interals.jpg")
+```

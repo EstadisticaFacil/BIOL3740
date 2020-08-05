@@ -488,9 +488,92 @@ div.tocify {
 </div>
 
 
+<pre class="r"><code>library(gridExtra)</code></pre>
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-08-03&quot;</code></pre>
-<p>fcgvhjbnkm</p>
+<pre><code>## [1] &quot;2020-08-05&quot;</code></pre>
+<hr />
+<div id="el-promedio-un-estimado" class="section level1">
+<h1>El promedio, un estimado</h1>
+<p>En este modulo se evalúa el promedio y la propriedades de una distribución normal y el muestreo de para estimar el promedio. En el módulo se evalúa la hipótesis de un muestreo y se estima el intervalo de confianza para estimar el posible rango del promedio. Es importante reconocer que el muestreo para estimar el promedio <span class="math inline">\(\overline{x}\)</span> es solamente un estimado. En otra palabra no es necesariamente la VERDAD, o dicho de forma estadística, el promedio del universo, <span class="math inline">\(\mu\)</span> de esta variable.</p>
+<p>Con frecuencia se quiere saber conocer información sobre el verdadero promedio, <span class="math inline">\(\mu\)</span> basado en un muestreo. Por ejemplo cual es promedio de la edad de las Palmas de Sierra en Puerto Rico, cual es el promedio de la presión arterial de los humanos, cual es la producción promedio de mangos en los arboles de mangos. En cada caso no sabemos cual es el promedio universal, <span class="math inline">\(\mu\)</span> y tampoco no sabemos el valor exacto de la desviación estándar <span class="math inline">\(\sigma\)</span>.</p>
+<p>Para evaluar la hipótesis sobre el promedio de la población <span class="math inline">\(\mu\)</span>, uno puede utilizar datos recogido al azar, un muestreo y usar estos para inferir cual es el promedio y desviación estándar del universo.</p>
+<div id="ejemplo-9.1-y-9.2." class="section level2">
+<h2>Ejemplo 9.1 y 9.2.</h2>
+<p>Leen estos dos ejercicios, y considera cual es son los valores del universo,<span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> y el promedio del muestreo <span class="math inline">\(\overline{x}\)</span>.</p>
+</div>
+</div>
+<div id="la-distribución-de-t" class="section level1">
+<h1>La distribución de t</h1>
+<p>Cuando queremos inferir información del promedio o la desviación del universo de un muestreo hay que utilizar la distribución de t. La razón es que la forma de la distribución normal cambia con el tamaño de muestra cuando no sabemos cual es la desviación estándar del universo. A medida que uno reduce el tamaño de muestra la distribución se desvía de una distribución normal. Para tomar esto en cuenta no usamos la distribución normal la de distribución de t, también se dice la distribución de t de estudiante.</p>
+<pre class="r"><code>ggplot(out,aes(df1x, val, colour=df) )+
+  geom_line()+
+  rlt_theme+
+  scale_colour_manual(name = &quot;Grado de \nlibertad&quot;, values = c(&quot;blue&quot;, &quot;red&quot;, &quot;springgreen4&quot;, &quot;black&quot;), 
+                     labels = expression(nu[1], nu[2],nu[5], nu[infinity]))+
+                     theme(legend.position = c(0.8, 0.8))+
+                     xlab(&quot;Valores&quot;)+
+                     ylab(&quot;Densidad&quot;)</code></pre>
+<p><img src="T9_Pruebas_una_muestra_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Observa que la distribución de t, cambia dependiendo la forma de la densidades con el tamaño de muestra, (grado de libertad es <span class="math inline">\(\nu=n-1\)</span>). Tiene que observar dos componentes 1. hay menos datos en centrado en el promedio y 2. hay más datos en la colas.</p>
+<p>Se usa la distribución de t para calcular el intervalo de confianza y la hipótesis del promedio de una muestra, debido que la forma de la distribución de t cambia con el tamaño de muestra <span class="math inline">\(\nu=n-1\)</span> y también con la razón de error Tipo I, <span class="math inline">\(\alpha\)</span>.</p>
+</div>
+<div id="cuando-es-que-uno-rechaza-la-hipótesis-nula" class="section level1">
+<h1>Cuando es que uno rechaza la hipótesis nula</h1>
+<p>Regresamos a la idea de Tipo de error I. Cuando se selecciona un <span class="math inline">\(\alpha=0.05\)</span>, lo que estamos diciendo es que hay 5% de probabilidad de cometer un error Tipo 1, que es <span style="color: blue;">de rechazar la hipótesis nula cuando uno debería aceptarla</span>. Ahora este 5% puede estar divido en dos componentes, uno cuando el valor es más pequeño o más grande que el valor observado. Por consecuencia el área de rechazar la hipótesis nula es 0.025 en la parte negativa y positiva.</p>
+<p>Seleccionamos la curva con un grado de libertad de 5 y evaluamos el área de la curva que esta dentro del 95% del intervalo de confianza y lo fuera de este rango. Si el promedio estimado de una prueba de t es dentro del área en gris se aceptará la hipótesis nula, si esta en el área rojo se rechazara la hipótesis nula. NOta que para esta hipótesis hay son maneras de rechazar la hipótesis nula.</p>
+<p><img src="T9_Pruebas_una_muestra_files/figure-html/unnamed-chunk-11-1.png" width="672" /> ***</p>
+<p>La alternativa es que nuestra hipótesis sea nada más de un lado donde el total del 5% es en la parte inferior o superior. En esta caso se rechaza solamente si se encuentra en esta proporción de los valores de t. Nota ahora que el área en esta sección es más grande (incluye más valores, no solamente el 2.5% pero el 5% de los valores).</p>
+<p><img src="T9_Pruebas_una_muestra_files/figure-html/unnamed-chunk-12-1.png" width="672" /> ***</p>
+</div>
+<div id="el-intervalo-de-confianza-de-mu" class="section level1">
+<h1>El intervalo de confianza de <span class="math inline">\(\mu\)</span></h1>
+<p>Ahora se demuestra como calcular el intervalo de confianza de <span class="math inline">\(\mu\)</span>. Seleccionando un conjunto de datos al azar <strong>n</strong> se puede calcular el promedio <span class="math inline">\(\overline{x}\)</span> y el estimado de la desviación estándar <strong>s</strong>, con estos valores podemos calcular el rango donde pudiese estar el promedio del universo <span class="math inline">\(\mu\)</span> con cieto nivel de confianza (Tipo de Error I, <span class="math inline">\(\alpha\)</span>).</p>
+<div id="ejamplo-9.3" class="section level2">
+<h2>Ejamplo 9.3</h2>
+<p>Se selecciona 20 peces machos de una misma especie en un riachuelo de Puerto Rico y se mide el largo en millimetros. El promedio es <span class="math inline">\(\overline{x}=21.0mm\)</span> y una desviación estándar <span class="math inline">\(s=1.76mm\)</span>. Queremos construir in intervalo de confianza de 95%. El tamaño de los peces es aproximadamente normal.</p>
+<p>Queremos calcular intervalo que incluye 95%, por consecuencia es el rango que hay en el área gris de la primera figura.</p>
+</div>
+<div id="el-limite-superior" class="section level2">
+<h2>El limite superior</h2>
+<p>Evaluando las variables necesarias se necesita solamente el valor de t con la tipo de error I de 95% y que corresponde a un tamaño de muestra de 20, <span class="math inline">\(t_{0.05,\ n-1}\)</span>. Para conocer este valor hay que ir a una tabla de la distribución de t (vea p. 217 en el libro) o usar R para calcular el valor. En la tabla busca el error deseado (0.05) y se busca el grado de libertad <em>n-1</em>, <span class="math inline">\(t_{0.05,\ 19}\)</span>. El valor del libro es <span class="math inline">\(t = 2.093\)</span>.</p>
+<pre class="r"><code>qt(0.025, 19) # nota que se usa la mitad de 0.05, por que es una prueba de dos lados. </code></pre>
+<pre><code>## [1] -2.093024</code></pre>
+<p>Ahora falta sustituir los valores en la formula</p>
+<p><span class="math display">\[UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)\]</span> <span class="math display">\[UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.825\]</span> ## El limite inferior</p>
+<p><span class="math inline">\(LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)\)</span></p>
+<p><span class="math display">\[LL_{0.95}=20-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.175\]</span></p>
+<p>El intervalo de confianza del <span class="math inline">\(\mu\)</span> es entre 20.175-21.825 con un 95% de probabilidad. ***</p>
+</div>
+<div id="menos-o-más-grados-de-libertad" class="section level2">
+<h2>Menos o más grados de libertad</h2>
+<p>Nota lo que pasa si uno tiene menos datos o más datos con el intervalo de confianza.</p>
+<p>Con un tamaño de muestra solamente de 5 datos el IC de 95% es entre 17.824-22.185. Por tener menos datos tenemos menos confianza donde se entra el promedio del universo.</p>
+<pre class="r"><code>UL=20+qt(0.025, 4)*1.76/sqrt(5)
+LL=20-qt(0.025, 4)*1.76/sqrt(5)
+UL</code></pre>
+<pre><code>## [1] 17.81467</code></pre>
+<pre class="r"><code>LL</code></pre>
+<pre><code>## [1] 22.18533</code></pre>
+<p>Ahora con en tamaño de muestra de 100. Ahora el intervalo de confianza esta más estrecho 19.651-20.349</p>
+<pre class="r"><code>UL=20+qt(0.025, 99)*1.76/sqrt(100)
+LL=20-qt(0.025, 99)*1.76/sqrt(100)
+UL</code></pre>
+<pre><code>## [1] 19.65078</code></pre>
+<pre class="r"><code>LL</code></pre>
+<pre><code>## [1] 20.34922</code></pre>
+<hr />
+</div>
+</div>
+<div id="muchos-muestreos-y-el-universo" class="section level1">
+<h1>Muchos muestreos y el universo</h1>
+<p>Para demostrar lo que quiere decir el intervalo de confianza evaluamos el siguiente gráfico. Cada linea horizontal representa un muestreo independiente, la pequeña linea vertical representa el promedio de este muestreo <span class="math inline">\(\overline{x}\)</span>, y la linea vertical que cruza todos los muestreos representa el promedio universal <span class="math inline">\(\mu\)</span>. Nota que este caso el intervalo de confianza casi siempre cruza el <span class="math inline">\(\mu\)</span>, aparte de uno. El muestreo aunque proviene de la misma población no incluyo el promedio del universo.</p>
+<div class="figure">
+<img src="Havel_Figures/9-3%20Series%20-%20Confidence%20Interals.jpg" alt="El proceso de Investigación" width="70%" />
+<p class="caption">
+El proceso de Investigación
+</p>
+</div>
+</div>
 
 
 
