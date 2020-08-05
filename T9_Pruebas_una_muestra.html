@@ -585,10 +585,14 @@ t # Valor t de observado</code></pre>
 <pre><code>## [1] -32.48082</code></pre>
 <pre class="r"><code>qt(0.025, 9999)  # valor de t-critico, de la tabla</code></pre>
 <pre><code>## [1] -1.960201</code></pre>
-<p>First we conduct a one-sample t-test on whether the average tip is equal to $2.50.</p>
 <hr />
-<p>Our hypothesis is that on average people give a tip of $2.50…. This is our <strong>null</strong> hypothesis</p>
-<p>Our <strong>alternate</strong> hypothesis is that people give either significantly more or less than $2.50.</p>
+</div>
+<div id="prueba-de" class="section level1">
+<h1>Prueba de</h1>
+<p>Un ejemplo con datos en una tabla Usamos un conjunto de datos en el paquete <strong>reshape</strong>, que llama <strong>tips</strong>. Se refiere a las propinas quie recibe meseros.</p>
+<p>Nuestra hipótesis es que en promedio, las personas dan una propina de $2.50, Esta es nuestra hipótesis <strong>nula</strong></p>
+<p>Nuestra hipótesis <strong>alternativa</strong> es que las personas dan significativamente más o menos de $2.50.</p>
+<p>Ho: <span class="math inline">\(\overline{x}=2.50\)</span>=<span class="math inline">\(\mu=2.50\)</span> Ha: <span class="math inline">\(\overline{x}≠\mu\)</span></p>
 <pre class="r"><code>data(tips, package=&quot;reshape2&quot;)
 head(tips)</code></pre>
 <pre><code>##   total_bill  tip    sex smoker day   time size
@@ -598,33 +602,11 @@ head(tips)</code></pre>
 ## 4      23.68 3.31   Male     No Sun Dinner    2
 ## 5      24.59 3.61 Female     No Sun Dinner    4
 ## 6      25.29 4.71   Male     No Sun Dinner    4</code></pre>
-<pre class="r"><code>t.test(tips$tip, alternative=&quot;two.sided&quot;, mu=2.5, conf.level = .70)</code></pre>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  tips$tip
-## t = 5.6253, df = 243, p-value = 5.08e-08
-## alternative hypothesis: true mean is not equal to 2.5
-## 70 percent confidence interval:
-##  2.906277 3.090281
-## sample estimates:
-## mean of x 
-##  2.998279</code></pre>
-<div id="how-do-you-graph-a-the-result-of-a-t-test" class="section level3">
-<h3>How do you graph a the result of a t-test?</h3>
-<p>Steps</p>
-<ol style="list-style-type: decimal">
-<li>Create a normal distribution of the <strong>NULL</strong> hypothesis</li>
-<li>Calculate the t.test statistics</li>
-<li>Draw the mean of the t-stattistics on the figure</li>
-</ol>
-<pre class="r"><code>#build a t distribution
-randT&lt;-rt(30000, df=NROW(tips)-1)
-#randT
-#get t-statistic and other information
-tipTTest&lt;-t.test(tips$tip, alternative = &quot;two.sided&quot;, mu=2.50)
-
-tipTTest</code></pre>
+<p>Con la función <strong>t.test()</strong> es muy sencillo hacer la prueba, no hay calcular solamente añadir la información.</p>
+<p>Las opciones para esta prueba son las siguientes en roja</p>
+<p>t.test(<span style="color: red;">x</span>, y = NULL, <span style="color: red;">alternative = c(two.sided, less, greater)</span>, <span style="color: red;">mu = 0</span>, paired = FALSE, var.equal = FALSE, <span style="color: red;">conf.level = 0.95</span>, …).</p>
+<p>El resultado: El valor de t-observado es de 5.625, con un grado de libertad de 243 (n=244), y valor de p &lt;0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna. El intervalo de confianza del promedio es $2.82 - $3.17, con un promedio de $3.00</p>
+<pre class="r"><code>t.test(tips$tip, alternative=&quot;two.sided&quot;, mu=2.5, conf.level = .95)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -636,25 +618,43 @@ tipTTest</code></pre>
 ## sample estimates:
 ## mean of x 
 ##  2.998279</code></pre>
-<pre class="r"><code>#plot it
-ggplot(data.frame(x=randT))+
-    geom_density(aes(x=x), fill=&quot;grey&quot;, color=&quot;grey&quot;)+
-  geom_vline(xintercept = tipTTest$statistic, colour=&quot;red&quot;)+
-  geom_vline(xintercept = mean(randT)+c(-2,2)*sd(randT), linetype=2)</code></pre>
-<p><img src="T9_Pruebas_una_muestra_files/figure-html/t%20distribution-1.png" width="672" /></p>
-<p>Next we conduct a one-sided t-test to see if the mean is greater than $2.50.</p>
-<pre class="r"><code>t.test(tips$tip, alternative = &quot;greater&quot;, mu=2.5)</code></pre>
+<div id="cómo-graficar-el-resultado-de-una-prueba-t" class="section level2">
+<h2>¿Cómo graficar el resultado de una prueba t?</h2>
+<p>Pasos</p>
+<ol style="list-style-type: decimal">
+<li>Crear una distribución normal de la hipótesis <strong>NULA</strong> con un promedio de</li>
+<li>Calcule las estadísticas t.test</li>
+<li>Dibuje la media de la estadística t en la figura</li>
+</ol>
+<ul>
+<li>la linea entecortada representa el intervalo de confianza de 95%</li>
+<li>la linea roja representa la estadistica de los datos.</li>
+</ul>
+<pre class="r"><code># construir una distribución normal de los datos
+randT&lt;-rt(30000, df=NROW(tips)-1)+2.5
+
+# Hacer la prueba de t
+tipTTest&lt;-t.test(tips$tip, alternative = &quot;two.sided&quot;, mu=2.50)
+
+tipTTest </code></pre>
 <pre><code>## 
 ##  One Sample t-test
 ## 
 ## data:  tips$tip
-## t = 5.6253, df = 243, p-value = 2.54e-08
-## alternative hypothesis: true mean is greater than 2.5
+## t = 5.6253, df = 243, p-value = 5.08e-08
+## alternative hypothesis: true mean is not equal to 2.5
 ## 95 percent confidence interval:
-##  2.852023      Inf
+##  2.823799 3.172758
 ## sample estimates:
 ## mean of x 
 ##  2.998279</code></pre>
+<pre class="r"><code># Graficar los resultados
+ggplot(data.frame(x=randT))+
+    geom_density(aes(x=x), fill=&quot;grey&quot;, color=&quot;grey&quot;)+ # La densidad de los datos
+  geom_vline(xintercept = tipTTest$statistic, colour=&quot;red&quot;)+ # El resultado de la prueba estadística
+  geom_vline(xintercept = mean(randT)+c(-2,2)*sd(randT), linetype=2)+ # El intervalo de confianza
+  xlab(&quot;Promedio de propina&quot;)</code></pre>
+<p><img src="T9_Pruebas_una_muestra_files/figure-html/t%20distribution-1.png" width="672" /></p>
 </div>
 </div>
 

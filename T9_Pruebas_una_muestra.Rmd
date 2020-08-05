@@ -332,12 +332,17 @@ qt(0.025, 9999)  # valor de t-critico, de la tabla
 ```
 
 
-First we conduct a one-sample t-test on whether the average tip is equal to $2.50.
+***
+# Prueba de 
+Un ejemplo con datos en una tabla
+Usamos un conjunto de datos en el paquete **reshape**, que llama **tips**.  Se refiere a las propinas quie recibe meseros.  
 
-_________
-Our hypothesis is that on average people give a tip of $2.50.... This is our **null** hypothesis
+Nuestra hipótesis es que en promedio, las personas dan una propina de $2.50, Esta es nuestra hipótesis **nula**
 
-Our **alternate** hypothesis is that people give either significantly more or less than $2.50. 
+Nuestra hipótesis **alternativa** es que las personas dan significativamente más o menos de $2.50.
+
+Ho: $\overline{x}=2.50$=$\mu=2.50$
+Ha: $\overline{x}≠\mu$
 
 ```{r}
 data(tips, package="reshape2")
@@ -345,46 +350,55 @@ head(tips)
 ```
 
 
+Con la función **t.test()** es muy sencillo hacer la prueba, no hay calcular solamente añadir la información.  
 
+Las opciones para esta prueba son las siguientes en roja
 
+t.test(`r colorize("x", "red")`, y = NULL,
+       `r colorize("alternative = c(two.sided, less, greater)", "red")`,
+       `r colorize("mu = 0", "red")`, paired = FALSE, var.equal = FALSE,
+       `r colorize("conf.level = 0.95", "red")`, ...).
+       
+El resultado:  El valor de t-observado es de 5.625, con un grado de libertad de 243 (n=244), y valor de p <0.0001. 
+Por consecuencia se rechaza la hipótesis nula y se acepta la alterna.  El intervalo de confianza del promedio es $2.82 - $3.17, con un promedio de $3.00
 
 ```{r t test}
-t.test(tips$tip, alternative="two.sided", mu=2.5, conf.level = .70)
+t.test(tips$tip, alternative="two.sided", mu=2.5, conf.level = .95)
 
 ```
 
 
-### How do you graph a the result of a t-test?
+## ¿Cómo graficar el resultado de una prueba t?
 
-Steps
 
-1. Create a normal distribution of the **NULL** hypothesis
-2. Calculate the t.test statistics
-3. Draw the mean of the t-stattistics on the figure
+Pasos
+
+1. Crear una distribución normal de la hipótesis **NULA** con un promedio de 
+2. Calcule las estadísticas t.test
+3. Dibuje la media de la estadística t en la figura
+  - la linea entecortada representa el intervalo de confianza de 95%
+  - la linea roja representa la estadistica de los datos.
+  
 
 
 
 ```{r t distribution}
-#build a t distribution
-randT<-rt(30000, df=NROW(tips)-1)
-#randT
-#get t-statistic and other information
+# construir una distribución normal de los datos
+randT<-rt(30000, df=NROW(tips)-1)+2.5
+
+# Hacer la prueba de t
 tipTTest<-t.test(tips$tip, alternative = "two.sided", mu=2.50)
 
-tipTTest
+tipTTest 
 
 
-#plot it
+# Graficar los resultados
 ggplot(data.frame(x=randT))+
-    geom_density(aes(x=x), fill="grey", color="grey")+
-  geom_vline(xintercept = tipTTest$statistic, colour="red")+
-  geom_vline(xintercept = mean(randT)+c(-2,2)*sd(randT), linetype=2)
+    geom_density(aes(x=x), fill="grey", color="grey")+ # La densidad de los datos
+  geom_vline(xintercept = tipTTest$statistic, colour="red")+ # El resultado de la prueba estadística
+  geom_vline(xintercept = mean(randT)+c(-2,2)*sd(randT), linetype=2)+ # El intervalo de confianza
+  xlab("Promedio de propina")
 ```
 
 
-
-Next we conduct a one-sided t-test to see if the mean is greater than $2.50.
-```{r t-test2}
-t.test(tips$tip, alternative = "greater", mu=2.5)
-```
 
