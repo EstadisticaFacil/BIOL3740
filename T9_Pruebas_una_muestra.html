@@ -573,6 +573,89 @@ UL</code></pre>
 El proceso de Investigación
 </p>
 </div>
+<hr />
+</div>
+<div id="pruebas-de-un-muesteo-de-t" class="section level1">
+<h1>Pruebas de un muesteo de t</h1>
+<p>Esta prueba esencialmente calcula la media de los datos y crea un intervalo de confianza. Si el valor que estamos probando cae dentro de ese intervalo de confianza, concluimos que es el valor verdadero para la media de los datos; de lo contrario, concluimos que no es la verdadera media. Nota que la <span class="math inline">\(\mu\)</span> representa el modelo nulo, o sea la hipótesis nula. Si <span class="math inline">\(\mu=0\)</span> decimos que el universo es igual cero. En otro ejemplo si por ejemplo decimos que el promedio del nivel de colesterol en mujer es <span class="math inline">\(\mu=209.4\)</span> y observamos en muestreo de mujeres un promedio de <span class="math inline">\(\overline{x}= 196.7\)</span> con una desviación estándar de <span class="math inline">\(s=39.1\)</span> es suficiente la diferencia para decir que lo que UD observo es significativamente diferente del muestreo del universo a un 95% de error <span class="math inline">\(\alpha\)</span>. Vamos asumir que se hizo una investigación un gran número de mujeres de Puerto Rico y se tiene un muestreo de 10,000 de mujeres. Lo que necesitamos hacer ahora es sustituir los valores en la formula. Observamos un valor de t observado de t=32.48 (el valor es absoluto), y este los comparamos con el valor de t critico = 1.96 (valor absoluto). El resultado: el valor de t observado es mayor del valor critico y por consecuencia rechazamos lo hipótesis nula, y concluimos que el nivel de colesterol en la muestra <span class="math inline">\(\overline{x}= 196.7\)</span> es significativamente diferente del nivel universal <span class="math inline">\(\mu=209.4\)</span>.</p>
+<p>Ho: <span class="math inline">\(\overline{x}=\mu\)</span> Ha: <span class="math inline">\(\overline{x}≠\mu\)</span></p>
+<p><span class="math display">\[t=\frac{\left(\overline{x}-\mu_0\right)}{\frac{s}{\sqrt{n}}}\]</span> Sustitución de los valores en la prueba de t.</p>
+<pre class="r"><code>t=(196.7-209.4)/((39.1)/sqrt(10000)) 
+t # Valor t de observado</code></pre>
+<pre><code>## [1] -32.48082</code></pre>
+<pre class="r"><code>qt(0.025, 9999)  # valor de t-critico, de la tabla</code></pre>
+<pre><code>## [1] -1.960201</code></pre>
+<p>First we conduct a one-sample t-test on whether the average tip is equal to $2.50.</p>
+<hr />
+<p>Our hypothesis is that on average people give a tip of $2.50…. This is our <strong>null</strong> hypothesis</p>
+<p>Our <strong>alternate</strong> hypothesis is that people give either significantly more or less than $2.50.</p>
+<pre class="r"><code>data(tips, package=&quot;reshape2&quot;)
+head(tips)</code></pre>
+<pre><code>##   total_bill  tip    sex smoker day   time size
+## 1      16.99 1.01 Female     No Sun Dinner    2
+## 2      10.34 1.66   Male     No Sun Dinner    3
+## 3      21.01 3.50   Male     No Sun Dinner    3
+## 4      23.68 3.31   Male     No Sun Dinner    2
+## 5      24.59 3.61 Female     No Sun Dinner    4
+## 6      25.29 4.71   Male     No Sun Dinner    4</code></pre>
+<pre class="r"><code>t.test(tips$tip, alternative=&quot;two.sided&quot;, mu=2.5, conf.level = .70)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  tips$tip
+## t = 5.6253, df = 243, p-value = 5.08e-08
+## alternative hypothesis: true mean is not equal to 2.5
+## 70 percent confidence interval:
+##  2.906277 3.090281
+## sample estimates:
+## mean of x 
+##  2.998279</code></pre>
+<div id="how-do-you-graph-a-the-result-of-a-t-test" class="section level3">
+<h3>How do you graph a the result of a t-test?</h3>
+<p>Steps</p>
+<ol style="list-style-type: decimal">
+<li>Create a normal distribution of the <strong>NULL</strong> hypothesis</li>
+<li>Calculate the t.test statistics</li>
+<li>Draw the mean of the t-stattistics on the figure</li>
+</ol>
+<pre class="r"><code>#build a t distribution
+randT&lt;-rt(30000, df=NROW(tips)-1)
+#randT
+#get t-statistic and other information
+tipTTest&lt;-t.test(tips$tip, alternative = &quot;two.sided&quot;, mu=2.50)
+
+tipTTest</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  tips$tip
+## t = 5.6253, df = 243, p-value = 5.08e-08
+## alternative hypothesis: true mean is not equal to 2.5
+## 95 percent confidence interval:
+##  2.823799 3.172758
+## sample estimates:
+## mean of x 
+##  2.998279</code></pre>
+<pre class="r"><code>#plot it
+ggplot(data.frame(x=randT))+
+    geom_density(aes(x=x), fill=&quot;grey&quot;, color=&quot;grey&quot;)+
+  geom_vline(xintercept = tipTTest$statistic, colour=&quot;red&quot;)+
+  geom_vline(xintercept = mean(randT)+c(-2,2)*sd(randT), linetype=2)</code></pre>
+<p><img src="T9_Pruebas_una_muestra_files/figure-html/t%20distribution-1.png" width="672" /></p>
+<p>Next we conduct a one-sided t-test to see if the mean is greater than $2.50.</p>
+<pre class="r"><code>t.test(tips$tip, alternative = &quot;greater&quot;, mu=2.5)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  tips$tip
+## t = 5.6253, df = 243, p-value = 2.54e-08
+## alternative hypothesis: true mean is greater than 2.5
+## 95 percent confidence interval:
+##  2.852023      Inf
+## sample estimates:
+## mean of x 
+##  2.998279</code></pre>
+</div>
 </div>
 
 

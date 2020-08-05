@@ -308,3 +308,83 @@ Para demostrar lo que quiere decir el intervalo de confianza evaluamos el siguie
 ```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '70%'}
 knitr::include_graphics("Havel_Figures/9-3 Series - Confidence Interals.jpg")
 ```
+
+
+
+***
+
+
+# Pruebas de un muesteo de t
+
+
+Esta prueba esencialmente calcula la media de los datos y crea un intervalo de confianza. Si el valor que estamos probando cae dentro de ese intervalo de confianza, concluimos que es el valor verdadero para la media de los datos; de lo contrario, concluimos que no es la verdadera media. Nota que la $\mu$ representa el modelo nulo, o sea la hipótesis nula.  Si $\mu=0$ decimos que el universo es igual cero.  En otro ejemplo si por ejemplo decimos que el promedio del nivel de colesterol en mujer es $\mu=209.4$ y observamos en muestreo de mujeres un promedio de $\overline{x}= 196.7$ con una desviación estándar de $s=39.1$ es suficiente la diferencia para decir que lo que UD observo es significativamente diferente del muestreo del universo a un 95% de error $\alpha$.   Vamos asumir que se hizo una investigación un gran número de mujeres de Puerto Rico y se tiene un muestreo de 10,000 de mujeres.  Lo que necesitamos hacer ahora es sustituir los valores en la formula.  Observamos un valor de t observado de t=32.48 (el valor es absoluto), y este los comparamos con el valor de t critico = 1.96 (valor absoluto). El resultado: el valor de t observado es mayor del valor critico y por consecuencia rechazamos lo hipótesis nula, y concluimos que el nivel de colesterol en la muestra $\overline{x}= 196.7$ es significativamente diferente del nivel universal $\mu=209.4$.   
+
+Ho: $\overline{x}=\mu$
+Ha: $\overline{x}≠\mu$
+
+$$t=\frac{\left(\overline{x}-\mu_0\right)}{\frac{s}{\sqrt{n}}}$$
+Sustitución de los valores en la prueba de t. 
+
+```{r}
+t=(196.7-209.4)/((39.1)/sqrt(10000)) 
+t # Valor t de observado
+qt(0.025, 9999)  # valor de t-critico, de la tabla
+```
+
+
+First we conduct a one-sample t-test on whether the average tip is equal to $2.50.
+
+_________
+Our hypothesis is that on average people give a tip of $2.50.... This is our **null** hypothesis
+
+Our **alternate** hypothesis is that people give either significantly more or less than $2.50. 
+
+```{r}
+data(tips, package="reshape2")
+head(tips)
+```
+
+
+
+
+
+```{r t test}
+t.test(tips$tip, alternative="two.sided", mu=2.5, conf.level = .70)
+
+```
+
+
+### How do you graph a the result of a t-test?
+
+Steps
+
+1. Create a normal distribution of the **NULL** hypothesis
+2. Calculate the t.test statistics
+3. Draw the mean of the t-stattistics on the figure
+
+
+
+```{r t distribution}
+#build a t distribution
+randT<-rt(30000, df=NROW(tips)-1)
+#randT
+#get t-statistic and other information
+tipTTest<-t.test(tips$tip, alternative = "two.sided", mu=2.50)
+
+tipTTest
+
+
+#plot it
+ggplot(data.frame(x=randT))+
+    geom_density(aes(x=x), fill="grey", color="grey")+
+  geom_vline(xintercept = tipTTest$statistic, colour="red")+
+  geom_vline(xintercept = mean(randT)+c(-2,2)*sd(randT), linetype=2)
+```
+
+
+
+Next we conduct a one-sided t-test to see if the mean is greater than $2.50.
+```{r t-test2}
+t.test(tips$tip, alternative = "greater", mu=2.5)
+```
+
