@@ -90,6 +90,7 @@ Análisis de varianza es un método para comparar 3 o más promedios, al contrar
 Primero hay que explicar porque es necesario ANOVA y no hacer múltiples prueba de t. Recuerda que típicamente rechazamos la hipótesis nula cuando el valor de p es menor de 0.05, el tipo de error I.   A cada vez que se hace una prueba t hay 5% de error. Por consecuencia si uno hace múltiples pruebas t, hay una posibilidad que se recheza la hipótesis nula cuando se debería aceptar.   Cuan grande es ese error si uno hace múltiples pruebas t.
 
 ```{r}
+library(tibble)
 Tipo_errorI=tribble(
   ~Cantidad_Grupo_k, ~C, ~"0.05", ~"0.01",
   "2","1","0.05", "0.01",

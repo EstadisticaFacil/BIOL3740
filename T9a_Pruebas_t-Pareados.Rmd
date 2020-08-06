@@ -63,7 +63,7 @@ colorize <- function(x, color) {
 ```
 
 Fecha de la ultima revisión
-```{r echo=FALSE}
+```{r, echo=FALSE}
 
 Sys.Date()
 ```
@@ -80,8 +80,8 @@ Los datos provienen del paquete **UsingR** y el archivo se llama **father.son**
 Paired Two-Sample T-test
 
 
-```{r data}
-#install.packages("UsingR")
+```{r, data}
+
 require(Hmisc)
 require(UsingR)
 head(father.son)
@@ -92,15 +92,8 @@ head(father.son)
 
 Antes de hacer la prueba es recomendado hacer un gráfico de puntos para visualizar los datos y observar si hay un patrón. Vemos a medida que aumenta la altura de los padres los hijos tienden a estar más altos.  
 
-```{r eval=FALSE, include=FALSE}
 
-
-df=father.son%>%
-  gather(key=Padre_Hijo, Altura)
-head(df, n=3)
-```
-
-```{r}
+```{r, geompoint}
 
 
 ggplot(father.son, aes(fheight, sheight))+
@@ -120,7 +113,7 @@ Las opciones para esta prueba son las siguientes en roja
 
 El resultado:  El valor de t-observado es de 11.789, con un grado de libertad de 1077 (n=1078), y valor de p <0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna.  El intervalo de confianza del promedio es -1.163 a -0.831, con un promedio de -0.99. Esto significa que los padres tiende a estar una pulgada (-0.99) más bajo que los hijos. 
 
-```{r pair t test}
+```{r, pairttest}
 t.test(father.son$fheight, father.son$sheight, paired=TRUE)
 ```
 
@@ -143,7 +136,7 @@ ggplot(father.son, aes(x=fheight-sheight))+
  
 
 Ver si la cantidad de hijos cambia entre su abuela y su madre
-```{r}
+```{r, abuelamadre}
 abuela=c(3,11,3,9,3,3,3,
          4,3,7,6,7,6,3,2,4)
 madre=c(2,3,3,3,1,2,2,
@@ -169,7 +162,8 @@ Un cultivador heredo parcelas donde hay árboles de toronjas.  El quiere saber s
 
 La cantidad de Toronjas producidas por árbol en fincas pareadas, cada finca tiene una parcela con abono y la otra la otra parcela sin abono. Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono sobre la producción de toronjas, se enseña solamente lo primero 8 pares de valores en la tabla.  
 
-```{r}
+```{r, toronja}
+library(tibble)
 Toronja=tribble(
   ~Fertilizante, ~Sin_Fertilizante, ~Municipio,
   "2250"		,		"1920" , "Utuado",
@@ -186,7 +180,7 @@ library(huxtable)
 huxtable(Toronja)%>%
     theme_article(header_col = FALSE)%>%
   set_bottom_border(row = 1, col = everywhere, value = 1) %>% 
-  set_caption("La cantidad de toronjas producidas en parceles en diferentes municipios"  )%>%
+  set_caption("La cantidad de toronjas producidas en parceles en diferentes municipios")%>%
   add_footnote("Cada parcela es del mismo tamaño con la misma cantidad de arboles")
 ```
 1. Primero añademos los datos en listas y la unimos en un df.  
@@ -196,7 +190,7 @@ huxtable(Toronja)%>%
 
 El resultado:  El valor de t-observado es de 8.80, con un grado de libertad de 17 (n=18), y valor de p <0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna.  El intervalo de confianza del promedio es 198.5 - 323.7, con un promedio de 261. Esto significa que a añadir fertilizante la producción de toronjas aumento de en promedio de 261 toronjas.
 
-```{r}
+```{r, dftoronja}
 Fert=c(2250,2410, 2260,2200, 2360, 
      2320,2240,2300,2090, 2250,2410, 2260,2200, 2360, 
      2320,2240,2300,2090)
@@ -223,7 +217,7 @@ t.test(df$Fert,df$SFert, paired=TRUE)
 Los datos representa cuantas hojas tenian las plantas en diferentes momentos de su muestreo.  Por consecuencia los datos nos son independiente. 
 
 
-```{r datos Lep}
+```{r, datosLep}
 library(readr)
 Lepanthes_eltoroensis_Georges_STUDENT <- read_csv("Data_files_csv/Lepanthes_eltoroensis_Georges_STUDENT.csv")
 

@@ -495,8 +495,7 @@ div.tocify {
 <p>Si tienes datos que no son independiente, es necesario usar la prueba con datos pareados (paired t-test). Cuando se refiere a datos no independiente es que hay evidencia que los datos pueden estar relacionado de una forma. En el siguiente ejemplo tenemos la altura de los padres y el altura de el hijo. Hay evidencia que genética influencia la altura de los humanos, también hay el ambiente. Si el ambiente (nutrición, etc) es la única variable que tiene influencia sobre la altura pudiese que no encontramos una relación entre la altura del padre y el hijo.</p>
 <p>Los datos provienen del paquete <strong>UsingR</strong> y el archivo se llama <strong>father.son</strong></p>
 <p>Paired Two-Sample T-test</p>
-<pre class="r"><code>#install.packages(&quot;UsingR&quot;)
-require(Hmisc)
+<pre class="r"><code>require(Hmisc)
 require(UsingR)
 head(father.son)</code></pre>
 <pre><code>##    fheight  sheight
@@ -513,7 +512,7 @@ head(father.son)</code></pre>
 <pre class="r"><code>ggplot(father.son, aes(fheight, sheight))+
   geom_point()+
   rlt_theme</code></pre>
-<p><img src="T9a_Pruebas_t-Pareados_files/figure-html/unnamed-chunk-5-1.png" width="672" /> ***</p>
+<p><img src="T9a_Pruebas_t-Pareados_files/figure-html/geompoint-1.png" width="672" /> ***</p>
 <p>La prueba de t-con datos pareados es la misma que la prueba de t con un grupo, <strong>t.test()</strong>.</p>
 <p>Las opciones para esta prueba son las siguientes en roja</p>
 <ul>
@@ -617,7 +616,8 @@ df</code></pre>
 <h1>Cultivador de Toronjas con parcelas pareadas</h1>
 <p>Un cultivador heredo parcelas donde hay árboles de toronjas. El quiere saber si al añadir abono, la cosecha de toronjas aumenta. El efecto del abono sobre la producción de toronjas en parcelas pareadas en Puerto Rico.</p>
 <p>La cantidad de Toronjas producidas por árbol en fincas pareadas, cada finca tiene una parcela con abono y la otra la otra parcela sin abono. Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono sobre la producción de toronjas, se enseña solamente lo primero 8 pares de valores en la tabla.</p>
-<pre class="r"><code>Toronja=tribble(
+<pre class="r"><code>library(tibble)
+Toronja=tribble(
   ~Fertilizante, ~Sin_Fertilizante, ~Municipio,
   &quot;2250&quot;        ,       &quot;1920&quot; , &quot;Utuado&quot;,
  &quot;2410&quot;,                &quot;2020&quot;,  &quot;Cabo Rojo&quot;,
@@ -633,9 +633,9 @@ library(huxtable)
 huxtable(Toronja)%&gt;%
     theme_article(header_col = FALSE)%&gt;%
   set_bottom_border(row = 1, col = everywhere, value = 1) %&gt;% 
-  set_caption(&quot;La cantidad de toronjas producidas en parceles en diferentes municipios&quot;  )%&gt;%
+  set_caption(&quot;La cantidad de toronjas producidas en parceles en diferentes municipios&quot;)%&gt;%
   add_footnote(&quot;Cada parcela es del mismo tamaño con la misma cantidad de arboles&quot;)</code></pre>
-<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:toronja">
 <caption style="caption-side: top; text-align: center;">La cantidad de toronjas producidas en parceles en diferentes municipios</caption><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: bold;">Fertilizante</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Sin_Fertilizante</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: bold;">Municipio</th></tr>
 <tr>
@@ -696,7 +696,7 @@ Lepanthes_eltoroensis_Georges_STUDENT &lt;- read_csv(&quot;Data_files_csv/Lepant
 
 Lep=Lepanthes_eltoroensis_Georges_STUDENT
 head(Lep)</code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:datos Lep">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:datosLep">
 <col><col><col><col><col><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T3</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T5</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T6</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T7</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T8</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T9</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T10</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T11</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T12</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T13</th></tr>
 <tr>

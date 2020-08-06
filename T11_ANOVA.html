@@ -521,7 +521,8 @@ library(WRS2) </code></pre>
 <h1>ANOVA</h1>
 <p>Análisis de varianza es un método para comparar 3 o más promedios, al contrario de la prueba de t que es para comparar 2 promedios solamente. Entonces ANOVA es una extensión de la prueba t. La hipótesis nula es Ho: los promedios de los grupos son iguales. ANOVA fue desarrollado por Ronald Fisher y es basado en evaluar la varianza total del experimento y comparar esta con la varianza en los grupos. Típicamente si la varianza explicado entre los grupos es más grande que la varianza dentro los grupos se rechaza la hipótesis nula. A continuación veremos como hacer estos cálculos.</p>
 <p>Primero hay que explicar porque es necesario ANOVA y no hacer múltiples prueba de t. Recuerda que típicamente rechazamos la hipótesis nula cuando el valor de p es menor de 0.05, el tipo de error I. A cada vez que se hace una prueba t hay 5% de error. Por consecuencia si uno hace múltiples pruebas t, hay una posibilidad que se recheza la hipótesis nula cuando se debería aceptar. Cuan grande es ese error si uno hace múltiples pruebas t.</p>
-<pre class="r numberLines lineAnchors"><code>Tipo_errorI=tribble(
+<pre class="r numberLines lineAnchors"><code>library(tibble)
+Tipo_errorI=tribble(
   ~Cantidad_Grupo_k, ~C, ~&quot;0.05&quot;, ~&quot;0.01&quot;,
   &quot;2&quot;,&quot;1&quot;,&quot;0.05&quot;, &quot;0.01&quot;,
   &quot;3&quot;, &quot;3&quot;, &quot;0.14&quot;, &quot;0.03&quot;,
