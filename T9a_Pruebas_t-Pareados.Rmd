@@ -160,13 +160,14 @@ t.test(df$abuela,df$madre, paired=TRUE)
 
 Un cultivador heredo parcelas donde hay árboles de toronjas.  El quiere saber si al añadir abono, la cosecha de toronjas aumenta.  El efecto del abono sobre la producción de toronjas en parcelas pareadas en Puerto Rico. 
 
-La cantidad de Toronjas producidas por árbol en fincas pareadas, cada finca tiene una parcela con abono y la otra la otra parcela sin abono. Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono sobre la producción de toronjas, se enseña solamente lo primero 8 pares de valores en la tabla.  
+La cantidad de Toronjas producidas por árbol en fincas pareadas, cada finca tiene una parcela con abono y la otra la otra parcela sin abono. Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono sobre la producción de toronjas, se enseña solamente lo primero 8 pares de valores en la tabla. Cada parcela es del mismo tamaño con la misma cantidad de arboles
 
 ```{r, toronja}
 library(tibble)
+library(huxtable)
 Toronja=tribble(
   ~Fertilizante, ~Sin_Fertilizante, ~Municipio,
-  "2250"		,		"1920" , "Utuado",
+  "2250",		"1920" , "Utuado",
  "2410",				"2020",  "Cabo Rojo",
  "2260",				"2060",  "Manati",
  "2200",	 			"1960",  "Yabucoa",		
@@ -176,12 +177,12 @@ Toronja=tribble(
  "2300",				"1940", "Jayuya",
  "2090",				"1790","Ponce"
 )
-library(huxtable)
+
+
 huxtable(Toronja)%>%
-    theme_article(header_col = FALSE)%>%
-  set_bottom_border(row = 1, col = everywhere, value = 1) %>% 
-  set_caption("La cantidad de toronjas producidas en parceles en diferentes municipios")%>%
-  add_footnote("Cada parcela es del mismo tamaño con la misma cantidad de arboles")
+  theme_article(header_col = TRUE)%>%
+  set_bottom_border(row = 1, col = everywhere, value = 1)%>% 
+  set_caption("La cantidad de toronjas producidas en parceles en diferentes municipios")
 ```
 1. Primero añademos los datos en listas y la unimos en un df.  
 2. Se calcula la diferencias de producción de toronjas por parcela
