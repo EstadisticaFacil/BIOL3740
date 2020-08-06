@@ -1,5 +1,5 @@
 ---
-title: "T9a_Pruebas_t-Pareados"
+title: "T9a: Pruebas t-Pareados"
 output: 
   html_document:
     toc: yes
@@ -104,6 +104,18 @@ ggplot(father.son, aes(fheight, sheight))+
 
 La prueba de t-con datos pareados es la misma que la prueba de t con un grupo, **t.test()**.  
 
+La hipótesis nula es que la diferencia entre los datos dependientes es igual a cero. La **d** se refiere a la diferencia entre los pares de datos.  Nota entonces que el análisis se hace evaluando si el promedio de las diferencias es igual a cero.  
+
+  + Ho: $\overline{x_d}=0$
+  + Ha: $\overline{x_d}≠0$
+
+La prueba de t con datos pareados. 
+
+$$t=\bar{\frac{d}{\frac{s_d}{\sqrt{n}}}}$$
+
+Si el valor absoluto de las estadísticas de la prueba $\begin{array}{l}t=\left|t\right|\\\end{array}$ es mayor que el valor crítico, entonces la diferencia es significativa. El nivel critico del valor **p** corresponde al indicado en la tabla de la prueba tomando en cuanta el grado de libertad, la cantidad de error I y si es de un lado o ambos lados.
+
+
 Las opciones para esta prueba son las siguientes en roja
 
   + t.test(`r colorize("x", "red")`, `r colorize("y", "red")`,
@@ -133,9 +145,11 @@ ggplot(father.son, aes(x=fheight-sheight))+
 ***
 
 # Paired t-test, Números de niños abuela y madre
+
+## Ejercicio de clase
  
 
-Ver si la cantidad de hijos cambia entre su abuela y su madre
+Vamos a evaluar si la cantidad de hijos cambia entre su abuela y su madre
 ```{r, abuelamadre}
 abuela=c(3,11,3,9,3,3,3,
          4,3,7,6,7,6,3,2,4)
@@ -154,13 +168,13 @@ t.test(df$abuela,df$madre, paired=TRUE)
 
 
 
-
+***
 
 # Cultivador de Toronjas con parcelas pareadas
 
 Un cultivador heredo parcelas donde hay árboles de toronjas.  El quiere saber si al añadir abono, la cosecha de toronjas aumenta.  El efecto del abono sobre la producción de toronjas en parcelas pareadas en Puerto Rico. 
 
-La cantidad de Toronjas producidas por árbol en fincas pareadas, cada finca tiene una parcela con abono y la otra la otra parcela sin abono. Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono sobre la producción de toronjas, se enseña solamente lo primero 8 pares de valores en la tabla. Cada parcela es del mismo tamaño con la misma cantidad de arboles
+La cantidad de Toronjas producidas por árbol en fincas pareadas, cada finca tiene una parcela con abono y la otra la otra parcela sin abono. Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono sobre la producción de toronjas, se enseña solamente los primeros 8 pares de valores en la tabla. Cada parcela es del mismo tamaño con la misma cantidad de arboles. Los datos completos están en el próximo chunk.  
 
 ```{r, toronja}
 library(tibble)
@@ -212,11 +226,19 @@ t.test(df$Fert,df$SFert, paired=TRUE)
 
 
 
-# El número de Hojas por planta en diferentes momentos (tiempo)
+# El número de Hojas por planta en diferentes momentos (tiempo).
 
 
-Los datos representa cuantas hojas tenian las plantas en diferentes momentos de su muestreo.  Por consecuencia los datos nos son independiente. 
 
+Los datos representa cuantas hojas tenían las plantas en diferentes momentos de su muestreo.  Por consecuencia los datos nos son independiente. Los datos provienen de datos recolectados en el Yunque en una pequeña orquídea epifita, *Lepanthes eltoroensis* Stimson.  Aquí una foto de la planta.  
+
+
+
+```{r echo=FALSE, fig.cap="*Lepanthes eltoroensis*",fig.align="center", out.width = '40%'}
+knitr::include_graphics("Graficos/L_eltoroensis.jpg")
+```
+
+El archivo de datos tiene información sobre la cantidad de hojas que tiene cada una de las plantas marcadas después del huracán Georges (1998).  La plantas fueron muestreado a cada 6 meses comenzando 6 meses después del huracán por 6 años (13 muestreos).  Fueron seguidos 1084 plantas, aunque no todos están muestreados a cada tiempo. Cada fila representa un individuo, si no hay información en un tiempo puede ser que la planta no fue encontrada en este muestreo, que la planta este muerta o que fue antes que la planta creciera (todavía no había germinado). 
 
 ```{r, datosLep}
 library(readr)
@@ -228,34 +250,37 @@ head(Lep)
 length(Lep$T1)
 ```
 
+Comparamos si la cantidad de hojas por plante es igual entre el primer muestreo (1) y el segundo muestreo (2).  
 
-```{r look at the data}
-head(Lep)
-length(Lep$T11)
-```
+1. Cual es su conclusiones.
 
-
+1. Cuantas plantas fueron muestreadas en ambos periodos?
+2. Cual es el valor de t observado?
+3. Se acepta o rechaza la hipótesis nula?
+  + la plantas en el tiempo 2 tienen mayor hojas
+  + la plantas en el tiempo 2 tienen menor hojas
+  + la plantas tienen la misma cantidad de hojas
+4. Cual es el intervalo de confianza del promedio? 
+5. Cual es el promedio de diferencias entre un muestreo y el otro
+  
 
 ```{r paired t-test}
-tail(Lep)
-
 
 model2=t.test(Lep$T3,Lep$T1, paired =TRUE)
 model2
 ```
 
-# Cual son los supuestos de la prueba de t con datos pareados
-## El supuesto es que la diferencia entre los valores de los dos grupos tiene una distribución normal.
+# Supuestos de la prueba de t con datos pareados.
 
-#### `r colorize("Hay solamente un supuesto que evaluar", "green")` 
+Los supuestos de la prueba t-pareados.
 
-```{r check assumption}
-Lep$diff13_3=Lep$T13-Lep$T3
-head(Lep)
+1. Las variables dependientes sean valores continuos (intervalos o razón)
+2. Que los individuos sean observaciones independientes
+3. Que las diferencias sean normales.
+4. que no hay valores atípicos.
 
-library(ggplot2)
 
-ggplot(Lep,aes(diff13_3))+
-  geom_histogram()
-```
+
+
+
 
