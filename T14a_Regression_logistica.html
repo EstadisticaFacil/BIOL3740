@@ -489,7 +489,568 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-08-06&quot;</code></pre>
+<pre><code>## [1] &quot;2020-08-07&quot;</code></pre>
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<div id="logistic-regression" class="section level3">
+<h3>Logistic Regression</h3>
+<p>Esta regresion es utilizada cuando nuestra variable dependendiente tiene dos alternativas (representadas de forma numérica) y la variable independiente es una continua.</p>
+<pre class="r"><code>library(readr)
+Student_Brassavola &lt;- read_csv(&quot;Data_files_csv/Student_Brassavola.csv&quot;)
+head(Student_Brassavola)</code></pre>
+<pre><code>## # A tibble: 6 x 10
+##   Island  Year Pl_Num Leaf_Num   LLL Bud_Num Fl_Num Fr_Num BQS   Flowers_Y_N
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1 Saba    2011 A1701        20    26       0      1      0 Saba            1
+## 2 Saba    2011 A1702         6    18       0      0      0 Saba            0
+## 3 Saba    2011 A1703         5    13       0      0      0 Saba            0
+## 4 Statia  2009 102          NA    NA      NA     NA     NA Boven          NA
+## 5 Statia  2010 102          33    31       0      0      0 Boven           0
+## 6 Statia  2011 102          40    34       0      0      0 Boven           0</code></pre>
+<pre class="r"><code>Brass=Student_Brassavola
+completeBrass=na.omit(Brass)  # remove NA
+head(completeBrass)</code></pre>
+<pre><code>## # A tibble: 6 x 10
+##   Island  Year Pl_Num Leaf_Num   LLL Bud_Num Fl_Num Fr_Num BQS   Flowers_Y_N
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1 Saba    2011 A1701        20    26       0      1      0 Saba            1
+## 2 Saba    2011 A1702         6    18       0      0      0 Saba            0
+## 3 Saba    2011 A1703         5    13       0      0      0 Saba            0
+## 4 Statia  2010 102          33    31       0      0      0 Boven           0
+## 5 Statia  2011 102          40    34       0      0      0 Boven           0
+## 6 Statia  2012 102          10    23       0      1      0 Boven           1</code></pre>
+<pre class="r"><code>summary(completeBrass)</code></pre>
+<pre><code>##     Island               Year         Pl_Num             Leaf_Num     
+##  Length:1436        Min.   :2009   Length:1436        Min.   :  0.00  
+##  Class :character   1st Qu.:2011   Class :character   1st Qu.:  3.00  
+##  Mode  :character   Median :2011   Mode  :character   Median :  7.00  
+##                     Mean   :2011                      Mean   : 16.66  
+##                     3rd Qu.:2012                      3rd Qu.: 17.00  
+##                     Max.   :2014                      Max.   :336.00  
+##       LLL            Bud_Num            Fl_Num           Fr_Num       
+##  Min.   :  0.00   Min.   :0.00000   Min.   :0.0000   Min.   :0.00000  
+##  1st Qu.:  8.50   1st Qu.:0.00000   1st Qu.:0.0000   1st Qu.:0.00000  
+##  Median : 19.00   Median :0.00000   Median :0.0000   Median :0.00000  
+##  Mean   : 18.12   Mean   :0.05153   Mean   :0.1247   Mean   :0.04735  
+##  3rd Qu.: 26.00   3rd Qu.:0.00000   3rd Qu.:0.0000   3rd Qu.:0.00000  
+##  Max.   :108.00   Max.   :4.00000   Max.   :7.0000   Max.   :3.00000  
+##      BQS             Flowers_Y_N     
+##  Length:1436        Min.   :0.00000  
+##  Class :character   1st Qu.:0.00000  
+##  Mode  :character   Median :0.00000  
+##                     Mean   :0.08705  
+##                     3rd Qu.:0.00000  
+##                     Max.   :1.00000</code></pre>
+</div>
+</div>
+<div id="look-at-the-data" class="section level2">
+<h2>Look at the data</h2>
+<p>You can also embed plots, for example:</p>
+<p><img src="T14a_Regression_logistica_files/figure-html/head-1.png" width="672" /></p>
+</div>
+<div id="generalized-linear-model" class="section level1">
+<h1>Generalized Linear Model:</h1>
+<p><a href="https://onlinecourses.science.psu.edu/stat504/node/216/" class="uri">https://onlinecourses.science.psu.edu/stat504/node/216/</a></p>
+<p>Copied from the above website….</p>
+<p>6.1 - Introduction to Generalized Linear Models</p>
+<p>Thus far our focus has been on describing interactions or associations between two or three categorical variables mostly via single summary statistics and with significance testing. Models can handle more complicated situations and analyze the simultaneous effects of multiple variables, including mixtures of categorical and continuous variables. For example, the Breslow-Day statistics only works for 2 × 2 × K tables, while log-linear models will allow us to test of homogeneous associations in I × J × K and higher-dimensional tables. We will focus on a special class of models known as the generalized linear models (GLIMs or GLMs in Agresti).</p>
+<p>The structural form of the model describes the patterns of interactions and associations. The model parameters provide measures of strength of associations. In models, the focus is on estimating the model parameters. The basic inference tools (e.g., point estimation, hypothesis testing, and confidence intervals) will be applied to these parameters. When discussing models, we will keep in mind:</p>
+<p>Objective Model structure (e.g. variables, formula, equation) Model assumptions Parameter estimates and interpretation Model fit (e.g. goodness-of-fit tests and statistics) Model selection: For example, recall a simple linear regression model</p>
+<p>Objective: model the expected value of a continuous variable, Y, as a linear function of the continuous predictor, X, E(Yi) = β0 + β1xi Model structure: Yi = β0 + β1xi + ei Model assumptions: Y is is normally distributed, errors are normally distributed, <span class="math inline">\(e_{i} ∼ N(0, σ2)\)</span>, and independent, and X is fixed, and constant variance σ2. Parameter estimates and interpretation: β̂0 is estimate of β0 or the intercept, and β̂1 is estimate of the slope, etc…</p>
+<p>Do you recall, what is the interpretation of the intercept and the slope?</p>
+<p>Model fit: R 2, residual analysis, F-statistic Model selection: From a plethora of possible predictors, which variables to include?</p>
+</div>
+<div id="generalized-linear-models-modelo-lineal-generalizado" class="section level1">
+<h1>Generalized Linear Models: Modelo Lineal Generalizado</h1>
+<div id="glm" class="section level2">
+<h2>GLM</h2>
+<p>There are three components to any GLM:</p>
+<p>Random Component – refers to the probability distribution of the response variable (Y); e.g. normal distribution for Y in the linear regression, or binomial distribution (0, 1, : Si o NO: Vivo o Muerto) for Y in the binary logistic regression. Also called a noise model or error model. How is random error added to the prediction that comes out of the link function? Systematic Component - specifies the explanatory variables (X1, X2, … Xk) in the model, more specifically their linear combination in creating the so called linear predictor; e.g., β0 + β1x1 + β2x2 as we have seen in a linear regression, or as we will see in a logistic regression in this lesson. Link Function, η or g(μ) - specifies the link between random and systematic components. It says how the expected value of the response relates to the linear predictor of explanatory variables; e.g., η = g(E(Yi)) = E(Yi) for linear regression, or η = logit(π) for logistic regression.</p>
+<p>logit(π) = la probabilidad de un evento Assumptions:</p>
+<ol style="list-style-type: decimal">
+<li>The data Y1, Y2, …, Yn are independently distributed, i.e., cases are independent.</li>
+<li>The dependent variable Yi does NOT need to be normally distributed, but it typically assumes a distribution from an exponential family (e.g. binomial, Poisson, multinomial, normal,…)</li>
+<li>GLM does NOT assume a linear relationship between the dependent variable and the independent variables, but it does assume linear relationship between the transformed response in terms of the link function and the explanatory variables; e.g., for binary logistic regression logit(π) = β0 + βX.</li>
+<li>Independent (explanatory) variables can be even the power terms or some other nonlinear transformations of the original independent variables.</li>
+<li>The homogeneity of variance does NOT need to be satisfied. In fact, it is not even possible in many cases given the model structure, and overdispersion (when the observed variance is larger than what the model assumes) maybe present.</li>
+<li>Errors need to be independent but NOT normally distributed.</li>
+<li>It uses maximum likelihood estimation (MLE) rather than ordinary least squares (OLS) to estimate the parameters, and thus relies on large-sample approximations.</li>
+<li>Goodness-of-fit measures rely on sufficiently large samples, where a heuristic rule is that not more than 20% of the expected cells counts are less than 5.</li>
+</ol>
+<p>For a more detailed discussion refer to Agresti(2007), Ch. 3, Agresti (2013), Ch.4, and/or McCullagh &amp; Nelder (1989).</p>
+<p>Following are examples of GLM components for models that we are already familiar, such as linear regression, and for some of the models that we will cover in this class, such as logistic regression and log-linear models</p>
+</div>
+<div id="simple-linear-model" class="section level2">
+<h2>Simple Linear Model</h2>
+<p>Simple Linear Regression models how mean expected value of a continuous response variable depends on a set of explanatory variables, where index i stands for each data point:</p>
+<p>Yi=β0+βxi+ϵi</p>
+<p>or</p>
+<p>E(Yi)=β0+βxi</p>
+<ol style="list-style-type: decimal">
+<li>Random component: Y is a response variable and has a normal distribution, and generally we assume errors, ei ~ N(0, σ2). 2.Systematic component: X is the explanatory variable (can be continuous or discrete) and is linear in the parameters β0 + βxi . Notice that with a multiple linear regression where we have more than one explanatory variable, e.g., (X1, X2, … Xk), we would have a linear combination of these Xs in terms of regression parameters β’s, but the explanatory variables themselves could be transformed, e.g., X2, or log(X).</li>
+<li>Link function: Identity Link, η = g(E(Yi)) = E(Yi) — identity because we are modeling the mean directly; this is the simplest link function.</li>
+</ol>
+</div>
+</div>
+<div id="logistic-regression-1" class="section level1">
+<h1>Logistic Regression</h1>
+<p>Binary Logistic Regression models how binary response variable Y depends on a set of k explanatory variables, X=(X1, X2, … Xk).</p>
+<p>logit(π)=log(π1−π)=β0+βxi+…+β0+βxk′</p>
+<p>which models the log odds of probability of “success” as a function of explanatory variables.</p>
+<ol style="list-style-type: decimal">
+<li>Random component: The distribution of Y is assumed to be Binomial(n,π), where π is a probability of “success”.</li>
+<li>Systematic component: X’s are explanatory variables (can be continuous, discrete, or both) and are linear in the parameters, e.g., β0 + βxi + … + β0 + βxk. Again, transformation of the X’s themselves are allowed like in linear regression; this holds for any GLM.</li>
+<li>Link function: Logit link:</li>
+</ol>
+<p>η=logit(π)=log(π1−π)</p>
+<p>More generally, the logit link models the log odds of the mean, and the mean here is π. Binary logistic regression models are also known as logit models when the predictors are all categorical.</p>
+</div>
+<div id="generalized-linear-model-glm" class="section level1">
+<h1>Generalized Linear Model = glm</h1>
+<pre class="r"><code>BrassModel.1 &lt;- glm(Flowers_Y_N ~ Leaf_Num,
+                    data = Brass, family = binomial())
+
+summary(BrassModel.1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ Leaf_Num, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2059  -0.3696  -0.3294  -0.3154   2.4486  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -3.065366   0.129716  -23.63   &lt;2e-16 ***
+## Leaf_Num     0.029706   0.002891   10.28   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 910.24  on 1513  degrees of freedom
+## Residual deviance: 777.02  on 1512  degrees of freedom
+##   (353 observations deleted due to missingness)
+## AIC: 781.02
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<pre class="r"><code># generalized linear model; glm 
+
+BrassModel.1LLL &lt;- glm(Flowers_Y_N ~ LLL,
+                    data = Brass, family = binomial())
+
+summary(BrassModel.1LLL)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ LLL, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.8561  -0.4759  -0.2923  -0.1566   2.8324  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -4.96919    0.33265 -14.938   &lt;2e-16 ***
+## LLL          0.11484    0.01198   9.589   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 854.36  on 1438  degrees of freedom
+## Residual deviance: 726.35  on 1437  degrees of freedom
+##   (428 observations deleted due to missingness)
+## AIC: 730.35
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code>BrassModel.2 &lt;- glm(Flowers_Y_N ~ LLL+Leaf_Num,
+                    data = Brass, family = binomial())
+summary(BrassModel.2)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ LLL + Leaf_Num, family = binomial(), 
+##     data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.3303  -0.4141  -0.2761  -0.1728   2.4878  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -4.676975   0.329911 -14.176  &lt; 2e-16 ***
+## LLL          0.080727   0.013011   6.204 5.49e-10 ***
+## Leaf_Num     0.018987   0.003126   6.074 1.25e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 854.17  on 1437  degrees of freedom
+## Residual deviance: 682.29  on 1435  degrees of freedom
+##   (429 observations deleted due to missingness)
+## AIC: 688.29
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code>summary(BrassModel.1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ Leaf_Num, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2059  -0.3696  -0.3294  -0.3154   2.4486  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -3.065366   0.129716  -23.63   &lt;2e-16 ***
+## Leaf_Num     0.029706   0.002891   10.28   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 910.24  on 1513  degrees of freedom
+## Residual deviance: 777.02  on 1512  degrees of freedom
+##   (353 observations deleted due to missingness)
+## AIC: 781.02
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<pre class="r"><code>summary(BrassModel.1LLL)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ LLL, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.8561  -0.4759  -0.2923  -0.1566   2.8324  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -4.96919    0.33265 -14.938   &lt;2e-16 ***
+## LLL          0.11484    0.01198   9.589   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 854.36  on 1438  degrees of freedom
+## Residual deviance: 726.35  on 1437  degrees of freedom
+##   (428 observations deleted due to missingness)
+## AIC: 730.35
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code>summary(BrassModel.2)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ LLL + Leaf_Num, family = binomial(), 
+##     data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.3303  -0.4141  -0.2761  -0.1728   2.4878  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -4.676975   0.329911 -14.176  &lt; 2e-16 ***
+## LLL          0.080727   0.013011   6.204 5.49e-10 ***
+## Leaf_Num     0.018987   0.003126   6.074 1.25e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 854.17  on 1437  degrees of freedom
+## Residual deviance: 682.29  on 1435  degrees of freedom
+##   (429 observations deleted due to missingness)
+## AIC: 688.29
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code># AIC = Akaike Information Criterion</code></pre>
+<p>Si no le interesa el interecepto se añade un “-1” despues de la #Los valores de interes en nuestro caso son el intercepto y la pendiente (valor que se encuentra debajo del intercepto).</p>
+<pre class="r"><code>BrassModel.1.1 &lt;- glm(Flowers_Y_N ~ Leaf_Num+BQS+LLL-1,
+                    data = Brass, family = binomial())
+summary(BrassModel.1.1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ Leaf_Num + BQS + LLL - 1, family = binomial(), 
+##     data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.2497  -0.4102  -0.2671  -0.1746   2.5649  
+## 
+## Coefficients:
+##           Estimate Std. Error z value Pr(&gt;|z|)    
+## Leaf_Num  0.020442   0.003207   6.375 1.83e-10 ***
+## BQSBoven -5.381324   0.424642 -12.673  &lt; 2e-16 ***
+## BQSQuill -4.712156   0.392319 -12.011  &lt; 2e-16 ***
+## BQSSaba  -4.592916   0.328248 -13.992  &lt; 2e-16 ***
+## LLL       0.083720   0.013288   6.301 2.97e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1993.49  on 1438  degrees of freedom
+## Residual deviance:  674.03  on 1433  degrees of freedom
+##   (429 observations deleted due to missingness)
+## AIC: 684.03
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+</div>
+<div id="predicting-the-number-of-fruits-from-the-equation-using-the-results-from-the-model" class="section level1">
+<h1>Predicting the number of Fruits from the equation, using the results from the model</h1>
+<p><span class="math display">\[P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -(b+m*{ x }_{ i }) } } \]</span> <span class="math display">\[P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -((intercepto)+pendiente*variable.predictora) } } \]</span> # se usa esta ecuacion para predecir un valor de ‘Y’ especifico para un valor de una variable ‘X’ de interes.</p>
+<pre class="r"><code>summary(BrassModel.1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ Leaf_Num, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2059  -0.3696  -0.3294  -0.3154   2.4486  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -3.065366   0.129716  -23.63   &lt;2e-16 ***
+## Leaf_Num     0.029706   0.002891   10.28   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 910.24  on 1513  degrees of freedom
+## Residual deviance: 777.02  on 1512  degrees of freedom
+##   (353 observations deleted due to missingness)
+## AIC: 781.02
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<pre class="r"><code>exp(1) #= e</code></pre>
+<pre><code>## [1] 2.718282</code></pre>
+<pre class="r"><code>e=exp(1)
+e</code></pre>
+<pre><code>## [1] 2.718282</code></pre>
+<pre class="r"><code>P_10=1/(1+2.7182818284^-(-3.065 +0.0297*150))
+P_10</code></pre>
+<pre><code>## [1] 0.8005922</code></pre>
+<pre class="r"><code>P_10=1/(1+exp(1)^-(-3.065 +0.0297*100))
+P_10</code></pre>
+<pre><code>## [1] 0.4762678</code></pre>
+<pre class="r"><code>P_25=1/(1+exp(-(-3.065 +0.0297*25)))
+P_25</code></pre>
+<pre><code>## [1] 0.08927658</code></pre>
+<pre class="r"><code>P_50=1/(1+e^-(-3.065 +0.0297*50))
+P_50</code></pre>
+<pre><code>## [1] 0.1707955</code></pre>
+<pre class="r"><code>P_70=1/(1+e^-(-3.065 +0.0297*70))
+P_70</code></pre>
+<pre><code>## [1] 0.2717029</code></pre>
+<pre class="r"><code>P_150=1/(1+e^-(-3.065 +0.0297*150))
+P_150</code></pre>
+<pre><code>## [1] 0.8005922</code></pre>
+<pre class="r"><code>library(ggplot2)
+ ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N))+
+  geom_point()</code></pre>
+<p><img src="T14a_Regression_logistica_files/figure-html/ggplot%20binomial-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N))+
+  geom_jitter(height = 0.10)</code></pre>
+<p><img src="T14a_Regression_logistica_files/figure-html/jitter-1.png" width="672" /></p>
+<p>#Create a function to calculate the logistic regression figure called “binomial_smooth”</p>
+<pre class="r"><code>binomial_smooth &lt;- function(...) {
+  geom_smooth(method = &quot;glm&quot;, 
+              method.args = list(family = &quot;binomial&quot;), ...)
+}</code></pre>
+</div>
+<div id="graphic-with-binomial-fit" class="section level1">
+<h1>Graphic with binomial fit</h1>
+<pre class="r"><code>ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N))+
+  geom_point()+
+  binomial_smooth()</code></pre>
+<p><img src="T14a_Regression_logistica_files/figure-html/binomial%20fit-1.png" width="672" /></p>
+<pre class="r"><code>model1=glm(Flowers_Y_N~Leaf_Num, data=completeBrass,
+           family = binomial( ))
+summary(model1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ Leaf_Num, family = binomial(), data = completeBrass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2129  -0.3608  -0.3212  -0.3120   2.4571  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -3.088221   0.134013  -23.04   &lt;2e-16 ***
+## Leaf_Num     0.029925   0.002987   10.02   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 849.11  on 1435  degrees of freedom
+## Residual deviance: 722.57  on 1434  degrees of freedom
+## AIC: 726.57
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>#En este grafico se osberva el valor de la pendiente, el mismo aumenta cuando el numero de hojas se aproxima a 100 (por ende al acercarnos a este valor el valor de nuestra variable de respuesta es mayor aumenta o es mayor). ## add a figure for each site</p>
+<pre class="r"><code>names(completeBrass)</code></pre>
+<pre><code>##  [1] &quot;Island&quot;      &quot;Year&quot;        &quot;Pl_Num&quot;      &quot;Leaf_Num&quot;    &quot;LLL&quot;        
+##  [6] &quot;Bud_Num&quot;     &quot;Fl_Num&quot;      &quot;Fr_Num&quot;      &quot;BQS&quot;         &quot;Flowers_Y_N&quot;</code></pre>
+<pre class="r"><code>ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N,colour=Island))+
+  geom_point()+
+  binomial_smooth()+
+  facet_wrap(~Island)</code></pre>
+<p><img src="T14a_Regression_logistica_files/figure-html/facet-1.png" width="672" /></p>
+<div id="overlap-figure" class="section level2">
+<h2>overlap figure</h2>
+<pre class="r"><code>ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N, colour=BQS))+
+  geom_point()+
+  binomial_smooth()</code></pre>
+<p><img src="T14a_Regression_logistica_files/figure-html/overlap%20by%20site-1.png" width="672" /></p>
+</div>
+</div>
+<div id="evaluate-using-the-length-of-the-longest-leaf" class="section level1">
+<h1>Evaluate using the Length of the longest leaf</h1>
+<pre class="r"><code>ggplot(completeBrass, aes(LLL,Flowers_Y_N))+
+  geom_jitter(height = 0.25)</code></pre>
+<p><img src="T14a_Regression_logistica_files/figure-html/LLL-1.png" width="672" /></p>
+<div id="remove-the-outlier-probably-a-mistake-in-data-entry" class="section level3">
+<h3>Remove the outlier (probably a mistake in data entry)</h3>
+<div id="nota-que-se-hace-un-subgrupo-subset-de-los-datos-usando-la-función-subsetel-data-frame-la-condición" class="section level4">
+<h4>Nota que se hace un subgrupo (subset) de los datos, usando la función subset(el data frame, la condición)</h4>
+<pre class="r"><code>ggplot(subset(completeBrass,LLL&lt;90), aes(LLL,Flowers_Y_N, colour=BQS))+
+  geom_jitter(height = 0.25)+
+  binomial_smooth()</code></pre>
+<p><img src="T14a_Regression_logistica_files/figure-html/LLL90-1.png" width="672" /></p>
+<p>Choosing from different models, which is the best model.</p>
+<p>The R^2 versus the Akaike Information criterion (AIC)</p>
+<p><a href="https://www.theanalysisfactor.com/r-glm-model-fit/" class="uri">https://www.theanalysisfactor.com/r-glm-model-fit/</a></p>
+<p>Deviance</p>
+<p>We see the word Deviance twice over in the model output. Deviance is a measure of goodness of fit of a generalized linear model. Or rather, it’s a measure of badness of fit–higher numbers indicate worse fit.</p>
+<p>R reports two forms of deviance – the null deviance and the residual deviance. The null deviance shows how well the response variable is predicted by a model that includes only the intercept (grand mean).</p>
+<p>For our example, we have a value of 910.24 on 1513 degrees of freedom. Including the independent variables (weight and displacement) decreased the deviance to 777.02 points on 1512 degrees of freedom, a significant reduction in deviance.</p>
+<p>The Residual Deviance has reduced by 910.24-777.02=133.22 with a loss of one degrees of freedom.</p>
+<pre class="r"><code>BrassModel.1 &lt;- glm(Flowers_Y_N ~ Leaf_Num,
+                    data = Brass, family = binomial())
+summary(BrassModel.1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ Leaf_Num, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2059  -0.3696  -0.3294  -0.3154   2.4486  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -3.065366   0.129716  -23.63   &lt;2e-16 ***
+## Leaf_Num     0.029706   0.002891   10.28   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 910.24  on 1513  degrees of freedom
+## Residual deviance: 777.02  on 1512  degrees of freedom
+##   (353 observations deleted due to missingness)
+## AIC: 781.02
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>Akaike Information Criteron</p>
+<p>Information Criteria</p>
+<p>The Akaike Information Criterion (AIC) provides a method for assessing the quality of your model through comparison of related models. It’s based on the Deviance, but penalizes you for making the model more complicated. Much like adjusted R-squared, it’s intent is to prevent you from including irrelevant predictors.</p>
+<p>However, unlike adjusted R-squared, the number itself is not meaningful. If you have more than one similar candidate models (where all of the variables of the simpler model occur in the more complex models), then you should select the model that has the smallest AIC.</p>
+<p>So it’s useful for comparing models, but isn’t interpretable on its own. YOU NEED TO COMPARE MODELS.</p>
+<pre class="r"><code># Complex models
+
+Brass$LLLxLN=Brass$LLL*Brass$Leaf_Num  # add a new variable the multiplication of LLL* Leaf_Num
+#head(Brass)
+
+BrassModel.1 &lt;- glm(Flowers_Y_N ~ LLL,
+                    data = Brass, family = binomial())
+
+
+BrassModel.2 &lt;- glm(Flowers_Y_N ~ Leaf_Num,
+                    data = Brass, family = binomial())
+
+BrassModel.3 &lt;- glm(Flowers_Y_N ~ LLLxLN,
+                    data = Brass, family = binomial())
+
+summary(BrassModel.1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ LLL, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.8561  -0.4759  -0.2923  -0.1566   2.8324  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -4.96919    0.33265 -14.938   &lt;2e-16 ***
+## LLL          0.11484    0.01198   9.589   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 854.36  on 1438  degrees of freedom
+## Residual deviance: 726.35  on 1437  degrees of freedom
+##   (428 observations deleted due to missingness)
+## AIC: 730.35
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code>summary(BrassModel.2)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ Leaf_Num, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2059  -0.3696  -0.3294  -0.3154   2.4486  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -3.065366   0.129716  -23.63   &lt;2e-16 ***
+## Leaf_Num     0.029706   0.002891   10.28   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 910.24  on 1513  degrees of freedom
+## Residual deviance: 777.02  on 1512  degrees of freedom
+##   (353 observations deleted due to missingness)
+## AIC: 781.02
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<pre class="r"><code>summary(BrassModel.3)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ LLLxLN, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.9366  -0.3664  -0.3350  -0.3260   2.4106  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -2.921e+00  1.247e-01 -23.434   &lt;2e-16 ***
+## LLLxLN       8.462e-04  9.205e-05   9.193   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 854.17  on 1437  degrees of freedom
+## Residual deviance: 744.26  on 1436  degrees of freedom
+##   (429 observations deleted due to missingness)
+## AIC: 748.26
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+</div>
+</div>
+</div>
 
 
 
