@@ -38,15 +38,35 @@ Sys.Date()
 
 Esta regresión es utilizada cuando nuestra variable dependiente tiene solamente dos alternativas (representadas de forma numérica, **0 y 1**) y la variable independiente es una variable continua.
 
+## *Brassavola cucullata*
+Los datos fueron recolectado de dos pequeñas islas del Caribe, San Eustaquio y Saba.  
+
+*Brassavola cucullata* pertenece a la subtribu Laeliinae y es una especie epífita y rupícola que puede formar grandes racimos de brotes. Cada brote está compuesto por un solo tallo de 3.5-12.5 cm de largo y 1-3.5 mm de diámetro y tiene una sola hoja semi-tereta de 16-35 cm de largo y solo un poco más gruesa que el tallo. Las inflorescencias terminales miden 3-30 mm de largo y suelen tener una sola flor. Las flores son en gran parte blancas con las partes delgadas del perianto que a menudo se vuelven de color amarillo pálido hacia sus ápices. El labelo es ovado-acuminado y fimbriado alrededor de la columna. El cunículo se extiende hacia el ovario inferior y no tiene néctar. Las flores engañosas tienen una fragancia nocturna dulce y espesa, que puede perdurar hasta el día. La producción de frutos depende de los polinizadores. Las cápsulas tardan varios meses en desarrollarse y son pediceladas y picudas (restos de la columna); el cuerpo de la cápsula mide entre 2 y 5 cm de largo y produce muchos miles de semillas polvorientas (Ackerman y Collaborators 2014).
+
+En cada una de las tres poblaciones, etiquetamos todas las plantas de *B. cucullata* que pudimos encontrar. Observamos si cada planta era epífita o epilítica, medimos la altura sobre el suelo, buscamos evidencia de herbivoría foliar, medimos la longitud de la hoja más larga y contamos el número de brotes de hojas, flores y frutos. Si las flores estaban presentes, registramos si habían sido visitadas con éxito o no mediante una inspección visual para la eliminación de polinarios o polinias en el estigma. Estos datos se obtuvieron una vez al año durante la época de floración. Nuestras observaciones en la población de Quill abarcaron 2009-2013, en Boven 2010-2013 y en Saba 2011-2014.
+
+
+Puede encontrar en manuscrito en este enlace, que evalúa la biología de la orquídea y la posibilidad de extinción y como las cabras impacta su supervivencias.     
+
+Pronto
 
 ```{r data}
 library(readr)
 Student_Brassavola <- read_csv("Data_files_csv/Student_Brassavola.csv")
-head(Student_Brassavola)
-Brass=Student_Brassavola
-completeBrass=na.omit(Brass)  # remove NA
+completeBrass=na.omit(Student_Brassavola)  # remove NA
 head(completeBrass)
-summary(completeBrass)
+```
+
+Evaluar la tendencias centrales y la dispersión de las variables y cambio de nombre de las variables al español.
+
+
+```{r}
+
+Brass=
+  completeBrass%>%
+  rename(Isla=Island, Ano=Year, Número_planta=Pl_Num, Cant_hojas=Leaf_Num, Largo_Hoja_cm=LLL, Cant_capullo=Bud_Num, Cant_Flores=Fl_Num, Cant_Frutos=Fr_Num, BQS=BQS, Flor_si_no=Flowers_Y_N)
+
+summary(Brass)
 ```
 
 ## Look at the data
@@ -57,52 +77,25 @@ You can also embed plots, for example:
 
 library(ggplot2)
 
-ggplot(completeBrass, aes(Flowers_Y_N))+
+ggplot(Brass, aes(Flor_si_no))+
 geom_histogram()
 ```
 
 
-# Generalized Linear Model:  
-
-https://onlinecourses.science.psu.edu/stat504/node/216/
 
 
-Copied from the above website....
+# Modelo Lineal Generalizado
+En este modulo se hace una primera introducción a un otro tipo de herramienta para el análisis de datos, denominado "Modelo Lineal Generalizado". Lo interesante de esta acercamiento es que aun que uno tiene una variable de respuesta que no cumple con distribución normal hay múltiples opciones para los análisis.  En este modulo solamente se estará presentando el tipo de datos donde la variable de respuesta (Y) es binomial. 
 
-6.1 - Introduction to Generalized Linear Models
+Hay tres componentes en cualquier GLM:
 
-Thus far our focus has been on describing interactions or associations between two or three categorical variables mostly via single summary statistics and with significance testing. Models can handle more complicated situations and analyze the simultaneous effects of multiple variables, including mixtures of categorical and continuous variables. For example, the Breslow-Day statistics only works for 2 × 2 × K tables, while log-linear models will allow us to test of homogeneous associations in I × J × K and higher-dimensional tables. We will focus on a special class of models known as the generalized linear models (GLIMs or GLMs in Agresti).
+Componente aleatorio: se refiere a la distribución de probabilidad de la variable de respuesta (Y); p.ej. distribución binomial (0, 1,: Si o NO: Vivo o Muerto) para Y en la regresión logística binaria. Nota que la variable Y puede tener muchas otras tipo de distribución incluyendo la distribución normal.  
 
-The structural form of the model describes the patterns of interactions and associations. The model parameters provide measures of strength of associations. In models, the focus is on estimating the model parameters. The basic inference tools (e.g., point estimation, hypothesis testing, and confidence intervals) will be applied to these parameters. When discussing models, we will keep in mind:
+Componente sistemático: especifica las variables explicativas (X1, X2, ... Xk) en el modelo, más específicamente su combinación lineal en la creación del llamado predictor lineal; por ejemplo, β0 + β1x1 + β2x2 como hemos visto en una regresión lineal, o como veremos en una regresión logística en esta lección.
 
-Objective
-Model structure (e.g. variables, formula, equation)
-Model assumptions
-Parameter estimates and interpretation
-Model fit (e.g. goodness-of-fit tests and statistics)
-Model selection:
-For example, recall a simple linear regression model
-
-Objective: model the expected value of a continuous variable, Y, as a linear function of the continuous predictor, X, E(Yi) = β0 + β1xi
-Model structure: Yi = β0 + β1xi + ei
-Model assumptions: Y is is normally distributed, errors are normally distributed, $e_{i} ∼ N(0, σ2)$, and independent, and X is fixed, and constant variance σ2.
-Parameter estimates and interpretation: β̂0 is estimate of β0 or the intercept, and β̂1 is estimate of the slope, etc... 
+Función de enlace, η o g (μ): especifica el enlace entre componentes aleatorios y sistemáticos. Dice cómo el valor esperado de la respuesta se relaciona con el predictor lineal de variables explicativas; por ejemplo, η = g (E (Yi)) = E (Yi) para la regresión lineal, o η = logit (π) para la regresión logística.
 
 
-Do you recall, what is the interpretation of the intercept and the slope?
-
-
-Model fit: R 2, residual analysis, F-statistic
-Model selection: From a plethora of possible predictors, which variables to include?
-
-# Generalized Linear Models: Modelo Lineal Generalizado
-## GLM
-
-There are three components to any GLM:
-
-Random Component – refers to the probability distribution of the response variable (Y); e.g. normal distribution for Y in the linear regression, or binomial distribution (0, 1, : Si o NO: Vivo o Muerto) for Y in the binary logistic regression.  Also called a noise model or error model.  How is random error added to the prediction that comes out of the link function?
-Systematic Component - specifies the explanatory variables (X1, X2, ... Xk) in the model, more specifically their linear combination in creating the so called linear predictor; e.g., β0 + β1x1 + β2x2 as we have seen in a linear regression, or as we will see in a logistic regression in this lesson.
-Link Function, η or g(μ) - specifies the link between random and systematic components. It says how the expected value of the response relates to the linear predictor of explanatory variables; e.g., η = g(E(Yi)) = E(Yi) for linear regression, or  η = logit(π) for logistic regression.
 
 logit(π) = la probabilidad de un evento
 Assumptions:
