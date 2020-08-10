@@ -212,7 +212,7 @@ rand5=2.571
 
 # subset region and plot
 db5 <- ggplot_build(d5)$data[[1]]
-db5
+head(db5, n=3)
 ```
 
 ```{r echo=FALSE}
@@ -233,11 +233,11 @@ La alternativa es que nuestra hipótesis sea nada más de un lado donde el total
 ```{r echo=FALSE}
 
 randsup=2.015
-d7 <- d5 + geom_area(data = subset(db5, x > randsup), aes(x=x, y=y), fill="red")+
+d8 <- d5 + geom_area(data = subset(db5, x > randsup), aes(x=x, y=y), fill="red")+
   rlt_theme
 
 
-d8 <- d5 + 
+d7 <- d5 + 
   geom_area(data = subset(db5, x < -randsup), aes(x=x, y=y), fill="red")+
   rlt_theme
 
@@ -256,17 +256,25 @@ Ahora se demuestra como calcular el intervalo de confianza de $\mu$.  Selecciona
 
 Queremos calcular intervalo que incluye 95%, por consecuencia es el rango que hay en el área gris de la primera figura.  
 
-## El limite superior
-Evaluando las variables necesarias se necesita solamente el valor de t con la tipo de error I de 95% y que corresponde a un tamaño de muestra de 20, $t_{0.05,\ n-1}$. Para conocer este valor hay que ir a una tabla de la distribución de t (vea p. 217 en el libro) o usar R para calcular el valor.  En la tabla busca el error deseado (0.05) y se busca el grado de libertad *n-1*, $t_{0.05,\ 19}$. El valor del libro es $t = 2.093$.  
+# Los limites del intervalo
+
+
+Para calcular el intervalo se necesita se necesita solamente el valor de t con la tipo de error I de 95% y que corresponde a un tamaño de muestra de 20, $t_{0.05,\ n-1}$. Para conocer este valor hay que ir a una tabla de la distribución de t (vea p. 217 en el libro) o usar R para calcular el valor.  En la tabla busca el error I deseado (0.05) y se busca el grado de libertad *n-1*, $t_{0.05,\ 19}$. El valor del libro es $t = 2.093$. Si se quisiera un Tipo de error I con solamente 1% error el valor seria $t=2.8609$, (busca la información en la tabla, o usando la función **qt()**).  
  
 ```{r}
 qt(0.025, 19) # nota que se usa la mitad de 0.05, por que es una prueba de dos lados. 
 ```
  
- Ahora falta sustituir los valores en la formula
+## El limite superior
+ 
+Ahora falta sustituir los valores en la formula
 
 $UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
 $$UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.825$$
+
+
+***
+
 ## El limite inferior
 
 $LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
@@ -274,7 +282,12 @@ $LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
 
 $$LL_{0.95}=20-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.175$$
 
+
+***
+
 El intervalo de confianza del $\mu$ es entre 20.175-21.825 con un 95% de probabilidad. 
+
+
 ***
 
 ## Menos o más grados de libertad
@@ -375,9 +388,10 @@ Pasos
 1. Crear una distribución normal de la hipótesis **NULA** con un promedio de 
 2. Calcule las estadísticas t.test
 3. Dibuje la media de la estadística t en la figura
-  - la linea entecortada representa el intervalo de confianza de 95%
-  - la linea roja representa la estadistica de los datos.
-  
+  - la linea entrecortada representa el intervalo de confianza de 95%
+  - la linea roja representa la estadística de los datos.
+
+En este ejemplo observamos que el promedio estimado es por encima del intervalo de confianza (la lineas entrecortadas).  
 
 
 
@@ -388,7 +402,7 @@ randT<-rt(30000, df=NROW(tips)-1)+2.5
 # Hacer la prueba de t
 tipTTest<-t.test(tips$tip, alternative = "two.sided", mu=2.50)
 
-tipTTest 
+tipTTest
 
 
 # Graficar los resultados
