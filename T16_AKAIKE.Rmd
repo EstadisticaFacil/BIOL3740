@@ -1,0 +1,116 @@
+---
+title: "Selecionando Modelos, AIC"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    css: custom.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+
+
+```
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```
+
+
+```{r data}
+library(readr)
+Student_Brassavola <- read_csv("Data_files_csv/Student_Brassavola.csv")
+Brass=na.omit(Student_Brassavola)  # remove NA
+head(Brass)
+```
+
+
+
+
+Choosing from different models, which is the best model.  
+
+The R^2 versus the Akaike Information criterion (AIC)
+
+https://www.theanalysisfactor.com/r-glm-model-fit/
+
+
+
+
+Deviance
+
+We see the word Deviance twice over in the model output. Deviance is a measure of goodness of fit of a generalized linear model. Or rather, it’s a measure of badness of fit–higher numbers indicate worse fit.
+
+R reports two forms of deviance – the null deviance and the residual deviance. The null deviance shows how well the response variable is predicted by a model that includes only the intercept (grand mean).
+
+For our example, we have a value of 910.24  on 1513 degrees of freedom. Including the independent variables (weight and displacement) decreased the deviance to 777.02 points on 1512 degrees of freedom, a significant reduction in deviance.
+
+The Residual Deviance has reduced by 910.24-777.02=133.22 with a loss of one degrees of freedom.
+
+```{r}
+
+BrassModel.1 <- glm(Flowers_Y_N ~ Leaf_Num,
+                    data = Brass, family = binomial())
+summary(BrassModel.1)
+```
+
+
+
+
+Akaike Information Criteron
+
+Information Criteria
+
+The Akaike Information Criterion (AIC) provides a method for assessing the quality of your model through comparison of related models.  It’s based on the Deviance, but penalizes you for making the model more complicated.  Much like adjusted R-squared, it’s intent is to prevent you from including irrelevant predictors.
+
+However, unlike adjusted R-squared, the number itself is not meaningful. If you have more than one similar candidate models (where all of the variables of the simpler model occur in the more complex models), then you should select the model that has the smallest AIC.
+
+So it’s useful for comparing models, but isn’t interpretable on its own. YOU NEED TO COMPARE MODELS. 
+
+
+
+
+
+```{r}
+
+names(Brass)
+BrassModel.1 <- glm(Flowers_Y_N ~ LLL,
+                    data = Brass, family = binomial())
+
+
+BrassModel.2 <- glm(Flowers_Y_N ~ Leaf_Num,
+                    data = Brass, family = binomial())
+
+BrassModel.3 <- glm(Flowers_Y_N ~ LLL+Leaf_Num,
+                    data = Brass, family = binomial())
+
+summary(BrassModel.1)
+summary(BrassModel.2)
+summary(BrassModel.3)
+```
+
+
+```{r}
+
+AIC(BrassModel.1, BrassModel.2,BrassModel.3)
+```
+
+aic
+

@@ -34,9 +34,17 @@ Fecha de la ultima revisión
 Sys.Date()
 ```
 
+
+```{r}
+library(tidyverse)
+```
+
+
 # Regresión Logistica
 
-Esta regresión es utilizada cuando nuestra variable dependiente tiene solamente dos alternativas (representadas de forma numérica, **0 y 1**) y la variable independiente es una variable continua.
+Esta regresión es utilizada cuando la variable dependiente tiene solamente dos alternativas (representadas de forma numérica, **0 y 1**) y la variable independiente es una variable continua.
+
+
 
 ## *Brassavola cucullata*
 Los datos fueron recolectado de dos pequeñas islas del Caribe, San Eustaquio y Saba.  
@@ -48,7 +56,8 @@ En cada una de las tres poblaciones, etiquetamos todas las plantas de *B. cucull
 
 Puede encontrar en manuscrito en este enlace, que evalúa la biología de la orquídea y la posibilidad de extinción y como las cabras impacta su supervivencias.     
 
-Pronto
+Pronto disponible
+
 
 ```{r data}
 library(readr)
@@ -85,105 +94,88 @@ geom_histogram()
 
 
 # Modelo Lineal Generalizado
-En este modulo se hace una primera introducción a un otro tipo de herramienta para el análisis de datos, denominado "Modelo Lineal Generalizado". Lo interesante de esta acercamiento es que aun que uno tiene una variable de respuesta que no cumple con distribución normal hay múltiples opciones para los análisis.  En este modulo solamente se estará presentando el tipo de datos donde la variable de respuesta (Y) es binomial. 
+
+En este modulo se hace una primera introducción a un otro tipo de herramienta para el análisis de datos, denominado **Modelo Lineal Generalizado, GLM**. Lo interesante de esta acercamiento es que aun que uno tiene una variable de respuesta que no cumple con distribución normal hay múltiples opciones para los análisis.  En este modulo solamente se estará presentando el tipo de datos donde la variable de respuesta (Y) es binomial. 
 
 Hay tres componentes en cualquier GLM:
 
-Componente aleatorio: se refiere a la distribución de probabilidad de la variable de respuesta (Y); p.ej. distribución binomial (0, 1,: Si o NO: Vivo o Muerto) para Y en la regresión logística binaria. Nota que la variable Y puede tener muchas otras tipo de distribución incluyendo la distribución normal.  
+`r colorize("Componente aleatorio:", "deepskyblue4")` se refiere a la distribución de probabilidad de la variable de respuesta (Y); por ejemplo, distribución binomial (0, 1,: Si o NO: Vivo o Muerto). Nota que la variable Y puede tener muchas otras tipo de distribución incluyendo la distribución normal, lognormal, proporción y m,uchos otros.  
 
-Componente sistemático: especifica las variables explicativas (X1, X2, ... Xk) en el modelo, más específicamente su combinación lineal en la creación del llamado predictor lineal; por ejemplo, β0 + β1x1 + β2x2 como hemos visto en una regresión lineal, o como veremos en una regresión logística en esta lección.
+`r colorize("Variable predictivas:", "blue")` especifica las variables explicativas $X_1,\ X_2,\ X_3,...X_k$ en el modelo, la combinación lineal se puede expresar con la siguiente forma; por ejemplo, $\beta_0+\beta_1\cdot x_1+\beta_2\cdot x_2,\ ...+\beta_k\cdot x_k2$ como hemos visto en una regresión lineal.
 
-Función de enlace, η o g (μ): especifica el enlace entre componentes aleatorios y sistemáticos. Dice cómo el valor esperado de la respuesta se relaciona con el predictor lineal de variables explicativas; por ejemplo, η = g (E (Yi)) = E (Yi) para la regresión lineal, o η = logit (π) para la regresión logística.
+`r colorize("Función de enlace:", "blue")` η o g (μ): especifica el enlace entre componentes aleatorios y sistemáticos. Dice cómo el valor esperado de la respuesta se relaciona con las variables de la ecuación lineal explicativa.
 
 
+## Los supuestos de la regresión logistica.  
 
-logit(π) = la probabilidad de un evento
-Assumptions:
+  1. El resultado es la variable es binaria o también conocida como dicótoma (sí o no: presente o ausente, 1 o 0).
+  2. Existe una relación lineal entre el logit (p) de la variable de repuesta y las variables predictora.
+  3. No hay valores extremos o valores atípicos en los predictores continuos.
+  4. No hay correlaciones altas (es decir, multicolinealidad) entre los variables predictores (vea modulo de Correlación).
+  
 
-1.  The data Y1, Y2, ..., Yn are independently distributed, i.e., cases are independent.
-2.  The dependent variable Yi does NOT need to be normally distributed, but it typically assumes a distribution from an exponential family (e.g. binomial, Poisson, multinomial, normal,...)
-3. GLM does NOT assume a linear relationship between the dependent variable and the independent variables, but it does assume linear relationship between the transformed response in terms of the link function and the explanatory variables; e.g., for binary logistic regression logit(π) = β0 + βX.
-4. Independent (explanatory) variables can be even the power terms or some other nonlinear transformations of the original independent variables.
-5. The homogeneity of variance does NOT need to be satisfied. In fact, it is not even possible in many cases given the model structure, and overdispersion (when the observed variance is larger than what the model assumes) maybe present.
-6. Errors need to be independent but NOT normally distributed.
-7. It uses maximum likelihood estimation (MLE) rather than ordinary least squares (OLS) to estimate the parameters, and thus relies on large-sample approximations.
-8. Goodness-of-fit measures rely on sufficiently large samples, where a heuristic rule is that not more than 20% of the expected cells counts are less than 5.
 
-For a more detailed discussion refer to Agresti(2007), Ch. 3, Agresti (2013), Ch.4, and/or McCullagh & Nelder (1989).
+## Comparar modelo lineal y logistico
 
-Following are examples of GLM components for models that we are already familiar, such as linear regression, and for some of the models that we will cover in this class, such as logistic regression and log-linear models
+l primer paso es entender cual es la diferencia entre una regresión lineal y una regresión logística.   Podemos visualizar ambas formula y ver como difieren.  
 
-## Simple Linear Model 
-Simple Linear Regression models how mean expected value of a continuous response variable depends on a set of explanatory variables, where index i stands for each data point:
+La regresión lineal: 
 
-Yi=β0+βxi+ϵi
+$$Y_i=\beta_0+\beta_1X_i+\beta_2X_i$$
+Regresión logistica:
 
-or
+p=P(Y=1) o sea la probabilidad que p tenga el valor de **1** o  1-p= 1-P(Y=1) que seria el valor de **0** en su conjunto de datos.  
 
-E(Yi)=β0+βxi 
+$$\log\frac{p}{1-p}=\beta_0+\beta_1X_i+\beta_2X_i$$
+Nota que la primera ecuación es un modelo que trata de predecir el valor de **Y** en la segunda se estima la probabilidad de que el valor de predictora tenga una valor de 1 o 0.  Las probabilidades van a variar de 0 a 1 o sea de 0% a 100%.  El vocabulario correcto es que las respuesta son binarias también dicho de la distribución de Bernoulli.  
 
-1. Random component: Y is a response variable and has a normal distribution, and generally we assume errors, ei ~ N(0, σ2).
-2.Systematic component: X is the explanatory variable (can be continuous or discrete) and is linear in the parameters β0  + βxi . Notice that with a multiple linear regression where we have more than one explanatory variable, e.g., (X1, X2, ... Xk), we would have a linear combination of these Xs in terms of regression parameters β's, but the explanatory variables themselves could be transformed, e.g., X2, or log(X). 
-3. Link function: Identity Link, η = g(E(Yi)) = E(Yi) --- identity because we are modeling the mean directly; this is the simplest link function.
+Van a ver en la literatura que la formula se representa tambien de la siguiente forma, donde lo escribe como $logit(p)$.  
 
-# Logistic Regression 
-Binary Logistic Regression models how binary response variable Y depends on a set of k explanatory variables, X=(X1, X2, ... Xk). 
+$$logit\left(p\right)=\log\frac{p}{1-p}=\beta_0+\beta_1X_i+\beta_2X_i$$
 
-logit(π)=log(π1−π)=β0+βxi+…+β0+βxk′
+En el siguiente enlace se puede encontrar más información <https://en.wikipedia.org/wiki/Logistic_regression>
 
-which models the log odds of probability of "success" as a function of explanatory variables.
-
-1. Random component: The distribution of Y is assumed to be Binomial(n,π), where π is a probability of "success". 
-2. Systematic component: X's are explanatory variables (can be continuous, discrete, or both) and are linear in the parameters, e.g.,  β0 + βxi + ... + β0 + βxk. Again, transformation of the X's themselves are allowed like in linear regression; this holds for any GLM. 
-3. Link function: Logit link:
-
-η=logit(π)=log(π1−π)
-
-More generally, the logit link models the log odds of the mean, and the mean here is π. Binary logistic regression models are also known as logit models when the predictors are all categorical.
-
+Se evalúa tres modelos:
+  1. la probabilidad de tener flores es relacionado a la cantidad de hojas (el tamaño de la planta).
+  2. la probabilidad de tener flores es relacionado a la hoja más larga de la planta (el tamaño de la planta).
+  3. la probabilidad de tener flores es relacionado a la hoja más larga de la planta y a la cantidad de hojas.
+  
 # Generalized Linear Model = glm
 
 ```{r model}
-
-BrassModel.1 <- glm(Flowers_Y_N ~ Leaf_Num,
+BrassModel.1 <- glm(Flor_si_no ~ Cant_hojas,
                     data = Brass, family = binomial())
 
 summary(BrassModel.1)
-# generalized linear model; glm 
 
-BrassModel.1LLL <- glm(Flowers_Y_N ~ LLL,
+BrassModel.2 <- glm(Flor_si_no ~ Largo_Hoja_cm,
                     data = Brass, family = binomial())
 
-summary(BrassModel.1LLL)
+summary(BrassModel.2)
 
-BrassModel.2 <- glm(Flowers_Y_N ~ LLL+Leaf_Num,
+BrassModel.3 <- glm(Flor_si_no ~ Cant_hojas+Largo_Hoja_cm,
                     data = Brass, family = binomial())
-summary(BrassModel.2)
-
-summary(BrassModel.1)
-summary(BrassModel.1LLL)
-summary(BrassModel.2)
-
-# AIC = Akaike Information Criterion
-
+summary(BrassModel.3)
 
 
 ```
 
-Si no le interesa el interecepto se añade un "-1" despues de la 
+Si no le interesa el intercepto se añade un "-1" después de la 
 #Los valores de interes en nuestro caso son el intercepto y la pendiente (valor que se encuentra debajo del intercepto).
 
 ```{r model bby site surveyed}
-BrassModel.1.1 <- glm(Flowers_Y_N ~ Leaf_Num+BQS+LLL-1,
+
+names(Brass)
+BrassModel.1.1 <- glm(Flor_si_no ~ Cant_hojas+BQS+Largo_Hoja_cm-1,
                     data = Brass, family = binomial())
 summary(BrassModel.1.1)
 ```
 
-# Predicting the number of Fruits from the equation, using the results from the model
+# Predecir el número de frutas usando la ecuación, utilizando los resultados del modelo anterior
 
-$$P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -(b+m*{ x }_{ i }) } } $$
-$$P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -((intercepto)+pendiente*variable.predictora) } } $$
-# se usa esta ecuacion para predecir un valor de 'Y' especifico para un valor de una variable 'X' de interes.
+$$P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -(b+m*{ x }_{ i }) } }$$
+$$P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -((intercepto)+pendiente*variable.predictora) } }$$
+# Se usa esta ecuacion para predecir un valor de 'Y' especifico para un valor de una variable 'X' de interes.
 
 ```{r predicting num fruits}
 
@@ -214,63 +206,76 @@ P_150
 ```
 
 
+## Visualizando una regresión logistica
+
 ```{r ggplot binomial}
+names(Brass)
 library(ggplot2)
- ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N))+
+ ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
   geom_point()
 
 ```
 
+## Reducir solapamiento de los puntos 
+
+Usar geom_jitter
+
+ggplot(el archivo de datos, aes(las variables continuas))  
+  • geom jitter(alpha, color, fill, shape, size)  
+    ◦ alpha: la intensidad del color 
+    ◦ color: el color de la línea alrededor de las barras
+    ◦ fill: el color de las barras 
+    ◦ linetype: representa el estilo de línea; ver sección “Especificación Estética” 
+    ◦ size: representa el grosor de la línea 
+    ◦ weight: para modificar el valor original; entonces no sería, por ejemplo, el conteo/suma de los valores si no un valor ponderado (promedio ponderado) 
+
 
 ```{r jitter}
 
-ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N))+
+ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
   geom_jitter(height = 0.10)
 ```
 
-#Create a function to calculate the logistic regression figure called "binomial_smooth"
-
-```{r binomial model}
-
-binomial_smooth <- function(...) {
-  geom_smooth(method = "glm", 
-              method.args = list(family = "binomial"), ...)
-}
-```
 
 
 # Graphic with binomial fit
 
 ```{r binomial fit}
-ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N))+
-  geom_point()+
-  binomial_smooth()
+names(Brass)
 
-model1=glm(Flowers_Y_N~Leaf_Num, data=completeBrass,
-           family = binomial( ))
-summary(model1)
+ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
+  geom_point(alpha=.5) +
+  stat_smooth(method="glm", se=FALSE, method.args = list(family=binomial))
 ```
-#En este grafico se osberva el valor de la pendiente, el mismo aumenta cuando el numero de hojas se aproxima a 100 (por ende al acercarnos a este valor el valor de nuestra variable de respuesta es mayor aumenta o es mayor).
+
+El modelo de regre
+
+```{r}
+
+summary(BrassModel.1)
+```
+
+En este grafico se osberva el valor de la pendiente, el mismo aumenta cuando el numero de hojas se aproxima a 100 (por ende al acercarnos a este valor el valor de nuestra variable de respuesta es mayor aumenta o es mayor).
 ## add a figure for each site
 
 ```{r facet}
-names(completeBrass)
-ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N,colour=Island))+
-  geom_point()+
-  binomial_smooth()+
-  facet_wrap(~Island)
+names(Brass)
+ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
+  geom_point(alpha=.5) +
+  stat_smooth(method="glm", se=FALSE, method.args = list(family=binomial))+
+  facet_wrap(~Isla)
 
 ```
 
 
-## overlap figure
+## Solapamiento 
 
 ```{r overlap by site}
 
-
-ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N, colour=BQS))+
-  geom_point()+
-  binomial_smooth()
+names(Brass)
+ggplot(Brass, aes(Cant_hojas,Flor_si_no, colour=BQS))+
+  geom_point(alpha=.5) +
+  stat_smooth(method="glm", se=FALSE, method.args = list(family=binomial))
 
 ```
 
@@ -278,8 +283,8 @@ ggplot(completeBrass, aes(Leaf_Num,Flowers_Y_N, colour=BQS))+
 # Evaluate using the Length of the longest leaf
 
 ```{r LLL}
-
-ggplot(completeBrass, aes(LLL,Flowers_Y_N))+
+names(Brass)
+ggplot(Brass, aes(Largo_Hoja_cm,Flor_si_no))+
   geom_jitter(height = 0.25)
 
 ```
@@ -291,75 +296,16 @@ ggplot(completeBrass, aes(LLL,Flowers_Y_N))+
 
 
 ```{r LLL90}
-
-ggplot(subset(completeBrass,LLL<90), aes(LLL,Flowers_Y_N, colour=BQS))+
-  geom_jitter(height = 0.25)+
-  binomial_smooth()
+names(Brass)
+ggplot(subset(Brass,Largo_Hoja_cm<90), aes(Largo_Hoja_cm,Flor_si_no, colour=BQS))+
+  geom_jitter(height = 0.10)+
+  stat_smooth(method="glm", se=FALSE, method.args = list(family=binomial))
 ```
 
+## Selecionar el mejor modelo
 
-Choosing from different models, which is the best model.  
-
-The R^2 versus the Akaike Information criterion (AIC)
-
-https://www.theanalysisfactor.com/r-glm-model-fit/
+Vea modulo **T16 Criterio de Información**
 
 
 
 
-Deviance
-
-We see the word Deviance twice over in the model output. Deviance is a measure of goodness of fit of a generalized linear model. Or rather, it’s a measure of badness of fit–higher numbers indicate worse fit.
-
-R reports two forms of deviance – the null deviance and the residual deviance. The null deviance shows how well the response variable is predicted by a model that includes only the intercept (grand mean).
-
-For our example, we have a value of 910.24  on 1513 degrees of freedom. Including the independent variables (weight and displacement) decreased the deviance to 777.02 points on 1512 degrees of freedom, a significant reduction in deviance.
-
-The Residual Deviance has reduced by 910.24-777.02=133.22 with a loss of one degrees of freedom.
-
-```{r}
-
-BrassModel.1 <- glm(Flowers_Y_N ~ Leaf_Num,
-                    data = Brass, family = binomial())
-summary(BrassModel.1)
-```
-
-
-
-
-Akaike Information Criteron
-
-Information Criteria
-
-The Akaike Information Criterion (AIC) provides a method for assessing the quality of your model through comparison of related models.  It’s based on the Deviance, but penalizes you for making the model more complicated.  Much like adjusted R-squared, it’s intent is to prevent you from including irrelevant predictors.
-
-However, unlike adjusted R-squared, the number itself is not meaningful. If you have more than one similar candidate models (where all of the variables of the simpler model occur in the more complex models), then you should select the model that has the smallest AIC.
-
-So it’s useful for comparing models, but isn’t interpretable on its own. YOU NEED TO COMPARE MODELS. 
-
-
-
-
-
-
-```{r}
-
-
-# Complex models
-
-Brass$LLLxLN=Brass$LLL*Brass$Leaf_Num  # add a new variable the multiplication of LLL* Leaf_Num
-#head(Brass)
-
-BrassModel.1 <- glm(Flowers_Y_N ~ LLL,
-                    data = Brass, family = binomial())
-
-
-BrassModel.2 <- glm(Flowers_Y_N ~ Leaf_Num,
-                    data = Brass, family = binomial())
-
-BrassModel.3 <- glm(Flowers_Y_N ~ LLLxLN,
-                    data = Brass, family = binomial())
-
-summary(BrassModel.1)
-summary(BrassModel.2)
-summary(BrassModel.3)

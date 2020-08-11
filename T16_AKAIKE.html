@@ -11,7 +11,7 @@
 
 
 
-<title>Breve Historia de la Estadística</title>
+<title>Selecionando Modelos, AIC</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -71,6 +71,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="custom.css" type="text/css" />
 
 
 
@@ -436,7 +437,10 @@ div.tocify {
       <a href="T14a_Regression_logistica.html">T14a Regressión Logística</a>
     </li>
     <li>
-      <a href="T15_Selecionar_Pruebas.html">T15a Selección de pruebas corectas</a>
+      <a href="T15_Selecionar_Pruebas.html">T15 Selección de pruebas corectas</a>
+    </li>
+    <li>
+      <a href="T16_AKAIKE.html">T16 AIC:Criterio de Información</a>
     </li>
   </ul>
 </li>
@@ -482,47 +486,154 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Breve Historia de la Estadística</h1>
+<h1 class="title toc-ignore">Selecionando Modelos, AIC</h1>
 
 </div>
 
 
 <p>Fecha de la ultima revisión</p>
 <pre><code>## [1] &quot;2020-08-10&quot;</code></pre>
-<div id="la-dama-degustando-té" class="section level1">
-<h1>La dama degustando té</h1>
-<p><em>Era una tarde de verano en Cambridge, Inglaterra, a finales de la década de 1920. Un grupo de profesores universitarios, sus esposas y algunos invitados estaban sentados alrededor de una mesa al aire libre para tomar el té de la tarde. Una de las mujeres insistía en que el té era diferente dependiendo de si el té se vertía en la leche o si la leche se vertía en el té. Las mentes científicas entre los hombres se burlaron de esto como una tontería. Cual podría ser la diferencia? No podían concebir ninguna diferencia en la química de las mezclas que pudieran existir. Un hombre delgado y bajo, con anteojos y una barba de Vandyke que empezaba a ponerse gris, se abalanzó sobre el problema. “Probemos esta propuesta”, dijo emocionado. Comenzó a esbozar un experimento en el que a la señora que insistía en que había una diferencia se le presentaría una secuencia de tazas de té, en algunas de las cuales se había vertido la leche en el té y en otras se había vertido el té en la taza de leche.</em> Cuento del libro de “The Lady Tasting Tea: How Statitics Revolutionized Science in the Twentieth Century” por David Salslburg. Traducido por la pagina de <em>Google Translation</em>.</p>
-<p>Así comienza el libro de Salsburg (2001), para describir el comportamiento de los científicos cuando están animados de su tema y el deseo que resolver un enigma. Esa persona con barba de Vandyke era Ronald Aylmer Fisher (1890 -1962) es reconocido como responsable de la <em>estadística moderna</em> y una de las personas más importante en el área en el siglo 20. Su contribuciones han tenido un impacto en muchas áreas incluyendo la genética mendeliana y la selección natural.</p>
-<div id="definición-de-lo-que-es-la-estadística" class="section level2">
-<h2>Definición de lo que es la estadística</h2>
-<p>La estadística es un área de la ciencia de datos que utiliza valores numéricos para evaluar patrones y inferir situaciones futuras. Esta definición es sencilla, pero incluye muchos temas pero lo más importante es el componente de utilizar datos, resumiendo estos en indices o parámetros y utilizar estos para predecir/inferir el futuro. La palabra estadística usado en el termino más o menos similar a su definición de hoy probablemente origina del alemán <em>Statistik</em> por Gottfried Achenwall (1749). Donde el termino era para la descripción de datos del estado. Es solamente en 1791 por Sir John Sinclair que el termino comenzó a ser utilizado para la descripción de conjuntos de datos en general sin ser limitado a datos de un estado/pais.</p>
-</div>
-<div id="introducción-a-la-historía-de-la-estadística." class="section level2">
-<h2>Introducción a la Historía de la Estadística.</h2>
-<p>Al principio en el siglo 18 el termino estadística era designar la colección información sobre la población y la economía de diferentes regiones o países. En este periodo el objetivo era tabular la información, por ejemplo cuanta gente en un área, cuantas vacas hay, cuanta gente son parte de la nobleza.</p>
-<p>Por ejemplo uno de las primeras encuesta para determinar la estadística de una población fue hecha por John Gaunt (1662) titulado <strong>Natural and Political Observations Made upon the Bills of Mortality</strong> y puede encontrar el libro original aquí <a href="http://www.neonatology.org/pdf/graunt.pdf" class="uri">http://www.neonatology.org/pdf/graunt.pdf</a>. En el libro expone que 1/3 parte de los niños antes de la edad de 16 mueren en Londres, Inglaterra.</p>
-<p>Aquí un extracto de una de estas tablas de las causas de enfermedades y mortandad en Londres en el año 1632. Note que antes de este trabajo esto datos era bien raro y inexistente en la mayoría de las ciudades o países.</p>
-<p>Note algunos causas principales de mortandad, “Aged” (628), que la persona es de edad mayor, y “Abortive and Stillborn” que natimuerto (445). Algunos se considerara raros hoy en día es morir de “grief” o sea de tristeza (11).</p>
-.<br />
+<pre class="r"><code>library(readr)
+Student_Brassavola &lt;- read_csv(&quot;Data_files_csv/Student_Brassavola.csv&quot;)
+Brass=na.omit(Student_Brassavola)  # remove NA
+head(Brass)</code></pre>
+<pre><code>## # A tibble: 6 x 10
+##   Island  Year Pl_Num Leaf_Num   LLL Bud_Num Fl_Num Fr_Num BQS   Flowers_Y_N
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1 Saba    2011 A1701        20    26       0      1      0 Saba            1
+## 2 Saba    2011 A1702         6    18       0      0      0 Saba            0
+## 3 Saba    2011 A1703         5    13       0      0      0 Saba            0
+## 4 Statia  2010 102          33    31       0      0      0 Boven           0
+## 5 Statia  2011 102          40    34       0      0      0 Boven           0
+## 6 Statia  2012 102          10    23       0      1      0 Boven           1</code></pre>
+<p>Choosing from different models, which is the best model.</p>
+<p>The R^2 versus the Akaike Information criterion (AIC)</p>
+<p><a href="https://www.theanalysisfactor.com/r-glm-model-fit/" class="uri">https://www.theanalysisfactor.com/r-glm-model-fit/</a></p>
+<p>Deviance</p>
+<p>We see the word Deviance twice over in the model output. Deviance is a measure of goodness of fit of a generalized linear model. Or rather, it’s a measure of badness of fit–higher numbers indicate worse fit.</p>
+<p>R reports two forms of deviance – the null deviance and the residual deviance. The null deviance shows how well the response variable is predicted by a model that includes only the intercept (grand mean).</p>
+<p>For our example, we have a value of 910.24 on 1513 degrees of freedom. Including the independent variables (weight and displacement) decreased the deviance to 777.02 points on 1512 degrees of freedom, a significant reduction in deviance.</p>
+<p>The Residual Deviance has reduced by 910.24-777.02=133.22 with a loss of one degrees of freedom.</p>
+<pre class="r"><code>BrassModel.1 &lt;- glm(Flowers_Y_N ~ Leaf_Num,
+                    data = Brass, family = binomial())
+summary(BrassModel.1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ Leaf_Num, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2129  -0.3608  -0.3212  -0.3120   2.4571  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -3.088221   0.134013  -23.04   &lt;2e-16 ***
+## Leaf_Num     0.029925   0.002987   10.02   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 849.11  on 1435  degrees of freedom
+## Residual deviance: 722.57  on 1434  degrees of freedom
+## AIC: 726.57
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>Akaike Information Criteron</p>
+<p>Information Criteria</p>
+<p>The Akaike Information Criterion (AIC) provides a method for assessing the quality of your model through comparison of related models. It’s based on the Deviance, but penalizes you for making the model more complicated. Much like adjusted R-squared, it’s intent is to prevent you from including irrelevant predictors.</p>
+<p>However, unlike adjusted R-squared, the number itself is not meaningful. If you have more than one similar candidate models (where all of the variables of the simpler model occur in the more complex models), then you should select the model that has the smallest AIC.</p>
+<p>So it’s useful for comparing models, but isn’t interpretable on its own. YOU NEED TO COMPARE MODELS.</p>
+<pre class="r"><code>names(Brass)</code></pre>
+<pre><code>##  [1] &quot;Island&quot;      &quot;Year&quot;        &quot;Pl_Num&quot;      &quot;Leaf_Num&quot;    &quot;LLL&quot;        
+##  [6] &quot;Bud_Num&quot;     &quot;Fl_Num&quot;      &quot;Fr_Num&quot;      &quot;BQS&quot;         &quot;Flowers_Y_N&quot;</code></pre>
+<pre class="r"><code>BrassModel.1 &lt;- glm(Flowers_Y_N ~ LLL,
+                    data = Brass, family = binomial())
 
-<div class="figure">
-<img src="Graficos/Gaunt_Disease_Casualties_1632.png" alt="El proceso de Investigación" width="70%" />
-<p class="caption">
-El proceso de Investigación
-</p>
-</div>
-<p>El otro componente importante de la estadística fue el desarrollo de las probabilidades en el siglo 17 y 18. La gente le gustaba (como hoy en día) hacer apuestos y jugar cartas para dinero. Entonces mucha gente trataba de entender las diferentes probabilidades de ganar en estos juegos de azar para poder aumentar su probabilidad de ganar en estos juegos.</p>
-</div>
-<div id="algunos-personas-importantes" class="section level2">
-<h2>Algunos personas importantes</h2>
-</div>
-<div id="dessarollo-tematico" class="section level2">
-<h2>Dessarollo tematico</h2>
-</div>
-<div id="dessarollo-temporal" class="section level2">
-<h2>Dessarollo temporal</h2>
-</div>
-</div>
+
+BrassModel.2 &lt;- glm(Flowers_Y_N ~ Leaf_Num,
+                    data = Brass, family = binomial())
+
+BrassModel.3 &lt;- glm(Flowers_Y_N ~ LLL+Leaf_Num,
+                    data = Brass, family = binomial())
+
+summary(BrassModel.1)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ LLL, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.8476  -0.4723  -0.2920  -0.1568   2.8322  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -4.96559    0.33283 -14.919   &lt;2e-16 ***
+## LLL          0.11451    0.01199   9.553   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 849.11  on 1435  degrees of freedom
+## Residual deviance: 722.30  on 1434  degrees of freedom
+## AIC: 726.3
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code>summary(BrassModel.2)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ Leaf_Num, family = binomial(), data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2129  -0.3608  -0.3212  -0.3120   2.4571  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -3.088221   0.134013  -23.04   &lt;2e-16 ***
+## Leaf_Num     0.029925   0.002987   10.02   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 849.11  on 1435  degrees of freedom
+## Residual deviance: 722.57  on 1434  degrees of freedom
+## AIC: 726.57
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<pre class="r"><code>summary(BrassModel.3)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Flowers_Y_N ~ LLL + Leaf_Num, family = binomial(), 
+##     data = Brass)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.3168  -0.4122  -0.2754  -0.1728   2.4903  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -4.673981   0.330208 -14.155  &lt; 2e-16 ***
+## LLL          0.080198   0.013034   6.153 7.60e-10 ***
+## Leaf_Num     0.019103   0.003132   6.100 1.06e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 849.11  on 1435  degrees of freedom
+## Residual deviance: 677.99  on 1433  degrees of freedom
+## AIC: 683.99
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code>AIC(BrassModel.1, BrassModel.2,BrassModel.3)</code></pre>
+<pre><code>##              df      AIC
+## BrassModel.1  2 726.2980
+## BrassModel.2  2 726.5698
+## BrassModel.3  3 683.9922</code></pre>
+<p>aic</p>
 
 
 
