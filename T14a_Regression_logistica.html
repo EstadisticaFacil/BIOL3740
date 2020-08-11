@@ -502,28 +502,44 @@ div.tocify {
 <p>Los datos fueron recolectado de dos pequeñas islas del Caribe, San Eustaquio y Saba.</p>
 <p><em>Brassavola cucullata</em> pertenece a la subtribu Laeliinae y es una especie epífita y rupícola que puede formar grandes racimos de brotes. Cada brote está compuesto por un solo tallo de 3.5-12.5 cm de largo y 1-3.5 mm de diámetro y tiene una sola hoja semi-tereta de 16-35 cm de largo y solo un poco más gruesa que el tallo. Las inflorescencias terminales miden 3-30 mm de largo y suelen tener una sola flor. Las flores son en gran parte blancas con las partes delgadas del perianto que a menudo se vuelven de color amarillo pálido hacia sus ápices. El labelo es ovado-acuminado y fimbriado alrededor de la columna. El cunículo se extiende hacia el ovario inferior y no tiene néctar. Las flores engañosas tienen una fragancia nocturna dulce y espesa, que puede perdurar hasta el día. La producción de frutos depende de los polinizadores. Las cápsulas tardan varios meses en desarrollarse y son pediceladas y picudas (restos de la columna); el cuerpo de la cápsula mide entre 2 y 5 cm de largo y produce muchos miles de semillas polvorientas (Ackerman y Collaborators 2014).</p>
 <p>En cada una de las tres poblaciones, etiquetamos todas las plantas de <em>B. cucullata</em> que pudimos encontrar. Observamos si cada planta era epífita o epilítica, medimos la altura sobre el suelo, buscamos evidencia de herbivoría foliar, medimos la longitud de la hoja más larga y contamos el número de brotes de hojas, flores y frutos. Si las flores estaban presentes, registramos si habían sido visitadas con éxito o no mediante una inspección visual para la eliminación de polinarios o polinias en el estigma. Estos datos se obtuvieron una vez al año durante la época de floración. Nuestras observaciones en la población de Quill abarcaron 2009-2013, en Boven 2010-2013 y en Saba 2011-2014.</p>
-<p>Puede encontrar en manuscrito en este enlace, que evalúa la biología de la orquídea y la posibilidad de extinción y como las cabras impacta su supervivencias.</p>
+<div class="figure">
+<img src="Graficos/Brass_cucu1.png" alt="**La especie** *Brasavolla cucullata* **en la isla de San Eustaquio**" width="50%" /><img src="Graficos/Brass_cucu2.png" alt="**La especie** *Brasavolla cucullata* **en la isla de San Eustaquio**" width="50%" />
+<p class="caption">
+<strong>La especie</strong> <em>Brasavolla cucullata</em> <strong>en la isla de San Eustaquio</strong>
+</p>
+</div>
+<hr />
+<p>Puede encontrar el manuscrito en este enlace, que evalúa la biología de la orquídea y la posibilidad de extinción y como las cabras impacta su supervivencias.</p>
 <p>Pronto disponible</p>
 <pre class="r"><code>library(readr)
 Student_Brassavola &lt;- read_csv(&quot;Data_files_csv/Student_Brassavola.csv&quot;)
 completeBrass=na.omit(Student_Brassavola)  # remove NA
 head(completeBrass)</code></pre>
-<pre><code>## # A tibble: 6 x 10
-##   Island  Year Pl_Num Leaf_Num   LLL Bud_Num Fl_Num Fr_Num BQS   Flowers_Y_N
-##   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
-## 1 Saba    2011 A1701        20    26       0      1      0 Saba            1
-## 2 Saba    2011 A1702         6    18       0      0      0 Saba            0
-## 3 Saba    2011 A1703         5    13       0      0      0 Saba            0
-## 4 Statia  2010 102          33    31       0      0      0 Boven           0
-## 5 Statia  2011 102          40    34       0      0      0 Boven           0
-## 6 Statia  2012 102          10    23       0      1      0 Boven           1</code></pre>
-<p>Evaluar la tendencias centrales y la dispersión de las variables y cambio de nombre de las variables al español.</p>
-<pre class="r"><code>Brass=
-  completeBrass%&gt;%
-  rename(Isla=Island, Ano=Year, Número_planta=Pl_Num, Cant_hojas=Leaf_Num, Largo_Hoja_cm=LLL, Cant_capullo=Bud_Num, Cant_Flores=Fl_Num, Cant_Frutos=Fr_Num, BQS=BQS, Flor_si_no=Flowers_Y_N)
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:data">
+<col><col><col><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Island</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Year</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pl_Num</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Leaf_Num</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">LLL</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Bud_Num</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Fl_Num</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Fr_Num</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">BQS</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Flowers_Y_N</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Saba</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.01e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">A1701</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">20</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">26</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Saba</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Saba</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.01e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">A1702</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">18</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Saba</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Saba</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.01e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">A1703</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">13</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Saba</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Statia</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.01e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">102</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">33</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">31</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Boven</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Statia</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.01e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">102</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">40</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Boven</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Statia</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.01e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">102</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">10</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">23</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Boven</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+</table>
 
-summary(Brass)</code></pre>
-<pre><code>##      Isla                Ano       Número_planta        Cant_hojas    
+<p>Evaluar la tendencias centrales y la dispersión de las variables y cambio de nombre de las variables al español.</p>
+<pre class="r"><code>Brass=completeBrass%&gt;%
+  dplyr::rename(Isla=Island, Ano=Year, Numero_planta=Pl_Num, 
+         Cant_hojas=Leaf_Num, Largo_Hoja_cm=LLL, 
+         Cant_capullo=Bud_Num, Cant_Flores=Fl_Num, 
+         Cant_Frutos=Fr_Num, BQS=BQS, Flor_si_no=Flowers_Y_N)</code></pre>
+<pre class="r"><code>summary(Brass)</code></pre>
+<pre><code>##      Isla                Ano       Numero_planta        Cant_hojas    
 ##  Length:1436        Min.   :2009   Length:1436        Min.   :  0.00  
 ##  Class :character   1st Qu.:2011   Class :character   1st Qu.:  3.00  
 ##  Mode  :character   Median :2011   Mode  :character   Median :  7.00  
@@ -545,8 +561,8 @@ summary(Brass)</code></pre>
 ##                     3rd Qu.:0.00000  
 ##                     Max.   :1.00000</code></pre>
 </div>
-<div id="look-at-the-data" class="section level2">
-<h2>Look at the data</h2>
+<div id="la-variable-de-respuesta-y." class="section level2">
+<h2>La variable de respuesta, <strong>Y</strong>.</h2>
 <p>You can also embed plots, for example:</p>
 <p><img src="T14a_Regression_logistica_files/figure-html/head-1.png" width="672" /></p>
 </div>
@@ -664,7 +680,7 @@ summary(BrassModel.3)</code></pre>
 ## Number of Fisher Scoring iterations: 6</code></pre>
 <p>Si no le interesa el intercepto se añade un “-1” después de la #Los valores de interes en nuestro caso son el intercepto y la pendiente (valor que se encuentra debajo del intercepto).</p>
 <pre class="r"><code>names(Brass)</code></pre>
-<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Número_planta&quot; &quot;Cant_hojas&quot;   
+<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
 ##  [9] &quot;BQS&quot;           &quot;Flor_si_no&quot;</code></pre>
 <pre class="r"><code>BrassModel.1.1 &lt;- glm(Flor_si_no ~ Cant_hojas+BQS+Largo_Hoja_cm-1,
@@ -749,7 +765,7 @@ P_150</code></pre>
 <div id="visualizando-una-regresión-logistica" class="section level2">
 <h2>Visualizando una regresión logistica</h2>
 <pre class="r"><code>names(Brass)</code></pre>
-<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Número_planta&quot; &quot;Cant_hojas&quot;   
+<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
 ##  [9] &quot;BQS&quot;           &quot;Flor_si_no&quot;</code></pre>
 <pre class="r"><code>library(ggplot2)
@@ -771,7 +787,7 @@ P_150</code></pre>
 <div id="graphic-with-binomial-fit" class="section level1">
 <h1>Graphic with binomial fit</h1>
 <pre class="r"><code>names(Brass)</code></pre>
-<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Número_planta&quot; &quot;Cant_hojas&quot;   
+<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
 ##  [9] &quot;BQS&quot;           &quot;Flor_si_no&quot;</code></pre>
 <pre class="r"><code>ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
@@ -804,7 +820,7 @@ P_150</code></pre>
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>En este grafico se osberva el valor de la pendiente, el mismo aumenta cuando el numero de hojas se aproxima a 100 (por ende al acercarnos a este valor el valor de nuestra variable de respuesta es mayor aumenta o es mayor). ## add a figure for each site</p>
 <pre class="r"><code>names(Brass)</code></pre>
-<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Número_planta&quot; &quot;Cant_hojas&quot;   
+<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
 ##  [9] &quot;BQS&quot;           &quot;Flor_si_no&quot;</code></pre>
 <pre class="r"><code>ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
@@ -815,7 +831,7 @@ P_150</code></pre>
 <div id="solapamiento" class="section level2">
 <h2>Solapamiento</h2>
 <pre class="r"><code>names(Brass)</code></pre>
-<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Número_planta&quot; &quot;Cant_hojas&quot;   
+<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
 ##  [9] &quot;BQS&quot;           &quot;Flor_si_no&quot;</code></pre>
 <pre class="r"><code>ggplot(Brass, aes(Cant_hojas,Flor_si_no, colour=BQS))+
@@ -827,7 +843,7 @@ P_150</code></pre>
 <div id="evaluate-using-the-length-of-the-longest-leaf" class="section level1">
 <h1>Evaluate using the Length of the longest leaf</h1>
 <pre class="r"><code>names(Brass)</code></pre>
-<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Número_planta&quot; &quot;Cant_hojas&quot;   
+<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
 ##  [9] &quot;BQS&quot;           &quot;Flor_si_no&quot;</code></pre>
 <pre class="r"><code>ggplot(Brass, aes(Largo_Hoja_cm,Flor_si_no))+
@@ -838,7 +854,7 @@ P_150</code></pre>
 <div id="nota-que-se-hace-un-subgrupo-subset-de-los-datos-usando-la-función-subsetel-data-frame-la-condición" class="section level4">
 <h4>Nota que se hace un subgrupo (subset) de los datos, usando la función subset(el data frame, la condición)</h4>
 <pre class="r"><code>names(Brass)</code></pre>
-<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Número_planta&quot; &quot;Cant_hojas&quot;   
+<pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
 ##  [9] &quot;BQS&quot;           &quot;Flor_si_no&quot;</code></pre>
 <pre class="r"><code>ggplot(subset(Brass,Largo_Hoja_cm&lt;90), aes(Largo_Hoja_cm,Flor_si_no, colour=BQS))+

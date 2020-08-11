@@ -54,7 +54,15 @@ Los datos fueron recolectado de dos pequeñas islas del Caribe, San Eustaquio y 
 En cada una de las tres poblaciones, etiquetamos todas las plantas de *B. cucullata* que pudimos encontrar. Observamos si cada planta era epífita o epilítica, medimos la altura sobre el suelo, buscamos evidencia de herbivoría foliar, medimos la longitud de la hoja más larga y contamos el número de brotes de hojas, flores y frutos. Si las flores estaban presentes, registramos si habían sido visitadas con éxito o no mediante una inspección visual para la eliminación de polinarios o polinias en el estigma. Estos datos se obtuvieron una vez al año durante la época de floración. Nuestras observaciones en la población de Quill abarcaron 2009-2013, en Boven 2010-2013 y en Saba 2011-2014.
 
 
-Puede encontrar en manuscrito en este enlace, que evalúa la biología de la orquídea y la posibilidad de extinción y como las cabras impacta su supervivencias.     
+
+```{r echo=FALSE, fig.cap="**La especie** *Brasavolla cucullata* **en la isla de San Eustaquio**",fig.show="hold", out.width = "50%"}
+knitr::include_graphics("Graficos/Brass_cucu1.png")
+knitr::include_graphics("Graficos/Brass_cucu2.png")
+```
+***
+
+
+Puede encontrar el manuscrito en este enlace, que evalúa la biología de la orquídea y la posibilidad de extinción y como las cabras impacta su supervivencias.     
 
 Pronto disponible
 
@@ -69,16 +77,21 @@ head(completeBrass)
 Evaluar la tendencias centrales y la dispersión de las variables y cambio de nombre de las variables al español.
 
 
-```{r}
+```{r, cambio de nombres}
 
-Brass=
-  completeBrass%>%
-  rename(Isla=Island, Ano=Year, Número_planta=Pl_Num, Cant_hojas=Leaf_Num, Largo_Hoja_cm=LLL, Cant_capullo=Bud_Num, Cant_Flores=Fl_Num, Cant_Frutos=Fr_Num, BQS=BQS, Flor_si_no=Flowers_Y_N)
+Brass=completeBrass%>%
+  dplyr::rename(Isla=Island, Ano=Year, Numero_planta=Pl_Num, 
+         Cant_hojas=Leaf_Num, Largo_Hoja_cm=LLL, 
+         Cant_capullo=Bud_Num, Cant_Flores=Fl_Num, 
+         Cant_Frutos=Fr_Num, BQS=BQS, Flor_si_no=Flowers_Y_N)
+```
 
+
+```{r, resumir}
 summary(Brass)
 ```
 
-## Look at the data
+## La variable de respuesta, **Y**. 
 
 You can also embed plots, for example:
 
