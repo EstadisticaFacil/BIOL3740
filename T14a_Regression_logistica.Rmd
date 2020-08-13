@@ -258,7 +258,7 @@ names(Brass)
 
 ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
   geom_point(alpha=.5) +
-  stat_smooth(method="glm", se=FALSE, method.args = list(family=binomial))
+  stat_smooth(method="glm", se=TRUE, method.args = list(family=binomial))
 ```
 
 El modelo de regre
