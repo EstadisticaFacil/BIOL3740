@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-El siguiente archivo es para tener aceso a datos sobre los casos de COVID-19 por día en todo el planeta. El archivo esta mantenido en el siguiente enlace <https://github.com/owid/covid-19-data/tree/master/public/data>   
+El siguiente archivo es para tener acceso a datos sobre los casos de COVID-19 por día en todo el planeta. El archivo esta mantenido en el siguiente enlace <https://github.com/owid/covid-19-data/tree/master/public/data>   
 
 Para más información vea al website.
 
@@ -25,8 +25,11 @@ codes<-read.csv('https://raw.githubusercontent.com/owid/covid-19-data/master/pub
 gt(codes)
 ```
 
+Para tener acceso a los datos en un archivo .csv usar el siguiente enlace
+
+
 ```{r}
-library(data.table)
+
 mydat<- read.csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv')
 
 gt(head(mydat, n=10))
