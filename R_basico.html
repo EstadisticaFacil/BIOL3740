@@ -471,6 +471,9 @@ div.tocify {
     <li>
       <a href="Archivos_de_Datos.html">Archivos de Datos</a>
     </li>
+    <li>
+      <a href="COVID-19.html">COVID-19</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -491,7 +494,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-08-10&quot;</code></pre>
+<pre><code>## [1] &quot;2020-08-12&quot;</code></pre>
 <p>En este modulo veremos como se hace cálculos básicos en R. Nota que aquí estamos usando R, como si fuese una calculadora. Realmente para la gran mayoría de los ejemplos aquí no hay ninguna necesidad de utilizar R para los siguientes análisis. Los objetivos son</p>
 <ol style="list-style-type: decimal">
 <li>Familiarizarse con funciones básica.</li>
@@ -741,8 +744,8 @@ Edad</code></pre>
 <pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
 <pre class="r"><code>Distancia_del_trabajo=rnorm(10, 100, 10)
 Distancia_del_trabajo</code></pre>
-<pre><code>##  [1] 101.68051  97.84168 101.72530 106.80950 111.31358 107.90361 105.75136
-##  [8] 100.99496 107.05869  89.23352</code></pre>
+<pre><code>##  [1]  97.24050 125.55839  99.09240 101.45887  81.59335  96.41120 102.08907
+##  [8] 103.98993  83.59092 104.89257</code></pre>
 <pre class="r"><code>Ciudad=c(&quot;Fajardo&quot;, &quot;Carolina&quot;, &quot;Luquillo&quot;,&quot;Gurabo&quot;, &quot;Rio_Grande&quot;, &quot;Ceiba&quot;,&quot;Las_Piedras&quot;, &quot;Caguas&quot;,&quot;Maunabo&quot;, &quot;Sturgeon_Falls&quot;)
 Ciudad</code></pre>
 <pre><code>##  [1] &quot;Fajardo&quot;        &quot;Carolina&quot;       &quot;Luquillo&quot;       &quot;Gurabo&quot;        
@@ -751,16 +754,16 @@ Ciudad</code></pre>
 <pre class="r"><code>misDatos=data.frame(Edad,Distancia_del_trabajo,Ciudad)  # La función de unir las listas en un data frame
 misDatos</code></pre>
 <pre><code>##    Edad Distancia_del_trabajo         Ciudad
-## 1    10             101.68051        Fajardo
-## 2     9              97.84168       Carolina
-## 3     8             101.72530       Luquillo
-## 4     7             106.80950         Gurabo
-## 5     6             111.31358     Rio_Grande
-## 6     5             107.90361          Ceiba
-## 7     4             105.75136    Las_Piedras
-## 8     3             100.99496         Caguas
-## 9     2             107.05869        Maunabo
-## 10    1              89.23352 Sturgeon_Falls</code></pre>
+## 1    10              97.24050        Fajardo
+## 2     9             125.55839       Carolina
+## 3     8              99.09240       Luquillo
+## 4     7             101.45887         Gurabo
+## 5     6              81.59335     Rio_Grande
+## 6     5              96.41120          Ceiba
+## 7     4             102.08907    Las_Piedras
+## 8     3             103.98993         Caguas
+## 9     2              83.59092        Maunabo
+## 10    1             104.89257 Sturgeon_Falls</code></pre>
 </div>
 <div id="funciones-comunes" class="section level1">
 <h1>Funciones comunes</h1>
@@ -778,30 +781,30 @@ misDatos</code></pre>
 <pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot;</code></pre>
 <pre class="r"><code>head(misDatos)   # ver las primeras 6 filas </code></pre>
 <pre><code>##   Edad Distancia_del_trabajo     Ciudad
-## 1   10             101.68051    Fajardo
-## 2    9              97.84168   Carolina
-## 3    8             101.72530   Luquillo
-## 4    7             106.80950     Gurabo
-## 5    6             111.31358 Rio_Grande
-## 6    5             107.90361      Ceiba</code></pre>
+## 1   10              97.24050    Fajardo
+## 2    9             125.55839   Carolina
+## 3    8              99.09240   Luquillo
+## 4    7             101.45887     Gurabo
+## 5    6              81.59335 Rio_Grande
+## 6    5              96.41120      Ceiba</code></pre>
 <pre class="r"><code>tail(misDatos)   # ver las ultimas 6 filas</code></pre>
 <pre><code>##    Edad Distancia_del_trabajo         Ciudad
-## 5     6             111.31358     Rio_Grande
-## 6     5             107.90361          Ceiba
-## 7     4             105.75136    Las_Piedras
-## 8     3             100.99496         Caguas
-## 9     2             107.05869        Maunabo
-## 10    1              89.23352 Sturgeon_Falls</code></pre>
+## 5     6              81.59335     Rio_Grande
+## 6     5              96.41120          Ceiba
+## 7     4             102.08907    Las_Piedras
+## 8     3             103.98993         Caguas
+## 9     2              83.59092        Maunabo
+## 10    1             104.89257 Sturgeon_Falls</code></pre>
 <pre class="r"><code>head(misDatos, n=8)   # ver las primeras 8 filas</code></pre>
 <pre><code>##   Edad Distancia_del_trabajo      Ciudad
-## 1   10             101.68051     Fajardo
-## 2    9              97.84168    Carolina
-## 3    8             101.72530    Luquillo
-## 4    7             106.80950      Gurabo
-## 5    6             111.31358  Rio_Grande
-## 6    5             107.90361       Ceiba
-## 7    4             105.75136 Las_Piedras
-## 8    3             100.99496      Caguas</code></pre>
+## 1   10              97.24050     Fajardo
+## 2    9             125.55839    Carolina
+## 3    8              99.09240    Luquillo
+## 4    7             101.45887      Gurabo
+## 5    6              81.59335  Rio_Grande
+## 6    5              96.41120       Ceiba
+## 7    4             102.08907 Las_Piedras
+## 8    3             103.98993      Caguas</code></pre>
 <pre class="r"><code>class(misDatos) # saber cual tipo de organización de datos </code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 </div>
