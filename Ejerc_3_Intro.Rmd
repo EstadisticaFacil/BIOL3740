@@ -1,0 +1,126 @@
+---
+title: "Ejer_3_Calculos"
+output:
+  html_document: 
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Los siguientes ejercicios son para practicar el uso de R y RStudio. Se asume que Uds. practica lo siguiente. Tiene acceso a R y Rstudio, RMarkdown, el internet, libros. Después de hacer los ejercicios discuta tus resultados con otros estudiantes.  Este jerecicio NO tiene puntuación. 
+
+## R Practica
+Usa R como una calculadora
+
+
+
+# Ejercicio #1
+Pon esta fomula en R correctamente y calcula el resultado.
+
+$1+2(3+4)$
+
+
+
+```{r, echo=FALSE, eval=FALSE}
+1+2*(3+4)
+```
+
+# Ejercicio #2
+Pon esta fomula en R correctamente y calcula el resultado.
+
+$\sqrt{(4+1)(2+1)}$
+
+```{r, echo=FALSE, eval=FALSE}
+sqrt((4+1)*(2+1))
+```
+
+# Ejercicio #3
+Re-esribir esta fomula en R correctamente y calcula el resultado.
+
+$2 + 3 * 4$
+
+```{r, echo=FALSE, eval=FALSE}
+(2+3)*4
+```
+
+# Ejercicio #4
+
+Calcular lo siguiente en R, enseña el codigo y el resultado
+
+$\frac{0.25-2}{\sqrt{(0.2(1-0.2)/100})}$
+
+```{r, echo=FALSE, eval=FALSE}
+(0.25-2)/sqrt(0.2*((1-0.2)/100))
+```
+
+# Ejercicio #5
+Asigna una variable a los valores del 2 hasta el 5.  Después usando las variable multiplica todos los valores.
+
+```{r, echo=FALSE, eval=FALSE}
+a=2
+b=3
+c=4
+d=5
+a*b*c*d
+```
+
+# Ejercicio #6
+
+El data set **rivers** se sube con R.  Escribe **rivers** en un chunk y determina cual es el ultimo valor del archivo y cual es su posición en la lista. 
+```{r, echo=FALSE, eval=FALSE}
+rivers
+```
+
+# Ejercicio #7
+
+Instala y activa el paquete **UsingR** y evalúa los datos que se encuentra en el archivo/data frame **exe.pay**. Calcula cual es el promedio, mínimo y máximo de los datos usando las funciones *mean, min y max*.  
+
+
+
+```{r, echo=FALSE, eval=FALSE}
+library(UsingR)
+#exec.pay
+mean(exec.pay)
+min(exec.pay)
+max(exec.pay)
+```
+
+
+# Ejercicio #8
+
+El data set que se llama **Orange** es un data frame con tres variables. Como se llama las variables?
+
+```{r, echo=FALSE, eval=FALSE}
+Orange
+```
+
+
+# Ejercicio #9
+
+Calcula la edad promedia de los arboles de naranja que esta en el archivo **Orange**
+
+```{r, echo=FALSE, eval=FALSE}
+mean(Orange$age)
+```
+
+# Ejercicio #10
+
+Haz un gráfico de puntos entre la x=circunferencia del árbol y la y=edad, y añadele un color diferente a cada árbol. 
+
+```{r eval=FALSE, include=FALSE}
+library(ggplot2)
+ggplot(Orange, aes(circumference, age, color=Tree))+
+  geom_point()
+```
+

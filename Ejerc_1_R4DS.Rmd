@@ -1,0 +1,75 @@
+---
+title: "Ejerc_1_R4DS"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+    css: custom.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+
+
+```
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```
+
+
+# En esta actividad estarán comenzando a utilizar la plataforma R.  
+
+
+
+Recuerda que este libro esta disponible gratuitamente en el internet tanto en Español, https://es.r4ds.hadley.nz/index.html como en Ingles https://r4ds.had.co.nz/index.html.
+
+NOTA que si no tiene experiencia esto le va tomar tiempo.   
+
+# Primer paso
+
+Haber instalado R
+Haber Instalado RStudio
+Haber Instalado RMarkdown en Rstudio
+
+# Segundo paso
+
+1. Seguir el Capitulo #1, y practicar instalar los paquetes "Packages", por ejemplo el paquete de "tidyverse"
+2. Probar las funciones básica de suma, resta, división y multiplicación en R.
+
+
+
+# Tercer Paso
+
+1. Leer el capitulo #2, entender lo que quiere decir cada uno de los términos en la figura.  
+  Por ejemplo que quiere decir modelos "model" en estadística?
+  
+  
+# Cuarto Paso
+
+1. Abrir un documento nuevo de RMarkdown
+2. Quitar/remover lo que no es necesario
+3. Seguir los pasos hasta la sección 3.3 del libro **r4ds** y reproducir las gráficas como aparece en el libro y contestar las preguntas y hacer los ejercicios.
+
+
+
+
+
+
