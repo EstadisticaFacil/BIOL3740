@@ -1,10 +1,13 @@
 ---
 title: "T11_ANOVA"
-output: 
+output:
   html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    theme: simplex
     toc: yes
     toc_float: yes
-    css: custom.css
 ---
 
 ```{r setup, include=FALSE}
@@ -134,8 +137,8 @@ Aquí observamos la cantidad de fósforo por parte de millón observado en la mi
 
 Nuestra hipótesis nula es que la cantidad de fósforo en la plantas es igual en los tres lagos. 
 
-1. $H_o:\ \mu_C=\mu_{DB}=\mu_G$
-2. Por lo menos en uno de estos lagos las plantas tienen una concentración de fósforo diferente 
+> + $H_o:\ \mu_C=\mu_{DB}=\mu_G$
+> + Por lo menos en uno de estos lagos las plantas tienen una concentración de fósforo diferente 
 
 
 
@@ -308,10 +311,11 @@ by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)
 
 Hay 4 supuestos que tenemos que evaluar cuando se hace un ANOVA.
 
-1. Los datos de cada grupo es una muestra al azar de la poblaciones
-2. La característica medida es son continuas.
-3. Igualdad de varianza: el error en la varianza en cada grupo es igual
-4. La variables continuas tienen una distribución normal.
+> + Los datos de cada grupo es una muestra al azar de la poblaciones
+> + La característica medida es son continuas.
+> + Igualdad de varianza: el error en la varianza en cada grupo es igual
+> + La variables continuas tienen una distribución normal.
+
 ***
 ## Datos al azar
 
@@ -327,8 +331,8 @@ Este paso es uno de diseño experimental.  Que los datos sean representativos de
   
 La cantidad de dispersión en cada grupo tiene que ser bien similar uno al otro.  Esto lo podemos comprobar con una prueba. La hipótesis nula es que cada grupo tiene una varianza igual.  La hipotesis alterna es que por lo menos uno de los grupos no tiene la misma varianza.   
 
-1. $$Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k$$
-2. Ha: Por lo menos uno d elos grupos no tiene la misma varianza que los otros. (similar a la Ha de ANOVA)
+> + $$Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k$$
+> + Ha: Por lo menos uno d elos grupos no tiene la misma varianza que los otros. (similar a la Ha de ANOVA)
 
 ***
 ## 3. La prueba de Levene's test 
@@ -391,8 +395,8 @@ Importante este paso `r colorize("se hace solamente si se rechaza la hipótesis 
 
 Hay en la literatura más de 10 pruebas que se puede utilizar después de un ANOVA, para tener un poco más de información pueden ir al siguiente website <https://www.statisticshowto.com/post-hoc/>.  Aquí vamos a presentar solamente dos de estás.  Estas dos son frecuentemente utilizadas en ciencias medicas por ser las primeras haber sido desarrolladas.  Nota que el nivel de tipo de error I, es por el conjunto total de las pruebas hecha.  Si selecciona un alfa de 0.05, entonces la probabilidad de cometer el error tipo I es de 5% para el total de pruebas.  
  
-1. Bonferroni test
-2. Tukey test
+> + Bonferroni test
+> + Tukey test
 
 ## Prueba de Bonferroni 
 
@@ -431,7 +435,7 @@ unique(Superhero$heronames)
 
 
 
-####Rename the categories with super hero names
+#### Rename the categories with super hero names
 
 ```{r rename variables, eval=FALSE,echo=FALSE}
 #Superhero
@@ -446,13 +450,13 @@ names(Superhero)
 
 
 
-1. Evaluar la distribución de los datos de respuestas (los en Y)
-2. Evaluar la homogeneidad de varianza
-3. Visualizar los datos Puntos y promedios y intervalo de confianza
-4. Hacer la prueba de ANOVA con aov()
-5. Evaluar la figura de residuales
-6. Evaluar la gráfica de qq, para la normalidad
-7. Hacer la prueba de post-hoc si es necesario!!!!!
+> + Evaluar la distribución de los datos de respuestas (los en Y)
+> + Evaluar la homogeneidad de varianza
+> + Visualizar los datos Puntos y promedios y intervalo de confianza
+> + Hacer la prueba de ANOVA con aov()
+> + Evaluar la figura de residuales
+> + Evaluar la gráfica de qq, para la normalidad
+> + Hacer la prueba de post-hoc si es necesario!!!!!
 
 ```{r hero1, eval=FALSE,echo=FALSE}
 library(ggplot2)
@@ -465,7 +469,7 @@ line +geom_point()+
 
 ```
 
-Homogeneity of variance
+
 ```{r hero levene test, eval=FALSE, echo=FALSE}
 
 library(car)
@@ -473,7 +477,7 @@ leveneTest(Superhero$injury, Superhero$heronames,
            center = median)
 ```
 
-```{r grafica3, eval=FALSE, echo=FALSE}
+```{r grafica3, eval=FALSE, echo=FALSE} 
 
 library(Rmisc)   # this is a function to create 
 #a data frame of summary data
@@ -496,26 +500,29 @@ ggplot(sum2, aes(x=heronames,
 
 ```
 
-4. Hacer la prueba de ANOVA con aov()
+
 
 ```{r Hero ANOVA, eval=FALSE, echo=FALSE}
+# Hacer la prueba de ANOVA con aov()
 SuperHeroModel<-aov(injury~heronames, data = Superhero)
 
 summary(SuperHeroModel)
 summary.lm(SuperHeroModel)
 ```
-5. Evaluar la figura de residuales
-6. Evaluar la grafica de qq
+
 
 ```{r hero residuals, eval=FALSE, echo=FALSE}
+# Evaluar la figura de los residuales
+# Evaluar la grafica de qq
 plot(SuperHeroModel)
 
 
 ```
 
-7. Hacer la prueba de post-hoc si es necesario!!!!!
+
 
 ```{r post-hoc test, eval=FALSE, echo=FALSE}
+# Hacer la prueba de post-hoc si es necesario!!!!!
 pairwise.t.test(Superhero$injury, Superhero$heronames, p.adjust.method = "bonferroni")
 
 

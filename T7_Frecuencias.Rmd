@@ -51,12 +51,15 @@ En esta sección no estamos interesado en evaluar los valores con datos que son 
 
 > Los datos tienen que caer exactamente en una categoría, por ejemplo
 
-> 1. vivo o muerto.
-> 2. presente o ausente.
-> 3. blanco, rojo, verde, azul.
-> 4. estar embarazada o no.
-> 5. Tiene el fenotipo dominante o recesivo.
-> 6. En una herencia mendeliana, los individuos son homocigóticos recesivo, dominantes o heterocigóticos.   
+>  + vivo o muerto.
+>  +  presente o ausente.
+>  +  blanco, rojo, verde, azul.
+>  +  estar embarazada o no.
+>  +  Tiene el fenotipo dominante o recesivo.
+>  +  En una herencia mendeliana, los individuos son homocigóticos recesivo, dominantes o heterocigóticos.   
+```{r}
+
+```
 
 ***
 
@@ -71,8 +74,8 @@ Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para
   2. Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).
   3. Las observaciones son independiente una de la otra.
   4. Cada categoría tiene una frecuencia esperada suficiente grande: 
-      a. ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o menos categorías
-      b. no más de 20% de las categorías tienen un valor esperado de 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1. 
+      + ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o menos categorías
+      + no más de 20% de las categorías tienen un valor esperado de 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1. 
 
 ***
 
@@ -144,14 +147,14 @@ kable(df, escape=FALSE)
 
 ```
 
-Los pasos para calcular el Chi Cuadrado: 
+> Los pasos para calcular el Chi Cuadrado: 
 
-  1. Los valores esperados, en este caso fue una proporción de 3:1
-  2. Las diferencias 
-  3. Cuadrar las diferencias
-  4. División por el valor esperado (da los Chi Square parcial)
-  5. Sumar los valores en #4.
-  6. buscar en una tabla de Chi Square el valor critico de Chi Square para la cantidad de grupos menos 1 y el $\alpha$ correspondiente.  En este caso se busca un $\alpha$ de 0.05 y el grado de libertad (n-1) = 2-1, n es el número de grupos. 
+>  + Los valores esperados, en este caso fue una proporción de 3:1
+>  + Las diferencias 
+>  + Cuadrar las diferencias
+>  + División por el valor esperado (da los Chi Square parcial)
+>  + Sumar los valores en #4.
+>  + buscar en una tabla de Chi Square el valor critico de Chi Square para la cantidad de grupos menos 1 y el $\alpha$ correspondiente.  En este caso se busca un $\alpha$ de 0.05 y el grado de libertad (n-1) = 2-1, n es el número de grupos. 
   
   Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla).  Aquí usamos R para conseguir este valor.  NOte aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1.  Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula.  En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.  
   
@@ -254,10 +257,10 @@ $$E_{ij}=\frac{\left(R_i\cdot C_j\right)}{N}$$
 
 Cálculos dos de los valores esperados
 
-1. Los gatos que reciban comida y bailan
+ +  Los gatos que reciban comida y bailan
 
 $$E_{12}=\frac{\left(R_2\cdot C_1\right)}{N}= \frac{(38*76)}{200}=14.44$$
-2. Los gatos que reciban cariño y no bailan
+ + Los gatos que reciban cariño y no bailan
 
 $$E_{21}=\frac{\left(R_1\cdot C_2\right)}{N}= \frac{(124*162)}{200}=100.44$$
 La prueba es exactamente igual como la anterior donde comparamos el valor observado con el valor esperado.  Por ser más de una fila la formula cambia.
@@ -266,6 +269,7 @@ $$\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}$$
 El Chi Cuadrado final es 
 
 $$\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36$$
+$$\chi^2=25.36$$
 
 ***
 
@@ -377,12 +381,12 @@ CrossTable(HairColour, fisher = TRUE, chisq = TRUE, expected = TRUE, sresid = TR
 La prueba Exacta de Fisher es similar a la prueba de Bondad de Ajuste para evaluar si hay asociación entre dos variables categorías.  La diferencia importante es que no es necesario que el valor esperado sea mayor de 5. Por consecuencia se puede usar con muestras más pequeñas.  
 
 ***
-# Los supuestos de las prueba Exacta de Fisher.
+### Los supuestos de las prueba Exacta de Fisher.
 
-  1. Los datos son frecuencias.
-  2. Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).
-  3. Las observaciones son independiente una de la otra.
-  4. La tabla tiene 2 filas y 2 columnas.
+>  + Los datos son frecuencias.
+>  + Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).
+>  + Las observaciones son independiente una de la otra.
+>  + La tabla tiene 2 filas y 2 columnas.
   
 Usando los datos de serpientes del ejemplo 7.4 del libro
 

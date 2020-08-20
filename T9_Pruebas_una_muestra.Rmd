@@ -1,10 +1,13 @@
 ---
 title: "T9_Pruebas_una_muestra"
-output: 
+output:
   html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    theme: simplex
     toc: yes
     toc_float: yes
-    css: custom.css
 ---
 
 ```{r setup, include=FALSE}
@@ -385,11 +388,11 @@ t.test(tips$tip, alternative="two.sided", mu=2.5, conf.level = .95)
 
 Pasos
 
-1. Crear una distribución normal de la hipótesis **NULA** con un promedio de 
-2. Calcule las estadísticas t.test
-3. Dibuje la media de la estadística t en la figura
-  - la linea entrecortada representa el intervalo de confianza de 95%
-  - la linea roja representa la estadística de los datos.
+> + Crear una distribución normal de la hipótesis **NULA** con un promedio de 
+> + Calcule las estadísticas t.test
+> + Dibuje la media de la estadística t en la figura
+>    - la linea entrecortada representa el intervalo de confianza de 95%
+>    - la linea roja representa la estadística de los datos.
 
 En este ejemplo observamos que el promedio estimado es por encima del intervalo de confianza (la lineas entrecortadas).  
 

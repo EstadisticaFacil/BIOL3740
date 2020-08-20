@@ -1,10 +1,13 @@
 ---
 title: "T13_Correlacion"
-output: 
+output:
   html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    theme: simplex
     toc: yes
     toc_float: yes
-    css: custom.css
 ---
 
 ```{r setup, include=FALSE}
@@ -53,9 +56,9 @@ La correlaciones son métodos para evaluar la relación entre dos o más variabl
 
 Ejemplos
 
-1. La cantidad de colesterol, LDL (lipoproteínas de baja densidad) y HDL (lipoproteínas de alta densidad).
-2. La concentración de vitamina C y la absorción de calcio.
-3. La consumo de alcohol y la concentración de alcohol en la sangre.
+> + La cantidad de colesterol, LDL (lipoproteínas de baja densidad) y HDL (lipoproteínas de alta densidad).
+> + La concentración de vitamina C y la absorción de calcio.
+> + La consumo de alcohol y la concentración de alcohol en la sangre.
 
 
 Los analísis se hacen comparando las variables continuas en pares. La covarianza es la medida de variabilidad conjunta entre dos variables. 
@@ -150,13 +153,14 @@ scatter + geom_point(colour="purple")+
 El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta y positiva, en otra palabra la **x** predice exactamente el valor de **y**.  Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la **x** e **y**. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.
 
 ***
-## Los Supuestos de la prueba de Pearson
+
+### Los Supuestos de la prueba de Pearson
 
 
-1. Uno de los supuestos de la prueba de análisis de Pearson, es que las dos variables tenga una distribución normal,  **Nornal bivariada**.
-2. Las variables tienen que tener una correlación lineal (por ejemplo: no puede ser cuadrática o logarítmica).
+> +  Uno de los supuestos de la prueba de análisis de Pearson, es que las dos variables tenga una distribución normal,  **Nornal bivariada**.
+> + Las variables tienen que tener una correlación lineal (por ejemplo: no puede ser cuadrática o logarítmica).
 
-3. Ausencia de valores átipicos (o por lo menos sesgan el resultado)
+> + Ausencia de valores átipicos (o por lo menos sesgan el resultado)
 
 Para visualizar una distribución vea lo siguiente. Nota que las dos variables tienen una distribución normal. 
 
@@ -224,9 +228,9 @@ Aquí un pequeño conjunto de datos como ejemplo de ordenar los datos.  Nota que
 
 ### Los supuestos de Kendall
 
- 1. Los pares de observaciones son independientes.
- 2. Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.
- 3. Se supone que existe una relación monotónica entre las dos variables.
+> +  Los pares de observaciones son independientes.
+> + Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.
+> + Se supone que existe una relación monotónica entre las dos variables.
  
 ***
 
@@ -240,9 +244,9 @@ La correlación de Spearman entre dos variables será alta cuando las observacio
 ***
 ### Los supuestos de Spearman
 
- 1. Los pares de observaciones son independientes.
- 2. Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.
- 3. Se supone que existe una relación monotónica entre las dos variables.
+> + Los pares de observaciones son independientes.
+> + Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.
+> + Se supone que existe una relación monotónica entre las dos variables.
  
 *** 
 ## Comparación entre Kendall y Spearman
@@ -325,11 +329,13 @@ cor(examData[, c("Exam", "Anxiety", "Revise")])
 
 El coeficiente de determinación es una medida de la proporción de la varianza explica por la variable dependiente (en **x**). La correlación explica la influencia de la relación entre la **x** e **y**, la $$R^2$$ explica cuanto de la varianza en una variable explica la varianza en la otra variable.  El rango es 0 a 100, un $$R^2=0.20$$ es que la dependiente explica solamente 20% de la varianza da la independiente. 
 
+## Visualizar el coeficiente de determinación
+
 Podemos visualizar el coeficiente de determinación con unos gráficos. 
 
-1. Se crea dos conjunto de datos uno que tiene más variación que el otro
-2. Calcula el coeficiente de Pearson y el coeficiente de determinación
-3. Se añade todo los gráficos.  
+> + Se crea dos conjunto de datos uno que tiene más variación que el otro
+> + Calcula el coeficiente de Pearson y el coeficiente de determinación
+> + Se añade todo los gráficos.  
 
 
 ```{r}
@@ -463,6 +469,8 @@ La visualización de la corelación entre las dos variables
 ggplot(mentirosos,aes(Creatividad, Posición))+
   geom_point()
 ```
+
+***
 
 
 

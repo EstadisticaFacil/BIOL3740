@@ -1,10 +1,13 @@
 ---
 title: "T9a: Pruebas t-Pareados"
-output: 
+output:
   html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    theme: simplex
     toc: yes
     toc_float: yes
-    css: custom.css
 ---
 
 ```{r setup, include=FALSE}
@@ -205,10 +208,11 @@ huxtable(Toronja)%>%
   set_bottom_border(row = 1, col = everywhere, value = 1)%>% 
   set_caption("La cantidad de toronjas producidas en parceles en diferentes municipios")
 ```
-1. Primero añadimos los datos en listas y la unimos en un df.  
-2. Se calcula la diferencias de producción de toronjas por parcela.
-3. Cual es el promedio de las diferencias. 
-4. Hacer la prueba de t con datos pareado.
+
+> + Primero añadimos los datos en listas y la unimos en un df.  
+> + Se calcula la diferencias de producción de toronjas por parcela.
+> + Cual es el promedio de las diferencias. 
+> + Hacer la prueba de t con datos pareado.
 
 El resultado:  El valor de t-observado es de 8.80, con un grado de libertad de 17 (n=18), y valor de p <0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna.  El intervalo de confianza del promedio es 198.5 - 323.7, con un promedio de 261. Esto significa que a añadir fertilizante la producción de toronjas aumento de en promedio de 261 toronjas.
 
@@ -233,7 +237,7 @@ t.test(df$Fert,df$SFert, paired=TRUE)
 ***
 
 
-# El número de Hojas por planta en diferentes momentos (tiempo).
+## El número de Hojas por planta en diferentes momentos (tiempo).
 
 
 
@@ -262,14 +266,16 @@ Compara si la cantidad de hojas por plante es igual entre el primer muestreo (1)
 
 `r colorize("Cual son sus conclusiones.", "blue")`
 
-1. Cuantas plantas fueron muestreadas en ambos periodos?
-2. Cual es el valor de t observado?
-3. Se acepta o rechaza la hipótesis nula?
-  + la plantas en el tiempo 2 tienen mayor hojas
-  + la plantas en el tiempo 2 tienen menor hojas
-  + la plantas tienen la misma cantidad de hojas
-4. Cual es el intervalo de confianza del promedio? 
-5. Cual es el promedio de diferencias entre un muestreo y el otro
+> + ¿Cuantas plantas fueron muestreadas en ambos periodos?
+> + ¿Cual es el valor de t observado?
+> + ¿Cual es el promedio de diferencias entre un muestreo y el otro?
+> + ¿Cual es el intervalo de confianza del promedio? 
+> + ¿Se acepta o rechaza la hipótesis nula?
+>    - la plantas en el tiempo 2 tienen mayor hojas
+>    - la plantas en el tiempo 2 tienen menor hojas
+>    - la plantas tienen la misma cantidad de hojas
+
+
   
 
 ```{r paired t-test}
@@ -282,10 +288,10 @@ model2
 
 Los supuestos de la prueba t-pareados.
 
-1. Las variables dependientes sean valores continuos (intervalos o razón).
-2. Que los individuos sean observaciones independientes.
-3. Que las diferencias sean normales.
-4. Que no hay valores atípicos.
+> + Las variables dependientes sean valores continuos (intervalos o razón).
+> + Qué los individuos sean observaciones independientes.
+> + Qué las diferencias sean normales.
+> + Qué no hay valores atípicos.
 
 
 

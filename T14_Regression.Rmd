@@ -1,10 +1,13 @@
 ---
 title: "T14_Regression"
-output: 
+output:
   html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    theme: simplex
     toc: yes
     toc_float: yes
-    css: custom.css
 ---
 
 ```{r setup, include=FALSE}
@@ -213,17 +216,14 @@ tab_model(
 
 # Supuestos de la regresión lineal
 
-1. Igualdad de varianza
-
-  En el primer gráfico evaluar si los datos están distribuido más o menos igual. y que no un más variación un un área del gráfico que otro.
+1. Igualdad de varianza: En el primer gráfico evaluar si los datos están distribuido más o menos igual. y que no un más variación un un área del gráfico que otro.
   
-2. Normalidad de los datos
+2. Normalidad de los datos: En el segundo gráfico evaluar la figura de qqplot.
 
-En el segundo gráfico evaluar la figura de qqplot.
+3. Evaluar si hay datos sesgados (atípicos) que influencia los resultados 
 
-3. Evaluar si hay datos sesgados (atípicos) que influencia los resultados.
+4. En el cuarto gráfico evaluar si hay valores que tienen mucho peso si se incluyen o no en el análisis. Estos van a ser identificado 
 
-En el cuarto gráfico evaluar si hay valores que tienen mucho peso si se incluyen o no en el análisis. Estos van a ser identificado 
 En el presente gráfico hay tres valores que hay que evaluar (1,42,169), estos valores se tiene que asegurar que son correctos.  Siempre es bueno remover los valores sesgados y rehacer el análisis para observar cuan diferente son los resultas.  
 
 

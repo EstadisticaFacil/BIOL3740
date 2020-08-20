@@ -1,7 +1,11 @@
 ---
 title: "Supuestos de la pruebas paramétricas"
-output: 
+output:
   html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    theme: simplex
     toc: yes
     toc_float: yes
 ---
@@ -329,6 +333,7 @@ b= ggplot(Godwits, aes(mgconsumed)) +
 
 grid.arrange(a,b,ncol=1)
 ```
+
 ***
 
 ## stat_function 
@@ -366,6 +371,7 @@ b=ggplot(Sparrows, aes(wt)) +
 
 grid.arrange(a,b,ncol=2)
 ```
+
 ***
 
 ## Visualizando la distribuciones con **geom_density**
@@ -398,6 +404,7 @@ b= ggplot(Sparrows, aes(wt))+
 
 grid.arrange(a,b,ncol=1)
 ```
+
 ***
 
 
@@ -422,6 +429,7 @@ Otra alternativa es hacer el análisis de correlación de muchas variables en co
 kable(signif(cor(dipodium[,c(3, 8, 9)],
  use="pairwise.complete.obs"),2))
 ```
+
 ***
 
 ### Tabla de correlación de Kendall
