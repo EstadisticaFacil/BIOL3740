@@ -1,10 +1,14 @@
 ---
 title: "T4a_Estadistica_descriptiva"
-output: 
+output:
   html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    theme: simplex
     toc: yes
     toc_float: yes
-    css: custom.css
+
 ---
 
 ```{r setup, include=FALSE}
@@ -185,9 +189,9 @@ $$\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^3$$
 
 Primero voy a crear tres conjuntos de datos
 
-1. con distribución normal
-2. oblicuidad a la izquierda
-3. oblicuidad a la derecha
++ con distribución normal
++ oblicuidad a la izquierda
++ oblicuidad a la derecha
 
 ```{r}
 normal=rnorm(100000, .5, .15)
@@ -236,9 +240,9 @@ ggplot(df2, (aes(valor, colour=Distribución)))+
 
 Ahora se calcula el indice de oblicuidad y comparamos los valores.  Como regla cuando el nivel de oblicuidad esta entre
 
-1. -0.5 y 0.5 se considera dentro de una distribución simétrica (normal).
-2. -1.0 y -0.5 o entre 0.5 y 1.o los valores tienen una oblicuidad moderada.
-3. Menor de -1.0 o mayor de 1.0 los datos tienen una oblicuidad grande.  
++ -0.5 y 0.5 se considera dentro de una distribución simétrica (normal).
++ -1.0 y -0.5 o entre 0.5 y 1.o los valores tienen una oblicuidad moderada.
++ Menor de -1.0 o mayor de 1.0 los datos tienen una oblicuidad grande.  
 
 
 Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de **skewness** en el paquete **e1071**
@@ -265,13 +269,13 @@ La formula es la siguiente.  Lo que se darán cuenta es muy similar a la varianz
 
 $$\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^4$$
 
-Primero voy a crear tres conjuntos de datos
+Primero voy a crear cuatro conjuntos de datos
 
-1. con distribución normal
-2. con distribución normal, con cola reducida
-3. con distribución normal, con cola extendida
-4. distribución uniforme
-5. 
++ con distribución normal
++ con distribución normal, con cola reducida
++ con distribución normal, con cola extendida
++ distribución uniforme
+ 
 
 ```{r}
 library(PearsonDS)
@@ -349,8 +353,8 @@ sub + annotation_custom(
 
 Ahora se calcula el indice de curtosis y comparamos los valores.  Como regla el nivel de curtosis esta significativo si los valores de curtosis se enuentra en los siguientes rangos, y se acerca cero no hay curtosis (lo que uno espera para una distribución normal.
 
-1. Menor de -1.0 los datos están muy aplanados (Uniforme, normalR).
-2. Mayor de 1.0 (la distribución de Laplace).  
++ Menor de -1.0 los datos están muy aplanados (Uniforme, normalR).
++ Mayor de 1.0 (la distribución de Laplace).  
 
 
 Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de **kurtosis** en el paquete **e1071**

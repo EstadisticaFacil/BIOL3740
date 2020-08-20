@@ -1,10 +1,13 @@
 ---
 title: "Inferencias_hipotesis"
-output: 
+output:
   html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    theme: simplex
     toc: yes
     toc_float: yes
-    css: custom.css
 ---
 
 ```{r setup, include=FALSE}
@@ -44,12 +47,13 @@ En algunos instancia se podría calcular el parámetro (por ejemplo el promedio)
 
 Pero cuando la población es más grande será necesario tener solamente una muestra de la población, si se usa un método al azar de recolección de los datos uno podría inferir cual es el estado basado en las estadística recolectada.  
 
+## Ejemplo 1:
 Por ejemplo en un estudio hecho por la Dra. Patricia Burrowes sobre la frecuencia de una infección común de los coquí ella evaluó la presencia del hongo sobre la piel de estos anfibios y encontró que los individuos en bosque nublado eran más frecuentemente infectado que los del bosque enano.   Ella y sus estudiantes muestrearon 299 individuos del bosque nublado y 130 del bosque enano, este esfuerzo fue muy grande. Encontrar los coqui en el campo no fácil y no hay manera de conseguir todas las pequeñas ranas. 
 
-## Ejemplo 1:
 
 
-> Costo potencial en aptitud evolutiva de *Batrachochytrium dendrobatidis* en *Eleutherodactylus coqui*, y comentarios sobre el riesgo de infección relacionado con el ambiente”. El tamaño corporal (longitud hocico acloaca) en adultos de *Eleutherodactylus coqui* infectados y no infectados con *Batrachochytrium dendrobatidis* (Bd) fue comparado para determinarel costo potencial en aptitud evolutiva de quitridiomicosis en poblaciones resistentes.  Los estudios fueron realizados en dos tipos de bosque a diferentes elevaciones, Bosque Nublado (650 m)  y Bosque Nublado Enano (850 m), en El Yunque, Puerto Rico.  Nuestros resultados demuestran que los machos infectados con Bd son significativamente más pequeños que los no infectados en el Bosque Nuboso, sin embargo no sucede lo mismo en el Bosque Nublado Enano.  Aunque las hembras que están infectadas por Bd también son más pequeñas que las no infectadas, este efecto no es estadísticamente significativo. La prevalencia de Bd y la probabilidad de infección por este hongo son significativamente más altas en el Bosque Nublado (44.1%) que en el Bosque Nublado Enano (20.7%) para ambos sexos.  Reportamos las diferencias en factores ambientales en estos dos tipos de bosque en Puerto Rico y discutimos las implicaciones en el crecimiento de Bd y la vulnerabilidad de las ranas a la infección por este patógeno. 
+
+ 1. Costo potencial en aptitud evolutiva de *Batrachochytrium dendrobatidis* en *Eleutherodactylus coqui*, y comentarios sobre el riesgo de infección relacionado con el ambiente”. El tamaño corporal (longitud hocico acloaca) en adultos de *Eleutherodactylus coqui* infectados y no infectados con *Batrachochytrium dendrobatidis* (Bd) fue comparado para determinarel costo potencial en aptitud evolutiva de quitridiomicosis en poblaciones resistentes.  Los estudios fueron realizados en dos tipos de bosque a diferentes elevaciones, Bosque Nublado (650 m)  y Bosque Nublado Enano (850 m), en El Yunque, Puerto Rico.  Nuestros resultados demuestran que los machos infectados con Bd son significativamente más pequeños que los no infectados en el Bosque Nuboso, sin embargo no sucede lo mismo en el Bosque Nublado Enano.  Aunque las hembras que están infectadas por Bd también son más pequeñas que las no infectadas, este efecto no es estadísticamente significativo. La prevalencia de Bd y la probabilidad de infección por este hongo son significativamente más altas en el Bosque Nublado (44.1%) que en el Bosque Nublado Enano (20.7%) para ambos sexos.  Reportamos las diferencias en factores ambientales en estos dos tipos de bosque en Puerto Rico y discutimos las implicaciones en el crecimiento de Bd y la vulnerabilidad de las ranas a la infección por este patógeno. 
 > 
 > > Burrowes, P. A., A. V. Longo, and C. A. Rodríguez. 2008b. Potential fitness cost of *Batrachochytrium dendrobatidis* in *Eletherodactylus coqui*, and comments on environment-related risk of infection. Herpetotropicos 4:51-57.
 
@@ -57,7 +61,7 @@ Por ejemplo en un estudio hecho por la Dra. Patricia Burrowes sobre la frecuenci
 
 ## Ejemplo 2:
 
-En este segundo ejemplo se demuestra la eficiencia de dos vacunas para proteger del virus papiloma humano (VPH) que es una causa principal del cáncer del útero.  Hay un estimado que 25% de los adultos están infectado por HPV en un momento en su vida (Lowndes, doi: 10.1017/S0950268805005728) y que este cáncer es el segundo más común en el mundo (Bosch et al. 2002, doi: 10.1136/jcp.55.4.244). El siguiente ejemplo demuestra que las vacunas pueden ser muy efectiva. 
+ En este segundo ejemplo se demuestra la eficiencia de dos vacunas para proteger del virus papiloma humano (VPH) que es una causa principal del cáncer del útero.  Hay un estimado que 25% de los adultos están infectado por HPV en un momento en su vida (Lowndes, doi: 10.1017/S0950268805005728) y que este cáncer es el segundo más común en el mundo (Bosch et al. 2002, doi: 10.1136/jcp.55.4.244). El siguiente ejemplo demuestra que las vacunas pueden ser muy efectiva. 
 
 
 ¿Qué tan eficaces son las vacunas contra el VPH?
@@ -66,7 +70,7 @@ En este segundo ejemplo se demuestra la eficiencia de dos vacunas para proteger 
 Las vacunas contra el VPH son altamente eficaces para prevenir la infección por los tipos de VPH a los que atacan cuando las vacunas se administran antes de la exposición inicial al virus — es decir, antes de que el individuo tenga actividad sexual.
 
 
->En los estudios que llevaron a la aprobación de Gardasil y de Cervarix, se encontró que estas vacunas proveen casi 100 % de protección contra infecciones persistentes del cuello uterino por los tipos 16 y 18 de VPH y contra los cambios celulares del cuello uterino que pueden causar estas infecciones persistentes.Gardasil 9 es tan eficaz como Gardasil para la prevención de las enfermedades causadas por los cuatro tipos de VPH (6, 11, 16 y 18), según reacciones similares de anticuerpos en participantes de estudios clínicos. Los estudios que llevaron a la aprobación de Gardasil 9 encontraron que es casi 100 % eficaz en la prevención de enfermedades cervicales (de cuello uterino), de vulva y de vagina causadas por los otros cinco tipos de VPH (31, 33, 45, 52 y 58) a los que se dirige (4). En un documento de posición de 2017, la Organización Mundial de la Salud declaró que las vacunas contra el VPH tienen una eficacia equivalente (5). Se ha encontrado que Cervarix provee protección parcial contra algunos otros tipos de VPH que pueden también causar cáncer pero que no están incluidos en la vacuna, un fenómeno llamado protección cruzada (6).
+ 2. En los estudios que llevaron a la aprobación de Gardasil y de Cervarix, se encontró que estas vacunas proveen casi 100 % de protección contra infecciones persistentes del cuello uterino por los tipos 16 y 18 de VPH y contra los cambios celulares del cuello uterino que pueden causar estas infecciones persistentes.Gardasil 9 es tan eficaz como Gardasil para la prevención de las enfermedades causadas por los cuatro tipos de VPH (6, 11, 16 y 18), según reacciones similares de anticuerpos en participantes de estudios clínicos. Los estudios que llevaron a la aprobación de Gardasil 9 encontraron que es casi 100 % eficaz en la prevención de enfermedades cervicales (de cuello uterino), de vulva y de vagina causadas por los otros cinco tipos de VPH (31, 33, 45, 52 y 58) a los que se dirige (4). En un documento de posición de 2017, la Organización Mundial de la Salud declaró que las vacunas contra el VPH tienen una eficacia equivalente (5). Se ha encontrado que Cervarix provee protección parcial contra algunos otros tipos de VPH que pueden también causar cáncer pero que no están incluidos en la vacuna, un fenómeno llamado protección cruzada (6).
 >
 
 > > Fuente de información: <https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/germenes-infecciosos/hoja-informativa-vacuna-vph>
@@ -109,9 +113,9 @@ Evalúa el siguiente gráfico:
 
 La prueba de poder es influenciada por tres propriedades.
 
-1. El nivel d etipo de error I, o sea el $\alpha$.
-2. La differencia entre dos promedios que queremos evaluar.
-3. El tamaño de muestra (n).
++ El nivel del tipo de error I, o sea el $\alpha$.
++ La diferencia entre dos promedios que queremos evaluar.
++ El tamaño de muestra (n).
 
 La linea vertical entrecortada representa el valor critico. El área gris obscuro representa el error $\alpha$, la probabilidad de rechazar la hipótesis nula cuando debería aceptar la hipótesis nula.  El área gris liviano representa el error $\beta$.   
 

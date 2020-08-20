@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -23,24 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
 
 
@@ -71,7 +55,7 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="custom.css" type="text/css" />
+<link rel="stylesheet" href="tutorial.css" type="text/css" />
 
 
 
@@ -106,33 +90,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 41px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .dropdown-submenu {
   position: relative;
@@ -356,7 +340,7 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Instalación y Introducción básica
+    Instalación básica
      
     <span class="caret"></span>
   </a>
@@ -498,30 +482,27 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-08-18&quot;</code></pre>
+<pre><code>## [1] &quot;2020-08-20&quot;</code></pre>
 <div id="introducción" class="section level1">
 <h1>Introducción</h1>
 <p>Los parámetros versus un muestreo:</p>
 <p>En algunos instancia se podría calcular el parámetro (por ejemplo el promedio) en otra palabra la población (todos los individuos sin que falte ni uno). Si es así tenemos todos los datos. Por ejemplo si la población es cuantos médicos fueron infectado por el COVID-19 en un hospital especifico entre una fechas delimitada es probable que se puede conseguir la información de cada un los médicos, y se podría calcular la proporción de infectado.</p>
 <p>Pero cuando la población es más grande será necesario tener solamente una muestra de la población, si se usa un método al azar de recolección de los datos uno podría inferir cual es el estado basado en las estadística recolectada.</p>
-<p>Por ejemplo en un estudio hecho por la Dra. Patricia Burrowes sobre la frecuencia de una infección común de los coquí ella evaluó la presencia del hongo sobre la piel de estos anfibios y encontró que los individuos en bosque nublado eran más frecuentemente infectado que los del bosque enano. Ella y sus estudiantes muestrearon 299 individuos del bosque nublado y 130 del bosque enano, este esfuerzo fue muy grande. Encontrar los coqui en el campo no fácil y no hay manera de conseguir todas las pequeñas ranas.</p>
 <div id="ejemplo-1" class="section level2">
 <h2>Ejemplo 1:</h2>
-<blockquote>
-<p>Costo potencial en aptitud evolutiva de <em>Batrachochytrium dendrobatidis</em> en <em>Eleutherodactylus coqui</em>, y comentarios sobre el riesgo de infección relacionado con el ambiente”. El tamaño corporal (longitud hocico acloaca) en adultos de <em>Eleutherodactylus coqui</em> infectados y no infectados con <em>Batrachochytrium dendrobatidis</em> (Bd) fue comparado para determinarel costo potencial en aptitud evolutiva de quitridiomicosis en poblaciones resistentes. Los estudios fueron realizados en dos tipos de bosque a diferentes elevaciones, Bosque Nublado (650 m) y Bosque Nublado Enano (850 m), en El Yunque, Puerto Rico. Nuestros resultados demuestran que los machos infectados con Bd son significativamente más pequeños que los no infectados en el Bosque Nuboso, sin embargo no sucede lo mismo en el Bosque Nublado Enano. Aunque las hembras que están infectadas por Bd también son más pequeñas que las no infectadas, este efecto no es estadísticamente significativo. La prevalencia de Bd y la probabilidad de infección por este hongo son significativamente más altas en el Bosque Nublado (44.1%) que en el Bosque Nublado Enano (20.7%) para ambos sexos. Reportamos las diferencias en factores ambientales en estos dos tipos de bosque en Puerto Rico y discutimos las implicaciones en el crecimiento de Bd y la vulnerabilidad de las ranas a la infección por este patógeno.</p>
-<blockquote>
-<p>Burrowes, P. A., A. V. Longo, and C. A. Rodríguez. 2008b. Potential fitness cost of <em>Batrachochytrium dendrobatidis</em> in <em>Eletherodactylus coqui</em>, and comments on environment-related risk of infection. Herpetotropicos 4:51-57.</p>
-</blockquote>
-</blockquote>
+<p>Por ejemplo en un estudio hecho por la Dra. Patricia Burrowes sobre la frecuencia de una infección común de los coquí ella evaluó la presencia del hongo sobre la piel de estos anfibios y encontró que los individuos en bosque nublado eran más frecuentemente infectado que los del bosque enano. Ella y sus estudiantes muestrearon 299 individuos del bosque nublado y 130 del bosque enano, este esfuerzo fue muy grande. Encontrar los coqui en el campo no fácil y no hay manera de conseguir todas las pequeñas ranas.</p>
+<ol style="list-style-type: decimal">
+<li>Costo potencial en aptitud evolutiva de <em>Batrachochytrium dendrobatidis</em> en <em>Eleutherodactylus coqui</em>, y comentarios sobre el riesgo de infección relacionado con el ambiente”. El tamaño corporal (longitud hocico acloaca) en adultos de <em>Eleutherodactylus coqui</em> infectados y no infectados con <em>Batrachochytrium dendrobatidis</em> (Bd) fue comparado para determinarel costo potencial en aptitud evolutiva de quitridiomicosis en poblaciones resistentes. Los estudios fueron realizados en dos tipos de bosque a diferentes elevaciones, Bosque Nublado (650 m) y Bosque Nublado Enano (850 m), en El Yunque, Puerto Rico. Nuestros resultados demuestran que los machos infectados con Bd son significativamente más pequeños que los no infectados en el Bosque Nuboso, sin embargo no sucede lo mismo en el Bosque Nublado Enano. Aunque las hembras que están infectadas por Bd también son más pequeñas que las no infectadas, este efecto no es estadísticamente significativo. La prevalencia de Bd y la probabilidad de infección por este hongo son significativamente más altas en el Bosque Nublado (44.1%) que en el Bosque Nublado Enano (20.7%) para ambos sexos. Reportamos las diferencias en factores ambientales en estos dos tipos de bosque en Puerto Rico y discutimos las implicaciones en el crecimiento de Bd y la vulnerabilidad de las ranas a la infección por este patógeno. &gt; &gt; &gt; Burrowes, P. A., A. V. Longo, and C. A. Rodríguez. 2008b. Potential fitness cost of <em>Batrachochytrium dendrobatidis</em> in <em>Eletherodactylus coqui</em>, and comments on environment-related risk of infection. Herpetotropicos 4:51-57.</li>
+</ol>
 </div>
 <div id="ejemplo-2" class="section level2">
 <h2>Ejemplo 2:</h2>
 <p>En este segundo ejemplo se demuestra la eficiencia de dos vacunas para proteger del virus papiloma humano (VPH) que es una causa principal del cáncer del útero. Hay un estimado que 25% de los adultos están infectado por HPV en un momento en su vida (Lowndes, doi: 10.1017/S0950268805005728) y que este cáncer es el segundo más común en el mundo (Bosch et al. 2002, doi: 10.1136/jcp.55.4.244). El siguiente ejemplo demuestra que las vacunas pueden ser muy efectiva.</p>
 <p>¿Qué tan eficaces son las vacunas contra el VPH?</p>
 <p>Las vacunas contra el VPH son altamente eficaces para prevenir la infección por los tipos de VPH a los que atacan cuando las vacunas se administran antes de la exposición inicial al virus — es decir, antes de que el individuo tenga actividad sexual.</p>
-<blockquote>
-<p>En los estudios que llevaron a la aprobación de Gardasil y de Cervarix, se encontró que estas vacunas proveen casi 100 % de protección contra infecciones persistentes del cuello uterino por los tipos 16 y 18 de VPH y contra los cambios celulares del cuello uterino que pueden causar estas infecciones persistentes.Gardasil 9 es tan eficaz como Gardasil para la prevención de las enfermedades causadas por los cuatro tipos de VPH (6, 11, 16 y 18), según reacciones similares de anticuerpos en participantes de estudios clínicos. Los estudios que llevaron a la aprobación de Gardasil 9 encontraron que es casi 100 % eficaz en la prevención de enfermedades cervicales (de cuello uterino), de vulva y de vagina causadas por los otros cinco tipos de VPH (31, 33, 45, 52 y 58) a los que se dirige (4). En un documento de posición de 2017, la Organización Mundial de la Salud declaró que las vacunas contra el VPH tienen una eficacia equivalente (5). Se ha encontrado que Cervarix provee protección parcial contra algunos otros tipos de VPH que pueden también causar cáncer pero que no están incluidos en la vacuna, un fenómeno llamado protección cruzada (6).</p>
-</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>En los estudios que llevaron a la aprobación de Gardasil y de Cervarix, se encontró que estas vacunas proveen casi 100 % de protección contra infecciones persistentes del cuello uterino por los tipos 16 y 18 de VPH y contra los cambios celulares del cuello uterino que pueden causar estas infecciones persistentes.Gardasil 9 es tan eficaz como Gardasil para la prevención de las enfermedades causadas por los cuatro tipos de VPH (6, 11, 16 y 18), según reacciones similares de anticuerpos en participantes de estudios clínicos. Los estudios que llevaron a la aprobación de Gardasil 9 encontraron que es casi 100 % eficaz en la prevención de enfermedades cervicales (de cuello uterino), de vulva y de vagina causadas por los otros cinco tipos de VPH (31, 33, 45, 52 y 58) a los que se dirige (4). En un documento de posición de 2017, la Organización Mundial de la Salud declaró que las vacunas contra el VPH tienen una eficacia equivalente (5). Se ha encontrado que Cervarix provee protección parcial contra algunos otros tipos de VPH que pueden también causar cáncer pero que no están incluidos en la vacuna, un fenómeno llamado protección cruzada (6). &gt;</li>
+</ol>
 <blockquote>
 <blockquote>
 <p>Fuente de información: <a href="https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/germenes-infecciosos/hoja-informativa-vacuna-vph" class="uri">https://www.cancer.gov/espanol/cancer/causas-prevencion/riesgo/germenes-infecciosos/hoja-informativa-vacuna-vph</a></p>
@@ -582,11 +563,11 @@ div.tocify {
 <p>Si la hipótesis nula es falsa es probable que se podría rechazar con cierta confianza. El complemente de beta, <span class="math inline">\((1-\beta)\)</span> es la prueba de poder. La prueba de poder es la probabilidad de correctamente rechazar la hipótesis nula falsa. Para aclara la <span class="math inline">\(\beta\)</span> es la probabilidad de cometer un error tipo II. El Poder es <span class="math inline">\((1-\beta)\)</span> es la probabilidad de correctamente rechazar una hipótesis nula falsa.</p>
 <p>Evalúa el siguiente gráfico:</p>
 <p>La prueba de poder es influenciada por tres propriedades.</p>
-<ol style="list-style-type: decimal">
-<li>El nivel d etipo de error I, o sea el <span class="math inline">\(\alpha\)</span>.</li>
-<li>La differencia entre dos promedios que queremos evaluar.</li>
+<ul>
+<li>El nivel del tipo de error I, o sea el <span class="math inline">\(\alpha\)</span>.</li>
+<li>La diferencia entre dos promedios que queremos evaluar.</li>
 <li>El tamaño de muestra (n).</li>
-</ol>
+</ul>
 <p>La linea vertical entrecortada representa el valor critico. El área gris obscuro representa el error <span class="math inline">\(\alpha\)</span>, la probabilidad de rechazar la hipótesis nula cuando debería aceptar la hipótesis nula. El área gris liviano representa el error <span class="math inline">\(\beta\)</span>.</p>
 <p><img src="Graficos/6-1%20Test%20Power%20Increase%20with%20Sample%20Size.jpg" width="50%" /> Una ilustración de como el <span class="math inline">\(\alpha\)</span> afecta el <span class="math inline">\(\beta\)</span>"</p>
 </div>

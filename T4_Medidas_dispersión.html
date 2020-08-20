@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -23,25 +23,102 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
 
 
 <style type="text/css">
@@ -71,6 +148,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="tutorial.css" type="text/css" />
 
 
 
@@ -105,33 +183,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 41px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 46px;
+  margin-top: -46px;
 }
 .dropdown-submenu {
   position: relative;
@@ -355,7 +433,7 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Instalación y Introducción básica
+    Instalación básica
      
     <span class="caret"></span>
   </a>
@@ -497,12 +575,12 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-08-18&quot;</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(Hmisc)
-library(gridExtra) # Un paquete para organizar las figuras de ggplot2
-library(gt)
-library(tidyverse)</code></pre>
+<pre><code>## [1] &quot;2020-08-20&quot;</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">library</span>(Hmisc)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">library</span>(gridExtra) <span class="co"># Un paquete para organizar las figuras de ggplot2</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">library</span>(gt)</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <hr />
 <div id="que-es-la-dispersión-en-estadística" class="section level1">
 <h1>Que es la dispersión en estadística</h1>
@@ -518,17 +596,17 @@ library(tidyverse)</code></pre>
 <div id="vizualizando-la-dispersión" class="section level1">
 <h1>Vizualizando la dispersión</h1>
 <p>Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes. En el primer conjunto de datos se usa 5000 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.</p>
-<pre class="r"><code>set.seed(8690) # esto es para que los valores se queda igual a cada vez que se corre el analisis
-a=rnorm(5000, 100, 10)
-a=data.frame(a)
-b=rnorm(500, 100, 30)
-b=data.frame(b)</code></pre>
-<pre class="r"><code>dispersion=ggplot(a, aes(a))+
-  geom_density(fill=&quot;blue&quot;, alpha=.5)+
-  geom_density(b, mapping=aes(b,fill=&quot;red&quot;, alpha=.5 ))+
-  theme(legend.position = &quot;none&quot;) +
-  geom_vline(aes(xintercept = 100, colour=&quot;red&quot;))
-ggsave(&quot;Graficos/dispersion.png&quot;)</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">set.seed</span>(<span class="dv">8690</span>) <span class="co"># esto es para que los valores se queda igual a cada vez que se corre el analisis</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>a=<span class="kw">rnorm</span>(<span class="dv">5000</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>a=<span class="kw">data.frame</span>(a)</span>
+<span id="cb3-4"><a href="#cb3-4"></a>b=<span class="kw">rnorm</span>(<span class="dv">500</span>, <span class="dv">100</span>, <span class="dv">30</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a>b=<span class="kw">data.frame</span>(b)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dispersion=<span class="kw">ggplot</span>(a, <span class="kw">aes</span>(a))<span class="op">+</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="kw">geom_density</span>(b, <span class="dt">mapping=</span><span class="kw">aes</span>(b,<span class="dt">fill=</span><span class="st">&quot;red&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span> ))<span class="op">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span>, <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>))</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/dispersion.png&quot;</span>)</span></code></pre></div>
 <div class="figure">
 <img src="Graficos/dispersion.png" alt="El proceso de Investigación" width="60%" />
 <p class="caption">
@@ -540,93 +618,63 @@ El proceso de Investigación
 <div id="el-rango" class="section level1">
 <h1>El rango</h1>
 <p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
-<pre class="r"><code>range(a$a)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">range</span>(a<span class="op">$</span>a)</span></code></pre></div>
 <pre><code>## [1]  67.77126 133.87095</code></pre>
-<pre class="r"><code>range(b$b)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">range</span>(b<span class="op">$</span>b)</span></code></pre></div>
 <pre><code>## [1]  -8.410994 190.670576</code></pre>
 <div id="la-varianza" class="section level2">
 <h2>La varianza</h2>
 <p>Los pasos para calcular la varianza son los siguientes</p>
-<ol style="list-style-type: decimal">
+<ul>
 <li>tener un conjunto de datos, aquí lo llamamos <strong>Data</strong></li>
 <li>convertir esta lista en un data frame</li>
 <li>Calcular el promedio de los datos</li>
 <li>restar el promedio de cada valor y cuadralos</li>
 <li>Sumar y restas de <strong>n-1</strong>, done <strong>n</strong> es la cantidad de datos</li>
-</ol>
+</ul>
 <p><span class="math display">\[{ s }^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }\]</span></p>
-<pre class="r"><code>library(tidyverse)
-Data=c(1,2,3,4,5,6)
-Data_df=data.frame(Data)
-Data_df</code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
-<col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Data</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td></tr>
-</table>
-
-<pre class="r"><code>Data_df$mean_Data=mean(Data)   # here we add the mean to each row
-Data_df</code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
-<col><col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Data</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean_Data</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td></tr>
-</table>
-
-<pre class="r"><code>Data_df$Diff=Data_df$Data-Data_df$mean_Data 
-          # calculate the difference between the data and the mean
-sum(Data_df$Diff) # si los valores no se cuadra la suma sera zero.</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>Data=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>Data_df=<span class="kw">data.frame</span>(Data)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>Data_df</span></code></pre></div>
+<pre><code>##   Data
+## 1    1
+## 2    2
+## 3    3
+## 4    4
+## 5    5
+## 6    6</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>Data_df<span class="op">$</span>mean_Data=<span class="kw">mean</span>(Data)   <span class="co"># here we add the mean to each row</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>Data_df</span></code></pre></div>
+<pre><code>##   Data mean_Data
+## 1    1       3.5
+## 2    2       3.5
+## 3    3       3.5
+## 4    4       3.5
+## 5    5       3.5
+## 6    6       3.5</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>Data_df<span class="op">$</span>Diff=Data_df<span class="op">$</span>Data<span class="op">-</span>Data_df<span class="op">$</span>mean_Data </span>
+<span id="cb13-2"><a href="#cb13-2"></a>          <span class="co"># calculate the difference between the data and the mean</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="kw">sum</span>(Data_df<span class="op">$</span>Diff) <span class="co"># si los valores no se cuadra la suma sera zero.</span></span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<pre class="r"><code>Data_df$SS=(Data_df$Data-Data_df$mean_Data)^2 # SS para la suma de los cuadrados 
-Data_df</code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
-<col><col><col><col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Data</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean_Data</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Diff</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SS</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-2.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6.25</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-1.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.25</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.25</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.25</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.25</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6.25</td></tr>
-</table>
-
-<pre class="r"><code>sum(Data_df$SS)</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>Data_df<span class="op">$</span>SS=(Data_df<span class="op">$</span>Data<span class="op">-</span>Data_df<span class="op">$</span>mean_Data)<span class="op">^</span><span class="dv">2</span> <span class="co"># SS para la suma de los cuadrados </span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>Data_df</span></code></pre></div>
+<pre><code>##   Data mean_Data Diff   SS
+## 1    1       3.5 -2.5 6.25
+## 2    2       3.5 -1.5 2.25
+## 3    3       3.5 -0.5 0.25
+## 4    4       3.5  0.5 0.25
+## 5    5       3.5  1.5 2.25
+## 6    6       3.5  2.5 6.25</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">sum</span>(Data_df<span class="op">$</span>SS)</span></code></pre></div>
 <pre><code>## [1] 17.5</code></pre>
-<pre class="r"><code> #  This is called the Deviation &quot;from the mean&quot;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a> <span class="co">#  This is called the Deviation &quot;from the mean&quot;</span></span></code></pre></div>
 <hr />
 </div>
 <div id="calcular-la-varianza-con-var" class="section level2">
 <h2>Calcular la varianza con <strong>var()</strong></h2>
 <p>Ahora la manera fácil de hacer los análisis, usar la función <strong>var</strong>, y no hay que hacer ninguno de los pasos anteriores. Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y cada valor. El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero. Se usa el variancas cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
-<pre class="r"><code>var(Data)</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">var</span>(Data)</span></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
 <hr />
 </div>
@@ -637,18 +685,18 @@ Data_df</code></pre>
 <p><span class="math display">\[{ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }\]</span> o más sencillo</p>
 <p><span class="math display">\[s=\sqrt{s^2}\]</span></p>
 <p>la función <strong>sd</strong>, “standard deviation” es sumamente facil de calcular en R.</p>
-<pre class="r"><code>sd(Data_df$Data)  # deviación estandard</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">sd</span>(Data_df<span class="op">$</span>Data)  <span class="co"># deviación estandard</span></span></code></pre></div>
 <pre><code>## [1] 1.870829</code></pre>
 <hr />
 </div>
 <div id="el-rango-intertcuartil." class="section level1">
 <h1>El rango intertcuartil.</h1>
 <p>La función básica es <strong>quantile</strong> si lo dejamos sin más instrucción calcula los siguientes probabilidades 0%, 25%, 50% (mediana), 75%, 100%. Pero si uno quiere los valores que se encuentra en una posición especifica hay que usar <strong>type =1</strong> como se ve en el segundo ejemplo. Hay 9 tipos de cuantiles con esta función, estos se encuentra definido en RStudio. Añade <strong>quantile</strong> en el artea de <strong>help</strong> y vera las otras alternativas.</p>
-<pre class="r"><code>quantile(Data) # la función básica (0%, 25%, 50% (mediana), 75%, 100%)</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">quantile</span>(Data) <span class="co"># la función básica (0%, 25%, 50% (mediana), 75%, 100%)</span></span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.00 2.25 3.50 4.75 6.00</code></pre>
-<pre class="r"><code># Seleccionar los cuantiles específicos.
-quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975))   </code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Seleccionar los cuantiles específicos.</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="kw">quantile</span>(Data, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.015</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>,.<span class="dv">75</span>, <span class="fl">.975</span>))   </span></code></pre></div>
 <pre><code>##  1.5%   25%   50%   75% 97.5% 
 ## 1.075 2.250 3.500 4.750 5.875</code></pre>
 <p>Para explicar estos conceptos mejor visualizamos los datos</p>
@@ -755,9 +803,9 @@ quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975))   </code></pre>
 </tbody>
 </table>
 <p>Ahora usamos la función <strong>quantile</strong> con el type=1 de calcular los cuartiles y vermos si tenemos los mismos resultados.</p>
-<pre class="r"><code>dat=c(3,19,27,33,52,60,77,87,99,101,122,137,140,142,150)
-
-quantile(dat, type =1)</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>dat=<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">19</span>,<span class="dv">27</span>,<span class="dv">33</span>,<span class="dv">52</span>,<span class="dv">60</span>,<span class="dv">77</span>,<span class="dv">87</span>,<span class="dv">99</span>,<span class="dv">101</span>,<span class="dv">122</span>,<span class="dv">137</span>,<span class="dv">140</span>,<span class="dv">142</span>,<span class="dv">150</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="kw">quantile</span>(dat, <span class="dt">type =</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ##    3   33   87  137  150</code></pre>
 <hr />
@@ -768,13 +816,13 @@ quantile(dat, type =1)</code></pre>
 <p>La formula de error estándar es la siguiente usando la desviación estándar</p>
 <p><span class="math display">\[s_{\overline{x}}=\frac{s}{\sqrt{n}}\]</span> o usando la varianza, donde la <strong>n</strong> es la cantidad de datos</p>
 <p><span class="math display">\[s_{\overline{x}}=\sqrt{\frac{s^2}{n}}\]</span> Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución. er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice. Vemos que cuando hay más dispersión el error estándar es más grande.</p>
-<pre class="r"><code>es_a= sd(a$a)/sqrt(length(a$a))
-
-es_b= sd(b$b)/sqrt(length(b$b))
-
-es_a</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>es_a=<span class="st"> </span><span class="kw">sd</span>(a<span class="op">$</span>a)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(a<span class="op">$</span>a))</span>
+<span id="cb30-2"><a href="#cb30-2"></a></span>
+<span id="cb30-3"><a href="#cb30-3"></a>es_b=<span class="st"> </span><span class="kw">sd</span>(b<span class="op">$</span>b)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(b<span class="op">$</span>b))</span>
+<span id="cb30-4"><a href="#cb30-4"></a></span>
+<span id="cb30-5"><a href="#cb30-5"></a>es_a</span></code></pre></div>
 <pre><code>## [1] 0.1405601</code></pre>
-<pre class="r"><code>es_b</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>es_b</span></code></pre></div>
 <pre><code>## [1] 1.32255</code></pre>
 <hr />
 </div>
@@ -783,39 +831,39 @@ es_a</code></pre>
 <p>Ya que hemos calculado el error estándar podemos calcular la dispersión de los promedios. Esto quiere decir que si uno repite la recolección de datos el promedio tiene un 95% de probabilidad estar en este rango. Uno calcula los limites de la dispersión de los promedios usando la siguientes formulas.</p>
 <p><span class="math display">\[Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)\]</span></p>
 <p><span class="math display">\[Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)\]</span></p>
-<pre class="r"><code>Limite_inferior_a=mean(a$a)-(es_a+1.96)
-Limite_superior_a=mean(a$a)+(es_a+1.96)
-
-Limite_inferior_a</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>Limite_inferior_a=<span class="kw">mean</span>(a<span class="op">$</span>a)<span class="op">-</span>(es_a<span class="fl">+1.96</span>)</span>
+<span id="cb34-2"><a href="#cb34-2"></a>Limite_superior_a=<span class="kw">mean</span>(a<span class="op">$</span>a)<span class="op">+</span>(es_a<span class="fl">+1.96</span>)</span>
+<span id="cb34-3"><a href="#cb34-3"></a></span>
+<span id="cb34-4"><a href="#cb34-4"></a>Limite_inferior_a</span></code></pre></div>
 <pre><code>## [1] 97.90828</code></pre>
-<pre class="r"><code>Limite_superior_a</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>Limite_superior_a</span></code></pre></div>
 <pre><code>## [1] 102.1094</code></pre>
-<pre class="r"><code>Limite_inferior_b=mean(b$b)-(es_b+1.96)
-Limite_superior_b=mean(b$b)+(es_b+1.96)
-
-mean_b=mean(b$b)
-Limite_inferior_b</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>Limite_inferior_b=<span class="kw">mean</span>(b<span class="op">$</span>b)<span class="op">-</span>(es_b<span class="fl">+1.96</span>)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>Limite_superior_b=<span class="kw">mean</span>(b<span class="op">$</span>b)<span class="op">+</span>(es_b<span class="fl">+1.96</span>)</span>
+<span id="cb38-3"><a href="#cb38-3"></a></span>
+<span id="cb38-4"><a href="#cb38-4"></a>mean_b=<span class="kw">mean</span>(b<span class="op">$</span>b)</span>
+<span id="cb38-5"><a href="#cb38-5"></a>Limite_inferior_b</span></code></pre></div>
 <pre><code>## [1] 96.19911</code></pre>
-<pre class="r"><code>Limite_superior_b</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>Limite_superior_b</span></code></pre></div>
 <pre><code>## [1] 102.7642</code></pre>
 <p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
-<pre class="r"><code>CIa=ggplot(a, aes(a))+
-  geom_density(fill=&quot;blue&quot;, alpha=.5)+
-  theme(legend.position = &quot;none&quot;) +
-  geom_vline(aes(xintercept = 100), colour=&quot;red&quot;)+
-  geom_vline(aes(xintercept = Limite_inferior_a), colour=&quot;black&quot;)+
-  geom_vline(aes(xintercept = Limite_superior_a), colour=&quot;black&quot;)+
-  xlim(90,110)
-
-CIb=ggplot(b, aes(b))+
-  geom_density(fill=&quot;blue&quot;, alpha=.5)+
-  theme(legend.position = &quot;none&quot;) +
-  geom_vline(aes(xintercept =mean_b), colour=&quot;red&quot;)+
-  geom_vline(aes(xintercept = Limite_inferior_b), colour=&quot;black&quot;)+
-  geom_vline(aes(xintercept = Limite_superior_b), colour=&quot;black&quot;)+
-  xlim(90,110)
-
-grid.arrange(CIa,CIb, ncol=2)</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>CIa=<span class="kw">ggplot</span>(a, <span class="kw">aes</span>(a))<span class="op">+</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb42-3"><a href="#cb42-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
+<span id="cb42-4"><a href="#cb42-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span>), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_inferior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb42-6"><a href="#cb42-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_superior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb42-7"><a href="#cb42-7"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">90</span>,<span class="dv">110</span>)</span>
+<span id="cb42-8"><a href="#cb42-8"></a></span>
+<span id="cb42-9"><a href="#cb42-9"></a>CIb=<span class="kw">ggplot</span>(b, <span class="kw">aes</span>(b))<span class="op">+</span></span>
+<span id="cb42-10"><a href="#cb42-10"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb42-11"><a href="#cb42-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
+<span id="cb42-12"><a href="#cb42-12"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span>mean_b), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb42-13"><a href="#cb42-13"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_inferior_b), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb42-14"><a href="#cb42-14"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_superior_b), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb42-15"><a href="#cb42-15"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">90</span>,<span class="dv">110</span>)</span>
+<span id="cb42-16"><a href="#cb42-16"></a></span>
+<span id="cb42-17"><a href="#cb42-17"></a><span class="kw">grid.arrange</span>(CIa,CIb, <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-14-1.png" width="100%" /></p>
 <hr />
 <div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
@@ -866,52 +914,52 @@ grid.arrange(CIa,CIb, ncol=2)</code></pre>
 <h2>El intervalo de confianza de colesterol en los Iranis</h2>
 <p>Comenzamos con evaluar el intervalo de confianza de los datos con datos teóricos. Por ejemplo el nivel de colesterol en el plasma varia en los humanos. En el siguiente articulo <em>Plasma total cholesterol level and some related factors in northern Iranian people</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/</a></p>
 <p>Usamos los datos para las mujeres con un promedio de 196.7 y una desviación estándar de 39.11. Con estos datos asumimos que esto provienen de una distribución normal y que representa las mujeres en resto del mundo.</p>
-<pre class="r"><code># Creamos un conjunto de datos para los análisis
-
-Col=rnorm(200000, 196.7, 39.11)
-Col=data_frame(Col)
-
-promCol=Col%&gt;%
-  summarise(Mean=mean(Col))
-  
-sdCol=Col%&gt;%
-  summarise(sd=sd(Col))</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># Creamos un conjunto de datos para los análisis</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a></span>
+<span id="cb43-3"><a href="#cb43-3"></a>Col=<span class="kw">rnorm</span>(<span class="dv">200000</span>, <span class="fl">196.7</span>, <span class="fl">39.11</span>)</span>
+<span id="cb43-4"><a href="#cb43-4"></a>Col=<span class="kw">data_frame</span>(Col)</span>
+<span id="cb43-5"><a href="#cb43-5"></a></span>
+<span id="cb43-6"><a href="#cb43-6"></a>promCol=Col<span class="op">%&gt;%</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Mean=</span><span class="kw">mean</span>(Col))</span>
+<span id="cb43-8"><a href="#cb43-8"></a>  </span>
+<span id="cb43-9"><a href="#cb43-9"></a>sdCol=Col<span class="op">%&gt;%</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Col))</span></code></pre></div>
 <p>Visualizar los datos: Uds conoce su nivel de colesterol total? Donde se encuentra en esta distribución? Se encuentra en el 68%? Nota que la suma de todos los porcentaje es igual a 100%.</p>
-<pre class="r"><code>library(grid)
-library(gtable)
-
-lims &lt;- c(28, 350)
-
-breaks.major2&lt;-c(0, 79, 118, 157, 
-                 197, 235, 274, 314)
-breaks.minor2= c(79, 118, 157,197, 
-                235, 274, 314,379)
-breaks.comb &lt;- sort(c(breaks.major2, breaks.minor2-1.0E-6))
-labels.comb&lt;- c(0, 79, &quot;\n-3sd&quot;, 118, &quot;\n-2sd&quot;, 157, &quot;\n-1sd&quot;, 197, &quot;\npromedio&quot;,
-                 235,  &quot;\n+1sd&quot;,274, &quot;\n+2sd&quot;, 314,&quot;\n+3sd&quot;, 379)
-Col%&gt;%
-ggplot(aes(Col))+
-  geom_density(fill=&quot;blue&quot;, colour=&quot;white&quot;,alpha=.5)+
-  theme(legend.position = &quot;none&quot;)+
-  geom_vline(xintercept=as.numeric(promCol), colour=&quot;black&quot;)+
-  geom_vline(aes(xintercept = as.numeric(promCol-sdCol)), colour=&quot;blue&quot;)+
-  geom_vline(aes(xintercept = as.numeric(promCol+sdCol)), colour=&quot;blue&quot;)+
-geom_vline(aes(xintercept = as.numeric(promCol-2*sdCol)), colour=&quot;red&quot;)+
-  geom_vline(aes(xintercept = as.numeric(promCol+2*sdCol)), colour=&quot;red&quot;)+
-geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour=&quot;orange&quot;)+
-  geom_vline(aes(xintercept = as.numeric(promCol+3*sdCol)), colour=&quot;orange&quot;)+ scale_x_continuous(expand=c(0,0), limit=lims, 
-                                minor_breaks=breaks.minor2, 
-                                breaks=breaks.comb,
-                                labels=labels.comb)+
-  xlab(&quot;Nivel de colesterol&quot;)+
-  annotate(&quot;text&quot;, x=180, y = .004, label=&quot;34.1%&quot;)+
-  annotate(&quot;text&quot;, x=210, y = .004, label=&quot;34.1%&quot;)+
-  annotate(&quot;text&quot;, x=140, y = .002, label=&quot;13.6%&quot;)+
-  annotate(&quot;text&quot;, x=250, y = .002, label=&quot;13.6%&quot;)+
-  annotate(&quot;text&quot;, x=90, y = .001, label=&quot;2.1%&quot;)+
-  annotate(&quot;text&quot;, x=295, y = .001, label=&quot;2.1%&quot;)+
-  annotate(&quot;text&quot;, x=70, y = .0005, label=&quot;0.1%&quot;)+
-  annotate(&quot;text&quot;, x=330, y = .0005, label=&quot;0.1%&quot;)</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">library</span>(grid)</span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="kw">library</span>(gtable)</span>
+<span id="cb44-3"><a href="#cb44-3"></a></span>
+<span id="cb44-4"><a href="#cb44-4"></a>lims &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">350</span>)</span>
+<span id="cb44-5"><a href="#cb44-5"></a></span>
+<span id="cb44-6"><a href="#cb44-6"></a>breaks.major2&lt;-<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">79</span>, <span class="dv">118</span>, <span class="dv">157</span>, </span>
+<span id="cb44-7"><a href="#cb44-7"></a>                 <span class="dv">197</span>, <span class="dv">235</span>, <span class="dv">274</span>, <span class="dv">314</span>)</span>
+<span id="cb44-8"><a href="#cb44-8"></a>breaks.minor2=<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>, <span class="dv">118</span>, <span class="dv">157</span>,<span class="dv">197</span>, </span>
+<span id="cb44-9"><a href="#cb44-9"></a>                <span class="dv">235</span>, <span class="dv">274</span>, <span class="dv">314</span>,<span class="dv">379</span>)</span>
+<span id="cb44-10"><a href="#cb44-10"></a>breaks.comb &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">c</span>(breaks.major2, breaks.minor2<span class="fl">-1.0E-6</span>))</span>
+<span id="cb44-11"><a href="#cb44-11"></a>labels.comb&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">79</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">-3sd&quot;</span>, <span class="dv">118</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">-2sd&quot;</span>, <span class="dv">157</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">-1sd&quot;</span>, <span class="dv">197</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">promedio&quot;</span>,</span>
+<span id="cb44-12"><a href="#cb44-12"></a>                 <span class="dv">235</span>,  <span class="st">&quot;</span><span class="ch">\n</span><span class="st">+1sd&quot;</span>,<span class="dv">274</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">+2sd&quot;</span>, <span class="dv">314</span>,<span class="st">&quot;</span><span class="ch">\n</span><span class="st">+3sd&quot;</span>, <span class="dv">379</span>)</span>
+<span id="cb44-13"><a href="#cb44-13"></a>Col<span class="op">%&gt;%</span></span>
+<span id="cb44-14"><a href="#cb44-14"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(Col))<span class="op">+</span></span>
+<span id="cb44-15"><a href="#cb44-15"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>,<span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb44-16"><a href="#cb44-16"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-17"><a href="#cb44-17"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span><span class="kw">as.numeric</span>(promCol), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-18"><a href="#cb44-18"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">-</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-19"><a href="#cb44-19"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">+</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-20"><a href="#cb44-20"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="dv">-2</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-21"><a href="#cb44-21"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-22"><a href="#cb44-22"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="dv">-3</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;orange&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-23"><a href="#cb44-23"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">+</span><span class="dv">3</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;orange&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">limit=</span>lims, </span>
+<span id="cb44-24"><a href="#cb44-24"></a>                                <span class="dt">minor_breaks=</span>breaks.minor2, </span>
+<span id="cb44-25"><a href="#cb44-25"></a>                                <span class="dt">breaks=</span>breaks.comb,</span>
+<span id="cb44-26"><a href="#cb44-26"></a>                                <span class="dt">labels=</span>labels.comb)<span class="op">+</span></span>
+<span id="cb44-27"><a href="#cb44-27"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Nivel de colesterol&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-28"><a href="#cb44-28"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">180</span>, <span class="dt">y =</span> <span class="fl">.004</span>, <span class="dt">label=</span><span class="st">&quot;34.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-29"><a href="#cb44-29"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">210</span>, <span class="dt">y =</span> <span class="fl">.004</span>, <span class="dt">label=</span><span class="st">&quot;34.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-30"><a href="#cb44-30"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">140</span>, <span class="dt">y =</span> <span class="fl">.002</span>, <span class="dt">label=</span><span class="st">&quot;13.6%&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-31"><a href="#cb44-31"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">250</span>, <span class="dt">y =</span> <span class="fl">.002</span>, <span class="dt">label=</span><span class="st">&quot;13.6%&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-32"><a href="#cb44-32"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">90</span>, <span class="dt">y =</span> <span class="fl">.001</span>, <span class="dt">label=</span><span class="st">&quot;2.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-33"><a href="#cb44-33"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">295</span>, <span class="dt">y =</span> <span class="fl">.001</span>, <span class="dt">label=</span><span class="st">&quot;2.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-34"><a href="#cb44-34"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">70</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb44-35"><a href="#cb44-35"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">330</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)</span></code></pre></div>
 <p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <hr />
 </div>
@@ -920,9 +968,9 @@ geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour=&quot;orange&qu
 <div id="la-altura-de-los-humanos" class="section level3">
 <h3>La altura de los humanos</h3>
 <p>Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website. Están disponible en debajo la pestaña de “Los Datos”. <a href="https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data" class="uri">https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data</a></p>
-<pre class="r"><code>library(readr)
-Alturas_Humanos &lt;- read_csv(&quot;Data_files_csv/Alturas_Humanos.csv&quot;)
-gt(head(Alturas_Humanos))</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb45-2"><a href="#cb45-2"></a>Alturas_Humanos &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_files_csv/Alturas_Humanos.csv&quot;</span>)</span>
+<span id="cb45-3"><a href="#cb45-3"></a><span class="kw">gt</span>(<span class="kw">head</span>(Alturas_Humanos))</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1304,45 +1352,42 @@ gt(head(Alturas_Humanos))</code></pre>
   
 </table></div>
 <p>Calculamos los promedios y las desviación estándar para añadirlos al gráfico</p>
-<pre class="r"><code>library(tidyverse)
-promM=Alturas_Humanos%&gt;%
-  dplyr::select(Genero, Altura_cm)%&gt;%
-  filter(Genero==&quot;Mujer&quot;)%&gt;%
-  summarise(Mean=mean(Altura_cm))
-promM </code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:1">
-<col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Mean</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">170</td></tr>
-</table>
-
-<pre class="r"><code>promH=Alturas_Humanos%&gt;%
-  dplyr::select(Genero, Altura_cm)%&gt;%
-  filter(Genero==&quot;Hombres&quot;)%&gt;%
-  summarise(Mean=mean(Altura_cm))
-
-sdM=Alturas_Humanos%&gt;%
-  dplyr::select(Genero, Altura_cm)%&gt;%
-  filter(Genero==&quot;Mujer&quot;)%&gt;%
-  summarise(sd=sd(Altura_cm))
-  
-sdH=Alturas_Humanos%&gt;%
-  dplyr::select(Genero, Altura_cm)%&gt;%
-  filter(Genero==&quot;Hombres&quot;)%&gt;%
-  summarise(sd=sd(Altura_cm))</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb46-2"><a href="#cb46-2"></a>promM=Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb46-4"><a href="#cb46-4"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb46-5"><a href="#cb46-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Mean=</span><span class="kw">mean</span>(Altura_cm))</span>
+<span id="cb46-6"><a href="#cb46-6"></a>promM </span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##    Mean
+##   &lt;dbl&gt;
+## 1  170.</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>promH=Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Hombres&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb48-4"><a href="#cb48-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Mean=</span><span class="kw">mean</span>(Altura_cm))</span>
+<span id="cb48-5"><a href="#cb48-5"></a></span>
+<span id="cb48-6"><a href="#cb48-6"></a>sdM=Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb48-7"><a href="#cb48-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb48-8"><a href="#cb48-8"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb48-9"><a href="#cb48-9"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Altura_cm))</span>
+<span id="cb48-10"><a href="#cb48-10"></a>  </span>
+<span id="cb48-11"><a href="#cb48-11"></a>sdH=Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb48-12"><a href="#cb48-12"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb48-13"><a href="#cb48-13"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Hombres&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb48-14"><a href="#cb48-14"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Altura_cm))</span></code></pre></div>
 <p>Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.</p>
-<pre class="r"><code>Alturas_Humanos%&gt;%
-  dplyr::select(Genero, Altura_cm)%&gt;%
-  filter(Genero==&quot;Mujer&quot;)%&gt;%
-ggplot(aes(Altura_cm))+
-  geom_histogram(fill=&quot;blue&quot;, colour=&quot;white&quot;,alpha=.5)+
-  theme(legend.position = &quot;none&quot;)+
-  geom_vline(xintercept=as.numeric(promM), colour=&quot;black&quot;)+
-  geom_vline(aes(xintercept = as.numeric(promM-sdM)), colour=&quot;blue&quot;)+
-  geom_vline(aes(xintercept = as.numeric(promM+sdM)), colour=&quot;blue&quot;)+
-geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour=&quot;red&quot;)+
-  geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour=&quot;red&quot;)</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb49-4"><a href="#cb49-4"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(Altura_cm))<span class="op">+</span></span>
+<span id="cb49-5"><a href="#cb49-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>,<span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb49-6"><a href="#cb49-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></span>
+<span id="cb49-7"><a href="#cb49-7"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span><span class="kw">as.numeric</span>(promM), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb49-8"><a href="#cb49-8"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">-</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb49-9"><a href="#cb49-9"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb49-10"><a href="#cb49-10"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="dv">-2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb49-11"><a href="#cb49-11"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/2-1.png" width="672" /></p>
 <hr />
 </div>
