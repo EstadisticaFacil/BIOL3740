@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -183,33 +183,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 41px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h2 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .dropdown-submenu {
   position: relative;
@@ -575,7 +575,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-08-20&quot;</code></pre>
+<pre><code>## [1] &quot;2020-08-23&quot;</code></pre>
 <div id="instalar-y-activar-los-siguientes-paquete" class="section level1">
 <h1>Instalar y activar los siguientes paquete</h1>
 <p>Para instalar el paquete <strong>modeest</strong> es necesario instalar foes otros paquetes antes, <strong>BiocManager</strong> y <strong>genefilter</strong>. Usando el siguiente script pora instalar los paquetes. Nota que en la consola tendrá que aceptar a instalar y seleccionar la “a” para “all”.<br />
@@ -644,18 +644,26 @@ Chunk #1</p>
 <span id="cb6-5"><a href="#cb6-5"></a></span>
 <span id="cb6-6"><a href="#cb6-6"></a>dlf=DownloadFestival_No_Outlier_  <span class="co">#usamos un nombre más corta para facilitar  </span></span>
 <span id="cb6-7"><a href="#cb6-7"></a><span class="kw">head</span>(dlf) <span class="co"># ver las 3 primeras filas</span></span></code></pre></div>
-<pre><code>## # A tibble: 6 x 5
-##   ticknumb gender  day1  day2   day3
-##      &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1     2111 Male    2.64  1.35  1.61 
-## 2     2229 Female  0.97  1.41  0.290
-## 3     2338 Male    0.84 NA    NA    
-## 4     2384 Female  3.03 NA    NA    
-## 5     2401 Female  0.88  0.08 NA    
-## 6     2405 Male    0.85 NA    NA</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
+<col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ticknumb</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">gender</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day3</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.11e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Male</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.64</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.35</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.61</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.23e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.97</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.41</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.29</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.34e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Male</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.84</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.38e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.03</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.4e+03&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Female</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.88</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.08</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.40e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.85</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+
 <p>Se nota en el histograma que la mayoría de los datos de la higiene de los participantes en el primer día se parece bastante a una distribución normal. Nota que los valores en el eje de <strong>y</strong> es la frecuencia de los valores en el conjunto de datos.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(day1))<span class="op">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(day1))<span class="op">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-7-1.png" width="672" /> ***</p>
 </div>
 </div>
@@ -668,29 +676,29 @@ Chunk #1</p>
             mean = mean(dlf$day2, na.rm = TRUE), # mean = el promedio de los datos
             sd = sd(dlf$day2, na.rm = TRUE))) # sd = la desviación estandar de los datos</code></pre>
 <p>Ahora nota que el eje de <strong>y</strong> no son frecuencias pero son densidades. La suma de todas las densidades es igual a 1.0. Vea que la linea teórica se acerca bastante a las barras del histograma. Este proceso NO es una prueba para determinar si los datos cumple con una distribución normal. Aunque con experiencia visualizando los datos uno puede tener un buen apreciación si los datos cumple suficientemente con la distribución normal para usar las pruebas paramétricas.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>hist.dlfc1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(day1)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Higiene día 1&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidad&quot;</span>)<span class="op">+</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, </span>
-<span id="cb10-5"><a href="#cb10-5"></a>                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </span>
-<span id="cb10-6"><a href="#cb10-6"></a>                <span class="dt">sd =</span> <span class="kw">sd</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), </span>
-<span id="cb10-7"><a href="#cb10-7"></a>                <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</span>
-<span id="cb10-8"><a href="#cb10-8"></a></span>
-<span id="cb10-9"><a href="#cb10-9"></a>hist.dlfc1</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>hist.dlfc1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(day1)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Higiene día 1&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidad&quot;</span>)<span class="op">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, </span>
+<span id="cb9-5"><a href="#cb9-5"></a>                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </span>
+<span id="cb9-6"><a href="#cb9-6"></a>                <span class="dt">sd =</span> <span class="kw">sd</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), </span>
+<span id="cb9-7"><a href="#cb9-7"></a>                <span class="dt">colour =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</span>
+<span id="cb9-8"><a href="#cb9-8"></a></span>
+<span id="cb9-9"><a href="#cb9-9"></a>hist.dlfc1</span></code></pre></div>
 <p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <div id="evaluando-datos-no-normal" class="section level2">
 <h2>Evaluando datos no normal</h2>
 <p>Usamos los datos del segundo día y comparamos con el primer día. En este caso vemos que los datos no siguen una distribución normal están sesgados a la izquierda y vemos que “falta” valores pequeños, en otra palabra en este caso los valores negativos.</p>
 <p>Evalúa y compara con el día tres</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>hist.dlfc2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(day2)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Higiene día 2&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidad&quot;</span>)<span class="op">+</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, </span>
-<span id="cb11-5"><a href="#cb11-5"></a>                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dlf<span class="op">$</span>day2, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </span>
-<span id="cb11-6"><a href="#cb11-6"></a>                <span class="dt">sd =</span> <span class="kw">sd</span>(dlf<span class="op">$</span>day2, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), </span>
-<span id="cb11-7"><a href="#cb11-7"></a>                <span class="dt">colour =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>)</span>
-<span id="cb11-8"><a href="#cb11-8"></a></span>
-<span id="cb11-9"><a href="#cb11-9"></a>hist.dlfc2</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>hist.dlfc2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(day2)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Higiene día 2&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidad&quot;</span>)<span class="op">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, </span>
+<span id="cb10-5"><a href="#cb10-5"></a>                <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dlf<span class="op">$</span>day2, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </span>
+<span id="cb10-6"><a href="#cb10-6"></a>                <span class="dt">sd =</span> <span class="kw">sd</span>(dlf<span class="op">$</span>day2, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), </span>
+<span id="cb10-7"><a href="#cb10-7"></a>                <span class="dt">colour =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>)</span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a>hist.dlfc2</span></code></pre></div>
 <p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 </div>
@@ -702,13 +710,13 @@ Chunk #1</p>
 rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</code></pre>
 <p>Es necesario convertir la lista en un <strong>data.frame</strong> en un <strong>tibble</strong> para usar los datos en <strong>ggplot2</strong>. Como los datos provienen de una distribución normal la linea teórica (casi) sigue perfectamente las barras de frecuencia. Más datos que uno tiene más similar las distribución observada (las barras) a la distribución teórica (la linea).</p>
 <p>Haz unos ejercicio de reducir y aumentar el tamaño de muestra, <strong>n</strong> y compara las distribuciones. Evalúa cuando cuando son muy pequeño (n de 30 o menos).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#rnorm(10, 100, 10)</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>x=<span class="kw">rnorm</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
-<span id="cb13-4"><a href="#cb13-4"></a></span>
-<span id="cb13-5"><a href="#cb13-5"></a>dfx=<span class="kw">as.tibble</span>(x)</span>
-<span id="cb13-6"><a href="#cb13-6"></a></span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="kw">gt</span>(<span class="kw">head</span>(dfx, <span class="dt">n=</span><span class="dv">3</span>)) <span class="co"># Los primeros 3 datos del tibble </span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#rnorm(10, 100, 10)</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>x=<span class="kw">rnorm</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a>dfx=<span class="kw">as.tibble</span>(x)</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="kw">gt</span>(<span class="kw">head</span>(dfx, <span class="dt">n=</span><span class="dv">3</span>)) <span class="co"># Los primeros 3 datos del tibble </span></span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1066,34 +1074,34 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   
   
 </table></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb14-2"><a href="#cb14-2"></a></span>
-<span id="cb14-3"><a href="#cb14-3"></a></span>
-<span id="cb14-4"><a href="#cb14-4"></a>hist.x &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dfx, <span class="kw">aes</span>(value)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">bins=</span><span class="dv">40</span>,<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Variable&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidad&quot;</span>)<span class="op">+</span></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dfx<span class="op">$</span>value, </span>
-<span id="cb14-9"><a href="#cb14-9"></a>                <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </span>
-<span id="cb14-10"><a href="#cb14-10"></a>                <span class="dt">sd =</span> <span class="kw">sd</span>(dfx<span class="op">$</span>value, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), </span>
-<span id="cb14-11"><a href="#cb14-11"></a>                <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</span>
-<span id="cb14-12"><a href="#cb14-12"></a></span>
-<span id="cb14-13"><a href="#cb14-13"></a>hist.x</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a>hist.x &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dfx, <span class="kw">aes</span>(value)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">bins=</span><span class="dv">40</span>,<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Variable&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Densidad&quot;</span>)<span class="op">+</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(dfx<span class="op">$</span>value, </span>
+<span id="cb13-9"><a href="#cb13-9"></a>                <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </span>
+<span id="cb13-10"><a href="#cb13-10"></a>                <span class="dt">sd =</span> <span class="kw">sd</span>(dfx<span class="op">$</span>value, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), </span>
+<span id="cb13-11"><a href="#cb13-11"></a>                <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</span>
+<span id="cb13-12"><a href="#cb13-12"></a></span>
+<span id="cb13-13"><a href="#cb13-13"></a>hist.x</span></code></pre></div>
 <p><img src="T8_Distribucion_Normal_files/figure-html/historgram%20normal-1.png" width="672" /></p>
 </div>
 <div id="qqplot" class="section level1">
 <h1>qqplot</h1>
 <p>El gráfico Q-Q, o gráfico cuantil-cuantil, es una herramienta gráfica que nos ayuda a evaluar si un conjunto de datos proviene de alguna distribución teórica. Por ejemplo, si ejecutamos un análisis estadístico que asume que nuestra variable dependiente está normalmente distribuida, podemos usar un gráfico Q-Q normal para verificar esa suposición, se puede también evaluar otras distribuciones. Nota que es solo una verificación visual, no una prueba estadística. Esto nos permite visualizar si los datos cumple si o no con la distribución teórica.</p>
 <p>Un diagrama Q-Q es un diagrama de dispersión y compara dos conjuntos de cuantiles uno observado y el otro teórico. Si ambos conjuntos de cuantiles provienen de una distribución normal, deberíamos ver los puntos formando una línea que es más o menos recta. Usamos los datos del primer y el segundo día de la higiene de los participantes al concierto de rock. Vean que los puntos están en el primer gráfico siguen una linea recta y la linea teórica (<span style="color: blue;">color azul</span>) sigue estos puntos. Esto sugiere que los datos siguen una distribución normal. En el segundo gráfico vemos que los datos observados no siguen los datos teóricos (<span style="color: red;">color rojo</span>).</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>d=<span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(<span class="dt">sample=</span>day1))<span class="op">+</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw">geom_qq</span>()<span class="op">+</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb15-4"><a href="#cb15-4"></a></span>
-<span id="cb15-5"><a href="#cb15-5"></a>e=<span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(<span class="dt">sample=</span>day2))<span class="op">+</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="st">  </span><span class="kw">geom_qq</span>()<span class="op">+</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb15-8"><a href="#cb15-8"></a></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="kw">grid.arrange</span>(d,e, <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>d=<span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(<span class="dt">sample=</span>day1))<span class="op">+</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw">geom_qq</span>()<span class="op">+</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a></span>
+<span id="cb14-5"><a href="#cb14-5"></a>e=<span class="kw">ggplot</span>(dlf, <span class="kw">aes</span>(<span class="dt">sample=</span>day2))<span class="op">+</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="st">  </span><span class="kw">geom_qq</span>()<span class="op">+</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="st">  </span><span class="kw">geom_qq_line</span>(<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb14-8"><a href="#cb14-8"></a></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="kw">grid.arrange</span>(d,e, <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="T8_Distribucion_Normal_files/figure-html/qqplot%20y%20la%20linea-1.png" width="672" /></p>
 </div>
 <div id="pruebas-de-normalidad." class="section level1">
@@ -1109,13 +1117,13 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
 <p>Reglas básica.<br />
 1. no utilizar la prueba si el tamaño de muestra es menor de 50 2. no utilizar la prueba si el tamaño de muestra de muy grande (mayor de 200) a. Nota que algunos programa han podido hacer modificación a la formula y ahora se puede utilizar tamaño de muestra hasta 2000 (Stata, SPSS, SAS).</p>
 <p>La función <strong>shapiro.test()</strong> es para evaluar una variable a la vez. Nota que aquí los datos de higiene del primer día sugiere que no cumple con una distribución normal. Cuando las dos alternativas anteriores los daots se ven bastante norma (histograma y qqplot)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">shapiro.test</span>(dlf<span class="op">$</span>day1)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">shapiro.test</span>(dlf<span class="op">$</span>day1)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  dlf$day1
 ## W = 0.99592, p-value = 0.03198</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">length</span>(dlf<span class="op">$</span>day1)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">length</span>(dlf<span class="op">$</span>day1)</span></code></pre></div>
 <pre><code>## [1] 810</code></pre>
 </div>
 <div id="la-prueba-de-normalidad-de-anderson-darling" class="section level2">
@@ -1126,9 +1134,9 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
 El mensaje es que es posible que diferentes pruebas le den información distinta y hay que estar claro sobre los supuestos y la sensitividad de estas pruebas.</p>
 <p>La prueba de Anderson Darling es una de las más poderosas para evaluar si los datos provienen de una distribución normal. D’Agostino (1986) sugiere que la prueba puede ser utilizada con tamaño de muestra tan bajo como n=8.</p>
 <pre><code>*Ralph B. D&#39;Agostino (1986). &quot;Tests for the Normal Distribution&quot;. In D&#39;Agostino, R.B.; Stephens, M.A. (eds.). Goodness-of-Fit Techniques. New York: Marcel Dekker. ISBN 0-8247-7487-6.* </code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">library</span>(nortest)</span>
-<span id="cb21-2"><a href="#cb21-2"></a></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="kw">ad.test</span>(dlf<span class="op">$</span>day1)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">library</span>(nortest)</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">ad.test</span>(dlf<span class="op">$</span>day1)</span></code></pre></div>
 <pre><code>## 
 ##  Anderson-Darling normality test
 ## 

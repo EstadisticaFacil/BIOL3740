@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -183,33 +183,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 41px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h2 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 46px;
-  margin-top: -46px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .dropdown-submenu {
   position: relative;
@@ -575,7 +575,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-08-20&quot;</code></pre>
+<pre><code>## [1] &quot;2020-08-23&quot;</code></pre>
 <div id="datos-dependientes" class="section level1">
 <h1>Datos dependientes</h1>
 <p>Si tienes datos que no son independiente, es necesario usar la prueba con datos pareados (paired t-test). Cuando se refiere a datos no independiente es que hay evidencia que los datos pueden estar relacionado de una forma. En el siguiente ejemplo tenemos la altura de los padres y el altura de el hijo. Hay evidencia que la genética influencia la altura de los humanos, también hay el ambiente. Si el ambiente (nutrición, etc) es la única variable que tiene influencia sobre la altura pudiese que no se debería encontrar una relación entre la altura del padre y el hijo. Si la genética es la única variable que impacta la altura de los humanos, en este caso deberíamos encontrar una muy fuerte correlación entre la alturas de los padres y los hijos.</p>
@@ -585,22 +585,28 @@ div.tocify {
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">require</span>(Hmisc)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">require</span>(UsingR)</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="kw">head</span>(father.son)</span></code></pre></div>
-<pre><code>##    fheight  sheight
-## 1 65.04851 59.77827
-## 2 63.25094 63.21404
-## 3 64.95532 63.34242
-## 4 65.75250 62.79238
-## 5 61.13723 64.28113
-## 6 63.02254 64.24221</code></pre>
-<hr />
-<div id="visualizar-la-correlación" class="section level2">
-<h2>Visualizar la correlación</h2>
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:data">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">fheight</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sheight</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">heightDiff</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">65&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">59.8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5.27&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">63.3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">63.2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.0369</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">65&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">63.3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.61&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">65.8</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">62.8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.96&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">61.1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">64.3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-3.14&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">63&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">64.2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-1.22&nbsp;&nbsp;</td></tr>
+</table>
+ *** ## Visualizar la correlación</p>
 <p>Antes de hacer la prueba es recomendado hacer un gráfico de puntos para visualizar los datos y observar si hay un patrón. Vemos a medida que aumenta la altura de los padres los hijos tienden a estar más altos. parece que hay una correlación en la altura de los hijos basado en la altura del padre.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">ggplot</span>(father.son, <span class="kw">aes</span>(fheight, sheight))<span class="op">+</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span>rlt_theme</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">ggplot</span>(father.son, <span class="kw">aes</span>(fheight, sheight))<span class="op">+</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span>rlt_theme</span></code></pre></div>
 <p><img src="T9a_Pruebas_t-Pareados_files/figure-html/geompoint-1.png" width="672" /> ***</p>
-</div>
 </div>
 <div id="la-prueba-de-t-pareado" class="section level1">
 <h1>La prueba de t-pareado</h1>
@@ -623,7 +629,7 @@ div.tocify {
 </ul></li>
 </ul>
 <p>El resultado: El valor de <span class="math inline">\(\left|t\right|\)</span> observado es de 11.789, con un grado de libertad de 1077 (n=1078), y un valor de p &lt;0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna. El intervalo de confianza del promedio es -1.163 a -0.831, con un promedio de -0.99. Esto significa que los padres tiende a estar una pulgada (-0.99) más bajo que los hijos.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">t.test</span>(father.son<span class="op">$</span>fheight, father.son<span class="op">$</span>sheight, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">t.test</span>(father.son<span class="op">$</span>fheight, father.son<span class="op">$</span>sheight, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -639,16 +645,16 @@ div.tocify {
 <div id="visualizar-la-diferencias" class="section level2">
 <h2>Visualizar la diferencias</h2>
 <p>Podemos visualizar la diferencia entre los hijos y los padres. Vemos el promedio si no tuviese diferencia (la linea azul), esto es nuestra hipótesis nula, y el estimado (el promedio de la diferencias es rojo, con el intervalo de confianza en las lineas entrecortada). Si nuestro estimado (el intervalo de confianza de 95%) hubiese incluido la linea azul la prueba no seria significativa, y habriamos aceptado la hipótesis nula.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>father.son<span class="op">$</span>heightDiff&lt;-father.son<span class="op">$</span>fheight<span class="op">-</span>father.son<span class="op">$</span>sheight <span class="co"># para calcular la diferencia entre el padre y el hijo. </span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">ggplot</span>(father.son, <span class="kw">aes</span>(<span class="dt">x=</span>fheight<span class="op">-</span>sheight))<span class="op">+</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(father.son<span class="op">$</span>heightDiff), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(father.son<span class="op">$</span>father.son<span class="op">$</span>heightDiff)<span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">sd</span>(father.son<span class="op">$</span>heightDiff)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">nrow</span>(father.son)), <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="st">  </span>rlt_theme<span class="op">+</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Diferencia en altura entre padres y hijos&quot;</span>)<span class="op">+</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">round</span>(<span class="kw">seq</span>(<span class="kw">min</span>(father.son<span class="op">$</span>heightDiff), <span class="kw">max</span>(father.son<span class="op">$</span>heightDiff), <span class="dt">by =</span> <span class="fl">.5</span>),<span class="dv">0</span>))<span class="op">+</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>father.son<span class="op">$</span>heightDiff&lt;-father.son<span class="op">$</span>fheight<span class="op">-</span>father.son<span class="op">$</span>sheight <span class="co"># para calcular la diferencia entre el padre y el hijo. </span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">ggplot</span>(father.son, <span class="kw">aes</span>(<span class="dt">x=</span>fheight<span class="op">-</span>sheight))<span class="op">+</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(father.son<span class="op">$</span>heightDiff), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(father.son<span class="op">$</span>father.son<span class="op">$</span>heightDiff)<span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">sd</span>(father.son<span class="op">$</span>heightDiff)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">nrow</span>(father.son)), <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="st">  </span>rlt_theme<span class="op">+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Diferencia en altura entre padres y hijos&quot;</span>)<span class="op">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">round</span>(<span class="kw">seq</span>(<span class="kw">min</span>(father.son<span class="op">$</span>heightDiff), <span class="kw">max</span>(father.son<span class="op">$</span>heightDiff), <span class="dt">by =</span> <span class="fl">.5</span>),<span class="dv">0</span>))<span class="op">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>))</span></code></pre></div>
 <p><img src="T9a_Pruebas_t-Pareados_files/figure-html/graph2-1.png" width="672" /> ***</p>
 </div>
 </div>
@@ -657,51 +663,91 @@ div.tocify {
 <div id="ejercicio-de-clase" class="section level2">
 <h2>Ejercicio de clase</h2>
 <p>Vamos a evaluar si la cantidad de hijos cambia entre su abuela y su madre</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>abuela=<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">11</span>,<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,</span>
-<span id="cb8-2"><a href="#cb8-2"></a>         <span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>madre=<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,</span>
-<span id="cb8-4"><a href="#cb8-4"></a>        <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb8-5"><a href="#cb8-5"></a>df=<span class="kw">data.frame</span>(abuela,madre)</span>
-<span id="cb8-6"><a href="#cb8-6"></a>df</span></code></pre></div>
-<pre><code>##    abuela madre
-## 1       3     2
-## 2      11     3
-## 3       3     3
-## 4       9     3
-## 5       3     1
-## 6       3     2
-## 7       3     2
-## 8       4     2
-## 9       3     2
-## 10      7     2
-## 11      6     2
-## 12      7     1
-## 13      6     3
-## 14      3     2
-## 15      2     2
-## 16      4     2</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>df<span class="op">$</span>diff=df<span class="op">$</span>abuela<span class="op">-</span>df<span class="op">$</span>madre</span>
-<span id="cb10-2"><a href="#cb10-2"></a>df</span></code></pre></div>
-<pre><code>##    abuela madre diff
-## 1       3     2    1
-## 2      11     3    8
-## 3       3     3    0
-## 4       9     3    6
-## 5       3     1    2
-## 6       3     2    1
-## 7       3     2    1
-## 8       4     2    2
-## 9       3     2    1
-## 10      7     2    5
-## 11      6     2    4
-## 12      7     1    6
-## 13      6     3    3
-## 14      3     2    1
-## 15      2     2    0
-## 16      4     2    2</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">mean</span>(df<span class="op">$</span>diff)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>abuela=<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">11</span>,<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,</span>
+<span id="cb7-2"><a href="#cb7-2"></a>         <span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>madre=<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>df=<span class="kw">data.frame</span>(abuela,madre)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>df</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:abuelamadre">
+<col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">abuela</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">madre</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
+</table>
+
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>df<span class="op">$</span>diff=df<span class="op">$</span>abuela<span class="op">-</span>df<span class="op">$</span>madre</span>
+<span id="cb8-2"><a href="#cb8-2"></a>df</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:abuelamadre">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">abuela</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">madre</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">diff</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">11</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
+</table>
+
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">mean</span>(df<span class="op">$</span>diff)</span></code></pre></div>
 <pre><code>## [1] 2.6875</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">t.test</span>(df<span class="op">$</span>abuela,df<span class="op">$</span>madre, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">t.test</span>(df<span class="op">$</span>abuela,df<span class="op">$</span>madre, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -720,26 +766,26 @@ div.tocify {
 <h1>Cultivador de Toronjas con parcelas pareadas</h1>
 <p>Un cultivador heredo 18 parcelas donde hay árboles de toronjas cada una en diferentes municipios. El quiere saber si al añadir abono, la cosecha de toronjas aumenta. El podría decidir que de seleccionar 9 de estas parcelas y añadir abono y las otras 9 sin abono. El problema con este diseño experimental es que es bien conocido que el suelo varia de un sitio a otro y que el clima varia también. Es más apropiado que el divide cada parcela en 2, y que la mitad recibe el abono y la otra mitad sirva de control (sin abono). Cual sera el efecto del abono sobre la producción de toronjas en parcelas pareadas en Puerto Rico.</p>
 <p>La cantidad de Toronjas producidas por árbol en fincas pareadas, cada finca tiene una parcela con abono y la otra la otra parcela sin abono. Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono sobre la producción de toronjas, se enseña solamente los primeros 8 pares de valores en la tabla. Cada parcela es del mismo tamaño con la misma cantidad de arboles. Los datos completos están en el próximo chunk.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">library</span>(tibble)</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="kw">library</span>(huxtable)</span>
-<span id="cb16-3"><a href="#cb16-3"></a>Toronja=<span class="kw">tribble</span>(</span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="op">~</span>Fertilizante, <span class="op">~</span>Sin_Fertilizante, <span class="op">~</span>Municipio,</span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="st">&quot;2250&quot;</span>,       <span class="st">&quot;1920&quot;</span> , <span class="st">&quot;Utuado&quot;</span>,</span>
-<span id="cb16-6"><a href="#cb16-6"></a> <span class="st">&quot;2410&quot;</span>,                <span class="st">&quot;2020&quot;</span>,  <span class="st">&quot;Cabo Rojo&quot;</span>,</span>
-<span id="cb16-7"><a href="#cb16-7"></a> <span class="st">&quot;2260&quot;</span>,                <span class="st">&quot;2060&quot;</span>,  <span class="st">&quot;Manati&quot;</span>,</span>
-<span id="cb16-8"><a href="#cb16-8"></a> <span class="st">&quot;2200&quot;</span>,                <span class="st">&quot;1960&quot;</span>,  <span class="st">&quot;Yabucoa&quot;</span>,     </span>
-<span id="cb16-9"><a href="#cb16-9"></a> <span class="st">&quot;2360&quot;</span>,                <span class="st">&quot;1960&quot;</span>, <span class="st">&quot;Humacao&quot;</span>, </span>
-<span id="cb16-10"><a href="#cb16-10"></a> <span class="st">&quot;2320&quot;</span>,                <span class="st">&quot;2140&quot;</span>,<span class="st">&quot;Caguas&quot;</span>,</span>
-<span id="cb16-11"><a href="#cb16-11"></a> <span class="st">&quot;2240&quot;</span>,                <span class="st">&quot;1980&quot;</span>, <span class="st">&quot;San Juan&quot;</span>,</span>
-<span id="cb16-12"><a href="#cb16-12"></a> <span class="st">&quot;2300&quot;</span>,                <span class="st">&quot;1940&quot;</span>, <span class="st">&quot;Jayuya&quot;</span>,</span>
-<span id="cb16-13"><a href="#cb16-13"></a> <span class="st">&quot;2090&quot;</span>,                <span class="st">&quot;1790&quot;</span>,<span class="st">&quot;Ponce&quot;</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a>)</span>
-<span id="cb16-15"><a href="#cb16-15"></a></span>
-<span id="cb16-16"><a href="#cb16-16"></a></span>
-<span id="cb16-17"><a href="#cb16-17"></a><span class="kw">huxtable</span>(Toronja)<span class="op">%&gt;%</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a><span class="st">  </span><span class="kw">theme_article</span>(<span class="dt">header_col =</span> <span class="ot">TRUE</span>)<span class="op">%&gt;%</span></span>
-<span id="cb16-19"><a href="#cb16-19"></a><span class="st">  </span><span class="kw">set_bottom_border</span>(<span class="dt">row =</span> <span class="dv">1</span>, <span class="dt">col =</span> everywhere, <span class="dt">value =</span> <span class="dv">1</span>)<span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-20"><a href="#cb16-20"></a><span class="st">  </span><span class="kw">set_caption</span>(<span class="st">&quot;La cantidad de toronjas producidas en parceles en diferentes municipios&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">library</span>(tibble)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">library</span>(huxtable)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>Toronja=<span class="kw">tribble</span>(</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="op">~</span>Fertilizante, <span class="op">~</span>Sin_Fertilizante, <span class="op">~</span>Municipio,</span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="st">&quot;2250&quot;</span>,       <span class="st">&quot;1920&quot;</span> , <span class="st">&quot;Utuado&quot;</span>,</span>
+<span id="cb13-6"><a href="#cb13-6"></a> <span class="st">&quot;2410&quot;</span>,                <span class="st">&quot;2020&quot;</span>,  <span class="st">&quot;Cabo Rojo&quot;</span>,</span>
+<span id="cb13-7"><a href="#cb13-7"></a> <span class="st">&quot;2260&quot;</span>,                <span class="st">&quot;2060&quot;</span>,  <span class="st">&quot;Manati&quot;</span>,</span>
+<span id="cb13-8"><a href="#cb13-8"></a> <span class="st">&quot;2200&quot;</span>,                <span class="st">&quot;1960&quot;</span>,  <span class="st">&quot;Yabucoa&quot;</span>,     </span>
+<span id="cb13-9"><a href="#cb13-9"></a> <span class="st">&quot;2360&quot;</span>,                <span class="st">&quot;1960&quot;</span>, <span class="st">&quot;Humacao&quot;</span>, </span>
+<span id="cb13-10"><a href="#cb13-10"></a> <span class="st">&quot;2320&quot;</span>,                <span class="st">&quot;2140&quot;</span>,<span class="st">&quot;Caguas&quot;</span>,</span>
+<span id="cb13-11"><a href="#cb13-11"></a> <span class="st">&quot;2240&quot;</span>,                <span class="st">&quot;1980&quot;</span>, <span class="st">&quot;San Juan&quot;</span>,</span>
+<span id="cb13-12"><a href="#cb13-12"></a> <span class="st">&quot;2300&quot;</span>,                <span class="st">&quot;1940&quot;</span>, <span class="st">&quot;Jayuya&quot;</span>,</span>
+<span id="cb13-13"><a href="#cb13-13"></a> <span class="st">&quot;2090&quot;</span>,                <span class="st">&quot;1790&quot;</span>,<span class="st">&quot;Ponce&quot;</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>)</span>
+<span id="cb13-15"><a href="#cb13-15"></a></span>
+<span id="cb13-16"><a href="#cb13-16"></a></span>
+<span id="cb13-17"><a href="#cb13-17"></a><span class="kw">huxtable</span>(Toronja)<span class="op">%&gt;%</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a><span class="st">  </span><span class="kw">theme_article</span>(<span class="dt">header_col =</span> <span class="ot">TRUE</span>)<span class="op">%&gt;%</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a><span class="st">  </span><span class="kw">set_bottom_border</span>(<span class="dt">row =</span> <span class="dv">1</span>, <span class="dt">col =</span> everywhere, <span class="dt">value =</span> <span class="dv">1</span>)<span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-20"><a href="#cb13-20"></a><span class="st">  </span><span class="kw">set_caption</span>(<span class="st">&quot;La cantidad de toronjas producidas en parceles en diferentes municipios&quot;</span>)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:toronja">
 <caption style="caption-side: top; text-align: center;">La cantidad de toronjas producidas en parceles en diferentes municipios</caption><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: bold;">Fertilizante</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Sin_Fertilizante</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: bold;">Municipio</th></tr>
@@ -773,20 +819,20 @@ div.tocify {
 </ul>
 </blockquote>
 <p>El resultado: El valor de t-observado es de 8.80, con un grado de libertad de 17 (n=18), y valor de p &lt;0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna. El intervalo de confianza del promedio es 198.5 - 323.7, con un promedio de 261. Esto significa que a añadir fertilizante la producción de toronjas aumento de en promedio de 261 toronjas.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>Fert=<span class="kw">c</span>(<span class="dv">2250</span>,<span class="dv">2410</span>, <span class="dv">2260</span>,<span class="dv">2200</span>, <span class="dv">2360</span>, </span>
-<span id="cb17-2"><a href="#cb17-2"></a>     <span class="dv">2320</span>,<span class="dv">2240</span>,<span class="dv">2300</span>,<span class="dv">2090</span>, <span class="dv">2250</span>,<span class="dv">2410</span>, <span class="dv">2260</span>,<span class="dv">2200</span>, <span class="dv">2360</span>, </span>
-<span id="cb17-3"><a href="#cb17-3"></a>     <span class="dv">2320</span>,<span class="dv">2240</span>,<span class="dv">2300</span>,<span class="dv">2090</span>)</span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="co">#Fert</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a>SFert=<span class="kw">c</span>(<span class="dv">1920</span>,<span class="dv">2020</span>,<span class="dv">2060</span>,<span class="dv">1960</span>,</span>
-<span id="cb17-6"><a href="#cb17-6"></a>     <span class="dv">1960</span>,<span class="dv">2140</span>,<span class="dv">1980</span>,<span class="dv">1940</span>,<span class="dv">2100</span>, <span class="dv">1920</span>,<span class="dv">2020</span>,<span class="dv">2060</span>,<span class="dv">1960</span>,</span>
-<span id="cb17-7"><a href="#cb17-7"></a>     <span class="dv">1960</span>,<span class="dv">2140</span>,<span class="dv">1980</span>,<span class="dv">1940</span>,<span class="dv">2100</span>)</span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="co">#SFert</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a>df=<span class="kw">data.frame</span>(Fert,SFert)</span>
-<span id="cb17-10"><a href="#cb17-10"></a>df<span class="op">$</span>diff_produccion=df<span class="op">$</span>Fert<span class="op">-</span>df<span class="op">$</span>SFert </span>
-<span id="cb17-11"><a href="#cb17-11"></a></span>
-<span id="cb17-12"><a href="#cb17-12"></a><span class="kw">mean</span>(df<span class="op">$</span>diff_produccion) <span class="co"># el promedio de las diferencias</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>Fert=<span class="kw">c</span>(<span class="dv">2250</span>,<span class="dv">2410</span>, <span class="dv">2260</span>,<span class="dv">2200</span>, <span class="dv">2360</span>, </span>
+<span id="cb14-2"><a href="#cb14-2"></a>     <span class="dv">2320</span>,<span class="dv">2240</span>,<span class="dv">2300</span>,<span class="dv">2090</span>, <span class="dv">2250</span>,<span class="dv">2410</span>, <span class="dv">2260</span>,<span class="dv">2200</span>, <span class="dv">2360</span>, </span>
+<span id="cb14-3"><a href="#cb14-3"></a>     <span class="dv">2320</span>,<span class="dv">2240</span>,<span class="dv">2300</span>,<span class="dv">2090</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#Fert</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>SFert=<span class="kw">c</span>(<span class="dv">1920</span>,<span class="dv">2020</span>,<span class="dv">2060</span>,<span class="dv">1960</span>,</span>
+<span id="cb14-6"><a href="#cb14-6"></a>     <span class="dv">1960</span>,<span class="dv">2140</span>,<span class="dv">1980</span>,<span class="dv">1940</span>,<span class="dv">2100</span>, <span class="dv">1920</span>,<span class="dv">2020</span>,<span class="dv">2060</span>,<span class="dv">1960</span>,</span>
+<span id="cb14-7"><a href="#cb14-7"></a>     <span class="dv">1960</span>,<span class="dv">2140</span>,<span class="dv">1980</span>,<span class="dv">1940</span>,<span class="dv">2100</span>)</span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#SFert</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>df=<span class="kw">data.frame</span>(Fert,SFert)</span>
+<span id="cb14-10"><a href="#cb14-10"></a>df<span class="op">$</span>diff_produccion=df<span class="op">$</span>Fert<span class="op">-</span>df<span class="op">$</span>SFert </span>
+<span id="cb14-11"><a href="#cb14-11"></a></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="kw">mean</span>(df<span class="op">$</span>diff_produccion) <span class="co"># el promedio de las diferencias</span></span></code></pre></div>
 <pre><code>## [1] 261.1111</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">t.test</span>(df<span class="op">$</span>Fert,df<span class="op">$</span>SFert, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">t.test</span>(df<span class="op">$</span>Fert,df<span class="op">$</span>SFert, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -809,11 +855,11 @@ div.tocify {
 </p>
 </div>
 <p>El archivo de datos tiene información sobre la cantidad de hojas que tiene cada una de las plantas marcadas después del huracán Georges (1998). La plantas fueron muestreado a cada 6 meses comenzando 6 meses después del huracán por 6 años (13 muestreos). Fueron seguidos 1084 plantas distintas, aunque no todos están muestreados a cada tiempo. Cada fila representa un individuo, si no hay información en un tiempo puede ser que la planta a) no fue encontrada en este muestreo, b) que la planta este muerta o que c) fue antes que la planta creciera (todavía no había germinado).</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">library</span>(readr)</span>
-<span id="cb21-2"><a href="#cb21-2"></a>Lepanthes_eltoroensis_Georges_STUDENT &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_files_csv/Lepanthes_eltoroensis_Georges_STUDENT.csv&quot;</span>)</span>
-<span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a>Lep=Lepanthes_eltoroensis_Georges_STUDENT</span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="kw">head</span>(Lep)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>Lepanthes_eltoroensis_Georges_STUDENT &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_files_csv/Lepanthes_eltoroensis_Georges_STUDENT.csv&quot;</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a>Lep=Lepanthes_eltoroensis_Georges_STUDENT</span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="kw">head</span>(Lep)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:datosLep">
 <col><col><col><col><col><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T3</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T5</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T6</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T7</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T8</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T9</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T10</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T11</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T12</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">T13</th></tr>
@@ -831,7 +877,7 @@ div.tocify {
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td></tr>
 </table>
 
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">length</span>(Lep<span class="op">$</span>T1)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">length</span>(Lep<span class="op">$</span>T1)</span></code></pre></div>
 <pre><code>## [1] 1084</code></pre>
 <hr />
 <p>Compara si la cantidad de hojas por plante es igual entre el primer muestreo (1) y el segundo muestreo (2).</p>
@@ -850,8 +896,8 @@ div.tocify {
 </ul></li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>model2=<span class="kw">t.test</span>(Lep<span class="op">$</span>T2,Lep<span class="op">$</span>T1, <span class="dt">paired =</span><span class="ot">TRUE</span>)</span>
-<span id="cb24-2"><a href="#cb24-2"></a>model2</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>model2=<span class="kw">t.test</span>(Lep<span class="op">$</span>T2,Lep<span class="op">$</span>T1, <span class="dt">paired =</span><span class="ot">TRUE</span>)</span>
+<span id="cb21-2"><a href="#cb21-2"></a>model2</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -871,9 +917,9 @@ div.tocify {
 <blockquote>
 <ul>
 <li>Las variables dependientes sean valores continuos (intervalos o razón).</li>
-<li>Que los individuos sean observaciones independientes.</li>
-<li>Que las diferencias sean normales.</li>
-<li>Que no hay valores atípicos.</li>
+<li>Qué los individuos sean observaciones independientes.</li>
+<li>Qué las diferencias sean normales.</li>
+<li>Qué no hay valores atípicos.</li>
 </ul>
 </blockquote>
 </div>
