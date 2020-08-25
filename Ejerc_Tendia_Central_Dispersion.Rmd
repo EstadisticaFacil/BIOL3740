@@ -1,0 +1,44 @@
+---
+title: "Ejercicio de Tendencia Central y Dispersión"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(gt)
+library(tidyverse)
+```
+
+
+
+```{r}
+codes<-read.csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv')
+```
+
+```{r}
+head(codes)
+```
+```{r}
+mydat<- read.csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv')
+```
+
+```{r}
+head(mydat, 4)
+```
+
+```{r}
+library(tidyverse)
+mydat%>%
+  select(location,date, total_cases, new_cases, life_expectancy)%>%
+  filter(location=="Puerto Rico")%>%
+  head(10)%>%
+  gt()
+```
+
+```{r}
+unique(mydat$location)  # la función "unique" para saber los valores únicos un una columna
+```
+
