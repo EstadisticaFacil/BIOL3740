@@ -279,6 +279,10 @@ CIa=ggplot(a, aes(a))+
   geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
   geom_vline(aes(xintercept = Limite_superior_a), colour="black")+
   xlim(90,110)
+CIa
+```
+
+```{r}
 
 CIb=ggplot(b, aes(b))+
   geom_density(fill="blue", alpha=.5)+
@@ -288,7 +292,7 @@ CIb=ggplot(b, aes(b))+
   geom_vline(aes(xintercept = Limite_superior_b), colour="black")+
   xlim(90,110)
 
-CIa
+
 CIb
 
 #grid.arrange(CIa,CIb, ncol=2)
