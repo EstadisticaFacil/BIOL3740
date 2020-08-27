@@ -613,31 +613,65 @@ div.tocify {
 <span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span>, <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>))</span>
 <span id="cb4-6"><a href="#cb4-6"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/dispersion.png&quot;</span>)</span></code></pre></div>
-<div class="figure">
-<img src="Graficos/dispersion.png" alt="El proceso de Investigación" width="60%" />
-<p class="caption">
-El proceso de Investigación
-</p>
-</div>
+<p><img src="Graficos/dispersion.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">length</span>(dfa<span class="op">$</span>a)</span></code></pre></div>
+<pre><code>## [1] 5000</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>es_a=<span class="st"> </span><span class="kw">sd</span>(dfa<span class="op">$</span>a)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(dfa<span class="op">$</span>a))</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>es_b=<span class="st"> </span><span class="kw">sd</span>(dfb<span class="op">$</span>b)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(dfb<span class="op">$</span>b))</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>es_a</span></code></pre></div>
+<pre><code>## [1] 0.1405601</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>es_b</span></code></pre></div>
+<pre><code>## [1] 1.32255</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>Limite_inferior_a=<span class="kw">mean</span>(dfa<span class="op">$</span>a)<span class="op">-</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>Limite_superior_a=<span class="kw">mean</span>(dfa<span class="op">$</span>a)<span class="op">+</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>Limite_inferior_a <span class="co"># limite inferior 95%</span></span></code></pre></div>
+<pre><code>## [1] 99.73334</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">mean</span>(dfa<span class="op">$</span>a)   <span class="co"># El promedio</span></span></code></pre></div>
+<pre><code>## [1] 100.0088</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>Limite_superior_a <span class="co"># el limite superior 95%</span></span></code></pre></div>
+<pre><code>## [1] 100.2843</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>Limite_inferior_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)<span class="op">-</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb17-2"><a href="#cb17-2"></a>Limite_superior_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)<span class="op">+</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb17-3"><a href="#cb17-3"></a></span>
+<span id="cb17-4"><a href="#cb17-4"></a>mean_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)</span>
+<span id="cb17-5"><a href="#cb17-5"></a>Limite_inferior_b</span></code></pre></div>
+<pre><code>## [1] 96.88946</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">mean</span>(dfb<span class="op">$</span>b)</span></code></pre></div>
+<pre><code>## [1] 99.48166</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>Limite_superior_b</span></code></pre></div>
+<pre><code>## [1] 102.0739</code></pre>
+<p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>CI_a=<span class="kw">ggplot</span>(dfa, <span class="kw">aes</span>(a))<span class="op">+</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span>), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_inferior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_superior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb23-7"><a href="#cb23-7"></a>CI_a</span></code></pre></div>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="el-rango" class="section level1">
 <h1>El rango</h1>
 <p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">range</span>(dfa<span class="op">$</span>a)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">range</span>(dfa<span class="op">$</span>a)</span></code></pre></div>
 <pre><code>## [1]  67.77126 133.87095</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">range</span>(dfb<span class="op">$</span>b)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">range</span>(dfb<span class="op">$</span>b)</span></code></pre></div>
 <pre><code>## [1]  -8.410994 190.670576</code></pre>
 </div>
 <div id="ejemplo-de-la-clase" class="section level1">
 <h1>Ejemplo de la clase</h1>
 <div id="cual-es-el-rango-de-la-edad-de-los-padres-de-los-estudiantes" class="section level2">
 <h2>Cual es el rango de la Edad de los padres de los Estudiantes</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>Edad=<span class="kw">c</span>(<span class="dv">57</span>,<span class="dv">50</span>,<span class="dv">43</span>,<span class="dv">39</span>,<span class="dv">54</span>,<span class="dv">50</span>,<span class="dv">59</span>,<span class="dv">49</span>, <span class="dv">57</span>,<span class="dv">51</span>,<span class="dv">43</span>,<span class="dv">47</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>Edad</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>Edad=<span class="kw">c</span>(<span class="dv">57</span>,<span class="dv">50</span>,<span class="dv">43</span>,<span class="dv">39</span>,<span class="dv">54</span>,<span class="dv">50</span>,<span class="dv">59</span>,<span class="dv">49</span>, <span class="dv">57</span>,<span class="dv">51</span>,<span class="dv">43</span>,<span class="dv">47</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a>Edad</span></code></pre></div>
 <pre><code>##  [1] 57 50 43 39 54 50 59 49 57 51 43 47</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>Edad_df=<span class="kw">data.frame</span>(Edad)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>Edad_df</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>Edad_df=<span class="kw">data.frame</span>(Edad)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>Edad_df</span></code></pre></div>
 <pre><code>##    Edad
 ## 1    57
 ## 2    50
@@ -651,9 +685,9 @@ El proceso de Investigación
 ## 10   51
 ## 11   43
 ## 12   47</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">range</span>(Edad)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">range</span>(Edad)</span></code></pre></div>
 <pre><code>## [1] 39 59</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">range</span>(Edad_df<span class="op">$</span>Edad)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">range</span>(Edad_df<span class="op">$</span>Edad)</span></code></pre></div>
 <pre><code>## [1] 39 59</code></pre>
 </div>
 <div id="la-varianza" class="section level2">
@@ -667,10 +701,10 @@ El proceso de Investigación
 <li>Sumar y restas de <strong>n-1</strong>, done <strong>n</strong> es la cantidad de datos</li>
 </ul>
 <p><span class="math display">\[{ s }^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }\]</span></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb17-2"><a href="#cb17-2"></a>Data=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
-<span id="cb17-3"><a href="#cb17-3"></a>Data_df=<span class="kw">data.frame</span>(Data)</span>
-<span id="cb17-4"><a href="#cb17-4"></a>Data_df</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb36-2"><a href="#cb36-2"></a>Data=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<span id="cb36-3"><a href="#cb36-3"></a>Data_df=<span class="kw">data.frame</span>(Data)</span>
+<span id="cb36-4"><a href="#cb36-4"></a>Data_df</span></code></pre></div>
 <pre><code>##   Data
 ## 1    1
 ## 2    2
@@ -678,8 +712,8 @@ El proceso de Investigación
 ## 4    4
 ## 5    5
 ## 6    6</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>Data_df<span class="op">$</span>mean_Data=<span class="kw">mean</span>(Data)   <span class="co"># Aqui se añade el promedio a cada fila</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>Data_df</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>Data_df<span class="op">$</span>mean_Data=<span class="kw">mean</span>(Data)   <span class="co"># Aqui se añade el promedio a cada fila</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>Data_df</span></code></pre></div>
 <pre><code>##   Data mean_Data
 ## 1    1       3.5
 ## 2    2       3.5
@@ -687,12 +721,12 @@ El proceso de Investigación
 ## 4    4       3.5
 ## 5    5       3.5
 ## 6    6       3.5</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>Data_df<span class="op">$</span>Diff=Data_df<span class="op">$</span>Data<span class="op">-</span>Data_df<span class="op">$</span>mean_Data </span>
-<span id="cb21-2"><a href="#cb21-2"></a>          <span class="co"># Calcular la diferencia entre el promedio y el valor x</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="kw">sum</span>(Data_df<span class="op">$</span>Diff) <span class="co"># si los valores no se cuadra la suma sera zero.</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>Data_df<span class="op">$</span>Diff=Data_df<span class="op">$</span>Data<span class="op">-</span>Data_df<span class="op">$</span>mean_Data </span>
+<span id="cb40-2"><a href="#cb40-2"></a>          <span class="co"># Calcular la diferencia entre el promedio y el valor x</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="kw">sum</span>(Data_df<span class="op">$</span>Diff) <span class="co"># si los valores no se cuadra la suma sera zero.</span></span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>Data_df<span class="op">$</span>SS=(Data_df<span class="op">$</span>Data<span class="op">-</span>Data_df<span class="op">$</span>mean_Data)<span class="op">^</span><span class="dv">2</span> <span class="co"># SS para la suma de los cuadrados </span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>Data_df</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>Data_df<span class="op">$</span>SS=(Data_df<span class="op">$</span>Data<span class="op">-</span>Data_df<span class="op">$</span>mean_Data)<span class="op">^</span><span class="dv">2</span> <span class="co"># SS para la suma de los cuadrados </span></span>
+<span id="cb42-2"><a href="#cb42-2"></a>Data_df</span></code></pre></div>
 <pre><code>##   Data mean_Data Diff   SS
 ## 1    1       3.5 -2.5 6.25
 ## 2    2       3.5 -1.5 2.25
@@ -700,15 +734,15 @@ El proceso de Investigación
 ## 4    4       3.5  0.5 0.25
 ## 5    5       3.5  1.5 2.25
 ## 6    6       3.5  2.5 6.25</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">sum</span>(Data_df<span class="op">$</span>SS)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">sum</span>(Data_df<span class="op">$</span>SS)</span></code></pre></div>
 <pre><code>## [1] 17.5</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a> <span class="co">#  Este indice se llama la desviación del promedio que es la suma de los cuadrados</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a> <span class="co">#  Este indice se llama la desviación del promedio que es la suma de los cuadrados</span></span></code></pre></div>
 <hr />
 </div>
 <div id="calcular-la-varianza-con-var" class="section level2">
 <h2>Calcular la varianza con <strong>var()</strong></h2>
 <p>Ahora la manera fácil de hacer los análisis, usar la función <strong>var</strong>, y no hay que hacer ninguno de los pasos anteriores. Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y cada valor. El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero. Se usa el variancas cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">var</span>(Data)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="kw">var</span>(Data)</span></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
 <hr />
 </div>
@@ -719,18 +753,18 @@ El proceso de Investigación
 <p><span class="math display">\[{ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }\]</span> o más sencillo</p>
 <p><span class="math display">\[s=\sqrt{s^2}\]</span></p>
 <p>la función <strong>sd</strong>, “standard deviation” es sumamente facil de calcular en R.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="kw">sd</span>(Data_df<span class="op">$</span>Data)  <span class="co"># deviación estandard</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="kw">sd</span>(Data_df<span class="op">$</span>Data)  <span class="co"># deviación estandard</span></span></code></pre></div>
 <pre><code>## [1] 1.870829</code></pre>
 <hr />
 </div>
 <div id="el-rango-intertcuartil." class="section level1">
 <h1>El rango intertcuartil.</h1>
 <p>La función básica es <strong>quantile</strong> si lo dejamos sin más instrucción calcula los siguientes probabilidades 0%, 25%, 50% (mediana), 75%, 100%. Pero si uno quiere los valores que se encuentra en una posición especifica hay que usar <strong>type =1</strong> como se ve en el segundo ejemplo. Hay 9 tipos de cuantiles con esta función, estos se encuentra definido en RStudio. Añade <strong>quantile</strong> en el artea de <strong>help</strong> y vera las otras alternativas.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">quantile</span>(Data) <span class="co"># la función básica (0%, 25%, 50% (mediana), 75%, 100%)</span></span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="kw">quantile</span>(Data) <span class="co"># la función básica (0%, 25%, 50% (mediana), 75%, 100%)</span></span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.00 2.25 3.50 4.75 6.00</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Seleccionar los cuantiles específicos.</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="kw">quantile</span>(Data, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.015</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>,.<span class="dv">75</span>, <span class="fl">.975</span>))   </span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># Seleccionar los cuantiles específicos.</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a><span class="kw">quantile</span>(Data, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.015</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>,.<span class="dv">75</span>, <span class="fl">.975</span>))   </span></code></pre></div>
 <pre><code>##  1.5%   25%   50%   75% 97.5% 
 ## 1.075 2.250 3.500 4.750 5.875</code></pre>
 <p>Para explicar estos conceptos mejor visualizamos los datos</p>
@@ -837,12 +871,12 @@ El proceso de Investigación
 </tbody>
 </table>
 <p>Ahora usamos la función <strong>quantile</strong> con el type=1 de calcular los cuartiles y vermos si tenemos los mismos resultados.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>dat=<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">19</span>,<span class="dv">27</span>,<span class="dv">33</span>,<span class="dv">52</span>,<span class="dv">60</span>,<span class="dv">77</span>,<span class="dv">87</span>,<span class="dv">99</span>,<span class="dv">101</span>,<span class="dv">122</span>,<span class="dv">137</span>,<span class="dv">140</span>,<span class="dv">142</span>,<span class="dv">150</span>)</span>
-<span id="cb36-2"><a href="#cb36-2"></a></span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="kw">quantile</span>(dat, <span class="dt">type =</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>dat=<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">19</span>,<span class="dv">27</span>,<span class="dv">33</span>,<span class="dv">52</span>,<span class="dv">60</span>,<span class="dv">77</span>,<span class="dv">87</span>,<span class="dv">99</span>,<span class="dv">101</span>,<span class="dv">122</span>,<span class="dv">137</span>,<span class="dv">140</span>,<span class="dv">142</span>,<span class="dv">150</span>)</span>
+<span id="cb55-2"><a href="#cb55-2"></a></span>
+<span id="cb55-3"><a href="#cb55-3"></a><span class="kw">quantile</span>(dat, <span class="dt">type =</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ##    3   33   87  137  150</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">sd</span>(dat)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="kw">sd</span>(dat)</span></code></pre></div>
 <pre><code>## [1] 49.2145</code></pre>
 <hr />
 </div>
@@ -852,15 +886,15 @@ El proceso de Investigación
 <p>La formula de error estándar es la siguiente usando la desviación estándar</p>
 <p><span class="math display">\[s_{\overline{x}}=\frac{s}{\sqrt{n}}\]</span> o usando la varianza, donde la <strong>n</strong> es la cantidad de datos</p>
 <p><span class="math display">\[s_{\overline{x}}=\sqrt{\frac{s^2}{n}}\]</span> Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución. er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice. Vemos que cuando hay más dispersión el error estándar es más grande.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">length</span>(dfa<span class="op">$</span>a)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="kw">length</span>(dfa<span class="op">$</span>a)</span></code></pre></div>
 <pre><code>## [1] 5000</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>es_a=<span class="st"> </span><span class="kw">sd</span>(dfa<span class="op">$</span>a)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(dfa<span class="op">$</span>a))</span>
-<span id="cb42-2"><a href="#cb42-2"></a></span>
-<span id="cb42-3"><a href="#cb42-3"></a>es_b=<span class="st"> </span><span class="kw">sd</span>(dfb<span class="op">$</span>b)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(dfb<span class="op">$</span>b))</span>
-<span id="cb42-4"><a href="#cb42-4"></a></span>
-<span id="cb42-5"><a href="#cb42-5"></a>es_a</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a>es_a=<span class="st"> </span><span class="kw">sd</span>(dfa<span class="op">$</span>a)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(dfa<span class="op">$</span>a))</span>
+<span id="cb61-2"><a href="#cb61-2"></a></span>
+<span id="cb61-3"><a href="#cb61-3"></a>es_b=<span class="st"> </span><span class="kw">sd</span>(dfb<span class="op">$</span>b)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(dfb<span class="op">$</span>b))</span>
+<span id="cb61-4"><a href="#cb61-4"></a></span>
+<span id="cb61-5"><a href="#cb61-5"></a>es_a</span></code></pre></div>
 <pre><code>## [1] 0.1405601</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>es_b</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>es_b</span></code></pre></div>
 <pre><code>## [1] 1.32255</code></pre>
 <hr />
 </div>
@@ -869,46 +903,46 @@ El proceso de Investigación
 <p>Ya que hemos calculado el error estándar podemos calcular la dispersión de los promedios. Esto quiere decir que si uno repite la recolección de datos el promedio tiene un 95% de probabilidad estar en este rango. Uno calcula los limites de la dispersión de los promedios usando la siguientes formulas.</p>
 <p><span class="math display">\[Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)\]</span></p>
 <p><span class="math display">\[Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)\]</span></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>Limite_inferior_a=<span class="kw">mean</span>(dfa<span class="op">$</span>a)<span class="op">-</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
-<span id="cb46-2"><a href="#cb46-2"></a></span>
-<span id="cb46-3"><a href="#cb46-3"></a>Limite_superior_a=<span class="kw">mean</span>(dfa<span class="op">$</span>a)<span class="op">+</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
-<span id="cb46-4"><a href="#cb46-4"></a></span>
-<span id="cb46-5"><a href="#cb46-5"></a>Limite_inferior_a <span class="co"># limite inferior 95%</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>Limite_inferior_a=<span class="kw">mean</span>(dfa<span class="op">$</span>a)<span class="op">-</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb65-2"><a href="#cb65-2"></a></span>
+<span id="cb65-3"><a href="#cb65-3"></a>Limite_superior_a=<span class="kw">mean</span>(dfa<span class="op">$</span>a)<span class="op">+</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb65-4"><a href="#cb65-4"></a></span>
+<span id="cb65-5"><a href="#cb65-5"></a>Limite_inferior_a <span class="co"># limite inferior 95%</span></span></code></pre></div>
 <pre><code>## [1] 99.73334</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="kw">mean</span>(dfa<span class="op">$</span>a)   <span class="co"># El promedio</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="kw">mean</span>(dfa<span class="op">$</span>a)   <span class="co"># El promedio</span></span></code></pre></div>
 <pre><code>## [1] 100.0088</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>Limite_superior_a <span class="co"># el limite superior 95%</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>Limite_superior_a <span class="co"># el limite superior 95%</span></span></code></pre></div>
 <pre><code>## [1] 100.2843</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>Limite_inferior_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)<span class="op">-</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
-<span id="cb52-2"><a href="#cb52-2"></a>Limite_superior_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)<span class="op">+</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
-<span id="cb52-3"><a href="#cb52-3"></a></span>
-<span id="cb52-4"><a href="#cb52-4"></a>mean_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)</span>
-<span id="cb52-5"><a href="#cb52-5"></a>Limite_inferior_b</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a>Limite_inferior_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)<span class="op">-</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb71-2"><a href="#cb71-2"></a>Limite_superior_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)<span class="op">+</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb71-3"><a href="#cb71-3"></a></span>
+<span id="cb71-4"><a href="#cb71-4"></a>mean_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)</span>
+<span id="cb71-5"><a href="#cb71-5"></a>Limite_inferior_b</span></code></pre></div>
 <pre><code>## [1] 96.88946</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="kw">mean</span>(dfb<span class="op">$</span>b)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="kw">mean</span>(dfb<span class="op">$</span>b)</span></code></pre></div>
 <pre><code>## [1] 99.48166</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>Limite_superior_b</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a>Limite_superior_b</span></code></pre></div>
 <pre><code>## [1] 102.0739</code></pre>
 <p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>CI_a=<span class="kw">ggplot</span>(dfa, <span class="kw">aes</span>(a))<span class="op">+</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
-<span id="cb58-3"><a href="#cb58-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
-<span id="cb58-4"><a href="#cb58-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span>), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb58-5"><a href="#cb58-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_inferior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
-<span id="cb58-6"><a href="#cb58-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_superior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb58-7"><a href="#cb58-7"></a>CI_a</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a>CI_a=<span class="kw">ggplot</span>(dfa, <span class="kw">aes</span>(a))<span class="op">+</span></span>
+<span id="cb77-2"><a href="#cb77-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb77-3"><a href="#cb77-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
+<span id="cb77-4"><a href="#cb77-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span>), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb77-5"><a href="#cb77-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_inferior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb77-6"><a href="#cb77-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_superior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb77-7"><a href="#cb77-7"></a>CI_a</span></code></pre></div>
 <p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/ch17-1.png" width="672" /></p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>CI_b=<span class="kw">ggplot</span>(dfb, <span class="kw">aes</span>(b))<span class="op">+</span></span>
-<span id="cb59-2"><a href="#cb59-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
-<span id="cb59-3"><a href="#cb59-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
-<span id="cb59-4"><a href="#cb59-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span>mean_b), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb59-5"><a href="#cb59-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_inferior_b), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
-<span id="cb59-6"><a href="#cb59-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_superior_b), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb59-7"><a href="#cb59-7"></a></span>
-<span id="cb59-8"><a href="#cb59-8"></a></span>
-<span id="cb59-9"><a href="#cb59-9"></a>CI_b</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(CI_a,CI_b, <span class="dt">ncol=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a>CI_b=<span class="kw">ggplot</span>(dfb, <span class="kw">aes</span>(b))<span class="op">+</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb78-3"><a href="#cb78-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
+<span id="cb78-4"><a href="#cb78-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span>mean_b), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb78-5"><a href="#cb78-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_inferior_b), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb78-6"><a href="#cb78-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_superior_b), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb78-7"><a href="#cb78-7"></a></span>
+<span id="cb78-8"><a href="#cb78-8"></a></span>
+<span id="cb78-9"><a href="#cb78-9"></a>CI_b</span></code></pre></div>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(CI_a,CI_b, <span class="dt">ncol=</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/together-1.png" width="672" /></p>
 <hr />
 <div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
@@ -959,53 +993,53 @@ El proceso de Investigación
 <h2>El intervalo de confianza de colesterol en los Iranis</h2>
 <p>Comenzamos con evaluar el intervalo de confianza de los datos con datos teóricos. Por ejemplo el nivel de colesterol en el plasma varia en los humanos. En el siguiente articulo <em>Plasma total cholesterol level and some related factors in northern Iranian people</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/</a></p>
 <p>Usamos los datos para las mujeres con un promedio de 196.7 y una desviación estándar de 39.11. Con estos datos asumimos que esto provienen de una distribución normal y que representa las mujeres en resto del mundo.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># Creamos un conjunto de datos para los análisis</span></span>
-<span id="cb61-2"><a href="#cb61-2"></a></span>
-<span id="cb61-3"><a href="#cb61-3"></a>Col=<span class="kw">rnorm</span>(<span class="dv">200000</span>, <span class="fl">196.7</span>, <span class="fl">39.11</span>)</span>
-<span id="cb61-4"><a href="#cb61-4"></a>Col=<span class="kw">data_frame</span>(Col)</span>
-<span id="cb61-5"><a href="#cb61-5"></a></span>
-<span id="cb61-6"><a href="#cb61-6"></a>promCol=Col<span class="op">%&gt;%</span></span>
-<span id="cb61-7"><a href="#cb61-7"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Mean=</span><span class="kw">mean</span>(Col))</span>
-<span id="cb61-8"><a href="#cb61-8"></a>  </span>
-<span id="cb61-9"><a href="#cb61-9"></a>sdCol=Col<span class="op">%&gt;%</span></span>
-<span id="cb61-10"><a href="#cb61-10"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Col))</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a><span class="co"># Creamos un conjunto de datos para los análisis</span></span>
+<span id="cb80-2"><a href="#cb80-2"></a></span>
+<span id="cb80-3"><a href="#cb80-3"></a>Col=<span class="kw">rnorm</span>(<span class="dv">200000</span>, <span class="fl">196.7</span>, <span class="fl">39.11</span>)</span>
+<span id="cb80-4"><a href="#cb80-4"></a>Col=<span class="kw">data_frame</span>(Col)</span>
+<span id="cb80-5"><a href="#cb80-5"></a></span>
+<span id="cb80-6"><a href="#cb80-6"></a>promCol=Col<span class="op">%&gt;%</span></span>
+<span id="cb80-7"><a href="#cb80-7"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Mean=</span><span class="kw">mean</span>(Col))</span>
+<span id="cb80-8"><a href="#cb80-8"></a>  </span>
+<span id="cb80-9"><a href="#cb80-9"></a>sdCol=Col<span class="op">%&gt;%</span></span>
+<span id="cb80-10"><a href="#cb80-10"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Col))</span></code></pre></div>
 <p>Visualizar los datos: Uds conoce su nivel de colesterol total? Donde se encuentra en esta distribución? Se encuentra en el 68%? Nota que la suma de todos los porcentaje es igual a 100%.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="kw">library</span>(grid)</span>
-<span id="cb62-2"><a href="#cb62-2"></a><span class="kw">library</span>(gtable)</span>
-<span id="cb62-3"><a href="#cb62-3"></a></span>
-<span id="cb62-4"><a href="#cb62-4"></a>lims &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">350</span>)</span>
-<span id="cb62-5"><a href="#cb62-5"></a></span>
-<span id="cb62-6"><a href="#cb62-6"></a>breaks.major2&lt;-<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">79</span>, <span class="dv">118</span>, <span class="dv">157</span>, </span>
-<span id="cb62-7"><a href="#cb62-7"></a>                 <span class="dv">197</span>, <span class="dv">235</span>, <span class="dv">274</span>, <span class="dv">314</span>)</span>
-<span id="cb62-8"><a href="#cb62-8"></a>breaks.minor2=<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>, <span class="dv">118</span>, <span class="dv">157</span>,<span class="dv">197</span>, </span>
-<span id="cb62-9"><a href="#cb62-9"></a>                <span class="dv">235</span>, <span class="dv">274</span>, <span class="dv">314</span>,<span class="dv">379</span>)</span>
-<span id="cb62-10"><a href="#cb62-10"></a>breaks.comb &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">c</span>(breaks.major2, breaks.minor2<span class="fl">-1.0E-6</span>))</span>
-<span id="cb62-11"><a href="#cb62-11"></a>labels.comb&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">79</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">-3sd&quot;</span>, <span class="dv">118</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">-2sd&quot;</span>, <span class="dv">157</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">-1sd&quot;</span>, <span class="dv">197</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">promedio&quot;</span>,</span>
-<span id="cb62-12"><a href="#cb62-12"></a>                 <span class="dv">235</span>,  <span class="st">&quot;</span><span class="ch">\n</span><span class="st">+1sd&quot;</span>,<span class="dv">274</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">+2sd&quot;</span>, <span class="dv">314</span>,<span class="st">&quot;</span><span class="ch">\n</span><span class="st">+3sd&quot;</span>, <span class="dv">379</span>)</span>
-<span id="cb62-13"><a href="#cb62-13"></a>Col<span class="op">%&gt;%</span></span>
-<span id="cb62-14"><a href="#cb62-14"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(Col))<span class="op">+</span></span>
-<span id="cb62-15"><a href="#cb62-15"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>,<span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
-<span id="cb62-16"><a href="#cb62-16"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-17"><a href="#cb62-17"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span><span class="kw">as.numeric</span>(promCol), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-18"><a href="#cb62-18"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">-</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-19"><a href="#cb62-19"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">+</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-20"><a href="#cb62-20"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="dv">-2</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-21"><a href="#cb62-21"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-22"><a href="#cb62-22"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="dv">-3</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;orange&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-23"><a href="#cb62-23"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">+</span><span class="dv">3</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;orange&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">limit=</span>lims, </span>
-<span id="cb62-24"><a href="#cb62-24"></a>                                <span class="dt">minor_breaks=</span>breaks.minor2, </span>
-<span id="cb62-25"><a href="#cb62-25"></a>                                <span class="dt">breaks=</span>breaks.comb,</span>
-<span id="cb62-26"><a href="#cb62-26"></a>                                <span class="dt">labels=</span>labels.comb)<span class="op">+</span></span>
-<span id="cb62-27"><a href="#cb62-27"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Nivel de colesterol&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-28"><a href="#cb62-28"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">180</span>, <span class="dt">y =</span> <span class="fl">.004</span>, <span class="dt">label=</span><span class="st">&quot;34.1%&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-29"><a href="#cb62-29"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">210</span>, <span class="dt">y =</span> <span class="fl">.004</span>, <span class="dt">label=</span><span class="st">&quot;34.1%&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-30"><a href="#cb62-30"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">140</span>, <span class="dt">y =</span> <span class="fl">.002</span>, <span class="dt">label=</span><span class="st">&quot;13.6%&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-31"><a href="#cb62-31"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">250</span>, <span class="dt">y =</span> <span class="fl">.002</span>, <span class="dt">label=</span><span class="st">&quot;13.6%&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-32"><a href="#cb62-32"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">90</span>, <span class="dt">y =</span> <span class="fl">.001</span>, <span class="dt">label=</span><span class="st">&quot;2.1%&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-33"><a href="#cb62-33"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">295</span>, <span class="dt">y =</span> <span class="fl">.001</span>, <span class="dt">label=</span><span class="st">&quot;2.1%&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-34"><a href="#cb62-34"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">70</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)<span class="op">+</span></span>
-<span id="cb62-35"><a href="#cb62-35"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">330</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-4-1.png" width="60%" /></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="kw">library</span>(grid)</span>
+<span id="cb81-2"><a href="#cb81-2"></a><span class="kw">library</span>(gtable)</span>
+<span id="cb81-3"><a href="#cb81-3"></a></span>
+<span id="cb81-4"><a href="#cb81-4"></a>lims &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">28</span>, <span class="dv">350</span>)</span>
+<span id="cb81-5"><a href="#cb81-5"></a></span>
+<span id="cb81-6"><a href="#cb81-6"></a>breaks.major2&lt;-<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">79</span>, <span class="dv">118</span>, <span class="dv">157</span>, </span>
+<span id="cb81-7"><a href="#cb81-7"></a>                 <span class="dv">197</span>, <span class="dv">235</span>, <span class="dv">274</span>, <span class="dv">314</span>)</span>
+<span id="cb81-8"><a href="#cb81-8"></a>breaks.minor2=<span class="st"> </span><span class="kw">c</span>(<span class="dv">79</span>, <span class="dv">118</span>, <span class="dv">157</span>,<span class="dv">197</span>, </span>
+<span id="cb81-9"><a href="#cb81-9"></a>                <span class="dv">235</span>, <span class="dv">274</span>, <span class="dv">314</span>,<span class="dv">379</span>)</span>
+<span id="cb81-10"><a href="#cb81-10"></a>breaks.comb &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">c</span>(breaks.major2, breaks.minor2<span class="fl">-1.0E-6</span>))</span>
+<span id="cb81-11"><a href="#cb81-11"></a>labels.comb&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">79</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">-3sd&quot;</span>, <span class="dv">118</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">-2sd&quot;</span>, <span class="dv">157</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">-1sd&quot;</span>, <span class="dv">197</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">promedio&quot;</span>,</span>
+<span id="cb81-12"><a href="#cb81-12"></a>                 <span class="dv">235</span>,  <span class="st">&quot;</span><span class="ch">\n</span><span class="st">+1sd&quot;</span>,<span class="dv">274</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">+2sd&quot;</span>, <span class="dv">314</span>,<span class="st">&quot;</span><span class="ch">\n</span><span class="st">+3sd&quot;</span>, <span class="dv">379</span>)</span>
+<span id="cb81-13"><a href="#cb81-13"></a>Col<span class="op">%&gt;%</span></span>
+<span id="cb81-14"><a href="#cb81-14"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(Col))<span class="op">+</span></span>
+<span id="cb81-15"><a href="#cb81-15"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>,<span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb81-16"><a href="#cb81-16"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-17"><a href="#cb81-17"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span><span class="kw">as.numeric</span>(promCol), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-18"><a href="#cb81-18"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">-</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-19"><a href="#cb81-19"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">+</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-20"><a href="#cb81-20"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="dv">-2</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-21"><a href="#cb81-21"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-22"><a href="#cb81-22"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="dv">-3</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;orange&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-23"><a href="#cb81-23"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promCol<span class="op">+</span><span class="dv">3</span><span class="op">*</span>sdCol)), <span class="dt">colour=</span><span class="st">&quot;orange&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">limit=</span>lims, </span>
+<span id="cb81-24"><a href="#cb81-24"></a>                                <span class="dt">minor_breaks=</span>breaks.minor2, </span>
+<span id="cb81-25"><a href="#cb81-25"></a>                                <span class="dt">breaks=</span>breaks.comb,</span>
+<span id="cb81-26"><a href="#cb81-26"></a>                                <span class="dt">labels=</span>labels.comb)<span class="op">+</span></span>
+<span id="cb81-27"><a href="#cb81-27"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Nivel de colesterol&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-28"><a href="#cb81-28"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">180</span>, <span class="dt">y =</span> <span class="fl">.004</span>, <span class="dt">label=</span><span class="st">&quot;34.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-29"><a href="#cb81-29"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">210</span>, <span class="dt">y =</span> <span class="fl">.004</span>, <span class="dt">label=</span><span class="st">&quot;34.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-30"><a href="#cb81-30"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">140</span>, <span class="dt">y =</span> <span class="fl">.002</span>, <span class="dt">label=</span><span class="st">&quot;13.6%&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-31"><a href="#cb81-31"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">250</span>, <span class="dt">y =</span> <span class="fl">.002</span>, <span class="dt">label=</span><span class="st">&quot;13.6%&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-32"><a href="#cb81-32"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">90</span>, <span class="dt">y =</span> <span class="fl">.001</span>, <span class="dt">label=</span><span class="st">&quot;2.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-33"><a href="#cb81-33"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">295</span>, <span class="dt">y =</span> <span class="fl">.001</span>, <span class="dt">label=</span><span class="st">&quot;2.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-34"><a href="#cb81-34"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">70</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)<span class="op">+</span></span>
+<span id="cb81-35"><a href="#cb81-35"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">330</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)</span></code></pre></div>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-8-1.png" width="60%" /></p>
 <hr />
 </div>
 <div id="otro-ejemplo-de-los-intevalos-de-confianzas" class="section level2">
@@ -1013,9 +1047,9 @@ El proceso de Investigación
 <div id="la-altura-de-los-humanos" class="section level3">
 <h3>La altura de los humanos</h3>
 <p>Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website. Están disponible en debajo la pestaña de “Los Datos”. <a href="https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data" class="uri">https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data</a></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="kw">library</span>(readr)</span>
-<span id="cb63-2"><a href="#cb63-2"></a>Alturas_Humanos &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_files_csv/Alturas_Humanos.csv&quot;</span>)</span>
-<span id="cb63-3"><a href="#cb63-3"></a><span class="kw">gt</span>(<span class="kw">head</span>(Alturas_Humanos))</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb82-2"><a href="#cb82-2"></a>Alturas_Humanos &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_files_csv/Alturas_Humanos.csv&quot;</span>)</span>
+<span id="cb82-3"><a href="#cb82-3"></a><span class="kw">gt</span>(<span class="kw">head</span>(Alturas_Humanos))</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1397,8 +1431,8 @@ El proceso de Investigación
   
 </table></div>
 <p>Calculamos los promedios y las desviación estándar para añadirlos al gráfico</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb64-2"><a href="#cb64-2"></a><span class="kw">head</span>(Alturas_Humanos)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb83-2"><a href="#cb83-2"></a><span class="kw">head</span>(Alturas_Humanos)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   Genero  Altura_cm Peso_kg
 ##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
@@ -1408,52 +1442,52 @@ El proceso de Investigación
 ## 4 Mujer         195     104
 ## 5 Hombres       149      61
 ## 6 Hombres       189     104</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="kw">length</span>(Alturas_Humanos<span class="op">$</span>Genero)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a><span class="kw">length</span>(Alturas_Humanos<span class="op">$</span>Genero)</span></code></pre></div>
 <pre><code>## [1] 500</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># Parametros para las Mujeres</span></span>
-<span id="cb68-2"><a href="#cb68-2"></a>promM=Alturas_Humanos<span class="op">%&gt;%</span></span>
-<span id="cb68-3"><a href="#cb68-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
-<span id="cb68-4"><a href="#cb68-4"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb68-5"><a href="#cb68-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MeanM=</span><span class="kw">mean</span>(Altura_cm))</span>
-<span id="cb68-6"><a href="#cb68-6"></a>promM </span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a><span class="co"># Parametros para las Mujeres</span></span>
+<span id="cb87-2"><a href="#cb87-2"></a>promM=Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb87-3"><a href="#cb87-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb87-4"><a href="#cb87-4"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb87-5"><a href="#cb87-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">MeanM=</span><span class="kw">mean</span>(Altura_cm))</span>
+<span id="cb87-6"><a href="#cb87-6"></a>promM </span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   MeanM
 ##   &lt;dbl&gt;
 ## 1  170.</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>sdM=Alturas_Humanos<span class="op">%&gt;%</span></span>
-<span id="cb70-2"><a href="#cb70-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
-<span id="cb70-3"><a href="#cb70-3"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb70-4"><a href="#cb70-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Altura_cm))</span>
-<span id="cb70-5"><a href="#cb70-5"></a> sdM </span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a>sdM=Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb89-2"><a href="#cb89-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb89-3"><a href="#cb89-3"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb89-4"><a href="#cb89-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Altura_cm))</span>
+<span id="cb89-5"><a href="#cb89-5"></a> sdM </span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##      sd
 ##   &lt;dbl&gt;
 ## 1  15.7</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="co"># Parametros para las Hombres</span></span>
-<span id="cb72-2"><a href="#cb72-2"></a>promH=Alturas_Humanos<span class="op">%&gt;%</span></span>
-<span id="cb72-3"><a href="#cb72-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
-<span id="cb72-4"><a href="#cb72-4"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Hombres&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb72-5"><a href="#cb72-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Mean=</span><span class="kw">mean</span>(Altura_cm))</span>
-<span id="cb72-6"><a href="#cb72-6"></a></span>
-<span id="cb72-7"><a href="#cb72-7"></a></span>
-<span id="cb72-8"><a href="#cb72-8"></a>sdH=Alturas_Humanos<span class="op">%&gt;%</span></span>
-<span id="cb72-9"><a href="#cb72-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
-<span id="cb72-10"><a href="#cb72-10"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Hombres&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb72-11"><a href="#cb72-11"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Altura_cm))</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1"></a><span class="co"># Parametros para las Hombres</span></span>
+<span id="cb91-2"><a href="#cb91-2"></a>promH=Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb91-3"><a href="#cb91-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb91-4"><a href="#cb91-4"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Hombres&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb91-5"><a href="#cb91-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Mean=</span><span class="kw">mean</span>(Altura_cm))</span>
+<span id="cb91-6"><a href="#cb91-6"></a></span>
+<span id="cb91-7"><a href="#cb91-7"></a></span>
+<span id="cb91-8"><a href="#cb91-8"></a>sdH=Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb91-9"><a href="#cb91-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb91-10"><a href="#cb91-10"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Hombres&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb91-11"><a href="#cb91-11"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Altura_cm))</span></code></pre></div>
 <p>Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a>Alturas_Humanos<span class="op">%&gt;%</span></span>
-<span id="cb73-2"><a href="#cb73-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
-<span id="cb73-3"><a href="#cb73-3"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb73-4"><a href="#cb73-4"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(Altura_cm))<span class="op">+</span></span>
-<span id="cb73-5"><a href="#cb73-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;yellow&quot;</span>,<span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
-<span id="cb73-6"><a href="#cb73-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></span>
-<span id="cb73-7"><a href="#cb73-7"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span><span class="kw">as.numeric</span>(promM), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
-<span id="cb73-8"><a href="#cb73-8"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">-</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>)<span class="op">+</span></span>
-<span id="cb73-9"><a href="#cb73-9"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb73-10"><a href="#cb73-10"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="dv">-2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb73-11"><a href="#cb73-11"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-7-1.png" width="60%" /></p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="co">#ggsave(&quot;Alturas_Mujer.jpeg&quot;) # .png, .tiff, etc</span></span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>Alturas_Humanos<span class="op">%&gt;%</span></span>
+<span id="cb92-2"><a href="#cb92-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
+<span id="cb92-3"><a href="#cb92-3"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb92-4"><a href="#cb92-4"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(Altura_cm))<span class="op">+</span></span>
+<span id="cb92-5"><a href="#cb92-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;yellow&quot;</span>,<span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb92-6"><a href="#cb92-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></span>
+<span id="cb92-7"><a href="#cb92-7"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span><span class="kw">as.numeric</span>(promM), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
+<span id="cb92-8"><a href="#cb92-8"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">-</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>)<span class="op">+</span></span>
+<span id="cb92-9"><a href="#cb92-9"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb92-10"><a href="#cb92-10"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="dv">-2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb92-11"><a href="#cb92-11"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-11-1.png" width="60%" /></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a><span class="co">#ggsave(&quot;Alturas_Mujer.jpeg&quot;) # .png, .tiff, etc</span></span></code></pre></div>
 <hr />
 </div>
 <div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level3">
