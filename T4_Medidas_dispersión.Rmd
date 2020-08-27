@@ -270,7 +270,7 @@ Limite_superior_b
 
 Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.  
 
-```{r, out.width = '75%'}
+```{r, out.width = '60%'}
 
 CIa=ggplot(a, aes(a))+
   geom_density(fill="blue", alpha=.5)+
@@ -282,7 +282,7 @@ CIa=ggplot(a, aes(a))+
 CIa
 ```
 
-```{r out.width = '75%'}
+```{r out.width = '60%'}
 
 CIb=ggplot(b, aes(b))+
   geom_density(fill="blue", alpha=.5)+
@@ -364,7 +364,7 @@ sdCol=Col%>%
 Visualizar los datos:  Uds conoce su nivel de colesterol total?  Donde se encuentra en esta distribución?  Se encuentra en el 68%?   Nota que la suma de todos los porcentaje es igual a 100%.  
 
 
-```{r, out.width = '75%'}
+```{r, out.width = '60%'}
 library(grid)
 library(gtable)
 
@@ -426,7 +426,7 @@ gt(head(Alturas_Humanos))
 Calculamos los promedios y las desviación estándar para añadirlos al gráfico 
 
 
-```{r, out.width = '75%'}
+```{r, out.width = '60%'}
 library(tidyverse)
 promM=Alturas_Humanos%>%
   dplyr::select(Genero, Altura_cm)%>%
@@ -453,7 +453,7 @@ sdH=Alturas_Humanos%>%
 Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.
 
 
-```{r, out.width = '75%'}
+```{r, out.width = '60%'}
 Alturas_Humanos%>%
   dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%

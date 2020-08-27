@@ -893,7 +893,7 @@ El proceso de Investigación
 <span id="cb58-6"><a href="#cb58-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_superior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
 <span id="cb58-7"><a href="#cb58-7"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">90</span>,<span class="dv">110</span>)</span>
 <span id="cb58-8"><a href="#cb58-8"></a>CIa</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-16-1.png" width="75%" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-16-1.png" width="60%" /></p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>CIb=<span class="kw">ggplot</span>(b, <span class="kw">aes</span>(b))<span class="op">+</span></span>
 <span id="cb59-2"><a href="#cb59-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
 <span id="cb59-3"><a href="#cb59-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
@@ -904,7 +904,7 @@ El proceso de Investigación
 <span id="cb59-8"><a href="#cb59-8"></a></span>
 <span id="cb59-9"><a href="#cb59-9"></a></span>
 <span id="cb59-10"><a href="#cb59-10"></a>CIb</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-17-1.png" width="75%" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-17-1.png" width="60%" /></p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co">#grid.arrange(CIa,CIb, ncol=2)</span></span></code></pre></div>
 <hr />
 <div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
@@ -1001,7 +1001,7 @@ El proceso de Investigación
 <span id="cb62-33"><a href="#cb62-33"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">295</span>, <span class="dt">y =</span> <span class="fl">.001</span>, <span class="dt">label=</span><span class="st">&quot;2.1%&quot;</span>)<span class="op">+</span></span>
 <span id="cb62-34"><a href="#cb62-34"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">70</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)<span class="op">+</span></span>
 <span id="cb62-35"><a href="#cb62-35"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">330</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-19-1.png" width="75%" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-19-1.png" width="60%" /></p>
 <hr />
 </div>
 <div id="otro-ejemplo-de-los-intevalos-de-confianzas" class="section level2">
@@ -1429,7 +1429,7 @@ El proceso de Investigación
 <span id="cb67-9"><a href="#cb67-9"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
 <span id="cb67-10"><a href="#cb67-10"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="dv">-2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
 <span id="cb67-11"><a href="#cb67-11"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-22-1.png" width="75%" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-22-1.png" width="60%" /></p>
 <hr />
 </div>
 <div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level3">
