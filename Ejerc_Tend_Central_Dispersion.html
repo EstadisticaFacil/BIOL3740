@@ -11,7 +11,7 @@
 
 
 
-<title>COVID_19_DATOS</title>
+<title>Ejercicio de Tendencia Central y Dispersión</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -572,28 +572,44 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">COVID_19_DATOS</h1>
+<h1 class="title toc-ignore">Ejercicio de Tendencia Central y Dispersión</h1>
 
 </div>
 
 
-<div id="datos-de-covid-19" class="section level1">
-<h1>Datos de COVID-19</h1>
-<p>El siguiente archivo es para tener acceso a datos sobre los casos de COVID-19 por día en todo el planeta. El archivo esta mantenido en el siguiente enlace <a href="https://github.com/owid/covid-19-data/tree/master/public/data" class="uri">https://github.com/owid/covid-19-data/tree/master/public/data</a></p>
-<p>Para más información vea al website.</p>
-<div id="lista-de-la-variables" class="section level2">
-<h2>Lista de la variables</h2>
-<p>Las variables incluido al 4 de agosto son:</p>
-<p>iso_code, continent, location, date, total_cases, new_cases, total_deaths, new_deaths, total_cases_per_million, new_cases_per_million, total_deaths_per_million, new_deaths_per_million, total_tests, new_tests, new_tests_smoothed, total_tests_per_thousand, new_tests_per_thousand, new_tests_smoothed_per_thousand, tests_per_case, positive_rate, tests_units, stringency_index, population, population_density, median_age, aged_65_older, aged_70_older, gdp_per_capita, extreme_poverty, cardiovasc_death_rate, diabetes_prevalence, female_smokers, male_smokers, handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
-<p>Para la descripción de las variables vea este enlace.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(gt)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>codes&lt;-<span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">gt</span>(codes)</span></code></pre></div>
-<p><style>html {
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
+## ✓ tidyr   1.1.1     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div id="este-trabajo-es-para-someter." class="section level1">
+<h1>Este trabajo es para someter.</h1>
+<div id="fecha-limite-es-el-31-de-agosto-a-las-1159pm" class="section level2">
+<h2>Fecha limite es el 31 de agosto a las 11:59pm</h2>
+</div>
+<div id="someter-el-trabajo-en-edmodo-en-.html" class="section level2">
+<h2>Someter el trabajo en Edmodo en .html</h2>
+<hr />
+</div>
+</div>
+<div id="buscar-la-metadata" class="section level1">
+<h1>Buscar la metadata</h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>codes&lt;-<span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span></code></pre></div>
+<hr />
+</div>
+<div id="visualizar-la-meta-data" class="section level1">
+<h1>Visualizar la meta data</h1>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">gt</span>(codes)</span></code></pre></div>
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#sgmswzuuto .gt_table {
+#sesyxjagrp .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -618,7 +634,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#sgmswzuuto .gt_heading {
+#sesyxjagrp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -630,7 +646,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#sgmswzuuto .gt_title {
+#sesyxjagrp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -640,7 +656,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#sgmswzuuto .gt_subtitle {
+#sesyxjagrp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -650,13 +666,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#sgmswzuuto .gt_bottom_border {
+#sesyxjagrp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sgmswzuuto .gt_col_headings {
+#sesyxjagrp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -671,7 +687,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#sgmswzuuto .gt_col_heading {
+#sesyxjagrp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -691,7 +707,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#sgmswzuuto .gt_column_spanner_outer {
+#sesyxjagrp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -703,15 +719,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#sgmswzuuto .gt_column_spanner_outer:first-child {
+#sesyxjagrp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sgmswzuuto .gt_column_spanner_outer:last-child {
+#sesyxjagrp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sgmswzuuto .gt_column_spanner {
+#sesyxjagrp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -723,7 +739,7 @@ div.tocify {
   width: 100%;
 }
 
-#sgmswzuuto .gt_group_heading {
+#sesyxjagrp .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -745,7 +761,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#sgmswzuuto .gt_empty_group_heading {
+#sesyxjagrp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -760,15 +776,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#sgmswzuuto .gt_from_md > :first-child {
+#sesyxjagrp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sgmswzuuto .gt_from_md > :last-child {
+#sesyxjagrp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sgmswzuuto .gt_row {
+#sesyxjagrp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -787,7 +803,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#sgmswzuuto .gt_stub {
+#sesyxjagrp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -799,7 +815,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#sgmswzuuto .gt_summary_row {
+#sesyxjagrp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -809,7 +825,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#sgmswzuuto .gt_first_summary_row {
+#sesyxjagrp .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -819,7 +835,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#sgmswzuuto .gt_grand_summary_row {
+#sesyxjagrp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -829,7 +845,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#sgmswzuuto .gt_first_grand_summary_row {
+#sesyxjagrp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -839,11 +855,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#sgmswzuuto .gt_striped {
+#sesyxjagrp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sgmswzuuto .gt_table_body {
+#sesyxjagrp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -852,7 +868,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#sgmswzuuto .gt_footnotes {
+#sesyxjagrp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -866,13 +882,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#sgmswzuuto .gt_footnote {
+#sesyxjagrp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#sgmswzuuto .gt_sourcenotes {
+#sesyxjagrp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -886,46 +902,46 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#sgmswzuuto .gt_sourcenote {
+#sesyxjagrp .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#sgmswzuuto .gt_left {
+#sesyxjagrp .gt_left {
   text-align: left;
 }
 
-#sgmswzuuto .gt_center {
+#sesyxjagrp .gt_center {
   text-align: center;
 }
 
-#sgmswzuuto .gt_right {
+#sesyxjagrp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sgmswzuuto .gt_font_normal {
+#sesyxjagrp .gt_font_normal {
   font-weight: normal;
 }
 
-#sgmswzuuto .gt_font_bold {
+#sesyxjagrp .gt_font_bold {
   font-weight: bold;
 }
 
-#sgmswzuuto .gt_font_italic {
+#sesyxjagrp .gt_font_italic {
   font-style: italic;
 }
 
-#sgmswzuuto .gt_super {
+#sesyxjagrp .gt_super {
   font-size: 65%;
 }
 
-#sgmswzuuto .gt_footnote_marks {
+#sesyxjagrp .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="sgmswzuuto" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="sesyxjagrp" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1138,19 +1154,81 @@ div.tocify {
   </tbody>
   
   
-</table></div> ***</p>
+</table></div>
+<hr />
 </div>
-<div id="acceso-a-los-datos" class="section level2">
-<h2>Acceso a los datos</h2>
-<p>Para tener acceso a los datos en un archivo .csv usar el siguiente enlace</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>mydat&lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv&#39;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">gt</span>(<span class="kw">head</span>(mydat, <span class="dt">n=</span><span class="dv">10</span>))</span></code></pre></div>
+<div id="buscar-los-datos" class="section level1">
+<h1>Buscar los datos</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>mydat&lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">head</span>(mydat, <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##   iso_code     continent location       date total_cases new_cases
+## 1      ABW North America    Aruba 2020-03-13           2         2
+## 2      ABW North America    Aruba 2020-03-19          NA        NA
+## 3      ABW North America    Aruba 2020-03-20           4         2
+## 4      ABW North America    Aruba 2020-03-21          NA        NA
+##   new_cases_smoothed total_deaths new_deaths new_deaths_smoothed
+## 1                 NA            0          0                  NA
+## 2              0.286           NA         NA                   0
+## 3              0.286            0          0                   0
+## 4              0.286           NA         NA                   0
+##   total_cases_per_million new_cases_per_million new_cases_smoothed_per_million
+## 1                  18.733                18.733                             NA
+## 2                      NA                    NA                          2.676
+## 3                  37.465                18.733                          2.676
+## 4                      NA                    NA                          2.676
+##   total_deaths_per_million new_deaths_per_million
+## 1                        0                      0
+## 2                       NA                     NA
+## 3                        0                      0
+## 4                       NA                     NA
+##   new_deaths_smoothed_per_million new_tests total_tests
+## 1                              NA        NA          NA
+## 2                               0        NA          NA
+## 3                               0        NA          NA
+## 4                               0        NA          NA
+##   total_tests_per_thousand new_tests_per_thousand new_tests_smoothed
+## 1                       NA                     NA                 NA
+## 2                       NA                     NA                 NA
+## 3                       NA                     NA                 NA
+## 4                       NA                     NA                 NA
+##   new_tests_smoothed_per_thousand tests_per_case positive_rate tests_units
+## 1                              NA             NA            NA            
+## 2                              NA             NA            NA            
+## 3                              NA             NA            NA            
+## 4                              NA             NA            NA            
+##   stringency_index population population_density median_age aged_65_older
+## 1             0.00     106766              584.8       41.2        13.085
+## 2            33.33     106766              584.8       41.2        13.085
+## 3            33.33     106766              584.8       41.2        13.085
+## 4            44.44     106766              584.8       41.2        13.085
+##   aged_70_older gdp_per_capita extreme_poverty cardiovasc_death_rate
+## 1         7.452       35973.78              NA                    NA
+## 2         7.452       35973.78              NA                    NA
+## 3         7.452       35973.78              NA                    NA
+## 4         7.452       35973.78              NA                    NA
+##   diabetes_prevalence female_smokers male_smokers handwashing_facilities
+## 1               11.62             NA           NA                     NA
+## 2               11.62             NA           NA                     NA
+## 3               11.62             NA           NA                     NA
+## 4               11.62             NA           NA                     NA
+##   hospital_beds_per_thousand life_expectancy
+## 1                         NA           76.29
+## 2                         NA           76.29
+## 3                         NA           76.29
+## 4                         NA           76.29</code></pre>
+<hr />
+<p>Seleccionar las variables y filtrar los datos para hacer un subgrupo con datos solamente de Puerto Rico</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>mydat<span class="op">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="kw">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="op">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw">filter</span>(location<span class="op">==</span><span class="st">&quot;Puerto Rico&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">3</span>)<span class="op">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="st">  </span><span class="kw">gt</span>()</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#vzejlsfwjg .gt_table {
+#pcvomokgtn .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1175,7 +1253,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#vzejlsfwjg .gt_heading {
+#pcvomokgtn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1187,7 +1265,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#vzejlsfwjg .gt_title {
+#pcvomokgtn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1197,7 +1275,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#vzejlsfwjg .gt_subtitle {
+#pcvomokgtn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1207,13 +1285,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#vzejlsfwjg .gt_bottom_border {
+#pcvomokgtn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vzejlsfwjg .gt_col_headings {
+#pcvomokgtn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1228,7 +1306,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#vzejlsfwjg .gt_col_heading {
+#pcvomokgtn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1248,7 +1326,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#vzejlsfwjg .gt_column_spanner_outer {
+#pcvomokgtn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1260,15 +1338,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#vzejlsfwjg .gt_column_spanner_outer:first-child {
+#pcvomokgtn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vzejlsfwjg .gt_column_spanner_outer:last-child {
+#pcvomokgtn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vzejlsfwjg .gt_column_spanner {
+#pcvomokgtn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1280,7 +1358,7 @@ div.tocify {
   width: 100%;
 }
 
-#vzejlsfwjg .gt_group_heading {
+#pcvomokgtn .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1302,7 +1380,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#vzejlsfwjg .gt_empty_group_heading {
+#pcvomokgtn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1317,15 +1395,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#vzejlsfwjg .gt_from_md > :first-child {
+#pcvomokgtn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vzejlsfwjg .gt_from_md > :last-child {
+#pcvomokgtn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vzejlsfwjg .gt_row {
+#pcvomokgtn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1344,7 +1422,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#vzejlsfwjg .gt_stub {
+#pcvomokgtn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1356,7 +1434,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#vzejlsfwjg .gt_summary_row {
+#pcvomokgtn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1366,7 +1444,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#vzejlsfwjg .gt_first_summary_row {
+#pcvomokgtn .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1376,7 +1454,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#vzejlsfwjg .gt_grand_summary_row {
+#pcvomokgtn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1386,7 +1464,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#vzejlsfwjg .gt_first_grand_summary_row {
+#pcvomokgtn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1396,11 +1474,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#vzejlsfwjg .gt_striped {
+#pcvomokgtn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vzejlsfwjg .gt_table_body {
+#pcvomokgtn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1409,7 +1487,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#vzejlsfwjg .gt_footnotes {
+#pcvomokgtn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1423,13 +1501,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#vzejlsfwjg .gt_footnote {
+#pcvomokgtn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#vzejlsfwjg .gt_sourcenotes {
+#pcvomokgtn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1443,517 +1521,220 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#vzejlsfwjg .gt_sourcenote {
+#pcvomokgtn .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#vzejlsfwjg .gt_left {
+#pcvomokgtn .gt_left {
   text-align: left;
 }
 
-#vzejlsfwjg .gt_center {
+#pcvomokgtn .gt_center {
   text-align: center;
 }
 
-#vzejlsfwjg .gt_right {
+#pcvomokgtn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vzejlsfwjg .gt_font_normal {
+#pcvomokgtn .gt_font_normal {
   font-weight: normal;
 }
 
-#vzejlsfwjg .gt_font_bold {
+#pcvomokgtn .gt_font_bold {
   font-weight: bold;
 }
 
-#vzejlsfwjg .gt_font_italic {
+#pcvomokgtn .gt_font_italic {
   font-style: italic;
 }
 
-#vzejlsfwjg .gt_super {
+#pcvomokgtn .gt_super {
   font-size: 65%;
 }
 
-#vzejlsfwjg .gt_footnote_marks {
+#pcvomokgtn .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="vzejlsfwjg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="pcvomokgtn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">iso_code</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">continent</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">location</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">date</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total_cases</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_cases</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_cases_smoothed</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total_deaths</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_deaths</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_deaths_smoothed</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total_cases_per_million</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_cases_per_million</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_cases_smoothed_per_million</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total_deaths_per_million</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_deaths_per_million</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_deaths_smoothed_per_million</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_tests</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total_tests</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total_tests_per_thousand</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_tests_per_thousand</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_tests_smoothed</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">new_tests_smoothed_per_thousand</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">tests_per_case</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">positive_rate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">tests_units</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">stringency_index</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">population</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">population_density</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">median_age</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">aged_65_older</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">aged_70_older</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">gdp_per_capita</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">extreme_poverty</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">cardiovasc_death_rate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">diabetes_prevalence</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">female_smokers</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">male_smokers</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">handwashing_facilities</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">hospital_beds_per_thousand</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">life_expectancy</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-13</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">18.733</td>
-      <td class="gt_row gt_right">18.733</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
+      <td class="gt_row gt_left">Puerto Rico</td>
+      <td class="gt_row gt_left">2020-03-28</td>
+      <td class="gt_row gt_right">64</td>
+      <td class="gt_row gt_right">64</td>
+      <td class="gt_row gt_right">80.1</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-19</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0.286</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">2.676</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">33.33</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
+      <td class="gt_row gt_left">Puerto Rico</td>
+      <td class="gt_row gt_left">2020-03-29</td>
+      <td class="gt_row gt_right">100</td>
+      <td class="gt_row gt_right">36</td>
+      <td class="gt_row gt_right">80.1</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-20</td>
-      <td class="gt_row gt_right">4</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_right">0.286</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">37.465</td>
-      <td class="gt_row gt_right">18.733</td>
-      <td class="gt_row gt_right">2.676</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">33.33</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-21</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0.286</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">2.676</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">44.44</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-22</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0.286</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">2.676</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">44.44</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-23</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0.286</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">2.676</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">44.44</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-24</td>
-      <td class="gt_row gt_right">12</td>
-      <td class="gt_row gt_right">8</td>
-      <td class="gt_row gt_right">1.429</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">112.395</td>
-      <td class="gt_row gt_right">74.930</td>
-      <td class="gt_row gt_right">13.380</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">44.44</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-25</td>
-      <td class="gt_row gt_right">17</td>
-      <td class="gt_row gt_right">5</td>
-      <td class="gt_row gt_right">2.143</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">159.227</td>
-      <td class="gt_row gt_right">46.831</td>
-      <td class="gt_row gt_right">20.071</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">44.44</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-26</td>
-      <td class="gt_row gt_right">19</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_right">2.429</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">177.959</td>
-      <td class="gt_row gt_right">18.733</td>
-      <td class="gt_row gt_right">22.747</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">44.44</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">ABW</td>
-      <td class="gt_row gt_left">North America</td>
-      <td class="gt_row gt_left">Aruba</td>
-      <td class="gt_row gt_left">2020-03-27</td>
-      <td class="gt_row gt_right">28</td>
-      <td class="gt_row gt_right">9</td>
-      <td class="gt_row gt_right">3.429</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">262.256</td>
-      <td class="gt_row gt_right">84.296</td>
-      <td class="gt_row gt_right">32.113</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_left"></td>
-      <td class="gt_row gt_right">44.44</td>
-      <td class="gt_row gt_right">106766</td>
-      <td class="gt_row gt_right">584.8</td>
-      <td class="gt_row gt_right">41.2</td>
-      <td class="gt_row gt_right">13.085</td>
-      <td class="gt_row gt_right">7.452</td>
-      <td class="gt_row gt_right">35973.78</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">11.62</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">NA</td>
-      <td class="gt_row gt_right">76.29</td>
+      <td class="gt_row gt_left">Puerto Rico</td>
+      <td class="gt_row gt_left">2020-03-30</td>
+      <td class="gt_row gt_right">127</td>
+      <td class="gt_row gt_right">27</td>
+      <td class="gt_row gt_right">80.1</td>
     </tr>
   </tbody>
   
   
 </table></div>
+<hr />
 </div>
+<div id="ver-el-nombre-de-todos-los-paises-incluido-en-el-archivo" class="section level1">
+<h1>Ver el nombre de todos los paises incluido en el archivo</h1>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">unique</span>(mydat<span class="op">$</span>location)  <span class="co"># la función &quot;unique&quot; es para saber los valores únicos un una columna</span></span></code></pre></div>
+<pre><code>##   [1] &quot;Aruba&quot;                            &quot;Afghanistan&quot;                     
+##   [3] &quot;Angola&quot;                           &quot;Anguilla&quot;                        
+##   [5] &quot;Albania&quot;                          &quot;Andorra&quot;                         
+##   [7] &quot;United Arab Emirates&quot;             &quot;Argentina&quot;                       
+##   [9] &quot;Armenia&quot;                          &quot;Antigua and Barbuda&quot;             
+##  [11] &quot;Australia&quot;                        &quot;Austria&quot;                         
+##  [13] &quot;Azerbaijan&quot;                       &quot;Burundi&quot;                         
+##  [15] &quot;Belgium&quot;                          &quot;Benin&quot;                           
+##  [17] &quot;Bonaire Sint Eustatius and Saba&quot;  &quot;Burkina Faso&quot;                    
+##  [19] &quot;Bangladesh&quot;                       &quot;Bulgaria&quot;                        
+##  [21] &quot;Bahrain&quot;                          &quot;Bahamas&quot;                         
+##  [23] &quot;Bosnia and Herzegovina&quot;           &quot;Belarus&quot;                         
+##  [25] &quot;Belize&quot;                           &quot;Bermuda&quot;                         
+##  [27] &quot;Bolivia&quot;                          &quot;Brazil&quot;                          
+##  [29] &quot;Barbados&quot;                         &quot;Brunei&quot;                          
+##  [31] &quot;Bhutan&quot;                           &quot;Botswana&quot;                        
+##  [33] &quot;Central African Republic&quot;         &quot;Canada&quot;                          
+##  [35] &quot;Switzerland&quot;                      &quot;Chile&quot;                           
+##  [37] &quot;China&quot;                            &quot;Cote d&#39;Ivoire&quot;                   
+##  [39] &quot;Cameroon&quot;                         &quot;Democratic Republic of Congo&quot;    
+##  [41] &quot;Congo&quot;                            &quot;Colombia&quot;                        
+##  [43] &quot;Comoros&quot;                          &quot;Cape Verde&quot;                      
+##  [45] &quot;Costa Rica&quot;                       &quot;Cuba&quot;                            
+##  [47] &quot;Curacao&quot;                          &quot;Cayman Islands&quot;                  
+##  [49] &quot;Cyprus&quot;                           &quot;Czech Republic&quot;                  
+##  [51] &quot;Germany&quot;                          &quot;Djibouti&quot;                        
+##  [53] &quot;Dominica&quot;                         &quot;Denmark&quot;                         
+##  [55] &quot;Dominican Republic&quot;               &quot;Algeria&quot;                         
+##  [57] &quot;Ecuador&quot;                          &quot;Egypt&quot;                           
+##  [59] &quot;Eritrea&quot;                          &quot;Western Sahara&quot;                  
+##  [61] &quot;Spain&quot;                            &quot;Estonia&quot;                         
+##  [63] &quot;Ethiopia&quot;                         &quot;Finland&quot;                         
+##  [65] &quot;Fiji&quot;                             &quot;Falkland Islands&quot;                
+##  [67] &quot;France&quot;                           &quot;Faeroe Islands&quot;                  
+##  [69] &quot;Gabon&quot;                            &quot;United Kingdom&quot;                  
+##  [71] &quot;Georgia&quot;                          &quot;Guernsey&quot;                        
+##  [73] &quot;Ghana&quot;                            &quot;Gibraltar&quot;                       
+##  [75] &quot;Guinea&quot;                           &quot;Gambia&quot;                          
+##  [77] &quot;Guinea-Bissau&quot;                    &quot;Equatorial Guinea&quot;               
+##  [79] &quot;Greece&quot;                           &quot;Grenada&quot;                         
+##  [81] &quot;Greenland&quot;                        &quot;Guatemala&quot;                       
+##  [83] &quot;Guam&quot;                             &quot;Guyana&quot;                          
+##  [85] &quot;Hong Kong&quot;                        &quot;Honduras&quot;                        
+##  [87] &quot;Croatia&quot;                          &quot;Haiti&quot;                           
+##  [89] &quot;Hungary&quot;                          &quot;Indonesia&quot;                       
+##  [91] &quot;Isle of Man&quot;                      &quot;India&quot;                           
+##  [93] &quot;Ireland&quot;                          &quot;Iran&quot;                            
+##  [95] &quot;Iraq&quot;                             &quot;Iceland&quot;                         
+##  [97] &quot;Israel&quot;                           &quot;Italy&quot;                           
+##  [99] &quot;Jamaica&quot;                          &quot;Jersey&quot;                          
+## [101] &quot;Jordan&quot;                           &quot;Japan&quot;                           
+## [103] &quot;Kazakhstan&quot;                       &quot;Kenya&quot;                           
+## [105] &quot;Kyrgyzstan&quot;                       &quot;Cambodia&quot;                        
+## [107] &quot;Saint Kitts and Nevis&quot;            &quot;South Korea&quot;                     
+## [109] &quot;Kuwait&quot;                           &quot;Laos&quot;                            
+## [111] &quot;Lebanon&quot;                          &quot;Liberia&quot;                         
+## [113] &quot;Libya&quot;                            &quot;Saint Lucia&quot;                     
+## [115] &quot;Liechtenstein&quot;                    &quot;Sri Lanka&quot;                       
+## [117] &quot;Lesotho&quot;                          &quot;Lithuania&quot;                       
+## [119] &quot;Luxembourg&quot;                       &quot;Latvia&quot;                          
+## [121] &quot;Morocco&quot;                          &quot;Monaco&quot;                          
+## [123] &quot;Moldova&quot;                          &quot;Madagascar&quot;                      
+## [125] &quot;Maldives&quot;                         &quot;Mexico&quot;                          
+## [127] &quot;Macedonia&quot;                        &quot;Mali&quot;                            
+## [129] &quot;Malta&quot;                            &quot;Myanmar&quot;                         
+## [131] &quot;Montenegro&quot;                       &quot;Mongolia&quot;                        
+## [133] &quot;Northern Mariana Islands&quot;         &quot;Mozambique&quot;                      
+## [135] &quot;Mauritania&quot;                       &quot;Montserrat&quot;                      
+## [137] &quot;Mauritius&quot;                        &quot;Malawi&quot;                          
+## [139] &quot;Malaysia&quot;                         &quot;Namibia&quot;                         
+## [141] &quot;New Caledonia&quot;                    &quot;Niger&quot;                           
+## [143] &quot;Nigeria&quot;                          &quot;Nicaragua&quot;                       
+## [145] &quot;Netherlands&quot;                      &quot;Norway&quot;                          
+## [147] &quot;Nepal&quot;                            &quot;New Zealand&quot;                     
+## [149] &quot;Oman&quot;                             &quot;Pakistan&quot;                        
+## [151] &quot;Panama&quot;                           &quot;Peru&quot;                            
+## [153] &quot;Philippines&quot;                      &quot;Papua New Guinea&quot;                
+## [155] &quot;Poland&quot;                           &quot;Puerto Rico&quot;                     
+## [157] &quot;Portugal&quot;                         &quot;Paraguay&quot;                        
+## [159] &quot;Palestine&quot;                        &quot;French Polynesia&quot;                
+## [161] &quot;Qatar&quot;                            &quot;Romania&quot;                         
+## [163] &quot;Russia&quot;                           &quot;Rwanda&quot;                          
+## [165] &quot;Saudi Arabia&quot;                     &quot;Sudan&quot;                           
+## [167] &quot;Senegal&quot;                          &quot;Singapore&quot;                       
+## [169] &quot;Sierra Leone&quot;                     &quot;El Salvador&quot;                     
+## [171] &quot;San Marino&quot;                       &quot;Somalia&quot;                         
+## [173] &quot;Serbia&quot;                           &quot;South Sudan&quot;                     
+## [175] &quot;Sao Tome and Principe&quot;            &quot;Suriname&quot;                        
+## [177] &quot;Slovakia&quot;                         &quot;Slovenia&quot;                        
+## [179] &quot;Sweden&quot;                           &quot;Swaziland&quot;                       
+## [181] &quot;Sint Maarten (Dutch part)&quot;        &quot;Seychelles&quot;                      
+## [183] &quot;Syria&quot;                            &quot;Turks and Caicos Islands&quot;        
+## [185] &quot;Chad&quot;                             &quot;Togo&quot;                            
+## [187] &quot;Thailand&quot;                         &quot;Tajikistan&quot;                      
+## [189] &quot;Timor&quot;                            &quot;Trinidad and Tobago&quot;             
+## [191] &quot;Tunisia&quot;                          &quot;Turkey&quot;                          
+## [193] &quot;Taiwan&quot;                           &quot;Tanzania&quot;                        
+## [195] &quot;Uganda&quot;                           &quot;Ukraine&quot;                         
+## [197] &quot;Uruguay&quot;                          &quot;United States&quot;                   
+## [199] &quot;Uzbekistan&quot;                       &quot;Vatican&quot;                         
+## [201] &quot;Saint Vincent and the Grenadines&quot; &quot;Venezuela&quot;                       
+## [203] &quot;British Virgin Islands&quot;           &quot;United States Virgin Islands&quot;    
+## [205] &quot;Vietnam&quot;                          &quot;Kosovo&quot;                          
+## [207] &quot;Yemen&quot;                            &quot;South Africa&quot;                    
+## [209] &quot;Zambia&quot;                           &quot;Zimbabwe&quot;                        
+## [211] &quot;World&quot;                            &quot;International&quot;</code></pre>
+<hr />
+</div>
+<div id="importante" class="section level1">
+<h1>Importante</h1>
+<p>Favor tener un documento bien organizado y fácil de leer, añadir solamente la información necesaria.</p>
+<hr />
+</div>
+<div id="ejercicio-1" class="section level1">
+<h1>Ejercicio 1</h1>
+<p>(5 puntos)</p>
+<p>Calcula los siguientes parámetros de números de nuevos casos de COVID-19 por día en Puerto Rico - el promedio - la mediana - la moda - la desviación estándar - el error estándar - los cuartiles</p>
+<hr />
+</div>
+<div id="ejercicio-2" class="section level1">
+<h1>Ejercicio 2</h1>
+<p>(5 puntos)</p>
+<p>Selecciona otro país del Caribe y calcula los mismo parámetros</p>
+<hr />
+</div>
+<div id="discusión" class="section level1">
+<h1>Discusión</h1>
+<p>(5 puntos)</p>
+<ol style="list-style-type: lower-alpha">
+<li>Comparando los valores de los dos países considerando la biología de COVID-19 y la diferencias entre estos dos países. Discute porque cree que hay similitud o diferencia en los parámetros.<br />
+</li>
+<li>Qué otros parámetros pudiese ser considerando en los análisis que no fue tomado en cuenta para entender la biología de propagación este virus.</li>
+</ol>
 </div>
 
 

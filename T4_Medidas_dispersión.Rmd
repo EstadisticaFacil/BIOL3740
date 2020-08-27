@@ -357,8 +357,7 @@ sdCol=Col%>%
 Visualizar los datos:  Uds conoce su nivel de colesterol total?  Donde se encuentra en esta distribución?  Se encuentra en el 68%?   Nota que la suma de todos los porcentaje es igual a 100%.  
 
 
-```{r}
-
+```{r out.width = '75%'}
 library(grid)
 library(gtable)
 
@@ -420,7 +419,7 @@ gt(head(Alturas_Humanos))
 Calculamos los promedios y las desviación estándar para añadirlos al gráfico 
 
 
-```{r, 1}
+```{r, out.width = '75%'}
 library(tidyverse)
 promM=Alturas_Humanos%>%
   dplyr::select(Genero, Altura_cm)%>%
@@ -447,7 +446,7 @@ sdH=Alturas_Humanos%>%
 Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.
 
 
-```{r, 2}
+```{r, out.width = '75%'}
 Alturas_Humanos%>%
   dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%

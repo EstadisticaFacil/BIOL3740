@@ -1,0 +1,116 @@
+---
+title: "Ejercicio de Tendencia Central y Dispersión"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+#    theme: simplex
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(gt)
+library(tidyverse)
+```
+
+
+# Este trabajo es para someter.
+## Fecha limite es el 31 de agosto a las 11:59pm
+## Someter el trabajo en Edmodo en .html
+
+
+
+
+***
+
+# Buscar la metadata
+
+```{r}
+codes<-read.csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv')
+```
+
+***
+# Visualizar la meta data
+
+```{r}
+gt(codes)
+```
+
+***
+
+# Buscar los datos
+
+```{r}
+mydat<- read.csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv')
+```
+
+
+
+```{r}
+head(mydat, 4)
+```
+***
+
+Seleccionar las variables y filtrar los datos para hacer un subgrupo con datos solamente de Puerto Rico
+
+```{r}
+library(tidyverse)
+mydat%>%
+  select(location,date, total_cases, new_cases, life_expectancy)%>%
+  filter(location=="Puerto Rico")%>%
+  head(3)%>%
+  gt()
+```
+
+***
+
+# Ver el nombre de todos los paises incluido en el archivo
+
+```{r,}
+unique(mydat$location)  # la función "unique" es para saber los valores únicos un una columna
+```
+***
+# Importante
+
+Favor tener un documento bien organizado y fácil de leer, añadir solamente la información necesaria. 
+
+***
+
+# Ejercicio 1 
+(5 puntos)
+
+Calcula los siguientes parámetros de números de nuevos casos de COVID-19 por día en Puerto Rico
+  - el promedio 
+  - la mediana
+  - la moda 
+  - la desviación estándar 
+  - el error estándar 
+  - los cuartiles
+  
+***
+  
+# Ejercicio 2
+(5 puntos)
+
+Selecciona otro país del Caribe y calcula los mismo parámetros
+
+***
+
+
+# Discusión
+(5 puntos)
+
+a. Comparando los valores de los dos países considerando la biología de COVID-19 y la diferencias entre estos dos países.  Discute porque cree que hay similitud o diferencia en los parámetros.  
+b. Qué otros parámetros pudiese ser considerando en los análisis que no fue tomado en cuenta para entender la biología de propagación este virus.  
+
+
+  
+
+
+
