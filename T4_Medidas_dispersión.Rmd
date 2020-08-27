@@ -280,7 +280,7 @@ CI_a=ggplot(dfa, aes(a))+
   geom_vline(aes(xintercept = 100), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
   geom_vline(aes(xintercept = Limite_superior_a), colour="black")
-#CI_a
+CI_a
 ```
 
 ```{r fig.align='center', warning=TRUE}
@@ -293,7 +293,7 @@ CI_b=ggplot(dfb, aes(b))+
   geom_vline(aes(xintercept = Limite_superior_b), colour="black")
 
 
-#CI_b
+CI_b
 ```
 
 ```{r eval=FALSE, include=FALSE}
@@ -306,7 +306,7 @@ g2
 ```
 
 
-```{r}
+```{r, }
 library(easyGgplot2)
 ggplot2.multiplot(CI_a,CI_b, cols=2)
 ```
