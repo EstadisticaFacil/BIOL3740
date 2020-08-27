@@ -645,15 +645,19 @@ div.tocify {
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>Limite_superior_b</span></code></pre></div>
 <pre><code>## [1] 102.0739</code></pre>
 <p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">ggplot</span>(dfa, <span class="kw">aes</span>(a))<span class="op">+</span></span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>rand_a=<span class="kw">ggplot</span>(dfa, <span class="kw">aes</span>(a))<span class="op">+</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) </span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) </span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a></span>
+<span id="cb23-6"><a href="#cb23-6"></a></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/rand_a.png&quot;</span>)</span></code></pre></div>
+<p><img src="Graficos/rand_a.png" width="80%" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="el-rango" class="section level1">
 <h1>El rango</h1>
-<p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
+<p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriormente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">range</span>(dfa<span class="op">$</span>a)</span></code></pre></div>
 <pre><code>## [1]  67.77126 133.87095</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">range</span>(dfb<span class="op">$</span>b)</span></code></pre></div>
@@ -937,7 +941,7 @@ div.tocify {
 <span id="cb78-7"><a href="#cb78-7"></a></span>
 <span id="cb78-8"><a href="#cb78-8"></a></span>
 <span id="cb78-9"><a href="#cb78-9"></a>CI_b</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a>gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(CI_a,CI_b, <span class="dt">ncol=</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/together-1.png" width="672" /></p>
 <hr />
@@ -1035,7 +1039,7 @@ div.tocify {
 <span id="cb81-33"><a href="#cb81-33"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">295</span>, <span class="dt">y =</span> <span class="fl">.001</span>, <span class="dt">label=</span><span class="st">&quot;2.1%&quot;</span>)<span class="op">+</span></span>
 <span id="cb81-34"><a href="#cb81-34"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">70</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)<span class="op">+</span></span>
 <span id="cb81-35"><a href="#cb81-35"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">330</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-8-1.png" width="60%" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-9-1.png" width="60%" /></p>
 <hr />
 </div>
 <div id="otro-ejemplo-de-los-intevalos-de-confianzas" class="section level2">
@@ -1482,7 +1486,7 @@ div.tocify {
 <span id="cb92-9"><a href="#cb92-9"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
 <span id="cb92-10"><a href="#cb92-10"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="dv">-2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
 <span id="cb92-11"><a href="#cb92-11"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-11-1.png" width="60%" /></p>
+<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-12-1.png" width="60%" /></p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a><span class="co">#ggsave(&quot;Alturas_Mujer.jpeg&quot;) # .png, .tiff, etc</span></span></code></pre></div>
 <hr />
 </div>

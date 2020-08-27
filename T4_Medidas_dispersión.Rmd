@@ -117,17 +117,24 @@ Limite_superior_b
 Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.  
 
 ```{r}
-ggplot(dfa, aes(a))+
+rand_a=ggplot(dfa, aes(a))+
   geom_histogram(fill="blue", alpha=.5)+
   theme(legend.position = "none") 
 
+
+
+ggsave("Graficos/rand_a.png")
+```
+
+```{r, echo=FALSE, fig.align='center', out.width = '80%'}
+knitr::include_graphics("Graficos/rand_a.png")
 ```
 
 ***
 
 # El rango
 
-El rango son los valores mínimo y valor máximo de un conjunto de datos.  Se usa la función **range()**.  Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12.  Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.  
+El rango son los valores mínimo y valor máximo de un conjunto de datos.  Se usa la función **range()**.  Usamos los dos conjuntos de datos ya creado anteriormente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12.  Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.  
 
 
 ```{r, ch5}
