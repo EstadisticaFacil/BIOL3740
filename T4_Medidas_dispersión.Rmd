@@ -275,7 +275,7 @@ Visualizando el intervalos de confianza del promedio. Lo que uno observa es que 
 
 ```{r, ch17}
 CI_a=ggplot(dfa, aes(a))+
-  geom_density(fill="blue", alpha=.5)+
+  geom_histogram(fill="blue", alpha=.5)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept = 100), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
@@ -286,7 +286,7 @@ CI_a
 ```{r fig.align='center', warning=TRUE}
 
 CI_b=ggplot(dfb, aes(b))+
-  geom_density(fill="blue", alpha=.5)+
+  geom_histogram(fill="blue", alpha=.5)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept =mean_b), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_b), colour="black")+
