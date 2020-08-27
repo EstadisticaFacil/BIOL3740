@@ -296,7 +296,7 @@ CI_b=ggplot(dfb, aes(b))+
 #CI_b
 ```
 
-```{r echo=TRUE}
+```{r eval=FALSE, include=FALSE}
 
 library(cowplot)
 grDevices::pdf(NULL)
@@ -306,6 +306,10 @@ g2
 ```
 
 
+```{r}
+library(easyGgplot2)
+ggplot2.multiplot(CI_a,CI_b, cols=2)
+```
 
 
 
@@ -491,6 +495,11 @@ geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour="red")+
 
 ### Ejercicio: Ahora prepara el mismo gráfico para los hombres.  
 
+```{r}
+
+#library(devtools)
+#install_github("kassambara/easyGgplot2")
+```
 
  
 
