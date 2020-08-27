@@ -280,8 +280,14 @@ CI_a=ggplot(dfa, aes(a))+
   geom_vline(aes(xintercept = 100), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
   geom_vline(aes(xintercept = Limite_superior_a), colour="black")
-CI_a
+ggsave("Graficos/CI_a.png")
 ```
+
+
+```{r,  echo=FALSE, fig.align='center', out.width = '60%'}
+knitr::include_graphics("Graficos/CI_a.png")
+```
+
 
 ```{r fig.align='center', warning=TRUE}
 
