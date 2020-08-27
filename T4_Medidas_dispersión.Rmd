@@ -23,7 +23,7 @@ Fecha de la ultima revisión
 Sys.Date()
 ```
 
-```{r}
+```{r, ch1}
 
 
 library(ggplot2)
@@ -54,7 +54,7 @@ Los indices que estaremos estudiando son los siguientes
 Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes.  En el primer conjunto de datos se usa 5000 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.
 
 
-```{r}
+```{r, ch2}
 
 set.seed(8690) # esto es para que los valores se queda igual a cada vez que se corre el analisis
 a=rnorm(5000, 100, 10) # la función para generar datos al azar con una distribución normal
@@ -67,7 +67,7 @@ b=data.frame(b)
 ```
 
 
-```{r, out.width = '60%'}
+```{r, ch3, out.width = '60%'}
 dispersion=ggplot(a, aes(a))+
   geom_density(fill="blue", alpha=.5)+
   geom_density(b, mapping=aes(b,fill="red", alpha=.5 ))+
@@ -76,7 +76,7 @@ dispersion=ggplot(a, aes(a))+
 ggsave("Graficos/dispersion.png")
 ```
 
-```{r echo=FALSE, fig.cap="El proceso de Investigación", out.width = '60%'}
+```{r, ch4, echo=FALSE, fig.cap="El proceso de Investigación", out.width = '60%'}
 knitr::include_graphics("Graficos/dispersion.png")
 ```
 
@@ -88,7 +88,7 @@ knitr::include_graphics("Graficos/dispersion.png")
 El rango son los valores mínimo y valor máximo de un conjunto de datos.  Se usa la función **range()**.  Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12.  Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.  
 
 
-```{r}
+```{r, ch5}
 range(a$a)
 range(b$b)
 
@@ -96,7 +96,7 @@ range(b$b)
 
 Edad de los Estudiantes
 
-```{r}
+```{r, ch6}
 Edad=c(57,50,43,39,54,50,59,49, 57,51,43,47)
 Edad
 Edad_df=data.frame(Edad)
@@ -120,21 +120,21 @@ Los pasos para calcular la varianza son los siguientes
 
 $${ s }^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }$$
 
-```{r}
+```{r, ch7}
 library(tidyverse)
 Data=c(1,2,3,4,5,6)
 Data_df=data.frame(Data)
 Data_df
-Data_df$mean_Data=mean(Data)   # here we add the mean to each row
+Data_df$mean_Data=mean(Data)   # Aqui se añade el promedio a cada fila
 Data_df
 Data_df$Diff=Data_df$Data-Data_df$mean_Data 
-          # calculate the difference between the data and the mean
+          # Calcular la diferencia entre el promedio y el valor x
 sum(Data_df$Diff) # si los valores no se cuadra la suma sera zero.
 
 Data_df$SS=(Data_df$Data-Data_df$mean_Data)^2 # SS para la suma de los cuadrados 
 Data_df
 sum(Data_df$SS)
- #  This is called the Deviation "from the mean"
+ #  Este indice se llama la desviación del promedio que es la suma de los cuadrados
 ```
 ***
 
@@ -142,7 +142,7 @@ sum(Data_df$SS)
 
 Ahora la manera fácil de hacer los análisis, usar la función **var**, y no hay que hacer ninguno de los pasos anteriores.   Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y cada valor.  El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero.   Se usa el variancas cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.   
 
-```{r}
+```{r, ch8}
 var(Data)
 ```
 
@@ -162,7 +162,7 @@ la función **sd**, "standard deviation" es sumamente facil de calcular en R.
 
 
 
-```{r}
+```{r, ch9}
 sd(Data_df$Data)  # deviación estandard
 ```
 
@@ -172,7 +172,7 @@ sd(Data_df$Data)  # deviación estandard
 
 La función básica es **quantile** si lo dejamos sin más instrucción calcula los siguientes probabilidades 0%, 25%, 50% (mediana), 75%, 100%.  Pero si uno quiere los valores que se encuentra en una posición especifica hay que usar **type =1** como se ve en el segundo ejemplo.  Hay 9 tipos de cuantiles con esta función, estos se encuentra definido en RStudio. Añade **quantile** en el artea de **help** y vera las otras alternativas.   
 
-```{r}
+```{r, ch10}
 quantile(Data) # la función básica (0%, 25%, 50% (mediana), 75%, 100%)
 
 # Seleccionar los cuantiles específicos.
@@ -202,7 +202,7 @@ Para explicar estos conceptos mejor visualizamos los datos
 | 15 | 150   |         |             |
 
 Ahora usamos la función **quantile** con el type=1 de calcular los cuartiles y vermos si tenemos los mismos resultados.  
-```{r}
+```{r, ch11}
 
 dat=c(3,19,27,33,52,60,77,87,99,101,122,137,140,142,150)
 
@@ -227,7 +227,7 @@ o usando la varianza, donde la **n** es la cantidad de datos
 $$s_{\overline{x}}=\sqrt{\frac{s^2}{n}}$$
 Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución.  er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice.  Vemos que cuando hay más dispersión el error estándar es más grande.  
 
-```{r}
+```{r, ch12}
 length(a$a)
 es_a= sd(a$a)/sqrt(length(a$a))
 
@@ -248,7 +248,7 @@ $$Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)$$
 
 $$Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)$$
 
-```{r}
+```{r, ch13}
 Limite_inferior_a=mean(a$a)-(es_a*1.96)
 
 Limite_superior_a=mean(a$a)+(es_a*1.96)
@@ -258,7 +258,7 @@ mean(a$a)
 Limite_superior_a
 ```
 
-```{r}
+```{r, ch14}
 Limite_inferior_b=mean(b$b)-(es_b*1.96)
 Limite_superior_b=mean(b$b)+(es_b*1.96)
 
@@ -270,32 +270,30 @@ Limite_superior_b
 
 Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.  
 
-```{r, out.width = '60%'}
+```{r, ch17, echo=TRUE, out.width= '60%'}
 
 CIa=ggplot(a, aes(a))+
   geom_density(fill="blue", alpha=.5)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept = 100), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
-  geom_vline(aes(xintercept = Limite_superior_a), colour="black")+
-  xlim(90,110)
-CIa
+  geom_vline(aes(xintercept = Limite_superior_a), colour="black")
+#CIa
 ```
 
-```{r out.width = '60%'}
+```{r echo=TRUE, out.width = '60%'}
 
 CIb=ggplot(b, aes(b))+
   geom_density(fill="blue", alpha=.5)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept =mean_b), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_b), colour="black")+
-  geom_vline(aes(xintercept = Limite_superior_b), colour="black")+
-  xlim(90,110)
+  geom_vline(aes(xintercept = Limite_superior_b), colour="black")
 
 
-CIb
+#CIb
 
-#grid.arrange(CIa,CIb, ncol=2)
+grid.arrange(CIa,CIb, ncol=2)
 
 ```
 
@@ -428,21 +426,30 @@ Calculamos los promedios y las desviación estándar para añadirlos al gráfico
 
 ```{r, out.width = '60%'}
 library(tidyverse)
+head(Alturas_Humanos)
+length(Alturas_Humanos$Genero)
+
+
+# Parametros para las Mujeres
 promM=Alturas_Humanos%>%
   dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
-  summarise(Mean=mean(Altura_cm))
+  summarise(MeanM=mean(Altura_cm))
 promM 
-promH=Alturas_Humanos%>%
-  dplyr::select(Genero, Altura_cm)%>%
-  filter(Genero=="Hombres")%>%
-  summarise(Mean=mean(Altura_cm))
 
 sdM=Alturas_Humanos%>%
   dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
   summarise(sd=sd(Altura_cm))
-  
+ sdM 
+
+# Parametros para las Hombres
+promH=Alturas_Humanos%>%
+  dplyr::select(Genero, Altura_cm)%>%
+  filter(Genero=="Hombres")%>%
+  summarise(Mean=mean(Altura_cm))
+
+
 sdH=Alturas_Humanos%>%
   dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Hombres")%>%
@@ -458,13 +465,16 @@ Alturas_Humanos%>%
   dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
 ggplot(aes(Altura_cm))+
-  geom_histogram(fill="blue", colour="white",alpha=.5)+
+  geom_histogram(fill="blue", colour="yellow",alpha=.5)+
   theme(legend.position = "none")+
   geom_vline(xintercept=as.numeric(promM), colour="black")+
-  geom_vline(aes(xintercept = as.numeric(promM-sdM)), colour="blue")+
+  geom_vline(aes(xintercept = as.numeric(promM-sdM)), colour="blue", size=1)+
   geom_vline(aes(xintercept = as.numeric(promM+sdM)), colour="blue")+
 geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour="red")+
   geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour="red")
+
+
+#ggsave("Alturas_Mujer.jpeg") # .png, .tiff, etc
 ```
 
 ***

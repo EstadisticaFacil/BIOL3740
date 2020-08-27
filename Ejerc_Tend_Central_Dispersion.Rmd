@@ -61,12 +61,18 @@ Seleccionar las variables y filtrar los datos para hacer un subgrupo con datos s
 
 ```{r}
 library(tidyverse)
+```
+
+
+```{r}
 mydat%>%
   select(location,date, total_cases, new_cases, life_expectancy)%>%
   filter(location=="Puerto Rico")%>%
   head(3)%>%
   gt()
 ```
+
+
 
 ***
 
@@ -100,6 +106,13 @@ Calcula los siguientes parámetros de números de nuevos casos de COVID-19 por d
 
 Selecciona otro país del Caribe y calcula los mismo parámetros
 
+```{r}
+mydat%>%
+  select(location,date, total_cases, new_cases, life_expectancy)%>%
+  filter(location %in% c("Puerto Rico", "Cuba"))%>%
+  head(3)%>%
+  gt()
+```
 ***
 
 
