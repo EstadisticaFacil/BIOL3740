@@ -299,8 +299,13 @@ CI_b=ggplot(dfb, aes(b))+
   geom_vline(aes(xintercept = Limite_superior_b), colour="black")
 
 
-CI_b
+ggsave("Graficos/CI_b.png")
 ```
+
+```{r,  echo=FALSE, fig.align='center', out.width = '60%'}
+knitr::include_graphics("Graficos/CI_b.png")
+```
+
 
 ```{r eval=FALSE, include=FALSE}
 
