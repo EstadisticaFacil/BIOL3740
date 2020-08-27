@@ -601,15 +601,15 @@ div.tocify {
 <p>Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes. En el primer conjunto de datos se usa 5000 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">set.seed</span>(<span class="dv">8690</span>) <span class="co"># esto es para que los valores se queda igual a cada vez que se corre el analisis</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>a=<span class="kw">rnorm</span>(<span class="dv">5000</span>, <span class="dv">100</span>, <span class="dv">10</span>) <span class="co"># la función para generar datos al azar con una distribución normal</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>a=<span class="kw">data.frame</span>(a)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>dfa=<span class="kw">data.frame</span>(a)</span>
 <span id="cb3-4"><a href="#cb3-4"></a> <span class="co"># r is for random</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a> <span class="co"># norm =distribución normal</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a></span>
 <span id="cb3-7"><a href="#cb3-7"></a>b=<span class="kw">rnorm</span>(<span class="dv">500</span>, <span class="dv">100</span>, <span class="dv">30</span>)</span>
-<span id="cb3-8"><a href="#cb3-8"></a>b=<span class="kw">data.frame</span>(b)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dispersion=<span class="kw">ggplot</span>(a, <span class="kw">aes</span>(a))<span class="op">+</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>dfb=<span class="kw">data.frame</span>(b)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dispersion=<span class="kw">ggplot</span>(dfa, <span class="kw">aes</span>(a))<span class="op">+</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="kw">geom_density</span>(b, <span class="dt">mapping=</span><span class="kw">aes</span>(b,<span class="dt">fill=</span><span class="st">&quot;red&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span> ))<span class="op">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="kw">geom_density</span>(dfb, <span class="dt">mapping=</span><span class="kw">aes</span>(b,<span class="dt">fill=</span><span class="st">&quot;red&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span> ))<span class="op">+</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span>, <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>))</span>
 <span id="cb4-6"><a href="#cb4-6"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/dispersion.png&quot;</span>)</span></code></pre></div>
@@ -624,11 +624,15 @@ El proceso de Investigación
 <div id="el-rango" class="section level1">
 <h1>El rango</h1>
 <p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriomente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">range</span>(a<span class="op">$</span>a)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">range</span>(dfa<span class="op">$</span>a)</span></code></pre></div>
 <pre><code>## [1]  67.77126 133.87095</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">range</span>(b<span class="op">$</span>b)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">range</span>(dfb<span class="op">$</span>b)</span></code></pre></div>
 <pre><code>## [1]  -8.410994 190.670576</code></pre>
-<p>Edad de los Estudiantes</p>
+</div>
+<div id="ejemplo-de-la-clase" class="section level1">
+<h1>Ejemplo de la clase</h1>
+<div id="cual-es-el-rango-de-la-edad-de-los-padres-de-los-estudiantes" class="section level2">
+<h2>Cual es el rango de la Edad de los padres de los Estudiantes</h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>Edad=<span class="kw">c</span>(<span class="dv">57</span>,<span class="dv">50</span>,<span class="dv">43</span>,<span class="dv">39</span>,<span class="dv">54</span>,<span class="dv">50</span>,<span class="dv">59</span>,<span class="dv">49</span>, <span class="dv">57</span>,<span class="dv">51</span>,<span class="dv">43</span>,<span class="dv">47</span>)</span>
 <span id="cb9-2"><a href="#cb9-2"></a>Edad</span></code></pre></div>
 <pre><code>##  [1] 57 50 43 39 54 50 59 49 57 51 43 47</code></pre>
@@ -651,6 +655,7 @@ El proceso de Investigación
 <pre><code>## [1] 39 59</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">range</span>(Edad_df<span class="op">$</span>Edad)</span></code></pre></div>
 <pre><code>## [1] 39 59</code></pre>
+</div>
 <div id="la-varianza" class="section level2">
 <h2>La varianza</h2>
 <p>Los pasos para calcular la varianza son los siguientes</p>
@@ -847,11 +852,11 @@ El proceso de Investigación
 <p>La formula de error estándar es la siguiente usando la desviación estándar</p>
 <p><span class="math display">\[s_{\overline{x}}=\frac{s}{\sqrt{n}}\]</span> o usando la varianza, donde la <strong>n</strong> es la cantidad de datos</p>
 <p><span class="math display">\[s_{\overline{x}}=\sqrt{\frac{s^2}{n}}\]</span> Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución. er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice. Vemos que cuando hay más dispersión el error estándar es más grande.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">length</span>(a<span class="op">$</span>a)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">length</span>(dfa<span class="op">$</span>a)</span></code></pre></div>
 <pre><code>## [1] 5000</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>es_a=<span class="st"> </span><span class="kw">sd</span>(a<span class="op">$</span>a)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(a<span class="op">$</span>a))</span>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>es_a=<span class="st"> </span><span class="kw">sd</span>(dfa<span class="op">$</span>a)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(dfa<span class="op">$</span>a))</span>
 <span id="cb42-2"><a href="#cb42-2"></a></span>
-<span id="cb42-3"><a href="#cb42-3"></a>es_b=<span class="st"> </span><span class="kw">sd</span>(b<span class="op">$</span>b)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(b<span class="op">$</span>b))</span>
+<span id="cb42-3"><a href="#cb42-3"></a>es_b=<span class="st"> </span><span class="kw">sd</span>(dfb<span class="op">$</span>b)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(dfb<span class="op">$</span>b))</span>
 <span id="cb42-4"><a href="#cb42-4"></a></span>
 <span id="cb42-5"><a href="#cb42-5"></a>es_a</span></code></pre></div>
 <pre><code>## [1] 0.1405601</code></pre>
@@ -864,28 +869,28 @@ El proceso de Investigación
 <p>Ya que hemos calculado el error estándar podemos calcular la dispersión de los promedios. Esto quiere decir que si uno repite la recolección de datos el promedio tiene un 95% de probabilidad estar en este rango. Uno calcula los limites de la dispersión de los promedios usando la siguientes formulas.</p>
 <p><span class="math display">\[Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)\]</span></p>
 <p><span class="math display">\[Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)\]</span></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>Limite_inferior_a=<span class="kw">mean</span>(a<span class="op">$</span>a)<span class="op">-</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>Limite_inferior_a=<span class="kw">mean</span>(dfa<span class="op">$</span>a)<span class="op">-</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
 <span id="cb46-2"><a href="#cb46-2"></a></span>
-<span id="cb46-3"><a href="#cb46-3"></a>Limite_superior_a=<span class="kw">mean</span>(a<span class="op">$</span>a)<span class="op">+</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb46-3"><a href="#cb46-3"></a>Limite_superior_a=<span class="kw">mean</span>(dfa<span class="op">$</span>a)<span class="op">+</span>(es_a<span class="op">*</span><span class="fl">1.96</span>)</span>
 <span id="cb46-4"><a href="#cb46-4"></a></span>
-<span id="cb46-5"><a href="#cb46-5"></a>Limite_inferior_a</span></code></pre></div>
+<span id="cb46-5"><a href="#cb46-5"></a>Limite_inferior_a <span class="co"># limite inferior 95%</span></span></code></pre></div>
 <pre><code>## [1] 99.73334</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="kw">mean</span>(a<span class="op">$</span>a)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="kw">mean</span>(dfa<span class="op">$</span>a)   <span class="co"># El promedio</span></span></code></pre></div>
 <pre><code>## [1] 100.0088</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>Limite_superior_a</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>Limite_superior_a <span class="co"># el limite superior 95%</span></span></code></pre></div>
 <pre><code>## [1] 100.2843</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>Limite_inferior_b=<span class="kw">mean</span>(b<span class="op">$</span>b)<span class="op">-</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
-<span id="cb52-2"><a href="#cb52-2"></a>Limite_superior_b=<span class="kw">mean</span>(b<span class="op">$</span>b)<span class="op">+</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>Limite_inferior_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)<span class="op">-</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
+<span id="cb52-2"><a href="#cb52-2"></a>Limite_superior_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)<span class="op">+</span>(es_b<span class="op">*</span><span class="fl">1.96</span>)</span>
 <span id="cb52-3"><a href="#cb52-3"></a></span>
-<span id="cb52-4"><a href="#cb52-4"></a>mean_b=<span class="kw">mean</span>(b<span class="op">$</span>b)</span>
+<span id="cb52-4"><a href="#cb52-4"></a>mean_b=<span class="kw">mean</span>(dfb<span class="op">$</span>b)</span>
 <span id="cb52-5"><a href="#cb52-5"></a>Limite_inferior_b</span></code></pre></div>
 <pre><code>## [1] 96.88946</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="kw">mean</span>(b<span class="op">$</span>b)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="kw">mean</span>(dfb<span class="op">$</span>b)</span></code></pre></div>
 <pre><code>## [1] 99.48166</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>Limite_superior_b</span></code></pre></div>
 <pre><code>## [1] 102.0739</code></pre>
 <p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>CI_a=<span class="kw">ggplot</span>(a, <span class="kw">aes</span>(a))<span class="op">+</span></span>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>CI_a=<span class="kw">ggplot</span>(dfa, <span class="kw">aes</span>(a))<span class="op">+</span></span>
 <span id="cb58-2"><a href="#cb58-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
 <span id="cb58-3"><a href="#cb58-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
 <span id="cb58-4"><a href="#cb58-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span>), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
@@ -893,7 +898,7 @@ El proceso de Investigación
 <span id="cb58-6"><a href="#cb58-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_superior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)</span>
 <span id="cb58-7"><a href="#cb58-7"></a>CI_a</span></code></pre></div>
 <p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/ch17-1.png" width="672" /></p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>CI_b=<span class="kw">ggplot</span>(b, <span class="kw">aes</span>(b))<span class="op">+</span></span>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>CI_b=<span class="kw">ggplot</span>(dfb, <span class="kw">aes</span>(b))<span class="op">+</span></span>
 <span id="cb59-2"><a href="#cb59-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
 <span id="cb59-3"><a href="#cb59-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
 <span id="cb59-4"><a href="#cb59-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span>mean_b), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>

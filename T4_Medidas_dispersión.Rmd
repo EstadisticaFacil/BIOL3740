@@ -58,19 +58,19 @@ Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero 
 
 set.seed(8690) # esto es para que los valores se queda igual a cada vez que se corre el analisis
 a=rnorm(5000, 100, 10) # la función para generar datos al azar con una distribución normal
-a=data.frame(a)
+dfa=data.frame(a)
  # r is for random
  # norm =distribución normal
 
 b=rnorm(500, 100, 30)
-b=data.frame(b)
+dfb=data.frame(b)
 ```
 
 
 ```{r, ch3, out.width = '60%'}
-dispersion=ggplot(a, aes(a))+
+dispersion=ggplot(dfa, aes(a))+
   geom_density(fill="blue", alpha=.5)+
-  geom_density(b, mapping=aes(b,fill="red", alpha=.5 ))+
+  geom_density(dfb, mapping=aes(b,fill="red", alpha=.5 ))+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept = 100, colour="red"))
 ggsave("Graficos/dispersion.png")
@@ -89,12 +89,15 @@ El rango son los valores mínimo y valor máximo de un conjunto de datos.  Se us
 
 
 ```{r, ch5}
-range(a$a)
-range(b$b)
+range(dfa$a)
+range(dfb$b)
 
 ```
 
-Edad de los Estudiantes
+# Ejemplo de la clase
+
+## Cual es el rango de la Edad de los padres de los Estudiantes
+
 
 ```{r, ch6}
 Edad=c(57,50,43,39,54,50,59,49, 57,51,43,47)
@@ -228,10 +231,10 @@ $$s_{\overline{x}}=\sqrt{\frac{s^2}{n}}$$
 Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución.  er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice.  Vemos que cuando hay más dispersión el error estándar es más grande.  
 
 ```{r, ch12}
-length(a$a)
-es_a= sd(a$a)/sqrt(length(a$a))
+length(dfa$a)
+es_a= sd(dfa$a)/sqrt(length(dfa$a))
 
-es_b= sd(b$b)/sqrt(length(b$b))
+es_b= sd(dfb$b)/sqrt(length(dfb$b))
 
 es_a
 es_b
@@ -249,29 +252,29 @@ $$Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)$$
 $$Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)$$
 
 ```{r, ch13}
-Limite_inferior_a=mean(a$a)-(es_a*1.96)
+Limite_inferior_a=mean(dfa$a)-(es_a*1.96)
 
-Limite_superior_a=mean(a$a)+(es_a*1.96)
+Limite_superior_a=mean(dfa$a)+(es_a*1.96)
 
-Limite_inferior_a
-mean(a$a)
-Limite_superior_a
+Limite_inferior_a # limite inferior 95%
+mean(dfa$a)   # El promedio
+Limite_superior_a # el limite superior 95%
 ```
 
 ```{r, ch14}
-Limite_inferior_b=mean(b$b)-(es_b*1.96)
-Limite_superior_b=mean(b$b)+(es_b*1.96)
+Limite_inferior_b=mean(dfb$b)-(es_b*1.96)
+Limite_superior_b=mean(dfb$b)+(es_b*1.96)
 
-mean_b=mean(b$b)
+mean_b=mean(dfb$b)
 Limite_inferior_b
-mean(b$b)
+mean(dfb$b)
 Limite_superior_b
 ```
 
 Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.  
 
 ```{r, ch17}
-CI_a=ggplot(a, aes(a))+
+CI_a=ggplot(dfa, aes(a))+
   geom_density(fill="blue", alpha=.5)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept = 100), colour="red")+
@@ -282,7 +285,7 @@ CI_a
 
 ```{r, fig.align='center',  out.width = '60%'}
 
-CI_b=ggplot(b, aes(b))+
+CI_b=ggplot(dfb, aes(b))+
   geom_density(fill="blue", alpha=.5)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept =mean_b), colour="red")+
