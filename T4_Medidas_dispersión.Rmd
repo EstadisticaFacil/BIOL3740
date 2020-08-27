@@ -62,7 +62,7 @@ dfa=data.frame(a)
  # r is for random
  # norm =distribución normal
 
-b=rnorm(500, 100, 30)
+b=rnorm(500, 100, 50)
 dfb=data.frame(b)
 ```
 
@@ -80,55 +80,6 @@ ggsave("Graficos/dispersion.png")
 knitr::include_graphics("Graficos/dispersion.png")
 ```
 
-
-
-```{r}
-length(dfa$a)
-es_a= sd(dfa$a)/sqrt(length(dfa$a))
-
-es_b= sd(dfb$b)/sqrt(length(dfb$b))
-
-es_a
-es_b
-```
-
-
-
-```{r}
-Limite_inferior_a=mean(dfa$a)-(es_a*1.96)
-
-Limite_superior_a=mean(dfa$a)+(es_a*1.96)
-
-Limite_inferior_a # limite inferior 95%
-mean(dfa$a)   # El promedio
-Limite_superior_a # el limite superior 95%
-```
-
-```{r}
-Limite_inferior_b=mean(dfb$b)-(es_b*1.96)
-Limite_superior_b=mean(dfb$b)+(es_b*1.96)
-
-mean_b=mean(dfb$b)
-Limite_inferior_b
-mean(dfb$b)
-Limite_superior_b
-```
-
-Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.  
-
-```{r}
-rand_a=ggplot(dfa, aes(a))+
-  geom_histogram(fill="blue", alpha=.5)+
-  theme(legend.position = "none") 
-
-
-
-ggsave("Graficos/rand_a.png")
-```
-
-```{r, echo=FALSE, fig.align='center', out.width = '80%'}
-knitr::include_graphics("Graficos/rand_a.png")
-```
 
 ***
 
