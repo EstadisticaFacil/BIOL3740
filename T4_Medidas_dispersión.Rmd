@@ -119,10 +119,7 @@ Visualizando el intervalos de confianza del promedio. Lo que uno observa es que 
 ```{r}
 ggplot(dfa, aes(a))+
   geom_density(fill="blue", alpha=.5)+
-  theme(legend.position = "none") +
-  geom_vline(aes(xintercept = 100), colour="red")+
-  geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
-  geom_vline(aes(xintercept = Limite_superior_a), colour="black")
+  theme(legend.position = "none") 
 
 ```
 
