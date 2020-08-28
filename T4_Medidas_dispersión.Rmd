@@ -275,7 +275,7 @@ Visualizando el intervalos de confianza del promedio. Lo que uno observa es que 
 
 ```{r, ch17}
 CI_a=ggplot(dfa, aes(a))+
-  geom_density(fill="blue", alpha=.5)+
+  geom_histogram(fill="blue", colour="white",alpha=.5, binwidth = 2)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept = 100), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
@@ -292,7 +292,7 @@ knitr::include_graphics("Graficos/CI_a.png")
 ```{r fig.align='center', warning=TRUE}
 
 CI_b=ggplot(dfb, aes(b))+
-  geom_histogram(fill="blue", alpha=.5)+
+  geom_histogram(fill="blue", colour="white", alpha=.5, binwidth = 5)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept =mean_b), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_b), colour="black")+
@@ -412,7 +412,7 @@ labels.comb<- c(0, 79, "\n-3sd", 118, "\n-2sd", 157, "\n-1sd", 197, "\npromedio"
                  235,  "\n+1sd",274, "\n+2sd", 314,"\n+3sd", 379)
 Col%>%
 ggplot(aes(Col))+
-  geom_density(fill="blue", colour="white",alpha=.5)+
+  geom_histogram(fill="blue", colour="white",alpha=.5, binwidth = 5)+
   theme(legend.position = "none")+
   geom_vline(xintercept=as.numeric(promCol), colour="black")+
   geom_vline(aes(xintercept = as.numeric(promCol-sdCol)), colour="blue")+
