@@ -275,7 +275,7 @@ Visualizando el intervalos de confianza del promedio. Lo que uno observa es que 
 
 ```{r, ch17}
 CI_a=ggplot(dfa, aes(a))+
-  geom_histogram(fill="blue", alpha=.5)+
+  geom_density(fill="blue", alpha=.5)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept = 100), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
@@ -518,7 +518,7 @@ geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour="red")+
 
 ### Ejercicio: Ahora prepara el mismo gráfico para los hombres.  
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 
 #library(devtools)
 #install_github("kassambara/easyGgplot2")

@@ -886,7 +886,7 @@ div.tocify {
 <pre><code>## [1] 103.4564</code></pre>
 <p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>CI_a=<span class="kw">ggplot</span>(dfa, <span class="kw">aes</span>(a))<span class="op">+</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>)<span class="op">+</span></span>
 <span id="cb58-3"><a href="#cb58-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></span>
 <span id="cb58-4"><a href="#cb58-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span>), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
 <span id="cb58-5"><a href="#cb58-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> Limite_inferior_a), <span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
@@ -1455,8 +1455,6 @@ div.tocify {
 </div>
 <div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level3">
 <h3>Ejercicio: Ahora prepara el mismo gráfico para los hombres.</h3>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="co">#library(devtools)</span></span>
-<span id="cb75-2"><a href="#cb75-2"></a><span class="co">#install_github(&quot;kassambara/easyGgplot2&quot;)</span></span></code></pre></div>
 </div>
 </div>
 </div>
