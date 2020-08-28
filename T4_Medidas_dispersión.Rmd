@@ -318,10 +318,20 @@ g2
 
 
 ```{r, }
-library(easyGgplot2)
-ggplot2.multiplot(CI_a,CI_b, cols=2)
+#library(easyGgplot2)
+#ggplot2.multiplot(CI_b.png,CI_b.png, cols=2)
 ```
 
+```{r}
+library(png)
+library(grid)
+library(gridExtra)
+
+plot1 <- readPNG('Graficos/CI_a.png')
+plot2 <- readPNG('Graficos/CI_a.png')
+
+grid.arrange(rasterGrob(plot1),rasterGrob(plot2),ncol=2)
+```
 
 
 
