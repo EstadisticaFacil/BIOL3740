@@ -274,18 +274,18 @@ Limite_superior_b
 Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.  
 
 ```{r, ch17}
-CI_a=ggplot(dfa, aes(a))+
+CI_a1=ggplot(dfa, aes(a))+
   geom_histogram(fill="blue", colour="white",alpha=.5, binwidth = 2)+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept = 100), colour="red")+
   geom_vline(aes(xintercept = Limite_inferior_a), colour="black")+
   geom_vline(aes(xintercept = Limite_superior_a), colour="black")
-ggsave("Graficos/CI_a.png")
+ggsave("Graficos/CI_a1.png")
 ```
 
 
 ```{r,  echo=FALSE, fig.align='center', out.width = '60%'}
-knitr::include_graphics("Graficos/CI_a.png")
+knitr::include_graphics("Graficos/CI_a1.png")
 ```
 
 
