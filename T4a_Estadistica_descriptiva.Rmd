@@ -5,7 +5,7 @@ output:
     css: tutorial.css
     fig_caption: yes
     highlight: pygments
-    theme: simplex
+#    theme: simplex
     toc: yes
     toc_float: yes
 
@@ -64,14 +64,14 @@ En los módulos de "Medidas de Tendencias Central" y "Medidas de Dispersión" se
 
 Los indices que veremos aquí incluye
 
-  1. el promedio
-  2. la mediana
-  3. la desviación estándar
-  4. el mínimo
-  5. el máximo
-  6. los cuantiles
-  7. el indice Oblicuidad (en ingles "Skewness")
-  8. el indice de Curtosis ( en ingles "Kurtosis")
+  - el promedio
+  - la mediana
+  - la desviación estándar
+  - el mínimo
+  - el máximo
+  - los cuantiles
+  - el indice Oblicuidad (en ingles "Skewness")
+  - el indice de Curtosis ( en ingles "Kurtosis")
 
 Aqui creamos un conjunto de datos de 100 datos con un promedio de 100 y una desviación estándar de 10. Nota que la función **set.seed()** es que el comienzo la simulación sea igual a cada vez que se corre, y se el mismo resultado.  Esto se añade solamente cuando uno esta enseñando y que los resultados sean consistente.   
  
@@ -90,7 +90,14 @@ max(x$x) # el valor máximo
 
 ***
 
-## Ejercicio práctico
+
+  1. Quiz 1:
+    Usa R y construye una lista o data frame con los siguientes datos y calcular el promedio.  Contesta en **MSTeam Form** con tu respuesta.  4, 6, 7, 3, 9, 10, 19, 52. 
+    
+***
+
+
+## Analisis con muchos datos
 
 Usaremos datos que hemos visto en el modulo Producción de Gráficos.  
 
@@ -108,7 +115,7 @@ Se necesita el archivo **DownloadFestival** que se encuentra debajo la pestaña 
 ```{r, warning=FALSE}
 
 library(readr)
-DownloadFestival_No_Outlier_ <- read_csv("Data_files_csv/DownloadFestival(No Outlier).csv")
+DownloadFestival_No_Outlier_ <- read_csv("Data_files_csv/DownloadFestival_No_Outlier.csv")
 
 
 
@@ -117,14 +124,14 @@ head(dlf) # ver las 3 primeras filas
 
 ```
 
-# NA: removerlo del análisis
+# Remover los **NA** del análisis
 
 Con los datos de los participantes al festival como en algunos diá hay participantes donde no tienen los datos se añadió un **NA**, es estos casos para que el análisis se logra hay que añadir a la función **na.rm=TRUE** que significa remover la **NA**.  Para dar se cuenta remueve **na.rm=TRUE** cuando se usa el "día2" o "día3", y evalúa que pasa.  
  
 ```{r summary stat 2, warning=FALSE}
 
 
-mean(dlf$day2, na.rm=TRUE)
+mean(dlf$day2, na.rm=TRUE) # na.rm= na remove
 sd(dlf$day1, na.rm=TRUE)
 min(dlf$day1, na.rm=TRUE)
 max(dlf$day1, na.rm=TRUE)
@@ -132,6 +139,11 @@ median(dlf$day1, na.rm=TRUE)
 
 
 ```
+
+***
+
+2. Quiz 2:
+    Usa R y construye una lista o data frame con los siguientes datos y calcular el promedio.  Contesta en **MSTeam Form** con tu respuesta.  Aquí son la cantidad de publicaciones por mis hermanos académicos, cual es la mediana, 1, NA, 1, 2, 73, 6, 2, 78, 16, 16, 87, 5. 
 
 ***
 
@@ -145,15 +157,24 @@ Nota que hay muchos más parámetros calculados.  Aparece en la lista en orden e
 
 round(stat.desc(dlf[,c("day1")]), 3)  
 ```
-***
-# Resumen Estadistico de multiples variables
 
-Si uno quiere evaluar múltiples variables continua todas juntos se puede usar la misma función pero el componente **c()** se añade todas las variables de interes.   
+***
+
+# Resumen Estadístico de multiples variables
+
+Si uno quiere evaluar múltiples variables continua todas juntos se puede usar la misma función pero el componente **c()** se añade todas las variables de interés.   
 
 ```{r}
 
-round(stat.desc(dlf[,c("day1","day2","day3")], basic=FALSE,norm=TRUE), digits=3) # reduce a 3 valores significativo
+round(stat.desc(dlf[,c("day1","day2","day3")], basic=FALSE,norm=TRUE), digits=3) # round reduce a 3 valores significativo
 ```
+
+***
+
+3. Quiz 3:
+    Usa R usa el data.frame **Camas_Hospital** en el paquete **ggversa**.  Contesta en **MSTeam Form** con tu respuesta.  Selecciona la variable **Camas** que representa el "número de camas por 1000 personas en muchos países.  ¿Cual es el rango?  
+
+
  
 ***
  
@@ -371,4 +392,23 @@ e1071::kurtosis(laplace$value) # curtosis de distribución Laplace, exceso de co
 
 ```
 
+Quiz 1
 
+```{r}
+x=c(4, 6, 7, 3, 9, 10, 19, 52)
+mean(x)
+```
+
+Quiz 2
+
+```{r}
+y=c(1, NA, 1, 2, 73, 6, 2, 78, 16, 16, 87, 5)
+median(y, na.rm=TRUE)
+```
+
+Quiz 3
+
+```{r}
+library(ggversa)
+round(stat.desc(Camas_Hospital[,c("Camas")]), 3)
+```
