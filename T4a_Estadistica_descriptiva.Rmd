@@ -76,12 +76,12 @@ Los indices que veremos aquí incluye
 Aqui creamos un conjunto de datos de 100 datos con un promedio de 100 y una desviación estándar de 10. Nota que la función **set.seed()** es que el comienzo la simulación sea igual a cada vez que se corre, y se el mismo resultado.  Esto se añade solamente cuando uno esta enseñando y que los resultados sean consistente.   
  
 ```{r summary stat, warning=FALSE}
-set.seed(765765)
+
+
 
 x=rnorm(100, 100, 10) #(100 datos, x=100, sd=10)
 x=data.frame(x)
-
-
+head(x)
 mean(x$x) # el promedio
 sd(x$x) # la desviación estándar
 min(x$x) # el valor mínimo
@@ -115,7 +115,7 @@ Se necesita el archivo **DownloadFestival** que se encuentra debajo la pestaña 
 ```{r, warning=FALSE}
 
 library(readr)
-DownloadFestival_No_Outlier_ <- read_csv("Data_files_csv/DownloadFestival_No_Outlier.csv")
+DownloadFestival_No_Outlier <- read_csv("Data_files_csv/DownloadFestival_No_Outlier.csv")
 
 
 
@@ -129,6 +129,7 @@ head(dlf) # ver las 3 primeras filas
 Con los datos de los participantes al festival como en algunos diá hay participantes donde no tienen los datos se añadió un **NA**, es estos casos para que el análisis se logra hay que añadir a la función **na.rm=TRUE** que significa remover la **NA**.  Para dar se cuenta remueve **na.rm=TRUE** cuando se usa el "día2" o "día3", y evalúa que pasa.  
  
 ```{r summary stat 2, warning=FALSE}
+
 
 
 mean(dlf$day2, na.rm=TRUE) # na.rm= na remove
@@ -154,6 +155,9 @@ Para ver los estadístico mencionado arriba (menos la moda, oblicuidad y curtosi
 Nota que hay muchos más parámetros calculados.  Aparece en la lista en orden el valor mínimo: min(), el valor máximo: max(), la mediana: median, el promedio: mean, la desviación estándar; std.dev entre otros.  
 
 ```{r summary function, warning=FALSE}
+stat.desc(dlf[,c("day1")])
+
+
 
 round(stat.desc(dlf[,c("day1")]), 3)  
 ```
@@ -172,7 +176,7 @@ round(stat.desc(dlf[,c("day1","day2","day3")], basic=FALSE,norm=TRUE), digits=3)
 ***
 
 3. Quiz 3:
-    Usa R usa el data.frame **Camas_Hospital** en el paquete **ggversa**.  Contesta en **MSTeam Form** con tu respuesta.  Selecciona la variable **Camas** que representa el "número de camas por 1000 personas en muchos países.  ¿Cual es el rango?  
+    Usa R usa el data.frame **Camas_Hospital** en el paquete **ggversa**.  Contesta en **MSTeam Form** con tu respuesta.  Selecciona la variable **Camas** que representa el "número de camas por 1000 personas en muchos países.  ¿Cual es el rango (range)?  
 
 
  
@@ -246,7 +250,7 @@ library(tidyverse)
 df2=df%>%
   gather(key = "Distribución", value="valor", c(normal, obliz, obldr))
 head(df2, n=3)
-# unique(df2$Distribución) # función  para ver el nombre de las variables en la columna Distribución
+# unique(df2$Distribución) # función para ver el nombre de las variables en la columna Distribución
 ```
 
 Ahora vamos a ver los datos un gráfico. Vemos que la distribución de los datos son muy diferentes, tanto la distribución en azul y verde están sesgado a unos valores y tienen una cola o valores más grande (azul) o pequeños (verde) que si fuese una distribución normal.   
