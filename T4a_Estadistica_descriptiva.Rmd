@@ -119,7 +119,7 @@ DownloadFestival_No_Outlier <- read_csv("Data_files_csv/DownloadFestival_No_Outl
 
 
 
-dlf=DownloadFestival_No_Outlier_  #usamos un nombre más corta para facilitar  
+dlf=DownloadFestival_No_Outlier  #usamos un nombre más corta para facilitar  
 head(dlf) # ver las 3 primeras filas
 
 ```
@@ -159,7 +159,7 @@ stat.desc(dlf[,c("day1")])
 
 
 
-round(stat.desc(dlf[,c("day1")]), 3)  
+round(stat.desc(dlf[,c("day1")]), 2)  
 ```
 
 ***
@@ -398,21 +398,34 @@ e1071::kurtosis(laplace$value) # curtosis de distribución Laplace, exceso de co
 
 Quiz 1
 
-```{r}
+```{r, echo=FALSE, eval=FALSE}
 x=c(4, 6, 7, 3, 9, 10, 19, 52)
 mean(x)
 ```
 
 Quiz 2
 
-```{r}
+```{r, echo=FALSE, eval=FALSE}
 y=c(1, NA, 1, 2, 73, 6, 2, 78, 16, 16, 87, 5)
 median(y, na.rm=TRUE)
 ```
 
 Quiz 3
 
-```{r}
+```{r, echo=FALSE, eval=FALSE}
 library(ggversa)
+head(Camas_Hospital)
+
 round(stat.desc(Camas_Hospital[,c("Camas")]), 3)
+
+library(e1071)
+
+skewness(Camas_Hospital$Camas)
+kurtosis((Camas_Hospital$Camas))
 ```
+
+```{r, echo=FALSE, eval=FALSE}
+ggplot(Camas_Hospital, aes(Camas))+
+  geom_histogram()
+```
+
