@@ -99,6 +99,10 @@ Calcula los siguientes parámetros de números de nuevos casos de COVID-19 por d
   - el error estándar 
   - los cuartiles
   
+  
+  
+
+  
 ***
   
 # Ejercicio 2
@@ -116,14 +120,77 @@ mydat%>%
 ***
 
 
+```{r}
+library(statip)
+mydat%>%
+  select(location,date, total_cases, new_cases, life_expectancy)%>%
+  filter(location %in% c("Puerto Rico", "Cuba", "Jamaica", "Costa Rica", "Haiti", "Bahamas"))%>%
+  group_by(location)%>%
+  summarize(mean=mean(new_cases),
+            median=median(new_cases), 
+            de=sd(new_cases),
+            cuar=quantile(new_cases),
+            es=sd(new_cases/sqrt(length(new_cases))))%>%
+  gt()
+```
+
+
+
+```{r}
+mydat%>%
+  select(location,date, total_cases, new_cases, life_expectancy)%>%
+  filter(location %in% c("Puerto Rico", "Cuba", "Jamaica", "Costa Rica", "Haiti", "Bahamas"))%>%
+  group_by(location)%>%
+  summarize(mode=statip::mfv(new_cases))
+
+
+```
+
+
+
+
+Pregunta 1 (5 puntos)
+
+promedio
+mediana
+moda
+desviación estándar
+error estándar
+cuantiles
+
+
+Pregunta 2 (5 puntos)
+
+promedio
+mediana
+moda
+desviación estándar
+error estándar
+cuantiles
+
+
 # Discusión
 (5 puntos)
 
-a. Comparando los valores de los dos países considerando la biología de COVID-19 y la diferencias entre estos dos países.  Discute porque cree que hay similitud o diferencia en los parámetros.  
-b. Qué otros parámetros pudiese ser considerando en los análisis que no fue tomado en cuenta para entender la biología de propagación este virus.  
+a. Comparando los valores de los dos países considerando la biología de COVID-19 y la diferencias entre estos dos países.  Discute porque cree que hay similitud o diferencia en los parámetros. (4 puntos)
 
 
+Discutir y comparar los datos.  En el pais #1 se observó un promedio diario de xx casos nuevos por dia y el pais #2 se observo tal cantidad.  La mediana en los dos paises eran similar/ diferentes ....., de los valores.  Tanto la desviación estándar y los cuantiles eran más grande en el pais 1 versus el pais 2.   
+
+Uno ejemplos de temas que se podría haber tomado encuenta
+
+- tamaño poblacional
+- la fecha de cuando comenzó la pandemía en los países
+- la conexión social 
+- la reacción del gobierno a imponer o no componentes sociales a reducir el proceso de contagiosos
+- la densidad poblacional
+- la educación de la población
+- el respeto de la población a las reglas impuesto del gobierno
+- la importancia del turismo exterior y interior (movimiento espacial de la gente). 
   
 
+b. Qué otros parámetros pudiese ser considerando en los análisis que no fue tomado en cuenta para entender la biología de propagación este virus.  (1 puntos)
 
+
+Aquí se debería haber discutido componentes sociales que podría explicar como se propaga el virus.  
 
