@@ -257,9 +257,9 @@ NOTA Aquí los tres pasos para producir un gráfico con el promedio de cada grup
 library(ggplot2)
 ggplot(fosforo, aes(x=Lagos, y=Cant_Fos, colour=Lagos))+
 geom_point()+
-  stat_summary(fun.y = mean, geom = "point", size = 2, 
+  stat_summary(fun = mean, geom = "point", size = 2, 
                     aes(group=1), colour = "black")+
-  stat_summary(fun.y = mean, geom = "line", size = 1, 
+  stat_summary(fun = mean, geom = "line", size = 1, 
              aes(group=1), colour = "red")
 
 ```
@@ -344,8 +344,7 @@ Con los datos de la concentración de fósforo en las plantas de tres lagos, la 
 ```{r levene test}
 
 library(car)
-leveneTest(fosforo$Cant_Fos, fosforo$Lagos, 
-           center = median)
+leveneTest(fosforo$Cant_Fos, fosforo$Lagos)
 ```
 
 ***
@@ -473,8 +472,7 @@ line +geom_point()+
 ```{r hero levene test, eval=FALSE, echo=FALSE}
 
 library(car)
-leveneTest(Superhero$injury, Superhero$heronames, 
-           center = median)
+car::leveneTest(Superhero$injury, Superhero$heronames)
 ```
 
 ```{r grafica3, eval=FALSE, echo=FALSE} 

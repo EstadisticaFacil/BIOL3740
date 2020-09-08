@@ -543,6 +543,9 @@ div.tocify {
     <li>
       <a href="Ejerc_Tend_Central_Dispersion.html">Ejercicio de Tendendia Central y Dispersión</a>
     </li>
+    <li>
+      <a href="Exam1.html">Preguntas para examen num. 1</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -578,7 +581,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2020-08-31&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2020-09-08&quot;</span></code></pre></div>
 <style type="text/css">
 div.sourceCode pre.chunkout {
   background: white;
@@ -771,9 +774,9 @@ div.sourceCode pre.chunkout {
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="kw">ggplot</span>(fosforo, <span class="kw">aes</span>(<span class="dt">x=</span>Lagos, <span class="dt">y=</span>Cant_Fos, <span class="dt">colour=</span>Lagos))<span class="op">+</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>, </span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>, </span>
 <span id="cb13-5"><a href="#cb13-5"></a>                    <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
 <span id="cb13-7"><a href="#cb13-7"></a>             <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/graficar%20fosforo-1.png" width="672" /> *** ## Un gráfico con el intervalo de confianza.</p>
 <p>Crear un data frame de los resultados con el package “Rmisc” y la función “summarySE”. Los pasos son identificar la variable continua (en este caso measurevar=“Cant_Fos”) y la variable discreta que identifica los grupos groupvars=“Lagos”. Esto crea un nuevo data frame con los datos resumidos que incluye, el nombre de los grupos (Lagos), el tamaño de muestra (N), el promedio de la variable (Cant_Fos), la desviación estandar (sd), el error estandar (se) y intervalo de confianza (ci).</p>
@@ -871,8 +874,7 @@ div.sourceCode pre.chunkout {
 <p>La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <a href="https://en.wikipedia.org/wiki/Levene%27s_test" class="uri">https://en.wikipedia.org/wiki/Levene%27s_test</a>. Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función <strong>leveneTest()</strong>. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula. <span style="color: red;">Si no cumple con el supuesto de igualdad de varianza ver el modulo de Kruskal-Wallis para una alternariva como evaluar los datos</span></p>
 <p>Con los datos de la concentración de fósforo en las plantas de tres lagos, la prueba de Levene da un resultado de p &gt; 0.21, lo que indica que no hay evidencia que la varianza es distinta entre los grupos, por consecuencia se acepta la hipótesis nula.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">library</span>(car)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">leveneTest</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos, </span>
-<span id="cb18-3"><a href="#cb18-3"></a>           <span class="dt">center =</span> median)</span></code></pre></div>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">leveneTest</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:levene test">
 <col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
@@ -953,9 +955,9 @@ div.sourceCode pre.chunkout {
 <span id="cb26-8"><a href="#cb26-8"></a>## </span>
 <span id="cb26-9"><a href="#cb26-9"></a>## Linear Hypotheses:</span>
 <span id="cb26-10"><a href="#cb26-10"></a>##                         Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951   0.0045 ** </span>
-<span id="cb26-12"><a href="#cb26-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830   &lt;0.001 ***</span>
-<span id="cb26-13"><a href="#cb26-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703   &lt;0.001 ***</span>
+<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00451 ** </span>
+<span id="cb26-12"><a href="#cb26-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***</span>
+<span id="cb26-13"><a href="#cb26-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***</span>
 <span id="cb26-14"><a href="#cb26-14"></a>## ---</span>
 <span id="cb26-15"><a href="#cb26-15"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
 <span id="cb26-16"><a href="#cb26-16"></a>## (Adjusted p values reported -- single-step method)</span></code></pre></div>

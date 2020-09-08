@@ -182,19 +182,21 @@ gridExtra::grid.arrange(a,b, ncol=2)
 
 ## Distribución cuando los tres valores de tendencia centrtal no son iguales. 
 
-En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande.  Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro.  
+En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande.  Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro. 
 
 ```{r, rbeta}
 dfb= round(rbeta(100000, 3,1, ncp = 0),3)
 dfb=data.frame(dfb)
-
+head(dfb)
 dfbb= round(rbeta(100000, 1,3, ncp = 0),3)
 dfbb=data.frame(dfbb)
 
 ```
 
 
-```{r, visual beta}
+1. ¿Cual es la linea de promedio, moda y mediana en cada gráfico? 
+
+```{r, visual beta, warning=FALSE, message=FALSE }
 mea=mean(dfb$dfb)
 med=median(dfb$dfb)
 mod=statip::mfv(dfb$dfb)
@@ -211,14 +213,14 @@ c=ggplot(dfb, aes(dfb))+
   geom_vline(aes(xintercept = mod), colour="green")+
   theme(legend.position = "none")
 
-d=ggplot(dfbb, aes(dfbb ))+
+d=ggplot(dfbb, aes(dfbb))+
   geom_histogram(fill="orange", colour="white")+
   geom_vline(aes(xintercept = meab), colour="red")+
   geom_vline(aes(xintercept = medb), colour="blue")+
   geom_vline(aes(xintercept = modb), colour="green")+
   theme(legend.position = "none")
 
-grid.arrange(c,d, ncol=2)
+grid.arrange(c,d, ncol=1)
 ```
 
 
