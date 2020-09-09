@@ -186,44 +186,45 @@ En estas distribuciones uno observa que hay exceso de vaslores pequeños o grand
 
 ```{r, rbeta, warning=FALSE, message=FALSE }
 library(tidyverse)
-dfb=round(rbeta(10000, 3,1, ncp = 0),3)
-dfb=tibble(dfb)
-head(dfb)
-dfbb= round(rbeta(10000, 1,3, ncp = 0),3)
-dfbb=tibble(dfbb)
-
+dfb1=round(rbeta(10000, 3,1, ncp = 0),3)
+dfb1=tibble(dfb1)
+#head(dfb)
+df2= round(rbeta(10000, 1,3, ncp = 0),3)
+df2=tibble(df2)
+#head(df2)
 ```
 
 
 1. ¿Cual es la linea de promedio, moda y mediana en cada gráfico? 
 
 ```{r, visual beta, warning=FALSE, message=FALSE }
-mea=mean(dfb$dfb)
-med=median(dfb$dfb)
-mod=statip::mfv(dfb$dfb)
+mea=mean(dfb1$dfb1)
+med=median(dfb1$dfb1)
+mod=statip::mfv(dfb1$dfb1)
 
-meab=mean(dfbb$dfbb)
-medb=median(dfbb$dfbb)
-modb=statip::mfv(dfbb$dfbb)
+meab=mean(df2$df2)
+medb=median(df2$df2)
+modb=statip::mfv(df2$df2)
 
 
-c=ggplot(dfb, aes(dfb))+
+c=ggplot(dfb1, aes(dfb1))+
   geom_histogram(fill="orange", colour="white")+
   geom_vline(aes(xintercept = mea), colour="red")+
   geom_vline(aes(xintercept = med), colour="blue")+
   geom_vline(aes(xintercept = mod), colour="green")+
   theme(legend.position = "none")
 
-d=ggplot(dfbb, aes(dfbb))+
+d=ggplot(df2, aes(df2))+
   geom_histogram(fill="orange", colour="white")+
   geom_vline(aes(xintercept = meab), colour="red")+
   geom_vline(aes(xintercept = medb), colour="blue")+
   geom_vline(aes(xintercept = modb), colour="green")+
   theme(legend.position = "none")
 
-
+c
+d
 library(ggpubr)
-ggarrange(c,d, nrow=2, ncol=1)
+#ggarrange(c,d, nrow=2, ncol=1)
 
 library(grid)
 #grid.arrange(rectGrob(), rectGrob())
