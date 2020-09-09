@@ -27,7 +27,7 @@ library(gridExtra) # Un paquete para organizar las figuras de ggplot2
 library(statip)
 ```
 
-
+***
 
 # Medida de tendencia central
 
@@ -38,6 +38,7 @@ La medidas de tendencia central se llaman así, porque el valor indica la distri
   - La moda
 
 
+***
 
 # Calculando el promedio
 
@@ -53,6 +54,7 @@ mean(x)
 
 ```
 
+***
 
 ## Cuando el promedio no esta localizado en el centro
 
@@ -64,6 +66,8 @@ sum(x)/length(x)
 mean(x)
 
 ```
+
+***
 
 ## La mediana
 
@@ -96,6 +100,7 @@ b
 median(b)
 ```
 
+***
 
 ## La moda
 
@@ -116,10 +121,10 @@ Ya pueden ahora usar la **mfv** para encontrar la moda de conjunto de datos. Lo 
 
 
 ```{r, mode}
-statip::mfv(b)
+statip::mfv1(b)
 ```
 
-
+***
 
 # Cuando es que el promedio, mediana y moda son iguales?
 
@@ -179,6 +184,7 @@ b=ggplot(df1, aes(df))+
 gridExtra::grid.arrange(a,b, ncol=1)
 ```
 
+***
 
 ## Distribución cuando los tres valores de tendencia centrtal no son iguales. 
 
@@ -241,6 +247,8 @@ library(grid)
 #multiplot(c,d, ncol=2)
 ```
 
+
+***
 
 # Variables binomial
 

@@ -586,6 +586,7 @@ div.tocify {
 <span id="cb2-2"><a href="#cb2-2"></a><span class="kw">library</span>(Hmisc)</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="kw">library</span>(gridExtra) <span class="co"># Un paquete para organizar las figuras de ggplot2</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="kw">library</span>(statip)</span></code></pre></div>
+<hr />
 <div id="medida-de-tendencia-central" class="section level1">
 <h1>Medida de tendencia central</h1>
 <p>La medidas de tendencia central se llaman así, porque el valor indica la distribución de los datos y los indices tiende a estar en <strong>el centro</strong> de la distribución. Hay por lo menos 16 tipos de medidas de tendencias centrales <a href="https://en.wikipedia.org/wiki/Central_tendency" class="uri">https://en.wikipedia.org/wiki/Central_tendency</a>. En este curso estaremos solamente mencionado 3 de estas medidas.</p>
@@ -594,6 +595,7 @@ div.tocify {
 <li>La mediana</li>
 <li>La moda</li>
 </ul>
+<hr />
 </div>
 <div id="calculando-el-promedio" class="section level1">
 <h1>Calculando el promedio</h1>
@@ -603,6 +605,7 @@ div.tocify {
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="kw">mean</span>(x)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
+<hr />
 <div id="cuando-el-promedio-no-esta-localizado-en-el-centro" class="section level2">
 <h2>Cuando el promedio no esta localizado en el centro</h2>
 <p>Digamos que yo tengo la cantidad de semillas producida por 11 plantas, la primera no produjo semillas, la segunda 2 semillas y subsiguientemente hasta la ultima que tuvo una producción de 1000 semillas. Nota que en este caso el promedio no se encuentra el el centro de los datos, por consecuencia NO es un buen indicador de la tendencia central de los datos. Cuando esto ocurre uno no debería usar el promedio para describir la tendencia central de los datos.</p>
@@ -611,6 +614,7 @@ div.tocify {
 <pre><code>## [1] 95</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">mean</span>(x)</span></code></pre></div>
 <pre><code>## [1] 95</code></pre>
+<hr />
 </div>
 <div id="la-mediana" class="section level2">
 <h2>La mediana</h2>
@@ -637,6 +641,7 @@ div.tocify {
 ## [13]   247 43626</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">median</span>(b)</span></code></pre></div>
 <pre><code>## [1] 6.5</code></pre>
+<hr />
 </div>
 <div id="la-moda" class="section level2">
 <h2>La moda</h2>
@@ -644,8 +649,9 @@ div.tocify {
 <p>Activar el packete</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">library</span>(statip)</span></code></pre></div>
 <p>Ya pueden ahora usar la <strong>mfv</strong> para encontrar la moda de conjunto de datos. Lo que vemos es que el valor de <strong>7</strong> es el más comun en la lista de datos.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>statip<span class="op">::</span><span class="kw">mfv</span>(b)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>statip<span class="op">::</span><span class="kw">mfv1</span>(b)</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
+<hr />
 </div>
 </div>
 <div id="cuando-es-que-el-promedio-mediana-y-moda-son-iguales" class="section level1">
@@ -654,128 +660,115 @@ div.tocify {
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>df=<span class="kw">rpois</span>(<span class="dv">10000</span>, <span class="dv">100</span>)</span>
 <span id="cb20-2"><a href="#cb20-2"></a>df1=<span class="kw">data.frame</span>(df)</span>
 <span id="cb20-3"><a href="#cb20-3"></a><span class="kw">head</span>(df1, <span class="dt">n=</span><span class="dv">2</span>)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:rpois">
-<col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">df</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">101</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">97</td></tr>
-</table>
-
+<pre><code>##    df
+## 1 111
+## 2 105</code></pre>
 <p>Lo que uno observa es que los tres valores son muy cercano uno del otro.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">library</span>(statip)</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="co">#mean(df1$df)</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="co">#median(df1$df)</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="co">#statip::mfv(df1$df)</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">library</span>(statip)</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="co">#mean(df1$df)</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="co">#median(df1$df)</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="co">#statip::mfv(df1$df)</span></span></code></pre></div>
 <p>Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda). En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta. Se observa que los tres valores son cerca del centro.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>pro=<span class="kw">mean</span>(df1<span class="op">$</span>df)</span>
-<span id="cb22-2"><a href="#cb22-2"></a>med=<span class="kw">median</span>(df1<span class="op">$</span>df)</span>
-<span id="cb22-3"><a href="#cb22-3"></a>mod=statip<span class="op">::</span><span class="kw">mfv</span>(df1<span class="op">$</span>df)</span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>a=<span class="kw">ggplot</span>(df1, <span class="kw">aes</span>(df))<span class="op">+</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">1</span>)<span class="op">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> pro), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> med), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mod), <span class="dt">colour=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb23-7"><a href="#cb23-7"></a>a</span></code></pre></div>
-<p><img src="T3_Medidas_tendencia_central_files/figure-html/g1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>b=<span class="kw">ggplot</span>(df1, <span class="kw">aes</span>(df))<span class="op">+</span></span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>pro=<span class="kw">mean</span>(df1<span class="op">$</span>df)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>med=<span class="kw">median</span>(df1<span class="op">$</span>df)</span>
+<span id="cb23-3"><a href="#cb23-3"></a>mod=statip<span class="op">::</span><span class="kw">mfv</span>(df1<span class="op">$</span>df)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>a=<span class="kw">ggplot</span>(df1, <span class="kw">aes</span>(df))<span class="op">+</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">1</span>)<span class="op">+</span></span>
 <span id="cb24-3"><a href="#cb24-3"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> pro), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
 <span id="cb24-4"><a href="#cb24-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> med), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
 <span id="cb24-5"><a href="#cb24-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mod), <span class="dt">colour=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></span>
-<span id="cb24-6"><a href="#cb24-6"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">94</span>,<span class="dv">105</span>)<span class="op">+</span></span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(a,b, <span class="dt">ncol=</span><span class="dv">1</span>)</span></code></pre></div>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb24-7"><a href="#cb24-7"></a>a</span></code></pre></div>
+<p><img src="T3_Medidas_tendencia_central_files/figure-html/g1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>b=<span class="kw">ggplot</span>(df1, <span class="kw">aes</span>(df))<span class="op">+</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">1</span>)<span class="op">+</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> pro), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> med), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mod), <span class="dt">colour=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">94</span>,<span class="dv">105</span>)<span class="op">+</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(a,b, <span class="dt">ncol=</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="T3_Medidas_tendencia_central_files/figure-html/together-1.png" width="672" /></p>
+<hr />
 <div id="distribución-cuando-los-tres-valores-de-tendencia-centrtal-no-son-iguales." class="section level2">
 <h2>Distribución cuando los tres valores de tendencia centrtal no son iguales.</h2>
 <p>En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande. Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb26-2"><a href="#cb26-2"></a>dfb1=<span class="kw">round</span>(<span class="kw">rbeta</span>(<span class="dv">10000</span>, <span class="dv">3</span>,<span class="dv">1</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),<span class="dv">3</span>)</span>
-<span id="cb26-3"><a href="#cb26-3"></a>dfb1=<span class="kw">tibble</span>(dfb1)</span>
-<span id="cb26-4"><a href="#cb26-4"></a><span class="co">#head(dfb)</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a>df2=<span class="st"> </span><span class="kw">round</span>(<span class="kw">rbeta</span>(<span class="dv">10000</span>, <span class="dv">1</span>,<span class="dv">3</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),<span class="dv">3</span>)</span>
-<span id="cb26-6"><a href="#cb26-6"></a>df2=<span class="kw">tibble</span>(df2)</span>
-<span id="cb26-7"><a href="#cb26-7"></a><span class="co">#head(df2)</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb27-2"><a href="#cb27-2"></a>dfb1=<span class="kw">round</span>(<span class="kw">rbeta</span>(<span class="dv">10000</span>, <span class="dv">3</span>,<span class="dv">1</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),<span class="dv">3</span>)</span>
+<span id="cb27-3"><a href="#cb27-3"></a>dfb1=<span class="kw">tibble</span>(dfb1)</span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="co">#head(dfb)</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>df2=<span class="st"> </span><span class="kw">round</span>(<span class="kw">rbeta</span>(<span class="dv">10000</span>, <span class="dv">1</span>,<span class="dv">3</span>, <span class="dt">ncp =</span> <span class="dv">0</span>),<span class="dv">3</span>)</span>
+<span id="cb27-6"><a href="#cb27-6"></a>df2=<span class="kw">tibble</span>(df2)</span>
+<span id="cb27-7"><a href="#cb27-7"></a><span class="co">#head(df2)</span></span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li>¿Cual es la linea de promedio, moda y mediana en cada gráfico?</li>
 </ol>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>mea=<span class="kw">mean</span>(dfb1<span class="op">$</span>dfb1)</span>
-<span id="cb27-2"><a href="#cb27-2"></a>med=<span class="kw">median</span>(dfb1<span class="op">$</span>dfb1)</span>
-<span id="cb27-3"><a href="#cb27-3"></a>mod=statip<span class="op">::</span><span class="kw">mfv1</span>(dfb1<span class="op">$</span>dfb1)</span>
-<span id="cb27-4"><a href="#cb27-4"></a></span>
-<span id="cb27-5"><a href="#cb27-5"></a>meab=<span class="kw">mean</span>(df2<span class="op">$</span>df2)</span>
-<span id="cb27-6"><a href="#cb27-6"></a>medb=<span class="kw">median</span>(df2<span class="op">$</span>df2)</span>
-<span id="cb27-7"><a href="#cb27-7"></a>modb=statip<span class="op">::</span><span class="kw">mfv1</span>(df2<span class="op">$</span>df2)</span>
-<span id="cb27-8"><a href="#cb27-8"></a></span>
-<span id="cb27-9"><a href="#cb27-9"></a></span>
-<span id="cb27-10"><a href="#cb27-10"></a>SesgadoDerecho=<span class="kw">ggplot</span>(dfb1, <span class="kw">aes</span>(dfb1))<span class="op">+</span></span>
-<span id="cb27-11"><a href="#cb27-11"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></span>
-<span id="cb27-12"><a href="#cb27-12"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mea), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb27-13"><a href="#cb27-13"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> med), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb27-14"><a href="#cb27-14"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mod), <span class="dt">colour=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></span>
-<span id="cb27-15"><a href="#cb27-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb27-16"><a href="#cb27-16"></a></span>
-<span id="cb27-17"><a href="#cb27-17"></a>SesgadoIzquierda=<span class="kw">ggplot</span>(df2, <span class="kw">aes</span>(df2))<span class="op">+</span></span>
-<span id="cb27-18"><a href="#cb27-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></span>
-<span id="cb27-19"><a href="#cb27-19"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> meab), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb27-20"><a href="#cb27-20"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> medb), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb27-21"><a href="#cb27-21"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> modb), <span class="dt">colour=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></span>
-<span id="cb27-22"><a href="#cb27-22"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb27-23"><a href="#cb27-23"></a></span>
-<span id="cb27-24"><a href="#cb27-24"></a>SesgadoDerecho</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>mea=<span class="kw">mean</span>(dfb1<span class="op">$</span>dfb1)</span>
+<span id="cb28-2"><a href="#cb28-2"></a>med=<span class="kw">median</span>(dfb1<span class="op">$</span>dfb1)</span>
+<span id="cb28-3"><a href="#cb28-3"></a>mod=statip<span class="op">::</span><span class="kw">mfv1</span>(dfb1<span class="op">$</span>dfb1)</span>
+<span id="cb28-4"><a href="#cb28-4"></a></span>
+<span id="cb28-5"><a href="#cb28-5"></a>meab=<span class="kw">mean</span>(df2<span class="op">$</span>df2)</span>
+<span id="cb28-6"><a href="#cb28-6"></a>medb=<span class="kw">median</span>(df2<span class="op">$</span>df2)</span>
+<span id="cb28-7"><a href="#cb28-7"></a>modb=statip<span class="op">::</span><span class="kw">mfv1</span>(df2<span class="op">$</span>df2)</span>
+<span id="cb28-8"><a href="#cb28-8"></a></span>
+<span id="cb28-9"><a href="#cb28-9"></a></span>
+<span id="cb28-10"><a href="#cb28-10"></a>SesgadoDerecho=<span class="kw">ggplot</span>(dfb1, <span class="kw">aes</span>(dfb1))<span class="op">+</span></span>
+<span id="cb28-11"><a href="#cb28-11"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></span>
+<span id="cb28-12"><a href="#cb28-12"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mea), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> med), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb28-14"><a href="#cb28-14"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mod), <span class="dt">colour=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></span>
+<span id="cb28-15"><a href="#cb28-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb28-16"><a href="#cb28-16"></a></span>
+<span id="cb28-17"><a href="#cb28-17"></a>SesgadoIzquierda=<span class="kw">ggplot</span>(df2, <span class="kw">aes</span>(df2))<span class="op">+</span></span>
+<span id="cb28-18"><a href="#cb28-18"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></span>
+<span id="cb28-19"><a href="#cb28-19"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> meab), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb28-20"><a href="#cb28-20"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> medb), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb28-21"><a href="#cb28-21"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> modb), <span class="dt">colour=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></span>
+<span id="cb28-22"><a href="#cb28-22"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb28-23"><a href="#cb28-23"></a></span>
+<span id="cb28-24"><a href="#cb28-24"></a>SesgadoDerecho</span></code></pre></div>
 <p><img src="T3_Medidas_tendencia_central_files/figure-html/visual%20beta-1.png" width="672" /></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>SesgadoIzquierda</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>SesgadoIzquierda</span></code></pre></div>
 <p><img src="T3_Medidas_tendencia_central_files/figure-html/visual%20beta-2.png" width="672" /></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">library</span>(ggpubr)</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="co">#ggarrange(c,d, nrow=2, ncol=1)</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="kw">library</span>(grid)</span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="co">#grid.arrange(rectGrob(), rectGrob())</span></span>
-<span id="cb29-6"><a href="#cb29-6"></a><span class="co">#marrangeGrob(c,d, nrow=2)</span></span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">#c</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="co">#d</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="co">#library(scater)</span></span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="co">#multiplot(c,d, ncol=2)</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="kw">library</span>(ggpubr)</span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="co">#ggarrange(c,d, nrow=2, ncol=1)</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="kw">library</span>(grid)</span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="co">#grid.arrange(rectGrob(), rectGrob())</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="co">#marrangeGrob(c,d, nrow=2)</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#c</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="co">#d</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="co">#library(scater)</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="co">#multiplot(c,d, ncol=2)</span></span></code></pre></div>
+<hr />
 </div>
 </div>
 <div id="variables-binomial" class="section level1">
 <h1>Variables binomial</h1>
 <p>En el siguiente ejemplo podemos ver claramente que las medidas de tendencias central no son adecuada.</p>
 <p>Primero producimos un conjunto de datos que tiene solamente dos alternativas 0 y 1. Para facilitar los datos e imaginar lo que quiere decir estos datos que cuando es un 0 la persona no tiene hijos y cuando es un 1 tiene hijos.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>dfBin=<span class="kw">replicate</span>(<span class="dv">10000</span>,<span class="kw">rbinom</span>(<span class="kw">length</span>(.<span class="dv">6</span>), <span class="dt">size=</span><span class="dv">1</span>,<span class="dt">prob =</span><span class="fl">0.6</span>))</span>
-<span id="cb31-2"><a href="#cb31-2"></a>dfBin=<span class="kw">data.frame</span>(dfBin)</span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="kw">head</span>(dfBin)</span></code></pre></div>
-<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:rbinom">
-<col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">dfBin</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
-</table>
- Ahora vamos a producir el gráfico. Lo que uno observa es que el promedio esta en el centro cerca de .6, pero no hay ningún dato cerca del promedio. El promedio no representa la “tendencia central” de la distribución.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>mea=<span class="kw">mean</span>(dfBin<span class="op">$</span>dfBin)</span>
-<span id="cb32-2"><a href="#cb32-2"></a>med=<span class="kw">median</span>(dfBin<span class="op">$</span>dfBin)</span>
-<span id="cb32-3"><a href="#cb32-3"></a>mod=<span class="kw">mfv</span>(dfBin<span class="op">$</span>dfBin)</span>
-<span id="cb32-4"><a href="#cb32-4"></a>mea</span></code></pre></div>
-<pre><code>## [1] 0.6059</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">ggplot</span>(dfBin, <span class="kw">aes</span>(dfBin))<span class="op">+</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mea), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> med), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb34-5"><a href="#cb34-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mod), <span class="dt">colour=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></span>
-<span id="cb34-6"><a href="#cb34-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>dfBin=<span class="kw">replicate</span>(<span class="dv">10000</span>,<span class="kw">rbinom</span>(<span class="kw">length</span>(.<span class="dv">6</span>), <span class="dt">size=</span><span class="dv">1</span>,<span class="dt">prob =</span><span class="fl">0.6</span>))</span>
+<span id="cb32-2"><a href="#cb32-2"></a>dfBin=<span class="kw">data.frame</span>(dfBin)</span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="kw">head</span>(dfBin)</span></code></pre></div>
+<pre><code>##   dfBin
+## 1     0
+## 2     1
+## 3     0
+## 4     0
+## 5     1
+## 6     0</code></pre>
+<p>Ahora vamos a producir el gráfico. Lo que uno observa es que el promedio esta en el centro cerca de .6, pero no hay ningún dato cerca del promedio. El promedio no representa la “tendencia central” de la distribución.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>mea=<span class="kw">mean</span>(dfBin<span class="op">$</span>dfBin)</span>
+<span id="cb34-2"><a href="#cb34-2"></a>med=<span class="kw">median</span>(dfBin<span class="op">$</span>dfBin)</span>
+<span id="cb34-3"><a href="#cb34-3"></a>mod=<span class="kw">mfv</span>(dfBin<span class="op">$</span>dfBin)</span>
+<span id="cb34-4"><a href="#cb34-4"></a>mea</span></code></pre></div>
+<pre><code>## [1] 0.6042</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">ggplot</span>(dfBin, <span class="kw">aes</span>(dfBin))<span class="op">+</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mea), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> med), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb36-5"><a href="#cb36-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> mod), <span class="dt">colour=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="T3_Medidas_tendencia_central_files/figure-html/visual%20rbinomial-1.png" width="672" /></p>
 </div>
 
