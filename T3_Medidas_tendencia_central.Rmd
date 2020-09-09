@@ -200,29 +200,30 @@ df2=tibble(df2)
 ```{r, visual beta, warning=FALSE, message=FALSE }
 mea=mean(dfb1$dfb1)
 med=median(dfb1$dfb1)
-mod=statip::mfv(dfb1$dfb1)
+mod=statip::mfv1(dfb1$dfb1)
 
 meab=mean(df2$df2)
 medb=median(df2$df2)
-modb=statip::mfv(df2$df2)
+modb=statip::mfv1(df2$df2)
 
 
-c=ggplot(dfb1, aes(dfb1))+
+SesgadoDerecho=ggplot(dfb1, aes(dfb1))+
   geom_histogram(fill="orange", colour="white")+
   geom_vline(aes(xintercept = mea), colour="red")+
   geom_vline(aes(xintercept = med), colour="blue")+
   geom_vline(aes(xintercept = mod), colour="green")+
   theme(legend.position = "none")
 
-d=ggplot(df2, aes(df2))+
+SesgadoIzquierda=ggplot(df2, aes(df2))+
   geom_histogram(fill="orange", colour="white")+
   geom_vline(aes(xintercept = meab), colour="red")+
   geom_vline(aes(xintercept = medb), colour="blue")+
   geom_vline(aes(xintercept = modb), colour="green")+
   theme(legend.position = "none")
 
-c
-d
+SesgadoDerecho
+SesgadoIzquierda
+
 library(ggpubr)
 #ggarrange(c,d, nrow=2, ncol=1)
 
