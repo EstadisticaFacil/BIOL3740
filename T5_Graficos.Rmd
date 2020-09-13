@@ -103,10 +103,12 @@ names(Exam_Anxiety)
 El primer gráfico es crear una regresión lineal. Para producir una regresión lineal se necesita dos variables con datos continuos Seleccionamos dos variables continua, el nivel de ansiedad y la nota del examen. Para hacer una regresión lineal que sigue el patrón de y=mx+b, hay que utilizar la función geom_smooth(method=lm), la función **lm** se refiere a modelo lineal o ingles **linear model**. Nota que con el programa ggplot2, hay que primero identificar de donde proviene los datos **Exam_Anxiety**, despúes que hay identificar cual; son las variables de este archivo que se van a utilizar, en este caso **y=Exam, x=Anxiety**.  El proximoo paso es determinar que tipo de gráfico, y este caso es una regresión lineal.     
 
 
+
 ```{r linear graph}
 
 ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety))+ 
-  geom_smooth(method=lm, colour="red")
+  geom_smooth(method=lm, colour="red")+
+  geom_point()# linear model
 
 ```
 ***
@@ -120,9 +122,9 @@ En este archivo utilizaremos un archivo que se usa muy comúnmente en los análi
 tail(iris)
 
 
-ggplot(iris, aes(Sepal.Length, Petal.Length)) +
+ggplot(iris, aes(Sepal.Length, Petal.Length,colour=Species)) +
       geom_point(aes(col = Species)) +
-  geom_smooth(method="lm", colour="aquamarine") +  
+  geom_smooth(method="lm") +  
   labs(x = "El largo del Sepalo", y = "El largo del Petalo")+
   ggtitle("Basic geom_point and linear regression")+
   rlt_theme
@@ -132,10 +134,10 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 ***
 ## Salvar graficos con **ggsave**
 
-Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de **MS Power Point**.  Se usa la función **ggsave()**.  se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .tiff, .pdf). Nota que se salvo en un archivo que se llama "Graficos", es no es necesario, si no lo incluye sera salvado en el proyecto. 
+Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de **MS Power Point**.  Se usa la función **ggsave()**.  se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .pdf). Nota que se salvo en un archivo que se llama "Graficos", es no es necesario, si no lo incluye sera salvado en el proyecto. 
 
 ```{r}
-ggsave("Graficos/Iris_size.png")
+ggsave("Iris_size.png") # .tiff, .png, .jpeg, .jpg
 
 ```
 
