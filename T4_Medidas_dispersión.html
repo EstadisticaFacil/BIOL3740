@@ -1007,7 +1007,6 @@ div.tocify {
 <span id="cb63-24"><a href="#cb63-24"></a><span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">330</span>, <span class="dt">y =</span> <span class="fl">.0005</span>, <span class="dt">label=</span><span class="st">&quot;0.1%&quot;</span>)</span>
 <span id="cb63-25"><a href="#cb63-25"></a></span>
 <span id="cb63-26"><a href="#cb63-26"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/Colesterol_Inter.png&quot;</span>)</span></code></pre></div>
-<p><img src="Graficos/Colesterol_Inter.png" width="60%" /></p>
 <hr />
 </div>
 <div id="otro-ejemplo-de-los-intevalos-de-confianzas" class="section level2">
@@ -1445,7 +1444,7 @@ div.tocify {
 <span id="cb73-10"><a href="#cb73-10"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Hombres&quot;</span>)<span class="op">%&gt;%</span></span>
 <span id="cb73-11"><a href="#cb73-11"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sd=</span><span class="kw">sd</span>(Altura_cm))</span></code></pre></div>
 <p>Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>Alturas_Humanos<span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>Alturas_Mujer=Alturas_Humanos<span class="op">%&gt;%</span></span>
 <span id="cb74-2"><a href="#cb74-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Genero, Altura_cm)<span class="op">%&gt;%</span></span>
 <span id="cb74-3"><a href="#cb74-3"></a><span class="st">  </span><span class="kw">filter</span>(Genero<span class="op">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="op">%&gt;%</span></span>
 <span id="cb74-4"><a href="#cb74-4"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(Altura_cm))<span class="op">+</span></span>
@@ -1455,9 +1454,11 @@ div.tocify {
 <span id="cb74-8"><a href="#cb74-8"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">-</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>)<span class="op">+</span></span>
 <span id="cb74-9"><a href="#cb74-9"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
 <span id="cb74-10"><a href="#cb74-10"></a><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="dv">-2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb74-11"><a href="#cb74-11"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="T4_Medidas_dispersio%CC%81n_files/figure-html/unnamed-chunk-14-1.png" width="60%" /></p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="co">#ggsave(&quot;Alturas_Mujer.jpeg&quot;) # .png, .tiff, etc</span></span></code></pre></div>
+<span id="cb74-11"><a href="#cb74-11"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(promM<span class="op">+</span><span class="dv">2</span><span class="op">*</span>sdM)), <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb74-12"><a href="#cb74-12"></a></span>
+<span id="cb74-13"><a href="#cb74-13"></a></span>
+<span id="cb74-14"><a href="#cb74-14"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/Alturas_Mujer.jpeg&quot;</span>) <span class="co"># .png, .tiff, etc</span></span></code></pre></div>
+<p><img src="Graficos/Alturas_Mujer.jpeg" width="60%" /></p>
 <hr />
 </div>
 <div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level3">

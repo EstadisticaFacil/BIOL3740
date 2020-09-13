@@ -444,9 +444,7 @@ ggsave("Graficos/Colesterol_Inter.png")
 
 ```
 
-```{r echo=FALSE, out.width= "60%"}
-knitr::include_graphics("Graficos/Colesterol_Inter.png")
-```
+
 
 
 ***
@@ -513,7 +511,7 @@ Aquí el gráfico de la distribución de los datos con un histograma, y promedio
 
 
 ```{r, out.width = '60%'}
-Alturas_Humanos%>%
+Alturas_Mujer=Alturas_Humanos%>%
   dplyr::select(Genero, Altura_cm)%>%
   filter(Genero=="Mujer")%>%
 ggplot(aes(Altura_cm))+
@@ -526,8 +524,14 @@ geom_vline(aes(xintercept = as.numeric(promM-2*sdM)), colour="red")+
   geom_vline(aes(xintercept = as.numeric(promM+2*sdM)), colour="red")
 
 
-#ggsave("Alturas_Mujer.jpeg") # .png, .tiff, etc
+ggsave("Graficos/Alturas_Mujer.jpeg") # .png, .tiff, etc
 ```
+
+
+```{r echo=FALSE, out.width= "60%"}
+knitr::include_graphics("Graficos/Alturas_Mujer.jpeg")
+```
+
 
 ***
 
