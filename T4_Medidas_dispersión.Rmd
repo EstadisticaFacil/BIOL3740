@@ -309,11 +309,11 @@ knitr::include_graphics("Graficos/CI_b.png")
 
 ```{r eval=FALSE, include=FALSE}
 
-library(cowplot)
-grDevices::pdf(NULL)
-g2<-plot_grid(CI_a,CI_b)
-grDevices::dev.off()
-g2
+#library(cowplot)
+#grDevices::pdf(NULL)
+#g2<-plot_grid(CI_a,CI_b)
+#grDevices::dev.off()
+#g2
 ```
 
 
@@ -323,14 +323,14 @@ g2
 ```
 
 ```{r eval=FALSE, include=FALSE}
-library(png)
-library(grid)
-library(gridExtra)
+#library(png)
+#library(grid)
+#library(gridExtra)
 
-plot1 <- readPNG('Graficos/CI_a.png')
-plot2 <- readPNG('Graficos/CI_a.png')
+#plot1 <- readPNG('Graficos/CI_a.png')
+#plot2 <- readPNG('Graficos/CI_a.png')
 
-grid.arrange(rasterGrob(plot1),rasterGrob(plot2),ncol=2)
+#grid.arrange(rasterGrob(plot1),rasterGrob(plot2),ncol=2)
 ```
 
 
@@ -393,6 +393,7 @@ sdCol=Col%>%
 
 ```
 
+***
 
 Visualizar los datos:  Uds conoce su nivel de colesterol total?  Donde se encuentra en esta distribución?  Se encuentra en el 68%?   Nota que la suma de todos los porcentaje es igual a 100%.  
 
@@ -448,6 +449,9 @@ geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour="orange")+
 Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website. Están disponible en debajo la pestaña de "Los Datos".  <https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data>
 
 
+
+
+***
 
 ```{r}
 library(readr)
