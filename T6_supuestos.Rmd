@@ -37,6 +37,8 @@ Fecha de la ultima revisión
 Sys.Date()
 ```
 
+***
+
 Añadir los siguientes paquetes, Nota la función de **pacman** para intalar los paquetes.  Esta función hace que si le falta un paquete en la lista lo va a instalar sin hacer tener que hacerlo uno por uno. Si quiere hacerlo separado remueve el **#** antes de **install.packages** 
 
 
@@ -66,30 +68,33 @@ library(psych)   # Procedures for Psychological, psychometric and Personality Re
 
 ```
 
+***
 
 # ¿Qué son supuestos?
 
 La ética en estadística basado en comprobar y cumplir con los supuestos de las pruebas estadística que se usan.  La gran mayoría de las pruebas tradicional asume que los datos cumple con algunos supuestos, algunos típicos son. 
 
-1. distribución normal
-2. igualdad de varianza
-3. simetría de las distribuciones
-4. datos recolectado al azar
+1. Distribución normal
+2. Igualdad de varianza = Homogeneidad de Varianza
+3. Simetría de las distribuciones
+4. Datos recolectado al azar
  
 
-Cuando no se cumple con los datos estamos aumentando la probabilidad de tipo de error 1, es decir rechazar la hipótesis nula cuando se debería aceptar o tipo de error 2, cuando se debería aceptar la alterna cuando se debería rechazar.
+Cuando no se cumple con los supuestos estamos aumentando la probabilidad de tipo de error 1, es decir rechazar la hipótesis nula cuando se debería aceptar o tipo de error 2, cuando se debería aceptar la alterna cuando se debería rechazar.
 
-Por consecuencia es **primodial** que cada investigador cumple con evaluar los supuestos de las pruebas que usa y si no cumple que busca métodos alternos.  Por ejemplo métodos de análisis que podría usar pruebas no paramétrica tambien estadística bayesiana o robusta.  
+Por consecuencia es **primodial** que cada investigador cumple con evaluar los supuestos de las pruebas que usa y si no cumple que busca métodos alternos.  Por ejemplo se puede utilizar métodos de análisis no paramétrica, tambien estadística bayesiana o robusta o como alternativas.  
 
-En el siguiente modulo se habla de como asegurar que cumple con los supuestos básico de las pruebas paramétricas que incluye t-test, ANOVA entre otros.  
+En el siguiente modulo se habla de como asegurar que los datos cumple con los supuestos básico de las pruebas paramétricas que incluye t-test, ANOVA entre otros.  
 
-Note que aquí el énfasis es de evalur los supuestos con herramientas visual, hay herramientas estadística que son igual para cada una de estos supuestos.  Vea la sección de estadística para estas alterativas para detalles más completos.  
+Note que aquí el énfasis en este modulo es de evaluar los supuestos con herramientas visual, hay herramientas estadística que son son disponible para cada una de estos supuestos.  Vea la sección de estadística para estas alterativas para detalles más completos.  
 
 ***
 
 # Homogeneidad de varianza
 
   La homogeneidad de varianza es un supuesto primordial en el análisis de varianza (ANOVA) y sus vertientes.  Este mismo supuesto es también importante en el análisis de regresión simple y multivariable; por ejemplo, en el análisis discriminante (*discriminant function analysis* en inglés). Utilizaremos los datos de la Becasa de Mar *Limosa haemastica*, un ave migrante de las costas de las marismas de Argentina, de la base de datos Godwits.  Para determinar si la razón de adquisición de comida es diferente entre sexo, tiempo del año, y la combinación de estas dos variables (en otras palabras, las interacciones entre ambas), hay que asumir lo siguiente: 1ro. la varianza en las observaciones entre sexo es similar, 2do. la variación en las tres estaciones es similar, y 3ro. la variación entre los grupos por sexo es similar. 
+
+***
 
 ## Gráficos de cajas condicionales
 
@@ -137,6 +142,7 @@ BecasaMar + geom_boxplot(notch=TRUE)+
             xlab("Sexo de las aves")+
             ylab("Razón de consumo")
 ```
+
 ***
 
 
@@ -172,6 +178,7 @@ Lo que observaremos es que la distribución de los residuales luce más o menos 
   ggtitle("Residuales vs. Valores Estimados")
 res
 ```
+
 ***
 
 ## Los residuales de Student para detectar valores sesgados
@@ -189,6 +196,7 @@ A continuación se ilustra otro enfoque para evaluar los residuales. En este cas
   ggtitle("Residuales vs. Valores Estimados")
 ResEst
 ```
+
 ***
 
 ## Valores sesgados con la Distancia de Cook, Di
@@ -212,6 +220,7 @@ Para hacer una ilustración, continuaremos con el modelo **modelflower** usando 
         ylab("Distancia de Cook")+
         ggtitle("Distancia de Cook")
 ```
+
 ***
 
 
@@ -443,6 +452,9 @@ kable(signif(cor(dipodium[,c(3, 8, 9)],
  caption =
   "\\label{fig:CK}Correlaciones de Kendall")
 ```
+
+
+***
 ### Tabla de correlación de Spearman 
 ```{r correlation4}
 
