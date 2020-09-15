@@ -160,6 +160,11 @@ modelflower=lm(Number_of_Flowers~Height_Inflo,
          data=dipodium)
 
 summary(modelflower)
+
+
+ggplot(dipodium, aes(Height_Inflo, Number_of_Flowers))+
+  geom_smooth(method=lm)+
+  geom_point()
 ```
 Lo que observaremos es que la distribución de los residuales luce más o menos uniforme alrededor del promedio de los residuales (el cero).  Hay aproximadamente igual cantidad de valores mayor a cero (por encima de la línea en verde) y menor a cero (por debajo de la línea en verde) que están distribuidos a través de la variable en el eje de **X**, o valores estimados. En adición que los residuales (negativos o positivos) no son limitado a sub grupos de de los valores estimados (en la **X**).   
 
@@ -170,7 +175,7 @@ Lo que observaremos es que la distribución de los residuales luce más o menos 
   res<-ggplot(modelflower, aes(.fitted, .resid))+
   geom_point()+
   geom_hline(yintercept=0,
-           col="green", linetype="dashed")+
+           col="red", linetype="dashed")+
   theme(axis.title=element_text(size=20,face="bold"),
         axis.text=element_text(size=20, face="bold"))+
   xlab("Valores estimados")+
