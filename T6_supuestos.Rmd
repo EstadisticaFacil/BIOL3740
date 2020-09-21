@@ -49,7 +49,8 @@ Añadir los siguientes paquetes, Nota la función de **pacman** para intalar los
 #install.packages("pastecs")
 #install.packages("psych")
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(car, pastecs, psych, ggplot2, ggversa, knitr, GGally, tidyverse, kableExtra, reshape2, ggcorrplot, gridExtra)
+pacman::p_load(car, pastecs, psych, ggplot2, ggversa, knitr, GGally, 
+               tidyverse, kableExtra, reshape2, ggcorrplot, gridExtra)
 
 
 # Activar los paquetes
@@ -166,6 +167,8 @@ ggplot(dipodium, aes(Height_Inflo, Number_of_Flowers))+
   geom_smooth(method=lm)+
   geom_point()
 ```
+
+
 Lo que observaremos es que la distribución de los residuales luce más o menos uniforme alrededor del promedio de los residuales (el cero).  Hay aproximadamente igual cantidad de valores mayor a cero (por encima de la línea en verde) y menor a cero (por debajo de la línea en verde) que están distribuidos a través de la variable en el eje de **X**, o valores estimados. En adición que los residuales (negativos o positivos) no son limitado a sub grupos de de los valores estimados (en la **X**).   
 
 
