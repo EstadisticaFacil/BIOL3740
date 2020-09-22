@@ -1,5 +1,5 @@
 ---
-title: "T10_Pruebas_t_Independiente"
+title: "T10 Pruebas t Independiente"
 output:
   html_document:
     css: tutorial.css
@@ -14,6 +14,42 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 ```
+
+
+```{r, echo=FALSE}
+library(tidyverse)
+
+rlt_theme <- theme(axis.title.y = element_text(colour="grey20",size=15,face="bold"),
+        axis.text.x = element_text(colour="grey20",size=10, face="bold"),
+        axis.text.y = element_text(colour="grey20",size=15,face="bold"),  
+        axis.title.x = element_text(colour="grey20",size=15,face="bold"))+
+  theme(
+  # Remove panel border
+  panel.border = element_blank(),  
+  # Remove panel grid lines
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
+  # Remove panel background
+  panel.background = element_blank(),
+  # add thicker border lines
+    axis.line.x = element_line(colour = "black", size = 1),
+    axis.line.y = element_line(colour = "black", size = 1)
+  )
+
+# The palette with grey:
+cbPalette1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# The palette with black:
+cbPalette2 <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# To use for fills, add
+#  scale_fill_manual(values=cbPalette)
+
+# To use for line and point colors, add
+  #scale_colour_manual(values=cbPalette)
+
+```
+
 
 
 ```{r, eval=TRUE, echo=FALSE}
@@ -36,6 +72,304 @@ Fecha de la ultima revisión
 
 Sys.Date()
 ```
+
+```{r}
+
+library(car)  # para la prueba de leveneTest
+
+library(RVAideMemoire) # para la prueba de byf.shapiro
+```
+
+***
+
+# La prueba t con datos independiente
+
+Una de las pruebas más común es la de comparar dos grupos y evaluar si los promedios de estos grupos son diferentes. Por ejemplo determinar si la edad de los estudiantes una clase es diferentes entre mujeres y hombres.  Evaluar si dos concentraciones de antibiótico resulta en una reducción en el tiempo de infección de una enfermedad especifica. NOTA IMPORTANTE: los datos provienen de diferentes individuos, solamente un valor por individuo. Recuerda que en la prueba anterior de la prueba de t con datos pareados tenemos más de un dato por cada persona/individuo/unidad de muestreo.  
+
+
+Datos
+
+
+Producimos un set de datos de diferentes personas, con las siguientes variables, el genero, la distancia (dist) viajada por estudiantes que van a la universidad de UPR-Utuado y UPR-Bayamón. 
+
+```{r, attr.source='.numberLines'}
+genero=c("m","f","f","f",
+    "f","f","f","f","f",
+    "m","f","m","f","f",
+    "m","m","f","f","f",
+    "f","f","m", "f","m",
+    "m","f", "f", "f","f",
+    "f","m","m","m","f",
+    "f","f")
+dist=c(92,50,75,55,
+       30, 40,60,35,65,
+       45, 65, 80,60,67,
+       98,88,60,20,49,
+       45, 19,27,20,34,
+       30,45, 35,26, 24, 
+       34,12, 26, 21, 25, 
+       15, 22)
+muni=c("utuado","utuado","utuado","utuado",
+      "utuado","utuado","utuado","utuado","utuado",
+      "utuado","utuado","utuado","utuado","utuado",
+      "utuado","utuado","utuado","utuado","utuado",
+      "bayamón","bayamón","bayamón","bayamón","bayamón",
+      "bayamón","bayamón","bayamón","bayamón","bayamón",
+      "bayamón","bayamón","bayamón","bayamón","bayamón",
+      "bayamón","bayamón")
+```
+
+Unir los datos en un data frame con la función de "data.frame( )"
+
+```{r join lists in a df}
+viajes=data.frame(genero,dist,muni)
+head(viajes)
+tail(viajes)
+```
+
+***
+
+Hacer un  gráfico de los datos.  Si calculamos el promedio de todos los valores de "Y" y lo visualizamos, vemos que muchos de los valores del municipio "bayamón" son muy por debajo los valores de la linea y muchos de los valores del municipio "utuado" son muy por encima.    
+
+```{r plot}
+
+mean_dist=mean(viajes$dist)
+
+ggplot(viajes, aes(muni, dist))+
+  geom_jitter(width = 0.11)+
+  geom_hline(yintercept = mean_dist)
+```
+
+## Las hipótesis
+
+> Ho: es que la distancia que viaja de los estudiantes es igual irrelevante del municipio
+ 
+> Ho: Promerio_1=Promedio_2 o mejor Ho: $\overline{x}_1=\overline{x}_2$
+
+
+> Ha: es que la distancia que viaja de los estudiantes no es igual (depende del municipio donde proviene) 
+> Ho: $\overline{x}_1\ne\overline{x}_2$
+
+
+Otra alternativa de verlo es ver la diferencias entre el valor de la "y" y el promedio, o sea los residuales. `r colorize("Nota que esto se parece a la grafica de residuales de la regresión lineal", "blue")` .
+
+
+```{r}
+plot(1:36, dist, ylim=c(0, 100), ylab="y", xlab = "order", pch=21, bg="red")
+abline(h=mean(dist), col="blue")
+for(i in 1:36) lines(c(i,i), c(mean(dist), dist[i]), col="green")
+```
+
+
+Ahora vamos a separar la grafica y ver los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo.  
+
+
+```{r}
+plot(1:36, dist, ylim=c(0, 100), ylab="y", xlab = "order", pch=21, bg="red")
+abline(h=mean(dist[muni=="bayamón"]), col="blue")
+abline(h=mean(dist[muni=="utuado"]), col="red")
+index<- 1:length(dist)
+for (i in 1:length(index)){
+  if(muni[i]=="b")
+    lines(c(index[i], index[i]), c(mean(dist[muni=="b"]),dist[i]), col="blue")
+  else
+    lines(c(index[i], index[i]), c(mean(dist[muni=="u"]),dist[i]), col="red")
+}
+```
+
+
+# `r colorize("Comparación de dos grupos", "red")` 
+
+Hay diferentes acercamiento para hacer la prueba de t (t-test). Usaremos la más conocida. Donde comparamos el promedio de un grupo con el proimedio de otro grupo, si no hay diferencias entre los grupos, la diferencias entre uno y el otro deberia acercarce a cero. Hay que tomar en cuenta la cantidad de varianza/error en los analisis. Esto se toma encuenta considerando el error estandard en la formula siguiente.   
+
+$$t= \frac{\bar{X_1}-\bar{X_2}}{SE}$$
+
+Más especifico el error estandard se calcula de la siguiente forma 
+
+$$t= \frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{{s}^{2}_p}{n_1}+\frac{{s}^{2}_p}{n_2}}}$$
+
+
+Donde la varianza ponderada (Weighted variance, ${s}^{2}_p$), es un indice de la varianza de los dos grupos tomando en cuenta el tamaño de muestra de cada grupo.  Note que la varianza $s^2$ de cada grupo es multiplicado por (n-1). Por consequencia un grupo que tiene pocos datos "n", su varianza tendrá menos peso en los analisis.  
+
+$${s}^{2}_p = \frac{(n_1-1){s}^{2}_1+(n_2-1){s}^{2}_2}{n_1+n_2-2}$$
+
+
+
+
+### Mi primera prueba para comparar el promedio entre dos grupos.  Se usa la prueba de "t.test" (t-test).  
+
+La estructura de la prueba es la siguiente (lo minimo necesario)
+
+t.test(variable_de_respuesta ~ variable_de_grupo, dataframe)
+
+La hipotesis nula:
+ Ho: la distancia viajado por la gente de la gente de los dos municipios es igual (el valor de "p" sera major de 0.05)
+ 
+La hipotesis alterna:
+ Ha: la distancia viajado por la gente no es igual por la gente d elos dos municipios (el valor de "p" sera menor de 0.05 )
+
+
+
+```{r t.test}
+model=t.test(dist~muni,data=viajes, paired=FALSE)
+model
+```
+
+
+## Graficar los datos con el promedio y las estadísticas que da un resumen de la estadistica de forma visual, el promedio y el intervalo de 95%.  Nota que se usa la función en ggplot2 de stat_summary(fun.data = mean_cl_normal), esto quiere decir que se esta calculando los valores ASUMIENDO una distribución normal de los datos. 
+
+```{r graph summary stats}
+ggplot(viajes, aes(muni, dist))+
+ stat_summary(fun.data = mean_cl_normal, geom = "pointrange")
+
+```
+
+
+## Ahora ver las distrubución de frecuencia por municipio
+
+```{r}
+ggplot(viajes, aes(dist, fill=muni))+
+  geom_histogram(colour="white")+
+  facet_grid(~muni)
+```
+
+
+
+
+# Shapito-Wilks: Test for the assumption of normality 
+
+
+```{r shapiro test}
+shapiro.test(viajes$dist)
+```
+
+## Metodo #1: shapiro.test()
+
+
+```{r SW test}
+# Normality test by group
+# Method 1 
+shapiro.test(viajes$dist)
+shapiro.test(viajes$dist[viajes$muni=="utuado"])
+shapiro.test(viajes$dist[viajes$muni=="bayamón"])
+```
+
+
+## Method 2: byf.shapiro()
+
+Aqui es una prueba más sensilla para hacer para comprobar que los grupos tienen distribución normal. `r colorize("Tiene que usar la libreria 'RVAideMemoire' y la función byf.shapiro( )", "red")` . 
+
+Recuerda, que si el valor de p es mayor de 0.05, se asume que los datos tienen una distribución normal, si es menor de 0.05 se asume que no es normal.   
+
+Nota la oragnización de la prueba, es como la de la t.test( )
+
+byf.shapiro(variable_de_respuesta ~ variable_de_grupo, dataframe)
+
+
+```{r SW2}
+# de la libreria de (RVAideMemoire)
+
+byf.shapiro(dist~muni, viajes)
+
+```
+
+
+
+
+## Prueba de Igualdad de Varianza
+
+http://www.cookbook-r.com/Statistical_analysis/Homogeneity_of_variance/
+
+Presento 3 alternativas para la prueba de igualdad de varianza. 
+
+Las pruebas siguientes tambiens se llaman pruebas de homoscedasticidad de varianza, o sea que la varianza en los diferentes grupos es igual. por consecuencia la hipotesis nnula es que la varianza del primer grupo es igual a la varianza del segundo grupo (para una prueba t).  Nota aqui es es importante donde se encuenta el promedio o la mediana, lo que es importante es la distribución de los datos. 
+
+Homogemeidad de varianza
+$$H_o:  {s}^{2}_1 = {s}^{2}_2$$
+
+y la hipotesis alterna
+
+$$H_a:  {s}^{2}_1 \neq  {s}^{2}_2$$
+
+
+Cuando los datos no cumple con distribución igualdad de varianza se dice que los datos heteroscedasticidad.  
+
+1. Bartlett's test of equality of variance
+  Los datos tienen que cumplir con la distribución normal para usar esta prueba, si no cumple tendra una mayor probabilidad de rechazar la hipotesis nula.
+2. Levene's Test for equality of variance
+  La prueba de Levene los datos no son tan sensitivo a la distribución normal, pero no deberia tampoco ser muy diferente de ella. 
+3. Fligner-Killeen Test for equality of Variance
+  La prueba de Fligner-Killeen los datos NO tiene que cumplir con distribición normal y es una prueba robusta cuando hay datos sesgados (outliers).  
+
+
+
+## Bartlett's test of equality of variance
+
+```{r}
+bartlett.test(dist~muni, data=viajes)
+```
+
+## Levene Test for equality of variance
+ - similar to Bartlett's test
+
+```{r}
+
+leveneTest(dist~muni, data=viajes)
+```
+
+
+ 
+## Fligner-Killeen Test for equality of Variance
+
+- good when the distribution are not normal
+
+```{r}
+fligner.test(dist~muni, data=viajes)
+```
+
+
+
+
+```{r my students}
+sex=c("f","f","f","f","f",
+      "f","f","f","f","f",
+      "f",
+      "m","m","m",
+      "m","m","m")
+kids=c(0, 1, 2, 1, 1,
+       4, 4, 2, 0, 10,
+       2,
+       80, 24,
+       32, 22, 22,15)
+
+futurePR=data.frame(sex,kids)
+
+head(futurePR)
+
+model2=t.test(kids~sex, data=futurePR)
+model2
+
+byf.shapiro(kids~sex, futurePR)
+```
+
+
+
+
+# Anxiedad y Alacranes
+
+Anxiety 
+
+```{r anxiety}
+picture=c(1,2,5,2,8,4,5,0,7)
+dead=c(15,15,17,10,10,10,18,16,11)
+mean(picture)
+mean(dead)
+alacran=data.frame(picture,dead)
+head(alacran)
+
+t.test(alacran$dead, alacran$picture,paired=FALSE)
+```
+
 
 
 
