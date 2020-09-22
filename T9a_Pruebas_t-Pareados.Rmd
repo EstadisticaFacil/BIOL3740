@@ -91,10 +91,11 @@ require(UsingR)
 head(father.son)
 
 ```
+
 ***
 ## Visualizar la correlación
 
-Antes de hacer la prueba es recomendado hacer un gráfico de puntos para visualizar los datos y observar si hay un patrón. Vemos a medida que aumenta la altura de los padres los hijos tienden a estar más altos.  parece que hay una correlación en la altura de los hijos basado en la altura del padre. 
+Antes de hacer la prueba es recomendado hacer un gráfico de puntos para visualizar los datos y observar si hay un patrón. Vemos a medida que aumenta la altura de los padres los hijos tienden a estar más altos.  parece que hay una correlación en la altura de los hijos basado en la altura del padre. Por consecuencia la altura de los hijos no son independiente de la altura de los padres.  Aunque hay evidencia que el ambiente, tal como el acceso a recursos (comida, leche, etc) tiene impacto sobre la altura de los humanos, la genética también tiene impacto to sobre la altura de los humanos. 
 
 
 ```{r, geompoint}
@@ -104,13 +105,14 @@ ggplot(father.son, aes(fheight, sheight))+
   geom_point()+
   rlt_theme
 ```
+
 ***
 
 # La prueba de t-pareado
 
 La prueba de t-con datos pareados es la misma que la prueba de t con un grupo, **t.test()**.  
 
-La hipótesis nula es que la diferencia entre los datos dependientes es igual a cero. La **d** se refiere a la diferencia entre los pares de datos.  Nota entonces que el análisis se hace evaluando si el promedio de las diferencias es igual a cero.  
+La hipótesis nula es que la diferencia entre los datos dependientes es igual a cero. La **d** se refiere a la diferencia entre los pares de datos.  Nota entonces que el análisis se hace evaluando si el promedio de las diferencias es igual a cero.  Nota que el valor de t es absoluto $\left|t\right|$, un valor negativo es igual que un valor positivo. 
 
   + Ho: $\overline{x_d}=0$
   + Ha: $\overline{x_d}≠0$
@@ -138,7 +140,7 @@ t.test(father.son$fheight, father.son$sheight, paired=TRUE)
 ***
 ## Visualizar la diferencias
 
-Podemos visualizar la diferencia entre los hijos y los padres.  Vemos el promedio si no tuviese diferencia (la linea azul), esto es nuestra hipótesis nula, y el estimado (el promedio de la diferencias es rojo, con el intervalo de confianza en las lineas entrecortada).  Si nuestro estimado (el intervalo de confianza de 95%) hubiese incluido la linea azul la prueba no seria significativa, y habriamos aceptado la hipótesis nula. 
+Podemos visualizar la diferencia entre los hijos y los padres.  Vemos el promedio si no tuviese diferencia (la linea azul), esto es nuestra hipótesis nula, y el estimado (el promedio de la diferencias es rojo, con el intervalo de confianza en las lineas entrecortada).  Si nuestro estimado (el intervalo de confianza de 95%) hubiese incluido la linea azul la prueba no seria significativa, y se aceptaría la hipótesis nula. 
 
 ```{r graph2}
 father.son$heightDiff<-father.son$fheight-father.son$sheight # para calcular la diferencia entre el padre y el hijo. 
@@ -152,6 +154,7 @@ ggplot(father.son, aes(x=fheight-sheight))+
   scale_x_continuous(breaks = round(seq(min(father.son$heightDiff), max(father.son$heightDiff), by = .5),0))+
   theme(axis.text.x = element_text(angle = 90))
 ```
+
 ***
 
 # Paired t-test, Números de niños abuela y madre
@@ -159,7 +162,7 @@ ggplot(father.son, aes(x=fheight-sheight))+
 ## Ejercicio de clase
  
 
-Vamos a evaluar si la cantidad de hijos cambia entre su abuela y su madre
+Vamos a evaluar si la cantidad de hijos cambia entre su abuela y su madre.  
 ```{r, abuelamadre}
 abuela=c(3,11,3,9,3,3,3,
          4,3,7,6,7,6,3,2,4)
@@ -262,7 +265,7 @@ length(Lep$T1)
 ```
 
 ***
-Compara si la cantidad de hojas por plante es igual entre el primer muestreo (1) y el segundo muestreo (2).  
+1. Compara si la cantidad de hojas por plante es igual entre el primer muestreo (1) y el segundo muestreo (2).  
 
 `r colorize("Cual son sus conclusiones.", "blue")`
 
@@ -278,12 +281,14 @@ Compara si la cantidad de hojas por plante es igual entre el primer muestreo (1)
 
   
 
-```{r paired t-test}
+```{r paired t-test, eval=FALSE, echo=FALSE}
 
 model2=t.test(Lep$T2,Lep$T1, paired =TRUE)
 model2
 ```
+
 ***
+
 ## Supuestos de la prueba de t con datos pareados.
 
 Los supuestos de la prueba t-pareados.
