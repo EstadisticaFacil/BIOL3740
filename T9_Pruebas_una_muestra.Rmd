@@ -186,6 +186,8 @@ Observa que la distribución de t, cambia dependiendo la forma de la densidades 
 
 Se usa la distribución de t para calcular el intervalo de confianza y la hipótesis del promedio de una muestra, debido que la forma de la distribución de t cambia con el tamaño de muestra $\nu=n-1$ y también con la razón de error Tipo I, $\alpha$.  
 
+***
+
 # Cuando es que uno rechaza la hipótesis nula
 
 Regresamos a la idea de Tipo de error I.  Cuando se selecciona un $\alpha=0.05$, lo que estamos diciendo es que hay 5% de probabilidad de cometer un error Tipo 1, que es `r colorize("de rechazar la hipótesis nula cuando uno debería aceptarla", "blue")`. Ahora este 5% puede estar divido en dos componentes, uno cuando el valor es más pequeño o más grande que el valor observado. Por consecuencia el área de rechazar la hipótesis nula es 0.025 en la parte negativa y positiva.
@@ -226,6 +228,7 @@ d6 <- d5 + geom_area(data = subset(db5, x > rand5), aes(x=x, y=y), fill="red")+
 d6
 
 ```
+
 ***
 
 La alternativa es que nuestra hipótesis sea nada más de un lado donde el total del 5% es en la parte inferior o superior.  En esta caso se rechaza solamente si se encuentra en esta proporción de los valores de t.  Nota ahora que el área en esta sección es más grande (incluye más valores, no solamente el 2.5% pero el 5% de los valores).  
@@ -246,6 +249,7 @@ d7 <- d5 +
 
 gridExtra::grid.arrange(d7,d8, ncol=2)
 ```
+
 ***
 
 # El intervalo de confianza de $\mu$
@@ -330,7 +334,7 @@ knitr::include_graphics("Havel_Figures/9-3 Series - Confidence Interals.jpg")
 ***
 
 
-# Pruebas de un muesteo de t
+# Pruebas de t un muesteo
 
 
 Esta prueba esencialmente calcula la media de los datos y crea un intervalo de confianza. Si el valor que estamos probando cae dentro de ese intervalo de confianza, concluimos que es el valor verdadero para la media de los datos; de lo contrario, concluimos que no es la verdadera media. Nota que la $\mu$ representa el modelo nulo, o sea la hipótesis nula.  Si $\mu=0$ decimos que el universo es igual cero.  En otro ejemplo si por ejemplo decimos que el promedio del nivel de colesterol en mujer es $\mu=209.4$ y observamos en muestreo de mujeres un promedio de $\overline{x}= 196.7$ con una desviación estándar de $s=39.1$ es suficiente la diferencia para decir que lo que UD observo es significativamente diferente del muestreo del universo a un 95% de error $\alpha$.   Vamos asumir que se hizo una investigación un gran número de mujeres de Puerto Rico y se tiene un muestreo de 10,000 de mujeres.  Lo que necesitamos hacer ahora es sustituir los valores en la formula.  Observamos un valor de t observado de t=32.48 (el valor es absoluto), y este los comparamos con el valor de t critico = 1.96 (valor absoluto). El resultado: el valor de t observado es mayor del valor critico y por consecuencia rechazamos lo hipótesis nula, y concluimos que el nivel de colesterol en la muestra $\overline{x}= 196.7$ es significativamente diferente del nivel universal $\mu=209.4$.   
@@ -349,7 +353,8 @@ qt(0.025, 9999)  # valor de t-critico, de la tabla
 
 
 ***
-# Prueba de 
+# Propinas
+
 Un ejemplo con datos en una tabla
 Usamos un conjunto de datos en el paquete **reshape**, que llama **tips**.  Se refiere a las propinas quie recibe meseros.  
 
@@ -382,6 +387,7 @@ t.test(tips$tip, alternative="two.sided", mu=2.5, conf.level = .95)
 
 ```
 
+***
 
 ## ¿Cómo graficar el resultado de una prueba t?
 
@@ -416,5 +422,7 @@ ggplot(data.frame(x=randT))+
   xlab("Promedio de propina")
 ```
 
+
+***
 
 
