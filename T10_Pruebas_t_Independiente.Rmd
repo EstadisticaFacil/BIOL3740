@@ -140,18 +140,20 @@ ggplot(viajes, aes(muni, dist))+
   geom_hline(yintercept = mean_dist)
 ```
 
+***
+
 ## Las hipótesis
 
-> Ho: es que la distancia que viaja de los estudiantes es igual irrelevante del municipio
- 
-> Ho: Promerio_1=Promedio_2 o mejor Ho: $\overline{x}_1=\overline{x}_2$
+### La Nula
+ + Ho: es que la distancia que viaja de los estudiantes es igual irrelevante del municipio
+ + Ho: Promerio_1 = Promedio_2 o mejor Ho: $\overline{x}_1=\overline{x}_2$
+
+### La Alterna
+ + Ha: es que la distancia que viaja de los estudiantes no es igual (depende del municipio donde proviene) 
+ + Ha: $\overline{x}_1\ne\overline{x}_2$
 
 
-> Ha: es que la distancia que viaja de los estudiantes no es igual (depende del municipio donde proviene) 
-> Ho: $\overline{x}_1\ne\overline{x}_2$
-
-
-Otra alternativa de verlo es ver la diferencias entre el valor de la "y" y el promedio, o sea los residuales. `r colorize("Nota que esto se parece a la grafica de residuales de la regresión lineal", "blue")` .
+Otra alternativa para visualizar es observar la diferencias entre el valor de la "y's" y del promedio de esa variable, o sea los residuales (la diferencia entre el promedio y el valor se llaman los **residuales**. `r colorize("Nota que esto aparece a la gráfica de residuales de la regresión lineal", "blue")`.
 
 
 ```{r}
@@ -161,7 +163,7 @@ for(i in 1:36) lines(c(i,i), c(mean(dist), dist[i]), col="green")
 ```
 
 
-Ahora vamos a separar la grafica y ver los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo.  
+Ahora vamos a separar la gráfica y visualizar los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo. Note que en el grupo de `r colorize("**bayamón**", "blue")` que los valores son bastante cerca del promedio de este grupo en adición que los valores de `r colorize("**utuado**", "red")` estan meas cerca de su promedio.  Comparar los residuales con la grafica anterior.   
 
 
 ```{r}
@@ -170,43 +172,46 @@ abline(h=mean(dist[muni=="bayamón"]), col="blue")
 abline(h=mean(dist[muni=="utuado"]), col="red")
 index<- 1:length(dist)
 for (i in 1:length(index)){
-  if(muni[i]=="b")
-    lines(c(index[i], index[i]), c(mean(dist[muni=="b"]),dist[i]), col="blue")
+  if(muni[i]=="bayamón")
+    lines(c(index[i], index[i]), c(mean(dist[muni=="bayamón"]),dist[i]), col="blue")
   else
-    lines(c(index[i], index[i]), c(mean(dist[muni=="u"]),dist[i]), col="red")
+    lines(c(index[i], index[i]), c(mean(dist[muni=="utuado"]),dist[i]), col="red")
 }
 ```
 
+***
 
-# `r colorize("Comparación de dos grupos", "red")` 
+# Comparación de dos grupos
 
-Hay diferentes acercamiento para hacer la prueba de t (t-test). Usaremos la más conocida. Donde comparamos el promedio de un grupo con el proimedio de otro grupo, si no hay diferencias entre los grupos, la diferencias entre uno y el otro deberia acercarce a cero. Hay que tomar en cuenta la cantidad de varianza/error en los analisis. Esto se toma encuenta considerando el error estandard en la formula siguiente.   
+Hay diferentes acercamiento para hacer la **prueba de t** (t-test). Usaremos la más conocida. Donde comparamos el promedio de un grupo con el promedio de otro grupo, y determinar si no hay diferencias entre los grupos, la diferencias entre uno y el otro debería acercarse a cero si no hay diferencia entre los grupos. Hay que tomar en cuenta la cantidad de varianza/error en los análisis. Esto se toma encenta considerando el error estándar en la formula siguiente. 
 
 $$t= \frac{\bar{X_1}-\bar{X_2}}{SE}$$
 
-Más especifico el error estandard se calcula de la siguiente forma 
+Más especifico la estadistica de **t** y el **error estándar** se calcula de la siguiente forma.  
 
-$$t= \frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{{s}^{2}_p}{n_1}+\frac{{s}^{2}_p}{n_2}}}$$
+$$t=\frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{{s}^{2}_p}{n_1}+\frac{{s}^{2}_p}{n_2}}}$$
 
 
-Donde la varianza ponderada (Weighted variance, ${s}^{2}_p$), es un indice de la varianza de los dos grupos tomando en cuenta el tamaño de muestra de cada grupo.  Note que la varianza $s^2$ de cada grupo es multiplicado por (n-1). Por consequencia un grupo que tiene pocos datos "n", su varianza tendrá menos peso en los analisis.  
+Donde la varianza ponderada (Weighted variance, ${s}^{2}_p$), es un indice de la varianza de los dos grupos tomando en cuenta el tamaño de muestra de cada grupo.  Note que la varianza $s^2$ de cada grupo es multiplicado por (n-1). Por consecuencia un grupo que tiene pocos datos, "n", su varianza tendrá menos peso en los análisis.  
 
 $${s}^{2}_p = \frac{(n_1-1){s}^{2}_1+(n_2-1){s}^{2}_2}{n_1+n_2-2}$$
 
+***
 
 
+### La prueba t
 
-### Mi primera prueba para comparar el promedio entre dos grupos.  Se usa la prueba de "t.test" (t-test).  
+Mi primera prueba para comparar el promedio entre dos grupos.  Se usa la prueba de "t.test" (t-test).  
 
-La estructura de la prueba es la siguiente (lo minimo necesario)
+La estructura de la prueba es la siguiente (lo mínimo)
 
 t.test(variable_de_respuesta ~ variable_de_grupo, dataframe)
 
-La hipotesis nula:
+La hipótesis nula:
  Ho: la distancia viajado por la gente de la gente de los dos municipios es igual (el valor de "p" sera major de 0.05)
  
-La hipotesis alterna:
- Ha: la distancia viajado por la gente no es igual por la gente d elos dos municipios (el valor de "p" sera menor de 0.05 )
+La hipótesis alterna:
+ Ha: la distancia viajado por la gente no es igual por la gente de los dos municipios (el valor de "p" sera menor de 0.05 )
 
 
 
@@ -216,7 +221,11 @@ model
 ```
 
 
-## Graficar los datos con el promedio y las estadísticas que da un resumen de la estadistica de forma visual, el promedio y el intervalo de 95%.  Nota que se usa la función en ggplot2 de stat_summary(fun.data = mean_cl_normal), esto quiere decir que se esta calculando los valores ASUMIENDO una distribución normal de los datos. 
+***
+
+## Gráficar el promedio y el intervalo de confianza
+
+Graficar los datos con el promedio y el intervalo de confianza da un resumen de la estadística de forma visual, lo que se visualiza es el promedio y el intervalo de 95%.  Nota que se usa la función en ggplot2 de **stat_summary(fun.data = mean_cl_normal)**, esto quiere decir que se esta calculando los valores ASUMIENDO una distribución normal de los datos. 
 
 ```{r graph summary stats}
 ggplot(viajes, aes(muni, dist))+
@@ -224,8 +233,14 @@ ggplot(viajes, aes(muni, dist))+
 
 ```
 
+***
 
-## Ahora ver las distrubución de frecuencia por municipio
+# Pruebas de normalidades
+
+## Visualización de los datos
+
+Siempre se debería producir un gráfico de los datos para tener una idea de si los datos cumple con los supuestos de las pruebas. 
+Ahora ver las distribución de frecuencia por municipio. Si los datos tuviese una distribución **perfecta** normal, se obtendría una distribición en forma de campana.   Primero NO se debería esperar este tipo de distribución cuando tenemos pocos datos.  
 
 ```{r}
 ggplot(viajes, aes(dist, fill=muni))+
@@ -234,16 +249,29 @@ ggplot(viajes, aes(dist, fill=muni))+
 ```
 
 
+***
 
 
-# Shapito-Wilks: Test for the assumption of normality 
 
+## Shapiro-Wilks: Prueba de normalidad 
+
+La prueba de Shapiro-Wilks fue publicado por Sanuel S. Shapiro and Martin Wilk en 1965.  La prueba de Shapiro_Wilks es una prueba para determinar si lo datos **provienen**  de una distribución normal. La hipótesis NULA es que los datos provienen de una distribución normal, por consecuencia cuando uno acepta la hipótesis nula (p > 0.05) es que **no hay evidencia de sugerir que los datos no provienen de una distribución normal**. Es solamente cuando el valor de p es menor de 0.05 que uno rechaza la hipótesis y hay evidencia que los datos no provienen de una distribución normal.  
+
+Problema con la prueba cuando la muestra es grande
+
+Es típico que cuando uno tiene muchos muchos datos uno puede encontrar diferencias significativas entres los grupos, en este caso cuando hay muchos datos la prueba pudiese sugerir que los datos no tienen distribución normal cuando en realidad se esta detectando diferenciales triviales.  En la prueba abajo se sugiere de NO utilizarla si tiene mayor de 2000 datos.   Al contrario cuando tenga muy pocos datos (n<50) no se debería usar la prueba de Shapiro-Wilks.
+
+
+
+### Evaluar la 
 
 ```{r shapiro test}
 shapiro.test(viajes$dist)
 ```
 
-## Metodo #1: shapiro.test()
+### Metodo #1: shapiro.test()
+
+
 
 
 ```{r SW test}
@@ -255,7 +283,7 @@ shapiro.test(viajes$dist[viajes$muni=="bayamón"])
 ```
 
 
-## Method 2: byf.shapiro()
+### Method 2: byf.shapiro()
 
 Aqui es una prueba más sensilla para hacer para comprobar que los grupos tienen distribución normal. `r colorize("Tiene que usar la libreria 'RVAideMemoire' y la función byf.shapiro( )", "red")` . 
 
@@ -274,9 +302,9 @@ byf.shapiro(dist~muni, viajes)
 ```
 
 
+***
 
-
-## Prueba de Igualdad de Varianza
+# Prueba de Igualdad de Varianza
 
 http://www.cookbook-r.com/Statistical_analysis/Homogeneity_of_variance/
 
@@ -303,13 +331,13 @@ Cuando los datos no cumple con distribución igualdad de varianza se dice que lo
 
 
 
-## Bartlett's test of equality of variance
+## La prueba de Bartlett 
 
 ```{r}
 bartlett.test(dist~muni, data=viajes)
 ```
 
-## Levene Test for equality of variance
+## Prueba de Levene para igualdad de Varianza
  - similar to Bartlett's test
 
 ```{r}
@@ -319,7 +347,7 @@ leveneTest(dist~muni, data=viajes)
 
 
  
-## Fligner-Killeen Test for equality of Variance
+## Prueba de Fligner-Killeen para igualdad de Varianza
 
 - good when the distribution are not normal
 
@@ -328,6 +356,7 @@ fligner.test(dist~muni, data=viajes)
 ```
 
 
+1. Ejercicio 
 
 
 ```{r my students}
