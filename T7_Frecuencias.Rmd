@@ -180,9 +180,9 @@ chisq.test(x=obs, p=esp)
 ***
 ## Segundo ejemplo
 
-Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1.  Se observa un Chi cuadrado de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1. se acepta la hipotesis nula.   
+Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1.  Se observa un Chi cuadrado de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1. Se acepta la hipotesis nula.   
 
-Vemos que a re-evaluar los experimentos de Mendel tenemos un resultado que apoya su predicciones.  Nota que Mendel NO tenia estadística para determinar si las frecuencias eran diferente o no de 3:1.  El hizo observaciones y llego a unas conclusiones. 
+Vemos que a re-evaluar los experimentos de G. Mendel tenemos un resultado que apoya su predicciones.  Nota que G. Mendel **NO** tenia pruebas estadísticas para determinar si las frecuencias eran diferente o no de 3:1.  El hizo observaciones y llego a unas conclusiones. Se acuerda cuando fue desarrollado este método y por quien?
 
 ```{r}
 obs<-c(336,101)
@@ -212,10 +212,10 @@ Primero entramos los datos directamente en una tabla
 
 Los datos son los siguientes: 
 
-A 38 gatos se la ha dado una recompensa, 28 bailaron y 10 no bailaron.
-A 162 no se la dado recompensa, y 48 bailaron y 114 no bailaron.
+A 38 gatos se la ha dado una recompensa, y de estos 28 bailaron y 10 no bailaron.
+A 162 no se la dado recompensa, y de estos 48 bailaron y 114 no bailaron.
 
-Se crea dos listas con los resultados y une estas dos filas con **cbind()** y después se la añade un nombre a las filas con **rownames()**. Vemos ahora la tabla de frecuencias de cuantos gtoa bailaron o no y si fueron entrenado por comido o cariño. Nota que no se puede añadir la tilde **~** a la **n** de cariño. 
+Se crea dos listas con los resultados y se une estas dos filas con **cbind()** y después se la añade un nombre a las filas con **rownames()**. Vemos ahora la tabla de frecuencias de cuantos gatos bailaron o no y si fueron entrenado por comido o cariño. Nota que no se puede añadir la tilde **~** a la **n** de cariño. 
 
 ```{r}
 #Crear la tabla de contingencia
@@ -235,7 +235,7 @@ catsTable
 
 ## Gráfico de Mosaico
 
-Podemos visualizar la frecuencia de los datos con un gráfico de mosaico.  Si la hipótesis nula la organización de las cajas deberían ser más o menos del mismo tamaño.  En este caso lo que uno observa es que los que reciben comida y no bailan (1.1) la caja es mucha más pequeña que los que bailan y reciben comida.  Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender  el patrón.  
+Podemos visualizar la frecuencia de los datos con un gráfico de mosaico.  Si la hipótesis nula la organización de las cajas deberían ser más o menos de la mismq proporción (relativo a su frecuencia).  En este caso lo que uno observa es que los que reciben comida y no bailan, la caja es mucha más pequeña que los que bailan y reciben comida.  Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender el patrón.  
 
 
 ```{r}
@@ -247,9 +247,15 @@ mosaicplot(catsTable)
 
 # Prueba de Independencia de frecuencia. 
 
-En ingles lo van a ver como "Contingency Tables"
+En ingles se le conoce como "Contingency Tables"
 
-Los valores esperados en esta caso son calculados directamente de la tabla. Para cada celda $E_{ij}$ donde la {i} representa la fila y la {j} las columnas.  El valor esperado se calcula multiplicando la suma de la fila por la suma ${R_i}$ de la suma de la columna ${C_j}$. La formula de los valores esperados es la siguiente, donde la N es la suma total de datos.
+Los valores esperados en esta caso son calculados directamente de la tabla. Para cada celda $E_{ij}$ donde la {i} representa la fila y la {j} las columnas.  El valor esperado se calcula multiplicando la suma de la fila por la suma ${R_i}$ de la suma de la columna ${C_j}$. La formula de los valores esperados es la siguiente, donde la N es la suma total de datos. El primer paso es sumar la filas y la columnas de la tabla.  
+
+```{r}
+catsTable
+```
+
+
 
 $$E_{ij}=\frac{\left(R_i\cdot C_j\right)}{N}$$
 
@@ -267,20 +273,22 @@ $$\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}$$
 El Chi Cuadrado final es 
 
 $$\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36$$
+
 $$\chi^2=25.36$$
 
 ***
 
 # La función CrossTable
 
-Con esta función se calcula el chi cuadrado con los valores esperados. Nota la leyenda al principio para poder entender la organización de los datos.    El grado de liberta se calcula con la siguiente formula, el numero de filas -1 multiplicado por la cantidad de columnas menos 1, df= (R-1)(C-1). df = es para grado de libertad. 
+Con esta función se calcula el chi cuadrado con los valores esperados. Nota la leyenda al principio para poder entender la organización de los datos.    El grado de liberta se calcula con la siguiente formula, el numero de filas -1 multiplicado por la cantidad de columnas -1, df= (R-1)(C-1). df = es para grado de libertad.  Si tiene solamente 1 grado de libertad hay que usar el resultado de la prueba de **Yates de continuidad**, que hace una corrección para la poca cantidad de grados de libertad. 
+
+$$\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(\left|o-e\right|-0.5\right)^2}{e}$$
 
 ```{r test}
 
 CrossTable(catsTable, fisher = TRUE, chisq = TRUE, 
            expected = TRUE, sresid = TRUE, format = "SAS")
 
-4/39
 ```
 
 

@@ -855,8 +855,8 @@ Esperado
 </div>
 <div id="segundo-ejemplo" class="section level2">
 <h2>Segundo ejemplo</h2>
-<p>Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1. Se observa un Chi cuadrado de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1. se acepta la hipotesis nula.</p>
-<p>Vemos que a re-evaluar los experimentos de Mendel tenemos un resultado que apoya su predicciones. Nota que Mendel NO tenia estadística para determinar si las frecuencias eran diferente o no de 3:1. El hizo observaciones y llego a unas conclusiones.</p>
+<p>Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1. Se observa un Chi cuadrado de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1. Se acepta la hipotesis nula.</p>
+<p>Vemos que a re-evaluar los experimentos de G. Mendel tenemos un resultado que apoya su predicciones. Nota que G. Mendel <strong>NO</strong> tenia pruebas estadísticas para determinar si las frecuencias eran diferente o no de 3:1. El hizo observaciones y llego a unas conclusiones. Se acuerda cuando fue desarrollado este método y por quien?</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>obs&lt;-<span class="kw">c</span>(<span class="dv">336</span>,<span class="dv">101</span>)</span>
 <span id="cb8-2"><a href="#cb8-2"></a>esp&lt;-<span class="kw">c</span>(<span class="fl">0.75</span>,<span class="fl">0.25</span>)</span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
@@ -877,8 +877,8 @@ Esperado
 <p>Este conjunto de datos represente un experimento ficticio de tratar de entrenar 200 gatos para que bailan basado en si se la da una recompensa o no. Este esta basado en el concepto del psicólogo Ruso Ivan Pavlov (1849-1936) de que se puede enseñar o sea motivar a una acción dando una recompensa. Lo que se llama “condicionar” un proceso de aprendizaje que ocurre entre la asociación de un estimulo ambiental y un comportamiento.</p>
 <p>Primero entramos los datos directamente en una tabla</p>
 <p>Los datos son los siguientes:</p>
-<p>A 38 gatos se la ha dado una recompensa, 28 bailaron y 10 no bailaron. A 162 no se la dado recompensa, y 48 bailaron y 114 no bailaron.</p>
-<p>Se crea dos listas con los resultados y une estas dos filas con <strong>cbind()</strong> y después se la añade un nombre a las filas con <strong>rownames()</strong>. Vemos ahora la tabla de frecuencias de cuantos gtoa bailaron o no y si fueron entrenado por comido o cariño. Nota que no se puede añadir la tilde <strong>~</strong> a la <strong>n</strong> de cariño.</p>
+<p>A 38 gatos se la ha dado una recompensa, y de estos 28 bailaron y 10 no bailaron. A 162 no se la dado recompensa, y de estos 48 bailaron y 114 no bailaron.</p>
+<p>Se crea dos listas con los resultados y se une estas dos filas con <strong>cbind()</strong> y después se la añade un nombre a las filas con <strong>rownames()</strong>. Vemos ahora la tabla de frecuencias de cuantos gatos bailaron o no y si fueron entrenado por comido o cariño. Nota que no se puede añadir la tilde <strong>~</strong> a la <strong>n</strong> de cariño.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">#Crear la tabla de contingencia</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a>comida &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">28</span>)</span>
@@ -893,7 +893,7 @@ Esperado
 <hr />
 <div id="gráfico-de-mosaico" class="section level2">
 <h2>Gráfico de Mosaico</h2>
-<p>Podemos visualizar la frecuencia de los datos con un gráfico de mosaico. Si la hipótesis nula la organización de las cajas deberían ser más o menos del mismo tamaño. En este caso lo que uno observa es que los que reciben comida y no bailan (1.1) la caja es mucha más pequeña que los que bailan y reciben comida. Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender el patrón.</p>
+<p>Podemos visualizar la frecuencia de los datos con un gráfico de mosaico. Si la hipótesis nula la organización de las cajas deberían ser más o menos de la mismq proporción (relativo a su frecuencia). En este caso lo que uno observa es que los que reciben comida y no bailan, la caja es mucha más pequeña que los que bailan y reciben comida. Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender el patrón.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">mosaicplot</span>(catsTable)</span></code></pre></div>
 <p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <hr />
@@ -901,8 +901,12 @@ Esperado
 </div>
 <div id="prueba-de-independencia-de-frecuencia." class="section level1">
 <h1>Prueba de Independencia de frecuencia.</h1>
-<p>En ingles lo van a ver como “Contingency Tables”</p>
-<p>Los valores esperados en esta caso son calculados directamente de la tabla. Para cada celda <span class="math inline">\(E_{ij}\)</span> donde la {i} representa la fila y la {j} las columnas. El valor esperado se calcula multiplicando la suma de la fila por la suma <span class="math inline">\({R_i}\)</span> de la suma de la columna <span class="math inline">\({C_j}\)</span>. La formula de los valores esperados es la siguiente, donde la N es la suma total de datos.</p>
+<p>En ingles se le conoce como “Contingency Tables”</p>
+<p>Los valores esperados en esta caso son calculados directamente de la tabla. Para cada celda <span class="math inline">\(E_{ij}\)</span> donde la {i} representa la fila y la {j} las columnas. El valor esperado se calcula multiplicando la suma de la fila por la suma <span class="math inline">\({R_i}\)</span> de la suma de la columna <span class="math inline">\({C_j}\)</span>. La formula de los valores esperados es la siguiente, donde la N es la suma total de datos. El primer paso es sumar la filas y la columnas de la tabla.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>catsTable</span></code></pre></div>
+<pre><code>##           comida carino
+## No_bailan     10    114
+## bailan        28     48</code></pre>
 <p><span class="math display">\[E_{ij}=\frac{\left(R_i\cdot C_j\right)}{N}\]</span></p>
 <p>Cálculos dos de los valores esperados</p>
 <ul>
@@ -911,14 +915,16 @@ Esperado
 <p><span class="math display">\[E_{12}=\frac{\left(R_2\cdot C_1\right)}{N}= \frac{(38*76)}{200}=14.44\]</span> + Los gatos que reciban cariño y no bailan</p>
 <p><span class="math display">\[E_{21}=\frac{\left(R_1\cdot C_2\right)}{N}= \frac{(124*162)}{200}=100.44\]</span> La prueba es exactamente igual como la anterior donde comparamos el valor observado con el valor esperado. Por ser más de una fila la formula cambia.</p>
 <p><span class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}\]</span> El Chi Cuadrado final es</p>
-<p><span class="math display">\[\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36\]</span> <span class="math display">\[\chi^2=25.36\]</span></p>
+<p><span class="math display">\[\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36\]</span></p>
+<p><span class="math display">\[\chi^2=25.36\]</span></p>
 <hr />
 </div>
 <div id="la-función-crosstable" class="section level1">
 <h1>La función CrossTable</h1>
-<p>Con esta función se calcula el chi cuadrado con los valores esperados. Nota la leyenda al principio para poder entender la organización de los datos. El grado de liberta se calcula con la siguiente formula, el numero de filas -1 multiplicado por la cantidad de columnas menos 1, df= (R-1)(C-1). df = es para grado de libertad.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">CrossTable</span>(catsTable, <span class="dt">fisher =</span> <span class="ot">TRUE</span>, <span class="dt">chisq =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb14-2"><a href="#cb14-2"></a>           <span class="dt">expected =</span> <span class="ot">TRUE</span>, <span class="dt">sresid =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;SAS&quot;</span>)</span></code></pre></div>
+<p>Con esta función se calcula el chi cuadrado con los valores esperados. Nota la leyenda al principio para poder entender la organización de los datos. El grado de liberta se calcula con la siguiente formula, el numero de filas -1 multiplicado por la cantidad de columnas -1, df= (R-1)(C-1). df = es para grado de libertad. Si tiene solamente 1 grado de libertad hay que usar el resultado de la prueba de <strong>Yates de continuidad</strong>, que hace una corrección para la poca cantidad de grados de libertad.</p>
+<p><span class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(\left|o-e\right|-0.5\right)^2}{e}\]</span></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">CrossTable</span>(catsTable, <span class="dt">fisher =</span> <span class="ot">TRUE</span>, <span class="dt">chisq =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb16-2"><a href="#cb16-2"></a>           <span class="dt">expected =</span> <span class="ot">TRUE</span>, <span class="dt">sresid =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;SAS&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  
 ##    Cell Contents
@@ -987,8 +993,6 @@ Esperado
 ## 
 ## 
 ## </code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="dv">4</span><span class="op">/</span><span class="dv">39</span></span></code></pre></div>
-<pre><code>## [1] 0.1025641</code></pre>
 </div>
 <div id="analisis-con-datos-en-una-tabla" class="section level1">
 <h1>Analisis con datos en una tabla</h1>
@@ -1010,7 +1014,7 @@ Esperado
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ykbjjmlkos .gt_table {
+#dahblccefz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1035,7 +1039,7 @@ Esperado
   border-left-color: #D3D3D3;
 }
 
-#ykbjjmlkos .gt_heading {
+#dahblccefz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1047,7 +1051,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#ykbjjmlkos .gt_title {
+#dahblccefz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1057,7 +1061,7 @@ Esperado
   border-bottom-width: 0;
 }
 
-#ykbjjmlkos .gt_subtitle {
+#dahblccefz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1067,13 +1071,13 @@ Esperado
   border-top-width: 0;
 }
 
-#ykbjjmlkos .gt_bottom_border {
+#dahblccefz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ykbjjmlkos .gt_col_headings {
+#dahblccefz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1088,7 +1092,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#ykbjjmlkos .gt_col_heading {
+#dahblccefz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1108,7 +1112,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#ykbjjmlkos .gt_column_spanner_outer {
+#dahblccefz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1120,15 +1124,15 @@ Esperado
   padding-right: 4px;
 }
 
-#ykbjjmlkos .gt_column_spanner_outer:first-child {
+#dahblccefz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ykbjjmlkos .gt_column_spanner_outer:last-child {
+#dahblccefz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ykbjjmlkos .gt_column_spanner {
+#dahblccefz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1140,7 +1144,7 @@ Esperado
   width: 100%;
 }
 
-#ykbjjmlkos .gt_group_heading {
+#dahblccefz .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1162,7 +1166,7 @@ Esperado
   vertical-align: middle;
 }
 
-#ykbjjmlkos .gt_empty_group_heading {
+#dahblccefz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1177,15 +1181,15 @@ Esperado
   vertical-align: middle;
 }
 
-#ykbjjmlkos .gt_from_md > :first-child {
+#dahblccefz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ykbjjmlkos .gt_from_md > :last-child {
+#dahblccefz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ykbjjmlkos .gt_row {
+#dahblccefz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1204,7 +1208,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#ykbjjmlkos .gt_stub {
+#dahblccefz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1216,7 +1220,7 @@ Esperado
   padding-left: 12px;
 }
 
-#ykbjjmlkos .gt_summary_row {
+#dahblccefz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1226,7 +1230,7 @@ Esperado
   padding-right: 5px;
 }
 
-#ykbjjmlkos .gt_first_summary_row {
+#dahblccefz .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1236,7 +1240,7 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#ykbjjmlkos .gt_grand_summary_row {
+#dahblccefz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1246,7 +1250,7 @@ Esperado
   padding-right: 5px;
 }
 
-#ykbjjmlkos .gt_first_grand_summary_row {
+#dahblccefz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1256,11 +1260,11 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#ykbjjmlkos .gt_striped {
+#dahblccefz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ykbjjmlkos .gt_table_body {
+#dahblccefz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1269,7 +1273,7 @@ Esperado
   border-bottom-color: #D3D3D3;
 }
 
-#ykbjjmlkos .gt_footnotes {
+#dahblccefz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1283,13 +1287,13 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#ykbjjmlkos .gt_footnote {
+#dahblccefz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ykbjjmlkos .gt_sourcenotes {
+#dahblccefz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1303,46 +1307,46 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#ykbjjmlkos .gt_sourcenote {
+#dahblccefz .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ykbjjmlkos .gt_left {
+#dahblccefz .gt_left {
   text-align: left;
 }
 
-#ykbjjmlkos .gt_center {
+#dahblccefz .gt_center {
   text-align: center;
 }
 
-#ykbjjmlkos .gt_right {
+#dahblccefz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ykbjjmlkos .gt_font_normal {
+#dahblccefz .gt_font_normal {
   font-weight: normal;
 }
 
-#ykbjjmlkos .gt_font_bold {
+#dahblccefz .gt_font_bold {
   font-weight: bold;
 }
 
-#ykbjjmlkos .gt_font_italic {
+#dahblccefz .gt_font_italic {
   font-style: italic;
 }
 
-#ykbjjmlkos .gt_super {
+#dahblccefz .gt_super {
   font-size: 65%;
 }
 
-#ykbjjmlkos .gt_footnote_marks {
+#dahblccefz .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="ykbjjmlkos" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="dahblccefz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1372,7 +1376,7 @@ Esperado
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#cxmfxhibgs .gt_table {
+#clpbadwmgr .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1397,7 +1401,7 @@ Esperado
   border-left-color: #D3D3D3;
 }
 
-#cxmfxhibgs .gt_heading {
+#clpbadwmgr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1409,7 +1413,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#cxmfxhibgs .gt_title {
+#clpbadwmgr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1419,7 +1423,7 @@ Esperado
   border-bottom-width: 0;
 }
 
-#cxmfxhibgs .gt_subtitle {
+#clpbadwmgr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1429,13 +1433,13 @@ Esperado
   border-top-width: 0;
 }
 
-#cxmfxhibgs .gt_bottom_border {
+#clpbadwmgr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cxmfxhibgs .gt_col_headings {
+#clpbadwmgr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1450,7 +1454,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#cxmfxhibgs .gt_col_heading {
+#clpbadwmgr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1470,7 +1474,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#cxmfxhibgs .gt_column_spanner_outer {
+#clpbadwmgr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1482,15 +1486,15 @@ Esperado
   padding-right: 4px;
 }
 
-#cxmfxhibgs .gt_column_spanner_outer:first-child {
+#clpbadwmgr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cxmfxhibgs .gt_column_spanner_outer:last-child {
+#clpbadwmgr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cxmfxhibgs .gt_column_spanner {
+#clpbadwmgr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1502,7 +1506,7 @@ Esperado
   width: 100%;
 }
 
-#cxmfxhibgs .gt_group_heading {
+#clpbadwmgr .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1524,7 +1528,7 @@ Esperado
   vertical-align: middle;
 }
 
-#cxmfxhibgs .gt_empty_group_heading {
+#clpbadwmgr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1539,15 +1543,15 @@ Esperado
   vertical-align: middle;
 }
 
-#cxmfxhibgs .gt_from_md > :first-child {
+#clpbadwmgr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cxmfxhibgs .gt_from_md > :last-child {
+#clpbadwmgr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cxmfxhibgs .gt_row {
+#clpbadwmgr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1566,7 +1570,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#cxmfxhibgs .gt_stub {
+#clpbadwmgr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1578,7 +1582,7 @@ Esperado
   padding-left: 12px;
 }
 
-#cxmfxhibgs .gt_summary_row {
+#clpbadwmgr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1588,7 +1592,7 @@ Esperado
   padding-right: 5px;
 }
 
-#cxmfxhibgs .gt_first_summary_row {
+#clpbadwmgr .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1598,7 +1602,7 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#cxmfxhibgs .gt_grand_summary_row {
+#clpbadwmgr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1608,7 +1612,7 @@ Esperado
   padding-right: 5px;
 }
 
-#cxmfxhibgs .gt_first_grand_summary_row {
+#clpbadwmgr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1618,11 +1622,11 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#cxmfxhibgs .gt_striped {
+#clpbadwmgr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cxmfxhibgs .gt_table_body {
+#clpbadwmgr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1631,7 +1635,7 @@ Esperado
   border-bottom-color: #D3D3D3;
 }
 
-#cxmfxhibgs .gt_footnotes {
+#clpbadwmgr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1645,13 +1649,13 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#cxmfxhibgs .gt_footnote {
+#clpbadwmgr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#cxmfxhibgs .gt_sourcenotes {
+#clpbadwmgr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1665,46 +1669,46 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#cxmfxhibgs .gt_sourcenote {
+#clpbadwmgr .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#cxmfxhibgs .gt_left {
+#clpbadwmgr .gt_left {
   text-align: left;
 }
 
-#cxmfxhibgs .gt_center {
+#clpbadwmgr .gt_center {
   text-align: center;
 }
 
-#cxmfxhibgs .gt_right {
+#clpbadwmgr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cxmfxhibgs .gt_font_normal {
+#clpbadwmgr .gt_font_normal {
   font-weight: normal;
 }
 
-#cxmfxhibgs .gt_font_bold {
+#clpbadwmgr .gt_font_bold {
   font-weight: bold;
 }
 
-#cxmfxhibgs .gt_font_italic {
+#clpbadwmgr .gt_font_italic {
   font-style: italic;
 }
 
-#cxmfxhibgs .gt_super {
+#clpbadwmgr .gt_super {
   font-size: 65%;
 }
 
-#cxmfxhibgs .gt_footnote_marks {
+#clpbadwmgr .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="cxmfxhibgs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="clpbadwmgr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1948,7 +1952,7 @@ Esperado
 ## Estimulo_lateral        1           6</code></pre>
 <p>Se puede visualizar los datos con el Mosaico</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">mosaicplot</span>(serpiente)</span></code></pre></div>
-<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Nota que se usa la misma función que anterior pero en los resultados hay que fijarse en la sección que dice <strong>Fisher’s Exact test</strong>. Lo que uno observa es que el valor de <strong>p</strong> es menor de 0.05 por consecuencia se rechaza la hipótesis nula. Lo que significa es que para la serpiente el angulo donde proviene el estimulo resulta en una repuesta diferente.</p>
 <hr />
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">fisher.test</span>(serpiente)</span></code></pre></div>
