@@ -581,7 +581,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-09-08&quot;</code></pre>
+<pre><code>## [1] &quot;2020-09-29&quot;</code></pre>
 <hr />
 <div id="bondad-de-ajuste-y-table-de-contingencia" class="section level1">
 <h1>Bondad de ajuste y Table de Contingencia</h1>
@@ -604,7 +604,7 @@ div.tocify {
 </div>
 <div id="qué-son-supuestos" class="section level1">
 <h1>Qué son supuestos</h1>
-<p>Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para que la prueba sea utilizada. El incumplimiento de de los supuestos resulta en que el los resultados de la prueba tenga un nivel de tipo de error I y tipo de error II más grande que los especificado (por ejemplo si selecciona un <span class="math inline">\(\alpha\)</span> de 0.05, el error seria más grande). Si se usa datos usa datos erróneos puede ser que la prueba sea completamente invalida.</p>
+<p>Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para que la prueba sea utilizada. El incumplimiento de los supuestos resulta en que el los resultados de la prueba tenga un nivel de tipo de error I y tipo de error II más grande que los especificado (por ejemplo si selecciona un <span class="math inline">\(\alpha\)</span> de 0.05, el error seria más grande). Si se usa datos usa datos erróneos puede ser que la prueba sea completamente invalida.</p>
 <hr />
 </div>
 <div id="los-supuestos-de-las-pruebas-de-frecuencias." class="section level1">
@@ -616,7 +616,7 @@ div.tocify {
 <li>Cada categoría tiene una frecuencia esperada suficiente grande:
 <ul>
 <li>ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o menos categorías</li>
-<li>no más de 20% de las categorías tienen un valor esperado de 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1.</li>
+<li>no más de 20% de las categorías que tengan un valor esperado de &lt; 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1.</li>
 </ul></li>
 </ol>
 <hr />
@@ -638,8 +638,8 @@ div.tocify {
 <div id="gregory-mendel-y-sus-guisantes" class="section level2">
 <h2>Gregory Mendel y sus guisantes</h2>
 <p>Gregory Mendel (1822-1884) el padre de herencia “mendeliana” estaba interesada en determinar como se hereda las características de los organismos. En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia. Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible. Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo “x” hay un individuo del fenotipo “y”.</p>
-<p>Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aquí esta la publicación original en aleman y su traducción en ingles.</p>
-<p>Mendel, J.G. (1866). “Versuche über Pflanzenhybriden”, Verhandlungen des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865, Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.; Bateson, William (1901). “Experiments in plant hybridization” (PDF). Journal of the Royal Horticultural Society. 26: 1–32. Retrieved 9 October 2009.</p>
+<p>Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aquí esta la publicación original en aleman y la referencia a la traducción en ingles.</p>
+<p>Mendel, J.G. (1866). “Versuche über Pflanzenhybriden”, Verhandlungen des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865, Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.; Bateson, William (1901). “Experiments in plant hybridization” (PDF). Journal of the Royal Horticultural Society. 26: 1–32.</p>
 <p>Tabla de los resultados de experimentos original de Gregor Mendel con semillas redondas y arrugadas. Cada uno represente un experimento y la cantidad de guisantes redondos o arrugadas.</p>
 <table>
 <thead>
@@ -707,7 +707,7 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<p>En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas. Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 deberían ser las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp).</p>
+<p>En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas. Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 que seria las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp).</p>
 <hr />
 </div>
 </div>
@@ -834,7 +834,7 @@ Esperado
 <li>buscar en una tabla de Chi Square el valor critico de Chi Square para la cantidad de grupos menos 1 y el <span class="math inline">\(\alpha\)</span> correspondiente. En este caso se busca un <span class="math inline">\(\alpha\)</span> de 0.05 y el grado de libertad (n-1) = 2-1, n es el número de grupos.</li>
 </ul>
 </blockquote>
-<p>Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla). Aquí usamos R para conseguir este valor. NOte aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1. Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula. En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.</p>
+<p>Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla). Aquí usamos R para conseguir este valor. Note aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1. Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula. En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">qchisq</span>(<span class="fl">0.95</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 3.841459</code></pre>
 <p>No hay ninguna razón de hacer los cálculos a mano si tenemos a R para hacerlo. Nota aquí se hace la misma prueba con los mismos datos y tenemos el mismo resultado.</p>
@@ -895,7 +895,7 @@ Esperado
 <h2>Gráfico de Mosaico</h2>
 <p>Podemos visualizar la frecuencia de los datos con un gráfico de mosaico. Si la hipótesis nula la organización de las cajas deberían ser más o menos del mismo tamaño. En este caso lo que uno observa es que los que reciben comida y no bailan (1.1) la caja es mucha más pequeña que los que bailan y reciben comida. Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender el patrón.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">mosaicplot</span>(catsTable)</span></code></pre></div>
-<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <hr />
 </div>
 </div>
@@ -1010,7 +1010,7 @@ Esperado
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tlwagtglcu .gt_table {
+#ykbjjmlkos .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1035,7 +1035,7 @@ Esperado
   border-left-color: #D3D3D3;
 }
 
-#tlwagtglcu .gt_heading {
+#ykbjjmlkos .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1047,7 +1047,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#tlwagtglcu .gt_title {
+#ykbjjmlkos .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1057,7 +1057,7 @@ Esperado
   border-bottom-width: 0;
 }
 
-#tlwagtglcu .gt_subtitle {
+#ykbjjmlkos .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1067,13 +1067,13 @@ Esperado
   border-top-width: 0;
 }
 
-#tlwagtglcu .gt_bottom_border {
+#ykbjjmlkos .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tlwagtglcu .gt_col_headings {
+#ykbjjmlkos .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1088,7 +1088,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#tlwagtglcu .gt_col_heading {
+#ykbjjmlkos .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1108,7 +1108,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#tlwagtglcu .gt_column_spanner_outer {
+#ykbjjmlkos .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1120,15 +1120,15 @@ Esperado
   padding-right: 4px;
 }
 
-#tlwagtglcu .gt_column_spanner_outer:first-child {
+#ykbjjmlkos .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tlwagtglcu .gt_column_spanner_outer:last-child {
+#ykbjjmlkos .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tlwagtglcu .gt_column_spanner {
+#ykbjjmlkos .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1140,7 +1140,7 @@ Esperado
   width: 100%;
 }
 
-#tlwagtglcu .gt_group_heading {
+#ykbjjmlkos .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1162,7 +1162,7 @@ Esperado
   vertical-align: middle;
 }
 
-#tlwagtglcu .gt_empty_group_heading {
+#ykbjjmlkos .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1177,15 +1177,15 @@ Esperado
   vertical-align: middle;
 }
 
-#tlwagtglcu .gt_from_md > :first-child {
+#ykbjjmlkos .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tlwagtglcu .gt_from_md > :last-child {
+#ykbjjmlkos .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tlwagtglcu .gt_row {
+#ykbjjmlkos .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1204,7 +1204,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#tlwagtglcu .gt_stub {
+#ykbjjmlkos .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1216,7 +1216,7 @@ Esperado
   padding-left: 12px;
 }
 
-#tlwagtglcu .gt_summary_row {
+#ykbjjmlkos .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1226,7 +1226,7 @@ Esperado
   padding-right: 5px;
 }
 
-#tlwagtglcu .gt_first_summary_row {
+#ykbjjmlkos .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1236,7 +1236,7 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#tlwagtglcu .gt_grand_summary_row {
+#ykbjjmlkos .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1246,7 +1246,7 @@ Esperado
   padding-right: 5px;
 }
 
-#tlwagtglcu .gt_first_grand_summary_row {
+#ykbjjmlkos .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1256,11 +1256,11 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#tlwagtglcu .gt_striped {
+#ykbjjmlkos .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tlwagtglcu .gt_table_body {
+#ykbjjmlkos .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1269,7 +1269,7 @@ Esperado
   border-bottom-color: #D3D3D3;
 }
 
-#tlwagtglcu .gt_footnotes {
+#ykbjjmlkos .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1283,13 +1283,13 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#tlwagtglcu .gt_footnote {
+#ykbjjmlkos .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#tlwagtglcu .gt_sourcenotes {
+#ykbjjmlkos .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1303,46 +1303,46 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#tlwagtglcu .gt_sourcenote {
+#ykbjjmlkos .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#tlwagtglcu .gt_left {
+#ykbjjmlkos .gt_left {
   text-align: left;
 }
 
-#tlwagtglcu .gt_center {
+#ykbjjmlkos .gt_center {
   text-align: center;
 }
 
-#tlwagtglcu .gt_right {
+#ykbjjmlkos .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tlwagtglcu .gt_font_normal {
+#ykbjjmlkos .gt_font_normal {
   font-weight: normal;
 }
 
-#tlwagtglcu .gt_font_bold {
+#ykbjjmlkos .gt_font_bold {
   font-weight: bold;
 }
 
-#tlwagtglcu .gt_font_italic {
+#ykbjjmlkos .gt_font_italic {
   font-style: italic;
 }
 
-#tlwagtglcu .gt_super {
+#ykbjjmlkos .gt_super {
   font-size: 65%;
 }
 
-#tlwagtglcu .gt_footnote_marks {
+#ykbjjmlkos .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="tlwagtglcu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ykbjjmlkos" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1372,7 +1372,7 @@ Esperado
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#khujpdvosf .gt_table {
+#cxmfxhibgs .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1397,7 +1397,7 @@ Esperado
   border-left-color: #D3D3D3;
 }
 
-#khujpdvosf .gt_heading {
+#cxmfxhibgs .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1409,7 +1409,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#khujpdvosf .gt_title {
+#cxmfxhibgs .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1419,7 +1419,7 @@ Esperado
   border-bottom-width: 0;
 }
 
-#khujpdvosf .gt_subtitle {
+#cxmfxhibgs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1429,13 +1429,13 @@ Esperado
   border-top-width: 0;
 }
 
-#khujpdvosf .gt_bottom_border {
+#cxmfxhibgs .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#khujpdvosf .gt_col_headings {
+#cxmfxhibgs .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1450,7 +1450,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#khujpdvosf .gt_col_heading {
+#cxmfxhibgs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1470,7 +1470,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#khujpdvosf .gt_column_spanner_outer {
+#cxmfxhibgs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1482,15 +1482,15 @@ Esperado
   padding-right: 4px;
 }
 
-#khujpdvosf .gt_column_spanner_outer:first-child {
+#cxmfxhibgs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#khujpdvosf .gt_column_spanner_outer:last-child {
+#cxmfxhibgs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#khujpdvosf .gt_column_spanner {
+#cxmfxhibgs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1502,7 +1502,7 @@ Esperado
   width: 100%;
 }
 
-#khujpdvosf .gt_group_heading {
+#cxmfxhibgs .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1524,7 +1524,7 @@ Esperado
   vertical-align: middle;
 }
 
-#khujpdvosf .gt_empty_group_heading {
+#cxmfxhibgs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1539,15 +1539,15 @@ Esperado
   vertical-align: middle;
 }
 
-#khujpdvosf .gt_from_md > :first-child {
+#cxmfxhibgs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#khujpdvosf .gt_from_md > :last-child {
+#cxmfxhibgs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#khujpdvosf .gt_row {
+#cxmfxhibgs .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1566,7 +1566,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#khujpdvosf .gt_stub {
+#cxmfxhibgs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1578,7 +1578,7 @@ Esperado
   padding-left: 12px;
 }
 
-#khujpdvosf .gt_summary_row {
+#cxmfxhibgs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1588,7 +1588,7 @@ Esperado
   padding-right: 5px;
 }
 
-#khujpdvosf .gt_first_summary_row {
+#cxmfxhibgs .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1598,7 +1598,7 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#khujpdvosf .gt_grand_summary_row {
+#cxmfxhibgs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1608,7 +1608,7 @@ Esperado
   padding-right: 5px;
 }
 
-#khujpdvosf .gt_first_grand_summary_row {
+#cxmfxhibgs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1618,11 +1618,11 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#khujpdvosf .gt_striped {
+#cxmfxhibgs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#khujpdvosf .gt_table_body {
+#cxmfxhibgs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1631,7 +1631,7 @@ Esperado
   border-bottom-color: #D3D3D3;
 }
 
-#khujpdvosf .gt_footnotes {
+#cxmfxhibgs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1645,13 +1645,13 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#khujpdvosf .gt_footnote {
+#cxmfxhibgs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#khujpdvosf .gt_sourcenotes {
+#cxmfxhibgs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1665,46 +1665,46 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#khujpdvosf .gt_sourcenote {
+#cxmfxhibgs .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#khujpdvosf .gt_left {
+#cxmfxhibgs .gt_left {
   text-align: left;
 }
 
-#khujpdvosf .gt_center {
+#cxmfxhibgs .gt_center {
   text-align: center;
 }
 
-#khujpdvosf .gt_right {
+#cxmfxhibgs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#khujpdvosf .gt_font_normal {
+#cxmfxhibgs .gt_font_normal {
   font-weight: normal;
 }
 
-#khujpdvosf .gt_font_bold {
+#cxmfxhibgs .gt_font_bold {
   font-weight: bold;
 }
 
-#khujpdvosf .gt_font_italic {
+#cxmfxhibgs .gt_font_italic {
   font-style: italic;
 }
 
-#khujpdvosf .gt_super {
+#cxmfxhibgs .gt_super {
   font-size: 65%;
 }
 
-#khujpdvosf .gt_footnote_marks {
+#cxmfxhibgs .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="khujpdvosf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="cxmfxhibgs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1948,7 +1948,7 @@ Esperado
 ## Estimulo_lateral        1           6</code></pre>
 <p>Se puede visualizar los datos con el Mosaico</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">mosaicplot</span>(serpiente)</span></code></pre></div>
-<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Nota que se usa la misma función que anterior pero en los resultados hay que fijarse en la sección que dice <strong>Fisher’s Exact test</strong>. Lo que uno observa es que el valor de <strong>p</strong> es menor de 0.05 por consecuencia se rechaza la hipótesis nula. Lo que significa es que para la serpiente el angulo donde proviene el estimulo resulta en una repuesta diferente.</p>
 <hr />
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">fisher.test</span>(serpiente)</span></code></pre></div>

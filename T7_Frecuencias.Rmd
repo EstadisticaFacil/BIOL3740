@@ -57,15 +57,13 @@ En esta sección no estamos interesado en evaluar los valores con datos que son 
 >  +  estar embarazada o no.
 >  +  Tiene el fenotipo dominante o recesivo.
 >  +  En una herencia mendeliana, los individuos son homocigóticos recesivo, dominantes o heterocigóticos.   
-```{r}
 
-```
 
 ***
 
 # Qué son supuestos
 
-Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para que la prueba sea utilizada. El incumplimiento de de los supuestos resulta en que el los resultados de la prueba tenga un nivel de tipo de error I y tipo de error II más grande que los especificado (por ejemplo si selecciona un $\alpha$ de 0.05, el error seria más grande). Si se usa datos usa datos erróneos puede ser que la prueba sea completamente invalida. 
+Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para que la prueba sea utilizada. El incumplimiento de los supuestos resulta en que el los resultados de la prueba tenga un nivel de tipo de error I y tipo de error II más grande que los especificado (por ejemplo si selecciona un $\alpha$ de 0.05, el error seria más grande). Si se usa datos usa datos erróneos puede ser que la prueba sea completamente invalida. 
 
 ***
 # Los supuestos de las pruebas de frecuencias.
@@ -75,7 +73,7 @@ Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para
   3. Las observaciones son independiente una de la otra.
   4. Cada categoría tiene una frecuencia esperada suficiente grande: 
       + ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o menos categorías
-      + no más de 20% de las categorías tienen un valor esperado de 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1. 
+      + no más de 20% de las categorías que tengan un valor esperado de < 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1. 
 
 ***
 
@@ -101,9 +99,9 @@ library(gt)
 
 Gregory Mendel (1822-1884) el padre de herencia "mendeliana" estaba interesada en determinar como se hereda las características de los organismos.  En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia.  Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible.  Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo "x" hay un individuo del fenotipo "y".
 
-Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aquí esta la publicación original en aleman y su traducción en ingles.  
+Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aquí esta la publicación original en aleman y la referencia a la traducción en ingles.  
 
- Mendel, J.G. (1866). "Versuche über Pflanzenhybriden", Verhandlungen des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865, Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.; Bateson, William (1901). "Experiments in plant hybridization" (PDF). Journal of the Royal Horticultural Society. 26: 1–32. Retrieved 9 October 2009.
+ Mendel, J.G. (1866). "Versuche über Pflanzenhybriden", Verhandlungen des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865, Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.; Bateson, William (1901). "Experiments in plant hybridization" (PDF). Journal of the Royal Horticultural Society. 26: 1–32.
 
 
 Tabla de los resultados de experimentos original de Gregor Mendel con semillas redondas y arrugadas. Cada uno represente un experimento y la cantidad de guisantes redondos o arrugadas.  
@@ -122,7 +120,7 @@ Tabla de los resultados de experimentos original de Gregor Mendel con semillas r
 | 10      |      25 |       7 |
 | Total   |    336  |    101  |
 
-En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas.  Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 deberían ser las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp). 
+En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas.  Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 que seria las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp). 
 
 ***
 # Bondad de Ajuste.
@@ -144,8 +142,9 @@ df <- data.frame(Calculos = c("Observado","Esperado", "(o-e)", "(o-e)^2", "$$\\f
 
 kable(df, escape=FALSE)
 
-
 ```
+
+
 
 > Los pasos para calcular el Chi Cuadrado: 
 
@@ -156,7 +155,7 @@ kable(df, escape=FALSE)
 >  + Sumar los valores en #4.
 >  + buscar en una tabla de Chi Square el valor critico de Chi Square para la cantidad de grupos menos 1 y el $\alpha$ correspondiente.  En este caso se busca un $\alpha$ de 0.05 y el grado de libertad (n-1) = 2-1, n es el número de grupos. 
   
-  Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla).  Aquí usamos R para conseguir este valor.  NOte aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1.  Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula.  En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.  
+  Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla).  Aquí usamos R para conseguir este valor.  Note aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1.  Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula.  En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.  
   
 ```{r}
 qchisq(0.95, 1)
@@ -228,7 +227,6 @@ rownames(catsTable)<-c("No_bailan", "bailan") # Añade el nombre a las filas
 
 catsTable
 
-
 ```
 
 
@@ -284,6 +282,7 @@ CrossTable(catsTable, fisher = TRUE, chisq = TRUE,
 
 4/39
 ```
+
 
 # Analisis con datos en una tabla
 

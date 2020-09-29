@@ -166,6 +166,9 @@ summary(modelflower)
 ggplot(dipodium, aes(Height_Inflo, Number_of_Flowers))+
   geom_smooth(method=lm)+
   geom_point()
+
+
+
 ```
 
 
@@ -191,7 +194,7 @@ res
 
 ## Los residuales de Student para detectar valores sesgados
 
-A continuación se ilustra otro enfoque para evaluar los residuales. En este caso, para detectar valores sesgados (ouliers). Se puede visualizar los residuales se usa los residuales estandarizados divido por la desviación estandard. Valores que mayores de 3 serian considerados sesgados. Esta alternativa es apropiada si detectar valores sesgados.  Note en la figura que se usa otra vez el modelo **modelflower** y los valores calculados en el modelo **.fitted** y los residuales de student con **.stdresid**. Note ahora también que todos los valores en el eje de **Y** son mayores de cero.
+A continuación se ilustra otro enfoque para evaluar los residuales. En este caso, para detectar valores sesgados (outliers). Se puede visualizar los residuales se usa los residuales estandarizados divido por la desviación estándar. Valores mayores de 3 serian considerados sesgados. Esta alternativa es apropiada si detectar valores sesgados.  Note en la figura que se usa otra vez el modelo **modelflower** y los valores calculados en el modelo **.fitted** y los residuales de student con **.stdresid**. Note ahora también que todos los valores en el eje de **Y** son mayores de cero.
 
 ```{r Homogeneityvariance2}
   ResEst=ggplot(modelflower,
@@ -234,7 +237,7 @@ Para hacer una ilustración, continuaremos con el modelo **modelflower** usando 
 
 ## Causas principales de los valores sesgados
 
-Los valores que parecen sesgados pueden ser normal de la población estudiada, y por consecuencia en estos casos remoción de estos valores podría resultar en descripción de los resultados incorrectos.  Primero hay que evaluar los siguientes posibles causas de valores sesgados. Si algunos de los siguientes son presentes hay que resolver los valores o removerlos de la hoja de analisis.  
+Los valores que parecen sesgados pueden ser normal de la población estudiada, y por consecuencia en estos casos remoción de estos valores podría resultar en descripción de los resultados incorrectos.  Primero hay que evaluar los siguientes posibles causas de valores sesgados. Si algunos de los siguientes son presentes hay que resolver los valores o remover los de la hoja de análisis.  
 
 
 * los valores recolectado son erróneo.
@@ -247,7 +250,7 @@ Los valores que parecen sesgados pueden ser normal de la población estudiada, y
 
 Hay muchas pruebas estadísticas que asumen que los datos provienen de una distribución normal. Pero no todas las pruebas tienen que satisfacer ese supuesto.  Por ejemplo, un Análisis de Componentes Principales o ACP (en inglés, PCA o Principle Component Analysis) o la prueba de t asumen distribución normal.  Por el contrario, las pruebas no paramétricas como Wilcoxon, Mann-Whitney, Kruskall Wallis y otras no asumen ese supuesto.
 
-Una alternativa tradicional para comprobar la normalidad de los datos es mirar el gráfico de QQ; o sea, una visualización para comparar las probabilidades de dos variables en las que se gráfican los cuartiles (recordemos que **Q** viene de cuartil). Si las distribuciones de las dos variables son similares, los puntos aparecerán nítidamente en el gráfico de QQ sobre la línea de **X-Y**. Eso se demostrará a continuación.
+Una alternativa tradicional para comprobar la normalidad de los datos es mirar el gráfico de QQ; o sea, una visualización para comparar las probabilidades de dos variables en las que se gráfica los cuartiles (recordemos que **Q** viene de cuartil). Si las distribuciones de las dos variables son similares, los puntos aparecerán nítidamente en el gráfico de QQ sobre la línea de **X-Y**. Eso se demostrará a continuación.
 
 ***
 
@@ -292,12 +295,15 @@ grid.arrange(a,b,ncol=2)
 
 ## La distribución normal
 
-Una segunda alternativa para visualizar si los datos siguen una distribución normal es construir un histograma de los datos y gráficar sobre este la curva normal basándonos en el promedio y la desviación estándar de los mismos datos.  Para construir el histograma se usa la función **geom_histogram** y para la  distribución teorica normal de estos datos se usa la función **stat_function**.  Esto lo demostramos con gráficos adicionales de la Becasa del Mar, donde se representa la razón de consumo y el período en que esto ocurrió. En la Figura (a) vemos la distribución para todos los períodos, y los otros tres en la Figura (b) muestran una distribución para cada uno de los períodos.  Se observa en todos los casos que las distribuciones están sesgadas hacia los valores pequeños (hacia la izquierda).  Esta visualización nos ayuda a evaluar la normalidad de esos datos. NOta que no es una prueba estadística igual como el gráfico de qqplot
+Una segunda alternativa para visualizar si los datos siguen una distribución normal es construir un histograma de los datos y gráficar sobre este la curva normal basándonos en el promedio y la desviación estándar de los mismos datos.  Para construir el histograma se usa la función **geom_histogram** y para la  distribución teórica normal de estos datos se usa la función **stat_function**.  Esto lo demostramos con gráficos adicionales de la Becasa del Mar, donde se representa la razón de consumo y el período en que esto ocurrió. En la Figura (a) vemos la distribución para todos los períodos, y los otros tres en la Figura (b) muestran una distribución para cada uno de los períodos.  Se observa en todos los casos que las distribuciones están sesgadas hacia los valores pequeños (hacia la izquierda).  Esta visualización nos ayuda a evaluar la normalidad de esos datos. NOta que no es una prueba estadística igual como el gráfico de qqplot.
+
+Nota la formula para calcular la distribución normal. Hay solamente dos parámetros que necesitamos, el promedio $\mu$ y la desviación estándar $\sigma$. Todos los otros son constantes, $\pi$, y  e.  
+
+$$P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}$$
 
 Note que en **geom_histogram** se tiene que incluir 
 
   **aes(..density..)** 
-
 
 y añadir dentro de la función **stat_function** todo lo siguiente: 
 
@@ -306,7 +312,7 @@ y añadir dentro de la función **stat_function** todo lo siguiente:
                                 na.rm = TRUE),
     sd = sd(Godwits$mgconsumed,
             na.rm = TRUE)),
-            colour = "red", size = 1.)
+            colour = "red", size = 1)
 
 
 El parámetro **dnorm** quiere decir densidad de la distribución normal.  También se necesitan dos parámetros para calcular el promedio (mean) y la desviación estándar (sd).  Con ambos hay que especificar de dónde provienen los datos; en este caso, 
@@ -329,7 +335,8 @@ a=ggplot(Godwits, aes(mgconsumed)) +
         args = list(mean = mean(Godwits$mgconsumed,
                                 na.rm = TRUE),
     sd = sd(Godwits$mgconsumed,na.rm = TRUE)),
-    colour = "red", size = 1)
+    colour = "red", size = 1)+
+  ggtitle("Todos los datos")
 
 
 
@@ -346,7 +353,8 @@ b= ggplot(Godwits, aes(mgconsumed)) +
     mean(Godwits$mgconsumed, na.rm = TRUE),
     sd = sd(Godwits$mgconsumed, na.rm = TRUE)),
     colour = "red", size = 1)+
-    facet_wrap(~PERIOD)
+    facet_wrap(~PERIOD)+
+  ggtitle("Por estación anual")
 
 grid.arrange(a,b,ncol=1)
 ```
@@ -381,10 +389,10 @@ b=ggplot(Sparrows, aes(wt)) +
   geom_histogram(aes(y=..density..), colour="black",
                  fill="white") +
   labs(x = "Peso", y = "Densidad") +
-  stat_function(fun = dnorm, args = list(mean =
-      mean(Sparrows$wt, na.rm = TRUE),
-      sd = sd(Sparrows$wt, na.rm = TRUE)),
-      colour = "red", size = 1)
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(Sparrows$wt, na.rm = TRUE),
+                            sd = sd(Sparrows$wt, na.rm = TRUE)),
+                            colour = "red", size = 1)
 
 grid.arrange(a,b,ncol=2)
 ```
