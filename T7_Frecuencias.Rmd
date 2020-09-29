@@ -133,11 +133,15 @@ Usamos un ejemplo sencillo de los datos de Mendel haciendo los cálculos a mano 
 
 ```{r width}
 
+57*.75
+57*.25
+
+
 library(knitr)
 library(kableExtra)
 df <- data.frame(Calculos = c("Observado","Esperado", "(o-e)", "(o-e)^2", "$$\\frac{(o-e)^2}{e}$$", "$$\\chi_{total}^2$$"),
                  Redonda = c(45, 42.75, 2.25,5.0625, 0.1184, ""),
-                 Arrugada = c(12,14.25, 2.25,5.0625 ,0.3553, ""),
+                 Arrugada = c(12,14.25, -2.25,5.0625 ,0.3553, ""),
                  Total = c("","","","","",0.4737))
 
 kable(df, escape=FALSE)
@@ -223,6 +227,8 @@ Se crea dos listas con los resultados y se une estas dos filas con **cbind()** y
 comida <- c(10, 28)
 carino <- c(114,48)
 catsTable <- cbind(comida, carino)
+
+
 rownames(catsTable)<-c("No_bailan", "bailan") # Añade el nombre a las filas
 
 catsTable
@@ -253,6 +259,11 @@ Los valores esperados en esta caso son calculados directamente de la tabla. Para
 
 ```{r}
 catsTable
+
+(38*124)/200
+R.version
+library(ggplot2)
+citation("ggplot2")
 ```
 
 
