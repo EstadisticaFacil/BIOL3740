@@ -292,7 +292,7 @@ CrossTable(catsTable, fisher = TRUE, chisq = TRUE,
 ```
 
 
-# Analisis con datos en una tabla
+# Análisis con datos en formato de tabla
 
 Estos son los mismos datos pero no sumado, en otra palabra es información específica sobre cada gato y su tratamiento y si bailo o no.   La ventaja de este método es que uno no tiene que hacer el calculo y sumar la frecuancias, se deja la función **CrossTable** hacer la suma. Miran bien la tabla.  
 
@@ -310,9 +310,9 @@ Training<-factor(Training, labels = c("Food as Reward", "Affection as Reward"))
 Dance<-factor(Dance, labels = c("No", "Yes"))
 
 catsData<-data.frame(Training, Dance)
-
-gt(head(catsData, n=3))
-gt(tail(catsData, n=3))
+# catsData Los datos completos
+gt(head(catsData, n=6))
+gt(tail(catsData, n=5))
 
 
 ```
@@ -323,7 +323,7 @@ Nota que aquí se llama cada columna aparte en la función (catsData$Training, c
 # Prueba de independencia 
 
 ```{r test2}
-
+# usando los datos en formato de data frame **catsData**
 CrossTable(catsData$Training, catsData$Dance, 
            fisher = TRUE, chisq = TRUE, expected = TRUE, 
            sresid = TRUE, format = "SPSS")
@@ -395,7 +395,7 @@ La prueba Exacta de Fisher es similar a la prueba de Bondad de Ajuste para evalu
 >  + Las observaciones son independiente una de la otra.
 >  + La tabla tiene 2 filas y 2 columnas.
   
-Usando los datos de serpientes del ejemplo 7.4 del libro
+Usando los datos de serpientes del ejemplo 7.4 del libro de Havel et al. 
 
 ```{r}
 responde <- c(6, 1)
