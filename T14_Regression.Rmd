@@ -184,13 +184,11 @@ Recuerda que $\beta _{ 0 }$ es el intercepto y el $\beta _{ 1 }X_{ i }$ es la pe
 
 
 
-```{r avertizing graph}
+```{r advertizing graph}
 library(ggplot2)
 ggplot(Album_Sales_1_new,aes(x=adverts, y=sales))+
   geom_smooth(method=lm, se = TRUE)+
   geom_point()+
-  geom_point()
-
   geom_segment(aes(x=0, y=120, xend=2250, yend=380), colour="red")+
   geom_segment(aes(x=0, y=150, xend=2250, yend=320), colour="purple")
 ```
