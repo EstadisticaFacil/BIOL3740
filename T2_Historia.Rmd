@@ -8,11 +8,27 @@ output:
 #    theme: simplex
     toc: yes
     toc_float: yes
-    
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+
+
 ```
 
 Fecha de la ultima revisión
@@ -21,7 +37,7 @@ Fecha de la ultima revisión
 Sys.Date()
 ```
 
-
+***
 
 
 
@@ -57,6 +73,10 @@ knitr::include_graphics("Graficos/Gaunt_Disease_Casualties_1632.png")
 ```
 
 El otro componente importante de la estadística fue el desarrollo de las probabilidades en el siglo 17 y 18.  La gente le gustaba (como hoy en día) hacer apuestos y jugar cartas para dinero. Entonces mucha gente trataba de entender las diferentes probabilidades de ganar en estos juegos de azar para poder aumentar su probabilidad de ganar en estos juegos.  
+
+
+***
+
 
 
 ## Algunos personas importantes
