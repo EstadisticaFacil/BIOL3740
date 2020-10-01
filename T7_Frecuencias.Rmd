@@ -68,10 +68,10 @@ Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para
 ***
 # Los supuestos de las pruebas de frecuencias.
 
-  1. Los datos son frecuencias.
-  2. Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).
-  3. Las observaciones son independiente una de la otra.
-  4. Cada categoría tiene una frecuencia esperada suficiente grande: 
+  - Los datos son frecuencias.
+  - Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).
+  - Las observaciones son independiente una de la otra.
+  - Cada categoría tiene una frecuencia esperada suficiente grande: 
       + ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o menos categorías
       + no más de 20% de las categorías que tengan un valor esperado de < 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1. 
 
@@ -197,6 +197,25 @@ chisq.test(x=obs, p=esp)
 ```
 
 
+***
+
+```{r echo=FALSE, out.width= "25%", out.extra='style="float:right; padding:10px"'}
+knitr::include_graphics("Graficos/Tweety.svg.png")
+```
+
+1. Ejercicio:  Cien pajaritos recibieron semillas de girasol con rayas negras o semillas negras. Setenta y cinco eligieron semillas negras. ¿Podemos concluir que la población de la que se tomó esta muestra tiene preferencia por las semillas de girasol negras sobre las semillas de girasol rayadas? (traducido del extracto 7.1 de Havel et al.).
+
+    - ¿Cual es la hipótesis nula?
+    - ¿cual es la hipótesis alterna?
+    - calcula los valores esperados
+    - calcula el chi cuadrado
+    - ¿Se rechaza o acepta la Ho?
+
+
+***
+
+
+
 ```{r}
 #install.packages("MASS", dependencies = TRUE)
 ```
@@ -249,6 +268,10 @@ mosaicplot(catsTable)
 
 ```
 
+
+
+
+
 ***
 
 # Prueba de Independencia de frecuencia. 
@@ -259,11 +282,6 @@ Los valores esperados en esta caso son calculados directamente de la tabla. Para
 
 ```{r}
 catsTable
-
-(38*124)/200
-R.version
-library(ggplot2)
-citation("ggplot2")
 ```
 
 
@@ -302,6 +320,32 @@ CrossTable(catsTable, fisher = TRUE, chisq = TRUE,
 
 ```
 
+***
+```{r echo=FALSE, out.width= "50%", out.extra='style="float:right; padding:10px"'}
+knitr::include_graphics("Graficos/Northern_Water_Snake.jpg")
+```
+
+***
+
+[Video de la serpiente](https://www.youtube.com/watch?v=Uw6W8NaJmfo)
+
+
+2. Ejercicio:  Un herpetólogo sospecha que las serpientes de agua hembras que se alimentan en el lago Michigan migran a los estanques del interior en el otoño para dar a luz a sus crías. Si esta hipotesis es correcta, cabría esperar que las hembras fueran mucho más propensas a migrar en ese momento que los machos. Se recopilaron los siguientes datos. (De Havel et al.)
+
+|        | Migrantes | No Migrantes |
+|--------|-----------:|--------------:|
+| Hembra | 25        | 2            |
+| Machos | 4         | 30           |
+
+    - ¿Cual es la hipótesis nula?
+    - ¿cual es la hipótesis alterna?
+    - calcula los valores esperados
+    - calcula el chi cuadrado
+    - ¿Se rechaza o acepta la Ho?
+
+***
+
+
 
 # Análisis con datos en formato de tabla
 
@@ -329,6 +373,10 @@ gt(tail(catsData, n=5))
 ```
 ***
 
+
+
+
+
 Nota que aquí se llama cada columna aparte en la función (catsData$Training, catsData$Dance). 
 
 # Prueba de independencia 
@@ -340,7 +388,8 @@ CrossTable(catsData$Training, catsData$Dance,
            sresid = TRUE, format = "SPSS")
 
 
-# Yes, you can do a figure with the 2nd alternative
+# Se puede hacer un grafico de los resultados
+
 Ta2= xtabs(~Training+Dance, data=catsData)
 Ta2
 mosaicplot(Ta2, shade=TRUE)
@@ -409,7 +458,7 @@ La prueba Exacta de Fisher es similar a la prueba de Bondad de Ajuste para evalu
 Usando los datos de serpientes del ejemplo 7.4 del libro de Havel et al. 
 
 ```{r}
-responde <- c(6, 1)
+responde <- c(6,3)
 no_responde <- c(1,6)
 serpiente <- cbind(responde, no_responde)
 rownames(serpiente)<-c("Estimulo_ariba", "Estimulo_lateral") # Añade el nombre a las filas
