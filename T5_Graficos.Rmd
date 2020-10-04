@@ -89,6 +89,8 @@ tail(Exam_Anxiety)
 ```
 
 
+
+
 Parta ver el nombre de las variables en el archivo se usa la función **names**. Vemos que hay cinco columnas, el **Code** que se refiere a un código que identifica el estudiante, **Revise** el tiempo que el estudiante estudio antes de tomar el examen, **Exam** la nota del estidiante, **Anxiety**, un indice de anxiedad antes de tomar el examen, **Gender** el genero del estudiante. 
 
 
@@ -370,7 +372,29 @@ ggplot(hiccups, aes(y=Num_Hiccups,x=Intervention))+
 
 
 
+# Diagrama de tallo y hoja
 
 
+Este diagrama demuestra la cantidad de datos usando el metodo sugerido por John Tukey
 
+
+```{r}
+stem(Exam_Anxiety$Anxiety)
+
+ggplot(Exam_Anxiety, aes(Anxiety))+
+  geom_histogram()
+```
+
+
+Stem leaf for two groups
+
+```{r}
+library(aplpack)
+```
+
+
+```{r}
+stem.leaf(co2)
+stem.leaf.backback(Anxiey[1:30],Anxiety[31:60])
+```
 
