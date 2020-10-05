@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 ```
 
 Fecha de la ultima revisión
+
 ```{r echo=FALSE}
 
 Sys.Date()
@@ -24,7 +25,6 @@ Sys.Date()
 ```{r}
 library(ggplot2)
 ```
-
 
 ```{r, echo=FALSE}
 library(tidyverse)
@@ -62,49 +62,40 @@ cbPalette2 <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2"
 
 # Gráficos Básicos con ggplot2
 
-Este modulo es una introducción corta para la visualización de los datos.  El paquete principal que se usa es el **ggplot2**.  La visualización de datos es un área especializado y no se podrá hacer justicia al tema al mismo tiempo que se estudia la estadística. Aquí se presenta es una introducción breve del tema.  La visualización ayuda a entender los datos ya que la dispersión de ellos impacta que prueba se puede utilizar y el significado de los analisis.   
+Este modulo es una introducción corta para la visualización de los datos. El paquete principal que se usa es el **ggplot2**. La visualización de datos es un área especializado y no se podrá hacer justicia al tema al mismo tiempo que se estudia la estadística. Aquí se presenta es una introducción breve del tema. La visualización ayuda a entender los datos ya que la dispersión de ellos impacta que prueba se puede utilizar y el significado de los analisis.
 
-La información utilizada en este documento proviene en parte del libro *Discovering Statistics using R* por Andy Field, Jeremy Miles y Zoë Field (2014).  
+La información utilizada en este documento proviene en parte del libro *Discovering Statistics using R* por Andy Field, Jeremy Miles y Zoë Field (2014).
 
 # Como crear una gráfica de regresión lineal usando ggplot
 
-1.  Subir los datos "Exam Anxiety"
-  Los archivos de datos que se usan en el libro se encuentran en este enlace, <https://studysites.sagepub.com/dsur/study/articles.htm>  
+1.  Subir los datos "Exam Anxiety" Los archivos de datos que se usan en el libro se encuentran en este enlace, <https://studysites.sagepub.com/dsur/study/articles.htm>
 
-
-Seleccionar el archivo **Exam Anxiety**. Note que los datos a la hoja de datos tienen que abrirlo en Excel o otro programa y salvarlo en formato **.csv** antes de seguir los proximos pasos. El siguiente paso es poner el archivo de datos en su proyecto de RStudio.     
-***
-## Subir los datos a RStudio
+Seleccionar el archivo **Exam Anxiety**. Note que los datos a la hoja de datos tienen que abrirlo en Excel o otro programa y salvarlo en formato **.csv** antes de seguir los proximos pasos. El siguiente paso es poner el archivo de datos en su proyecto de RStudio.\
+\*\*\* \#\# Subir los datos a RStudio
 
 ```{r}
 library(readr)
 Exam_Anxiety <- read_csv("Data_files_csv/Exam Anxiety.csv")
 ```
 
-Para visualizar las primeras y ultimas 6 filas usar **head()** y **tail()** respectivamente.  
+Para visualizar las primeras y ultimas 6 filas usar **head()** y **tail()** respectivamente.
 
 ```{r}
 head(Exam_Anxiety)
 tail(Exam_Anxiety)
 ```
 
-
-
-
-Parta ver el nombre de las variables en el archivo se usa la función **names**. Vemos que hay cinco columnas, el **Code** que se refiere a un código que identifica el estudiante, **Revise** el tiempo que el estudiante estudio antes de tomar el examen, **Exam** la nota del estidiante, **Anxiety**, un indice de anxiedad antes de tomar el examen, **Gender** el genero del estudiante. 
-
+Parta ver el nombre de las variables en el archivo se usa la función **names**. Vemos que hay cinco columnas, el **Code** que se refiere a un código que identifica el estudiante, **Revise** el tiempo que el estudiante estudio antes de tomar el examen, **Exam** la nota del estidiante, **Anxiety**, un indice de anxiedad antes de tomar el examen, **Gender** el genero del estudiante.
 
 ```{r}
 names(Exam_Anxiety)
 ```
 
-***
+------------------------------------------------------------------------
 
 # Regresión lineal
 
-El primer gráfico es crear una regresión lineal. Para producir una regresión lineal se necesita dos variables con datos continuos Seleccionamos dos variables continua, el nivel de ansiedad y la nota del examen. Para hacer una regresión lineal que sigue el patrón de y=mx+b, hay que utilizar la función geom_smooth(method=lm), la función **lm** se refiere a modelo lineal o ingles **linear model**. Nota que con el programa ggplot2, hay que primero identificar de donde proviene los datos **Exam_Anxiety**, despúes que hay identificar cual; son las variables de este archivo que se van a utilizar, en este caso **y=Exam, x=Anxiety**.  El proximoo paso es determinar que tipo de gráfico, y este caso es una regresión lineal.     
-
-
+El primer gráfico es crear una regresión lineal. Para producir una regresión lineal se necesita dos variables con datos continuos Seleccionamos dos variables continua, el nivel de ansiedad y la nota del examen. Para hacer una regresión lineal que sigue el patrón de y=mx+b, hay que utilizar la función geom\_smooth(method=lm), la función **lm** se refiere a modelo lineal o ingles **linear model**. Nota que con el programa ggplot2, hay que primero identificar de donde proviene los datos **Exam\_Anxiety**, despúes que hay identificar cual; son las variables de este archivo que se van a utilizar, en este caso **y=Exam, x=Anxiety**. El proximoo paso es determinar que tipo de gráfico, y este caso es una regresión lineal.
 
 ```{r linear graph}
 
@@ -113,12 +104,12 @@ ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety))+
   geom_point()# linear model
 
 ```
-***
+
+------------------------------------------------------------------------
+
 ## Añadiendo color por grupo y otras bellezas
 
-En este archivo utilizaremos un archivo que se usa muy comúnmente en los análisis de R, para demostrar un análisis o como hacer gráfico.  El archivo se llama **iris** y contiene información sobre el tamaño de características florales de tres especies del genero *Iris*.  En este gráfico se añade cuatro componente suplementarios, 1) un puntos para cada par de valores **Sepal.Length, Petal.Length**, 2) se cambia los nombres de las leyendas en **y** y **x** con la función **labs()** = labels, 3) se añade un titulo al gráfico con **ggtitle()**, 4) Note que cada especies tiene un color distinto, esto fue muy fácil incluir añadiendo la función **col=Species**, lo que esto significa es que para cada especies de planta se pone un color diferente.  
-
-
+En este archivo utilizaremos un archivo que se usa muy comúnmente en los análisis de R, para demostrar un análisis o como hacer gráfico. El archivo se llama **iris** y contiene información sobre el tamaño de características florales de tres especies del genero *Iris*. En este gráfico se añade cuatro componente suplementarios, 1) un puntos para cada par de valores **Sepal.Length, Petal.Length**, 2) se cambia los nombres de las leyendas en **y** y **x** con la función **labs()** = labels, 3) se añade un titulo al gráfico con **ggtitle()**, 4) Note que cada especies tiene un color distinto, esto fue muy fácil incluir añadiendo la función **col=Species**, lo que esto significa es que para cada especies de planta se pone un color diferente.
 
 ```{r}
 tail(iris)
@@ -133,18 +124,18 @@ ggplot(iris, aes(Sepal.Length, Petal.Length,colour=Species)) +
 
 ```
 
-***
-## Salvar graficos con **ggsave**
+------------------------------------------------------------------------
 
-Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de **MS Power Point**.  Se usa la función **ggsave()**.  se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .pdf). Nota que se salvo en un archivo que se llama "Graficos", es no es necesario, si no lo incluye sera salvado en el proyecto. 
+## Salvar gráficos con **ggsave**
+
+Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de **MS Power Point**. Se usa la función **ggsave()**. se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .pdf). Nota que se salvo en un archivo que se llama "Graficos", es no es necesario, si no lo incluye sera salvado en el proyecto.
 
 ```{r}
 ggsave("Iris_size.png") # .tiff, .png, .jpeg, .jpg
 
 ```
 
-
-# Regressión simple con puntos
+# Regresión simple con puntos
 
 ```{r more examples}
 
@@ -156,7 +147,7 @@ scatter + geom_point(shape=20, colour="red") +
 
 ```
 
-# Regressión simple con puntos y intervalo de confianza
+# Regresión simple con puntos y intervalo de confianza
 
 ```{r}
 scatter <- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
@@ -165,8 +156,7 @@ scatter + geom_point() +
   labs(x = "Exam Anxiety", y = "Exam Performance %") 
 ```
 
-
-### Cambio de color del intervalo de confianza 
+### Cambio de color del intervalo de confianza
 
 ```{r}
 scatter <- ggplot(Exam_Anxiety, aes(Anxiety, Exam))
@@ -175,9 +165,11 @@ scatter + geom_point() +
   labs(x = "Exam Anxiety", y = "Exam Performance %") 
 ```
 
-***
+------------------------------------------------------------------------
+
 ## Regresión lineal por grupo.
-Para separar y tener una linea por grupo se usa la función **colour** y se añade la variable de factor. En este caso la variable **Gender** para separar entre hombres y mujer.  Se enseña también la función **ggtitle()** para añadir un titulo al gráfico. 
+
+Para separar y tener una linea por grupo se usa la función **colour** y se añade la variable de factor. En este caso la variable **Gender** para separar entre hombres y mujer. Se enseña también la función **ggtitle()** para añadir un titulo al gráfico.
 
 ```{r}
 
@@ -188,22 +180,20 @@ ggplot(Exam_Anxiety, aes(y=Exam, x=Anxiety, colour=Gender))+
   ggtitle("Basic geom_point and linear regression")
 
 ```
-***
+
+------------------------------------------------------------------------
 
 ## Histogramas
 
-Un histograma es un gráfico que representa la frecuencia de los valores de un conjunto de datos.  pro consecuencia es el eje de **x** se encuentra una variable continua y en el eje de **y** la frecuencia. La frecuencia es lo mismo que el cantidad de veces que aparece los valores en **x** en el conjunto de datos.  
+Un histograma es un gráfico que representa la frecuencia de los valores de un conjunto de datos. pro consecuencia es el eje de **x** se encuentra una variable continua y en el eje de **y** la frecuencia. La frecuencia es lo mismo que el cantidad de veces que aparece los valores en **x** en el conjunto de datos.
 
-Se necesita el archivo *DownloadFestival* que se encuentra debajo la pestaña de **Los Datos**. El ejemplo proviene de Field et al. (2014).  
+Se necesita el archivo *DownloadFestival* que se encuentra debajo la pestaña de **Los Datos**. El ejemplo proviene de Field et al. (2014).
 
     Una bióloga estaba preocupado por los posibles efectos sobre la salud de los que particpan a un festivales de música. Entonces, un año fue al Download Festival en el Reino Unido (Download Festival UK). Ella midió la higiene del los que participaron al concierto n= 810 durante el festival de 3 días. Cada día intentaba encontrar a todas las personas que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el nivel de limpieza por como olia los participantes
     + 0 = hueles como un cadáver. 
     + 4 = hueles a rosas dulces en un fresco día de primavera
-    
 
 La hipótesis es que la higiene personal de los asistentes al concierto disminuiría dramáticamente durante los 3 días del festival.
- 
-
 
 ```{r festival data}
 library(readr)
@@ -213,7 +203,7 @@ FD=DownloadFestival
 
 ```
 
-Construyendo histogramas y detectando valores atípicos.  Nota los valores **NA**, estos son los participantes que no se pudieron encontrar en los siguientes días. 
+Construyendo histogramas y detectando valores atípicos. Nota los valores **NA**, estos son los participantes que no se pudieron encontrar en los siguientes días.
 
 ```{r mirar los datos}
 head(FD, n=2)
@@ -221,8 +211,7 @@ tail(FD)
 
 ```
 
-Nota que aquí vemos el resultado, y encontramos un problema.  Hay participantes que tienen valores que no son entre 0 y 4, que es la escala de higiene.  Aunque es difícil ver, pero debido que el gráfico se extiende mayor de 4, es un indice de un problema ya que sabemos que los valores pueden estar solamente entre 0 y 4.  
-
+Nota que aquí vemos el resultado, y encontramos un problema. Hay participantes que tienen valores que no son entre 0 y 4, que es la escala de higiene. Aunque es difícil ver, pero debido que el gráfico se extiende mayor de 4, es un indice de un problema ya que sabemos que los valores pueden estar solamente entre 0 y 4.
 
 ```{r histograma}
  ggplot(FD, aes(day1))+ 
@@ -233,18 +222,16 @@ Nota que aquí vemos el resultado, y encontramos un problema.  Hay participantes
  
 ```
 
-Evaluar los datos resumidos, para detectar porque el gráfico se extiende a valores mayor de 4. Nota que el día 1, el valor máximo es de 20. Este probablemente fue un error de poner los datos un la hoja de Excel.  Lo que se puede hacer es remover este participante del analisis.   
+Evaluar los datos resumidos, para detectar porque el gráfico se extiende a valores mayor de 4. Nota que el día 1, el valor máximo es de 20. Este probablemente fue un error de poner los datos un la hoja de Excel. Lo que se puede hacer es remover este participante del analisis.
 
 ```{r}
 summary(DownloadFestival)
 
 ```
 
+Se puede remueve valores de un conjunto de datos usando la función **subset( )** y en este caso de la columna **day1** se selecciona solamente los valores menor de 5, de esta forma eliminamos el valore de 20.
 
-Se puede remueve valores de un conjunto de datos usando la función **subset( )** y en este caso de la columna **day1** se selecciona solamente los valores menor de 5, de esta forma eliminamos el valore de 20. 
-
-Usamos otra vez **summary( )** para asegurarnos que se solucionó el problema. Ahora vemos que el valor máximo es 3.69.  
-
+Usamos otra vez **summary( )** para asegurarnos que se solucionó el problema. Ahora vemos que el valor máximo es 3.69.
 
 ```{r subsetting}
 Festivalday1=subset(DownloadFestival, day1<5)
@@ -260,12 +247,12 @@ festivalHistogram +
   labs(x = "Hygiene (Day 1 of Festival)", y = "Frequency")
 
 ```
-***
+
+------------------------------------------------------------------------
 
 ## Gráficos de caja **box plots**
 
-Para crear un gráfico de caja se usa la función **geom_boxplot()**, si hay solamente un grupo en **x** se pone **x=1** y en la **y** la variable continua.  
-
+Para crear un gráfico de caja se usa la función **geom\_boxplot()**, si hay solamente un grupo en **x** se pone **x=1** y en la **y** la variable continua.
 
 ```{r boxplots2}
 
@@ -275,12 +262,11 @@ festivalBoxplot + geom_boxplot() + labs(x = "Gender", y = "Hygiene (Day 1 of Fes
 
 ```
 
-***
+------------------------------------------------------------------------
 
 ## Gráfico de caja por grupo
 
-Para producir un gráfico de caja por multiples grupos en **x** se añade la variable categorica y en la **y** la variable continua. Si se quiere un color diferente por caja se usa la función **color** con el nombre en de la variable en **x**.   
-
+Para producir un gráfico de caja por multiples grupos en **x** se añade la variable categorica y en la **y** la variable continua. Si se quiere un color diferente por caja se usa la función **color** con el nombre en de la variable en **x**.
 
 ```{r boxplots}
 
@@ -293,10 +279,11 @@ festivalBoxplot +
 
 ```
 
-***
+------------------------------------------------------------------------
 
-# Detección valores sesgados o átipicos. 
-En la función abajo denominado **Valoressesgados** uno puede determinar el porciento de valores que son sesgados.   Note que aquí la función no existe y se construye una función para calcularlos porcentajes. Si selecionamos uno de las columnas, el dia 3 del concierto. Vemos que hay 4% de los valores que estén por fuera del intervalo de 95%, y 2.4% de los valores que estén por encima del intervalo de confianza de 99%.  
+# Detección valores sesgados o átipicos.
+
+En la función abajo denominado **Valoressesgados** uno puede determinar el porciento de valores que son sesgados. Note que aquí la función no existe y se construye una función para calcularlos porcentajes. Si selecionamos uno de las columnas, el dia 3 del concierto. Vemos que hay 4% de los valores que estén por fuera del intervalo de 95%, y 2.4% de los valores que estén por encima del intervalo de confianza de 99%.
 
 ```{r valoressesgados}
 
@@ -322,16 +309,14 @@ Valoressesgados<-function(variable, digits = 2){
 Valoressesgados(FD$day3)
 ```
 
-
-***
-
+------------------------------------------------------------------------
 
 # Gráficos de línea y intervalo de errores
 
-+ Learn how to reformat data in the correct type of data frame (as the original data set is not in the correct format) with the function "stack"
-+ How to add the mean of the variable with "stat_summary"
-+ How to connect the mean with a line and change color
-+ How to add the error bars and color (The 95% confidence intervals, created with the stat_summary() function and the "mean_cl_boot" argument are bootstrap confidence intervals using the smean.cl.boot() function in Hmisc)
+-   Learn how to reformat data in the correct type of data frame (as the original data set is not in the correct format) with the function "stack"
+-   How to add the mean of the variable with "stat\_summary"
+-   How to connect the mean with a line and change color
+-   How to add the error bars and color (The 95% confidence intervals, created with the stat\_summary() function and the "mean\_cl\_boot" argument are bootstrap confidence intervals using the smean.cl.boot() function in Hmisc)
 
 Installar la library(Hmisc)
 
@@ -344,7 +329,7 @@ Hiccups <- read_csv("Data_files_csv/Hiccups.csv")
 head(Hiccups, n=2)
 ```
 
-Es necesario re-organizar los datos, ya que las 4 diferentes variables están diferentes columnas, necesitamos que están todos los datos en una columna.  Se usa la función **stack**.  Subseguientemente se asigna un nombre nuevo a las columnas
+Es necesario re-organizar los datos, ya que las 4 diferentes variables están diferentes columnas, necesitamos que están todos los datos en una columna. Se usa la función **stack**. Subseguientemente, se asigna un nombre nuevo a las columnas
 
 ```{r}
 
@@ -356,11 +341,11 @@ names(hiccups)=c("Num_Hiccups","Intervention") # Cambiar el nombre de las column
 head(hiccups)
 ```
 
-***
+------------------------------------------------------------------------
 
-## La función **stat_summary** para calcular indices sumativos.  
+## La función **stat\_summary** para calcular indices sumativos.
 
-Nota aquí que el promedio, *mean* es añadido como un punto y que están uniido tambien por una linea, están añadido al eje de **y** con la función **fun.y**.  Los intervalos de confianza se añaden con la función **fun.data=mean_cl_boot** y **geom="errorbar**.   
+Nota aquí que el promedio, *mean* es añadido como un punto y que están uniido tambien por una linea, están añadido al eje de **y** con la función **fun.y**. Los intervalos de confianza se añaden con la función **fun.data=mean\_cl\_boot** y **geom="errorbar**.
 
 ```{r}
 ggplot(hiccups, aes(y=Num_Hiccups,x=Intervention))+ 
@@ -370,13 +355,9 @@ ggplot(hiccups, aes(y=Num_Hiccups,x=Intervention))+
   labs(x = "Intervention", y = "Mean Number of Hiccups")
 ```
 
-
-
 # Diagrama de tallo y hoja
 
-
 Este diagrama demuestra la cantidad de datos usando el metodo sugerido por John Tukey
-
 
 ```{r}
 stem(Exam_Anxiety$Anxiety)
@@ -385,16 +366,13 @@ ggplot(Exam_Anxiety, aes(Anxiety))+
   geom_histogram()
 ```
 
-
 Stem leaf for two groups
 
 ```{r}
 library(aplpack)
 ```
 
-
 ```{r}
 stem.leaf(co2)
-stem.leaf.backback(Anxiey[1:30],Anxiety[31:60])
+stem.leaf.backback(Exam_Anxiety$Anxiety[1:30],Exam_Anxiety$Anxiety[31:60])
 ```
-

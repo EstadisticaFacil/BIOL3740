@@ -25,6 +25,78 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      code.sourceCode > span { display: inline-block; line-height: 1.25; }
+  code.sourceCode > span { color: inherit; text-decoration: inherit; }
+  code.sourceCode > span:empty { height: 1.2em; }
+  .sourceCode { overflow: visible; }
+  code.sourceCode { white-space: pre; position: relative; }
+  div.sourceCode { margin: 1em 0; }
+  pre.sourceCode { margin: 0; }
+  @media screen {
+  div.sourceCode { overflow: auto; }
+  }
+  @media print {
+  code.sourceCode { white-space: pre-wrap; }
+  code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+  }
+  pre.numberSource code
+    { counter-reset: source-line 0; }
+  pre.numberSource code > span
+    { position: relative; left: -4em; counter-increment: source-line; }
+  pre.numberSource code > span > a:first-child::before
+    { content: counter(source-line);
+      position: relative; left: -1em; text-align: right; vertical-align: baseline;
+      border: none; display: inline-block;
+      -webkit-touch-callout: none; -webkit-user-select: none;
+      -khtml-user-select: none; -moz-user-select: none;
+      -ms-user-select: none; user-select: none;
+      padding: 0 4px; width: 4em;
+      color: #aaaaaa;
+    }
+  pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+  div.sourceCode
+    {   }
+  @media screen {
+  code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+  }
+  code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+  code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+  code span.at { color: #7d9029; } /* Attribute */
+  code span.bn { color: #40a070; } /* BaseN */
+  code span.bu { } /* BuiltIn */
+  code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+  code span.ch { color: #4070a0; } /* Char */
+  code span.cn { color: #880000; } /* Constant */
+  code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+  code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+  code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+  code span.dt { color: #902000; } /* DataType */
+  code span.dv { color: #40a070; } /* DecVal */
+  code span.er { color: #ff0000; font-weight: bold; } /* Error */
+  code span.ex { } /* Extension */
+  code span.fl { color: #40a070; } /* Float */
+  code span.fu { color: #06287e; } /* Function */
+  code span.im { } /* Import */
+  code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+  code span.op { color: #666666; } /* Operator */
+  code span.ot { color: #007020; } /* Other */
+  code span.pp { color: #bc7a00; } /* Preprocessor */
+  code span.sc { color: #4070a0; } /* SpecialChar */
+  code span.ss { color: #bb6688; } /* SpecialString */
+  code span.st { color: #4070a0; } /* String */
+  code span.va { color: #19177c; } /* Variable */
+  code span.vs { color: #4070a0; } /* VerbatimString */
+  code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    </style>
+
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
@@ -547,7 +619,7 @@ div.tocify {
       <a href="Exam1.html">Preguntas para examen num. 1</a>
     </li>
     <li>
-      <a href="Ejercicio_Pruebas_de_Frecuencia.html">Ejercicio Pruebas de Frecuencia</a>
+      <a href="Ejercicio_Pruebas_Frecu.html">Ejercicio Pruebas de Frecuencia</a>
     </li>
   </ul>
 </li>
@@ -584,7 +656,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-09-30&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-04&quot;</code></pre>
 <p>En este modulo veremos como se hace cálculos básicos en R. Nota que aquí estamos usando R, como si fuese una calculadora. Realmente para la gran mayoría de los ejemplos aquí no hay ninguna necesidad de utilizar R para los siguientes análisis. Los objetivos son</p>
 <ol style="list-style-type: decimal">
 <li>Familiarizarse con funciones básica.</li>
@@ -834,8 +906,8 @@ div.tocify {
 <pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1"></a>Distancia_del_trabajo=<span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
 <span id="cb122-2"><a href="#cb122-2"></a>Distancia_del_trabajo</span></code></pre></div>
-<pre><code>##  [1] 106.42042  99.61268 126.40140  99.85918  99.58534 105.59422 111.21432
-##  [8]  86.94976 111.35008 101.34146</code></pre>
+<pre><code>##  [1]  95.34808  98.72117 100.95738 106.56257 103.95521 111.97198 110.95209
+##  [8] 105.38476 102.02797  88.67469</code></pre>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1"></a>Ciudad=<span class="kw">c</span>(<span class="st">&quot;Fajardo&quot;</span>, <span class="st">&quot;Carolina&quot;</span>, <span class="st">&quot;Luquillo&quot;</span>,<span class="st">&quot;Gurabo&quot;</span>, <span class="st">&quot;Rio_Grande&quot;</span>, <span class="st">&quot;Ceiba&quot;</span>,<span class="st">&quot;Las_Piedras&quot;</span>, <span class="st">&quot;Caguas&quot;</span>,<span class="st">&quot;Maunabo&quot;</span>, <span class="st">&quot;Sturgeon_Falls&quot;</span>)</span>
 <span id="cb124-2"><a href="#cb124-2"></a>Ciudad</span></code></pre></div>
 <pre><code>##  [1] &quot;Fajardo&quot;        &quot;Carolina&quot;       &quot;Luquillo&quot;       &quot;Gurabo&quot;        
@@ -844,16 +916,16 @@ div.tocify {
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1"></a>misDatos=<span class="kw">data.frame</span>(Edad,Distancia_del_trabajo,Ciudad)  <span class="co"># La función de unir las listas en un data frame</span></span>
 <span id="cb126-2"><a href="#cb126-2"></a>misDatos</span></code></pre></div>
 <pre><code>##    Edad Distancia_del_trabajo         Ciudad
-## 1    10             106.42042        Fajardo
-## 2     9              99.61268       Carolina
-## 3     8             126.40140       Luquillo
-## 4     7              99.85918         Gurabo
-## 5     6              99.58534     Rio_Grande
-## 6     5             105.59422          Ceiba
-## 7     4             111.21432    Las_Piedras
-## 8     3              86.94976         Caguas
-## 9     2             111.35008        Maunabo
-## 10    1             101.34146 Sturgeon_Falls</code></pre>
+## 1    10              95.34808        Fajardo
+## 2     9              98.72117       Carolina
+## 3     8             100.95738       Luquillo
+## 4     7             106.56257         Gurabo
+## 5     6             103.95521     Rio_Grande
+## 6     5             111.97198          Ceiba
+## 7     4             110.95209    Las_Piedras
+## 8     3             105.38476         Caguas
+## 9     2             102.02797        Maunabo
+## 10    1              88.67469 Sturgeon_Falls</code></pre>
 </div>
 <div id="funciones-comunes" class="section level1">
 <h1>Funciones comunes</h1>
@@ -871,30 +943,30 @@ div.tocify {
 <pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot;</code></pre>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1"></a><span class="kw">head</span>(misDatos)   <span class="co"># ver las primeras 6 filas </span></span></code></pre></div>
 <pre><code>##   Edad Distancia_del_trabajo     Ciudad
-## 1   10             106.42042    Fajardo
-## 2    9              99.61268   Carolina
-## 3    8             126.40140   Luquillo
-## 4    7              99.85918     Gurabo
-## 5    6              99.58534 Rio_Grande
-## 6    5             105.59422      Ceiba</code></pre>
+## 1   10              95.34808    Fajardo
+## 2    9              98.72117   Carolina
+## 3    8             100.95738   Luquillo
+## 4    7             106.56257     Gurabo
+## 5    6             103.95521 Rio_Grande
+## 6    5             111.97198      Ceiba</code></pre>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1"></a><span class="kw">tail</span>(misDatos)   <span class="co"># ver las ultimas 6 filas</span></span></code></pre></div>
 <pre><code>##    Edad Distancia_del_trabajo         Ciudad
-## 5     6              99.58534     Rio_Grande
-## 6     5             105.59422          Ceiba
-## 7     4             111.21432    Las_Piedras
-## 8     3              86.94976         Caguas
-## 9     2             111.35008        Maunabo
-## 10    1             101.34146 Sturgeon_Falls</code></pre>
+## 5     6             103.95521     Rio_Grande
+## 6     5             111.97198          Ceiba
+## 7     4             110.95209    Las_Piedras
+## 8     3             105.38476         Caguas
+## 9     2             102.02797        Maunabo
+## 10    1              88.67469 Sturgeon_Falls</code></pre>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1"></a><span class="kw">head</span>(misDatos, <span class="dt">n=</span><span class="dv">8</span>)   <span class="co"># ver las primeras 8 filas</span></span></code></pre></div>
 <pre><code>##   Edad Distancia_del_trabajo      Ciudad
-## 1   10             106.42042     Fajardo
-## 2    9              99.61268    Carolina
-## 3    8             126.40140    Luquillo
-## 4    7              99.85918      Gurabo
-## 5    6              99.58534  Rio_Grande
-## 6    5             105.59422       Ceiba
-## 7    4             111.21432 Las_Piedras
-## 8    3              86.94976      Caguas</code></pre>
+## 1   10              95.34808     Fajardo
+## 2    9              98.72117    Carolina
+## 3    8             100.95738    Luquillo
+## 4    7             106.56257      Gurabo
+## 5    6             103.95521  Rio_Grande
+## 6    5             111.97198       Ceiba
+## 7    4             110.95209 Las_Piedras
+## 8    3             105.38476      Caguas</code></pre>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1"></a><span class="kw">class</span>(misDatos) <span class="co"># saber cual tipo de organización de datos </span></span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 </div>
