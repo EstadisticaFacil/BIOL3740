@@ -13,6 +13,7 @@
 
 <title>Prueba de hipótesis de Fecuencia</title>
 
+<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -32,87 +33,85 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      code.sourceCode > span { display: inline-block; line-height: 1.25; }
-  code.sourceCode > span { color: inherit; text-decoration: inherit; }
-  code.sourceCode > span:empty { height: 1.2em; }
-  .sourceCode { overflow: visible; }
-  code.sourceCode { white-space: pre; position: relative; }
-  div.sourceCode { margin: 1em 0; }
-  pre.sourceCode { margin: 0; }
-  @media screen {
-  div.sourceCode { overflow: auto; }
-  }
-  @media print {
-  code.sourceCode { white-space: pre-wrap; }
-  code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-  }
-  pre.numberSource code
-    { counter-reset: source-line 0; }
-  pre.numberSource code > span
-    { position: relative; left: -4em; counter-increment: source-line; }
-  pre.numberSource code > span > a:first-child::before
-    { content: counter(source-line);
-      position: relative; left: -1em; text-align: right; vertical-align: baseline;
-      border: none; display: inline-block;
-      -webkit-touch-callout: none; -webkit-user-select: none;
-      -khtml-user-select: none; -moz-user-select: none;
-      -ms-user-select: none; user-select: none;
-      padding: 0 4px; width: 4em;
-      color: #aaaaaa;
-    }
-  pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-  div.sourceCode
-    {   }
-  @media screen {
-  code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-  }
-  code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-  code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-  code span.at { color: #7d9029; } /* Attribute */
-  code span.bn { color: #40a070; } /* BaseN */
-  code span.bu { } /* BuiltIn */
-  code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-  code span.ch { color: #4070a0; } /* Char */
-  code span.cn { color: #880000; } /* Constant */
-  code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-  code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-  code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-  code span.dt { color: #902000; } /* DataType */
-  code span.dv { color: #40a070; } /* DecVal */
-  code span.er { color: #ff0000; font-weight: bold; } /* Error */
-  code span.ex { } /* Extension */
-  code span.fl { color: #40a070; } /* Float */
-  code span.fu { color: #06287e; } /* Function */
-  code span.im { } /* Import */
-  code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-  code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-  code span.op { color: #666666; } /* Operator */
-  code span.ot { color: #007020; } /* Other */
-  code span.pp { color: #bc7a00; } /* Preprocessor */
-  code span.sc { color: #4070a0; } /* SpecialChar */
-  code span.ss { color: #bb6688; } /* SpecialString */
-  code span.st { color: #4070a0; } /* String */
-  code span.va { color: #19177c; } /* Variable */
-  code span.vs { color: #4070a0; } /* VerbatimString */
-  code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+          color: #aaaaaa;
+        }
+      pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+      code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code span.at { color: #7d9029; } /* Attribute */
+      code span.bn { color: #40a070; } /* BaseN */
+      code span.bu { } /* BuiltIn */
+      code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code span.ch { color: #4070a0; } /* Char */
+      code span.cn { color: #880000; } /* Constant */
+      code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code span.dt { color: #902000; } /* DataType */
+      code span.dv { color: #40a070; } /* DecVal */
+      code span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code span.ex { } /* Extension */
+      code span.fl { color: #40a070; } /* Float */
+      code span.fu { color: #06287e; } /* Function */
+      code span.im { } /* Import */
+      code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+      code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code span.op { color: #666666; } /* Operator */
+      code span.ot { color: #007020; } /* Other */
+      code span.pp { color: #bc7a00; } /* Preprocessor */
+      code span.sc { color: #4070a0; } /* SpecialChar */
+      code span.ss { color: #bb6688; } /* SpecialString */
+      code span.st { color: #4070a0; } /* String */
+      code span.va { color: #19177c; } /* Variable */
+      code span.vs { color: #4070a0; } /* VerbatimString */
+      code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     </style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -132,7 +131,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -656,7 +655,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-09-30&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-07&quot;</code></pre>
 <hr />
 <div id="bondad-de-ajuste-y-table-de-contingencia" class="section level1">
 <h1>Bondad de ajuste y Table de Contingencia</h1>
@@ -1006,9 +1005,13 @@ Esperado
 <ul>
 <li>Los gatos que reciban comida y bailan</li>
 </ul>
-<p><span class="math display">\[E_{12}=\frac{\left(R_2\cdot C_1\right)}{N}= \frac{(38*76)}{200}=14.44\]</span> + Los gatos que reciban cariño y no bailan</p>
+<p><span class="math display">\[E_{12}=\frac{\left(R_2\cdot C_1\right)}{N}= \frac{(38*76)}{200}=14.44\]</span></p>
+<ul>
+<li>Los gatos que reciban cariño y no bailan</li>
+</ul>
 <p><span class="math display">\[E_{21}=\frac{\left(R_1\cdot C_2\right)}{N}= \frac{(124*162)}{200}=100.44\]</span> La prueba es exactamente igual como la anterior donde comparamos el valor observado con el valor esperado. Por ser más de una fila la formula cambia.</p>
-<p><span class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}\]</span> El Chi Cuadrado final es</p>
+<p><span class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}\]</span></p>
+<p>El Chi Cuadrado final es</p>
 <p><span class="math display">\[\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36\]</span></p>
 <p><span class="math display">\[\chi^2=25.36\]</span></p>
 <hr />
@@ -1114,38 +1117,34 @@ Esperado
 </tr>
 </tbody>
 </table>
-<ul>
-<li>¿Cual es la hipótesis nula?
-<ul>
-<li>¿cual es la hipótesis alterna?</li>
-<li>calcula los valores esperados</li>
-<li>calcula el chi cuadrado</li>
-<li>¿Se rechaza o acepta la Ho?</li>
-</ul></li>
-</ul>
+<pre><code>- ¿Cual es la hipótesis nula?
+- ¿cual es la hipótesis alterna?
+- calcula los valores esperados
+- calcula el chi cuadrado
+- ¿Se rechaza o acepta la Ho?</code></pre>
 <hr />
 </div>
 <div id="análisis-con-datos-en-formato-de-tabla" class="section level1">
 <h1>Análisis con datos en formato de tabla</h1>
 <p>Estos son los mismos datos pero no sumado, en otra palabra es información específica sobre cada gato y su tratamiento y si bailo o no. La ventaja de este método es que uno no tiene que hacer el calculo y sumar la frecuancias, se deja la función <strong>CrossTable</strong> hacer la suma. Miran bien la tabla.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># La data sin sumar</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a>Training&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">38</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">162</span>))</span>
-<span id="cb22-4"><a href="#cb22-4"></a></span>
-<span id="cb22-5"><a href="#cb22-5"></a>Dance&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">28</span>),  <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">114</span>), <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">48</span>))</span>
-<span id="cb22-6"><a href="#cb22-6"></a></span>
-<span id="cb22-7"><a href="#cb22-7"></a>Training&lt;-<span class="kw">factor</span>(Training, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Food as Reward&quot;</span>, <span class="st">&quot;Affection as Reward&quot;</span>))</span>
-<span id="cb22-8"><a href="#cb22-8"></a></span>
-<span id="cb22-9"><a href="#cb22-9"></a>Dance&lt;-<span class="kw">factor</span>(Dance, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>))</span>
-<span id="cb22-10"><a href="#cb22-10"></a></span>
-<span id="cb22-11"><a href="#cb22-11"></a>catsData&lt;-<span class="kw">data.frame</span>(Training, Dance)</span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="co"># catsData Los datos completos</span></span>
-<span id="cb22-13"><a href="#cb22-13"></a><span class="kw">gt</span>(<span class="kw">head</span>(catsData, <span class="dt">n=</span><span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># La data sin sumar</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a>Training&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">38</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">162</span>))</span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a>Dance&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">28</span>),  <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">114</span>), <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">48</span>))</span>
+<span id="cb23-6"><a href="#cb23-6"></a></span>
+<span id="cb23-7"><a href="#cb23-7"></a>Training&lt;-<span class="kw">factor</span>(Training, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Food as Reward&quot;</span>, <span class="st">&quot;Affection as Reward&quot;</span>))</span>
+<span id="cb23-8"><a href="#cb23-8"></a></span>
+<span id="cb23-9"><a href="#cb23-9"></a>Dance&lt;-<span class="kw">factor</span>(Dance, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>))</span>
+<span id="cb23-10"><a href="#cb23-10"></a></span>
+<span id="cb23-11"><a href="#cb23-11"></a>catsData&lt;-<span class="kw">data.frame</span>(Training, Dance)</span>
+<span id="cb23-12"><a href="#cb23-12"></a><span class="co"># catsData Los datos completos</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="kw">gt</span>(<span class="kw">head</span>(catsData, <span class="dt">n=</span><span class="dv">6</span>))</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wlmyacqswx .gt_table {
+#bunnsqxgts .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1170,7 +1169,7 @@ Esperado
   border-left-color: #D3D3D3;
 }
 
-#wlmyacqswx .gt_heading {
+#bunnsqxgts .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1182,7 +1181,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#wlmyacqswx .gt_title {
+#bunnsqxgts .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1192,7 +1191,7 @@ Esperado
   border-bottom-width: 0;
 }
 
-#wlmyacqswx .gt_subtitle {
+#bunnsqxgts .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1202,13 +1201,13 @@ Esperado
   border-top-width: 0;
 }
 
-#wlmyacqswx .gt_bottom_border {
+#bunnsqxgts .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wlmyacqswx .gt_col_headings {
+#bunnsqxgts .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1223,7 +1222,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#wlmyacqswx .gt_col_heading {
+#bunnsqxgts .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1243,7 +1242,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#wlmyacqswx .gt_column_spanner_outer {
+#bunnsqxgts .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1255,15 +1254,15 @@ Esperado
   padding-right: 4px;
 }
 
-#wlmyacqswx .gt_column_spanner_outer:first-child {
+#bunnsqxgts .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wlmyacqswx .gt_column_spanner_outer:last-child {
+#bunnsqxgts .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wlmyacqswx .gt_column_spanner {
+#bunnsqxgts .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1275,7 +1274,7 @@ Esperado
   width: 100%;
 }
 
-#wlmyacqswx .gt_group_heading {
+#bunnsqxgts .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1297,7 +1296,7 @@ Esperado
   vertical-align: middle;
 }
 
-#wlmyacqswx .gt_empty_group_heading {
+#bunnsqxgts .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1312,15 +1311,15 @@ Esperado
   vertical-align: middle;
 }
 
-#wlmyacqswx .gt_from_md > :first-child {
+#bunnsqxgts .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wlmyacqswx .gt_from_md > :last-child {
+#bunnsqxgts .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wlmyacqswx .gt_row {
+#bunnsqxgts .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1339,7 +1338,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#wlmyacqswx .gt_stub {
+#bunnsqxgts .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1351,7 +1350,7 @@ Esperado
   padding-left: 12px;
 }
 
-#wlmyacqswx .gt_summary_row {
+#bunnsqxgts .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1361,7 +1360,7 @@ Esperado
   padding-right: 5px;
 }
 
-#wlmyacqswx .gt_first_summary_row {
+#bunnsqxgts .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1371,7 +1370,7 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#wlmyacqswx .gt_grand_summary_row {
+#bunnsqxgts .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1381,7 +1380,7 @@ Esperado
   padding-right: 5px;
 }
 
-#wlmyacqswx .gt_first_grand_summary_row {
+#bunnsqxgts .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1391,11 +1390,11 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#wlmyacqswx .gt_striped {
+#bunnsqxgts .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wlmyacqswx .gt_table_body {
+#bunnsqxgts .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1404,7 +1403,7 @@ Esperado
   border-bottom-color: #D3D3D3;
 }
 
-#wlmyacqswx .gt_footnotes {
+#bunnsqxgts .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1418,13 +1417,13 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#wlmyacqswx .gt_footnote {
+#bunnsqxgts .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#wlmyacqswx .gt_sourcenotes {
+#bunnsqxgts .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1438,46 +1437,46 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#wlmyacqswx .gt_sourcenote {
+#bunnsqxgts .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#wlmyacqswx .gt_left {
+#bunnsqxgts .gt_left {
   text-align: left;
 }
 
-#wlmyacqswx .gt_center {
+#bunnsqxgts .gt_center {
   text-align: center;
 }
 
-#wlmyacqswx .gt_right {
+#bunnsqxgts .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wlmyacqswx .gt_font_normal {
+#bunnsqxgts .gt_font_normal {
   font-weight: normal;
 }
 
-#wlmyacqswx .gt_font_bold {
+#bunnsqxgts .gt_font_bold {
   font-weight: bold;
 }
 
-#wlmyacqswx .gt_font_italic {
+#bunnsqxgts .gt_font_italic {
   font-style: italic;
 }
 
-#wlmyacqswx .gt_super {
+#bunnsqxgts .gt_super {
   font-size: 65%;
 }
 
-#wlmyacqswx .gt_footnote_marks {
+#bunnsqxgts .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="wlmyacqswx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="bunnsqxgts" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1514,12 +1513,12 @@ Esperado
   
   
 </table></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">gt</span>(<span class="kw">tail</span>(catsData, <span class="dt">n=</span><span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">gt</span>(<span class="kw">tail</span>(catsData, <span class="dt">n=</span><span class="dv">5</span>))</span></code></pre></div>
 <p><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#roaagskpbg .gt_table {
+#fxbcoopnxw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1544,7 +1543,7 @@ Esperado
   border-left-color: #D3D3D3;
 }
 
-#roaagskpbg .gt_heading {
+#fxbcoopnxw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1556,7 +1555,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#roaagskpbg .gt_title {
+#fxbcoopnxw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1566,7 +1565,7 @@ Esperado
   border-bottom-width: 0;
 }
 
-#roaagskpbg .gt_subtitle {
+#fxbcoopnxw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1576,13 +1575,13 @@ Esperado
   border-top-width: 0;
 }
 
-#roaagskpbg .gt_bottom_border {
+#fxbcoopnxw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#roaagskpbg .gt_col_headings {
+#fxbcoopnxw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1597,7 +1596,7 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#roaagskpbg .gt_col_heading {
+#fxbcoopnxw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1617,7 +1616,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#roaagskpbg .gt_column_spanner_outer {
+#fxbcoopnxw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1629,15 +1628,15 @@ Esperado
   padding-right: 4px;
 }
 
-#roaagskpbg .gt_column_spanner_outer:first-child {
+#fxbcoopnxw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#roaagskpbg .gt_column_spanner_outer:last-child {
+#fxbcoopnxw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#roaagskpbg .gt_column_spanner {
+#fxbcoopnxw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1649,7 +1648,7 @@ Esperado
   width: 100%;
 }
 
-#roaagskpbg .gt_group_heading {
+#fxbcoopnxw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1671,7 +1670,7 @@ Esperado
   vertical-align: middle;
 }
 
-#roaagskpbg .gt_empty_group_heading {
+#fxbcoopnxw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1686,15 +1685,15 @@ Esperado
   vertical-align: middle;
 }
 
-#roaagskpbg .gt_from_md > :first-child {
+#fxbcoopnxw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#roaagskpbg .gt_from_md > :last-child {
+#fxbcoopnxw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#roaagskpbg .gt_row {
+#fxbcoopnxw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1713,7 +1712,7 @@ Esperado
   overflow-x: hidden;
 }
 
-#roaagskpbg .gt_stub {
+#fxbcoopnxw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1725,7 +1724,7 @@ Esperado
   padding-left: 12px;
 }
 
-#roaagskpbg .gt_summary_row {
+#fxbcoopnxw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1735,7 +1734,7 @@ Esperado
   padding-right: 5px;
 }
 
-#roaagskpbg .gt_first_summary_row {
+#fxbcoopnxw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1745,7 +1744,7 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#roaagskpbg .gt_grand_summary_row {
+#fxbcoopnxw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1755,7 +1754,7 @@ Esperado
   padding-right: 5px;
 }
 
-#roaagskpbg .gt_first_grand_summary_row {
+#fxbcoopnxw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1765,11 +1764,11 @@ Esperado
   border-top-color: #D3D3D3;
 }
 
-#roaagskpbg .gt_striped {
+#fxbcoopnxw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#roaagskpbg .gt_table_body {
+#fxbcoopnxw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1778,7 +1777,7 @@ Esperado
   border-bottom-color: #D3D3D3;
 }
 
-#roaagskpbg .gt_footnotes {
+#fxbcoopnxw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1792,13 +1791,13 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#roaagskpbg .gt_footnote {
+#fxbcoopnxw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#roaagskpbg .gt_sourcenotes {
+#fxbcoopnxw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1812,46 +1811,46 @@ Esperado
   border-right-color: #D3D3D3;
 }
 
-#roaagskpbg .gt_sourcenote {
+#fxbcoopnxw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#roaagskpbg .gt_left {
+#fxbcoopnxw .gt_left {
   text-align: left;
 }
 
-#roaagskpbg .gt_center {
+#fxbcoopnxw .gt_center {
   text-align: center;
 }
 
-#roaagskpbg .gt_right {
+#fxbcoopnxw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#roaagskpbg .gt_font_normal {
+#fxbcoopnxw .gt_font_normal {
   font-weight: normal;
 }
 
-#roaagskpbg .gt_font_bold {
+#fxbcoopnxw .gt_font_bold {
   font-weight: bold;
 }
 
-#roaagskpbg .gt_font_italic {
+#fxbcoopnxw .gt_font_italic {
   font-style: italic;
 }
 
-#roaagskpbg .gt_super {
+#fxbcoopnxw .gt_super {
   font-size: 65%;
 }
 
-#roaagskpbg .gt_footnote_marks {
+#fxbcoopnxw .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="roaagskpbg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="fxbcoopnxw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1888,10 +1887,10 @@ Esperado
 </div>
 <div id="prueba-de-independencia" class="section level1">
 <h1>Prueba de independencia</h1>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># usando los datos en formato de data frame **catsData**</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="kw">CrossTable</span>(catsData<span class="op">$</span>Training, catsData<span class="op">$</span>Dance, </span>
-<span id="cb24-3"><a href="#cb24-3"></a>           <span class="dt">fisher =</span> <span class="ot">TRUE</span>, <span class="dt">chisq =</span> <span class="ot">TRUE</span>, <span class="dt">expected =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb24-4"><a href="#cb24-4"></a>           <span class="dt">sresid =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;SPSS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># usando los datos en formato de data frame **catsData**</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="kw">CrossTable</span>(catsData<span class="op">$</span>Training, catsData<span class="op">$</span>Dance, </span>
+<span id="cb25-3"><a href="#cb25-3"></a>           <span class="dt">fisher =</span> <span class="ot">TRUE</span>, <span class="dt">chisq =</span> <span class="ot">TRUE</span>, <span class="dt">expected =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb25-4"><a href="#cb25-4"></a>           <span class="dt">sresid =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;SPSS&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##    Cell Contents
 ## |-------------------------|
@@ -1961,15 +1960,15 @@ Esperado
 ## 
 ##  
 ##        Minimum expected frequency: 14.44</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Se puede hacer un grafico de los resultados</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a></span>
-<span id="cb26-3"><a href="#cb26-3"></a>Ta2=<span class="st"> </span><span class="kw">xtabs</span>(<span class="op">~</span>Training<span class="op">+</span>Dance, <span class="dt">data=</span>catsData)</span>
-<span id="cb26-4"><a href="#cb26-4"></a>Ta2</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Se puede hacer un grafico de los resultados</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a></span>
+<span id="cb27-3"><a href="#cb27-3"></a>Ta2=<span class="st"> </span><span class="kw">xtabs</span>(<span class="op">~</span>Training<span class="op">+</span>Dance, <span class="dt">data=</span>catsData)</span>
+<span id="cb27-4"><a href="#cb27-4"></a>Ta2</span></code></pre></div>
 <pre><code>##                      Dance
 ## Training               No Yes
 ##   Food as Reward       28  10
 ##   Affection as Reward  48 114</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">mosaicplot</span>(Ta2, <span class="dt">shade=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">mosaicplot</span>(Ta2, <span class="dt">shade=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="T7_Frecuencias_files/figure-html/test2-1.png" width="672" /></p>
 <hr />
 </div>
@@ -2008,21 +2007,21 @@ Esperado
 </tbody>
 </table>
 <p>Creamos</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>Negro=<span class="kw">c</span>(<span class="dv">32</span>,<span class="dv">55</span>)</span>
-<span id="cb29-2"><a href="#cb29-2"></a>Marron=<span class="kw">c</span>(<span class="dv">43</span>, <span class="dv">65</span>)</span>
-<span id="cb29-3"><a href="#cb29-3"></a>Rubio=<span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">64</span>)</span>
-<span id="cb29-4"><a href="#cb29-4"></a>Rojo=<span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">16</span>)</span>
-<span id="cb29-5"><a href="#cb29-5"></a></span>
-<span id="cb29-6"><a href="#cb29-6"></a>HairColour=<span class="kw">cbind</span>(Negro,Marron, Rubio,Rojo) </span>
-<span id="cb29-7"><a href="#cb29-7"></a><span class="kw">rownames</span>(HairColour)&lt;-<span class="kw">c</span>(<span class="st">&quot;Mujer&quot;</span>, <span class="st">&quot;Hombre&quot;</span>) <span class="co"># Añade el nombre a las filas</span></span>
-<span id="cb29-8"><a href="#cb29-8"></a></span>
-<span id="cb29-9"><a href="#cb29-9"></a>HairColour</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>Negro=<span class="kw">c</span>(<span class="dv">32</span>,<span class="dv">55</span>)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>Marron=<span class="kw">c</span>(<span class="dv">43</span>, <span class="dv">65</span>)</span>
+<span id="cb30-3"><a href="#cb30-3"></a>Rubio=<span class="kw">c</span>(<span class="dv">16</span>,<span class="dv">64</span>)</span>
+<span id="cb30-4"><a href="#cb30-4"></a>Rojo=<span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">16</span>)</span>
+<span id="cb30-5"><a href="#cb30-5"></a></span>
+<span id="cb30-6"><a href="#cb30-6"></a>HairColour=<span class="kw">cbind</span>(Negro,Marron, Rubio,Rojo) </span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="kw">rownames</span>(HairColour)&lt;-<span class="kw">c</span>(<span class="st">&quot;Mujer&quot;</span>, <span class="st">&quot;Hombre&quot;</span>) <span class="co"># Añade el nombre a las filas</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a></span>
+<span id="cb30-9"><a href="#cb30-9"></a>HairColour</span></code></pre></div>
 <pre><code>##        Negro Marron Rubio Rojo
 ## Mujer     32     43    16    9
 ## Hombre    55     65    64   16</code></pre>
 <p>¿Cual es la hipótesis nula? ¿Cual es la hipótesis alterna?</p>
 <p>El resultado de la prueba. ¿Se acepta o rechaza la hipótesis nula?</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">CrossTable</span>(HairColour, <span class="dt">fisher =</span> <span class="ot">TRUE</span>, <span class="dt">chisq =</span> <span class="ot">TRUE</span>, <span class="dt">expected =</span> <span class="ot">TRUE</span>, <span class="dt">sresid =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;SPSS&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">CrossTable</span>(HairColour, <span class="dt">fisher =</span> <span class="ot">TRUE</span>, <span class="dt">chisq =</span> <span class="ot">TRUE</span>, <span class="dt">expected =</span> <span class="ot">TRUE</span>, <span class="dt">sresid =</span> <span class="ot">TRUE</span>, <span class="dt">format =</span> <span class="st">&quot;SPSS&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##    Cell Contents
 ## |-------------------------|
@@ -2094,21 +2093,21 @@ Esperado
 </ul>
 </blockquote>
 <p>Usando los datos de serpientes del ejemplo 7.4 del libro de Havel et al. </p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>responde &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">3</span>)</span>
-<span id="cb33-2"><a href="#cb33-2"></a>no_responde &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>)</span>
-<span id="cb33-3"><a href="#cb33-3"></a>serpiente &lt;-<span class="st"> </span><span class="kw">cbind</span>(responde, no_responde)</span>
-<span id="cb33-4"><a href="#cb33-4"></a><span class="kw">rownames</span>(serpiente)&lt;-<span class="kw">c</span>(<span class="st">&quot;Estimulo_ariba&quot;</span>, <span class="st">&quot;Estimulo_lateral&quot;</span>) <span class="co"># Añade el nombre a las filas</span></span>
-<span id="cb33-5"><a href="#cb33-5"></a></span>
-<span id="cb33-6"><a href="#cb33-6"></a>serpiente</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>responde &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">3</span>)</span>
+<span id="cb34-2"><a href="#cb34-2"></a>no_responde &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>)</span>
+<span id="cb34-3"><a href="#cb34-3"></a>serpiente &lt;-<span class="st"> </span><span class="kw">cbind</span>(responde, no_responde)</span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="kw">rownames</span>(serpiente)&lt;-<span class="kw">c</span>(<span class="st">&quot;Estimulo_ariba&quot;</span>, <span class="st">&quot;Estimulo_lateral&quot;</span>) <span class="co"># Añade el nombre a las filas</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a></span>
+<span id="cb34-6"><a href="#cb34-6"></a>serpiente</span></code></pre></div>
 <pre><code>##                  responde no_responde
 ## Estimulo_ariba          6           1
 ## Estimulo_lateral        3           6</code></pre>
 <p>Se puede visualizar los datos con el Mosaico</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">mosaicplot</span>(serpiente)</span></code></pre></div>
-<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">mosaicplot</span>(serpiente)</span></code></pre></div>
+<p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Nota que se usa la misma función que anterior pero en los resultados hay que fijarse en la sección que dice <strong>Fisher’s Exact test</strong>. Lo que uno observa es que el valor de <strong>p</strong> es menor de 0.05 por consecuencia se rechaza la hipótesis nula. Lo que significa es que para la serpiente el angulo donde proviene el estimulo resulta en una repuesta diferente.</p>
 <hr />
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">fisher.test</span>(serpiente)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">fisher.test</span>(serpiente)</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 

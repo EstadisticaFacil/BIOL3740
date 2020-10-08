@@ -1,0 +1,151 @@
+---
+title: "Ejerc_7_normalidad"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
+
+```{r, color, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+
+
+```
+
+Fecha de la ultima revisión
+
+```{r, date, echo=FALSE}
+
+Sys.Date()
+```
+
+***
+
+# Ejercicios para someter
+
+Todos los ejercicios estan basado en temas que hemos cubierto en la clase. Mayormente los temas son del capitulo \#8, **La Distribucón Normal**
+
+Los ejercicios en parte proviene del capitulo 8 del libro de Havel et al.
+
+El trabajo se someterá en documento .html en Edmodo (NOTA: QUE NO PUEDO LEER LOS DOCUMENTOS .rmd: estos no se van a corregir)
+
+***
+
+## Ejercicio 1: (7 puntos)
+
+1.  Producción de un histograma
+
+Use los datos **PartosInfantes** en el paquete **ggversa** y construye un histograma de "Número de Muertes de Infantes, Niños que mueren en el parto o natimuerto" endiferentes paises, el nombre de la columna es **NMI**.
+
+-   demuestra el script
+-   demuestra el gráfico
+
+Contestar la siguientes preguntas
+
+-   los datos son simétricos?
+-   los datos parecen tener una distribución normal?
+
+```{r, library}
+
+library(ggversa)
+library(tidyverse)
+library(ggplot2)
+```
+
+
+```{r, partos, echo=FALSE, eval=FALSE}
+
+ggplot(PartosInfantes, aes(x=NMI))+
+  geom_histogram(color="white")
+
+```
+
+
+***
+
+## Ejercicio 2: (10 puntos)
+
+2. Añadir la linea teórica de distribución normal al histograma
+
+Use los datos **Razon\_mortandad** en el paquete **ggversa** y construye un histograma de "Razon de mortandad de niños en diferentes países del mundo", selecciona **UNO** de los años.
+
+-   demuestra el script
+-   demuestra el gráfico
+-   añade la distribución teórica el gráfico del histograma (recuerda que tiene que tener una linea como una campana)
+
+Contestar la siguientes preguntas
+
+-   la razón de mortandad de los niños en los países tiene una distribución mortandad que sigue es "normal"?
+-   ¿Cual es el promedio?
+-   ¿Cual es la desviación estándar?
+
+
+
+```{r, razon_mortandad, echo=FALSE, eval=FALSE}
+
+
+ggplot2::ggplot(ggversa::Razon_mortandad, aes(X2011))+
+ geom_histogram(aes(y=..density..),color="white")+
+  stat_function(fun = dnorm, 
+               args = list(mean = mean(Razon_mortandad$X2010, na.rm = TRUE),  
+               sd = sd(Razon_mortandad$X2010, na.rm = TRUE)), 
+               colour = "green", size = 1)
+
+
+mean(Razon_mortandad$X2010, na.rm = TRUE)
+sd(Razon_mortandad$X2010, na.rm = TRUE)
+```
+
+
+## Ejercicio 3: (13 puntos)
+
+3. qqplot y pruebas normalidades
+
+Use los datos **MORELIA.MICH.Tmin** en el paquete **ggversa** y construye un **qqplot** de la temperatura mínima de la ciudad de Morelia en Mexico.  
+
+
+-   demuestra el script
+-   demuestra el gráfico
+
+- Determina si la distribución de la temperatura mínima en Morelia tiene una distribución normal usando la prueba de 
+    + Shapiro-Wilks
+    + Anderson-Darling
+    
+      Evalúa las tres alternativas y explica como se interpreta el gráfico y las pruebas. Si hay dificultad aplicar alguna pruebas, explica porque no se puede usar.    
+      
+      
+
+```{r, qqplot, echo=FALSE, eval=FALSE}
+ggplot(MORELIA.MICH.Tmin, aes(sample=Tmin))+
+  geom_qq()+
+ geom_qq_line()
+
+#shapiro.test(MORELIA.MICH.Tmin$Tmin)
+
+library(nortest)
+ad.test(MORELIA.MICH.Tmin$Tmin)
+
+```
+
+
+
+

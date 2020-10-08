@@ -11,7 +11,7 @@
 
 
 
-<title>SUPERHEROES</title>
+<title>Ejerc_7_normalidad</title>
 
 <script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -620,6 +620,9 @@ div.tocify {
     <li>
       <a href="Ejercicio_Pruebas_Frecu.html">Ejercicio Pruebas de Frecuencia</a>
     </li>
+    <li>
+      <a href="Normalidad_7_Ejer.html">Ejercicio Distribución Normal</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -649,65 +652,75 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">SUPERHEROES</h1>
+<h1 class="title toc-ignore">Ejerc_7_normalidad</h1>
 
 </div>
 
 
-<p>En este documentos .rmd tiene lo beasico para comenzar el ejercicio.</p>
-<div id="superheroes-y-lesiones" class="section level2">
-<h2>Superheroes y Lesiones</h2>
-<p>Los datos representa la gravedad de lesiones que tienen niños que se disfrazan de su superheroes favorito y después llegan a un hospital por alguna lesión. Los niños son categorizados con un nivel gravedad de lesión, más alto el valor más serio era la lesión. Los datos provienen de Field et al. </p>
-<p>Subir los datos de <strong>Superhero.csv</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(readr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>Superhero &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_files_csv/Superhero.csv&quot;</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">head</span>(Superhero)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>## # A tibble: 6 x 2</span>
-<span id="cb2-2"><a href="#cb2-2"></a>##    hero injury</span>
-<span id="cb2-3"><a href="#cb2-3"></a>##   &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span id="cb2-4"><a href="#cb2-4"></a>## 1     1     51</span>
-<span id="cb2-5"><a href="#cb2-5"></a>## 2     1     31</span>
-<span id="cb2-6"><a href="#cb2-6"></a>## 3     1     58</span>
-<span id="cb2-7"><a href="#cb2-7"></a>## 4     1     20</span>
-<span id="cb2-8"><a href="#cb2-8"></a>## 5     1     47</span>
-<span id="cb2-9"><a href="#cb2-9"></a>## 6     1     37</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">unique</span>(Superhero<span class="op">$</span>heronames)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>## NULL</span></code></pre></div>
-<p>Renombrar los nombres de las categorías para los tipos de Superheroes. En el archivo como están identificados las categorías de superheroes?</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#Superhero</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>Superhero<span class="op">$</span>heronames&lt;-<span class="kw">factor</span>(Superhero<span class="op">$</span>hero, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), </span>
-<span id="cb5-3"><a href="#cb5-3"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Spiderman&quot;</span>,<span class="st">&quot;Superman&quot;</span>, <span class="st">&quot;Hulk&quot;</span>, <span class="st">&quot;Ninja Turtle&quot;</span>))</span>
-<span id="cb5-4"><a href="#cb5-4"></a>Superhero</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>## # A tibble: 30 x 3</span>
-<span id="cb6-2"><a href="#cb6-2"></a>##     hero injury heronames</span>
-<span id="cb6-3"><a href="#cb6-3"></a>##    &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    </span>
-<span id="cb6-4"><a href="#cb6-4"></a>##  1     1     51 Spiderman</span>
-<span id="cb6-5"><a href="#cb6-5"></a>##  2     1     31 Spiderman</span>
-<span id="cb6-6"><a href="#cb6-6"></a>##  3     1     58 Spiderman</span>
-<span id="cb6-7"><a href="#cb6-7"></a>##  4     1     20 Spiderman</span>
-<span id="cb6-8"><a href="#cb6-8"></a>##  5     1     47 Spiderman</span>
-<span id="cb6-9"><a href="#cb6-9"></a>##  6     1     37 Spiderman</span>
-<span id="cb6-10"><a href="#cb6-10"></a>##  7     1     49 Spiderman</span>
-<span id="cb6-11"><a href="#cb6-11"></a>##  8     1     40 Spiderman</span>
-<span id="cb6-12"><a href="#cb6-12"></a>##  9     2     69 Superman </span>
-<span id="cb6-13"><a href="#cb6-13"></a>## 10     2     32 Superman </span>
-<span id="cb6-14"><a href="#cb6-14"></a>## # … with 20 more rows</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">names</span>(Superhero)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>## [1] &quot;hero&quot;      &quot;injury&quot;    &quot;heronames&quot;</span></code></pre></div>
-</div>
-<div id="la-preguntas" class="section level2">
-<h2>La preguntas</h2>
-<p>Contestar cada una de las siguientes preguntas.</p>
+<p>Fecha de la ultima revisión</p>
+<pre><code>## [1] &quot;2020-10-07&quot;</code></pre>
+<hr />
+<div id="ejercicios-para-someter" class="section level1">
+<h1>Ejercicios para someter</h1>
+<p>Todos los ejercicios estan basado en temas que hemos cubierto en la clase. Mayormente los temas son del capitulo #8, <strong>La Distribucón Normal</strong></p>
+<p>Los ejercicios en parte proviene del capitulo 8 del libro de Havel et al.</p>
+<p>El trabajo se someterá en documento .html en Edmodo (NOTA: QUE NO PUEDO LEER LOS DOCUMENTOS .rmd: estos no se van a corregir)</p>
+<hr />
+<div id="ejercicio-1-7-puntos" class="section level2">
+<h2>Ejercicio 1: (7 puntos)</h2>
 <ol style="list-style-type: decimal">
-<li>Evaluar la distribución de los datos de respuestas (los en Y)</li>
-<li>Evaluar la homogeneidad de varianza</li>
-<li>Visualizar los datos Puntos y promedios y intervalo de confianza</li>
-<li>Hacer la prueba de ANOVA con aov()</li>
-<li>Evaluar la figura de residuales</li>
-<li>Evaluar la gráfica de qq, para la normalidad</li>
-<li>Hacer la prueba de post-hoc si es necesario!!!!!</li>
+<li>Producción de un histograma</li>
 </ol>
+<p>Use los datos <strong>PartosInfantes</strong> en el paquete <strong>ggversa</strong> y construye un histograma de “Número de Muertes de Infantes, Niños que mueren en el parto o natimuerto” endiferentes paises, el nombre de la columna es <strong>NMI</strong>.</p>
+<ul>
+<li>demuestra el script</li>
+<li>demuestra el gráfico</li>
+</ul>
+<p>Contestar la siguientes preguntas</p>
+<ul>
+<li>los datos son simétricos?</li>
+<li>los datos parecen tener una distribución normal?</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(ggversa)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<hr />
+</div>
+<div id="ejercicio-2-10-puntos" class="section level2">
+<h2>Ejercicio 2: (10 puntos)</h2>
+<ol start="2" style="list-style-type: decimal">
+<li>Añadir la linea teórica de distribución normal al histograma</li>
+</ol>
+<p>Use los datos <strong>Razon_mortandad</strong> en el paquete <strong>ggversa</strong> y construye un histograma de “Razon de mortandad de niños en diferentes países del mundo”, selecciona <strong>UNO</strong> de los años.</p>
+<ul>
+<li>demuestra el script</li>
+<li>demuestra el gráfico</li>
+<li>añade la distribución teórica el gráfico del histograma (recuerda que tiene que tener una linea como una campana)</li>
+</ul>
+<p>Contestar la siguientes preguntas</p>
+<ul>
+<li>la razón de mortandad de los niños en los países tiene una distribución mortandad que sigue es “normal”?</li>
+<li>¿Cual es el promedio?</li>
+<li>¿Cual es la desviación estándar?</li>
+</ul>
+</div>
+<div id="ejercicio-3-13-puntos" class="section level2">
+<h2>Ejercicio 3: (13 puntos)</h2>
+<ol start="3" style="list-style-type: decimal">
+<li>qqplot y pruebas normalidades</li>
+</ol>
+<p>Use los datos <strong>MORELIA.MICH.Tmin</strong> en el paquete <strong>ggversa</strong> y construye un <strong>qqplot</strong> de la temperatura mínima de la ciudad de Morelia en Mexico.</p>
+<ul>
+<li><p>demuestra el script</p></li>
+<li><p>demuestra el gráfico</p></li>
+<li><p>Determina si la distribución de la temperatura mínima en Morelia tiene una distribución normal usando la prueba de</p>
+<ul>
+<li><p>Shapiro-Wilks</p></li>
+<li><p>Anderson-Darling</p>
+<p>Evalúa las tres alternativas y explica como se interpreta el gráfico y las pruebas. Si hay dificultad aplicar alguna pruebas, explica porque no se puede usar.</p></li>
+</ul></li>
+</ul>
+</div>
 </div>
 
 
