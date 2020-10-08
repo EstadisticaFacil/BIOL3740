@@ -13,6 +13,7 @@
 
 <title>T8_Distribucion_Normal</title>
 
+<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,22 +26,92 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+          color: #aaaaaa;
+        }
+      pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+      code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code span.at { color: #7d9029; } /* Attribute */
+      code span.bn { color: #40a070; } /* BaseN */
+      code span.bu { } /* BuiltIn */
+      code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code span.ch { color: #4070a0; } /* Char */
+      code span.cn { color: #880000; } /* Constant */
+      code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code span.dt { color: #902000; } /* DataType */
+      code span.dv { color: #40a070; } /* DecVal */
+      code span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code span.ex { } /* Extension */
+      code span.fl { color: #40a070; } /* Float */
+      code span.fu { color: #06287e; } /* Function */
+      code span.im { } /* Import */
+      code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+      code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code span.op { color: #666666; } /* Operator */
+      code span.ot { color: #007020; } /* Other */
+      code span.pp { color: #bc7a00; } /* Preprocessor */
+      code span.sc { color: #4070a0; } /* SpecialChar */
+      code span.ss { color: #bb6688; } /* SpecialString */
+      code span.st { color: #4070a0; } /* String */
+      code span.va { color: #19177c; } /* Variable */
+      code span.vs { color: #4070a0; } /* VerbatimString */
+      code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    </style>
+
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -60,7 +131,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -546,6 +617,12 @@ div.tocify {
     <li>
       <a href="Exam1.html">Preguntas para examen num. 1</a>
     </li>
+    <li>
+      <a href="Norm7.html">Ejercicio Distribución Normal</a>
+    </li>
+    <li>
+      <a href="Ejercicio_Pruebas_Frecu.html">Ejercicio Pruebas de Frecuencia</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -581,7 +658,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-09-08&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-07&quot;</code></pre>
 <div id="instalar-y-activar-los-siguientes-paquete" class="section level1">
 <h1>Instalar y activar los siguientes paquete</h1>
 <p>Para instalar el paquete <strong>modeest</strong> es necesario instalar foes otros paquetes antes, <strong>BiocManager</strong> y <strong>genefilter</strong>. Usando el siguiente script pora instalar los paquetes. Nota que en la consola tendrá que aceptar a instalar y seleccionar la “a” para “all”.<br />
@@ -727,7 +804,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#djmqwlxojf .gt_table {
+#wlxojfscia .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -752,7 +829,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-left-color: #D3D3D3;
 }
 
-#djmqwlxojf .gt_heading {
+#wlxojfscia .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -764,7 +841,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-right-color: #D3D3D3;
 }
 
-#djmqwlxojf .gt_title {
+#wlxojfscia .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -774,7 +851,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-bottom-width: 0;
 }
 
-#djmqwlxojf .gt_subtitle {
+#wlxojfscia .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -784,13 +861,13 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-top-width: 0;
 }
 
-#djmqwlxojf .gt_bottom_border {
+#wlxojfscia .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#djmqwlxojf .gt_col_headings {
+#wlxojfscia .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -805,7 +882,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-right-color: #D3D3D3;
 }
 
-#djmqwlxojf .gt_col_heading {
+#wlxojfscia .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -825,7 +902,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   overflow-x: hidden;
 }
 
-#djmqwlxojf .gt_column_spanner_outer {
+#wlxojfscia .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -837,15 +914,15 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   padding-right: 4px;
 }
 
-#djmqwlxojf .gt_column_spanner_outer:first-child {
+#wlxojfscia .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#djmqwlxojf .gt_column_spanner_outer:last-child {
+#wlxojfscia .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#djmqwlxojf .gt_column_spanner {
+#wlxojfscia .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -857,7 +934,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   width: 100%;
 }
 
-#djmqwlxojf .gt_group_heading {
+#wlxojfscia .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -879,7 +956,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   vertical-align: middle;
 }
 
-#djmqwlxojf .gt_empty_group_heading {
+#wlxojfscia .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -894,15 +971,15 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   vertical-align: middle;
 }
 
-#djmqwlxojf .gt_from_md > :first-child {
+#wlxojfscia .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#djmqwlxojf .gt_from_md > :last-child {
+#wlxojfscia .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#djmqwlxojf .gt_row {
+#wlxojfscia .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -921,7 +998,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   overflow-x: hidden;
 }
 
-#djmqwlxojf .gt_stub {
+#wlxojfscia .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -933,7 +1010,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   padding-left: 12px;
 }
 
-#djmqwlxojf .gt_summary_row {
+#wlxojfscia .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -943,7 +1020,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   padding-right: 5px;
 }
 
-#djmqwlxojf .gt_first_summary_row {
+#wlxojfscia .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -953,7 +1030,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-top-color: #D3D3D3;
 }
 
-#djmqwlxojf .gt_grand_summary_row {
+#wlxojfscia .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -963,7 +1040,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   padding-right: 5px;
 }
 
-#djmqwlxojf .gt_first_grand_summary_row {
+#wlxojfscia .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -973,11 +1050,11 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-top-color: #D3D3D3;
 }
 
-#djmqwlxojf .gt_striped {
+#wlxojfscia .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#djmqwlxojf .gt_table_body {
+#wlxojfscia .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -986,7 +1063,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-bottom-color: #D3D3D3;
 }
 
-#djmqwlxojf .gt_footnotes {
+#wlxojfscia .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1000,13 +1077,13 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-right-color: #D3D3D3;
 }
 
-#djmqwlxojf .gt_footnote {
+#wlxojfscia .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#djmqwlxojf .gt_sourcenotes {
+#wlxojfscia .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1020,46 +1097,46 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-right-color: #D3D3D3;
 }
 
-#djmqwlxojf .gt_sourcenote {
+#wlxojfscia .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#djmqwlxojf .gt_left {
+#wlxojfscia .gt_left {
   text-align: left;
 }
 
-#djmqwlxojf .gt_center {
+#wlxojfscia .gt_center {
   text-align: center;
 }
 
-#djmqwlxojf .gt_right {
+#wlxojfscia .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#djmqwlxojf .gt_font_normal {
+#wlxojfscia .gt_font_normal {
   font-weight: normal;
 }
 
-#djmqwlxojf .gt_font_bold {
+#wlxojfscia .gt_font_bold {
   font-weight: bold;
 }
 
-#djmqwlxojf .gt_font_italic {
+#wlxojfscia .gt_font_italic {
   font-style: italic;
 }
 
-#djmqwlxojf .gt_super {
+#wlxojfscia .gt_super {
   font-size: 65%;
 }
 
-#djmqwlxojf .gt_footnote_marks {
+#wlxojfscia .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="djmqwlxojf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="wlxojfscia" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1068,13 +1145,13 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_right">8.776594</td>
+      <td class="gt_row gt_right">10.017588</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">6.691068</td>
+      <td class="gt_row gt_right">6.201920</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">9.287899</td>
+      <td class="gt_row gt_right">8.726841</td>
     </tr>
   </tbody>
   
@@ -1116,7 +1193,7 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
 <p>Por ejemplo Wikipedia menciona por lo menos 8 diferentes pruebas de normalidad <a href="https://en.wikipedia.org/wiki/Normality_test" class="uri">https://en.wikipedia.org/wiki/Normality_test</a>.</p>
 <div id="la-prueba-de-shapiro-wilks" class="section level2">
 <h2>La prueba de Shapiro-Wilks</h2>
-<p>La prueba de Shapiro-Wilk es un prueba para determinar si un muestreo proviene de una distribución normal. Los datos se ponen en orden de los valores y se calcula el estadística de <strong>W</strong>. Aqui no vamos enseñar como hacer los cálculos los que le interesa pueden ir al a la siguiente pagina de <a href="https://en.wikipedia.org/wiki/Shapiro–Wilk_test" class="uri">https://en.wikipedia.org/wiki/Shapiro–Wilk_test</a>. Lo imprtante es que</p>
+<p>La prueba de Shapiro-Wilk es un prueba para determinar si un muestreo proviene de una distribución normal. Los datos se ponen en orden de los valores y se calcula el estadística de <strong>W</strong>. Aquí no vamos enseñar como hacer los cálculos los que le interesa pueden ir al a la siguiente pagina de <a href="https://en.wikipedia.org/wiki/Shapiro–Wilk_test" class="uri">https://en.wikipedia.org/wiki/Shapiro–Wilk_test</a>. Lo importante es que</p>
 <p>Ho: los datos no son diferentes de una distribución normal Ha: los datos no concuerda con una distribución normal.</p>
 <p>Por consecuencia si se rechaza la hipótesis nula uno dice que los datos no cumplen con una distribución normal.</p>
 <p>Problemas con la prueba. La prueba es sensitiva al tamaño de muestra. Esto quiere decir que cando el tamaño de muestra es demasiado pequeño o grande tiende a dar errores de Tipo II y Tipo I respectivamente.</p>

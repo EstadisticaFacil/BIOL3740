@@ -13,6 +13,7 @@
 
 <title>Supuestos de la pruebas paramétricas</title>
 
+<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,22 +26,92 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+          color: #aaaaaa;
+        }
+      pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+      code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code span.at { color: #7d9029; } /* Attribute */
+      code span.bn { color: #40a070; } /* BaseN */
+      code span.bu { } /* BuiltIn */
+      code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code span.ch { color: #4070a0; } /* Char */
+      code span.cn { color: #880000; } /* Constant */
+      code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code span.dt { color: #902000; } /* DataType */
+      code span.dv { color: #40a070; } /* DecVal */
+      code span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code span.ex { } /* Extension */
+      code span.fl { color: #40a070; } /* Float */
+      code span.fu { color: #06287e; } /* Function */
+      code span.im { } /* Import */
+      code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+      code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code span.op { color: #666666; } /* Operator */
+      code span.ot { color: #007020; } /* Other */
+      code span.pp { color: #bc7a00; } /* Preprocessor */
+      code span.sc { color: #4070a0; } /* SpecialChar */
+      code span.ss { color: #bb6688; } /* SpecialString */
+      code span.st { color: #4070a0; } /* String */
+      code span.va { color: #19177c; } /* Variable */
+      code span.vs { color: #4070a0; } /* VerbatimString */
+      code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    </style>
+
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -60,7 +131,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -546,6 +617,12 @@ div.tocify {
     <li>
       <a href="Exam1.html">Preguntas para examen num. 1</a>
     </li>
+    <li>
+      <a href="Norm7.html">Ejercicio Distribución Normal</a>
+    </li>
+    <li>
+      <a href="Ejercicio_Pruebas_Frecu.html">Ejercicio Pruebas de Frecuencia</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -581,7 +658,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-09-28&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-07&quot;</code></pre>
 <hr />
 <p>Añadir los siguientes paquetes, Nota la función de <strong>pacman</strong> para intalar los paquetes. Esta función hace que si le falta un paquete en la lista lo va a instalar sin hacer tener que hacerlo uno por uno. Si quiere hacerlo separado remueve el <strong>#</strong> antes de <strong>install.packages</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#----Install and Load Packages-----</span></span>
@@ -646,31 +723,34 @@ div.tocify {
 <span id="cb3-8"><a href="#cb3-8"></a></span>
 <span id="cb3-9"><a href="#cb3-9"></a>BecasaDeMar<span class="op">$</span>fPERIODO &lt;-<span class="st"> </span><span class="kw">factor</span>(BecasaDeMar<span class="op">$</span>PERIOD,</span>
 <span id="cb3-10"><a href="#cb3-10"></a>            <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb3-11"><a href="#cb3-11"></a>            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Verano&quot;</span>, <span class="st">&quot;Pre-migración&quot;, &quot;</span>Invierno<span class="st">&quot;))</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Verano&quot;</span>, <span class="st">&quot;Pre-migración&quot;</span>, <span class="st">&quot;Invierno&quot;</span>))</span>
 <span id="cb3-12"><a href="#cb3-12"></a></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="st"> head(BecasaDeMar)           </span></span></code></pre></div>
-<pre><code>##     RECORD DAY MONTH YEAR LOCATION AGE SEX PERIOD mgconsumed  fSEXO
-## 125     53   2     4   97        1   1   1      1       0.07 Hembra
-## 126     67  16     5   97        0   1   1      2       0.18 Hembra
-## 127     69  16     5   97        0   1   1      2       0.39 Hembra
-## 128     77  17     6   97        1   1   1      2       0.07 Hembra
-## 129     78  17     6   97        1   1   1      2       0.10 Hembra
-## 130     79  17     6   97        0   1   1      2       0.08 Hembra
-##          fPERIODO
-## 125 Pre-migración
-## 126      Invierno
-## 127      Invierno
-## 128      Invierno
-## 129      Invierno
-## 130      Invierno</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>BecasaMar &lt;-<span class="st"> </span><span class="kw">ggplot</span>(BecasaDeMar,</span>
-<span id="cb5-2"><a href="#cb5-2"></a>                    <span class="kw">aes</span>(<span class="dt">y=</span>mgconsumed, fSEXO))</span>
-<span id="cb5-3"><a href="#cb5-3"></a>BecasaMar <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">notch=</span><span class="ot">TRUE</span>)<span class="op">+</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="st">            </span><span class="kw">facet_wrap</span>(<span class="op">~</span>fPERIODO)<span class="op">+</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>,<span class="dt">face=</span><span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb5-6"><a href="#cb5-6"></a>        <span class="dt">axis.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>, <span class="dt">face=</span><span class="st">&quot;bold&quot;</span>))<span class="op">+</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="st">            </span><span class="kw">xlab</span>(<span class="st">&quot;Sexo de las aves&quot;</span>)<span class="op">+</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="st">            </span><span class="kw">ylab</span>(<span class="st">&quot;Razón de consumo&quot;</span>)</span></code></pre></div>
+<span id="cb3-13"><a href="#cb3-13"></a> <span class="kw">head</span>(BecasaDeMar)           </span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:BecasaDeMar">
+<col><col><col><col><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">RECORD</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">DAY</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">MONTH</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">YEAR</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">LOCATION</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">AGE</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">SEX</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">PERIOD</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mgconsumed</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">fSEXO</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">fPERIODO</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">53</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">97</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.07</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hembra</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Pre-migración</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">67</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">16</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">97</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.18</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Hembra</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Invierno</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">69</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">16</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">97</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.39</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hembra</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Invierno</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">77</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">17</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">97</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.07</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Hembra</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Invierno</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">78</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">17</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">97</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.1&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hembra</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Invierno</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">79</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">17</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">97</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.08</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Hembra</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Invierno</td></tr>
+</table>
+
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>BecasaMar &lt;-<span class="st"> </span><span class="kw">ggplot</span>(BecasaDeMar,</span>
+<span id="cb4-2"><a href="#cb4-2"></a>                    <span class="kw">aes</span>(<span class="dt">y=</span>mgconsumed, fSEXO))</span>
+<span id="cb4-3"><a href="#cb4-3"></a>BecasaMar <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">notch=</span><span class="ot">TRUE</span>)<span class="op">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="st">            </span><span class="kw">facet_wrap</span>(<span class="op">~</span>fPERIODO)<span class="op">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>,<span class="dt">face=</span><span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb4-6"><a href="#cb4-6"></a>        <span class="dt">axis.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>, <span class="dt">face=</span><span class="st">&quot;bold&quot;</span>))<span class="op">+</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="st">            </span><span class="kw">xlab</span>(<span class="st">&quot;Sexo de las aves&quot;</span>)<span class="op">+</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="st">            </span><span class="kw">ylab</span>(<span class="st">&quot;Razón de consumo&quot;</span>)</span></code></pre></div>
 <p><img src="T6_supuestos_files/figure-html/BecasaDeMarBP-1.png" width="672" /></p>
 <hr />
 </div>
@@ -680,10 +760,10 @@ div.tocify {
 <p>Para el análisis de tipo regresión es necesario evaluar la homogeneidad de los datos utilizando los residuales del modelo. Esto lo logramos graficándolos contra los valores estimados (fitted values) y haciendo un gráfico de caja condicional con los residuales. Los residuales tienen que ser similares en todos los grupos. Si la variación de los residuales no es igual, será necesario transformar los datos o usar otras técnicas que no requieran del supuesto de la homogeneidad de varianza; por ejemplo, mínimos cuadrados generalizados (generalized least square, en inglés) o un análisis no paramétrico.</p>
 <p>El gráfico que utilizaremos se llama caja condicional ya que la distribución es condicional al grupo. El residual se calcula como la diferencia entre el valor observado y el valor esperado; en este caso, en la variable de <strong>y</strong>.</p>
 <p>A continuación, completamos el análisis utilizando otra vez los datos de la orquídea <strong>Dipodium</strong>. Primero hay que hacer un análisis de regresión simple usando <strong>lm()</strong> y darle un nombre al análisis o sea el modelo. Subseguientemente uno puede llamar los valores necesarios para hacer el gráfico con <strong>.fitted</strong> y <strong>.resid</strong>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>modelflower=<span class="kw">lm</span>(Number_of_Flowers<span class="op">~</span>Height_Inflo,</span>
-<span id="cb6-2"><a href="#cb6-2"></a>         <span class="dt">data=</span>dipodium)</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="kw">summary</span>(modelflower)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>modelflower=<span class="kw">lm</span>(Number_of_Flowers<span class="op">~</span>Height_Inflo,</span>
+<span id="cb5-2"><a href="#cb5-2"></a>         <span class="dt">data=</span>dipodium)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">summary</span>(modelflower)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Number_of_Flowers ~ Height_Inflo, data = dipodium)
@@ -703,10 +783,14 @@ div.tocify {
 ##   (1182 observations deleted due to missingness)
 ## Multiple R-squared:  0.6694, Adjusted R-squared:  0.6676 
 ## F-statistic: 362.5 on 1 and 179 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">ggplot</span>(dipodium, <span class="kw">aes</span>(Height_Inflo, Number_of_Flowers))<span class="op">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm)<span class="op">+</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">ggplot</span>(dipodium, <span class="kw">aes</span>(Height_Inflo, Number_of_Flowers))<span class="op">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm)<span class="op">+</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="T6_supuestos_files/figure-html/Homogeneityvariance-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#influence(modelflower)</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#rstandard(modelflower)</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#influence.measures(modelflower)</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#head(fortify(modelflower))</span></span></code></pre></div>
 <p>Lo que observaremos es que la distribución de los residuales luce más o menos uniforme alrededor del promedio de los residuales (el cero). Hay aproximadamente igual cantidad de valores mayor a cero (por encima de la línea en verde) y menor a cero (por debajo de la línea en verde) que están distribuidos a través de la variable en el eje de <strong>X</strong>, o valores estimados. En adición que los residuales (negativos o positivos) no son limitado a sub grupos de de los valores estimados (en la <strong>X</strong>).</p>
 <p>Note que se está aplicando el modelo <strong>modelflower</strong>, y se usan los valores calculados en el modelo <strong>.fitted</strong> y <strong>.resid</strong> para producir el gráfico. Se añade una linea horizontal para identificar el modelo nulo con <strong>geom_hline</strong>.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>  res&lt;-<span class="kw">ggplot</span>(modelflower, <span class="kw">aes</span>(.fitted, .resid))<span class="op">+</span></span>
@@ -777,8 +861,8 @@ div.tocify {
 <span id="cb12-2"><a href="#cb12-2"></a><span class="kw">qplot</span>(<span class="dt">sample =</span> BecasaDeMar<span class="op">$</span>mgconsumed, <span class="dt">stat=</span><span class="st">&quot;qq&quot;</span>)<span class="op">+</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>,<span class="dt">face=</span><span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb12-4"><a href="#cb12-4"></a>        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>,<span class="dt">face=</span><span class="st">&quot;bold&quot;</span>))<span class="op">+</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="st">   </span><span class="kw">xlab</span>(<span class="st">&quot;Valores teóricos&quot;)+</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="st">   ylab(&quot;</span>Valores observados<span class="st">&quot;)</span></span></code></pre></div>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="st">   </span><span class="kw">xlab</span>(<span class="st">&quot;Valores teóricos&quot;</span>)<span class="op">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="st">   </span><span class="kw">ylab</span>(<span class="st">&quot;Valores observados&quot;</span>)</span></code></pre></div>
 <p><img src="T6_supuestos_files/figure-html/Becasaqqplot2-1.png" width="672" /></p>
 <hr />
 </div>
@@ -788,23 +872,23 @@ div.tocify {
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>a=<span class="st"> </span><span class="kw">ggplot</span>(Godwits, <span class="kw">aes</span>(<span class="dt">sample =</span> mgconsumed)) <span class="op">+</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="st">  </span><span class="kw">stat_qq</span>() <span class="op">+</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="st">  </span><span class="kw">stat_qq_line</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Valores teóricos&quot;)+</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="st">  ylab(&quot;</span>Valores observados<span class="st">&quot;)</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Valores teóricos&quot;</span>)<span class="op">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Valores observados&quot;</span>)</span>
 <span id="cb13-6"><a href="#cb13-6"></a></span>
 <span id="cb13-7"><a href="#cb13-7"></a></span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="st">df &lt;- data.frame(y = rnorm(2000))</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a><span class="st">b &lt;- ggplot(df, aes(sample = y))+ </span></span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="st">  stat_qq() + </span></span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="st">  stat_qq_line(colour=&quot;</span>red<span class="st">&quot;)</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">2000</span>))</span>
+<span id="cb13-9"><a href="#cb13-9"></a>b &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">sample =</span> y))<span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="st">  </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="st">  </span><span class="kw">stat_qq_line</span>(<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb13-12"><a href="#cb13-12"></a></span>
-<span id="cb13-13"><a href="#cb13-13"></a><span class="st">grid.arrange(a,b,ncol=2)</span></span></code></pre></div>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="kw">grid.arrange</span>(a,b,<span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="T6_supuestos_files/figure-html/Becasaqqplot3-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="la-distribución-normal" class="section level2">
 <h2>La distribución normal</h2>
 <p>Una segunda alternativa para visualizar si los datos siguen una distribución normal es construir un histograma de los datos y gráficar sobre este la curva normal basándonos en el promedio y la desviación estándar de los mismos datos. Para construir el histograma se usa la función <strong>geom_histogram</strong> y para la distribución teórica normal de estos datos se usa la función <strong>stat_function</strong>. Esto lo demostramos con gráficos adicionales de la Becasa del Mar, donde se representa la razón de consumo y el período en que esto ocurrió. En la Figura (a) vemos la distribución para todos los períodos, y los otros tres en la Figura (b) muestran una distribución para cada uno de los períodos. Se observa en todos los casos que las distribuciones están sesgadas hacia los valores pequeños (hacia la izquierda). Esta visualización nos ayuda a evaluar la normalidad de esos datos. NOta que no es una prueba estadística igual como el gráfico de qqplot.</p>
-<p>Nota la formula para calcular la distribución normal. Hay solamente dos parámetros que necesitamos, el promedio <span class="math inline">\(\mu\)</span> y la desviación estándar <span class="math inline">\(\sigma\)</span>. Todos los otros son constantes, <span class="math inline">\(\pi\)</span>, <span class="math inline">\(\e\)</span>.</p>
+<p>Nota la formula para calcular la distribución normal. Hay solamente dos parámetros que necesitamos, el promedio <span class="math inline">\(\mu\)</span> y la desviación estándar <span class="math inline">\(\sigma\)</span>. Todos los otros son constantes, <span class="math inline">\(\pi\)</span>, y e.</p>
 <p><span class="math display">\[P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}\]</span></p>
 <p>Note que en <strong>geom_histogram</strong> se tiene que incluir</p>
 <p><strong>aes(..density..)</strong></p>

@@ -618,6 +618,9 @@ div.tocify {
       <a href="Exam1.html">Preguntas para examen num. 1</a>
     </li>
     <li>
+      <a href="Norm7.html">Ejercicio Distribución Normal</a>
+    </li>
+    <li>
       <a href="Ejercicio_Pruebas_Frecu.html">Ejercicio Pruebas de Frecuencia</a>
     </li>
   </ul>
@@ -686,21 +689,31 @@ div.tocify {
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x=<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">10</span>) <span class="co">#(100 datos, x=100, sd=10)</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>x=<span class="kw">data.frame</span>(x)</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="kw">head</span>(x)</span></code></pre></div>
-<pre><code>##           x
-## 1 104.60281
-## 2  99.52095
-## 3 106.26150
-## 4 108.67802
-## 5 109.87962
-## 6  85.05440</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">mean</span>(x<span class="op">$</span>x) <span class="co"># el promedio</span></span></code></pre></div>
-<pre><code>## [1] 100.2918</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">sd</span>(x<span class="op">$</span>x) <span class="co"># la desviación estándar</span></span></code></pre></div>
-<pre><code>## [1] 10.1719</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">min</span>(x<span class="op">$</span>x) <span class="co"># el valor mínimo</span></span></code></pre></div>
-<pre><code>## [1] 68.5177</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">max</span>(x<span class="op">$</span>x) <span class="co"># el valor máximo</span></span></code></pre></div>
-<pre><code>## [1] 129.4974</code></pre>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:summary stat">
+<col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">x</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">93.3</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">115&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">101&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">106&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">105&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">95.2</td></tr>
+</table>
+
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">mean</span>(x<span class="op">$</span>x) <span class="co"># el promedio</span></span></code></pre></div>
+<pre><code>## [1] 100.4668</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">sd</span>(x<span class="op">$</span>x) <span class="co"># la desviación estándar</span></span></code></pre></div>
+<pre><code>## [1] 9.322643</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">min</span>(x<span class="op">$</span>x) <span class="co"># el valor mínimo</span></span></code></pre></div>
+<pre><code>## [1] 70.48342</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">max</span>(x<span class="op">$</span>x) <span class="co"># el valor máximo</span></span></code></pre></div>
+<pre><code>## [1] 120.1094</code></pre>
 <hr />
 <ol style="list-style-type: decimal">
 <li>Quiz 1: Usa R y construye una lista o data frame con los siguientes datos y calcular el promedio. Contesta en <strong>MSTeam Form</strong> con tu respuesta. 4, 6, 7, 3, 9, 10, 19, 52.</li>
@@ -719,36 +732,44 @@ div.tocify {
 <li>4 = hueles a rosas dulces en un fresco día de primavera</li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">library</span>(readr)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>DownloadFestival_No_Outlier &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_files_csv/DownloadFestival_No_Outlier.csv&quot;</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a></span>
-<span id="cb13-5"><a href="#cb13-5"></a></span>
-<span id="cb13-6"><a href="#cb13-6"></a>dlf=DownloadFestival_No_Outlier  <span class="co">#usamos un nombre más corta para facilitar  </span></span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="kw">head</span>(dlf) <span class="co"># ver las 3 primeras filas</span></span></code></pre></div>
-<pre><code>## # A tibble: 6 x 5
-##   ticknumb gender  day1  day2   day3
-##      &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1     2111 Male    2.64  1.35  1.61 
-## 2     2229 Female  0.97  1.41  0.290
-## 3     2338 Male    0.84 NA    NA    
-## 4     2384 Female  3.03 NA    NA    
-## 5     2401 Female  0.88  0.08 NA    
-## 6     2405 Male    0.85 NA    NA</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>DownloadFestival_No_Outlier &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_files_csv/DownloadFestival_No_Outlier.csv&quot;</span>)</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>dlf=DownloadFestival_No_Outlier  <span class="co">#usamos un nombre más corta para facilitar  </span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="kw">head</span>(dlf) <span class="co"># ver las 3 primeras filas</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
+<col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ticknumb</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">gender</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day3</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.11e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Male</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.64</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.35</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.61</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.23e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.97</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.41</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.29</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.34e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Male</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.84</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.38e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.03</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.4e+03&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Female</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.88</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.08</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.40e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.85</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+
 </div>
 </div>
 <div id="remover-los-na-del-análisis" class="section level1">
 <h1>Remover los <strong>NA</strong> del análisis</h1>
 <p>Con los datos de los participantes al festival como en algunos diá hay participantes donde no tienen los datos se añadió un <strong>NA</strong>, es estos casos para que el análisis se logra hay que añadir a la función <strong>na.rm=TRUE</strong> que significa remover la <strong>NA</strong>. Para dar se cuenta remueve <strong>na.rm=TRUE</strong> cuando se usa el “día2” o “día3”, y evalúa que pasa.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">mean</span>(dlf<span class="op">$</span>day2, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co"># na.rm= na remove</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">mean</span>(dlf<span class="op">$</span>day2, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co"># na.rm= na remove</span></span></code></pre></div>
 <pre><code>## [1] 0.9609091</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">sd</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">sd</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.6935389</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">min</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">min</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.02</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">max</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">max</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 3.69</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">median</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">median</span>(dlf<span class="op">$</span>day1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 1.79</code></pre>
 <hr />
 <ol start="2" style="list-style-type: decimal">
@@ -760,58 +781,111 @@ div.tocify {
 <h1>Resumen estadístico de una variable</h1>
 <p>Para ver los estadístico mencionado arriba (menos la moda, oblicuidad y curtosis) se puede usar la función <strong>stat.desc()</strong> del paquete <strong>pastecs</strong>. Para facilitar la lectura de los valores se usa la función "round(x, 3), el tres en esta caso representa la cantidad de valores significativos que se demuestra. Si no usamos <strong>round()</strong> los valores aparece en notación científicas.</p>
 <p>Nota que hay muchos más parámetros calculados. Aparece en la lista en orden el valor mínimo: min(), el valor máximo: max(), la mediana: median, el promedio: mean, la desviación estándar; std.dev entre otros.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">stat.desc</span>(dlf[,<span class="kw">c</span>(<span class="st">&quot;day1&quot;</span>)])</span></code></pre></div>
-<pre><code>##                      day1
-## nbr.val      8.100000e+02
-## nbr.null     0.000000e+00
-## nbr.na       0.000000e+00
-## min          2.000000e-02
-## max          3.690000e+00
-## range        3.670000e+00
-## sum          1.434620e+03
-## median       1.790000e+00
-## mean         1.771136e+00
-## SE.mean      2.436847e-02
-## CI.mean.0.95 4.783289e-02
-## var          4.809962e-01
-## std.dev      6.935389e-01
-## coef.var     3.915786e-01</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">round</span>(<span class="kw">stat.desc</span>(dlf[,<span class="kw">c</span>(<span class="st">&quot;day1&quot;</span>)]), <span class="dv">2</span>)  </span></code></pre></div>
-<pre><code>##                 day1
-## nbr.val       810.00
-## nbr.null        0.00
-## nbr.na          0.00
-## min             0.02
-## max             3.69
-## range           3.67
-## sum          1434.62
-## median          1.79
-## mean            1.77
-## SE.mean         0.02
-## CI.mean.0.95    0.05
-## var             0.48
-## std.dev         0.69
-## coef.var        0.39</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">stat.desc</span>(dlf[,<span class="kw">c</span>(<span class="st">&quot;day1&quot;</span>)])</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:summary function">
+<col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day1</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">810&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.02&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.69&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.67&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.43e+03</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.79&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.77&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.0244&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0478&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.481&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.694&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.392&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">round</span>(<span class="kw">stat.desc</span>(dlf[,<span class="kw">c</span>(<span class="st">&quot;day1&quot;</span>)]), <span class="dv">2</span>)  </span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:summary function">
+<col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day1</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">810&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.02&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.69&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.67&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.43e+03</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.79&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.77&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.02&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.05&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.48&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.69&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.39&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+
 <hr />
 </div>
 <div id="resumen-estadístico-de-multiples-variables" class="section level1">
 <h1>Resumen Estadístico de multiples variables</h1>
 <p>Si uno quiere evaluar múltiples variables continua todas juntos se puede usar la misma función pero el componente <strong>c()</strong> se añade todas las variables de interés.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">round</span>(<span class="kw">stat.desc</span>(dlf[,<span class="kw">c</span>(<span class="st">&quot;day1&quot;</span>,<span class="st">&quot;day2&quot;</span>,<span class="st">&quot;day3&quot;</span>)], <span class="dt">basic=</span><span class="ot">FALSE</span>,<span class="dt">norm=</span><span class="ot">TRUE</span>), <span class="dt">digits=</span><span class="dv">3</span>) <span class="co"># round reduce a 3 valores significativo</span></span></code></pre></div>
-<pre><code>##                day1  day2  day3
-## median        1.790 0.790 0.760
-## mean          1.771 0.961 0.977
-## SE.mean       0.024 0.044 0.064
-## CI.mean.0.95  0.048 0.087 0.127
-## var           0.481 0.520 0.504
-## std.dev       0.694 0.721 0.710
-## coef.var      0.392 0.750 0.727
-## skewness     -0.004 1.083 1.008
-## skew.2SE     -0.026 3.612 2.309
-## kurtosis     -0.422 0.755 0.595
-## kurt.2SE     -1.228 1.265 0.686
-## normtest.W    0.996 0.908 0.908
-## normtest.p    0.032 0.000 0.000</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">round</span>(<span class="kw">stat.desc</span>(dlf[,<span class="kw">c</span>(<span class="st">&quot;day1&quot;</span>,<span class="st">&quot;day2&quot;</span>,<span class="st">&quot;day3&quot;</span>)], <span class="dt">basic=</span><span class="ot">FALSE</span>,<span class="dt">norm=</span><span class="ot">TRUE</span>), <span class="dt">digits=</span><span class="dv">3</span>) <span class="co"># round reduce a 3 valores significativo</span></span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day3</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.79&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.79&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.76&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.77&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.961</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.977</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.024</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.044</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.064</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.048</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.087</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.127</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.481</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.52&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.504</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.694</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.721</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.71&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.392</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.75&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.727</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.004</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.08&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.01&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.026</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.61&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2.31&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.422</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.755</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.595</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-1.23&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.26&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.686</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.996</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.908</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.908</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.032</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+</table>
+
 <hr />
 <ol start="3" style="list-style-type: decimal">
 <li>Quiz 3: Usa R usa el data.frame <strong>Camas_Hospital</strong> en el paquete <strong>ggversa</strong>. Contesta en <strong>MSTeam Form</strong> con tu respuesta. Selecciona la variable <strong>Camas</strong> que representa el "número de camas por 1000 personas en muchos países. ¿Cual es el rango (range)?</li>
@@ -822,13 +896,18 @@ div.tocify {
 <h1>Los Cuantiles</h1>
 <p>Los cuantiles son los valores a intervalos específicos de una variable aleatoria continua. Los cuantiles son frecuentemente una mejor interpretación de la distribución cuando los valores no tienen una distribución normal. Típicamente, la distribución se divide en 4 partes con las siguientes partes (los cuantiles 0.25, 0.50 = la mediana, 0.75) y se define como <strong>cuartiles</strong>. Para meas detalle pueden ver el siguiente enlace <a href="https://en.wikipedia.org/wiki/Quantile" class="uri">https://en.wikipedia.org/wiki/Quantile</a>.</p>
 <p>En el siguiente ejemplo se demuestra como tulizar la función <strong>quantiles</strong> y seleccionar los cuantiles deseados con el comopnente de <strong>probs=c(x,x,x)</strong>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">quantile</span>(dlf<span class="op">$</span>day1,<span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>), <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">quantile</span>(dlf<span class="op">$</span>day1,<span class="dt">probs=</span><span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>), <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##     5%    10%    25%    50%    75%    95%    99% 
 ## 0.5945 0.8490 1.3125 1.7900 2.2300 2.9055 3.3173</code></pre>
 <p>Se puede usar también la función <strong>describe</strong> en el paquete <strong>pshych</strong> que le da automáticamente estos cuantiles.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">describe</span>(dlf<span class="op">$</span>day1)</span></code></pre></div>
-<pre><code>##    vars   n mean   sd median trimmed mad  min  max range skew kurtosis   se
-## X1    1 810 1.77 0.69   1.79    1.77 0.7 0.02 3.69  3.67    0    -0.42 0.02</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">describe</span>(dlf<span class="op">$</span>day1)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
+<col><col><col><col><col><col><col><col><col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">vars</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">n</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mean</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sd</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">median</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">trimmed</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mad</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">min</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">max</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">range</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">skew</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">kurtosis</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">se</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">810</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.77</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.694</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.79</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.77</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.697</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.02</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.69</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.67</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.00443</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.422</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0244</td></tr>
+</table>
+
 <hr />
 </div>
 <div id="el-indice-de-oblicuidad-skewness" class="section level1">
@@ -842,43 +921,61 @@ div.tocify {
 <li>oblicuidad a la izquierda</li>
 <li>oblicuidad a la derecha</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>normal=<span class="kw">rnorm</span>(<span class="dv">100000</span>, <span class="fl">.5</span>, <span class="fl">.15</span>)</span>
-<span id="cb35-2"><a href="#cb35-2"></a>obliz=<span class="kw">rbeta</span>(<span class="dv">100000</span>, <span class="fl">1.5</span>,<span class="dv">5</span>)</span>
-<span id="cb35-3"><a href="#cb35-3"></a>obldr=<span class="kw">rbeta</span>(<span class="dv">100000</span>, <span class="fl">5.5</span>,<span class="dv">2</span>)</span>
-<span id="cb35-4"><a href="#cb35-4"></a></span>
-<span id="cb35-5"><a href="#cb35-5"></a>normal=<span class="kw">as.tibble</span>(normal)</span>
-<span id="cb35-6"><a href="#cb35-6"></a></span>
-<span id="cb35-7"><a href="#cb35-7"></a>obliz=<span class="kw">as.tibble</span>(obliz)</span>
-<span id="cb35-8"><a href="#cb35-8"></a></span>
-<span id="cb35-9"><a href="#cb35-9"></a>obldr=<span class="kw">as.tibble</span>(obldr)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>normal=<span class="kw">rnorm</span>(<span class="dv">100000</span>, <span class="fl">.5</span>, <span class="fl">.15</span>)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>obliz=<span class="kw">rbeta</span>(<span class="dv">100000</span>, <span class="fl">1.5</span>,<span class="dv">5</span>)</span>
+<span id="cb29-3"><a href="#cb29-3"></a>obldr=<span class="kw">rbeta</span>(<span class="dv">100000</span>, <span class="fl">5.5</span>,<span class="dv">2</span>)</span>
+<span id="cb29-4"><a href="#cb29-4"></a></span>
+<span id="cb29-5"><a href="#cb29-5"></a>normal=<span class="kw">as.tibble</span>(normal)</span>
+<span id="cb29-6"><a href="#cb29-6"></a></span>
+<span id="cb29-7"><a href="#cb29-7"></a>obliz=<span class="kw">as.tibble</span>(obliz)</span>
+<span id="cb29-8"><a href="#cb29-8"></a></span>
+<span id="cb29-9"><a href="#cb29-9"></a>obldr=<span class="kw">as.tibble</span>(obldr)</span></code></pre></div>
 <p>Ahora unimos los data frames y se añade nombres a las columnas</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>df=<span class="kw">cbind</span>(normal, obliz, obldr)</span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="kw">head</span>(df, <span class="dt">n=</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##       value     value     value
-## 1 0.5762815 0.3607764 0.8270394
-## 2 0.6656808 0.3448662 0.9226839</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>df &lt;-<span class="st"> </span><span class="kw">setNames</span>(df, <span class="kw">c</span>(<span class="st">&quot;normal&quot;</span>,<span class="st">&quot;obliz&quot;</span>,<span class="st">&quot;obldr&quot;</span>))</span>
-<span id="cb38-2"><a href="#cb38-2"></a></span>
-<span id="cb38-3"><a href="#cb38-3"></a><span class="kw">head</span>(df, <span class="dt">n=</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##      normal     obliz     obldr
-## 1 0.5762815 0.3607764 0.8270394
-## 2 0.6656808 0.3448662 0.9226839</code></pre>
-<p>El próximo paso es apilar cada columna una sobre la otra. La razón que queremos esto es que deseamos reproducir las variables en un mismo gráfico</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb40-2"><a href="#cb40-2"></a>df2=df<span class="op">%&gt;%</span></span>
-<span id="cb40-3"><a href="#cb40-3"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Distribución&quot;</span>, <span class="dt">value=</span><span class="st">&quot;valor&quot;</span>, <span class="kw">c</span>(normal, obliz, obldr))</span>
-<span id="cb40-4"><a href="#cb40-4"></a><span class="kw">head</span>(df2, <span class="dt">n=</span><span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##   Distribución     valor
-## 1       normal 0.5762815
-## 2       normal 0.6656808
-## 3       normal 0.5778987</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># unique(df2$Distribución) # función para ver el nombre de las variables en la columna Distribución</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>df=<span class="kw">cbind</span>(normal, obliz, obldr)</span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="kw">head</span>(df, <span class="dt">n=</span><span class="dv">2</span>)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">value</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.539</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0339</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.878</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.672</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.268&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.85&nbsp;</td></tr>
+</table>
+
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>df &lt;-<span class="st"> </span><span class="kw">setNames</span>(df, <span class="kw">c</span>(<span class="st">&quot;normal&quot;</span>,<span class="st">&quot;obliz&quot;</span>,<span class="st">&quot;obldr&quot;</span>))</span>
+<span id="cb31-2"><a href="#cb31-2"></a></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="kw">head</span>(df, <span class="dt">n=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
+<col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">normal</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">obliz</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">obldr</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.539</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0339</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.878</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.672</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.268&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.85&nbsp;</td></tr>
+</table>
+ El próximo paso es apilar cada columna una sobre la otra. La razón que queremos esto es que deseamos reproducir las variables en un mismo gráfico</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb32-2"><a href="#cb32-2"></a>df2=df<span class="op">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Distribución&quot;</span>, <span class="dt">value=</span><span class="st">&quot;valor&quot;</span>, <span class="kw">c</span>(normal, obliz, obldr))</span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="kw">head</span>(df2, <span class="dt">n=</span><span class="dv">3</span>)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
+<col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Distribución</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">valor</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">normal</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.539</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">normal</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.672</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">normal</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.717</td></tr>
+</table>
+
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># unique(df2$Distribución) # función para ver el nombre de las variables en la columna Distribución</span></span></code></pre></div>
 <p>Ahora vamos a ver los datos un gráfico. Vemos que la distribución de los datos son muy diferentes, tanto la distribución en azul y verde están sesgado a unos valores y tienen una cola o valores más grande (azul) o pequeños (verde) que si fuese una distribución normal.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="kw">ggplot</span>(df2, (<span class="kw">aes</span>(valor, <span class="dt">colour=</span>Distribución)))<span class="op">+</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
-<span id="cb43-3"><a href="#cb43-3"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="op">-</span>.<span class="dv">01</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">ggplot</span>(df2, (<span class="kw">aes</span>(valor, <span class="dt">colour=</span>Distribución)))<span class="op">+</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="op">-</span>.<span class="dv">01</span>,<span class="dv">1</span>)</span></code></pre></div>
 <p><img src="T4a_Estadistica_descriptiva_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/Skewness.png&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/Skewness.png&quot;</span>)</span></code></pre></div>
 <p>Ahora se calcula el indice de oblicuidad y comparamos los valores. Como regla cuando el nivel de oblicuidad esta entre</p>
 <ul>
 <li>-0.5 y 0.5 se considera dentro de una distribución simétrica (normal).</li>
@@ -887,13 +984,13 @@ div.tocify {
 </ul>
 <p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de <strong>skewness</strong> en el paquete <strong>e1071</strong></p>
 <p>Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos sesgado a la izquierda el indice de oblicuidad es positivo y el sesgado a derecha es negativo.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="kw">library</span>(e1071)</span>
-<span id="cb45-2"><a href="#cb45-2"></a>e1071<span class="op">::</span><span class="kw">skewness</span>(normal<span class="op">$</span>value) <span class="co"># la oblicuidad de los datos de una distribución normal</span></span></code></pre></div>
-<pre><code>## [1] -0.01203968</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>e1071<span class="op">::</span><span class="kw">skewness</span>(obliz<span class="op">$</span>value) <span class="co"># la oblicuidad de los datos sesgado a la izquierda</span></span></code></pre></div>
-<pre><code>## [1] 0.8246058</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>e1071<span class="op">::</span><span class="kw">skewness</span>(obldr<span class="op">$</span>value) <span class="co"># la oblicuidad de los datos sesgado a la derecha</span></span></code></pre></div>
-<pre><code>## [1] -0.6439756</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">library</span>(e1071)</span>
+<span id="cb36-2"><a href="#cb36-2"></a>e1071<span class="op">::</span><span class="kw">skewness</span>(normal<span class="op">$</span>value) <span class="co"># la oblicuidad de los datos de una distribución normal</span></span></code></pre></div>
+<pre><code>## [1] 0.002674392</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>e1071<span class="op">::</span><span class="kw">skewness</span>(obliz<span class="op">$</span>value) <span class="co"># la oblicuidad de los datos sesgado a la izquierda</span></span></code></pre></div>
+<pre><code>## [1] 0.8200443</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>e1071<span class="op">::</span><span class="kw">skewness</span>(obldr<span class="op">$</span>value) <span class="co"># la oblicuidad de los datos sesgado a la derecha</span></span></code></pre></div>
+<pre><code>## [1] -0.6516805</code></pre>
 <hr />
 </div>
 <div id="el-indice-de-curtosis-kurtosis" class="section level1">
@@ -908,73 +1005,91 @@ div.tocify {
 <li>con distribución normal, con cola extendida</li>
 <li>distribución uniforme</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="kw">library</span>(PearsonDS)</span>
-<span id="cb51-2"><a href="#cb51-2"></a><span class="kw">library</span>(rmutil)</span>
-<span id="cb51-3"><a href="#cb51-3"></a></span>
-<span id="cb51-4"><a href="#cb51-4"></a>momentsR=<span class="kw">c</span>(<span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">variance=</span><span class="dv">1</span>, <span class="dt">skewness=</span><span class="dv">0</span>, <span class="dt">kurtosis=</span><span class="dv">2</span>)</span>
-<span id="cb51-5"><a href="#cb51-5"></a>momentsE=<span class="kw">c</span>(<span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">variance=</span><span class="dv">1</span>, <span class="dt">skewness=</span><span class="dv">0</span>, <span class="dt">kurtosis=</span><span class="dv">4</span>)  </span>
-<span id="cb51-6"><a href="#cb51-6"></a></span>
-<span id="cb51-7"><a href="#cb51-7"></a>normalR=<span class="kw">rpearson</span>(<span class="dv">100000</span>, <span class="dt">moments=</span>momentsR)</span>
-<span id="cb51-8"><a href="#cb51-8"></a>normalE=<span class="kw">rpearson</span>(<span class="dv">100000</span>, <span class="dt">moments=</span>momentsE)</span>
-<span id="cb51-9"><a href="#cb51-9"></a></span>
-<span id="cb51-10"><a href="#cb51-10"></a></span>
-<span id="cb51-11"><a href="#cb51-11"></a>Unif=<span class="kw">runif</span>(<span class="dv">100000</span>, <span class="dv">-2</span>,<span class="dv">2</span>)</span>
-<span id="cb51-12"><a href="#cb51-12"></a>normal=<span class="kw">rnorm</span>(<span class="dv">100000</span>, <span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb51-13"><a href="#cb51-13"></a>laplace=<span class="kw">rlaplace</span>(<span class="dv">500000</span>, <span class="dt">m=</span><span class="dv">0</span>, <span class="dt">s=</span><span class="dv">1</span>)</span>
-<span id="cb51-14"><a href="#cb51-14"></a></span>
-<span id="cb51-15"><a href="#cb51-15"></a></span>
-<span id="cb51-16"><a href="#cb51-16"></a>normal=<span class="kw">as.tibble</span>(normal)</span>
-<span id="cb51-17"><a href="#cb51-17"></a></span>
-<span id="cb51-18"><a href="#cb51-18"></a>normalR=<span class="kw">as.tibble</span>(normalR)</span>
-<span id="cb51-19"><a href="#cb51-19"></a></span>
-<span id="cb51-20"><a href="#cb51-20"></a>normalE=<span class="kw">as.tibble</span>(normalE)</span>
-<span id="cb51-21"><a href="#cb51-21"></a></span>
-<span id="cb51-22"><a href="#cb51-22"></a>Unif=<span class="kw">as.tibble</span>(Unif)</span>
-<span id="cb51-23"><a href="#cb51-23"></a></span>
-<span id="cb51-24"><a href="#cb51-24"></a>laplace=<span class="kw">as.tibble</span>(laplace)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="kw">library</span>(PearsonDS)</span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="kw">library</span>(rmutil)</span>
+<span id="cb42-3"><a href="#cb42-3"></a></span>
+<span id="cb42-4"><a href="#cb42-4"></a>momentsR=<span class="kw">c</span>(<span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">variance=</span><span class="dv">1</span>, <span class="dt">skewness=</span><span class="dv">0</span>, <span class="dt">kurtosis=</span><span class="dv">2</span>)</span>
+<span id="cb42-5"><a href="#cb42-5"></a>momentsE=<span class="kw">c</span>(<span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">variance=</span><span class="dv">1</span>, <span class="dt">skewness=</span><span class="dv">0</span>, <span class="dt">kurtosis=</span><span class="dv">4</span>)  </span>
+<span id="cb42-6"><a href="#cb42-6"></a></span>
+<span id="cb42-7"><a href="#cb42-7"></a>normalR=<span class="kw">rpearson</span>(<span class="dv">100000</span>, <span class="dt">moments=</span>momentsR)</span>
+<span id="cb42-8"><a href="#cb42-8"></a>normalE=<span class="kw">rpearson</span>(<span class="dv">100000</span>, <span class="dt">moments=</span>momentsE)</span>
+<span id="cb42-9"><a href="#cb42-9"></a></span>
+<span id="cb42-10"><a href="#cb42-10"></a></span>
+<span id="cb42-11"><a href="#cb42-11"></a>Unif=<span class="kw">runif</span>(<span class="dv">100000</span>, <span class="dv">-2</span>,<span class="dv">2</span>)</span>
+<span id="cb42-12"><a href="#cb42-12"></a>normal=<span class="kw">rnorm</span>(<span class="dv">100000</span>, <span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb42-13"><a href="#cb42-13"></a>laplace=<span class="kw">rlaplace</span>(<span class="dv">500000</span>, <span class="dt">m=</span><span class="dv">0</span>, <span class="dt">s=</span><span class="dv">1</span>)</span>
+<span id="cb42-14"><a href="#cb42-14"></a></span>
+<span id="cb42-15"><a href="#cb42-15"></a></span>
+<span id="cb42-16"><a href="#cb42-16"></a>normal=<span class="kw">as.tibble</span>(normal)</span>
+<span id="cb42-17"><a href="#cb42-17"></a></span>
+<span id="cb42-18"><a href="#cb42-18"></a>normalR=<span class="kw">as.tibble</span>(normalR)</span>
+<span id="cb42-19"><a href="#cb42-19"></a></span>
+<span id="cb42-20"><a href="#cb42-20"></a>normalE=<span class="kw">as.tibble</span>(normalE)</span>
+<span id="cb42-21"><a href="#cb42-21"></a></span>
+<span id="cb42-22"><a href="#cb42-22"></a>Unif=<span class="kw">as.tibble</span>(Unif)</span>
+<span id="cb42-23"><a href="#cb42-23"></a></span>
+<span id="cb42-24"><a href="#cb42-24"></a>laplace=<span class="kw">as.tibble</span>(laplace)</span></code></pre></div>
 <p>Ahora unimos los data frames y se añade nombres a las columnas</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>df=<span class="kw">cbind</span>(normal, normalR, normalE, Unif, laplace)</span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="kw">head</span>(df, <span class="dt">n=</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##        value     value    value     value      value
-## 1 -0.1652763  1.698487 2.177958 -1.240498 -0.3702700
-## 2 -0.2066096 -1.538839 2.884633 -1.726401  0.2848369</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>df &lt;-<span class="st"> </span><span class="kw">setNames</span>(df, <span class="kw">c</span>(<span class="st">&quot;normal&quot;</span>,<span class="st">&quot;normalR&quot;</span>,<span class="st">&quot;normalE&quot;</span>, <span class="st">&quot;Unif&quot;</span>, <span class="st">&quot;laplace&quot;</span>))</span>
-<span id="cb54-2"><a href="#cb54-2"></a></span>
-<span id="cb54-3"><a href="#cb54-3"></a><span class="kw">head</span>(df, <span class="dt">n=</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##       normal   normalR  normalE      Unif    laplace
-## 1 -0.1652763  1.698487 2.177958 -1.240498 -0.3702700
-## 2 -0.2066096 -1.538839 2.884633 -1.726401  0.2848369</code></pre>
-<p>El próximo paso es apilar cada columna una sobre la otra. La razón que queremos esto es que deseamos reproducir las variables en un mismo gráfico</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb56-2"><a href="#cb56-2"></a>df2=df<span class="op">%&gt;%</span></span>
-<span id="cb56-3"><a href="#cb56-3"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Distribución&quot;</span>, <span class="dt">value=</span><span class="st">&quot;valor&quot;</span>, <span class="kw">c</span>(normal, normalR, normalE, Unif, laplace))</span>
-<span id="cb56-4"><a href="#cb56-4"></a><span class="kw">head</span>(df2, <span class="dt">n=</span><span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##   Distribución      valor
-## 1       normal -0.1652763
-## 2       normal -0.2066096
-## 3       normal -1.8300050</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># unique(df2$Distribución) #función  para ver el nombre de las variables en la columna Distribución</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>df=<span class="kw">cbind</span>(normal, normalR, normalE, Unif, laplace)</span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="kw">head</span>(df, <span class="dt">n=</span><span class="dv">2</span>)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
+<col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">value</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.82&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.567</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.438</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.583</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.91</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.375</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.082</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.672</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.367</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.17</td></tr>
+</table>
+
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>df &lt;-<span class="st"> </span><span class="kw">setNames</span>(df, <span class="kw">c</span>(<span class="st">&quot;normal&quot;</span>,<span class="st">&quot;normalR&quot;</span>,<span class="st">&quot;normalE&quot;</span>, <span class="st">&quot;Unif&quot;</span>, <span class="st">&quot;laplace&quot;</span>))</span>
+<span id="cb44-2"><a href="#cb44-2"></a></span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="kw">head</span>(df, <span class="dt">n=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
+<col><col><col><col><col><tr>
+<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">normal</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">normalR</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">normalE</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Unif</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">laplace</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.82&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.567</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.438</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">-0.583</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.91</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.375</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.082</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.672</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.367</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.17</td></tr>
+</table>
+ El próximo paso es apilar cada columna una sobre la otra. La razón que queremos esto es que deseamos reproducir las variables en un mismo gráfico</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb45-2"><a href="#cb45-2"></a>df2=df<span class="op">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Distribución&quot;</span>, <span class="dt">value=</span><span class="st">&quot;valor&quot;</span>, <span class="kw">c</span>(normal, normalR, normalE, Unif, laplace))</span>
+<span id="cb45-4"><a href="#cb45-4"></a><span class="kw">head</span>(df2, <span class="dt">n=</span><span class="dv">3</span>)</span></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
+<col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Distribución</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">valor</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">normal</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.82&nbsp;</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">normal</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.375</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">normal</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.688</td></tr>
+</table>
+
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># unique(df2$Distribución) #función  para ver el nombre de las variables en la columna Distribución</span></span></code></pre></div>
 <p>Ahora vamos a ver los datos en un gráfico. Vemos que la distribución de los datos son muy diferentes, Tiene que concentrar no en el pico de la distribución pero las colas de los datos. Nota la distribución normal que es de color amarillo, y comparar si la colas están por debajo o por encima de esta distribución normal.</p>
 <p>Tanto la distribución uniforme (color rosa) y normal reducido (normalR, color azul) las curvas pasan de bajo la curva normal. Al contrarío la linea verde y roja son distribuciones que pasan por encima de la curva normal, entonces las colas son más predominante.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>whole=<span class="kw">ggplot</span>(df2, (<span class="kw">aes</span>(valor, <span class="dt">colour=</span>Distribución)))<span class="op">+</span></span>
-<span id="cb59-2"><a href="#cb59-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">adjust=</span><span class="dv">5</span>)<span class="op">+</span></span>
-<span id="cb59-3"><a href="#cb59-3"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>)</span>
-<span id="cb59-4"><a href="#cb59-4"></a></span>
-<span id="cb59-5"><a href="#cb59-5"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/curtosis_whole.png&quot;</span>)</span>
-<span id="cb59-6"><a href="#cb59-6"></a></span>
-<span id="cb59-7"><a href="#cb59-7"></a></span>
-<span id="cb59-8"><a href="#cb59-8"></a>sub=<span class="kw">ggplot</span>(df2, (<span class="kw">aes</span>(valor, <span class="dt">colour=</span>Distribución)))<span class="op">+</span></span>
-<span id="cb59-9"><a href="#cb59-9"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
-<span id="cb59-10"><a href="#cb59-10"></a><span class="st">   </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb59-11"><a href="#cb59-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb59-12"><a href="#cb59-12"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.1</span>)) <span class="op">+</span></span>
-<span id="cb59-13"><a href="#cb59-13"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb59-14"><a href="#cb59-14"></a></span>
-<span id="cb59-15"><a href="#cb59-15"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/curtosis.png&quot;</span>)</span>
-<span id="cb59-16"><a href="#cb59-16"></a></span>
-<span id="cb59-17"><a href="#cb59-17"></a>sub <span class="op">+</span><span class="st"> </span><span class="kw">annotation_custom</span>(</span>
-<span id="cb59-18"><a href="#cb59-18"></a>    <span class="kw">ggplotGrob</span>(whole),</span>
-<span id="cb59-19"><a href="#cb59-19"></a>    <span class="dt">xmin =</span> <span class="fl">-1.8</span>, <span class="dt">xmax =</span> <span class="fl">1.4</span>, <span class="dt">ymin =</span> <span class="fl">0.005</span>, <span class="dt">ymax =</span> <span class="fl">0.075</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>whole=<span class="kw">ggplot</span>(df2, (<span class="kw">aes</span>(valor, <span class="dt">colour=</span>Distribución)))<span class="op">+</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">adjust=</span><span class="dv">5</span>)<span class="op">+</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>)</span>
+<span id="cb47-4"><a href="#cb47-4"></a></span>
+<span id="cb47-5"><a href="#cb47-5"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/curtosis_whole.png&quot;</span>)</span>
+<span id="cb47-6"><a href="#cb47-6"></a></span>
+<span id="cb47-7"><a href="#cb47-7"></a></span>
+<span id="cb47-8"><a href="#cb47-8"></a>sub=<span class="kw">ggplot</span>(df2, (<span class="kw">aes</span>(valor, <span class="dt">colour=</span>Distribución)))<span class="op">+</span></span>
+<span id="cb47-9"><a href="#cb47-9"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
+<span id="cb47-10"><a href="#cb47-10"></a><span class="st">   </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb47-11"><a href="#cb47-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb47-12"><a href="#cb47-12"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.1</span>)) <span class="op">+</span></span>
+<span id="cb47-13"><a href="#cb47-13"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb47-14"><a href="#cb47-14"></a></span>
+<span id="cb47-15"><a href="#cb47-15"></a><span class="kw">ggsave</span>(<span class="st">&quot;Graficos/curtosis.png&quot;</span>)</span>
+<span id="cb47-16"><a href="#cb47-16"></a></span>
+<span id="cb47-17"><a href="#cb47-17"></a>sub <span class="op">+</span><span class="st"> </span><span class="kw">annotation_custom</span>(</span>
+<span id="cb47-18"><a href="#cb47-18"></a>    <span class="kw">ggplotGrob</span>(whole),</span>
+<span id="cb47-19"><a href="#cb47-19"></a>    <span class="dt">xmin =</span> <span class="fl">-1.8</span>, <span class="dt">xmax =</span> <span class="fl">1.4</span>, <span class="dt">ymin =</span> <span class="fl">0.005</span>, <span class="dt">ymax =</span> <span class="fl">0.075</span>)</span></code></pre></div>
 <p><img src="T4a_Estadistica_descriptiva_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Ahora se calcula el indice de curtosis y comparamos los valores. Como regla el nivel de curtosis esta significativo si los valores de curtosis se enuentra en los siguientes rangos, y se acerca cero no hay curtosis (lo que uno espera para una distribución normal.</p>
 <ul>
@@ -983,17 +1098,17 @@ div.tocify {
 </ul>
 <p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de <strong>kurtosis</strong> en el paquete <strong>e1071</strong></p>
 <p>Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos que tienen exceso de cola el valor de curtosis es negativos y cuando el valor de curtosis es positivo hay exceso de datos en la cola.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="kw">library</span>(e1071)</span>
-<span id="cb60-2"><a href="#cb60-2"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(normal<span class="op">$</span>value) <span class="co"># curtosis de los datos de una distribución normal</span></span></code></pre></div>
-<pre><code>## [1] 0.008365785</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(normalR<span class="op">$</span>value) <span class="co"># curtosis de los datos restringido</span></span></code></pre></div>
-<pre><code>## [1] -0.9960236</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(normalE<span class="op">$</span>value) <span class="co"># curtosis de los datos con más colas</span></span></code></pre></div>
-<pre><code>## [1] 0.9714652</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(Unif<span class="op">$</span>value) <span class="co"># curtosis de distribución informe, falta de colas</span></span></code></pre></div>
-<pre><code>## [1] -1.191869</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(laplace<span class="op">$</span>value) <span class="co"># curtosis de distribución Laplace, exceso de colas</span></span></code></pre></div>
-<pre><code>## [1] 2.968499</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="kw">library</span>(e1071)</span>
+<span id="cb48-2"><a href="#cb48-2"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(normal<span class="op">$</span>value) <span class="co"># curtosis de los datos de una distribución normal</span></span></code></pre></div>
+<pre><code>## [1] -0.007665761</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(normalR<span class="op">$</span>value) <span class="co"># curtosis de los datos restringido</span></span></code></pre></div>
+<pre><code>## [1] -1.000306</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(normalE<span class="op">$</span>value) <span class="co"># curtosis de los datos con más colas</span></span></code></pre></div>
+<pre><code>## [1] 1.135616</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(Unif<span class="op">$</span>value) <span class="co"># curtosis de distribución informe, falta de colas</span></span></code></pre></div>
+<pre><code>## [1] -1.203096</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>e1071<span class="op">::</span><span class="kw">kurtosis</span>(laplace<span class="op">$</span>value) <span class="co"># curtosis de distribución Laplace, exceso de colas</span></span></code></pre></div>
+<pre><code>## [1] 3.058605</code></pre>
 <p>Quiz 1</p>
 <p>Quiz 2</p>
 <p>Quiz 3</p>
