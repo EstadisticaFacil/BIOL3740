@@ -277,7 +277,7 @@ qt(0.025, 19) # nota que se usa la mitad de 0.05, por que es una prueba de dos l
 Ahora falta sustituir los valores en la formula
 
 $UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
-$$UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.825$$
+$$UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.823$$
 
 
 ***
@@ -287,13 +287,19 @@ $$UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.825$$
 $LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
 
 
-$$LL_{0.95}=20-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.175$$
+$$LL_{0.95}=20-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=19.176$$
 
 
 ***
 
 El intervalo de confianza del $\mu$ es entre 20.175-21.825 con un 95% de probabilidad. 
 
+```{r}
+UL=20+qt(0.025, 19)*1.76/sqrt(20)
+LL=20-qt(0.025, 19)*1.76/sqrt(20)
+UL
+LL
+```
 
 ***
 
@@ -342,13 +348,13 @@ Esta prueba esencialmente calcula la media de los datos y crea un intervalo de c
   + Ho: $\overline{x}=\mu$
   + Ha: $\overline{x}≠\mu$
 
-$$t=\frac{\left(\overline{x}-\mu_0\right)}{\frac{s}{\sqrt{n}}}$$
+$$|t|=\frac{\left(\overline{x}-\mu_0\right)}{\frac{s}{\sqrt{n}}}$$
 Sustitución de los valores en la prueba de t. 
 
 ```{r}
-t=(196.7-209.4)/((39.1)/sqrt(10000)) 
+t=abs((196.7-209.4)/((39.1)/sqrt(30)) )
 t # Valor t de observado
-qt(0.025, 9999)  # valor de t-critico, de la tabla
+abs(qt(0.025, 30))  # valor de t-critico, de la tabla
 ```
 
 
@@ -362,8 +368,8 @@ Nuestra hipótesis es que en promedio, las personas dan una propina de $2.50, Es
 
 Nuestra hipótesis **alternativa** es que las personas dan significativamente más o menos de $2.50.
 
-Ho: $\overline{x}=2.50$=$\mu=2.50$
-Ha: $\overline{x}≠\mu$
++ Ho: $\overline{x}=\mu$
++ Ha: $\overline{x}≠\mu$
 
 ```{r}
 data(tips, package="reshape2")

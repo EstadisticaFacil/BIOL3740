@@ -659,7 +659,7 @@ div.tocify {
 
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(gridExtra)</span></code></pre></div>
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-10-07&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-08&quot;</code></pre>
 <hr />
 <div id="el-promedio-un-estimado" class="section level1">
 <h1>El promedio, un estimado</h1>
@@ -714,33 +714,39 @@ div.tocify {
 <div id="el-limite-superior" class="section level2">
 <h2>El limite superior</h2>
 <p>Ahora falta sustituir los valores en la formula</p>
-<p><span class="math inline">\(UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)\)</span> <span class="math display">\[UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.825\]</span></p>
+<p><span class="math inline">\(UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)\)</span> <span class="math display">\[UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.823\]</span></p>
 <hr />
 </div>
 <div id="el-limite-inferior" class="section level2">
 <h2>El limite inferior</h2>
 <p><span class="math inline">\(LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)\)</span></p>
-<p><span class="math display">\[LL_{0.95}=20-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.175\]</span></p>
+<p><span class="math display">\[LL_{0.95}=20-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=19.176\]</span></p>
 <hr />
 <p>El intervalo de confianza del <span class="math inline">\(\mu\)</span> es entre 20.175-21.825 con un 95% de probabilidad.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>UL=<span class="dv">20</span><span class="op">+</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">20</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>LL=<span class="dv">20</span><span class="op">-</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">20</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>UL</span></code></pre></div>
+<pre><code>## [1] 19.17629</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>LL</span></code></pre></div>
+<pre><code>## [1] 20.82371</code></pre>
 <hr />
 </div>
 <div id="menos-o-más-grados-de-libertad" class="section level2">
 <h2>Menos o más grados de libertad</h2>
 <p>Nota lo que pasa si uno tiene menos datos o más datos con el intervalo de confianza.</p>
 <p>Con un tamaño de muestra solamente de 5 datos el IC de 95% es entre 17.824-22.185. Por tener menos datos tenemos menos confianza donde se entra el promedio del universo.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>UL=<span class="dv">20</span><span class="op">+</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">5</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>LL=<span class="dv">20</span><span class="op">-</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">5</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a>UL</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>UL=<span class="dv">20</span><span class="op">+</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">5</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>LL=<span class="dv">20</span><span class="op">-</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">5</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>UL</span></code></pre></div>
 <pre><code>## [1] 17.81467</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>LL</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>LL</span></code></pre></div>
 <pre><code>## [1] 22.18533</code></pre>
 <p>Ahora con en tamaño de muestra de 100. Ahora el intervalo de confianza esta más estrecho 19.651-20.349</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>UL=<span class="dv">20</span><span class="op">+</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">100</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a>LL=<span class="dv">20</span><span class="op">-</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">100</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>UL</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>UL=<span class="dv">20</span><span class="op">+</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">100</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>LL=<span class="dv">20</span><span class="op">-</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">100</span>)</span>
+<span id="cb14-3"><a href="#cb14-3"></a>UL</span></code></pre></div>
 <pre><code>## [1] 19.65078</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>LL</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>LL</span></code></pre></div>
 <pre><code>## [1] 20.34922</code></pre>
 <hr />
 </div>
@@ -763,12 +769,12 @@ El proceso de Investigación
 <li>Ho: <span class="math inline">\(\overline{x}=\mu\)</span></li>
 <li>Ha: <span class="math inline">\(\overline{x}≠\mu\)</span></li>
 </ul>
-<p><span class="math display">\[t=\frac{\left(\overline{x}-\mu_0\right)}{\frac{s}{\sqrt{n}}}\]</span> Sustitución de los valores en la prueba de t.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>t=(<span class="fl">196.7-209.4</span>)<span class="op">/</span>((<span class="fl">39.1</span>)<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">10000</span>)) </span>
-<span id="cb14-2"><a href="#cb14-2"></a>t <span class="co"># Valor t de observado</span></span></code></pre></div>
-<pre><code>## [1] -32.48082</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">9999</span>)  <span class="co"># valor de t-critico, de la tabla</span></span></code></pre></div>
-<pre><code>## [1] -1.960201</code></pre>
+<p><span class="math display">\[|t|=\frac{\left(\overline{x}-\mu_0\right)}{\frac{s}{\sqrt{n}}}\]</span> Sustitución de los valores en la prueba de t.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>t=<span class="kw">abs</span>((<span class="fl">196.7-209.4</span>)<span class="op">/</span>((<span class="fl">39.1</span>)<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">30</span>)) )</span>
+<span id="cb18-2"><a href="#cb18-2"></a>t <span class="co"># Valor t de observado</span></span></code></pre></div>
+<pre><code>## [1] 1.779048</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">abs</span>(<span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">30</span>))  <span class="co"># valor de t-critico, de la tabla</span></span></code></pre></div>
+<pre><code>## [1] 2.042272</code></pre>
 <hr />
 </div>
 <div id="propinas" class="section level1">
@@ -776,26 +782,19 @@ El proceso de Investigación
 <p>Un ejemplo con datos en una tabla Usamos un conjunto de datos en el paquete <strong>reshape</strong>, que llama <strong>tips</strong>. Se refiere a las propinas quie recibe meseros.</p>
 <p>Nuestra hipótesis es que en promedio, las personas dan una propina de $2.50, Esta es nuestra hipótesis <strong>nula</strong></p>
 <p>Nuestra hipótesis <strong>alternativa</strong> es que las personas dan significativamente más o menos de $2.50.</p>
-<p>Ho: <span class="math inline">\(\overline{x}=2.50\)</span>=<span class="math inline">\(\mu=2.50\)</span> Ha: <span class="math inline">\(\overline{x}≠\mu\)</span></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">data</span>(tips, <span class="dt">package=</span><span class="st">&quot;reshape2&quot;</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">head</span>(tips)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-18">
-<col><col><col><col><col><col><col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_bill</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">tip</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sex</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">smoker</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">time</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">size</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">17&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.01</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Female</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">No</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Sun</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Dinner</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">2</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">10.3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.66</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">No</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Sun</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Dinner</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">21&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.5&nbsp;</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Male</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">No</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Sun</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Dinner</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">23.7</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3.31</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">No</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Sun</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Dinner</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">24.6</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3.61</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Female</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">No</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Sun</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Dinner</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">4</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">25.3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4.71</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">No</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Sun</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Dinner</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td></tr>
-</table>
-
+<ul>
+<li>Ho: <span class="math inline">\(\overline{x}=\mu\)</span></li>
+<li>Ha: <span class="math inline">\(\overline{x}≠\mu\)</span></li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">data</span>(tips, <span class="dt">package=</span><span class="st">&quot;reshape2&quot;</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="kw">head</span>(tips)</span></code></pre></div>
+<pre><code>##   total_bill  tip    sex smoker day   time size
+## 1      16.99 1.01 Female     No Sun Dinner    2
+## 2      10.34 1.66   Male     No Sun Dinner    3
+## 3      21.01 3.50   Male     No Sun Dinner    3
+## 4      23.68 3.31   Male     No Sun Dinner    2
+## 5      24.59 3.61 Female     No Sun Dinner    4
+## 6      25.29 4.71   Male     No Sun Dinner    4</code></pre>
 <p>Con la función <strong>t.test()</strong> es muy sencillo hacer la prueba, no hay calcular solamente añadir la información.</p>
 <p>Las opciones para esta prueba son las siguientes en roja</p>
 <ul>
@@ -807,7 +806,7 @@ El proceso de Investigación
 </ul></li>
 </ul>
 <p>El resultado: El valor de t-observado es de 5.625, con un grado de libertad de 243 (n=244), y valor de p &lt;0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna. El intervalo de confianza del promedio es $2.82 - $3.17, con un promedio de $3.00</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">t.test</span>(tips<span class="op">$</span>tip, <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>, <span class="dt">mu=</span><span class="fl">2.5</span>, <span class="dt">conf.level =</span> <span class="fl">.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">t.test</span>(tips<span class="op">$</span>tip, <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>, <span class="dt">mu=</span><span class="fl">2.5</span>, <span class="dt">conf.level =</span> <span class="fl">.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -835,13 +834,13 @@ El proceso de Investigación
 </ul>
 </blockquote>
 <p>En este ejemplo observamos que el promedio estimado es por encima del intervalo de confianza (la lineas entrecortadas).</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># construir una distribución normal de los datos</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>randT&lt;-<span class="kw">rt</span>(<span class="dv">30000</span>, <span class="dt">df=</span><span class="kw">NROW</span>(tips)<span class="op">-</span><span class="dv">1</span>)<span class="op">+</span><span class="fl">2.5</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="co"># Hacer la prueba de t</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>tipTTest&lt;-<span class="kw">t.test</span>(tips<span class="op">$</span>tip, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">mu=</span><span class="fl">2.50</span>)</span>
-<span id="cb21-6"><a href="#cb21-6"></a></span>
-<span id="cb21-7"><a href="#cb21-7"></a>tipTTest</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># construir una distribución normal de los datos</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>randT&lt;-<span class="kw">rt</span>(<span class="dv">30000</span>, <span class="dt">df=</span><span class="kw">NROW</span>(tips)<span class="op">-</span><span class="dv">1</span>)<span class="op">+</span><span class="fl">2.5</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="co"># Hacer la prueba de t</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>tipTTest&lt;-<span class="kw">t.test</span>(tips<span class="op">$</span>tip, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">mu=</span><span class="fl">2.50</span>)</span>
+<span id="cb26-6"><a href="#cb26-6"></a></span>
+<span id="cb26-7"><a href="#cb26-7"></a>tipTTest</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -853,12 +852,12 @@ El proceso de Investigación
 ## sample estimates:
 ## mean of x 
 ##  2.998279</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Graficar los resultados</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>randT))<span class="op">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="st">    </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x), <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># La densidad de los datos</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> tipTTest<span class="op">$</span>statistic, <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># El resultado de la prueba estadística</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(randT)<span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(randT), <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span><span class="st"> </span><span class="co"># El intervalo de confianza</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Promedio de propina&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Graficar los resultados</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>randT))<span class="op">+</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="st">    </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x), <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># La densidad de los datos</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> tipTTest<span class="op">$</span>statistic, <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># El resultado de la prueba estadística</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(randT)<span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(randT), <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span><span class="st"> </span><span class="co"># El intervalo de confianza</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Promedio de propina&quot;</span>)</span></code></pre></div>
 <p><img src="T9_Pruebas_una_muestra_files/figure-html/t%20distribution-1.png" width="672" /></p>
 <hr />
 </div>
