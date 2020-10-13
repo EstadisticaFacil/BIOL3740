@@ -145,11 +145,12 @@ ggplot(viajes, aes(muni, dist))+
 ## Las hipótesis
 
 ### La Nula
- + Ho: es que la distancia que viaja de los estudiantes es igual irrelevante del municipio
- + Ho: Promerio_1 = Promedio_2 o mejor Ho: $\overline{x}_1=\overline{x}_2$
+ + Ho: es que la distancia promedia que viaja los estudiantes es igual irrelevante del municipio donde estudian
+ + Ho: Promerio_1 = Promedio_2 o mejor 
+ + Ho: $\overline{x}_1=\overline{x}_2$
 
 ### La Alterna
- + Ha: es que la distancia que viaja de los estudiantes no es igual (depende del municipio donde proviene) 
+ + Ha: es que la distancia promedia que viaja de los estudiantes no es igual (depende del municipio donde provienen) 
  + Ha: $\overline{x}_1\ne\overline{x}_2$
 
 
@@ -163,7 +164,7 @@ for(i in 1:36) lines(c(i,i), c(mean(dist), dist[i]), col="green")
 ```
 
 
-Ahora vamos a separar la gráfica y visualizar los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo. Note que en el grupo de `r colorize("**bayamón**", "blue")` que los valores son bastante cerca del promedio de este grupo en adición que los valores de `r colorize("**utuado**", "red")` estan meas cerca de su promedio.  Comparar los residuales con la grafica anterior.   
+Ahora vamos a separar la gráfica y visualizar los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay menos varianza entre los valores de un mismo grupo. Note que en el grupo de `r colorize("**bayamón**", "blue")` que los valores son bastante cerca del promedio de este grupo en adición que los valores de `r colorize("**utuado**", "red")` estan más cerca de su promedio.  Compara los residuales con la gráfica anterior.   
 
 
 ```{r}
@@ -183,7 +184,7 @@ for (i in 1:length(index)){
 
 # Comparación de dos grupos
 
-Hay diferentes acercamiento para hacer la **prueba de t** (t-test). Usaremos la más conocida. Donde comparamos el promedio de un grupo con el promedio de otro grupo, y determinar si no hay diferencias entre los grupos, la diferencias entre uno y el otro debería acercarse a cero si no hay diferencia entre los grupos. Hay que tomar en cuenta la cantidad de varianza/error en los análisis. Esto se toma encenta considerando el error estándar en la formula siguiente. 
+Hay diferentes acercamiento para hacer la **prueba de t** (t-test). Usaremos la más conocida. Donde comparamos el promedio de un grupo con el promedio de otro grupo, y determinar si no hay diferencias entre los grupos, la diferencias entre uno y el otro debería acercarse a cero si no hay diferencia entre los grupos. Hay que tomar en cuenta la cantidad de varianza/error en los análisis. Esto se toma encuenta considerando el error estándar en la formula siguiente. 
 
 $$t= \frac{\bar{X_1}-\bar{X_2}}{SE}$$
 
@@ -192,7 +193,7 @@ Más especifico la estadistica de **t** y el **error estándar** se calcula de l
 $$t=\frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{{s}^{2}_p}{n_1}+\frac{{s}^{2}_p}{n_2}}}$$
 
 
-Donde la varianza ponderada (Weighted variance, ${s}^{2}_p$), es un indice de la varianza de los dos grupos tomando en cuenta el tamaño de muestra de cada grupo.  Note que la varianza $s^2$ de cada grupo es multiplicado por (n-1). Por consecuencia un grupo que tiene pocos datos, "n", su varianza tendrá menos peso en los análisis.  
+Donde la varianza ponderada (Weighted variance, ${s}^{2}_p$), es un indice de la varianza de los dos grupos tomando en cuenta el tamaño de muestra de cada grupo.  Note que la varianza $s^2$ de cada grupo es multiplicado por (n-1) para sea "ponderada" basado en el tamaño de muestra por grupo. Por consecuencia un grupo que tiene pocos datos, "n", su varianza tendrá menos peso en los análisis.  
 
 $${s}^{2}_p = \frac{(n_1-1){s}^{2}_1+(n_2-1){s}^{2}_2}{n_1+n_2-2}$$
 
