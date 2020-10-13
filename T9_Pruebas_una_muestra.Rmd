@@ -269,7 +269,10 @@ Queremos calcular intervalo que incluye 95%, por consecuencia es el rango que ha
 Para calcular el intervalo se necesita se necesita solamente el valor de t con la tipo de error I de 95% y que corresponde a un tamaño de muestra de 20, $t_{0.05,\ n-1}$. Para conocer este valor hay que ir a una tabla de la distribución de t (vea p. 217 en el libro) o usar R para calcular el valor.  En la tabla busca el error I deseado (0.05) y se busca el grado de libertad *n-1*, $t_{0.05,\ 19}$. El valor del libro es $t = 2.093$. Si se quisiera un Tipo de error I con solamente 1% error el valor seria $t=2.8609$, (busca la información en la tabla, o usando la función **qt()**).  
  
 ```{r}
-qt(0.025, 19) # nota que se usa la mitad de 0.05, por que es una prueba de dos lados. 
+abs(qt(0.025, 19)) # nota que se usa la mitad de 0.05, por que es una prueba de dos lados. 
+
+
+21+abs(qt(0.025, 19)*(1.76/sqrt(20)))
 ```
  
 ## El limite superior
@@ -277,7 +280,7 @@ qt(0.025, 19) # nota que se usa la mitad de 0.05, por que es una prueba de dos l
 Ahora falta sustituir los valores en la formula
 
 $UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
-$$UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.823$$
+$$UL_{0.95}=21+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.823$$
 
 
 ***
@@ -287,7 +290,7 @@ $$UL_{0.95}=20+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.823$$
 $LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
 
 
-$$LL_{0.95}=20-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=19.176$$
+$$LL_{0.95}=21-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.176$$
 
 
 ***
@@ -295,8 +298,8 @@ $$LL_{0.95}=20-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=19.176$$
 El intervalo de confianza del $\mu$ es entre 20.175-21.825 con un 95% de probabilidad. 
 
 ```{r}
-UL=20+qt(0.025, 19)*1.76/sqrt(20)
-LL=20-qt(0.025, 19)*1.76/sqrt(20)
+UL=21+abs(qt(0.025, 19)*1.76/sqrt(20))
+LL=21-abs(qt(0.025, 19)*1.76/sqrt(20))
 UL
 LL
 ```
@@ -310,8 +313,8 @@ Nota lo que pasa si uno tiene menos datos o más datos con el intervalo de confi
 Con un tamaño de muestra solamente de 5 datos el IC de 95% es entre 17.824-22.185. Por tener menos datos tenemos menos confianza donde se entra el promedio del universo. 
 
 ```{r}
-UL=20+qt(0.025, 4)*1.76/sqrt(5)
-LL=20-qt(0.025, 4)*1.76/sqrt(5)
+UL=21+qt(0.025, 4)*1.76/sqrt(5)
+LL=21-qt(0.025, 4)*1.76/sqrt(5)
 UL
 LL
 ```
@@ -319,8 +322,8 @@ LL
 Ahora con en tamaño de muestra de 100. Ahora el intervalo de confianza esta más estrecho 19.651-20.349
 
 ```{r}
-UL=20+qt(0.025, 99)*1.76/sqrt(100)
-LL=20-qt(0.025, 99)*1.76/sqrt(100)
+UL=21+qt(0.025, 99)*1.76/sqrt(100)
+LL=21-qt(0.025, 99)*1.76/sqrt(100)
 UL
 LL
 ```
@@ -335,8 +338,34 @@ Para demostrar lo que quiere decir el intervalo de confianza evaluamos el siguie
 knitr::include_graphics("Havel_Figures/9-3 Series - Confidence Interals.jpg")
 ```
 
+1. QUIZ: estas preguntas la tienen que contestar en Edmodo. 
+Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira.  doi: 10.1590/0100-3984.2015.0002. 
+    + En este trabajo evaluaron los ganglios linfáticos de 20 individuos sanos. Encontraron que la media de los ganglios linfáticos mastoideos de los hombres era de 0,9 cm con una desviación estándar de 0,4 cm. 
+   + ¿Cuál es el intervalo de confianza al 5% de los ganglios linfáticos mastoideos en hombres? Responde en Edmodo. 
+
+```{r, eval=FALSE, echo=FALSE}
+UL=0.9+qt(0.025, 19)*0.4/sqrt(20)
+LL=0.9-qt(0.025, 19)*0.4/sqrt(20)
+UL
+LL
+
+```
+
+2. ¿Cuál es la probabilidad que el promedio universal no este incluido en el rango anterior de los tamaños de los ganglios linfáticos mastoides?  
+ Responde en Edmodo. 
+
+3. Usando los mismo datos de la pregunta #1. Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira.  doi: 10.1590/0100-3984.2015.0002. 
+    + En este trabajo evaluaron los ganglios linfáticos de 20 individuos sanos. Encontraron que la media de los ganglios linfáticos mastoideos de los hombres era de 0,9 cm con una desviación estándar de 0,4 cm.  Ya se pudo medir el tamaño de los ganglios linfáticos mastoideos de TODOS los hombres del planeta, y se determino que que el promedio es de 0.7 cm con una desviación estándar de 0,2 cm.
+   + Usando los siguientes datos haga la prueba correspondiente en R para determinar el valor de t, observado y el valor critico.  Responde en Edomodo.  
+
+```{r, eval=FALSE, echo=FALSE}
+t=abs((0.9-0.7)/((0.4)/sqrt(20)) )
+t # Valor t de observado
+abs(qt(0.025, 19))  # valor de t-critico, de la tabla
+```
 
 
+4. Considerando los resultados anteriores se acepta o rechaza la hipótesis nula
 ***
 
 
@@ -354,7 +383,7 @@ Sustitución de los valores en la prueba de t.
 ```{r}
 t=abs((196.7-209.4)/((39.1)/sqrt(30)) )
 t # Valor t de observado
-abs(qt(0.025, 30))  # valor de t-critico, de la tabla
+abs(qt(0.025, 29))  # valor de t-critico, de la tabla
 ```
 
 
