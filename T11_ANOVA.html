@@ -726,10 +726,18 @@ div.sourceCode pre.chunkout {
 <h2>Hipótesis en ANOVA</h2>
 <p>La hipótesis nula en ANOVA, es que todos los grupos tienen el mismo promedio, o mejor dicho que no hay evidencia que los promedios sean distintos. Filosoficamente uno NUNCA uede decir que algo es similar es que uno puede decir que no hay evidencia que sean diferentes. Esto proviene de el punto imprtante que uno hace un muestreo de la población, por consecuencia siempre hay la posibilidad que los datos (el muestreo) NO representa la población y hay un tipo de error II (que no se rechaza la hipótesis nula cuando se debería rechazar).</p>
 <p>H0: <span class="math inline">\(H_o:\ \mu_1=\mu_2=\mu_3=...=\mu_k\)</span> Ha: Por lo menos uno de los grupos no es igual a los demás.</p>
-<p>NOTA importante la hipótesis alterna <span style="color: red;">NO es que los grupos sean distintos</span>, es que por los menos uno de ellos es distinto.</p>
+<ul>
+<li>NOTA importante la hipótesis alterna <span style="color: red;">NO es que los grupos sean distintos</span>, es que por los menos uno de ellos es distinto.</li>
+</ul>
 <p>Ejemplo: Vamos asumir que tenemos 3 grupos, k=3 y que la hipótesis nula es la siguiente</p>
-<p>Ho: G1=G2=G3, p &gt;= 0.05 Ha: Por lo menos uno de estos grupos no es igual a los demas.</p>
-<p>Si encontramos un valor de p &lt;0.05, rechazamos la hipótesis nula y de una de las posibles combinaciones pudiese ser G1=G2, G1=G3, pero G2 no es igual a G3. ¿Qué son las otras posibles combinaciones que resultaría en que se rechaza la hipótesis nula?</p>
+<ul>
+<li>Ho: G1=G2=G3, p &gt;= 0.05</li>
+<li>Ha: Por lo menos uno de estos grupos no es igual a los demas.</li>
+</ul>
+<p>Si encontramos un valor de p &lt;0.05, rechazamos la hipótesis nula y de una de las posibles combinaciones pudiese ser G1=G2, G1=G3, pero G2 no es igual a G3.</p>
+<ul>
+<li>¿Qué son las otras posibles combinaciones que resultaría en que se rechaza la hipótesis nula?</li>
+</ul>
 </div>
 </div>
 <div id="crear-un-conjunto-de-datos" class="section level1">
@@ -1032,7 +1040,7 @@ div.sourceCode pre.chunkout {
 <span id="cb26-8"><a href="#cb26-8"></a>## </span>
 <span id="cb26-9"><a href="#cb26-9"></a>## Linear Hypotheses:</span>
 <span id="cb26-10"><a href="#cb26-10"></a>##                         Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00441 ** </span>
+<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00435 ** </span>
 <span id="cb26-12"><a href="#cb26-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***</span>
 <span id="cb26-13"><a href="#cb26-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***</span>
 <span id="cb26-14"><a href="#cb26-14"></a>## ---</span>
