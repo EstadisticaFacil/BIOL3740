@@ -106,7 +106,7 @@ huxtable(Tipo_errorI)%>%
     theme_article(header_col = FALSE)%>%
   set_bottom_border(row = 1, col = everywhere, value = 1) %>% 
   set_caption("La probabilidad de cometer un error tipo I usando la prueba de t para cada pares de prueba (C)")%>%
-  add_footnote("* C=(k-1)/2, que es la cantidad de comparación")
+  add_footnote("* C=k(k-1)/2, que es la cantidad de comparación")
 ```
 
 Nota que si tienes 4 grupos tendrá que hacer 6 pruebas de t, y eso eleva la probabilidad de cometer un tipo de error I a 26%, mucho más alto que el 5% que uno quisiera.  Cuando uno hace la prueba de ANOVA y selecciona el nivel de error de 5%, es que el conjunto de todas las pruebas tiene ese nivel error posible.  

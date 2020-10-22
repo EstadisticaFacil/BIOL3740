@@ -658,7 +658,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-10-13&quot;</code></pre>
+<pre><code>## [1] &quot;2020-10-22&quot;</code></pre>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(car)  <span class="co"># para la prueba de leveneTest</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="kw">library</span>(RVAideMemoire) <span class="co"># para la prueba de byf.shapiro</span></span></code></pre></div>
@@ -714,8 +714,8 @@ div.tocify {
 <p>Hacer un gráfico de los datos. Si calculamos el promedio de todos los valores de “Y” y lo visualizamos, vemos que muchos de los valores del municipio “bayamón” son muy por debajo los valores de la linea y muchos de los valores del municipio “utuado” son muy por encima.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mean_dist=<span class="kw">mean</span>(viajes<span class="op">$</span>dist)</span>
 <span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">ggplot</span>(viajes, <span class="kw">aes</span>(muni, dist))<span class="op">+</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.11</span>)<span class="op">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">ggplot</span>(viajes, <span class="kw">aes</span>(muni, dist, <span class="dt">colour=</span>muni))<span class="op">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">.2</span>)<span class="op">+</span></span>
 <span id="cb8-5"><a href="#cb8-5"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_dist)</span></code></pre></div>
 <p><img src="T10_Pruebas_t_Independiente_files/figure-html/plot-1.png" width="672" /></p>
 <hr />
@@ -785,13 +785,50 @@ div.tocify {
 ## sample estimates:
 ## mean in group bayamón  mean in group utuado 
 ##              27.05882              59.68421</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>gender=<span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>         <span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a>dist=<span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">20</span>, <span class="dv">11</span>, <span class="dv">40</span>, <span class="dv">19</span>, </span>
+<span id="cb13-5"><a href="#cb13-5"></a>       <span class="fl">8.1</span>, <span class="dv">203</span>, <span class="fl">4.4</span>, <span class="dv">16</span>, <span class="dv">29</span>, <span class="dv">19</span>)</span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a>df=<span class="kw">data.frame</span>(gender, dist)</span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<pre><code>##   gender dist
+## 1      m 10.0
+## 2      m 20.0
+## 3      f 11.0
+## 4      f 40.0
+## 5      m 19.0
+## 6      f  8.1</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>model2=<span class="kw">t.test</span>(dist<span class="op">~</span>gender, <span class="dt">data=</span>df, <span class="dt">paired=</span><span class="ot">FALSE</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>model2</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  dist by gender
+## t = 1.2467, df = 6.2378, p-value = 0.2573
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -31.39703  97.86846
+## sample estimates:
+## mean in group f mean in group m 
+##        46.58571        13.35000</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>padres=<span class="kw">c</span>(<span class="st">&quot;p&quot;</span>, <span class="st">&quot;m&quot;</span> , <span class="st">&quot;p&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;p&quot;</span>,<span class="st">&quot;m&quot;</span>,</span>
+<span id="cb17-2"><a href="#cb17-2"></a>         <span class="st">&quot;p&quot;</span>,<span class="st">&quot;m&quot;</span>, <span class="st">&quot;p&quot;</span>,<span class="st">&quot;m&quot;</span>, <span class="st">&quot;p&quot;</span>,<span class="st">&quot;m&quot;</span>,</span>
+<span id="cb17-3"><a href="#cb17-3"></a>         <span class="st">&quot;p&quot;</span>,<span class="st">&quot;m&quot;</span>, <span class="st">&quot;p&quot;</span>,<span class="st">&quot;m&quot;</span>, <span class="st">&quot;p&quot;</span>,<span class="st">&quot;m&quot;</span>, </span>
+<span id="cb17-4"><a href="#cb17-4"></a>         <span class="st">&quot;p&quot;</span>, <span class="st">&quot;m&quot;</span>)</span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a>Hermanos=<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,</span>
+<span id="cb17-7"><a href="#cb17-7"></a>            <span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,</span>
+<span id="cb17-8"><a href="#cb17-8"></a>            <span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>, </span>
+<span id="cb17-9"><a href="#cb17-9"></a>            <span class="dv">12</span>, <span class="dv">2</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="gráficar-el-promedio-y-el-intervalo-de-confianza" class="section level2">
 <h2>Gráficar el promedio y el intervalo de confianza</h2>
 <p>Graficar los datos con el promedio y el intervalo de confianza da un resumen de la estadística de forma visual, lo que se visualiza es el promedio y el intervalo de 95%. Nota que se usa la función en ggplot2 de <strong>stat_summary(fun.data = mean_cl_normal)</strong>, esto quiere decir que se esta calculando los valores ASUMIENDO una distribución normal de los datos.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">ggplot</span>(viajes, <span class="kw">aes</span>(muni, dist))<span class="op">+</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="st"> </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_normal, <span class="dt">geom =</span> <span class="st">&quot;pointrange&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(gender, dist))<span class="op">+</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="st"> </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_normal, <span class="dt">geom =</span> <span class="st">&quot;pointrange&quot;</span>)</span></code></pre></div>
 <p><img src="T10_Pruebas_t_Independiente_files/figure-html/graph%20summary%20stats-1.png" width="672" /></p>
 <hr />
 </div>
@@ -801,10 +838,10 @@ div.tocify {
 <div id="visualización-de-los-datos" class="section level2">
 <h2>Visualización de los datos</h2>
 <p>Siempre se debería producir un gráfico de los datos para tener una idea de si los datos cumple con los supuestos de las pruebas. Ahora ver las distribución de frecuencia por municipio. Si los datos tuviese una distribución <strong>perfecta</strong> normal, se obtendría una distribición en forma de campana. Primero NO se debería esperar este tipo de distribución cuando tenemos pocos datos.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">ggplot</span>(viajes, <span class="kw">aes</span>(dist, <span class="dt">fill=</span>muni))<span class="op">+</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>muni)</span></code></pre></div>
-<p><img src="T10_Pruebas_t_Independiente_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">ggplot</span>(viajes, <span class="kw">aes</span>(dist, <span class="dt">fill=</span>muni))<span class="op">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">colour=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>muni)</span></code></pre></div>
+<p><img src="T10_Pruebas_t_Independiente_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="shapiro-wilks-prueba-de-normalidad" class="section level2">
@@ -814,7 +851,7 @@ div.tocify {
 <p>Es típico que cuando uno tiene muchos muchos datos uno puede encontrar diferencias significativas entres los grupos, en este caso cuando hay muchos datos la prueba pudiese sugerir que los datos no tienen distribución normal cuando en realidad se esta detectando diferenciales triviales. En la prueba abajo se sugiere de NO utilizarla si tiene mayor de 2000 datos. Al contrario cuando tenga muy pocos datos (n&lt;50) no se debería usar la prueba de Shapiro-Wilks.</p>
 <div id="evaluar-la" class="section level3">
 <h3>Evaluar la</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">shapiro.test</span>(viajes<span class="op">$</span>dist)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">shapiro.test</span>(viajes<span class="op">$</span>dist)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -823,21 +860,21 @@ div.tocify {
 </div>
 <div id="metodo-1-shapiro.test" class="section level3">
 <h3>Metodo #1: shapiro.test()</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Normality test by group</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="co"># Method 1 </span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="kw">shapiro.test</span>(viajes<span class="op">$</span>dist)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Normality test by group</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="co"># Method 1 </span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="kw">shapiro.test</span>(viajes<span class="op">$</span>dist)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  viajes$dist
 ## W = 0.92929, p-value = 0.02381</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">shapiro.test</span>(viajes<span class="op">$</span>dist[viajes<span class="op">$</span>muni<span class="op">==</span><span class="st">&quot;utuado&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">shapiro.test</span>(viajes<span class="op">$</span>dist[viajes<span class="op">$</span>muni<span class="op">==</span><span class="st">&quot;utuado&quot;</span>])</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  viajes$dist[viajes$muni == &quot;utuado&quot;]
 ## W = 0.98408, p-value = 0.979</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">shapiro.test</span>(viajes<span class="op">$</span>dist[viajes<span class="op">$</span>muni<span class="op">==</span><span class="st">&quot;bayamón&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">shapiro.test</span>(viajes<span class="op">$</span>dist[viajes<span class="op">$</span>muni<span class="op">==</span><span class="st">&quot;bayamón&quot;</span>])</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -850,9 +887,9 @@ div.tocify {
 <p>Recuerda, que si el valor de p es mayor de 0.05, se asume que los datos tienen una distribución normal, si es menor de 0.05 se asume que no es normal.</p>
 <p>Nota la oragnización de la prueba, es como la de la t.test( )</p>
 <p>byf.shapiro(variable_de_respuesta ~ variable_de_grupo, dataframe)</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># de la libreria de (RVAideMemoire)</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="kw">byf.shapiro</span>(dist<span class="op">~</span>muni, viajes)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># de la libreria de (RVAideMemoire)</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="kw">byf.shapiro</span>(dist<span class="op">~</span>muni, viajes)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality tests
 ## 
@@ -881,7 +918,7 @@ div.tocify {
 </ol>
 <div id="la-prueba-de-bartlett" class="section level2">
 <h2>La prueba de Bartlett</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">bartlett.test</span>(dist<span class="op">~</span>muni, <span class="dt">data=</span>viajes)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="kw">bartlett.test</span>(dist<span class="op">~</span>muni, <span class="dt">data=</span>viajes)</span></code></pre></div>
 <pre><code>## 
 ##  Bartlett test of homogeneity of variances
 ## 
@@ -893,7 +930,7 @@ div.tocify {
 <ul>
 <li>similar to Bartlett’s test</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">leveneTest</span>(dist<span class="op">~</span>muni, <span class="dt">data=</span>viajes)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">leveneTest</span>(dist<span class="op">~</span>muni, <span class="dt">data=</span>viajes)</span></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##       Df F value  Pr(&gt;F)  
 ## group  1  7.0756 0.01183 *
@@ -906,7 +943,7 @@ div.tocify {
 <ul>
 <li>good when the distribution are not normal</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">fligner.test</span>(dist<span class="op">~</span>muni, <span class="dt">data=</span>viajes)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">fligner.test</span>(dist<span class="op">~</span>muni, <span class="dt">data=</span>viajes)</span></code></pre></div>
 <pre><code>## 
 ##  Fligner-Killeen test of homogeneity of variances
 ## 
@@ -915,20 +952,20 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Ejercicio</li>
 </ol>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>sex=<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,</span>
-<span id="cb31-2"><a href="#cb31-2"></a>      <span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,</span>
-<span id="cb31-3"><a href="#cb31-3"></a>      <span class="st">&quot;f&quot;</span>,</span>
-<span id="cb31-4"><a href="#cb31-4"></a>      <span class="st">&quot;m&quot;</span>,<span class="st">&quot;m&quot;</span>,<span class="st">&quot;m&quot;</span>,</span>
-<span id="cb31-5"><a href="#cb31-5"></a>      <span class="st">&quot;m&quot;</span>,<span class="st">&quot;m&quot;</span>,<span class="st">&quot;m&quot;</span>)</span>
-<span id="cb31-6"><a href="#cb31-6"></a>kids=<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
-<span id="cb31-7"><a href="#cb31-7"></a>       <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">10</span>,</span>
-<span id="cb31-8"><a href="#cb31-8"></a>       <span class="dv">2</span>,</span>
-<span id="cb31-9"><a href="#cb31-9"></a>       <span class="dv">80</span>, <span class="dv">24</span>,</span>
-<span id="cb31-10"><a href="#cb31-10"></a>       <span class="dv">32</span>, <span class="dv">22</span>, <span class="dv">22</span>,<span class="dv">15</span>)</span>
-<span id="cb31-11"><a href="#cb31-11"></a></span>
-<span id="cb31-12"><a href="#cb31-12"></a>futurePR=<span class="kw">data.frame</span>(sex,kids)</span>
-<span id="cb31-13"><a href="#cb31-13"></a></span>
-<span id="cb31-14"><a href="#cb31-14"></a><span class="kw">head</span>(futurePR)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>sex=<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,</span>
+<span id="cb36-2"><a href="#cb36-2"></a>      <span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,</span>
+<span id="cb36-3"><a href="#cb36-3"></a>      <span class="st">&quot;f&quot;</span>,</span>
+<span id="cb36-4"><a href="#cb36-4"></a>      <span class="st">&quot;m&quot;</span>,<span class="st">&quot;m&quot;</span>,<span class="st">&quot;m&quot;</span>,</span>
+<span id="cb36-5"><a href="#cb36-5"></a>      <span class="st">&quot;m&quot;</span>,<span class="st">&quot;m&quot;</span>,<span class="st">&quot;m&quot;</span>)</span>
+<span id="cb36-6"><a href="#cb36-6"></a>kids=<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
+<span id="cb36-7"><a href="#cb36-7"></a>       <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">10</span>,</span>
+<span id="cb36-8"><a href="#cb36-8"></a>       <span class="dv">2</span>,</span>
+<span id="cb36-9"><a href="#cb36-9"></a>       <span class="dv">80</span>, <span class="dv">24</span>,</span>
+<span id="cb36-10"><a href="#cb36-10"></a>       <span class="dv">32</span>, <span class="dv">22</span>, <span class="dv">22</span>,<span class="dv">15</span>)</span>
+<span id="cb36-11"><a href="#cb36-11"></a></span>
+<span id="cb36-12"><a href="#cb36-12"></a>futurePR=<span class="kw">data.frame</span>(sex,kids)</span>
+<span id="cb36-13"><a href="#cb36-13"></a></span>
+<span id="cb36-14"><a href="#cb36-14"></a><span class="kw">head</span>(futurePR)</span></code></pre></div>
 <pre><code>##   sex kids
 ## 1   f    0
 ## 2   f    1
@@ -936,8 +973,8 @@ div.tocify {
 ## 4   f    1
 ## 5   f    1
 ## 6   f    4</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>model2=<span class="kw">t.test</span>(kids<span class="op">~</span>sex, <span class="dt">data=</span>futurePR)</span>
-<span id="cb33-2"><a href="#cb33-2"></a>model2</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>model2=<span class="kw">t.test</span>(kids<span class="op">~</span>sex, <span class="dt">data=</span>futurePR)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>model2</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -949,7 +986,7 @@ div.tocify {
 ## sample estimates:
 ## mean in group f mean in group m 
 ##        2.454545       32.500000</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">byf.shapiro</span>(kids<span class="op">~</span>sex, futurePR)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">byf.shapiro</span>(kids<span class="op">~</span>sex, futurePR)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality tests
 ## 
@@ -961,37 +998,6 @@ div.tocify {
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
-</div>
-<div id="anxiedad-y-alacranes" class="section level1">
-<h1>Anxiedad y Alacranes</h1>
-<p>Anxiety</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>picture=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">7</span>)</span>
-<span id="cb37-2"><a href="#cb37-2"></a>dead=<span class="kw">c</span>(<span class="dv">15</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">18</span>,<span class="dv">16</span>,<span class="dv">11</span>)</span>
-<span id="cb37-3"><a href="#cb37-3"></a><span class="kw">mean</span>(picture)</span></code></pre></div>
-<pre><code>## [1] 3.777778</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="kw">mean</span>(dead)</span></code></pre></div>
-<pre><code>## [1] 13.55556</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>alacran=<span class="kw">data.frame</span>(picture,dead)</span>
-<span id="cb41-2"><a href="#cb41-2"></a><span class="kw">head</span>(alacran)</span></code></pre></div>
-<pre><code>##   picture dead
-## 1       1   15
-## 2       2   15
-## 3       5   17
-## 4       2   10
-## 5       8   10
-## 6       4   10</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="kw">t.test</span>(alacran<span class="op">$</span>dead, alacran<span class="op">$</span>picture,<span class="dt">paired=</span><span class="ot">FALSE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Welch Two Sample t-test
-## 
-## data:  alacran$dead and alacran$picture
-## t = 6.8716, df = 15.482, p-value = 4.482e-06
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##   6.753105 12.802450
-## sample estimates:
-## mean of x mean of y 
-## 13.555556  3.777778</code></pre>
 </div>
 
 

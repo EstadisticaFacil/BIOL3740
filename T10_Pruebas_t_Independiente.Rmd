@@ -135,8 +135,8 @@ Hacer un  gráfico de los datos.  Si calculamos el promedio de todos los valores
 
 mean_dist=mean(viajes$dist)
 
-ggplot(viajes, aes(muni, dist))+
-  geom_jitter(width = 0.11)+
+ggplot(viajes, aes(muni, dist, colour=muni))+
+  geom_jitter(width = .2)+
   geom_hline(yintercept = mean_dist)
 ```
 
@@ -222,6 +222,40 @@ model
 ```
 
 
+
+```{r}
+gender=c("m", "m", "f", "f", "m", 
+         "f","f","m", "f", "f", "f")
+
+dist=c(10,20, 11, 40, 19, 
+       8.1, 203, 4.4, 16, 29, 19)
+
+df=data.frame(gender, dist)
+head(df)
+
+model2=t.test(dist~gender, data=df, paired=FALSE)
+model2
+```
+
+
+```{r}
+padres=c("p", "m" , "p", "m", "p","m",
+         "p","m", "p","m", "p","m",
+         "p","m", "p","m", "p","m", 
+         "p", "m")
+
+Hermanos= c(2, 1,2,2,2,3,
+            3,2,4,1,2,1,
+            2,1,5,2,5,3, 
+            12, 2)
+
+
+```
+
+
+
+
+
 ***
 
 ## Gráficar el promedio y el intervalo de confianza
@@ -229,7 +263,7 @@ model
 Graficar los datos con el promedio y el intervalo de confianza da un resumen de la estadística de forma visual, lo que se visualiza es el promedio y el intervalo de 95%.  Nota que se usa la función en ggplot2 de **stat_summary(fun.data = mean_cl_normal)**, esto quiere decir que se esta calculando los valores ASUMIENDO una distribución normal de los datos. 
 
 ```{r graph summary stats}
-ggplot(viajes, aes(muni, dist))+
+ggplot(df, aes(gender, dist))+
  stat_summary(fun.data = mean_cl_normal, geom = "pointrange")
 
 ```
@@ -385,20 +419,6 @@ byf.shapiro(kids~sex, futurePR)
 
 
 
-# Anxiedad y Alacranes
-
-Anxiety 
-
-```{r anxiety}
-picture=c(1,2,5,2,8,4,5,0,7)
-dead=c(15,15,17,10,10,10,18,16,11)
-mean(picture)
-mean(dead)
-alacran=data.frame(picture,dead)
-head(alacran)
-
-t.test(alacran$dead, alacran$picture,paired=FALSE)
-```
 
 
 

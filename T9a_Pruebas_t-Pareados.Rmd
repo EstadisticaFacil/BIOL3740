@@ -311,6 +311,25 @@ model2=t.test(Lep$T2,Lep$T1, paired =TRUE)
 model2
 ```
 
+
+
+
+## Anxiedad y Alacranes
+
+Con un indice de Ansiedad. Más alto el número más ansieso.  
+
+```{r anxiety}
+picture=c(1,2,5,2,8,4,5,0,7)
+dead=c(15,15,17,10,10,10,18,16,11)
+mean(picture)
+mean(dead)
+alacran=data.frame(picture,dead)
+head(alacran)
+
+t.test(alacran$dead, alacran$picture,paired=FALSE)
+```
+
+
 ***
 
 ## Supuestos de la prueba de t con datos pareados.

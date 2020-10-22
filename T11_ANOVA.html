@@ -658,7 +658,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2020-10-07&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2020-10-22&quot;</span></code></pre></div>
 <style type="text/css">
 div.sourceCode pre.chunkout {
   background: white;
@@ -703,7 +703,7 @@ div.sourceCode pre.chunkout {
 <span id="cb4-11"><a href="#cb4-11"></a><span class="st">    </span><span class="kw">theme_article</span>(<span class="dt">header_col =</span> <span class="ot">FALSE</span>)<span class="op">%&gt;%</span></span>
 <span id="cb4-12"><a href="#cb4-12"></a><span class="st">  </span><span class="kw">set_bottom_border</span>(<span class="dt">row =</span> <span class="dv">1</span>, <span class="dt">col =</span> everywhere, <span class="dt">value =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb4-13"><a href="#cb4-13"></a><span class="st">  </span><span class="kw">set_caption</span>(<span class="st">&quot;La probabilidad de cometer un error tipo I usando la prueba de t para cada pares de prueba (C)&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="st">  </span><span class="kw">add_footnote</span>(<span class="st">&quot;* C=(k-1)/2, que es la cantidad de comparación&quot;</span>)</span></code></pre></div>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="st">  </span><span class="kw">add_footnote</span>(<span class="st">&quot;* C=k(k-1)/2, que es la cantidad de comparación&quot;</span>)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
 <caption style="caption-side: top; text-align: center;">La probabilidad de cometer un error tipo I usando la prueba de t para cada pares de prueba (C)</caption><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: bold;">Cantidad_Grupo_k</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">C</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">0.05</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: bold;">0.01</th></tr>
@@ -718,7 +718,7 @@ div.sourceCode pre.chunkout {
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">15</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.54</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: normal;">0.14</td></tr>
 <tr>
-<td colspan="4" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">* C=(k-1)/2, que es la cantidad de comparación</td></tr>
+<td colspan="4" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">* C=k(k-1)/2, que es la cantidad de comparación</td></tr>
 </table>
 
 <p>Nota que si tienes 4 grupos tendrá que hacer 6 pruebas de t, y eso eleva la probabilidad de cometer un tipo de error I a 26%, mucho más alto que el 5% que uno quisiera. Cuando uno hace la prueba de ANOVA y selecciona el nivel de error de 5%, es que el conjunto de todas las pruebas tiene ese nivel error posible.</p>
@@ -1032,7 +1032,7 @@ div.sourceCode pre.chunkout {
 <span id="cb26-8"><a href="#cb26-8"></a>## </span>
 <span id="cb26-9"><a href="#cb26-9"></a>## Linear Hypotheses:</span>
 <span id="cb26-10"><a href="#cb26-10"></a>##                         Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00463 ** </span>
+<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00441 ** </span>
 <span id="cb26-12"><a href="#cb26-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***</span>
 <span id="cb26-13"><a href="#cb26-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***</span>
 <span id="cb26-14"><a href="#cb26-14"></a>## ---</span>
