@@ -743,7 +743,7 @@ div.sourceCode pre.chunkout {
 <div id="crear-un-conjunto-de-datos" class="section level1">
 <h1>Crear un conjunto de datos</h1>
 <p>Aquí observamos la cantidad de fósforo por parte de millón observado en la misma especie de planta cerca tres lagos de Puerto Rico . Los datos son ficticios es para demostrar el proceso de hacer los análisis. Se observa datos de plantas 3 lagos en Pueto Rico (Caraizo, DosBocas y Guineo).</p>
-<p>Nuestra hipótesis nula es que la cantidad de fósforo en la plantas es igual en los tres lagos.</p>
+<p>Nuestra hipótesis nula es que la cantidad de fósforo (partes por million) en la plantas es igual en los tres lagos.</p>
 <blockquote>
 <ul>
 <li><span class="math inline">\(H_o:\ \mu_C=\mu_{DB}=\mu_G\)</span></li>
@@ -759,7 +759,7 @@ div.sourceCode pre.chunkout {
 <span id="cb5-7"><a href="#cb5-7"></a>              <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Caraizo&quot;</span>, <span class="st">&quot;DosBocas&quot;</span>, <span class="st">&quot;Guineo&quot;</span>))</span>
 <span id="cb5-8"><a href="#cb5-8"></a>fosforo&lt;-<span class="kw">data.frame</span>(id,Cant_Fos,Lagos)</span>
 <span id="cb5-9"><a href="#cb5-9"></a>fosforo</span></code></pre></div>
-<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:ejemplo">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:ejemplo">
 <col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">id</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Cant_Fos</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Lagos</th></tr>
 <tr>
@@ -795,7 +795,9 @@ div.sourceCode pre.chunkout {
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">16</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Guineo</td></tr>
 </table>
- ## Visualizar los datos</p>
+
+<div id="visualizar-los-datos" class="section level2">
+<h2>Visualizar los datos</h2>
 <p>Hacemos un gráfico de los datos. Calculamos el promedio de todos los valores de “Y” (concentración de fósforo en las plantas) y se gráfica, vemos que muchos de los valores de las plantas son por debajo los valores de la linea y muchos de los valores están por encima. Se observa que la concentración de fósforo en plantas que provienen de los lagos Caraizo y Guineo son lejos del promedio.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mean_fosforo=<span class="kw">mean</span>(fosforo<span class="op">$</span>Cant_Fos)</span>
 <span id="cb6-2"><a href="#cb6-2"></a>mean_fosforo</span></code></pre></div>
@@ -824,7 +826,9 @@ div.sourceCode pre.chunkout {
 <span id="cb10-12"><a href="#cb10-12"></a>  <span class="cf">else</span></span>
 <span id="cb10-13"><a href="#cb10-13"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb10-14"><a href="#cb10-14"></a>} </span></code></pre></div>
-<p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-7-1.png" width="672" /> *** Daros donde los grupos son iguales</p>
+<p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<hr />
+<p>Daros donde los grupos son iguales</p>
 <p>En este ejemplo de vemos dos de los grupos donde los residuales solapan, este es probable que resulta que estos dos grupos (azul y rojo) no sean diferentes.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>id&lt;-(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>)</span>
 <span id="cb11-2"><a href="#cb11-2"></a>Cant_Fos&lt;-<span class="kw">c</span>(<span class="dv">52</span>,<span class="dv">66</span>,<span class="dv">60</span>,<span class="dv">54</span>,<span class="dv">64</span>,</span>
@@ -850,7 +854,9 @@ div.sourceCode pre.chunkout {
 <span id="cb12-12"><a href="#cb12-12"></a>  <span class="cf">else</span></span>
 <span id="cb12-13"><a href="#cb12-13"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb12-14"><a href="#cb12-14"></a>} </span></code></pre></div>
-<p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-8-1.png" width="672" /> ***</p>
+<p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<hr />
+</div>
 </div>
 <div id="gráficar-los-datos" class="section level1">
 <h1>Gráficar los datos</h1>
@@ -863,7 +869,10 @@ div.sourceCode pre.chunkout {
 <span id="cb13-5"><a href="#cb13-5"></a>                    <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
 <span id="cb13-6"><a href="#cb13-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
 <span id="cb13-7"><a href="#cb13-7"></a>             <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="T11_ANOVA_files/figure-html/graficar%20fosforo-1.png" width="672" /> *** ## Un gráfico con el intervalo de confianza.</p>
+<p><img src="T11_ANOVA_files/figure-html/graficar%20fosforo-1.png" width="672" /></p>
+<hr />
+<div id="un-gráfico-con-el-intervalo-de-confianza." class="section level2">
+<h2>Un gráfico con el intervalo de confianza.</h2>
 <p>Crear un data frame de los resultados con el package “Rmisc” y la función “summarySE”. Los pasos son identificar la variable continua (en este caso measurevar=“Cant_Fos”) y la variable discreta que identifica los grupos groupvars=“Lagos”. Esto crea un nuevo data frame con los datos resumidos que incluye, el nombre de los grupos (Lagos), el tamaño de muestra (N), el promedio de la variable (Cant_Fos), la desviación estandar (sd), el error estandar (se) y intervalo de confianza (ci).</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">library</span>(Rmisc)</span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
@@ -883,6 +892,7 @@ div.sourceCode pre.chunkout {
 </table>
 
 <hr />
+</div>
 <div id="graficar-con-nuestro-nuevo-data-frame-sum." class="section level2">
 <h2>Graficar con nuestro nuevo data frame “sum”.</h2>
 <p>Para calcular el 95% del intervalo de confianza del promedio se usa la siguiente formula <span class="math inline">\(\overline{x}\ \pm2\cdot se\)</span>. Las barras representa el 95% de donde pudiese estar el promedio si repetimos el mismo experimento 100 veces.</p>
@@ -979,7 +989,8 @@ div.sourceCode pre.chunkout {
 <span id="cb19-3"><a href="#cb19-3"></a><span class="st">  </span><span class="kw">stat_qq_line</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
 <span id="cb19-4"><a href="#cb19-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Valores teóricos&quot;</span>)<span class="op">+</span></span>
 <span id="cb19-5"><a href="#cb19-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Valores observados&quot;</span>)</span></code></pre></div>
-<p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-9-1.png" width="672" /> ***</p>
+<p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<hr />
 </div>
 </div>
 <div id="la-prueba-de-anova" class="section level1">
@@ -1040,7 +1051,7 @@ div.sourceCode pre.chunkout {
 <span id="cb26-8"><a href="#cb26-8"></a>## </span>
 <span id="cb26-9"><a href="#cb26-9"></a>## Linear Hypotheses:</span>
 <span id="cb26-10"><a href="#cb26-10"></a>##                         Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00435 ** </span>
+<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00456 ** </span>
 <span id="cb26-12"><a href="#cb26-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***</span>
 <span id="cb26-13"><a href="#cb26-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***</span>
 <span id="cb26-14"><a href="#cb26-14"></a>## ---</span>
