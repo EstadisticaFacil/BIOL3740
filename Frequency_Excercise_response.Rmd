@@ -1,0 +1,241 @@
+---
+title: "Frequencia_Ejercicios_Respuestas"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+#    theme: simplex
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+
+#`r colorize("some words in red", "red")`
+
+
+```
+
+Fecha de la ultima revisión
+```{r echo=FALSE}
+
+Sys.Date()
+```
+
+***
+
+# Ejercicios de Pruebas de Frecuencias 
+## Capitulo 7 
+
+Los ejercicio provienen del Capitulo 7 del libro de la clase Havel et al 2019.  Introductory Biological Ststistics, 4th Edition, Waveland Press, Inc. Long Grove, Illinois. 
+
+## Ejericico de Práctica (no para someter)
+
+Los ejercicio de 7.1 al 7.13. son para practicar. Se encuentra las respuestas al final del libro.
+
+
+## Ejercicio para someter. 
+
+Ud. someterán los las repuestas a los siguientes ejercicios en un documento .html. 
+
+ - Para cada ejercicio siempre tiene que aclarar cual son las hipótesis nula y alterna. 
+ - Tiene que explicar el concepto biológico si la pregunta menciona uno.  
+ - Enseñar los cálculos/script para hacer los análisis. 
+ - Interpretar los resultados basado en la pregunta que se hace en el ejercicio.  
+ 
+***
+
+1. Ejercicio 7.17 (5 puntos)
+
+A study in Southern Brazil assessed the abundance of terrewstrial flatworms by surveying 100 plots. The following table shows the observed  number of of flatworms per plot. Using the smaple mean, determine if the distrbiution of the flatworm is random.  
+
+```{r}
+Num_FlatW=c(0,1,2,3)
+Obser_Plots=c(52,33,12,3)
+
+df=data.frame(Num_FlatW, Obser_Plots)
+df
+```
++  Null hipotesis, the FREQUENCY SHOULD BE EQUAL among each group.
+Alternate Hipotesis, the frequency is not equal among each group. 
+
++  Incluir información sobre los "Flatworms"   Aquí hay bastante informacion
+https://en.wikipedia.org/wiki/Flatworm
+
+
+
+The null model is that the frequency is the same for each group, thus you would expect a 25% of the plots to be in each group. Since there are 100 plots, and we would expect 25% in each group we would expect 25 plots for each
+
+```{r}
+obs=c(52,33,12,3)
+exp=c(.25,.25,.25,.25)
+
+chisq.test(x=obs, p=exp)
+```
+
+
+
+El resultado tiene un valor de p<0.05, por consecuencia se rechaza la hipotesis nula, y se acepta la alterna. Esto significa que la distribución de los "flatworm" no fue igual en el muestreo. En este caso tenemos muchos sitios donde no se encontró lo "flatworm", y pocos sitios donde habia 2 o 3 de ellos. 
+
+
+***
+
+2. Ejercicio 7.18 (5 puntos)
+
+
+White-throated sparrows (*Zonothrichia albicolis*) occur in two distinct color morphs, referred to as brown and white. It was suspected that females select males of the opposite morph (i.e white females select brown males, and brown females select white males). The phenomenon is known as negative assortative mating. In 30 mated pairs, the color combinations were as follows. Do the results support the hypothesis that negative assortative mating occur in this species.  
+
+ + The females select randomly the males and thus you would have equal number of females selecting white and brown males and vice versa.
+ 
+    + Disassortative mating (also known as negative assortative mating or heterogamy) means that individuals with dissimilar genotypes or phenotypes mate with one another more frequently than would be expected under random mating. Disassortative mating reduces the genetic similarities within the family. ** From Wikipedia. 
+ 
+ 
+ 
+ 
+```{r}
+library(tidyverse)
+
+Zono=tribble(~gender, ~color_Fem, ~White, ~Brown,
+            "Female", "White", 7, 23,
+            "Female", "Brown", 14, 5)
+
+library(huxtable)
+huxtable(Zono) %>% 
+  set_bottom_border(row = 1, col=everywhere, value=1) %>% 
+  set_caption("                     Males")
+```
+
+Prueba de asociación" preparar los datos
+```{r}
+R1=c(7,23)
+R2=c(14,5)
+
+Aves=matrix(c(R1, R2), nrow = 2, byrow = TRUE)
+#Aves
+
+rownames(Aves)=c("White", "Brown")
+colnames(Aves)=c("White", "Brown")
+Aves
+```
+
+```{r}
+chisq.test(Aves, correct=FALSE)
+```
+
+Se determina que las hembras prefieren el color de macho que es diferente de ellas, ya que el valor de p <0.05.  
+
+***
+3. Ejercicio 7.21 (5 puntos)
+
+We would like to test the efficacy of a drug, papaveretum, in treating acute abdominal pain. Based on the results, is asministration of the drug associated with pain relief.
+
+ + The null hypothesis is that the drug has no effect of the amount of pain of parients
+
+ + The alternetate hypothesis is that administration of the drug reduces the amount of pain 
+
+    + Papaveretum (BAN) is a preparation containing a mixture of hydrochloride salts of opium alkaloids. Since 1993, papaveretum has been defined in the British Pharmacopoeia (BP) as a mixture of 253 parts morphine hydrochloride, 23 parts papaverine hydrochloride, and 20 parts codeine hydrochloride. **From wikipedia
+
+```{r}
+library(tidyverse)
+
+Papa=tribble(~Results, ~Papaveretum, ~Saline,
+            "Pain Better",  47, 7,
+            "No Change/Worse",  3, 42)
+
+library(huxtable)
+huxtable(Papa) %>% 
+  set_bottom_border(row = 1, col=everywhere, value=1) %>% 
+  set_caption("                     Treatment")
+```
+
+Prueba de asociación" preparar los datos
+```{r}
+R1=c(47,7)
+R2=c(3,42)
+
+Pain=matrix(c(R1, R2), nrow = 2, byrow = TRUE)
+#Aves
+
+rownames(Pain)=c("Pain Better", "No Change/Worse")
+colnames(Pain)=c("Papaveretum", "Saline")
+Pain
+```
+
+```{r}
+chisq.test(Pain, correct=FALSE)
+```
+
+The result suggest that administration of Papaveretum is effective in reducing pain, as the p value is <0.05. 
+
+***
+4. Ejercicio 7.27 (5 puntos)
+
+Shortly after antibiotics were discocered, mdical scientists wanted to determine if streptomycin was effective in the treatment of tuberculosis. At the time, the only treatment for tuberculosis was a long period of bed rest in a snatarium. In an experiment that we would consider unethical today, scientists divided 107 patients into two groups, with one receiving streptomycin and the conrtol group receiving no treatment beyond the bed receiving streptomycin, 4 died, while in the group of the group of 52 patients in the conrtol group 14 died. Was Streptomycin effective in reducing mortality due to tuberculosis (Data from Marshall et al. 1948).
+
+- Información sobre Tuberculosis
+
+  https://en.wikipedia.org/wiki/Tuberculosis
+  
+- Información sobre streptomycin
+
+ https://en.wikipedia.org/wiki/Streptomycin
+
+    
+
++ The null hypothesis is that equal number of patients would die in the control group and the group receiving the antibiotics.
+
++ The alternative hypothesis is that the experimental group receiving the antibiotics would have less death. 
+
+    + Streptomycin is an aminoglycoside antibiotic produced by the soil actinomycete Streptomyces griseus. It acts by binding to the 30S ribosomal subunit of susceptible organisms and disrupting the initiation and elongation steps in protein synthesis. It is bactericidal due to effects that are not fully understood.
+
+
+```{r}
+library(tidyverse)
+
+AntiB=tribble(~Results, ~Streptomycin, ~Bed_Rest,
+            "Survived",  51, 38,
+            "Died",  4, 14)
+
+library(huxtable)
+huxtable(AntiB) %>% 
+  set_bottom_border(row = 1, col=everywhere, value=1) %>% 
+  set_caption("                     Treatment")
+
+
+```
+
+Prueba de asociación" preparar los datos
+```{r}
+R1=c(51,38)
+R2=c(4,14)
+
+ANTIBi=matrix(c(R1, R2), nrow = 2, byrow = TRUE)
+#Aves
+
+rownames(ANTIBi)=c("Survived", "Died")
+colnames(ANTIBi)=c("Streptomycin", "Bed_Rest")
+ANTIBi
+```
+- 5 puntos para un trabajo bien presentado y organizado
+
+
+```{r}
+chisq.test(ANTIBi, correct=FALSE)
+```
+
+The results is that the Antibiotics appear to have an effect in reducing the death rate of patients. Patients which took the antibiotics have a lesser probability of death as the p value is less than <0.05. 
