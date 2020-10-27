@@ -358,7 +358,7 @@ siguiente formula $\overline{x}\ \pm2\cdot se$. Las barras representa el
 ggplot(sum, aes(x=Lagos, 
                 y=Cant_Fos)) +
   geom_point(colour="blue")+ 
-  geom_errorbar(aes(ymin=Cant_Fos-2*se, 
+  geom_errorbar(aes(ymin=Cant_Fos-2*se,
                     ymax=Cant_Fos+2*se), 
                 width=.2, size=0.7)
 
@@ -540,6 +540,7 @@ de 5%, por consecuencia cada grupo es distinto uno del otro.
 
 ```{r post-hoc2 test}
 pairwise.t.test(fosforo$Cant_Fos, fosforo$Lagos, p.adjust.method = "bonferroni") # Nota aqui se usa los datos originales, el error de todos las pruebas se limita a 5%.  
+
 
 ```
 
