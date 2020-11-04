@@ -72,7 +72,7 @@ library(ggplot2)
 ```
 
 
-```{r, partos, echo=FALSE, eval=FALSE}
+```{r, partos }
 
 ggplot(PartosInfantes, aes(x=NMI))+
   geom_histogram(color="white")
@@ -94,13 +94,13 @@ Use los datos **Razon\_mortandad** en el paquete **ggversa** y construye un hist
 
 Contestar la siguientes preguntas
 
--   la razón de mortandad de los niños en los países tiene una distribución mortandad que sigue es "normal"?
+-   la razón de mortandad de los niños en los países tiene una distribución "normal"?
 -   ¿Cual es el promedio?
 -   ¿Cual es la desviación estándar?
 
 
 
-```{r, razon_mortandad, echo=FALSE, eval=FALSE}
+```{r, razon_mortandad}
 
 
 ggplot2::ggplot(ggversa::Razon_mortandad, aes(X2011))+
@@ -136,7 +136,7 @@ Use los datos **MORELIA.MICH.Tmin** en el paquete **ggversa** y construye un **q
       
       
 
-```{r, qqplot, echo=FALSE, eval=FALSE}
+```{r, qqplot}
 ggplot(MORELIA.MICH.Tmin, aes(sample=Tmin))+
   geom_qq()+
  geom_qq_line()
