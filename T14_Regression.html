@@ -13,7 +13,7 @@
 
 <title>T14_Regression</title>
 
-<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,6 +25,8 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -33,68 +35,6 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      pre > code.sourceCode { white-space: pre; position: relative; }
-      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-      pre > code.sourceCode > span:empty { height: 1.2em; }
-      code.sourceCode > span { color: inherit; text-decoration: inherit; }
-      div.sourceCode { margin: 1em 0; }
-      pre.sourceCode { margin: 0; }
-      @media screen {
-      div.sourceCode { overflow: auto; }
-      }
-      @media print {
-      pre > code.sourceCode { white-space: pre-wrap; }
-      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-      }
-      pre.numberSource code
-        { counter-reset: source-line 0; }
-      pre.numberSource code > span
-        { position: relative; left: -4em; counter-increment: source-line; }
-      pre.numberSource code > span > a:first-child::before
-        { content: counter(source-line);
-          position: relative; left: -1em; text-align: right; vertical-align: baseline;
-          border: none; display: inline-block;
-          -webkit-touch-callout: none; -webkit-user-select: none;
-          -khtml-user-select: none; -moz-user-select: none;
-          -ms-user-select: none; user-select: none;
-          padding: 0 4px; width: 4em;
-          color: #aaaaaa;
-        }
-      pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-      div.sourceCode
-        {   }
-      @media screen {
-      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-      }
-      code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-      code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-      code span.at { color: #7d9029; } /* Attribute */
-      code span.bn { color: #40a070; } /* BaseN */
-      code span.bu { } /* BuiltIn */
-      code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-      code span.ch { color: #4070a0; } /* Char */
-      code span.cn { color: #880000; } /* Constant */
-      code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-      code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-      code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-      code span.dt { color: #902000; } /* DataType */
-      code span.dv { color: #40a070; } /* DecVal */
-      code span.er { color: #ff0000; font-weight: bold; } /* Error */
-      code span.ex { } /* Extension */
-      code span.fl { color: #40a070; } /* Float */
-      code span.fu { color: #06287e; } /* Function */
-      code span.im { } /* Import */
-      code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-      code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-      code span.op { color: #666666; } /* Operator */
-      code span.ot { color: #007020; } /* Other */
-      code span.pp { color: #bc7a00; } /* Preprocessor */
-      code span.sc { color: #4070a0; } /* SpecialChar */
-      code span.ss { color: #bb6688; } /* SpecialString */
-      code span.st { color: #4070a0; } /* String */
-      code span.va { color: #19177c; } /* Variable */
-      code span.vs { color: #4070a0; } /* VerbatimString */
-      code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     </style>
 
 
@@ -497,7 +437,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="Descripción.html">Home</a>
+  <a href="Descripcion.html">Home</a>
 </li>
 <li>
   <a href="schedule.html">Calendario</a>
@@ -658,7 +598,8 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-10-28&quot;</code></pre>
+<pre><code>## [1] &quot;2020-11-05&quot;</code></pre>
+<p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_Visualizacion_Datos.png" width="20%" /></p>
 <hr />
 <p>Activar las librerias, averiguar que TIENE instalado estos paquetes</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(QuantPsyc)</span>
@@ -731,7 +672,7 @@ div.tocify {
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
  
 </th>
-<th colspan="4" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
+<th colspan="3" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
 mortalidad
 </th>
 </tr>
@@ -748,9 +689,6 @@ CI
 <td style=" color: red; border-bottom:1px solid black; ">
 p
 </td>
-<td style=" color: red; border-bottom:1px solid black; ">
-df
-</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
@@ -764,9 +702,6 @@ df
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
 <strong>0.005</strong>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
-6.00
 </td>
 </tr>
 <tr>
@@ -782,15 +717,12 @@ barres
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
 <strong>0.016</strong>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
-6.00
-</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue; border-top:1px solid;">
 Observations
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="4">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="3">
 8
 </td>
 </tr>
@@ -798,7 +730,7 @@ Observations
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue;">
 R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="4">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="3">
 0.649 / 0.591
 </td>
 </tr>
@@ -811,7 +743,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">ggplot</span>(pubs, <span class="kw">aes</span>(<span class="dt">x=</span>barres, <span class="dt">y=</span>mortalidad))<span class="op">+</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> lm)<span class="op">+</span><span class="st"> </span><span class="co"># modelo lineal</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="T14_Regression_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="T14_Regression_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="el-impacto-de-valores-atípico" class="section level1">
@@ -840,7 +772,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
  
 </th>
-<th colspan="4" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
+<th colspan="3" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
 mortalidad
 </th>
 </tr>
@@ -857,9 +789,6 @@ CI
 <td style=" color: red; border-bottom:1px solid black; ">
 p
 </td>
-<td style=" color: red; border-bottom:1px solid black; ">
-df
-</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
@@ -873,9 +802,6 @@ df
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
 0.106
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
-6.00
 </td>
 </tr>
 <tr>
@@ -891,15 +817,12 @@ barres
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
-6.00
-</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue; border-top:1px solid;">
 Observations
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="4">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="3">
 8
 </td>
 </tr>
@@ -907,7 +830,7 @@ Observations
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue;">
 R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="4">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="3">
 0.998 / 0.997
 </td>
 </tr>
@@ -973,7 +896,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
  
 </th>
-<th colspan="4" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
+<th colspan="3" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
 sales
 </th>
 </tr>
@@ -990,9 +913,6 @@ CI
 <td style=" color: red; border-bottom:1px solid black; ">
 p
 </td>
-<td style=" color: red; border-bottom:1px solid black; ">
-df
-</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
@@ -1006,9 +926,6 @@ df
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
 <strong>&lt;0.001
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
-198.00
 </td>
 </tr>
 <tr>
@@ -1024,15 +941,12 @@ adverts
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
-198.00
-</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue; border-top:1px solid;">
 Observations
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="4">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="3">
 200
 </td>
 </tr>
@@ -1040,7 +954,7 @@ Observations
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue;">
 R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="4">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="3">
 0.335 / 0.331
 </td>
 </tr>
@@ -1057,7 +971,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </ol>
 <p>En el presente gráfico hay tres valores que hay que evaluar (1,42,169), estos valores se tiene que asegurar que son correctos. Siempre es bueno remover los valores sesgados y rehacer el análisis para observar cuan diferente son los resultas.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">plot</span>(model1)  <span class="co"># Evaluar los supuestos, 1. Igualdad de varianza, 2. Normalidad, 4. Datos sesgados (Cook&#39;s Distance)</span></span></code></pre></div>
-<p><img src="T14_Regression_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-4-2.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-4-3.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
+<p><img src="T14_Regression_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-5-3.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
 <hr />
 </div>
 <div id="cooks-distance" class="section level1">
@@ -1192,7 +1106,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
  
 </th>
-<th colspan="4" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
+<th colspan="3" style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black;">
 sales
 </th>
 </tr>
@@ -1209,9 +1123,6 @@ CI
 <td style=" color: red; border-bottom:1px solid black; ">
 p
 </td>
-<td style=" color: red; border-bottom:1px solid black; ">
-df
-</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; font-weight: bold; ">
@@ -1225,9 +1136,6 @@ df
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
 <strong>&lt;0.001
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
-198.00
 </td>
 </tr>
 <tr>
@@ -1243,15 +1151,12 @@ adverts
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
 <strong>&lt;0.001
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align: left;  ">
-198.00
-</td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue; border-top:1px solid;">
 Observations
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="4">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center; border-top:1px solid;" colspan="3">
 200
 </td>
 </tr>
@@ -1259,7 +1164,7 @@ Observations
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; color: blue;">
 R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="4">
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; color: blue; text-align:center;" colspan="3">
 0.335 / 0.331
 </td>
 </tr>
@@ -1305,7 +1210,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

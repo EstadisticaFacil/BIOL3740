@@ -13,7 +13,7 @@
 
 <title>Ejercicio de Tendencia Central y Dispersión</title>
 
-<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -25,6 +25,8 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -33,68 +35,6 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      pre > code.sourceCode { white-space: pre; position: relative; }
-      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-      pre > code.sourceCode > span:empty { height: 1.2em; }
-      code.sourceCode > span { color: inherit; text-decoration: inherit; }
-      div.sourceCode { margin: 1em 0; }
-      pre.sourceCode { margin: 0; }
-      @media screen {
-      div.sourceCode { overflow: auto; }
-      }
-      @media print {
-      pre > code.sourceCode { white-space: pre-wrap; }
-      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-      }
-      pre.numberSource code
-        { counter-reset: source-line 0; }
-      pre.numberSource code > span
-        { position: relative; left: -4em; counter-increment: source-line; }
-      pre.numberSource code > span > a:first-child::before
-        { content: counter(source-line);
-          position: relative; left: -1em; text-align: right; vertical-align: baseline;
-          border: none; display: inline-block;
-          -webkit-touch-callout: none; -webkit-user-select: none;
-          -khtml-user-select: none; -moz-user-select: none;
-          -ms-user-select: none; user-select: none;
-          padding: 0 4px; width: 4em;
-          color: #aaaaaa;
-        }
-      pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-      div.sourceCode
-        {   }
-      @media screen {
-      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-      }
-      code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-      code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-      code span.at { color: #7d9029; } /* Attribute */
-      code span.bn { color: #40a070; } /* BaseN */
-      code span.bu { } /* BuiltIn */
-      code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-      code span.ch { color: #4070a0; } /* Char */
-      code span.cn { color: #880000; } /* Constant */
-      code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-      code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-      code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-      code span.dt { color: #902000; } /* DataType */
-      code span.dv { color: #40a070; } /* DecVal */
-      code span.er { color: #ff0000; font-weight: bold; } /* Error */
-      code span.ex { } /* Extension */
-      code span.fl { color: #40a070; } /* Float */
-      code span.fu { color: #06287e; } /* Function */
-      code span.im { } /* Import */
-      code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-      code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-      code span.op { color: #666666; } /* Operator */
-      code span.ot { color: #007020; } /* Other */
-      code span.pp { color: #bc7a00; } /* Preprocessor */
-      code span.sc { color: #4070a0; } /* SpecialChar */
-      code span.ss { color: #bb6688; } /* SpecialString */
-      code span.st { color: #4070a0; } /* String */
-      code span.va { color: #19177c; } /* Variable */
-      code span.vs { color: #4070a0; } /* VerbatimString */
-      code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     </style>
 
 
@@ -497,7 +437,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="Descripción.html">Home</a>
+  <a href="Descripcion.html">Home</a>
 </li>
 <li>
   <a href="schedule.html">Calendario</a>
@@ -657,6 +597,7 @@ div.tocify {
 </div>
 
 
+<p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_Visualizacion_Datos.png" width="20%" /></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(gt)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
@@ -689,7 +630,7 @@ div.tocify {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kjmpbjvrqd .gt_table {
+#wilamtzrnx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -714,7 +655,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#kjmpbjvrqd .gt_heading {
+#wilamtzrnx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -726,7 +667,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#kjmpbjvrqd .gt_title {
+#wilamtzrnx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -736,7 +677,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#kjmpbjvrqd .gt_subtitle {
+#wilamtzrnx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -746,13 +687,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#kjmpbjvrqd .gt_bottom_border {
+#wilamtzrnx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kjmpbjvrqd .gt_col_headings {
+#wilamtzrnx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -767,7 +708,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#kjmpbjvrqd .gt_col_heading {
+#wilamtzrnx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -787,7 +728,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#kjmpbjvrqd .gt_column_spanner_outer {
+#wilamtzrnx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -799,15 +740,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#kjmpbjvrqd .gt_column_spanner_outer:first-child {
+#wilamtzrnx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kjmpbjvrqd .gt_column_spanner_outer:last-child {
+#wilamtzrnx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kjmpbjvrqd .gt_column_spanner {
+#wilamtzrnx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -819,7 +760,7 @@ div.tocify {
   width: 100%;
 }
 
-#kjmpbjvrqd .gt_group_heading {
+#wilamtzrnx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -841,7 +782,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#kjmpbjvrqd .gt_empty_group_heading {
+#wilamtzrnx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -856,15 +797,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#kjmpbjvrqd .gt_from_md > :first-child {
+#wilamtzrnx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kjmpbjvrqd .gt_from_md > :last-child {
+#wilamtzrnx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kjmpbjvrqd .gt_row {
+#wilamtzrnx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -883,7 +824,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#kjmpbjvrqd .gt_stub {
+#wilamtzrnx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -895,7 +836,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#kjmpbjvrqd .gt_summary_row {
+#wilamtzrnx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -905,7 +846,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#kjmpbjvrqd .gt_first_summary_row {
+#wilamtzrnx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -915,7 +856,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#kjmpbjvrqd .gt_grand_summary_row {
+#wilamtzrnx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -925,7 +866,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#kjmpbjvrqd .gt_first_grand_summary_row {
+#wilamtzrnx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -935,11 +876,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#kjmpbjvrqd .gt_striped {
+#wilamtzrnx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kjmpbjvrqd .gt_table_body {
+#wilamtzrnx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -948,7 +889,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#kjmpbjvrqd .gt_footnotes {
+#wilamtzrnx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -962,13 +903,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#kjmpbjvrqd .gt_footnote {
+#wilamtzrnx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#kjmpbjvrqd .gt_sourcenotes {
+#wilamtzrnx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -982,46 +923,46 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#kjmpbjvrqd .gt_sourcenote {
+#wilamtzrnx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#kjmpbjvrqd .gt_left {
+#wilamtzrnx .gt_left {
   text-align: left;
 }
 
-#kjmpbjvrqd .gt_center {
+#wilamtzrnx .gt_center {
   text-align: center;
 }
 
-#kjmpbjvrqd .gt_right {
+#wilamtzrnx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kjmpbjvrqd .gt_font_normal {
+#wilamtzrnx .gt_font_normal {
   font-weight: normal;
 }
 
-#kjmpbjvrqd .gt_font_bold {
+#wilamtzrnx .gt_font_bold {
   font-weight: bold;
 }
 
-#kjmpbjvrqd .gt_font_italic {
+#wilamtzrnx .gt_font_italic {
   font-style: italic;
 }
 
-#kjmpbjvrqd .gt_super {
+#wilamtzrnx .gt_super {
   font-size: 65%;
 }
 
-#kjmpbjvrqd .gt_footnote_marks {
+#wilamtzrnx .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="kjmpbjvrqd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="wilamtzrnx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1109,6 +1050,46 @@ div.tocify {
     <tr>
       <td class="gt_row gt_left">new_deaths_smoothed_per_million</td>
       <td class="gt_row gt_left">New deaths attributed to COVID-19 (7-day smoothed) per 1,000,000 people</td>
+      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">icu_patients</td>
+      <td class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day</td>
+      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">icu_patients_per_million</td>
+      <td class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day per 1,000,000 people</td>
+      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">hosp_patients</td>
+      <td class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day</td>
+      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">hosp_patients_per_million</td>
+      <td class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day per 1,000,000 people</td>
+      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">weekly_icu_admissions</td>
+      <td class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week</td>
+      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">weekly_icu_admissions_per_million</td>
+      <td class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week per 1,000,000 people</td>
+      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">weekly_hosp_admissions</td>
+      <td class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week</td>
+      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">weekly_hosp_admissions_per_million</td>
+      <td class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week per 1,000,000 people</td>
       <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
     </tr>
     <tr>
@@ -1266,11 +1247,26 @@ div.tocify {
 ## 2                       NA                     NA
 ## 3                       NA                      0
 ## 4                       NA                     NA
-##   new_deaths_smoothed_per_million total_tests new_tests
-## 1                              NA          NA        NA
-## 2                               0          NA        NA
-## 3                               0          NA        NA
-## 4                               0          NA        NA
+##   new_deaths_smoothed_per_million icu_patients icu_patients_per_million
+## 1                              NA           NA                       NA
+## 2                               0           NA                       NA
+## 3                               0           NA                       NA
+## 4                               0           NA                       NA
+##   hosp_patients hosp_patients_per_million weekly_icu_admissions
+## 1            NA                        NA                    NA
+## 2            NA                        NA                    NA
+## 3            NA                        NA                    NA
+## 4            NA                        NA                    NA
+##   weekly_icu_admissions_per_million weekly_hosp_admissions
+## 1                                NA                     NA
+## 2                                NA                     NA
+## 3                                NA                     NA
+## 4                                NA                     NA
+##   weekly_hosp_admissions_per_million total_tests new_tests
+## 1                                 NA          NA        NA
+## 2                                 NA          NA        NA
+## 3                                 NA          NA        NA
+## 4                                 NA          NA        NA
 ##   total_tests_per_thousand new_tests_per_thousand new_tests_smoothed
 ## 1                       NA                     NA                 NA
 ## 2                       NA                     NA                 NA
@@ -1313,7 +1309,7 @@ div.tocify {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#umyontoqrf .gt_table {
+#ynywzwipnt .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1338,7 +1334,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#umyontoqrf .gt_heading {
+#ynywzwipnt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1350,7 +1346,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#umyontoqrf .gt_title {
+#ynywzwipnt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1360,7 +1356,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#umyontoqrf .gt_subtitle {
+#ynywzwipnt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1370,13 +1366,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#umyontoqrf .gt_bottom_border {
+#ynywzwipnt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#umyontoqrf .gt_col_headings {
+#ynywzwipnt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1391,7 +1387,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#umyontoqrf .gt_col_heading {
+#ynywzwipnt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1411,7 +1407,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#umyontoqrf .gt_column_spanner_outer {
+#ynywzwipnt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1423,15 +1419,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#umyontoqrf .gt_column_spanner_outer:first-child {
+#ynywzwipnt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#umyontoqrf .gt_column_spanner_outer:last-child {
+#ynywzwipnt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#umyontoqrf .gt_column_spanner {
+#ynywzwipnt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1443,7 +1439,7 @@ div.tocify {
   width: 100%;
 }
 
-#umyontoqrf .gt_group_heading {
+#ynywzwipnt .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1465,7 +1461,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#umyontoqrf .gt_empty_group_heading {
+#ynywzwipnt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1480,15 +1476,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#umyontoqrf .gt_from_md > :first-child {
+#ynywzwipnt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#umyontoqrf .gt_from_md > :last-child {
+#ynywzwipnt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#umyontoqrf .gt_row {
+#ynywzwipnt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1507,7 +1503,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#umyontoqrf .gt_stub {
+#ynywzwipnt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1519,7 +1515,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#umyontoqrf .gt_summary_row {
+#ynywzwipnt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1529,7 +1525,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#umyontoqrf .gt_first_summary_row {
+#ynywzwipnt .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1539,7 +1535,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#umyontoqrf .gt_grand_summary_row {
+#ynywzwipnt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1549,7 +1545,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#umyontoqrf .gt_first_grand_summary_row {
+#ynywzwipnt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1559,11 +1555,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#umyontoqrf .gt_striped {
+#ynywzwipnt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#umyontoqrf .gt_table_body {
+#ynywzwipnt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1572,7 +1568,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#umyontoqrf .gt_footnotes {
+#ynywzwipnt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1586,13 +1582,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#umyontoqrf .gt_footnote {
+#ynywzwipnt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#umyontoqrf .gt_sourcenotes {
+#ynywzwipnt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1606,46 +1602,46 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#umyontoqrf .gt_sourcenote {
+#ynywzwipnt .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#umyontoqrf .gt_left {
+#ynywzwipnt .gt_left {
   text-align: left;
 }
 
-#umyontoqrf .gt_center {
+#ynywzwipnt .gt_center {
   text-align: center;
 }
 
-#umyontoqrf .gt_right {
+#ynywzwipnt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#umyontoqrf .gt_font_normal {
+#ynywzwipnt .gt_font_normal {
   font-weight: normal;
 }
 
-#umyontoqrf .gt_font_bold {
+#ynywzwipnt .gt_font_bold {
   font-weight: bold;
 }
 
-#umyontoqrf .gt_font_italic {
+#ynywzwipnt .gt_font_italic {
   font-style: italic;
 }
 
-#umyontoqrf .gt_super {
+#ynywzwipnt .gt_super {
   font-size: 65%;
 }
 
-#umyontoqrf .gt_footnote_marks {
+#ynywzwipnt .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="umyontoqrf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ynywzwipnt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1750,50 +1746,51 @@ div.tocify {
 ## [121] &quot;Morocco&quot;                          &quot;Monaco&quot;                          
 ## [123] &quot;Moldova&quot;                          &quot;Madagascar&quot;                      
 ## [125] &quot;Maldives&quot;                         &quot;Mexico&quot;                          
-## [127] &quot;Macedonia&quot;                        &quot;Mali&quot;                            
-## [129] &quot;Malta&quot;                            &quot;Myanmar&quot;                         
-## [131] &quot;Montenegro&quot;                       &quot;Mongolia&quot;                        
-## [133] &quot;Northern Mariana Islands&quot;         &quot;Mozambique&quot;                      
-## [135] &quot;Mauritania&quot;                       &quot;Montserrat&quot;                      
-## [137] &quot;Mauritius&quot;                        &quot;Malawi&quot;                          
-## [139] &quot;Malaysia&quot;                         &quot;Namibia&quot;                         
-## [141] &quot;New Caledonia&quot;                    &quot;Niger&quot;                           
-## [143] &quot;Nigeria&quot;                          &quot;Nicaragua&quot;                       
-## [145] &quot;Netherlands&quot;                      &quot;Norway&quot;                          
-## [147] &quot;Nepal&quot;                            &quot;New Zealand&quot;                     
-## [149] &quot;Oman&quot;                             &quot;Pakistan&quot;                        
-## [151] &quot;Panama&quot;                           &quot;Peru&quot;                            
-## [153] &quot;Philippines&quot;                      &quot;Papua New Guinea&quot;                
-## [155] &quot;Poland&quot;                           &quot;Puerto Rico&quot;                     
-## [157] &quot;Portugal&quot;                         &quot;Paraguay&quot;                        
-## [159] &quot;Palestine&quot;                        &quot;French Polynesia&quot;                
-## [161] &quot;Qatar&quot;                            &quot;Romania&quot;                         
-## [163] &quot;Russia&quot;                           &quot;Rwanda&quot;                          
-## [165] &quot;Saudi Arabia&quot;                     &quot;Sudan&quot;                           
-## [167] &quot;Senegal&quot;                          &quot;Singapore&quot;                       
-## [169] &quot;Solomon Islands&quot;                  &quot;Sierra Leone&quot;                    
-## [171] &quot;El Salvador&quot;                      &quot;San Marino&quot;                      
-## [173] &quot;Somalia&quot;                          &quot;Serbia&quot;                          
-## [175] &quot;South Sudan&quot;                      &quot;Sao Tome and Principe&quot;           
-## [177] &quot;Suriname&quot;                         &quot;Slovakia&quot;                        
-## [179] &quot;Slovenia&quot;                         &quot;Sweden&quot;                          
-## [181] &quot;Swaziland&quot;                        &quot;Sint Maarten (Dutch part)&quot;       
-## [183] &quot;Seychelles&quot;                       &quot;Syria&quot;                           
-## [185] &quot;Turks and Caicos Islands&quot;         &quot;Chad&quot;                            
-## [187] &quot;Togo&quot;                             &quot;Thailand&quot;                        
-## [189] &quot;Tajikistan&quot;                       &quot;Timor&quot;                           
-## [191] &quot;Trinidad and Tobago&quot;              &quot;Tunisia&quot;                         
-## [193] &quot;Turkey&quot;                           &quot;Taiwan&quot;                          
-## [195] &quot;Tanzania&quot;                         &quot;Uganda&quot;                          
-## [197] &quot;Ukraine&quot;                          &quot;Uruguay&quot;                         
-## [199] &quot;United States&quot;                    &quot;Uzbekistan&quot;                      
-## [201] &quot;Vatican&quot;                          &quot;Saint Vincent and the Grenadines&quot;
-## [203] &quot;Venezuela&quot;                        &quot;British Virgin Islands&quot;          
-## [205] &quot;United States Virgin Islands&quot;     &quot;Vietnam&quot;                         
-## [207] &quot;Wallis and Futuna&quot;                &quot;Kosovo&quot;                          
-## [209] &quot;Yemen&quot;                            &quot;South Africa&quot;                    
-## [211] &quot;Zambia&quot;                           &quot;Zimbabwe&quot;                        
-## [213] &quot;World&quot;                            &quot;International&quot;</code></pre>
+## [127] &quot;Marshall Islands&quot;                 &quot;Macedonia&quot;                       
+## [129] &quot;Mali&quot;                             &quot;Malta&quot;                           
+## [131] &quot;Myanmar&quot;                          &quot;Montenegro&quot;                      
+## [133] &quot;Mongolia&quot;                         &quot;Northern Mariana Islands&quot;        
+## [135] &quot;Mozambique&quot;                       &quot;Mauritania&quot;                      
+## [137] &quot;Montserrat&quot;                       &quot;Mauritius&quot;                       
+## [139] &quot;Malawi&quot;                           &quot;Malaysia&quot;                        
+## [141] &quot;Namibia&quot;                          &quot;New Caledonia&quot;                   
+## [143] &quot;Niger&quot;                            &quot;Nigeria&quot;                         
+## [145] &quot;Nicaragua&quot;                        &quot;Netherlands&quot;                     
+## [147] &quot;Norway&quot;                           &quot;Nepal&quot;                           
+## [149] &quot;New Zealand&quot;                      &quot;Oman&quot;                            
+## [151] &quot;Pakistan&quot;                         &quot;Panama&quot;                          
+## [153] &quot;Peru&quot;                             &quot;Philippines&quot;                     
+## [155] &quot;Papua New Guinea&quot;                 &quot;Poland&quot;                          
+## [157] &quot;Puerto Rico&quot;                      &quot;Portugal&quot;                        
+## [159] &quot;Paraguay&quot;                         &quot;Palestine&quot;                       
+## [161] &quot;French Polynesia&quot;                 &quot;Qatar&quot;                           
+## [163] &quot;Romania&quot;                          &quot;Russia&quot;                          
+## [165] &quot;Rwanda&quot;                           &quot;Saudi Arabia&quot;                    
+## [167] &quot;Sudan&quot;                            &quot;Senegal&quot;                         
+## [169] &quot;Singapore&quot;                        &quot;Solomon Islands&quot;                 
+## [171] &quot;Sierra Leone&quot;                     &quot;El Salvador&quot;                     
+## [173] &quot;San Marino&quot;                       &quot;Somalia&quot;                         
+## [175] &quot;Serbia&quot;                           &quot;South Sudan&quot;                     
+## [177] &quot;Sao Tome and Principe&quot;            &quot;Suriname&quot;                        
+## [179] &quot;Slovakia&quot;                         &quot;Slovenia&quot;                        
+## [181] &quot;Sweden&quot;                           &quot;Swaziland&quot;                       
+## [183] &quot;Sint Maarten (Dutch part)&quot;        &quot;Seychelles&quot;                      
+## [185] &quot;Syria&quot;                            &quot;Turks and Caicos Islands&quot;        
+## [187] &quot;Chad&quot;                             &quot;Togo&quot;                            
+## [189] &quot;Thailand&quot;                         &quot;Tajikistan&quot;                      
+## [191] &quot;Timor&quot;                            &quot;Trinidad and Tobago&quot;             
+## [193] &quot;Tunisia&quot;                          &quot;Turkey&quot;                          
+## [195] &quot;Taiwan&quot;                           &quot;Tanzania&quot;                        
+## [197] &quot;Uganda&quot;                           &quot;Ukraine&quot;                         
+## [199] &quot;Uruguay&quot;                          &quot;United States&quot;                   
+## [201] &quot;Uzbekistan&quot;                       &quot;Vatican&quot;                         
+## [203] &quot;Saint Vincent and the Grenadines&quot; &quot;Venezuela&quot;                       
+## [205] &quot;British Virgin Islands&quot;           &quot;United States Virgin Islands&quot;    
+## [207] &quot;Vietnam&quot;                          &quot;Wallis and Futuna&quot;               
+## [209] &quot;Kosovo&quot;                           &quot;Yemen&quot;                           
+## [211] &quot;South Africa&quot;                     &quot;Zambia&quot;                          
+## [213] &quot;Zimbabwe&quot;                         &quot;World&quot;                           
+## [215] &quot;International&quot;</code></pre>
 <hr />
 </div>
 <div id="importante" class="section level1">
@@ -1820,7 +1817,7 @@ div.tocify {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#muiatknrvf .gt_table {
+#bxnpvntbtp .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1845,7 +1842,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#muiatknrvf .gt_heading {
+#bxnpvntbtp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1857,7 +1854,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#muiatknrvf .gt_title {
+#bxnpvntbtp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1867,7 +1864,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#muiatknrvf .gt_subtitle {
+#bxnpvntbtp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1877,13 +1874,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#muiatknrvf .gt_bottom_border {
+#bxnpvntbtp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#muiatknrvf .gt_col_headings {
+#bxnpvntbtp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1898,7 +1895,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#muiatknrvf .gt_col_heading {
+#bxnpvntbtp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1918,7 +1915,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#muiatknrvf .gt_column_spanner_outer {
+#bxnpvntbtp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1930,15 +1927,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#muiatknrvf .gt_column_spanner_outer:first-child {
+#bxnpvntbtp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#muiatknrvf .gt_column_spanner_outer:last-child {
+#bxnpvntbtp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#muiatknrvf .gt_column_spanner {
+#bxnpvntbtp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1950,7 +1947,7 @@ div.tocify {
   width: 100%;
 }
 
-#muiatknrvf .gt_group_heading {
+#bxnpvntbtp .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1972,7 +1969,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#muiatknrvf .gt_empty_group_heading {
+#bxnpvntbtp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1987,15 +1984,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#muiatknrvf .gt_from_md > :first-child {
+#bxnpvntbtp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#muiatknrvf .gt_from_md > :last-child {
+#bxnpvntbtp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#muiatknrvf .gt_row {
+#bxnpvntbtp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2014,7 +2011,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#muiatknrvf .gt_stub {
+#bxnpvntbtp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2026,7 +2023,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#muiatknrvf .gt_summary_row {
+#bxnpvntbtp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2036,7 +2033,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#muiatknrvf .gt_first_summary_row {
+#bxnpvntbtp .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2046,7 +2043,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#muiatknrvf .gt_grand_summary_row {
+#bxnpvntbtp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2056,7 +2053,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#muiatknrvf .gt_first_grand_summary_row {
+#bxnpvntbtp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2066,11 +2063,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#muiatknrvf .gt_striped {
+#bxnpvntbtp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#muiatknrvf .gt_table_body {
+#bxnpvntbtp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2079,7 +2076,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#muiatknrvf .gt_footnotes {
+#bxnpvntbtp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2093,13 +2090,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#muiatknrvf .gt_footnote {
+#bxnpvntbtp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#muiatknrvf .gt_sourcenotes {
+#bxnpvntbtp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2113,46 +2110,46 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#muiatknrvf .gt_sourcenote {
+#bxnpvntbtp .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#muiatknrvf .gt_left {
+#bxnpvntbtp .gt_left {
   text-align: left;
 }
 
-#muiatknrvf .gt_center {
+#bxnpvntbtp .gt_center {
   text-align: center;
 }
 
-#muiatknrvf .gt_right {
+#bxnpvntbtp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#muiatknrvf .gt_font_normal {
+#bxnpvntbtp .gt_font_normal {
   font-weight: normal;
 }
 
-#muiatknrvf .gt_font_bold {
+#bxnpvntbtp .gt_font_bold {
   font-weight: bold;
 }
 
-#muiatknrvf .gt_font_italic {
+#bxnpvntbtp .gt_font_italic {
   font-style: italic;
 }
 
-#muiatknrvf .gt_super {
+#bxnpvntbtp .gt_super {
   font-size: 65%;
 }
 
-#muiatknrvf .gt_footnote_marks {
+#bxnpvntbtp .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="muiatknrvf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="bxnpvntbtp" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -2205,7 +2202,7 @@ div.tocify {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#eagbgpcbok .gt_table {
+#ewtpsfkdyz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2230,7 +2227,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#eagbgpcbok .gt_heading {
+#ewtpsfkdyz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2242,7 +2239,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#eagbgpcbok .gt_title {
+#ewtpsfkdyz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2252,7 +2249,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#eagbgpcbok .gt_subtitle {
+#ewtpsfkdyz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2262,13 +2259,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#eagbgpcbok .gt_bottom_border {
+#ewtpsfkdyz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#eagbgpcbok .gt_col_headings {
+#ewtpsfkdyz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2283,7 +2280,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#eagbgpcbok .gt_col_heading {
+#ewtpsfkdyz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2303,7 +2300,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#eagbgpcbok .gt_column_spanner_outer {
+#ewtpsfkdyz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2315,15 +2312,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#eagbgpcbok .gt_column_spanner_outer:first-child {
+#ewtpsfkdyz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#eagbgpcbok .gt_column_spanner_outer:last-child {
+#ewtpsfkdyz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#eagbgpcbok .gt_column_spanner {
+#ewtpsfkdyz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2335,7 +2332,7 @@ div.tocify {
   width: 100%;
 }
 
-#eagbgpcbok .gt_group_heading {
+#ewtpsfkdyz .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2357,7 +2354,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#eagbgpcbok .gt_empty_group_heading {
+#ewtpsfkdyz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2372,15 +2369,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#eagbgpcbok .gt_from_md > :first-child {
+#ewtpsfkdyz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#eagbgpcbok .gt_from_md > :last-child {
+#ewtpsfkdyz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#eagbgpcbok .gt_row {
+#ewtpsfkdyz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2399,7 +2396,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#eagbgpcbok .gt_stub {
+#ewtpsfkdyz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2411,7 +2408,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#eagbgpcbok .gt_summary_row {
+#ewtpsfkdyz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2421,7 +2418,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#eagbgpcbok .gt_first_summary_row {
+#ewtpsfkdyz .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2431,7 +2428,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#eagbgpcbok .gt_grand_summary_row {
+#ewtpsfkdyz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2441,7 +2438,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#eagbgpcbok .gt_first_grand_summary_row {
+#ewtpsfkdyz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2451,11 +2448,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#eagbgpcbok .gt_striped {
+#ewtpsfkdyz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#eagbgpcbok .gt_table_body {
+#ewtpsfkdyz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2464,7 +2461,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#eagbgpcbok .gt_footnotes {
+#ewtpsfkdyz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2478,13 +2475,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#eagbgpcbok .gt_footnote {
+#ewtpsfkdyz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#eagbgpcbok .gt_sourcenotes {
+#ewtpsfkdyz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2498,46 +2495,46 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#eagbgpcbok .gt_sourcenote {
+#ewtpsfkdyz .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#eagbgpcbok .gt_left {
+#ewtpsfkdyz .gt_left {
   text-align: left;
 }
 
-#eagbgpcbok .gt_center {
+#ewtpsfkdyz .gt_center {
   text-align: center;
 }
 
-#eagbgpcbok .gt_right {
+#ewtpsfkdyz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#eagbgpcbok .gt_font_normal {
+#ewtpsfkdyz .gt_font_normal {
   font-weight: normal;
 }
 
-#eagbgpcbok .gt_font_bold {
+#ewtpsfkdyz .gt_font_bold {
   font-weight: bold;
 }
 
-#eagbgpcbok .gt_font_italic {
+#ewtpsfkdyz .gt_font_italic {
   font-style: italic;
 }
 
-#eagbgpcbok .gt_super {
+#ewtpsfkdyz .gt_super {
   font-size: 65%;
 }
 
-#eagbgpcbok .gt_footnote_marks {
+#ewtpsfkdyz .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="eagbgpcbok" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ewtpsfkdyz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -2553,229 +2550,229 @@ div.tocify {
       <td colspan="5" class="gt_group_heading">Bahamas</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">28.89778</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_right">46.08138</td>
+      <td class="gt_row gt_right">29.36910</td>
+      <td class="gt_row gt_right">3.0</td>
+      <td class="gt_row gt_right">45.72181</td>
       <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">3.072092</td>
+      <td class="gt_row gt_right">2.995335</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">28.89778</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_right">46.08138</td>
+      <td class="gt_row gt_right">29.36910</td>
+      <td class="gt_row gt_right">3.0</td>
+      <td class="gt_row gt_right">45.72181</td>
       <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">3.072092</td>
+      <td class="gt_row gt_right">2.995335</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">28.89778</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_right">46.08138</td>
-      <td class="gt_row gt_right">2.00</td>
-      <td class="gt_row gt_right">3.072092</td>
+      <td class="gt_row gt_right">29.36910</td>
+      <td class="gt_row gt_right">3.0</td>
+      <td class="gt_row gt_right">45.72181</td>
+      <td class="gt_row gt_right">3.00</td>
+      <td class="gt_row gt_right">2.995335</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">28.89778</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_right">46.08138</td>
+      <td class="gt_row gt_right">29.36910</td>
+      <td class="gt_row gt_right">3.0</td>
+      <td class="gt_row gt_right">45.72181</td>
       <td class="gt_row gt_right">49.00</td>
-      <td class="gt_row gt_right">3.072092</td>
+      <td class="gt_row gt_right">2.995335</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">28.89778</td>
-      <td class="gt_row gt_right">2</td>
-      <td class="gt_row gt_right">46.08138</td>
+      <td class="gt_row gt_right">29.36910</td>
+      <td class="gt_row gt_right">3.0</td>
+      <td class="gt_row gt_right">45.72181</td>
       <td class="gt_row gt_right">242.00</td>
-      <td class="gt_row gt_right">3.072092</td>
+      <td class="gt_row gt_right">2.995335</td>
     </tr>
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Costa Rica</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">448.17872</td>
-      <td class="gt_row gt_right">102</td>
-      <td class="gt_row gt_right">543.07823</td>
+      <td class="gt_row gt_right">466.09465</td>
+      <td class="gt_row gt_right">143.0</td>
+      <td class="gt_row gt_right">547.63963</td>
       <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">35.426518</td>
+      <td class="gt_row gt_right">35.131099</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">448.17872</td>
-      <td class="gt_row gt_right">102</td>
-      <td class="gt_row gt_right">543.07823</td>
-      <td class="gt_row gt_right">12.50</td>
-      <td class="gt_row gt_right">35.426518</td>
+      <td class="gt_row gt_right">466.09465</td>
+      <td class="gt_row gt_right">143.0</td>
+      <td class="gt_row gt_right">547.63963</td>
+      <td class="gt_row gt_right">13.00</td>
+      <td class="gt_row gt_right">35.131099</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">448.17872</td>
-      <td class="gt_row gt_right">102</td>
-      <td class="gt_row gt_right">543.07823</td>
-      <td class="gt_row gt_right">102.00</td>
-      <td class="gt_row gt_right">35.426518</td>
+      <td class="gt_row gt_right">466.09465</td>
+      <td class="gt_row gt_right">143.0</td>
+      <td class="gt_row gt_right">547.63963</td>
+      <td class="gt_row gt_right">143.00</td>
+      <td class="gt_row gt_right">35.131099</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">448.17872</td>
-      <td class="gt_row gt_right">102</td>
-      <td class="gt_row gt_right">543.07823</td>
-      <td class="gt_row gt_right">844.50</td>
-      <td class="gt_row gt_right">35.426518</td>
+      <td class="gt_row gt_right">466.09465</td>
+      <td class="gt_row gt_right">143.0</td>
+      <td class="gt_row gt_right">547.63963</td>
+      <td class="gt_row gt_right">914.00</td>
+      <td class="gt_row gt_right">35.131099</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">448.17872</td>
-      <td class="gt_row gt_right">102</td>
-      <td class="gt_row gt_right">543.07823</td>
+      <td class="gt_row gt_right">466.09465</td>
+      <td class="gt_row gt_right">143.0</td>
+      <td class="gt_row gt_right">547.63963</td>
       <td class="gt_row gt_right">1947.00</td>
-      <td class="gt_row gt_right">35.426518</td>
+      <td class="gt_row gt_right">35.131099</td>
     </tr>
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Cuba</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">29.28947</td>
-      <td class="gt_row gt_right">24</td>
-      <td class="gt_row gt_right">22.88805</td>
+      <td class="gt_row gt_right">30.27119</td>
+      <td class="gt_row gt_right">25.5</td>
+      <td class="gt_row gt_right">23.55913</td>
       <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">1.515798</td>
+      <td class="gt_row gt_right">1.533569</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">29.28947</td>
-      <td class="gt_row gt_right">24</td>
-      <td class="gt_row gt_right">22.88805</td>
+      <td class="gt_row gt_right">30.27119</td>
+      <td class="gt_row gt_right">25.5</td>
+      <td class="gt_row gt_right">23.55913</td>
       <td class="gt_row gt_right">9.00</td>
-      <td class="gt_row gt_right">1.515798</td>
+      <td class="gt_row gt_right">1.533569</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">29.28947</td>
-      <td class="gt_row gt_right">24</td>
-      <td class="gt_row gt_right">22.88805</td>
-      <td class="gt_row gt_right">24.00</td>
-      <td class="gt_row gt_right">1.515798</td>
+      <td class="gt_row gt_right">30.27119</td>
+      <td class="gt_row gt_right">25.5</td>
+      <td class="gt_row gt_right">23.55913</td>
+      <td class="gt_row gt_right">25.50</td>
+      <td class="gt_row gt_right">1.533569</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">29.28947</td>
-      <td class="gt_row gt_right">24</td>
-      <td class="gt_row gt_right">22.88805</td>
+      <td class="gt_row gt_right">30.27119</td>
+      <td class="gt_row gt_right">25.5</td>
+      <td class="gt_row gt_right">23.55913</td>
       <td class="gt_row gt_right">48.00</td>
-      <td class="gt_row gt_right">1.515798</td>
+      <td class="gt_row gt_right">1.533569</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">29.28947</td>
-      <td class="gt_row gt_right">24</td>
-      <td class="gt_row gt_right">22.88805</td>
-      <td class="gt_row gt_right">93.00</td>
-      <td class="gt_row gt_right">1.515798</td>
+      <td class="gt_row gt_right">30.27119</td>
+      <td class="gt_row gt_right">25.5</td>
+      <td class="gt_row gt_right">23.55913</td>
+      <td class="gt_row gt_right">109.00</td>
+      <td class="gt_row gt_right">1.533569</td>
     </tr>
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Haiti</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">40.47534</td>
-      <td class="gt_row gt_right">17</td>
-      <td class="gt_row gt_right">58.06806</td>
+      <td class="gt_row gt_right">39.39394</td>
+      <td class="gt_row gt_right">17.0</td>
+      <td class="gt_row gt_right">57.40728</td>
       <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">3.888525</td>
+      <td class="gt_row gt_right">3.777122</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">40.47534</td>
-      <td class="gt_row gt_right">17</td>
-      <td class="gt_row gt_right">58.06806</td>
-      <td class="gt_row gt_right">2.00</td>
-      <td class="gt_row gt_right">3.888525</td>
+      <td class="gt_row gt_right">39.39394</td>
+      <td class="gt_row gt_right">17.0</td>
+      <td class="gt_row gt_right">57.40728</td>
+      <td class="gt_row gt_right">1.00</td>
+      <td class="gt_row gt_right">3.777122</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">40.47534</td>
-      <td class="gt_row gt_right">17</td>
-      <td class="gt_row gt_right">58.06806</td>
+      <td class="gt_row gt_right">39.39394</td>
+      <td class="gt_row gt_right">17.0</td>
+      <td class="gt_row gt_right">57.40728</td>
       <td class="gt_row gt_right">17.00</td>
-      <td class="gt_row gt_right">3.888525</td>
+      <td class="gt_row gt_right">3.777122</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">40.47534</td>
-      <td class="gt_row gt_right">17</td>
-      <td class="gt_row gt_right">58.06806</td>
-      <td class="gt_row gt_right">49.50</td>
-      <td class="gt_row gt_right">3.888525</td>
+      <td class="gt_row gt_right">39.39394</td>
+      <td class="gt_row gt_right">17.0</td>
+      <td class="gt_row gt_right">57.40728</td>
+      <td class="gt_row gt_right">48.00</td>
+      <td class="gt_row gt_right">3.777122</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">40.47534</td>
-      <td class="gt_row gt_right">17</td>
-      <td class="gt_row gt_right">58.06806</td>
+      <td class="gt_row gt_right">39.39394</td>
+      <td class="gt_row gt_right">17.0</td>
+      <td class="gt_row gt_right">57.40728</td>
       <td class="gt_row gt_right">284.00</td>
-      <td class="gt_row gt_right">3.888525</td>
+      <td class="gt_row gt_right">3.777122</td>
     </tr>
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Jamaica</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">38.20435</td>
-      <td class="gt_row gt_right">8</td>
-      <td class="gt_row gt_right">57.78765</td>
+      <td class="gt_row gt_right">39.18487</td>
+      <td class="gt_row gt_right">8.0</td>
+      <td class="gt_row gt_right">57.31444</td>
       <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">3.810405</td>
+      <td class="gt_row gt_right">3.715143</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">38.20435</td>
-      <td class="gt_row gt_right">8</td>
-      <td class="gt_row gt_right">57.78765</td>
+      <td class="gt_row gt_right">39.18487</td>
+      <td class="gt_row gt_right">8.0</td>
+      <td class="gt_row gt_right">57.31444</td>
       <td class="gt_row gt_right">2.00</td>
-      <td class="gt_row gt_right">3.810405</td>
+      <td class="gt_row gt_right">3.715143</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">38.20435</td>
-      <td class="gt_row gt_right">8</td>
-      <td class="gt_row gt_right">57.78765</td>
+      <td class="gt_row gt_right">39.18487</td>
+      <td class="gt_row gt_right">8.0</td>
+      <td class="gt_row gt_right">57.31444</td>
       <td class="gt_row gt_right">8.00</td>
-      <td class="gt_row gt_right">3.810405</td>
+      <td class="gt_row gt_right">3.715143</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">38.20435</td>
-      <td class="gt_row gt_right">8</td>
-      <td class="gt_row gt_right">57.78765</td>
-      <td class="gt_row gt_right">62.25</td>
-      <td class="gt_row gt_right">3.810405</td>
+      <td class="gt_row gt_right">39.18487</td>
+      <td class="gt_row gt_right">8.0</td>
+      <td class="gt_row gt_right">57.31444</td>
+      <td class="gt_row gt_right">65.75</td>
+      <td class="gt_row gt_right">3.715143</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">38.20435</td>
-      <td class="gt_row gt_right">8</td>
-      <td class="gt_row gt_right">57.78765</td>
+      <td class="gt_row gt_right">39.18487</td>
+      <td class="gt_row gt_right">8.0</td>
+      <td class="gt_row gt_right">57.31444</td>
       <td class="gt_row gt_right">326.00</td>
-      <td class="gt_row gt_right">3.810405</td>
+      <td class="gt_row gt_right">3.715143</td>
     </tr>
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Puerto Rico</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">295.33488</td>
-      <td class="gt_row gt_right">154</td>
-      <td class="gt_row gt_right">317.22662</td>
+      <td class="gt_row gt_right">309.50673</td>
+      <td class="gt_row gt_right">182.0</td>
+      <td class="gt_row gt_right">332.94739</td>
       <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">21.634676</td>
+      <td class="gt_row gt_right">22.295806</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">295.33488</td>
-      <td class="gt_row gt_right">154</td>
-      <td class="gt_row gt_right">317.22662</td>
+      <td class="gt_row gt_right">309.50673</td>
+      <td class="gt_row gt_right">182.0</td>
+      <td class="gt_row gt_right">332.94739</td>
       <td class="gt_row gt_right">61.00</td>
-      <td class="gt_row gt_right">21.634676</td>
+      <td class="gt_row gt_right">22.295806</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">295.33488</td>
-      <td class="gt_row gt_right">154</td>
-      <td class="gt_row gt_right">317.22662</td>
-      <td class="gt_row gt_right">154.00</td>
-      <td class="gt_row gt_right">21.634676</td>
+      <td class="gt_row gt_right">309.50673</td>
+      <td class="gt_row gt_right">182.0</td>
+      <td class="gt_row gt_right">332.94739</td>
+      <td class="gt_row gt_right">182.00</td>
+      <td class="gt_row gt_right">22.295806</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">295.33488</td>
-      <td class="gt_row gt_right">154</td>
-      <td class="gt_row gt_right">317.22662</td>
-      <td class="gt_row gt_right">501.00</td>
-      <td class="gt_row gt_right">21.634676</td>
+      <td class="gt_row gt_right">309.50673</td>
+      <td class="gt_row gt_right">182.0</td>
+      <td class="gt_row gt_right">332.94739</td>
+      <td class="gt_row gt_right">518.50</td>
+      <td class="gt_row gt_right">22.295806</td>
     </tr>
     <tr>
-      <td class="gt_row gt_right">295.33488</td>
-      <td class="gt_row gt_right">154</td>
-      <td class="gt_row gt_right">317.22662</td>
+      <td class="gt_row gt_right">309.50673</td>
+      <td class="gt_row gt_right">182.0</td>
+      <td class="gt_row gt_right">332.94739</td>
       <td class="gt_row gt_right">1947.00</td>
-      <td class="gt_row gt_right">21.634676</td>
+      <td class="gt_row gt_right">22.295806</td>
     </tr>
   </tbody>
   
@@ -2793,8 +2790,8 @@ div.tocify {
 ##   &lt;chr&gt;       &lt;dbl&gt;
 ## 1 Bahamas         0
 ## 2 Costa Rica      0
-## 3 Costa Rica      6
-## 4 Cuba            4
+## 3 Cuba            4
+## 4 Cuba           48
 ## 5 Haiti           0
 ## 6 Jamaica         0
 ## 7 Jamaica         2
@@ -2839,7 +2836,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

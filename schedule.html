@@ -14,7 +14,7 @@
 
 <title>Calendario, Primer Semestre 2020</title>
 
-<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,6 +26,8 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -34,7 +36,7 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      </style>
+    </style>
 
 
 
@@ -344,7 +346,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="Descripción.html">Home</a>
+  <a href="Descripcion.html">Home</a>
 </li>
 <li>
   <a href="schedule.html">Calendario</a>
@@ -506,11 +508,12 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-10-28&quot;</code></pre>
+<pre><code>## [1] &quot;2020-11-05&quot;</code></pre>
+<p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_Visualizacion_Datos.png" width="20%" /></p>
 <hr />
 <div id="favor-mirar-el-calendario-regularmente-ya-que-este-puede-cambiar" class="section level1">
 <h1>Favor mirar el calendario regularmente, <span style="color: black;">ya que este puede cambiar!</span></h1>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: 0%; margin-right: auto;  " id="tab:unnamed-chunk-6">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: 0%; margin-right: auto;  " id="tab:unnamed-chunk-7">
 <caption style="caption-side: top; text-align: left;">Calendario tentativo</caption><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 2pt 0pt;    padding: 6pt 6pt 6pt 0pt; background-color: rgb(0, 0, 255); font-weight: bold;"><span style="color: rgb(255, 255, 255);">Semana</span></th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 2pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(160, 32, 240); font-weight: bold;"><span style="color: rgb(255, 255, 255);">Tópico</span></th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 2pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(210, 105, 30); font-weight: bold;"><span style="color: rgb(255, 255, 255);">Asignación.de.Lectura.website</span></th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 2pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(46, 139, 87); font-weight: bold;"><span style="color: rgb(255, 255, 255);">Libro</span></th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 2pt 0pt;    padding: 6pt 0pt 6pt 6pt; background-color: rgb(255, 0, 0); font-weight: bold;"><span style="color: rgb(255, 255, 255);">Tareas</span></th></tr>
 <tr>
@@ -590,7 +593,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

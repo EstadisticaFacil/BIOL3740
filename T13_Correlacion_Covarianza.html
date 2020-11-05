@@ -13,7 +13,7 @@
 
 <title>T13_Correlación_Covarianza</title>
 
-<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,6 +26,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -34,7 +36,7 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      </style>
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -359,7 +361,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="Descripción.html">Home</a>
+  <a href="Descripcion.html">Home</a>
 </li>
 <li>
   <a href="schedule.html">Calendario</a>
@@ -520,7 +522,8 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-10-28&quot;</code></pre>
+<pre><code>## [1] &quot;2020-11-05&quot;</code></pre>
+<p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_Visualizacion_Datos.png" width="20%" /></p>
 <pre class="r"><code>library(ggplot2)</code></pre>
 <p>Correlations and covariance</p>
 <pre class="r"><code>library(readr)
@@ -530,7 +533,7 @@ DownloadFestival &lt;- read_csv(&quot;Data_files_csv/DownloadFestival.csv&quot;)
 
 dlf=DownloadFestival  #use shorter data.frame names to make your life easier..... 
 head(dlf)</code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
 <col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ticknumb</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">gender</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day3</th></tr>
 <tr>
@@ -548,7 +551,7 @@ head(dlf)</code></pre>
 </table>
 
 <pre class="r"><code>tail(dlf)</code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-4">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
 <col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">ticknumb</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">gender</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day3</th></tr>
 <tr>
@@ -586,7 +589,7 @@ head(dlf)</code></pre>
 
 ggplot(dlf2, aes(day1))+
   geom_histogram(color=&quot;white&quot;)</code></pre>
-<p><img src="T13_Correlacion_Covarianza_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="T13_Correlacion_Covarianza_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>library(ggplot2)
 head(dlf2)</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:correlation">
@@ -786,7 +789,7 @@ head(examData)</code></pre>
 <pre class="r"><code>ggpairs(examData, ggplot2::aes(colour=Gender))</code></pre>
 <p><img src="T13_Correlacion_Covarianza_files/figure-html/graphic%202-1.png" width="672" /></p>
 <pre class="r"><code>ggpairs(examData[,c(2:5)], ggplot2::aes(colour=Gender)) </code></pre>
-<p><img src="T13_Correlacion_Covarianza_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="T13_Correlacion_Covarianza_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 </div>
 <div id="in-this-code-i-removed-the-first-column-which-is-just-the-code-of-the-individual-by-examdatac25-by-removing-column-1." class="section level1">
@@ -822,7 +825,7 @@ The_Biggest_Liar &lt;- read_csv(&quot;Data_files_csv/The Biggest Liar.csv&quot;)
 liarData=The_Biggest_Liar
 
 head(liarData)</code></pre>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-10">
 <col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Creativity</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Position</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Novice</th></tr>
 <tr>
@@ -862,7 +865,7 @@ boot_kendall</code></pre>
 <pre class="r"><code>boot.ci(boot_kendall)</code></pre>
 <pre class="r"><code>ggplot(liarData, aes(Creativity, Position))+
   geom_point()</code></pre>
-<p><img src="T13_Correlacion_Covarianza_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="T13_Correlacion_Covarianza_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 </div>
 
@@ -877,7 +880,7 @@ boot_kendall</code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

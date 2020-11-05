@@ -14,7 +14,7 @@
 
 <title>Introducción</title>
 
-<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,6 +26,8 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -34,7 +36,7 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      </style>
+    </style>
 
 
 
@@ -344,7 +346,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="Descripción.html">Home</a>
+  <a href="Descripcion.html">Home</a>
 </li>
 <li>
   <a href="schedule.html">Calendario</a>
@@ -505,13 +507,14 @@ div.tocify {
 </div>
 
 
+<p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_Visualizacion_Datos.png" width="20%" /></p>
 <div id="el-libro-de-la-clase" class="section level1">
 <h1>El libro de la clase</h1>
 <p><a href="https://www.amazon.com/Introductory-Biological-Statistics-Fourth-Havel/dp/1478638184/ref=sr_1_1?dchild=1&amp;keywords=Introductory+Biological+Statistics&amp;qid=1594323793&amp;s=books&amp;sr=1-1">Introductory Biological Statistics by Havel, Hampton and Meiners</a> Presione en el titulo para dirigirlo a Amazon.</p>
 <div style="page-break-after: always;"></div>
 <hr />
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-10-28&quot;</code></pre>
+<pre><code>## [1] &quot;2020-11-05&quot;</code></pre>
 </div>
 <div id="el-proceso-de-investigación" class="section level1">
 <h1>El proceso de investigación:</h1>
@@ -749,7 +752,7 @@ El proceso de Investigación
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

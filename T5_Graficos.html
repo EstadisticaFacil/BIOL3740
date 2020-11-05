@@ -14,7 +14,7 @@
 
 <title>Gráficos con ggplot2</title>
 
-<script src="site_libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,6 +26,8 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -34,68 +36,6 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      pre > code.sourceCode { white-space: pre; position: relative; }
-      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-      pre > code.sourceCode > span:empty { height: 1.2em; }
-      code.sourceCode > span { color: inherit; text-decoration: inherit; }
-      div.sourceCode { margin: 1em 0; }
-      pre.sourceCode { margin: 0; }
-      @media screen {
-      div.sourceCode { overflow: auto; }
-      }
-      @media print {
-      pre > code.sourceCode { white-space: pre-wrap; }
-      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-      }
-      pre.numberSource code
-        { counter-reset: source-line 0; }
-      pre.numberSource code > span
-        { position: relative; left: -4em; counter-increment: source-line; }
-      pre.numberSource code > span > a:first-child::before
-        { content: counter(source-line);
-          position: relative; left: -1em; text-align: right; vertical-align: baseline;
-          border: none; display: inline-block;
-          -webkit-touch-callout: none; -webkit-user-select: none;
-          -khtml-user-select: none; -moz-user-select: none;
-          -ms-user-select: none; user-select: none;
-          padding: 0 4px; width: 4em;
-          color: #aaaaaa;
-        }
-      pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-      div.sourceCode
-        {   }
-      @media screen {
-      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-      }
-      code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-      code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-      code span.at { color: #7d9029; } /* Attribute */
-      code span.bn { color: #40a070; } /* BaseN */
-      code span.bu { } /* BuiltIn */
-      code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-      code span.ch { color: #4070a0; } /* Char */
-      code span.cn { color: #880000; } /* Constant */
-      code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-      code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-      code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-      code span.dt { color: #902000; } /* DataType */
-      code span.dv { color: #40a070; } /* DecVal */
-      code span.er { color: #ff0000; font-weight: bold; } /* Error */
-      code span.ex { } /* Extension */
-      code span.fl { color: #40a070; } /* Float */
-      code span.fu { color: #06287e; } /* Function */
-      code span.im { } /* Import */
-      code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-      code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-      code span.op { color: #666666; } /* Operator */
-      code span.ot { color: #007020; } /* Other */
-      code span.pp { color: #bc7a00; } /* Preprocessor */
-      code span.sc { color: #4070a0; } /* SpecialChar */
-      code span.ss { color: #bb6688; } /* SpecialString */
-      code span.st { color: #4070a0; } /* String */
-      code span.va { color: #19177c; } /* Variable */
-      code span.vs { color: #4070a0; } /* VerbatimString */
-      code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     </style>
 
 
@@ -498,7 +438,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="Descripción.html">Home</a>
+  <a href="Descripcion.html">Home</a>
 </li>
 <li>
   <a href="schedule.html">Calendario</a>
@@ -660,7 +600,8 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-10-28&quot;</code></pre>
+<pre><code>## [1] &quot;2020-11-05&quot;</code></pre>
+<p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_Visualizacion_Datos.png" width="20%" /></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
 <div id="gráficos-básicos-con-ggplot2" class="section level1">
 <h1>Gráficos Básicos con ggplot2</h1>
@@ -678,7 +619,7 @@ div.tocify {
 <span id="cb3-2"><a href="#cb3-2"></a>Exam_Anxiety &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data_files_csv/Exam Anxiety.csv&quot;</span>)</span></code></pre></div>
 <p>Para visualizar las primeras y ultimas 6 filas usar <strong>head()</strong> y <strong>tail()</strong> respectivamente.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">head</span>(Exam_Anxiety)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Code</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Revise</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Exam</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Anxiety</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Gender</th></tr>
 <tr>
@@ -696,7 +637,7 @@ div.tocify {
 </table>
 
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">tail</span>(Exam_Anxiety)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-5">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Code</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Revise</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Exam</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Anxiety</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Gender</th></tr>
 <tr>
@@ -730,7 +671,7 @@ div.tocify {
 <h2>Añadiendo color por grupo y otras bellezas</h2>
 <p>En este archivo utilizaremos un archivo que se usa muy comúnmente en los análisis de R, para demostrar un análisis o como hacer gráfico. El archivo se llama <strong>iris</strong> y contiene información sobre el tamaño de características florales de tres especies del genero <em>Iris</em>. En este gráfico se añade cuatro componente suplementarios, 1) un puntos para cada par de valores <strong>Sepal.Length, Petal.Length</strong>, 2) se cambia los nombres de las leyendas en <strong>y</strong> y <strong>x</strong> con la función <strong>labs()</strong> = labels, 3) se añade un titulo al gráfico con <strong>ggtitle()</strong>, 4) Note que cada especies tiene un color distinto, esto fue muy fácil incluir añadiendo la función <strong>col=Species</strong>, lo que esto significa es que para cada especies de planta se pone un color diferente.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">tail</span>(iris)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
 <col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Sepal.Length</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Sepal.Width</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Petal.Length</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Petal.Width</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Species</th></tr>
 <tr>
@@ -753,7 +694,7 @@ div.tocify {
 <span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;El largo del Sepalo&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;El largo del Petalo&quot;</span>)<span class="op">+</span></span>
 <span id="cb10-5"><a href="#cb10-5"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Basic geom_point and linear regression&quot;</span>)<span class="op">+</span></span>
 <span id="cb10-6"><a href="#cb10-6"></a><span class="st">  </span>rlt_theme</span></code></pre></div>
-<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="salvar-gráficos-con-ggsave" class="section level2">
@@ -776,14 +717,14 @@ div.tocify {
 <span id="cb13-2"><a href="#cb13-2"></a>scatter <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="st">          </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Red&quot;</span>)<span class="op">+</span><span class="st"> </span></span>
 <span id="cb13-4"><a href="#cb13-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Exam Anxiety&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Exam Performance %&quot;</span>) </span></code></pre></div>
-<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <div id="cambio-de-color-del-intervalo-de-confianza" class="section level3">
 <h3>Cambio de color del intervalo de confianza</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>scatter &lt;-<span class="st"> </span><span class="kw">ggplot</span>(Exam_Anxiety, <span class="kw">aes</span>(Anxiety, Exam))</span>
 <span id="cb14-2"><a href="#cb14-2"></a>scatter <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Red&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb14-4"><a href="#cb14-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Exam Anxiety&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Exam Performance %&quot;</span>) </span></code></pre></div>
-<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="regresión-lineal-por-grupo." class="section level2">
@@ -794,7 +735,7 @@ div.tocify {
 <span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>) <span class="op">+</span><span class="st">  </span><span class="co"># lm (linear model) es para modelos lineales </span></span>
 <span id="cb15-4"><a href="#cb15-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Exam Anxiety Score&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Exam Performance %&quot;</span>)<span class="op">+</span></span>
 <span id="cb15-5"><a href="#cb15-5"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Basic geom_point and linear regression&quot;</span>)</span></code></pre></div>
-<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="histogramas" class="section level2">
@@ -967,7 +908,7 @@ div.tocify {
 <span id="cb31-4"><a href="#cb31-4"></a><span class="kw">names</span>(hiccups)=<span class="kw">c</span>(<span class="st">&quot;Num_Hiccups&quot;</span>,<span class="st">&quot;Intervention&quot;</span>) <span class="co"># Cambiar el nombre de las columnas</span></span>
 <span id="cb31-5"><a href="#cb31-5"></a></span>
 <span id="cb31-6"><a href="#cb31-6"></a><span class="kw">head</span>(hiccups)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-14">
 <col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Num_Hiccups</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Intervention</th></tr>
 <tr>
@@ -993,7 +934,7 @@ div.tocify {
 <span id="cb32-3"><a href="#cb32-3"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> <span class="st">&quot;mean&quot;</span>, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>),<span class="dt">colour =</span> <span class="st">&quot;Red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st">      </span></span>
 <span id="cb32-4"><a href="#cb32-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_cl_boot, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="dt">width =</span> <span class="fl">0.2</span>, <span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb32-5"><a href="#cb32-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Intervention&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Mean Number of Hiccups&quot;</span>)</span></code></pre></div>
-<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 </div>
 </div>
 <div id="diagrama-de-tallo-y-hoja" class="section level1">
@@ -1025,7 +966,7 @@ div.tocify {
 ##   9 | 568</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">ggplot</span>(Exam_Anxiety, <span class="kw">aes</span>(Anxiety))<span class="op">+</span></span>
 <span id="cb35-2"><a href="#cb35-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
-<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="T5_Graficos_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Stem leaf for two groups</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">library</span>(aplpack)</span></code></pre></div>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">stem.leaf</span>(co2)</span></code></pre></div>
@@ -1081,7 +1022,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
