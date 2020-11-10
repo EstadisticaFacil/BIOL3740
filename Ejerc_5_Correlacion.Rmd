@@ -1,0 +1,127 @@
+---
+title: "Ejerc_5_Correlación"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+#    theme: simplex
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Ejercicio de Corelación: Trabajo para entregar
+
+  Objetivos:
+  
+  + Determinar si el estudiante puede evaluar si las variables tienen una distribución normal o no
+  + Basado en lo anterior seleccionar la prueba de correlación correspondiente
+  + Calcular el coeficiente de determinación
+  + Visualizar la correlación
+
+```{r, eval=FALSE, echo=FALSE}
+library(MASS)
+data()
+
+```
+
+## Los Datos
+
+Las variables en el archivo **urine** en el paquete **boot**
+
++ r = Indicator of the presence of calcium oxalate crystals.
+
++ gravity = The specific gravity of the urine.
+
++ ph = The pH reading of the urine.
+
++ osmo = The osmolarity of the urine. Osmolarity is proportional to the concentration of molecules in solution.
+
++ cond = The conductivity of the urine. Conductivity is proportional to the concentration of charged ions in solution.
+
++ urea = The urea concentration in millimoles per litre.
+
++ calc = The calcium concentration in millimoles per litre.
+
+
+```{r}
+library(boot)
+head(urine) 
+```
+
+
+1. Evaluar si las 6 variables (excluye la variable "r") cumple con distribución normales. Usa uno de los métodos que hemos aprendido para evaluar cada variable.
+  
+  + Explicar que prueba utilizas y interpretas los resultados. (5 puntos) 
+  
+
+```{r, eval=FALSE, echo=FALSE}
+
+shapiro.test(urine$gravity)
+shapiro.test(urine$ph)
+shapiro.test(urine$cond)
+shapiro.test(urine$urea)
+shapiro.test(urine$calc)
+
+```
+
+
+2. Estimado de correlación entre las seis variables
+
++ Tomando en cuenta lo que observaste en la pruebas anterior, selecciona la prueba correcta para evaluar la correlación entre las variables. (5 puntos).   Tiene que seleccionar la prueba correcta, no hay puntos parcial. 
+
+    + Cual variables tienen una correlación mayor (2 puntos)
+    + Cual variables tiene la correlación menor (2 puntos)
+
+
+```{r, eval=FALSE, echo=FALSE}
+cor(urine[, c("gravity", "ph", "cond", "urea", "calc")], use = "pairwise.complete.obs",
+    method = 'kendall')
+```
+
+
+3. Coeficiente de determinación
+
+ + Calcula el coeficiente de determinación entre: (2 puntos)
+     + gravity y urea
+     + ph y calc
+     
+  + Cual de estos pares explica mejor la relación entre una variable y la otra (2 puntos)  
+
+```{r, eval=FALSE, echo=FALSE}
+cor(urine$gravity, urine$urea)^2
+cor(urine$ph, urine$calc)^2
+```
+
+
+3.  ggMarginal
+
+Selecciona un par de variables de la correlación anterior:
+
+  + Prepare un gráfico para demostrar la correlación y su distribución usando ggMarginal (2 puntos). 
+  + Interpretar el gráfico (2 puntos)
+
+```{r, eval=FALSE, echo=FALSE}
+library(ggplot2)
+p <- ggplot(urine, aes(gravity, urea)) + 
+  geom_point() + 
+  theme_classic()
+p
+# add marginal histograms
+ggExtra::ggMarginal(p, type = "histogram")
+```
+
+4. Busqueda de literatura
+
+ + Buscar en la literatura evidencia de la ultima grafica/correlación y como interpretar esta correlación (2 puntos)
+ + Añadir las referencias  (2 puntos)
+
+
+
+
+
+
