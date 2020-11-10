@@ -105,9 +105,14 @@ You can also embed plots, for example:
 ```{r head, echo=FALSE}
 
 library(ggplot2)
-
+library(latex2exp)
 ggplot(Brass, aes(Flor_si_no))+
-geom_histogram()
+geom_histogram()+
+  labs(y=(TeX("$ln(\\frac{a_0-a_t}{\\a_0})$")), x="Tiempo en minutos", title = "Inversion de Sacarosa en solucion 2.0M HCl")
+
+
+
+
 ```
 
 

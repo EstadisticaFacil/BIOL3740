@@ -201,7 +201,7 @@ include_graphics(img3_path)
 
 ## What does that mean
 
-## Here is a really cool graph that does the figures and most of the analysis in one one shot.
+Here is a really cool graph that does the figures and most of the analysis in one one shot.
 The package GGally, if you omit "ggplot2::aes(colour=Gender)", the figure will be black and white, and not seperated by gender.
 
  
@@ -217,15 +217,31 @@ ggpairs(examData, ggplot2::aes(colour=Gender))
 
 
 
-
-
+In this code I removed the first column, which is just the code of the individual, by examData[,c(2:5)], by removing column #1. 
 
 ```{r, warning=FALSE}
 ggpairs(examData[,c(2:5)], ggplot2::aes(colour=Gender)) 
 ```
 
 
-# in this code I removed the first column, which is just the code of the individual, by examData[,c(2:5)], by removing column #1. 
+1. 
+
+USar el data set siguiente 
+
+con las variables,
+
+  + Flower Size
+  + Num_Fr = Number off Fruits
+  + w_sepals_dorsal = width of the dorsal sepal
+  + front_lip_length = Front lip length 
+  + wf = an index of female selection 
+```{r}
+library(readr)
+Lep_rupPetal_All_Data <- read_csv("Data_files_csv/Lep_rupPetal_All_Data.csv")
+Lep=Lep_rupPetal_All_Data
+names(Lep)
+```
+
  
 
 
