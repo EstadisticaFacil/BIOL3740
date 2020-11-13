@@ -336,3 +336,25 @@ ggplot(model1, aes(x=.fitted, y=.resid))+
   geom_smooth(method=lm)
 
 ```
+
+
+
+Excercise
+
+```{r}
+library(readr)
+Alturas_Humanos <- read_csv("Data_files_csv/Alturas_Humanos.csv")
+
+head(Alturas_Humanos)
+```
+
+
+```{r}
+model2=lm(Altura_cm~Peso_kg, data=Alturas_Humanos)
+summary(model2)
+```
+
+```{r}
+plot(model2)
+```
+
