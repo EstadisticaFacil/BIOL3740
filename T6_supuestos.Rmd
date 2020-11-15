@@ -161,14 +161,18 @@ El gráfico que utilizaremos se llama caja condicional ya que la distribución e
 A continuación, completamos el análisis utilizando otra vez los datos de la orquídea **Dipodium**.  Primero hay que hacer un análisis de regresión simple usando **lm()** y darle un nombre al análisis o sea el modelo. Subseguientemente uno puede llamar los valores necesarios para hacer el gráfico con **.fitted** y **.resid**.  
 
 ```{r Homogeneityvariance, rexample=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+dipodium2=dipodium %>% 
+  dplyr::select(Number_of_Flowers, Height_Inflo) %>% 
+  drop_na()
+head(dipodium2)
 
 modelflower=lm(Number_of_Flowers~Height_Inflo,
-         data=dipodium)
+         data=dipodium2)
 
 summary(modelflower)
 
 
-ggplot(dipodium, aes(Height_Inflo, Number_of_Flowers))+
+ggplot(dipodium2, aes(Height_Inflo, Number_of_Flowers))+
   geom_smooth(method=lm)+
   geom_point()
 
