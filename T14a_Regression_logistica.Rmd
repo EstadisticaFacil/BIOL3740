@@ -80,6 +80,21 @@ Student_Brassavola <- read_csv("Data_files_csv/Student_Brassavola.csv")
 completeBrass=na.omit(Student_Brassavola)  # remove NA
 head(completeBrass)
 ```
+```{r}
+#library(tidyverse)
+#library(dplyr)
+unique(completeBrass$Fr_Num)
+
+# completeBrass$Fr_Y_N2=ifelse(completeBrass$Fr_Num>0 ,1,0) Metodo de la función base
+
+completeBrass$Fr_Y_N1=ifelse(completeBrass$Fr_Num>0 ,1,0) # Método de dplyr
+
+unique(completeBrass$Fr_Y_N1) # deberia tener solamente dos alternativas, "0" y "1", Frutos no y si
+
+```
+
+
+
 
 Evaluar la tendencias centrales y la dispersión de las variables y cambio de nombre de las variables al español.
 
@@ -90,7 +105,8 @@ Brass=completeBrass%>%
   dplyr::rename(Isla=Island, Ano=Year, Numero_planta=Pl_Num, 
          Cant_hojas=Leaf_Num, Largo_Hoja_cm=LLL, 
          Cant_capullo=Bud_Num, Cant_Flores=Fl_Num, 
-         Cant_Frutos=Fr_Num, BQS=BQS, Flor_si_no=Flowers_Y_N)
+         Cant_Frutos=Fr_Num, BQS=BQS, Flor_si_no=Flowers_Y_N,
+         Frutos_si_no=Fr_Y_N1)
 ```
 
 
@@ -108,7 +124,7 @@ library(ggplot2)
 library(latex2exp)
 ggplot(Brass, aes(Flor_si_no))+
 geom_histogram()+
-  labs(y=(TeX("$ln(\\frac{a_0-a_t}{\\a_0})$")), x="Tiempo en minutos", title = "Inversion de Sacarosa en solucion 2.0M HCl")
+  labs(y=(TeX("Frecuencias")), x="Planta con Flor Si (1) o No (0)", title = "Frecuencia de plantas con flores o no")
 
 
 
