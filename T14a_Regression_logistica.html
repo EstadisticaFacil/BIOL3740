@@ -673,11 +673,13 @@ div.tocify {
 ##                     Mean   :0.08705   Mean   :0.03552  
 ##                     3rd Qu.:0.00000   3rd Qu.:0.00000  
 ##                     Max.   :1.00000   Max.   :1.00000</code></pre>
+<hr />
 </div>
 <div id="la-variable-de-respuesta-y." class="section level2">
 <h2>La variable de respuesta, <strong>Y</strong>.</h2>
 <p>You can also embed plots, for example:</p>
 <p><img src="T14a_Regression_logistica_files/figure-html/head-1.png" width="672" /></p>
+<hr />
 </div>
 </div>
 <div id="modelo-lineal-generalizado" class="section level1">
@@ -697,22 +699,24 @@ div.tocify {
 <li>No hay correlaciones altas (es decir, multicolinealidad) entre los variables predictores (vea modulo de Correlación).</li>
 </ul>
 </blockquote>
+<hr />
 </div>
-<div id="comparar-modelo-lineal-y-logistico" class="section level2">
-<h2>Comparar modelo lineal y logistico</h2>
+<div id="comparación-de-modelos-lineal-y-logistico" class="section level2">
+<h2>Comparación de modelos lineal y logistico</h2>
 <p>l primer paso es entender cual es la diferencia entre una regresión lineal y una regresión logística. Podemos visualizar ambas formula y ver como difieren.</p>
 <p>La regresión lineal:</p>
-<p><span class="math display">\[Y_i=\beta_0+\beta_1X_i+\beta_2X_i\]</span> Regresión logistica:</p>
+<p><span class="math display">\[Y_i=\beta_0+\beta_1X_i+\beta_2X_i\]</span></p>
+<hr />
+<p>Regresión logistica:</p>
 <p>p=P(Y=1) o sea la probabilidad que p tenga el valor de <strong>1</strong> o 1-p= 1-P(Y=1) que seria el valor de <strong>0</strong> en su conjunto de datos.</p>
 <p><span class="math display">\[\log\frac{p}{1-p}=\beta_0+\beta_1X_i+\beta_2X_i\]</span> Nota que la primera ecuación es un modelo que trata de predecir el valor de <strong>Y</strong> en la segunda se estima la probabilidad de que el valor de predictora tenga una valor de 1 o 0. Las probabilidades van a variar de 0 a 1 o sea de 0% a 100%. El vocabulario correcto es que las respuesta son binarias también dicho de la distribución de Bernoulli.</p>
 <p>Van a ver en la literatura que la formula se representa tambien de la siguiente forma, donde lo escribe como <span class="math inline">\(logit(p)\)</span>.</p>
 <p><span class="math display">\[logit\left(p\right)=\log\frac{p}{1-p}=\beta_0+\beta_1X_i+\beta_2X_i\]</span></p>
 <p>En el siguiente enlace se puede encontrar más información <a href="https://en.wikipedia.org/wiki/Logistic_regression" class="uri">https://en.wikipedia.org/wiki/Logistic_regression</a></p>
 <p>Se evalúa tres modelos: 1. la probabilidad de tener flores es relacionado a la cantidad de hojas (el tamaño de la planta). 2. la probabilidad de tener flores es relacionado a la hoja más larga de la planta (el tamaño de la planta). 3. la probabilidad de tener flores es relacionado a la hoja más larga de la planta y a la cantidad de hojas.</p>
-</div>
-</div>
-<div id="generalized-linear-model-glm" class="section level1">
-<h1>Generalized Linear Model = glm</h1>
+<hr />
+<div id="generalized-linear-model-glm" class="section level3">
+<h3>Generalized Linear Model = glm</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>BrassModel<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(Flor_si_no <span class="op">~</span><span class="st"> </span>Cant_hojas,</span>
 <span id="cb12-2"><a href="#cb12-2"></a>                    <span class="dt">data =</span> Brass, <span class="dt">family =</span> <span class="kw">binomial</span>())</span>
 <span id="cb12-3"><a href="#cb12-3"></a></span>
@@ -793,6 +797,9 @@ div.tocify {
 ## AIC: 683.99
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
+</div>
+<div id="removiendo-el-intercepto" class="section level3">
+<h3>Removiendo el intercepto</h3>
 <p>Si no le interesa el intercepto se añade un “-1” después de la #Los valores de interes en nuestro caso son el intercepto y la pendiente (valor que se encuentra debajo del intercepto).</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">names</span>(Brass)</span></code></pre></div>
 <pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
@@ -828,8 +835,9 @@ div.tocify {
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
 </div>
-<div id="predecir-el-número-de-frutas-usando-la-ecuación-utilizando-los-resultados-del-modelo-anterior" class="section level1">
-<h1>Predecir el número de frutas usando la ecuación, utilizando los resultados del modelo anterior</h1>
+<div id="estimado-las-probabilidades" class="section level3">
+<h3>Estimado las probabilidades</h3>
+<p>Predecir el número de frutas usando la ecuación, utilizando los resultados del modelo anterior</p>
 <p><span class="math display">\[P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -(b+m*{ x }_{ i }) } }\]</span> <span class="math display">\[P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -((intercepto)+pendiente*variable.predictora) } }\]</span> # Se usa esta ecuacion para predecir un valor de ‘Y’ especifico para un valor de una variable ‘X’ de interes.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">summary</span>(BrassModel<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>## 
@@ -856,7 +864,7 @@ div.tocify {
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">exp</span>(<span class="dv">1</span>) <span class="co">#= e</span></span></code></pre></div>
 <pre><code>## [1] 2.718282</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>e=<span class="kw">exp</span>(<span class="dv">1</span>)</span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>e=<span class="kw">exp</span>(<span class="dv">1</span>) </span>
 <span id="cb26-2"><a href="#cb26-2"></a>e</span></code></pre></div>
 <pre><code>## [1] 2.718282</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>P_<span class="dv">10</span>=<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="fl">+2.7182818284</span><span class="op">^-</span>(<span class="op">-</span><span class="fl">3.065</span> <span class="fl">+0.0297</span><span class="op">*</span><span class="dv">150</span>))</span>
@@ -877,6 +885,9 @@ div.tocify {
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>P_<span class="dv">150</span>=<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>e<span class="op">^-</span>(<span class="op">-</span><span class="fl">3.065</span> <span class="fl">+0.0297</span><span class="op">*</span><span class="dv">150</span>))</span>
 <span id="cb38-2"><a href="#cb38-2"></a>P_<span class="dv">150</span></span></code></pre></div>
 <pre><code>## [1] 0.8005922</code></pre>
+<hr />
+</div>
+</div>
 <div id="visualizando-una-regresión-logistica" class="section level2">
 <h2>Visualizando una regresión logistica</h2>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">names</span>(Brass)</span></code></pre></div>
@@ -898,9 +909,8 @@ div.tocify {
 <span id="cb43-2"><a href="#cb43-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.10</span>)</span></code></pre></div>
 <p><img src="T14a_Regression_logistica_files/figure-html/jitter-1.png" width="672" /></p>
 </div>
-</div>
-<div id="graphic-with-binomial-fit" class="section level1">
-<h1>Graphic with binomial fit</h1>
+<div id="gráfico-con-ajuste-binomial" class="section level2">
+<h2>Gráfico con ajuste binomial</h2>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">names</span>(Brass)</span></code></pre></div>
 <pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
@@ -909,7 +919,8 @@ div.tocify {
 <span id="cb46-2"><a href="#cb46-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span>.<span class="dv">5</span>) <span class="op">+</span></span>
 <span id="cb46-3"><a href="#cb46-3"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span><span class="st">&quot;glm&quot;</span>, <span class="dt">se=</span><span class="ot">TRUE</span>, <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family=</span>binomial))</span></code></pre></div>
 <p><img src="T14a_Regression_logistica_files/figure-html/binomial%20fit-1.png" width="672" /></p>
-<p>El modelo de regre</p>
+<div id="el-modelo-de-regresión-binomial" class="section level3">
+<h3>El modelo de regresión binomial</h3>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="kw">summary</span>(BrassModel<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -933,7 +944,10 @@ div.tocify {
 ## AIC: 726.57
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<p>En este grafico se osberva el valor de la pendiente, el mismo aumenta cuando el numero de hojas se aproxima a 100 (por ende al acercarnos a este valor el valor de nuestra variable de respuesta es mayor aumenta o es mayor). ## add a figure for each site</p>
+</div>
+<div id="vusualizando-diferentes-grupos" class="section level3">
+<h3>Vusualizando diferentes grupos</h3>
+<p>En este gráfico se osbserva el valor de la pendiente, el mismo aumenta cuando el numero de hojas se aproxima a 100 (por ende al acercarnos a este valor el valor de nuestra variable de respuesta es mayor aumenta o es mayor).</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="kw">names</span>(Brass)</span></code></pre></div>
 <pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
@@ -943,20 +957,20 @@ div.tocify {
 <span id="cb51-3"><a href="#cb51-3"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span><span class="st">&quot;glm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family=</span>binomial))<span class="op">+</span></span>
 <span id="cb51-4"><a href="#cb51-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Isla)</span></code></pre></div>
 <p><img src="T14a_Regression_logistica_files/figure-html/facet-1.png" width="672" /></p>
-<div id="solapamiento" class="section level2">
-<h2>Solapamiento</h2>
+</div>
+</div>
+<div id="solapamiento-de-los-ajustes-binomial-por-grupo" class="section level2">
+<h2>Solapamiento de los ajustes binomial por grupo</h2>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="kw">names</span>(Brass)</span></code></pre></div>
 <pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
 ##  [9] &quot;BQS&quot;           &quot;Flor_si_no&quot;    &quot;Frutos_si_no&quot;</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="kw">ggplot</span>(Brass, <span class="kw">aes</span>(Cant_hojas,Flor_si_no, <span class="dt">colour=</span>BQS))<span class="op">+</span></span>
 <span id="cb54-2"><a href="#cb54-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha=</span>.<span class="dv">5</span>) <span class="op">+</span></span>
-<span id="cb54-3"><a href="#cb54-3"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span><span class="st">&quot;glm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family=</span>binomial))</span></code></pre></div>
+<span id="cb54-3"><a href="#cb54-3"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span><span class="st">&quot;glm&quot;</span>, <span class="dt">se=</span><span class="ot">TRUE</span>, <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family=</span>binomial))</span></code></pre></div>
 <p><img src="T14a_Regression_logistica_files/figure-html/overlap%20by%20site-1.png" width="672" /></p>
-</div>
-</div>
-<div id="evaluate-using-the-length-of-the-longest-leaf" class="section level1">
-<h1>Evaluate using the Length of the longest leaf</h1>
+<div id="evaluate-using-the-length-of-the-longest-leaf" class="section level3">
+<h3>Evaluate using the Length of the longest leaf</h3>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="kw">names</span>(Brass)</span></code></pre></div>
 <pre><code>##  [1] &quot;Isla&quot;          &quot;Ano&quot;           &quot;Numero_planta&quot; &quot;Cant_hojas&quot;   
 ##  [5] &quot;Largo_Hoja_cm&quot; &quot;Cant_capullo&quot;  &quot;Cant_Flores&quot;   &quot;Cant_Frutos&quot;  
@@ -964,8 +978,10 @@ div.tocify {
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="kw">ggplot</span>(Brass, <span class="kw">aes</span>(Largo_Hoja_cm,Flor_si_no))<span class="op">+</span></span>
 <span id="cb57-2"><a href="#cb57-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <p><img src="T14a_Regression_logistica_files/figure-html/LLL-1.png" width="672" /></p>
-<div id="remove-the-outlier-probably-a-mistake-in-data-entry" class="section level3">
-<h3>Remove the outlier (probably a mistake in data entry)</h3>
+</div>
+<div id="remover-el-valor-sesgado" class="section level3">
+<h3>Remover el valor sesgado</h3>
+<p>El valor se remueve ya que no es posible una hoja de más de un metro</p>
 <div id="nota-que-se-hace-un-subgrupo-subset-de-los-datos-usando-la-función-subsetel-data-frame-la-condición" class="section level4">
 <h4>Nota que se hace un subgrupo (subset) de los datos, usando la función subset(el data frame, la condición)</h4>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="kw">names</span>(Brass)</span></code></pre></div>
@@ -976,6 +992,7 @@ div.tocify {
 <span id="cb60-2"><a href="#cb60-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">height =</span> <span class="fl">0.10</span>)<span class="op">+</span></span>
 <span id="cb60-3"><a href="#cb60-3"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span><span class="st">&quot;glm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family=</span>binomial))</span></code></pre></div>
 <p><img src="T14a_Regression_logistica_files/figure-html/LLL90-1.png" width="672" /></p>
+</div>
 </div>
 </div>
 <div id="selecionar-el-mejor-modelo" class="section level2">

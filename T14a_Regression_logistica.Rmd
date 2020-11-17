@@ -114,6 +114,8 @@ Brass=completeBrass%>%
 summary(Brass)
 ```
 
+***
+
 ## La variable de respuesta, **Y**. 
 
 You can also embed plots, for example:
@@ -132,7 +134,7 @@ geom_histogram()+
 ```
 
 
-
+***
 
 # Modelo Lineal Generalizado
 
@@ -155,14 +157,18 @@ Hay tres componentes en cualquier GLM:
 > +   No hay correlaciones altas (es decir, multicolinealidad) entre los variables predictores (vea modulo de Correlación).
   
 
+***
 
-## Comparar modelo lineal y logistico
+## Comparación de modelos lineal y logistico
 
 l primer paso es entender cual es la diferencia entre una regresión lineal y una regresión logística.   Podemos visualizar ambas formula y ver como difieren.  
 
 La regresión lineal: 
 
 $$Y_i=\beta_0+\beta_1X_i+\beta_2X_i$$
+
+***
+
 Regresión logistica:
 
 p=P(Y=1) o sea la probabilidad que p tenga el valor de **1** o  1-p= 1-P(Y=1) que seria el valor de **0** en su conjunto de datos.  
@@ -180,8 +186,9 @@ Se evalúa tres modelos:
   1. la probabilidad de tener flores es relacionado a la cantidad de hojas (el tamaño de la planta).
   2. la probabilidad de tener flores es relacionado a la hoja más larga de la planta (el tamaño de la planta).
   3. la probabilidad de tener flores es relacionado a la hoja más larga de la planta y a la cantidad de hojas.
-  
-# Generalized Linear Model = glm
+
+***
+### Generalized Linear Model = glm
 
 ```{r model}
 BrassModel.1 <- glm(Flor_si_no ~ Cant_hojas,
@@ -201,6 +208,9 @@ summary(BrassModel.3)
 
 ```
 
+### Removiendo el intercepto
+
+
 Si no le interesa el intercepto se añade un "-1" después de la 
 #Los valores de interes en nuestro caso son el intercepto y la pendiente (valor que se encuentra debajo del intercepto).
 
@@ -212,7 +222,11 @@ BrassModel.1.1 <- glm(Flor_si_no ~ Cant_hojas+BQS+Largo_Hoja_cm-1,
 summary(BrassModel.1.1)
 ```
 
-# Predecir el número de frutas usando la ecuación, utilizando los resultados del modelo anterior
+
+
+### Estimado las probabilidades
+
+Predecir el número de frutas usando la ecuación, utilizando los resultados del modelo anterior
 
 $$P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -(b+m*{ x }_{ i }) } }$$
 $$P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -((intercepto)+pendiente*variable.predictora) } }$$
@@ -223,7 +237,7 @@ $$P(Y)\quad =\quad \frac { 1 }{ 1+{ e }^{ -((intercepto)+pendiente*variable.pred
 summary(BrassModel.1)
 
 exp(1) #= e
-e=exp(1)
+e=exp(1) 
 e
 
 
@@ -246,6 +260,7 @@ P_150=1/(1+e^-(-3.065 +0.0297*150))
 P_150
 ```
 
+***
 
 ## Visualizando una regresión logistica
 
@@ -279,7 +294,7 @@ ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
 
 
 
-# Graphic with binomial fit
+## Gráfico con ajuste binomial
 
 ```{r binomial fit}
 names(Brass)
@@ -289,15 +304,17 @@ ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
   stat_smooth(method="glm", se=TRUE, method.args = list(family=binomial))
 ```
 
-El modelo de regre
+### El modelo de regresión binomial
 
 ```{r}
 
 summary(BrassModel.1)
 ```
 
-En este grafico se osberva el valor de la pendiente, el mismo aumenta cuando el numero de hojas se aproxima a 100 (por ende al acercarnos a este valor el valor de nuestra variable de respuesta es mayor aumenta o es mayor).
-## add a figure for each site
+### Vusualizando diferentes grupos
+
+En este gráfico se osbserva el valor de la pendiente, el mismo aumenta cuando el numero de hojas se aproxima a 100 (por ende al acercarnos a este valor el valor de nuestra variable de respuesta es mayor aumenta o es mayor).
+
 
 ```{r facet}
 names(Brass)
@@ -309,19 +326,19 @@ ggplot(Brass, aes(Cant_hojas,Flor_si_no))+
 ```
 
 
-## Solapamiento 
+## Solapamiento de los ajustes binomial por grupo
 
 ```{r overlap by site}
 
 names(Brass)
 ggplot(Brass, aes(Cant_hojas,Flor_si_no, colour=BQS))+
   geom_point(alpha=.5) +
-  stat_smooth(method="glm", se=FALSE, method.args = list(family=binomial))
+  stat_smooth(method="glm", se=TRUE, method.args = list(family=binomial))
 
 ```
 
 
-# Evaluate using the Length of the longest leaf
+### Evaluate using the Length of the longest leaf
 
 ```{r LLL}
 names(Brass)
@@ -331,8 +348,11 @@ ggplot(Brass, aes(Largo_Hoja_cm,Flor_si_no))+
 ```
 
 
-### Remove the outlier (probably a mistake in data entry)
+### Remover el valor sesgado
 
+  El valor se remueve ya que no es posible una hoja de más de un metro
+  
+  
 #### Nota que se hace un subgrupo (subset) de los datos, usando la función subset(el data frame, la condición)
 
 
