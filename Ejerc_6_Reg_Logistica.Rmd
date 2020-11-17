@@ -1,0 +1,157 @@
+---
+title: "Ejerc_6_Reg_Logistica"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+ #   theme: simplex
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##  Regresión Logística
+
+Este ejercicio es para practicar como hacer una Regresión logística
+
+Los temas incluye.
+
++ Construir un modelo de una regresión logística
++ Determinar si los coeficientes son diferentes de cero
++ Construir un gráfico de la relación logística usando ggplot2
++ Determinar los valores de probabilidades especifico para algunos valores "X"
+
+
+# Ejercicio
+## Karn and Penrose data Set
+
+
+## Los Datos
+
+Los datos provienen de un estudio realizado por Mary N. Karn and L. S. Penrose publicado en **Annals of Eugenics**, titulado **Birth Weight and gestation time in relation to maternal age, parity and infant survival** publicado en 1951.  Estaremos usando solamente una parte de los datos. El periodo de gestación y el peso de los bebés varones al nacer y su supervivencia (fallecio= 0 y sobrevivio= 1).  Para facilitar el trabajo he modificado los datos un poco para cumplir con las tareas asignada.
+
+En el archivo "Karn_Penrose_infant_survivorship.csv" tiene datos sobre 7036 nacimientos entre los años 1935 y 1946. El archivo tiene 4 columnas:
+
+  - Line_number = la secuencia de los datos
+  - Gestation_Time_days  = El periodo de gestación en días
+  - Weigth_lb = El peso del bebe en libras
+  - Surv_Index = "0" o "1"
+
+
+
+```{r}
+library(ggplot2)
+library(readr)
+Karn_Penrose_infant_survivorship <- read_csv("Data_files_csv/Karn_Penrose_infant_survivorship.csv")
+KPdata=Karn_Penrose_infant_survivorship
+
+```
+
+***
+
+1. Pregunta: Explique en sus propias palabras cuales son las hipótesis que se pueden probar. Especificamente mencione si la hipótesis es una hipótesis nula o alterna. (4 puntos)
+
+
+```{r, echo=FALSE}
+#  - Hipótesis Nula: El peso de los varones y el periodo de gestación no afectan el indice de supervivencia. 
+  
+#  - Hipótesis Alterna #1: Los varones con un periodo de  mayor gestación tienen mayor probabilidad de supervivencia que los varones con un mayor peso.
+
+#  - Hipótesis Alterna #2: Los varones con mayor peso al nacer tienen mayor probabilidad de supervivencia que los varones con un mayor periodo de gestación.
+```
+
+***
+
+2. Pregunta: Graficar la variable de respuesta (2 puntos)
+
+```{r variable de respuesta, echo=FALSE, eval=FALSE, message=FALSE}
+names(KPdata)
+library(ggplot2)
+ggplot(KPdata, aes(Survival))+
+  geom_histogram(binwidth= .10, colour="white", fill="red")+
+  labs(x = "Peso de los bebe, lbs", y = "Frecuencia")+
+  ggtitle("Frecuencia vs survival of babies")
+
+```
+
+
+***
+
+3. Pregunta: Grafique las variables explicativas
+    - Periodo de gestación (2 puntos)
+    - Peso de los varones al nacer (2 puntos)
+
+```{r periodo de gestacion, echo=FALSE, eval=FALSE, message=FALSE}
+ggplot(KPdata, aes(Gestation_Time_days))+
+  geom_histogram(binwidth= 4, fill="white", colour="red")+
+  labs(x= "Duración de Gestación", y="Frecuancia")+
+  
+  ggtitle("Frecuencia vs Duración de Gestación")
+ 
+```
+
+***
+
+Evaluando la distribución de la variable de respuesta
+
+```{r weight-index,  echo=FALSE, eval=FALSE, message=FALSE}
+ggplot(KPdata,aes(Weigth_lb))+
+  geom_histogram(fill="white", colour="red")+
+  labs(x="Survival")+
+  ggtitle("Count vs Weight of babies")
+
+```
+
+***
+
+4. Pregunta: Usando la prueba correcta evalúa la relación entre la supervivencia y:
+  - periodo de gestación (2 puntos)
+  - peso de los varones al nacer (2 puntos)
+  - determina si los coeficientes son significativos de cada una de las pruebas y explica que quiere decir la prueba (4 puntos)
+
+  
+  
+
+```{r, Periodo de Gestacion y supervivencia, echo=FALSE, eval=FALSE, message=FALSE}
+library(car)
+names(KPdata)
+modelweight<-glm(Survival~Weigth_lb, data= KPdata, family = binomial())
+
+summary(modelweight)
+
+
+modelgest<-glm(Survival~Gestation_Time_days, data= KPdata, family = binomial())
+
+summary(modelgest)
+```
+
+***
+
+5. Graficar la Relación entre la supervivencia y el peso de los bebes (2 puntos)
+
+```{r,echo=FALSE, eval=FALSE, message=FALSE}
+
+
+ggplot(KPdata, aes(x=Weigth_lb, y=Survival)) +
+  geom_point() +
+  stat_smooth( method="glm", method.args = list(family = "binomial"), se=F) 
+```
+
+
+***
+
+6. Cual es la probabilidad de un bebe de 4 lbs sobrevivir (2 puntos)
+7. Cual es la probabilidad de un bebe de 7 lbs sobrevivir (2 puntos)
+8. Preguntar a su familia cual era el peso de nacer cuando Ud. nacio, calcula la probabilidad de sobrevivir (3 puntos)
+
+
+
+
+
+
+
+
