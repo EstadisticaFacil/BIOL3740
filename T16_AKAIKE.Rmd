@@ -131,7 +131,7 @@ ALL_models=dredge(model2, extra="R^2") # Evaluación de todas las compbinaciones
 ```{r, tabla R2, message=FALSE}
 library(formattable)
 
-formattable(ALL_models, digits=3, format="html")
+formattable(ALL_models, digits=5, format="html")
 
 ```
 
@@ -259,6 +259,13 @@ Huracan_Dep=lm(Index_Dep5T~factor(Sexo)+Escolaridad+Num_Pers_Hogar+
                 Sala_Mens_Antes+ Sala_Mens_Desp, data=DFMaria_student)
 
 ```
+
+```{r}
+ggplot(DFMaria_student, aes(y=Index_Dep5T,x=Sala_Mens_Desp))+
+  geom_smooth(method = lm)
+```
+
+
 
 #### Observar el resultado del modelo lineal completo.
 
