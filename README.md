@@ -10,15 +10,7 @@ Pruebas Paramétricas
   * ANOVA
   * Regresión lineal
   * Regresión logistica
-  
-Pruebas no Paramétricas
-
-  * prueba de Mann-Whitney U
-  * prueba de Wilcoxon (datos pareados)
-  * prueba de Kruskal-Wallis
-  * Bondad de ajuste
-  * Tabla de Contingencia
-  
+    
 Pruebas para evaluar los supuestos
 
 
