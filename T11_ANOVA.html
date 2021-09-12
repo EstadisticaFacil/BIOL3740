@@ -13,20 +13,26 @@
 
 <title>T11_ANOVA</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -38,11 +44,19 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -125,39 +139,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="tutorial.css" type="text/css" />
 
@@ -168,10 +152,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -188,40 +168,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -249,7 +202,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -261,7 +214,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -272,10 +225,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -287,7 +253,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -413,7 +378,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -528,7 +493,7 @@ div.tocify {
       <a href="T15_Selecionar_Pruebas.html">T15 Selección de pruebas corectas</a>
     </li>
     <li>
-      <a href="T16_AKAIKE.html">T16 AIC:Criterio de Información</a>
+      <a href="T16_AKAIKE.html">T16 Criterio de Información</a>
     </li>
   </ul>
 </li>
@@ -566,6 +531,9 @@ div.tocify {
     <li>
       <a href="Ejerc_5_Correlacion.html">Ejercicio de Correlación</a>
     </li>
+    <li>
+      <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -591,7 +559,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -601,7 +569,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2020-11-14&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2021-09-12&quot;</span></code></pre></div>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <style type="text/css">
 div.sourceCode pre.chunkout {
@@ -620,34 +588,34 @@ div.sourceCode pre.chunkout {
 </div>
 <div id="activar-libreria" class="section level1">
 <h1>Activar libreria</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">library</span>(granova)</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">library</span>(huxtable)</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="kw">library</span>(car)</span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="kw">library</span>(pastecs)</span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="kw">library</span>(multcomp)</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="kw">library</span>(compute.es)</span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">library</span>(WRS2) </span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">library</span>(granova)</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">library</span>(huxtable)</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">library</span>(car)</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">library</span>(pastecs)</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="fu">library</span>(compute.es)</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="fu">library</span>(WRS2) </span></code></pre></div>
 </div>
 <div id="anova" class="section level1">
 <h1>ANOVA</h1>
 <p>Análisis de varianza es un método para comparar 3 o más promedios, al contrario de la prueba de t que es para comparar 2 promedios solamente. Entonces ANOVA es una extensión de la prueba t. La hipótesis nula es Ho: los promedios de los grupos son iguales. ANOVA fue desarrollado por Ronald Fisher y es basado en evaluar la varianza total del experimento y comparar esta con la varianza en los grupos. Típicamente si la varianza explicado entre los grupos es más grande que la varianza dentro los grupos se rechaza la hipótesis nula. A continuación veremos como hacer estos cálculos.</p>
 <p>Primero hay que explicar porque es necesario ANOVA y no hacer múltiples prueba de t. Recuerda que típicamente rechazamos la hipótesis nula cuando el valor de p es menor de 0.05, el tipo de error I. A cada vez que se hace una prueba t hay 5% de error. Por consecuencia si uno hace múltiples pruebas t, hay una posibilidad que se recheza la hipótesis nula cuando se debería aceptar. Cuan grande es ese error si uno hace múltiples pruebas t.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">library</span>(tibble)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>Tipo_errorI=<span class="kw">tribble</span>(</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="op">~</span>Cantidad_Grupo_k, <span class="op">~</span>C, <span class="op">~</span><span class="st">&quot;0.05&quot;</span>, <span class="op">~</span><span class="st">&quot;0.01&quot;</span>,</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>Tipo_errorI<span class="ot">=</span><span class="fu">tribble</span>(</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="sc">~</span>Cantidad_Grupo_k, <span class="sc">~</span>C, <span class="sc">~</span><span class="st">&quot;0.05&quot;</span>, <span class="sc">~</span><span class="st">&quot;0.01&quot;</span>,</span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="st">&quot;2&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;0.05&quot;</span>, <span class="st">&quot;0.01&quot;</span>,</span>
 <span id="cb4-5"><a href="#cb4-5"></a>  <span class="st">&quot;3&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;0.14&quot;</span>, <span class="st">&quot;0.03&quot;</span>,</span>
 <span id="cb4-6"><a href="#cb4-6"></a>  <span class="st">&quot;4&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;0.26&quot;</span>, <span class="st">&quot;0.06&quot;</span>,</span>
 <span id="cb4-7"><a href="#cb4-7"></a>  <span class="st">&quot;5&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;0.40&quot;</span>, <span class="st">&quot;0.10&quot;</span>,</span>
 <span id="cb4-8"><a href="#cb4-8"></a>  <span class="st">&quot;6&quot;</span>, <span class="st">&quot;15&quot;</span>, <span class="st">&quot;0.54&quot;</span>, <span class="st">&quot;0.14&quot;</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="kw">huxtable</span>(Tipo_errorI)<span class="op">%&gt;%</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="st">    </span><span class="kw">theme_article</span>(<span class="dt">header_col =</span> <span class="ot">FALSE</span>)<span class="op">%&gt;%</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="st">  </span><span class="kw">set_bottom_border</span>(<span class="dt">row =</span> <span class="dv">1</span>, <span class="dt">col =</span> everywhere, <span class="dt">value =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="st">  </span><span class="kw">set_caption</span>(<span class="st">&quot;La probabilidad de cometer un error tipo I usando la prueba de t para cada pares de prueba (C)&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="st">  </span><span class="kw">add_footnote</span>(<span class="st">&quot;* C=k(k-1)/2, que es la cantidad de comparación&quot;</span>)</span></code></pre></div>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="fu">huxtable</span>(Tipo_errorI)<span class="sc">%&gt;%</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>    <span class="fu">theme_article</span>(<span class="at">header_col =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">set_bottom_border</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> everywhere, <span class="at">value =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">set_caption</span>(<span class="st">&quot;La probabilidad de cometer un error tipo I usando la prueba de t para cada pares de prueba (C)&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="fu">add_footnote</span>(<span class="st">&quot;* C=k(k-1)/2, que es la cantidad de comparación&quot;</span>)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <caption style="caption-side: top; text-align: center;">La probabilidad de cometer un error tipo I usando la prueba de t para cada pares de prueba (C)</caption><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 0pt; font-weight: bold;">Cantidad_Grupo_k</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">C</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">0.05</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 1pt 0pt;    padding: 6pt 0pt 6pt 6pt; font-weight: bold;">0.01</th></tr>
@@ -694,14 +662,14 @@ div.sourceCode pre.chunkout {
 <li>Por lo menos en uno de estos lagos las plantas tienen una concentración de fósforo diferente</li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>id&lt;-(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>Cant_Fos&lt;-<span class="kw">c</span>(<span class="dv">55</span>,<span class="dv">56</span>,<span class="dv">64</span>,<span class="dv">45</span>,<span class="dv">44</span>,</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>id<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>Cant_Fos<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">55</span>,<span class="dv">56</span>,<span class="dv">64</span>,<span class="dv">45</span>,<span class="dv">44</span>,</span>
 <span id="cb5-3"><a href="#cb5-3"></a>            <span class="dv">37</span>,<span class="dv">36</span>,<span class="dv">35</span>,<span class="dv">38</span>,<span class="dv">39</span>,</span>
 <span id="cb5-4"><a href="#cb5-4"></a>            <span class="dv">12</span>,<span class="dv">28</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">11</span>,<span class="dv">9</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>Lagos&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>))</span>
-<span id="cb5-6"><a href="#cb5-6"></a>Lagos&lt;-<span class="kw">factor</span>(Lagos, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), </span>
-<span id="cb5-7"><a href="#cb5-7"></a>              <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Caraizo&quot;</span>, <span class="st">&quot;DosBocas&quot;</span>, <span class="st">&quot;Guineo&quot;</span>))</span>
-<span id="cb5-8"><a href="#cb5-8"></a>fosforo&lt;-<span class="kw">data.frame</span>(id,Cant_Fos,Lagos)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>Lagos<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>))</span>
+<span id="cb5-6"><a href="#cb5-6"></a>Lagos<span class="ot">&lt;-</span><span class="fu">factor</span>(Lagos, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), </span>
+<span id="cb5-7"><a href="#cb5-7"></a>              <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Caraizo&quot;</span>, <span class="st">&quot;DosBocas&quot;</span>, <span class="st">&quot;Guineo&quot;</span>))</span>
+<span id="cb5-8"><a href="#cb5-8"></a>fosforo<span class="ot">&lt;-</span><span class="fu">data.frame</span>(id,Cant_Fos,Lagos)</span>
 <span id="cb5-9"><a href="#cb5-9"></a>fosforo</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:ejemplo">
 <col><col><col><tr>
@@ -743,60 +711,60 @@ div.sourceCode pre.chunkout {
 <div id="visualizar-los-datos" class="section level2">
 <h2>Visualizar los datos</h2>
 <p>Hacemos un gráfico de los datos. Calculamos el promedio de todos los valores de “Y” (concentración de fósforo en las plantas) y se gráfica, vemos que muchos de los valores de las plantas son por debajo los valores de la linea y muchos de los valores están por encima. Se observa que la concentración de fósforo en plantas que provienen de los lagos Caraizo y Guineo son lejos del promedio.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mean_fosforo=<span class="kw">mean</span>(fosforo<span class="op">$</span>Cant_Fos)</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mean_fosforo<span class="ot">=</span><span class="fu">mean</span>(fosforo<span class="sc">$</span>Cant_Fos)</span>
 <span id="cb6-2"><a href="#cb6-2"></a>mean_fosforo</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>## [1] 33.75</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">ggplot</span>(fosforo, <span class="kw">aes</span>(Lagos, Cant_Fos, <span class="dt">colour=</span>Lagos))<span class="op">+</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>)<span class="op">+</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> mean_fosforo) <span class="co"># geom_hline = linea horizontal</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(fosforo, <span class="fu">aes</span>(Lagos, Cant_Fos, <span class="at">colour=</span>Lagos))<span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_fosforo) <span class="co"># geom_hline = linea horizontal</span></span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/plot-1.png" width="672" /></p>
 <p>Otra alternativa y una que ayuda a entender como se hace el cálculos es observar la diferencias entre el valor de la “y” y el promedio, o sea los residuales. <span style="color: blue;">Nota que esto se parece a la grafica de residuales de la regresión lineal</span>. Vimos también este tipo de gráfico para la prueba de t.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, Cant_Fos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">60</span>), <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">16</span>) <span class="kw">lines</span>(<span class="kw">c</span>(i,i), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, Cant_Fos, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">60</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>) <span class="fu">lines</span>(<span class="fu">c</span>(i,i), <span class="fu">c</span>(<span class="fu">mean</span>(Cant_Fos), Cant_Fos[i]), <span class="at">col=</span><span class="st">&quot;green&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Ahora vamos a separar el gráfico y ver los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo. Este es un indice que los lagos explica la varianza (en parte) en concentración de fósforo en las plantas.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, Cant_Fos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, Cant_Fos, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="at">col=</span><span class="st">&quot;orange&quot;</span>)</span>
 <span id="cb10-5"><a href="#cb10-5"></a></span>
-<span id="cb10-6"><a href="#cb10-6"></a>index&lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(Cant_Fos)</span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(index)){</span>
-<span id="cb10-8"><a href="#cb10-8"></a>  <span class="cf">if</span>(Lagos[i]<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>)</span>
-<span id="cb10-9"><a href="#cb10-9"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb10-10"><a href="#cb10-10"></a>  <span class="cf">else</span> <span class="cf">if</span> (Lagos[i]<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>)</span>
-<span id="cb10-11"><a href="#cb10-11"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>index<span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Cant_Fos)</span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(index)){</span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="cf">if</span>(Lagos[i]<span class="sc">==</span><span class="st">&quot;Caraizo&quot;</span>)</span>
+<span id="cb10-9"><a href="#cb10-9"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(index[i], index[i]), <span class="fu">c</span>(<span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Caraizo&quot;</span>]), Cant_Fos[i]), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="cf">else</span> <span class="cf">if</span> (Lagos[i]<span class="sc">==</span><span class="st">&quot;Guineo&quot;</span>)</span>
+<span id="cb10-11"><a href="#cb10-11"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(index[i], index[i]), <span class="fu">c</span>(<span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Guineo&quot;</span>]), Cant_Fos[i]), <span class="at">col=</span><span class="st">&quot;orange&quot;</span>)</span>
 <span id="cb10-12"><a href="#cb10-12"></a>  <span class="cf">else</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(index[i], index[i]), <span class="fu">c</span>(<span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb10-14"><a href="#cb10-14"></a>} </span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <hr />
 <p>Daros donde los grupos son iguales</p>
 <p>En este ejemplo de vemos dos de los grupos donde los residuales solapan, este es probable que resulta que estos dos grupos (azul y rojo) no sean diferentes.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>id&lt;-(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>Cant_Fos&lt;-<span class="kw">c</span>(<span class="dv">52</span>,<span class="dv">66</span>,<span class="dv">60</span>,<span class="dv">54</span>,<span class="dv">64</span>,</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>id<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>Cant_Fos<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">52</span>,<span class="dv">66</span>,<span class="dv">60</span>,<span class="dv">54</span>,<span class="dv">64</span>,</span>
 <span id="cb11-3"><a href="#cb11-3"></a>            <span class="dv">56</span>,<span class="dv">58</span>,<span class="dv">65</span>,<span class="dv">49</span>,<span class="dv">58</span>,</span>
 <span id="cb11-4"><a href="#cb11-4"></a>            <span class="dv">21</span>,<span class="dv">24</span>,<span class="dv">22</span>,<span class="dv">21</span>,<span class="dv">21</span>,<span class="dv">21</span>)</span>
-<span id="cb11-5"><a href="#cb11-5"></a>Lagos&lt;-<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>))</span>
-<span id="cb11-6"><a href="#cb11-6"></a>Lagos&lt;-<span class="kw">factor</span>(Lagos, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), </span>
-<span id="cb11-7"><a href="#cb11-7"></a>              <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Caraizo&quot;</span>, <span class="st">&quot;DosBocas&quot;</span>, <span class="st">&quot;Guineo&quot;</span>))</span>
-<span id="cb11-8"><a href="#cb11-8"></a>fosforo2&lt;-<span class="kw">data.frame</span>(id,Cant_Fos,Lagos)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>Lagos<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>))</span>
+<span id="cb11-6"><a href="#cb11-6"></a>Lagos<span class="ot">&lt;-</span><span class="fu">factor</span>(Lagos, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), </span>
+<span id="cb11-7"><a href="#cb11-7"></a>              <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Caraizo&quot;</span>, <span class="st">&quot;DosBocas&quot;</span>, <span class="st">&quot;Guineo&quot;</span>))</span>
+<span id="cb11-8"><a href="#cb11-8"></a>fosforo2<span class="ot">&lt;-</span><span class="fu">data.frame</span>(id,Cant_Fos,Lagos)</span>
 <span id="cb11-9"><a href="#cb11-9"></a></span>
-<span id="cb11-10"><a href="#cb11-10"></a><span class="kw">attach</span>(fosforo2)</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, Cant_Fos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">bg=</span><span class="st">&quot;black&quot;</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="fu">attach</span>(fosforo2)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, Cant_Fos, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;black&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="at">col=</span><span class="st">&quot;orange&quot;</span>)</span>
 <span id="cb12-5"><a href="#cb12-5"></a></span>
-<span id="cb12-6"><a href="#cb12-6"></a>index&lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(Cant_Fos)</span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(index)){</span>
-<span id="cb12-8"><a href="#cb12-8"></a>  <span class="cf">if</span>(Lagos[i]<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>)</span>
-<span id="cb12-9"><a href="#cb12-9"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Caraizo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb12-10"><a href="#cb12-10"></a>  <span class="cf">else</span> <span class="cf">if</span> (Lagos[i]<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>)</span>
-<span id="cb12-11"><a href="#cb12-11"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;Guineo&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>index<span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Cant_Fos)</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(index)){</span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="cf">if</span>(Lagos[i]<span class="sc">==</span><span class="st">&quot;Caraizo&quot;</span>)</span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(index[i], index[i]), <span class="fu">c</span>(<span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Caraizo&quot;</span>]), Cant_Fos[i]), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="cf">else</span> <span class="cf">if</span> (Lagos[i]<span class="sc">==</span><span class="st">&quot;Guineo&quot;</span>)</span>
+<span id="cb12-11"><a href="#cb12-11"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(index[i], index[i]), <span class="fu">c</span>(<span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Guineo&quot;</span>]), Cant_Fos[i]), <span class="at">col=</span><span class="st">&quot;orange&quot;</span>)</span>
 <span id="cb12-12"><a href="#cb12-12"></a>  <span class="cf">else</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a>    <span class="kw">lines</span>(<span class="kw">c</span>(index[i], index[i]), <span class="kw">c</span>(<span class="kw">mean</span>(Cant_Fos[Lagos<span class="op">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb12-13"><a href="#cb12-13"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(index[i], index[i]), <span class="fu">c</span>(<span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;DosBocas&quot;</span>]), Cant_Fos[i]), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb12-14"><a href="#cb12-14"></a>} </span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <hr />
@@ -806,23 +774,23 @@ div.sourceCode pre.chunkout {
 <h1>Gráficar los datos</h1>
 <p>Gráfica de los datos para observar si hay un patrón observable. Repito este punto múltiples veces ya que en mi carrera he visto mucha gente haciendo análisis de datos y hacen un análisis estadístico y rechazan la hipótesis nula. Si habría tomado el tiempo de visualizar los datos se habrían dado cuenta que no era posible este resultado porque los datos de los grupos solapan completamente.</p>
 <p>NOTA Aquí los tres pasos para producir un gráfico con el promedio de cada grupo. 1. los datos con geom_point 2. los promedios con stat_summary(fun.y = mean, geom = “point”), para calcular el promedio del grupo 3. Una linea que une los promedios con stat_summary(fun.y = mean, geom = “line”), note la diferencia entre los dos uno usa “point” el otro usa “line”.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">ggplot</span>(fosforo, <span class="kw">aes</span>(<span class="dt">x=</span>Lagos, <span class="dt">y=</span>Cant_Fos, <span class="dt">colour=</span>Lagos))<span class="op">+</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="kw">geom_point</span>()<span class="op">+</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>, </span>
-<span id="cb13-5"><a href="#cb13-5"></a>                    <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)<span class="op">+</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, </span>
-<span id="cb13-7"><a href="#cb13-7"></a>             <span class="kw">aes</span>(<span class="dt">group=</span><span class="dv">1</span>), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">ggplot</span>(fosforo, <span class="fu">aes</span>(<span class="at">x=</span>Lagos, <span class="at">y=</span>Cant_Fos, <span class="at">colour=</span>Lagos))<span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>, </span>
+<span id="cb13-5"><a href="#cb13-5"></a>                    <span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>), <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>)<span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, </span>
+<span id="cb13-7"><a href="#cb13-7"></a>             <span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/graficar%20fosforo-1.png" width="672" /></p>
 <hr />
 <div id="un-gráfico-con-el-intervalo-de-confianza." class="section level2">
 <h2>Un gráfico con el intervalo de confianza.</h2>
 <p>Crear un data frame de los resultados con el package “Rmisc” y la función “summarySE”. Los pasos son identificar la variable continua (en este caso measurevar=“Cant_Fos”) y la variable discreta que identifica los grupos groupvars=“Lagos”. Esto crea un nuevo data frame con los datos resumidos que incluye, el nombre de los grupos (Lagos), el tamaño de muestra (N), el promedio de la variable (Cant_Fos), la desviación estandar (sd), el error estandar (se) y intervalo de confianza (ci).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">library</span>(Rmisc)</span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(Rmisc)</span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
-<span id="cb14-3"><a href="#cb14-3"></a>sum =<span class="st"> </span><span class="kw">summarySE</span>(fosforo, </span>
-<span id="cb14-4"><a href="#cb14-4"></a>                <span class="dt">measurevar=</span><span class="st">&quot;Cant_Fos&quot;</span>, </span>
-<span id="cb14-5"><a href="#cb14-5"></a>                <span class="dt">groupvars=</span><span class="st">&quot;Lagos&quot;</span>)</span>
+<span id="cb14-3"><a href="#cb14-3"></a>sum <span class="ot">=</span> <span class="fu">summarySE</span>(fosforo, </span>
+<span id="cb14-4"><a href="#cb14-4"></a>                <span class="at">measurevar=</span><span class="st">&quot;Cant_Fos&quot;</span>, </span>
+<span id="cb14-5"><a href="#cb14-5"></a>                <span class="at">groupvars=</span><span class="st">&quot;Lagos&quot;</span>)</span>
 <span id="cb14-6"><a href="#cb14-6"></a>sum</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:summary data">
 <col><col><col><col><col><col><tr>
@@ -840,19 +808,19 @@ div.sourceCode pre.chunkout {
 <div id="graficar-con-nuestro-nuevo-data-frame-sum." class="section level2">
 <h2>Graficar con nuestro nuevo data frame “sum”.</h2>
 <p>Para calcular el 95% del intervalo de confianza del promedio se usa la siguiente formula <span class="math inline">\(\overline{x}\ \pm2\cdot se\)</span>. Las barras representa el 95% de donde pudiese estar el promedio si repetimos el mismo experimento 100 veces.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">ggplot</span>(sum, <span class="kw">aes</span>(<span class="dt">x=</span>Lagos, </span>
-<span id="cb15-2"><a href="#cb15-2"></a>                <span class="dt">y=</span>Cant_Fos)) <span class="op">+</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span><span class="st"> </span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>Cant_Fos<span class="dv">-2</span><span class="op">*</span>se,</span>
-<span id="cb15-5"><a href="#cb15-5"></a>                    <span class="dt">ymax=</span>Cant_Fos<span class="op">+</span><span class="dv">2</span><span class="op">*</span>se), </span>
-<span id="cb15-6"><a href="#cb15-6"></a>                <span class="dt">width=</span>.<span class="dv">2</span>, <span class="dt">size=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(sum, <span class="fu">aes</span>(<span class="at">x=</span>Lagos, </span>
+<span id="cb15-2"><a href="#cb15-2"></a>                <span class="at">y=</span>Cant_Fos)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_point</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>Cant_Fos<span class="dv">-2</span><span class="sc">*</span>se,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>                    <span class="at">ymax=</span>Cant_Fos<span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>se), </span>
+<span id="cb15-6"><a href="#cb15-6"></a>                <span class="at">width=</span>.<span class="dv">2</span>, <span class="at">size=</span><span class="fl">0.7</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/grafica2-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="estadística-descriptiva-de-los-lagos" class="section level2">
 <h2>Estadística descriptiva de los Lagos</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">library</span>(pastecs)</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="kw">by</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos, stat.desc)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(pastecs)</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">by</span>(fosforo<span class="sc">$</span>Cant_Fos, fosforo<span class="sc">$</span>Lagos, stat.desc)</span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb17-1"><a href="#cb17-1"></a>## fosforo$Lagos: Caraizo</span>
 <span id="cb17-2"><a href="#cb17-2"></a>##      nbr.val     nbr.null       nbr.na          min          max        range </span>
 <span id="cb17-3"><a href="#cb17-3"></a>##    5.0000000    0.0000000    0.0000000   44.0000000   64.0000000   20.0000000 </span>
@@ -912,8 +880,8 @@ div.sourceCode pre.chunkout {
 <h2>3. La prueba de Levene’s test</h2>
 <p>La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <a href="https://en.wikipedia.org/wiki/Levene%27s_test" class="uri">https://en.wikipedia.org/wiki/Levene%27s_test</a>. Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función <strong>leveneTest()</strong>. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula. <span style="color: red;">Si no cumple con el supuesto de igualdad de varianza ver el modulo de Kruskal-Wallis para una alternariva como evaluar los datos</span></p>
 <p>Con los datos de la concentración de fósforo en las plantas de tres lagos, la prueba de Levene da un resultado de p &gt; 0.21, lo que indica que no hay evidencia que la varianza es distinta entre los grupos, por consecuencia se acepta la hipótesis nula.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">library</span>(car)</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">leveneTest</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">leveneTest</span>(fosforo<span class="sc">$</span>Cant_Fos, fosforo<span class="sc">$</span>Lagos)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:levene test">
 <col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
@@ -928,11 +896,11 @@ div.sourceCode pre.chunkout {
 <div id="normalidad" class="section level2">
 <h2>4. Normalidad</h2>
 <p>Tenemos que evaluar si los datos tienen una distribución normal. Como se ha discutido en un modulo anterior hay múltiples alternativas. Vamos a limitarnos a usar la prueba de qqplot. Vemos que los datos más o menos siguen la linea, entonces podemos usar ANOVA. En este caso tenemos pocos datos pero si tuviesemos más seria apropiado evaluar cada una aparte. Lo más sencillo seria de cambiar la primera linea del siguiente script <strong>ggplot(fosforo, aes(sample = Cant_Fos, group=Lagos))</strong>. En este caso tendríamos 3 lineas. <span style="color: red;">Si no cumple con el supuesto de normalidad ver el modulo de Kruskal-Wallis para una alternariva como evaluar los datos</span></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">ggplot</span>(fosforo, <span class="kw">aes</span>(<span class="dt">sample =</span> Cant_Fos)) <span class="op">+</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="st">  </span><span class="kw">stat_qq</span>() <span class="op">+</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="st">  </span><span class="kw">stat_qq_line</span>(<span class="dt">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Valores teóricos&quot;</span>)<span class="op">+</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Valores observados&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(fosforo, <span class="fu">aes</span>(<span class="at">sample =</span> Cant_Fos)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">stat_qq_line</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Valores teóricos&quot;</span>)<span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Valores observados&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <hr />
 </div>
@@ -940,10 +908,10 @@ div.sourceCode pre.chunkout {
 <div id="la-prueba-de-anova" class="section level1">
 <h1>La prueba de ANOVA</h1>
 <p>Finalmente llegamos a la prueba de ANOVA, se usa la función <strong>aov()</strong>. En la primera linea vemos el resultado de comparar los tres lagos, ven que hay 2 grados de libertad (df=2), esto quiere decir que esta incluido en el analisis 3 grapos, porque el grado de libertad de calcula tomando la suma de la cantidad de grupos k-1, y este ejercicio tenemos 3-1=2. En la misma linea obsertva el valor de p, vemos que se rechaza la hipótesis nula (p &lt;0.05). Ya sabemos que por lo menos uno de los grupos no es igual a los demás. Pero todavía no sabemos que pares son diferentes o si todos. En la segunda linea se observa lo otros datos del experimento, lo que aquí se llama los residuales.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>LagosModel&lt;-<span class="kw">aov</span>(Cant_Fos<span class="op">~</span>Lagos, <span class="dt">data =</span> fosforo)</span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>LagosModel<span class="ot">&lt;-</span><span class="fu">aov</span>(Cant_Fos<span class="sc">~</span>Lagos, <span class="at">data =</span> fosforo)</span>
 <span id="cb20-2"><a href="#cb20-2"></a></span>
 <span id="cb20-3"><a href="#cb20-3"></a></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="kw">summary</span>(LagosModel)</span></code></pre></div>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="fu">summary</span>(LagosModel)</span></code></pre></div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
 <span id="cb21-2"><a href="#cb21-2"></a>## Lagos        2   3939    1970   49.28 8.55e-07 ***</span>
 <span id="cb21-3"><a href="#cb21-3"></a>## Residuals   13    520      40                     </span>
@@ -951,7 +919,7 @@ div.sourceCode pre.chunkout {
 <span id="cb21-5"><a href="#cb21-5"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></code></pre></div>
 <p>Una alternativa para evaluar si los datos tienen una igualdad de varianza y normalidad es usar la función <strong>plot()</strong>, esta función presenta 4 gráficos donde vamos aquí explicar solamente las dos primeras. En el primer gráfico se observa una distribución de los residuales por grupo. Si los datos están más o menos distribuido de forma similar entre los grupos (que los datos de cada grupo tiene más o menos la misma cantidad de datos negativos y positivos alrededor del residual cero y que esta distribución se ve similar) se suguiere que hay igualdad de varianza entre los grupos.</p>
 <p>En el segundo gráfico se observa en qqplot. Si los datos están cerca de la linea entrecortada se asume que tiene una distribución normal. Nota que hay tres datos que tienen números (5, 3, 12), estos son datos que posiblemente sean atípicos, y hay que evaluar si estos datos impacta el resultados (veremos esto más tarde, con la prueba de Cooks).</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">plot</span>(LagosModel)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">plot</span>(LagosModel)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-1.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-2.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-3.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-4.png" width="672" /></p>
 <div id="prueba-de-post-hoc" class="section level2">
 <h2>PRUEBA de Post-Hoc</h2>
@@ -967,7 +935,7 @@ div.sourceCode pre.chunkout {
 <div id="prueba-de-bonferroni" class="section level2">
 <h2>Prueba de Bonferroni</h2>
 <p>Vemos ahora el se hizo 3 pruebas, y cada una tiene un valor de p menor de 5%, por consecuencia cada grupo es distinto uno del otro.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">pairwise.t.test</span>(fosforo<span class="op">$</span>Cant_Fos, fosforo<span class="op">$</span>Lagos, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="co"># Nota aqui se usa los datos originales, el error de todos las pruebas se limita a 5%.  </span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">pairwise.t.test</span>(fosforo<span class="sc">$</span>Cant_Fos, fosforo<span class="sc">$</span>Lagos, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="co"># Nota aqui se usa los datos originales, el error de todos las pruebas se limita a 5%.  </span></span></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>## </span>
 <span id="cb24-2"><a href="#cb24-2"></a>##  Pairwise comparisons using t tests with pooled SD </span>
 <span id="cb24-3"><a href="#cb24-3"></a>## </span>
@@ -982,9 +950,9 @@ div.sourceCode pre.chunkout {
 <div id="prueba-de-tukey" class="section level2">
 <h2>Prueba de Tukey</h2>
 <p>En la prueba de Tukey vemos el resultado de las pruebas Post-Hoc. El resultado es lo mismo que la prueba anterior donde cada grupo es significativamente diferente uno del otro. En mucha ocasiones el resulto puede diferir. Si esto ocurre hay que evaluar bien cual es el nivel de confiabilidad que queremos. Algunos pruebas Post_Hoc tienden a rechazar con meas frecuencia que otra.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">library</span>(multcomp)</span>
-<span id="cb25-2"><a href="#cb25-2"></a>postHocs<span class="fl">.1</span>&lt;-<span class="kw">glht</span>(LagosModel, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">Lagos =</span> <span class="st">&quot;Tukey&quot;</span>))  </span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="kw">summary</span>(postHocs<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>postHocs<span class="fl">.1</span><span class="ot">&lt;-</span><span class="fu">glht</span>(LagosModel, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Lagos =</span> <span class="st">&quot;Tukey&quot;</span>))  </span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="fu">summary</span>(postHocs<span class="fl">.1</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb26"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>## </span>
 <span id="cb26-2"><a href="#cb26-2"></a>##   Simultaneous Tests for General Linear Hypotheses</span>
 <span id="cb26-3"><a href="#cb26-3"></a>## </span>
@@ -995,9 +963,9 @@ div.sourceCode pre.chunkout {
 <span id="cb26-8"><a href="#cb26-8"></a>## </span>
 <span id="cb26-9"><a href="#cb26-9"></a>## Linear Hypotheses:</span>
 <span id="cb26-10"><a href="#cb26-10"></a>##                         Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951   0.0044 ** </span>
-<span id="cb26-12"><a href="#cb26-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830   &lt;0.001 ***</span>
-<span id="cb26-13"><a href="#cb26-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703   &lt;0.001 ***</span>
+<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00443 ** </span>
+<span id="cb26-12"><a href="#cb26-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***</span>
+<span id="cb26-13"><a href="#cb26-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***</span>
 <span id="cb26-14"><a href="#cb26-14"></a>## ---</span>
 <span id="cb26-15"><a href="#cb26-15"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
 <span id="cb26-16"><a href="#cb26-16"></a>## (Adjusted p values reported -- single-step method)</span></code></pre></div>
@@ -1051,7 +1019,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -1060,6 +1028,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

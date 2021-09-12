@@ -49,7 +49,7 @@ knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
 ```{r packages, echo=FALSE}
 #Initiate packages
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(Hmisc, pastecs)
+pacman::p_load(Hmisc, pastecs, gridExtra, tidyverse)
 library(Hmisc)
 library(pastecs)
 library(ggplot2)
@@ -309,7 +309,8 @@ Anxiety data
 ```{r example with anxiety}
 
 library(readr)
-Exam_Anxiety <- read_csv("~/Google Drive/Biometry/Biometria 2015/Biometria_2015_RStudio/Data files/Exam_Anxiety.csv")
+library(readr)
+Exam_Anxiety <- read_csv("Data_files_csv/Exam Anxiety.csv")
 examData=Exam_Anxiety
 head(examData)
 

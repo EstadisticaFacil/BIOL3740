@@ -172,7 +172,7 @@ Los datos representa la cantidad de dinero dedicado a la promoción de diferente
 
 ```{r advertizing and sales}
 library(readr)
-Album_Sales_1_new <- read_csv("~/Google Drive/Biometry/Biometria 2017/Data_FILES/Album_Sales_1_new.csv")
+Album_Sales_1_new <- read_csv("Data_files_csv/Album_Sales_1_new.csv")
 head(Album_Sales_1_new)
 
 
@@ -194,8 +194,10 @@ ggplot(Album_Sales_1_new,aes(x=adverts, y=sales))+
 
 El modelo lineal con la función **lm()**. ¿Como interpretas los coeficientes y si estos son significativos, si se rechaza la hipótesis nula?
 
-```{r, sales model, }
+```{r, sales model }
 library(sjPlot)
+head(Album_Sales_1_new)
+
 model1=lm(sales~adverts, Album_Sales_1_new)
 
 #summary(model1)

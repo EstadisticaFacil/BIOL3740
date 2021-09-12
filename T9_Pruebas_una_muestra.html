@@ -13,20 +13,26 @@
 
 <title>T9_Pruebas_una_muestra</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -38,11 +44,19 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -125,39 +139,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="tutorial.css" type="text/css" />
 
@@ -168,10 +152,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -188,40 +168,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -249,7 +202,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -261,7 +214,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -272,10 +225,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -287,7 +253,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -413,7 +378,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -528,7 +493,7 @@ div.tocify {
       <a href="T15_Selecionar_Pruebas.html">T15 Selección de pruebas corectas</a>
     </li>
     <li>
-      <a href="T16_AKAIKE.html">T16 AIC:Criterio de Información</a>
+      <a href="T16_AKAIKE.html">T16 Criterio de Información</a>
     </li>
   </ul>
 </li>
@@ -566,6 +531,9 @@ div.tocify {
     <li>
       <a href="Ejerc_5_Correlacion.html">Ejercicio de Correlación</a>
     </li>
+    <li>
+      <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -591,7 +559,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -600,9 +568,9 @@ div.tocify {
 </div>
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(gridExtra)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-11-14&quot;</code></pre>
+<pre><code>## [1] &quot;2021-09-12&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <hr />
 <div id="el-promedio-un-estimado" class="section level1">
@@ -618,14 +586,14 @@ div.tocify {
 <div id="la-distribución-de-t" class="section level1">
 <h1>La distribución de t</h1>
 <p>Cuando queremos inferir información del promedio o la desviación del universo de un muestreo hay que utilizar la distribución de t. La razón es que la forma de la distribución normal cambia con el tamaño de muestra cuando no sabemos cual es la desviación estándar del universo. A medida que uno reduce el tamaño de muestra la distribución se desvía de una distribución normal. Para tomar esto en cuenta no usamos la distribución normal la de distribución de t, también se dice la distribución de t de estudiante.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">ggplot</span>(out,<span class="kw">aes</span>(df1x, val, <span class="dt">colour=</span>df) )<span class="op">+</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw">geom_line</span>()<span class="op">+</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span>rlt_theme<span class="op">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Grado de </span><span class="ch">\n</span><span class="st">libertad&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;springgreen4&quot;</span>, <span class="st">&quot;black&quot;</span>), </span>
-<span id="cb3-5"><a href="#cb3-5"></a>                     <span class="dt">labels =</span> <span class="kw">expression</span>(nu[<span class="dv">1</span>], nu[<span class="dv">2</span>],nu[<span class="dv">5</span>], nu[infinity]))<span class="op">+</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="st">                     </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="fl">0.8</span>))<span class="op">+</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="st">                     </span><span class="kw">xlab</span>(<span class="st">&quot;Valores&quot;</span>)<span class="op">+</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="st">                     </span><span class="kw">ylab</span>(<span class="st">&quot;Densidad&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(out,<span class="fu">aes</span>(df1x, val, <span class="at">colour=</span>df) )<span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  rlt_theme<span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name =</span> <span class="st">&quot;Grado de </span><span class="sc">\n</span><span class="st">libertad&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;springgreen4&quot;</span>, <span class="st">&quot;black&quot;</span>), </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">expression</span>(nu[<span class="dv">1</span>], nu[<span class="dv">2</span>],nu[<span class="dv">5</span>], nu[infinity]))<span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.8</span>))<span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">xlab</span>(<span class="st">&quot;Valores&quot;</span>)<span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">ylab</span>(<span class="st">&quot;Densidad&quot;</span>)</span></code></pre></div>
 <p><img src="T9_Pruebas_una_muestra_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Observa que la distribución de t, cambia dependiendo la forma de la densidades con el tamaño de muestra, (grado de libertad es <span class="math inline">\(\nu=n-1\)</span>). Tiene que observar dos componentes 1. hay menos datos en centrado en el promedio y 2. hay más datos en la colas.</p>
 <p>Se usa la distribución de t para calcular el intervalo de confianza y la hipótesis del promedio de una muestra, debido que la forma de la distribución de t cambia con el tamaño de muestra <span class="math inline">\(\nu=n-1\)</span> y también con la razón de error Tipo I, <span class="math inline">\(\alpha\)</span>.</p>
@@ -653,9 +621,9 @@ div.tocify {
 <div id="los-limites-del-intervalo" class="section level1">
 <h1>Los limites del intervalo</h1>
 <p>Para calcular el intervalo se necesita se necesita solamente el valor de t con la tipo de error I de 95% y que corresponde a un tamaño de muestra de 20, <span class="math inline">\(t_{0.05,\ n-1}\)</span>. Para conocer este valor hay que ir a una tabla de la distribución de t (vea p. 217 en el libro) o usar R para calcular el valor. En la tabla busca el error I deseado (0.05) y se busca el grado de libertad <em>n-1</em>, <span class="math inline">\(t_{0.05,\ 19}\)</span>. El valor del libro es <span class="math inline">\(t = 2.093\)</span>. Si se quisiera un Tipo de error I con solamente 1% error el valor seria <span class="math inline">\(t=2.8609\)</span>, (busca la información en la tabla, o usando la función <strong>qt()</strong>).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">abs</span>(<span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)) <span class="co"># nota que se usa la mitad de 0.05, por que es una prueba de dos lados. </span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)) <span class="co"># nota que se usa la mitad de 0.05, por que es una prueba de dos lados. </span></span></code></pre></div>
 <pre><code>## [1] 2.093024</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="dv">21</span><span class="op">+</span><span class="kw">abs</span>(<span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="op">*</span>(<span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">20</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">21</span><span class="sc">+</span><span class="fu">abs</span>(<span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="sc">*</span>(<span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">20</span>)))</span></code></pre></div>
 <pre><code>## [1] 21.82371</code></pre>
 <div id="el-limite-superior" class="section level2">
 <h2>El limite superior</h2>
@@ -669,11 +637,11 @@ div.tocify {
 <p><span class="math display">\[LL_{0.95}=21-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.176\]</span></p>
 <hr />
 <p>El intervalo de confianza del <span class="math inline">\(\mu\)</span> es entre 20.175-21.825 con un 95% de probabilidad.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>UL=<span class="dv">21</span><span class="op">+</span><span class="kw">abs</span>(<span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">20</span>))</span>
-<span id="cb8-2"><a href="#cb8-2"></a>LL=<span class="dv">21</span><span class="op">-</span><span class="kw">abs</span>(<span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">20</span>))</span>
-<span id="cb8-3"><a href="#cb8-3"></a>UL</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>UL<span class="ot">=</span><span class="dv">21</span><span class="sc">+</span><span class="fu">abs</span>(<span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">20</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>LL<span class="ot">=</span><span class="dv">21</span><span class="sc">-</span><span class="fu">abs</span>(<span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">20</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>UL</span></code></pre></div>
 <pre><code>## [1] 21.82371</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>LL</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>LL</span></code></pre></div>
 <pre><code>## [1] 20.17629</code></pre>
 <hr />
 </div>
@@ -681,18 +649,18 @@ div.tocify {
 <h2>Menos o más grados de libertad</h2>
 <p>Nota lo que pasa si uno tiene menos datos o más datos con el intervalo de confianza.</p>
 <p>Con un tamaño de muestra solamente de 5 datos el IC de 95% es entre 17.824-22.185. Por tener menos datos tenemos menos confianza donde se entra el promedio del universo.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>UL=<span class="dv">21</span><span class="op">+</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">5</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a>LL=<span class="dv">21</span><span class="op">-</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">5</span>)</span>
-<span id="cb12-3"><a href="#cb12-3"></a>UL</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>UL<span class="ot">=</span><span class="dv">21</span><span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">5</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>LL<span class="ot">=</span><span class="dv">21</span><span class="sc">-</span><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">5</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>UL</span></code></pre></div>
 <pre><code>## [1] 18.81467</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>LL</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>LL</span></code></pre></div>
 <pre><code>## [1] 23.18533</code></pre>
 <p>Ahora con en tamaño de muestra de 100. Ahora el intervalo de confianza esta más estrecho 19.651-20.349</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>UL=<span class="dv">21</span><span class="op">+</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">100</span>)</span>
-<span id="cb16-2"><a href="#cb16-2"></a>LL=<span class="dv">21</span><span class="op">-</span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="op">*</span><span class="fl">1.76</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">100</span>)</span>
-<span id="cb16-3"><a href="#cb16-3"></a>UL</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>UL<span class="ot">=</span><span class="dv">21</span><span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">100</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>LL<span class="ot">=</span><span class="dv">21</span><span class="sc">-</span><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">100</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>UL</span></code></pre></div>
 <pre><code>## [1] 20.65078</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>LL</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>LL</span></code></pre></div>
 <pre><code>## [1] 21.34922</code></pre>
 <hr />
 </div>
@@ -739,10 +707,10 @@ Responde en Edmodo.</p></li>
 <li>Ha: <span class="math inline">\(\overline{x}≠\mu\)</span></li>
 </ul>
 <p><span class="math display">\[|t|=\frac{\left(\overline{x}-\mu_0\right)}{\frac{s}{\sqrt{n}}}\]</span> Sustitución de los valores en la prueba de t.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>t=<span class="kw">abs</span>((<span class="fl">196.7-209.4</span>)<span class="op">/</span>((<span class="fl">39.1</span>)<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">30</span>)) )</span>
-<span id="cb20-2"><a href="#cb20-2"></a>t <span class="co"># Valor t de observado</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>t<span class="ot">=</span><span class="fu">abs</span>((<span class="fl">196.7-209.4</span>)<span class="sc">/</span>((<span class="fl">39.1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">30</span>)) )</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>t <span class="co"># Valor t de observado</span></span></code></pre></div>
 <pre><code>## [1] 1.779048</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">abs</span>(<span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">29</span>))  <span class="co"># valor de t-critico, de la tabla</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">29</span>))  <span class="co"># valor de t-critico, de la tabla</span></span></code></pre></div>
 <pre><code>## [1] 2.04523</code></pre>
 <hr />
 </div>
@@ -755,8 +723,8 @@ Responde en Edmodo.</p></li>
 <li>Ho: <span class="math inline">\(\overline{x}=\mu\)</span></li>
 <li>Ha: <span class="math inline">\(\overline{x}≠\mu\)</span></li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">data</span>(tips, <span class="dt">package=</span><span class="st">&quot;reshape2&quot;</span>)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="kw">head</span>(tips)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(tips, <span class="at">package=</span><span class="st">&quot;reshape2&quot;</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tips)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-22">
 <col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_bill</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">tip</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sex</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">smoker</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">day</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">time</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">size</th></tr>
@@ -785,7 +753,7 @@ Responde en Edmodo.</p></li>
 </ul></li>
 </ul>
 <p>El resultado: El valor de t-observado es de 5.625, con un grado de libertad de 243 (n=244), y valor de p &lt;0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna. El intervalo de confianza del promedio es $2.82 - $3.17, con un promedio de $3.00</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">t.test</span>(tips<span class="op">$</span>tip, <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>, <span class="dt">mu=</span><span class="fl">2.5</span>, <span class="dt">conf.level =</span> <span class="fl">.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(tips<span class="sc">$</span>tip, <span class="at">alternative=</span><span class="st">&quot;two.sided&quot;</span>, <span class="at">mu=</span><span class="fl">2.5</span>, <span class="at">conf.level =</span> .<span class="dv">95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -813,13 +781,13 @@ Responde en Edmodo.</p></li>
 </ul>
 </blockquote>
 <p>En este ejemplo observamos que el promedio estimado es por encima del intervalo de confianza (la lineas entrecortadas).</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># construir una distribución normal de los datos</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>randT&lt;-<span class="kw">rt</span>(<span class="dv">30000</span>, <span class="dt">df=</span><span class="kw">NROW</span>(tips)<span class="op">-</span><span class="dv">1</span>)<span class="op">+</span><span class="fl">2.5</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a></span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="co"># Hacer la prueba de t</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>tipTTest&lt;-<span class="kw">t.test</span>(tips<span class="op">$</span>tip, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="dt">mu=</span><span class="fl">2.50</span>)</span>
-<span id="cb27-6"><a href="#cb27-6"></a></span>
-<span id="cb27-7"><a href="#cb27-7"></a>tipTTest</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construir una distribución normal de los datos</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>randT<span class="ot">&lt;-</span><span class="fu">rt</span>(<span class="dv">30000</span>, <span class="at">df=</span><span class="fu">NROW</span>(tips)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">+</span><span class="fl">2.5</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Hacer la prueba de t</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>tipTTest<span class="ot">&lt;-</span><span class="fu">t.test</span>(tips<span class="sc">$</span>tip, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu=</span><span class="fl">2.50</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>tipTTest</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -831,12 +799,12 @@ Responde en Edmodo.</p></li>
 ## sample estimates:
 ## mean of x 
 ##  2.998279</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Graficar los resultados</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x=</span>randT))<span class="op">+</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="st">    </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x), <span class="dt">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># La densidad de los datos</span></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> tipTTest<span class="op">$</span>statistic, <span class="dt">colour=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># El resultado de la prueba estadística</span></span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(randT)<span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(randT), <span class="dt">linetype=</span><span class="dv">2</span>)<span class="op">+</span><span class="st"> </span><span class="co"># El intervalo de confianza</span></span>
-<span id="cb29-6"><a href="#cb29-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Promedio de propina&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los resultados</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x=</span>randT))<span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x=</span>x), <span class="at">fill=</span><span class="st">&quot;grey&quot;</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>)<span class="sc">+</span> <span class="co"># La densidad de los datos</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> tipTTest<span class="sc">$</span>statistic, <span class="at">colour=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span> <span class="co"># El resultado de la prueba estadística</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(randT)<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>)<span class="sc">*</span><span class="fu">sd</span>(randT), <span class="at">linetype=</span><span class="dv">2</span>)<span class="sc">+</span> <span class="co"># El intervalo de confianza</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Promedio de propina&quot;</span>)</span></code></pre></div>
 <p><img src="T9_Pruebas_una_muestra_files/figure-html/t%20distribution-1.png" width="672" /></p>
 <hr />
 </div>
@@ -871,7 +839,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -880,6 +848,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

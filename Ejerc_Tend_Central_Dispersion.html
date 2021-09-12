@@ -13,20 +13,26 @@
 
 <title>Ejercicio de Tendencia Central y Dispersión</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -38,11 +44,19 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -125,39 +139,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="tutorial.css" type="text/css" />
 
@@ -168,10 +152,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -188,40 +168,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -249,7 +202,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -261,7 +214,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -272,10 +225,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -287,7 +253,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -413,7 +378,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -528,7 +493,7 @@ div.tocify {
       <a href="T15_Selecionar_Pruebas.html">T15 Selección de pruebas corectas</a>
     </li>
     <li>
-      <a href="T16_AKAIKE.html">T16 AIC:Criterio de Información</a>
+      <a href="T16_AKAIKE.html">T16 Criterio de Información</a>
     </li>
   </ul>
 </li>
@@ -566,6 +531,9 @@ div.tocify {
     <li>
       <a href="Ejerc_5_Correlacion.html">Ejercicio de Correlación</a>
     </li>
+    <li>
+      <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -591,7 +559,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -601,13 +569,12 @@ div.tocify {
 
 
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(gt)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ dplyr   1.0.2
-## ✓ tibble  3.0.4     ✓ stringr 1.4.0
-## ✓ tidyr   1.1.2     ✓ forcats 0.5.0
-## ✓ purrr   0.3.4</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ purrr   0.3.4     ✓ forcats 0.5.1</code></pre>
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
@@ -623,17 +590,18 @@ div.tocify {
 </div>
 <div id="buscar-la-metadata" class="section level1">
 <h1>Buscar la metadata</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>codes&lt;-<span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>codes<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="visualizar-la-meta-data" class="section level1">
 <h1>Visualizar la meta data</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">gt</span>(codes)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(codes)</span></code></pre></div>
+<div id="mxvvofdrcx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#hbdvccvbyw .gt_table {
+#mxvvofdrcx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -658,7 +626,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#hbdvccvbyw .gt_heading {
+#mxvvofdrcx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -670,7 +638,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#hbdvccvbyw .gt_title {
+#mxvvofdrcx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -680,7 +648,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#hbdvccvbyw .gt_subtitle {
+#mxvvofdrcx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -690,13 +658,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#hbdvccvbyw .gt_bottom_border {
+#mxvvofdrcx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hbdvccvbyw .gt_col_headings {
+#mxvvofdrcx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -711,7 +679,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#hbdvccvbyw .gt_col_heading {
+#mxvvofdrcx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -731,7 +699,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#hbdvccvbyw .gt_column_spanner_outer {
+#mxvvofdrcx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -743,15 +711,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#hbdvccvbyw .gt_column_spanner_outer:first-child {
+#mxvvofdrcx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hbdvccvbyw .gt_column_spanner_outer:last-child {
+#mxvvofdrcx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hbdvccvbyw .gt_column_spanner {
+#mxvvofdrcx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -763,7 +731,7 @@ div.tocify {
   width: 100%;
 }
 
-#hbdvccvbyw .gt_group_heading {
+#mxvvofdrcx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -785,7 +753,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#hbdvccvbyw .gt_empty_group_heading {
+#mxvvofdrcx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -800,15 +768,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#hbdvccvbyw .gt_from_md > :first-child {
+#mxvvofdrcx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hbdvccvbyw .gt_from_md > :last-child {
+#mxvvofdrcx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hbdvccvbyw .gt_row {
+#mxvvofdrcx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -827,7 +795,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#hbdvccvbyw .gt_stub {
+#mxvvofdrcx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -839,7 +807,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#hbdvccvbyw .gt_summary_row {
+#mxvvofdrcx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -849,7 +817,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#hbdvccvbyw .gt_first_summary_row {
+#mxvvofdrcx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -859,7 +827,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#hbdvccvbyw .gt_grand_summary_row {
+#mxvvofdrcx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -869,7 +837,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#hbdvccvbyw .gt_first_grand_summary_row {
+#mxvvofdrcx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -879,11 +847,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#hbdvccvbyw .gt_striped {
+#mxvvofdrcx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hbdvccvbyw .gt_table_body {
+#mxvvofdrcx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -892,7 +860,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#hbdvccvbyw .gt_footnotes {
+#mxvvofdrcx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -906,13 +874,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#hbdvccvbyw .gt_footnote {
+#mxvvofdrcx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#hbdvccvbyw .gt_sourcenotes {
+#mxvvofdrcx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -926,335 +894,336 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#hbdvccvbyw .gt_sourcenote {
+#mxvvofdrcx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#hbdvccvbyw .gt_left {
+#mxvvofdrcx .gt_left {
   text-align: left;
 }
 
-#hbdvccvbyw .gt_center {
+#mxvvofdrcx .gt_center {
   text-align: center;
 }
 
-#hbdvccvbyw .gt_right {
+#mxvvofdrcx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hbdvccvbyw .gt_font_normal {
+#mxvvofdrcx .gt_font_normal {
   font-weight: normal;
 }
 
-#hbdvccvbyw .gt_font_bold {
+#mxvvofdrcx .gt_font_bold {
   font-weight: bold;
 }
 
-#hbdvccvbyw .gt_font_italic {
+#mxvvofdrcx .gt_font_italic {
   font-style: italic;
 }
 
-#hbdvccvbyw .gt_super {
+#mxvvofdrcx .gt_super {
   font-size: 65%;
 }
 
-#hbdvccvbyw .gt_footnote_marks {
+#mxvvofdrcx .gt_footnote_marks {
   font-style: italic;
+  font-weight: normal;
   font-size: 65%;
 }
 </style>
-<div id="hbdvccvbyw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">column</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">description</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">source</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">category</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">description</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">iso_code</td>
-      <td class="gt_row gt_left">ISO 3166-1 alpha-3 – three-letter country codes</td>
-      <td class="gt_row gt_left">International Organization for Standardization</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">continent</td>
-      <td class="gt_row gt_left">Continent of the geographical location</td>
-      <td class="gt_row gt_left">Our World in Data</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">location</td>
-      <td class="gt_row gt_left">Geographical location</td>
-      <td class="gt_row gt_left">Our World in Data</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">date</td>
-      <td class="gt_row gt_left">Date of observation</td>
-      <td class="gt_row gt_left">Our World in Data</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">total_cases</td>
-      <td class="gt_row gt_left">Total confirmed cases of COVID-19</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_cases</td>
-      <td class="gt_row gt_left">New confirmed cases of COVID-19</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_cases_smoothed</td>
-      <td class="gt_row gt_left">New confirmed cases of COVID-19 (7-day smoothed)</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">total_deaths</td>
-      <td class="gt_row gt_left">Total deaths attributed to COVID-19</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_deaths</td>
-      <td class="gt_row gt_left">New deaths attributed to COVID-19</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_deaths_smoothed</td>
-      <td class="gt_row gt_left">New deaths attributed to COVID-19 (7-day smoothed)</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">total_cases_per_million</td>
-      <td class="gt_row gt_left">Total confirmed cases of COVID-19 per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_cases_per_million</td>
-      <td class="gt_row gt_left">New confirmed cases of COVID-19 per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_cases_smoothed_per_million</td>
-      <td class="gt_row gt_left">New confirmed cases of COVID-19 (7-day smoothed) per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">total_deaths_per_million</td>
-      <td class="gt_row gt_left">Total deaths attributed to COVID-19 per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_deaths_per_million</td>
-      <td class="gt_row gt_left">New deaths attributed to COVID-19 per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_deaths_smoothed_per_million</td>
-      <td class="gt_row gt_left">New deaths attributed to COVID-19 (7-day smoothed) per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">reproduction_rate</td>
-      <td class="gt_row gt_left">Real-time estimate of the effective reproduction rate (R) of COVID-19</td>
-      <td class="gt_row gt_left">Arroyo Marioli et al. (2020). https://doi.org/10.2139/ssrn.3581633</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">icu_patients</td>
-      <td class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control for European countries / COVID Tracking Project for the United States</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">icu_patients_per_million</td>
-      <td class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control for European countries / COVID Tracking Project for the United States</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">hosp_patients</td>
-      <td class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control for European countries / COVID Tracking Project for the United States</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">hosp_patients_per_million</td>
-      <td class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control for European countries / COVID Tracking Project for the United States</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">weekly_icu_admissions</td>
-      <td class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control for European countries / COVID Tracking Project for the United States</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">weekly_icu_admissions_per_million</td>
-      <td class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control for European countries / COVID Tracking Project for the United States</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">weekly_hosp_admissions</td>
-      <td class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control for European countries / COVID Tracking Project for the United States</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">weekly_hosp_admissions_per_million</td>
-      <td class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week per 1,000,000 people</td>
-      <td class="gt_row gt_left">European Centre for Disease Prevention and Control for European countries / COVID Tracking Project for the United States</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">total_tests</td>
-      <td class="gt_row gt_left">Total tests for COVID-19</td>
-      <td class="gt_row gt_left">National government reports</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_tests</td>
-      <td class="gt_row gt_left">New tests for COVID-19</td>
-      <td class="gt_row gt_left">National government reports</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_tests_smoothed</td>
-      <td class="gt_row gt_left">New tests for COVID-19 (7-day smoothed). For countries that don't report testing data on a daily basis, we assume that testing changed equally on a daily basis over any periods in which no data was reported. This produces a complete series of daily figures, which is then averaged over a rolling 7-day window</td>
-      <td class="gt_row gt_left">National government reports</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">total_tests_per_thousand</td>
-      <td class="gt_row gt_left">Total tests for COVID-19 per 1,000 people</td>
-      <td class="gt_row gt_left">National government reports</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_tests_per_thousand</td>
-      <td class="gt_row gt_left">New tests for COVID-19 per 1,000 people</td>
-      <td class="gt_row gt_left">National government reports</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">new_tests_smoothed_per_thousand</td>
-      <td class="gt_row gt_left">New tests for COVID-19 (7-day smoothed) per 1,000 people</td>
-      <td class="gt_row gt_left">National government reports</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">tests_per_case</td>
-      <td class="gt_row gt_left">Tests conducted per new confirmed case of COVID-19, given as a rolling 7-day average (this is the inverse of positive_rate)</td>
-      <td class="gt_row gt_left">National government reports</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">positive_rate</td>
-      <td class="gt_row gt_left">The share of COVID-19 tests that are positive, given as a rolling 7-day average (this is the inverse of tests_per_case)</td>
-      <td class="gt_row gt_left">National government reports</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">tests_units</td>
-      <td class="gt_row gt_left">Units used by the location to report its testing data</td>
-      <td class="gt_row gt_left">National government reports</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">stringency_index</td>
-      <td class="gt_row gt_left">Government Response Stringency Index: composite measure based on 9 response indicators including school closures, workplace closures, and travel bans, rescaled to a value from 0 to 100 (100 = strictest response)</td>
-      <td class="gt_row gt_left">Oxford COVID-19 Government Response Tracker, Blavatnik School of Government</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">population</td>
-      <td class="gt_row gt_left">Population in 2020</td>
-      <td class="gt_row gt_left">United Nations, Department of Economic and Social Affairs, Population Division, World Population Prospects: The 2019 Revision</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">population_density</td>
-      <td class="gt_row gt_left">Number of people divided by land area, measured in square kilometers, most recent year available</td>
-      <td class="gt_row gt_left">World Bank – World Development Indicators, sourced from Food and Agriculture Organization and World Bank estimates</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">median_age</td>
-      <td class="gt_row gt_left">Median age of the population, UN projection for 2020</td>
-      <td class="gt_row gt_left">UN Population Division, World Population Prospects, 2017 Revision</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">aged_65_older</td>
-      <td class="gt_row gt_left">Share of the population that is 65 years and older, most recent year available</td>
-      <td class="gt_row gt_left">World Bank – World Development Indicators, based on age/sex distributions of United Nations Population Division's World Population Prospects: 2017 Revision</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">aged_70_older</td>
-      <td class="gt_row gt_left">Share of the population that is 70 years and older in 2015</td>
-      <td class="gt_row gt_left">United Nations, Department of Economic and Social Affairs, Population Division (2017), World Population Prospects: The 2017 Revision</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">gdp_per_capita</td>
-      <td class="gt_row gt_left">Gross domestic product at purchasing power parity (constant 2011 international dollars), most recent year available</td>
-      <td class="gt_row gt_left">World Bank – World Development Indicators, source from World Bank, International Comparison Program database</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">extreme_poverty</td>
-      <td class="gt_row gt_left">Share of the population living in extreme poverty, most recent year available since 2010</td>
-      <td class="gt_row gt_left">World Bank – World Development Indicators, sourced from World Bank Development Research Group</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">cardiovasc_death_rate</td>
-      <td class="gt_row gt_left">Death rate from cardiovascular disease in 2017 (annual number of deaths per 100,000 people)</td>
-      <td class="gt_row gt_left">Global Burden of Disease Collaborative Network, Global Burden of Disease Study 2017 Results</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">diabetes_prevalence</td>
-      <td class="gt_row gt_left">Diabetes prevalence (% of population aged 20 to 79) in 2017</td>
-      <td class="gt_row gt_left">World Bank – World Development Indicators, sourced from International Diabetes Federation, Diabetes Atlas</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">female_smokers</td>
-      <td class="gt_row gt_left">Share of women who smoke, most recent year available</td>
-      <td class="gt_row gt_left">World Bank – World Development Indicators, sourced from World Health Organization, Global Health Observatory Data Repository</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">male_smokers</td>
-      <td class="gt_row gt_left">Share of men who smoke, most recent year available</td>
-      <td class="gt_row gt_left">World Bank – World Development Indicators, sourced from World Health Organization, Global Health Observatory Data Repository</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">handwashing_facilities</td>
-      <td class="gt_row gt_left">Share of the population with basic handwashing facilities on premises, most recent year available</td>
-      <td class="gt_row gt_left">United Nations Statistics Division</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">hospital_beds_per_thousand</td>
-      <td class="gt_row gt_left">Hospital beds per 1,000 people, most recent year available since 2010</td>
-      <td class="gt_row gt_left">OECD, Eurostat, World Bank, national government records and other sources</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">life_expectancy</td>
-      <td class="gt_row gt_left">Life expectancy at birth in 2019</td>
-      <td class="gt_row gt_left">James C. Riley, Clio Infra, United Nations Population Division</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">human_development_index</td>
-      <td class="gt_row gt_left">Summary measure of average achievement in key dimensions of human development: a long and healthy life, being knowledgeable and have a decent standard of living</td>
-      <td class="gt_row gt_left">United Nations Development Programme (UNDP)</td>
-    </tr>
+    <tr><td class="gt_row gt_left">iso_code</td>
+<td class="gt_row gt_left">International Organization for Standardization</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">ISO 3166-1 alpha-3 – three-letter country codes</td></tr>
+    <tr><td class="gt_row gt_left">continent</td>
+<td class="gt_row gt_left">Our World in Data</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Continent of the geographical location</td></tr>
+    <tr><td class="gt_row gt_left">location</td>
+<td class="gt_row gt_left">Our World in Data</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Geographical location</td></tr>
+    <tr><td class="gt_row gt_left">date</td>
+<td class="gt_row gt_left">Our World in Data</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Date of observation</td></tr>
+    <tr><td class="gt_row gt_left">total_cases</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed cases</td>
+<td class="gt_row gt_left">Total confirmed cases of COVID-19</td></tr>
+    <tr><td class="gt_row gt_left">new_cases</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed cases</td>
+<td class="gt_row gt_left">New confirmed cases of COVID-19</td></tr>
+    <tr><td class="gt_row gt_left">new_cases_smoothed</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed cases</td>
+<td class="gt_row gt_left">New confirmed cases of COVID-19 (7-day smoothed)</td></tr>
+    <tr><td class="gt_row gt_left">total_deaths</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed deaths</td>
+<td class="gt_row gt_left">Total deaths attributed to COVID-19</td></tr>
+    <tr><td class="gt_row gt_left">new_deaths</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed deaths</td>
+<td class="gt_row gt_left">New deaths attributed to COVID-19</td></tr>
+    <tr><td class="gt_row gt_left">new_deaths_smoothed</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed deaths</td>
+<td class="gt_row gt_left">New deaths attributed to COVID-19 (7-day smoothed)</td></tr>
+    <tr><td class="gt_row gt_left">total_cases_per_million</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed cases</td>
+<td class="gt_row gt_left">Total confirmed cases of COVID-19 per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">new_cases_per_million</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed cases</td>
+<td class="gt_row gt_left">New confirmed cases of COVID-19 per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">new_cases_smoothed_per_million</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed cases</td>
+<td class="gt_row gt_left">New confirmed cases of COVID-19 (7-day smoothed) per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">total_deaths_per_million</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed deaths</td>
+<td class="gt_row gt_left">Total deaths attributed to COVID-19 per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">new_deaths_per_million</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed deaths</td>
+<td class="gt_row gt_left">New deaths attributed to COVID-19 per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">new_deaths_smoothed_per_million</td>
+<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
+<td class="gt_row gt_left">Confirmed deaths</td>
+<td class="gt_row gt_left">New deaths attributed to COVID-19 (7-day smoothed) per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">reproduction_rate</td>
+<td class="gt_row gt_left">Arroyo Marioli et al. (2020). https://doi.org/10.2139/ssrn.3581633</td>
+<td class="gt_row gt_left">Reproduction rate</td>
+<td class="gt_row gt_left">Real-time estimate of the effective reproduction rate (R) of COVID-19. See https://github.com/crondonm/TrackingR/tree/main/Estimates-Database</td></tr>
+    <tr><td class="gt_row gt_left">icu_patients</td>
+<td class="gt_row gt_left">European CDC for EU countries, government sources for other countries</td>
+<td class="gt_row gt_left">Hospital &amp; ICU</td>
+<td class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day</td></tr>
+    <tr><td class="gt_row gt_left">icu_patients_per_million</td>
+<td class="gt_row gt_left">European CDC for EU countries, government sources for other countries</td>
+<td class="gt_row gt_left">Hospital &amp; ICU</td>
+<td class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">hosp_patients</td>
+<td class="gt_row gt_left">European CDC for EU countries, government sources for other countries</td>
+<td class="gt_row gt_left">Hospital &amp; ICU</td>
+<td class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day</td></tr>
+    <tr><td class="gt_row gt_left">hosp_patients_per_million</td>
+<td class="gt_row gt_left">European CDC for EU countries, government sources for other countries</td>
+<td class="gt_row gt_left">Hospital &amp; ICU</td>
+<td class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">weekly_icu_admissions</td>
+<td class="gt_row gt_left">European CDC for EU countries, government sources for other countries</td>
+<td class="gt_row gt_left">Hospital &amp; ICU</td>
+<td class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week</td></tr>
+    <tr><td class="gt_row gt_left">weekly_icu_admissions_per_million</td>
+<td class="gt_row gt_left">European CDC for EU countries, government sources for other countries</td>
+<td class="gt_row gt_left">Hospital &amp; ICU</td>
+<td class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">weekly_hosp_admissions</td>
+<td class="gt_row gt_left">European CDC for EU countries, government sources for other countries</td>
+<td class="gt_row gt_left">Hospital &amp; ICU</td>
+<td class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week</td></tr>
+    <tr><td class="gt_row gt_left">weekly_hosp_admissions_per_million</td>
+<td class="gt_row gt_left">European CDC for EU countries, government sources for other countries</td>
+<td class="gt_row gt_left">Hospital &amp; ICU</td>
+<td class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week per 1,000,000 people</td></tr>
+    <tr><td class="gt_row gt_left">total_tests</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Tests &amp; positivity</td>
+<td class="gt_row gt_left">Total tests for COVID-19</td></tr>
+    <tr><td class="gt_row gt_left">new_tests</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Tests &amp; positivity</td>
+<td class="gt_row gt_left">New tests for COVID-19 (only calculated for consecutive days)</td></tr>
+    <tr><td class="gt_row gt_left">total_tests_per_thousand</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Tests &amp; positivity</td>
+<td class="gt_row gt_left">Total tests for COVID-19 per 1,000 people</td></tr>
+    <tr><td class="gt_row gt_left">new_tests_per_thousand</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Tests &amp; positivity</td>
+<td class="gt_row gt_left">New tests for COVID-19 per 1,000 people</td></tr>
+    <tr><td class="gt_row gt_left">new_tests_smoothed</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Tests &amp; positivity</td>
+<td class="gt_row gt_left">New tests for COVID-19 (7-day smoothed). For countries that don't report testing data on a daily basis, we assume that testing changed equally on a daily basis over any periods in which no data was reported. This produces a complete series of daily figures, which is then averaged over a rolling 7-day window</td></tr>
+    <tr><td class="gt_row gt_left">new_tests_smoothed_per_thousand</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Tests &amp; positivity</td>
+<td class="gt_row gt_left">New tests for COVID-19 (7-day smoothed) per 1,000 people</td></tr>
+    <tr><td class="gt_row gt_left">positive_rate</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Tests &amp; positivity</td>
+<td class="gt_row gt_left">The share of COVID-19 tests that are positive, given as a rolling 7-day average (this is the inverse of tests_per_case)</td></tr>
+    <tr><td class="gt_row gt_left">tests_per_case</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Tests &amp; positivity</td>
+<td class="gt_row gt_left">Tests conducted per new confirmed case of COVID-19, given as a rolling 7-day average (this is the inverse of positive_rate)</td></tr>
+    <tr><td class="gt_row gt_left">tests_units</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Tests &amp; positivity</td>
+<td class="gt_row gt_left">Units used by the location to report its testing data</td></tr>
+    <tr><td class="gt_row gt_left">total_vaccinations</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">Total number of COVID-19 vaccination doses administered</td></tr>
+    <tr><td class="gt_row gt_left">people_vaccinated</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">Total number of people who received at least one vaccine dose</td></tr>
+    <tr><td class="gt_row gt_left">people_fully_vaccinated</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">Total number of people who received all doses prescribed by the vaccination protocol</td></tr>
+    <tr><td class="gt_row gt_left">total_boosters</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">Total number of COVID-19 vaccination booster doses administered (doses administered beyond the number prescribed by the vaccination protocol)</td></tr>
+    <tr><td class="gt_row gt_left">new_vaccinations</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">New COVID-19 vaccination doses administered (only calculated for consecutive days)</td></tr>
+    <tr><td class="gt_row gt_left">new_vaccinations_smoothed</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">New COVID-19 vaccination doses administered (7-day smoothed). For countries that don't report vaccination data on a daily basis, we assume that vaccination changed equally on a daily basis over any periods in which no data was reported. This produces a complete series of daily figures, which is then averaged over a rolling 7-day window</td></tr>
+    <tr><td class="gt_row gt_left">total_vaccinations_per_hundred</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">Total number of COVID-19 vaccination doses administered per 100 people in the total population</td></tr>
+    <tr><td class="gt_row gt_left">people_vaccinated_per_hundred</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">Total number of people who received at least one vaccine dose per 100 people in the total population</td></tr>
+    <tr><td class="gt_row gt_left">people_fully_vaccinated_per_hundred</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">Total number of people who received all doses prescribed by the vaccination protocol per 100 people in the total population</td></tr>
+    <tr><td class="gt_row gt_left">total_boosters_per_hundred</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">Total number of COVID-19 vaccination booster doses administered per 100 people in the total population</td></tr>
+    <tr><td class="gt_row gt_left">new_vaccinations_smoothed_per_million</td>
+<td class="gt_row gt_left">National government reports</td>
+<td class="gt_row gt_left">Vaccinations</td>
+<td class="gt_row gt_left">New COVID-19 vaccination doses administered (7-day smoothed) per 1,000,000 people in the total population</td></tr>
+    <tr><td class="gt_row gt_left">stringency_index</td>
+<td class="gt_row gt_left">Oxford COVID-19 Government Response Tracker, Blavatnik School of Government</td>
+<td class="gt_row gt_left">Policy responses</td>
+<td class="gt_row gt_left">Government Response Stringency Index: composite measure based on 9 response indicators including school closures, workplace closures, and travel bans, rescaled to a value from 0 to 100 (100 = strictest response)</td></tr>
+    <tr><td class="gt_row gt_left">population</td>
+<td class="gt_row gt_left">United Nations, Department of Economic and Social Affairs, Population Division, World Population Prospects 2019 Revision</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Population in 2020</td></tr>
+    <tr><td class="gt_row gt_left">population_density</td>
+<td class="gt_row gt_left">World Bank World Development Indicators, sourced from Food and Agriculture Organization and World Bank estimates</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Number of people divided by land area, measured in square kilometers, most recent year available</td></tr>
+    <tr><td class="gt_row gt_left">median_age</td>
+<td class="gt_row gt_left">UN Population Division, World Population Prospects, 2017 Revision</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Median age of the population, UN projection for 2020</td></tr>
+    <tr><td class="gt_row gt_left">aged_65_older</td>
+<td class="gt_row gt_left">World Bank World Development Indicators based on age/sex distributions of United Nations World Population Prospects 2017 Revision</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Share of the population that is 65 years and older, most recent year available</td></tr>
+    <tr><td class="gt_row gt_left">aged_70_older</td>
+<td class="gt_row gt_left">United Nations, Department of Economic and Social Affairs, Population Division (2017), World Population Prospects 2017 Revision</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Share of the population that is 70 years and older in 2015</td></tr>
+    <tr><td class="gt_row gt_left">gdp_per_capita</td>
+<td class="gt_row gt_left">World Bank World Development Indicators, source from World Bank, International Comparison Program database</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Gross domestic product at purchasing power parity (constant 2011 international dollars), most recent year available</td></tr>
+    <tr><td class="gt_row gt_left">extreme_poverty</td>
+<td class="gt_row gt_left">World Bank World Development Indicators, sourced from World Bank Development Research Group</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Share of the population living in extreme poverty, most recent year available since 2010</td></tr>
+    <tr><td class="gt_row gt_left">cardiovasc_death_rate</td>
+<td class="gt_row gt_left">Global Burden of Disease Collaborative Network, Global Burden of Disease Study 2017 Results</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Death rate from cardiovascular disease in 2017 (annual number of deaths per 100,000 people)</td></tr>
+    <tr><td class="gt_row gt_left">diabetes_prevalence</td>
+<td class="gt_row gt_left">World Bank World Development Indicators, sourced from International Diabetes Federation, Diabetes Atlas</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Diabetes prevalence (% of population aged 20 to 79) in 2017</td></tr>
+    <tr><td class="gt_row gt_left">female_smokers</td>
+<td class="gt_row gt_left">World Bank World Development Indicators, sourced from World Health Organization, Global Health Observatory Data Repository</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Share of women who smoke, most recent year available</td></tr>
+    <tr><td class="gt_row gt_left">male_smokers</td>
+<td class="gt_row gt_left">World Bank World Development Indicators, sourced from World Health Organization, Global Health Observatory Data Repository</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Share of men who smoke, most recent year available</td></tr>
+    <tr><td class="gt_row gt_left">handwashing_facilities</td>
+<td class="gt_row gt_left">United Nations Statistics Division</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Share of the population with basic handwashing facilities on premises, most recent year available</td></tr>
+    <tr><td class="gt_row gt_left">hospital_beds_per_thousand</td>
+<td class="gt_row gt_left">OECD, Eurostat, World Bank, national government records and other sources</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Hospital beds per 1,000 people, most recent year available since 2010</td></tr>
+    <tr><td class="gt_row gt_left">life_expectancy</td>
+<td class="gt_row gt_left">James C. Riley, Clio Infra, United Nations Population Division</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Life expectancy at birth in 2019</td></tr>
+    <tr><td class="gt_row gt_left">human_development_index</td>
+<td class="gt_row gt_left">United Nations Development Programme (UNDP)</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">A composite index measuring average achievement in three basic dimensions of human development—a long and healthy life, knowledge and a decent standard of living. Values for 2019, imported from http://hdr.undp.org/en/indicators/137506</td></tr>
+    <tr><td class="gt_row gt_left">excess_mortality</td>
+<td class="gt_row gt_left">Human Mortality Database (HMD) Short-term Mortality Fluctuations project and World Mortality Dataset (WMD)</td>
+<td class="gt_row gt_left">Others</td>
+<td class="gt_row gt_left">Excess mortality P-scores for all ages; see https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality for the definition of the P-score and how we calculate it</td></tr>
   </tbody>
   
   
-</table></div>
+</table>
+</div>
 <hr />
 </div>
 <div id="buscar-los-datos" class="section level1">
 <h1>Buscar los datos</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>mydat&lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">head</span>(mydat, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydat, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>##   iso_code continent    location       date total_cases new_cases
-## 1      AFG      Asia Afghanistan 2019-12-31          NA         0
-## 2      AFG      Asia Afghanistan 2020-01-01          NA         0
-## 3      AFG      Asia Afghanistan 2020-01-02          NA         0
-## 4      AFG      Asia Afghanistan 2020-01-03          NA         0
+## 1      AFG      Asia Afghanistan 2020-02-24           1         1
+## 2      AFG      Asia Afghanistan 2020-02-25           1         0
+## 3      AFG      Asia Afghanistan 2020-02-26           1         0
+## 4      AFG      Asia Afghanistan 2020-02-27           1         0
 ##   new_cases_smoothed total_deaths new_deaths new_deaths_smoothed
-## 1                 NA           NA          0                  NA
-## 2                 NA           NA          0                  NA
-## 3                 NA           NA          0                  NA
-## 4                 NA           NA          0                  NA
+## 1                 NA           NA         NA                  NA
+## 2                 NA           NA         NA                  NA
+## 3                 NA           NA         NA                  NA
+## 4                 NA           NA         NA                  NA
 ##   total_cases_per_million new_cases_per_million new_cases_smoothed_per_million
-## 1                      NA                     0                             NA
-## 2                      NA                     0                             NA
-## 3                      NA                     0                             NA
-## 4                      NA                     0                             NA
+## 1                   0.025                 0.025                             NA
+## 2                   0.025                 0.000                             NA
+## 3                   0.025                 0.000                             NA
+## 4                   0.025                 0.000                             NA
 ##   total_deaths_per_million new_deaths_per_million
-## 1                       NA                      0
-## 2                       NA                      0
-## 3                       NA                      0
-## 4                       NA                      0
+## 1                       NA                     NA
+## 2                       NA                     NA
+## 3                       NA                     NA
+## 4                       NA                     NA
 ##   new_deaths_smoothed_per_million reproduction_rate icu_patients
 ## 1                              NA                NA           NA
 ## 2                              NA                NA           NA
@@ -1270,26 +1239,51 @@ div.tocify {
 ## 2                    NA                                NA
 ## 3                    NA                                NA
 ## 4                    NA                                NA
-##   weekly_hosp_admissions weekly_hosp_admissions_per_million total_tests
-## 1                     NA                                 NA          NA
-## 2                     NA                                 NA          NA
-## 3                     NA                                 NA          NA
-## 4                     NA                                 NA          NA
-##   new_tests total_tests_per_thousand new_tests_per_thousand new_tests_smoothed
-## 1        NA                       NA                     NA                 NA
-## 2        NA                       NA                     NA                 NA
-## 3        NA                       NA                     NA                 NA
-## 4        NA                       NA                     NA                 NA
-##   new_tests_smoothed_per_thousand tests_per_case positive_rate tests_units
-## 1                              NA             NA            NA            
-## 2                              NA             NA            NA            
-## 3                              NA             NA            NA            
-## 4                              NA             NA            NA            
+##   weekly_hosp_admissions weekly_hosp_admissions_per_million new_tests
+## 1                     NA                                 NA        NA
+## 2                     NA                                 NA        NA
+## 3                     NA                                 NA        NA
+## 4                     NA                                 NA        NA
+##   total_tests total_tests_per_thousand new_tests_per_thousand
+## 1          NA                       NA                     NA
+## 2          NA                       NA                     NA
+## 3          NA                       NA                     NA
+## 4          NA                       NA                     NA
+##   new_tests_smoothed new_tests_smoothed_per_thousand positive_rate
+## 1                 NA                              NA            NA
+## 2                 NA                              NA            NA
+## 3                 NA                              NA            NA
+## 4                 NA                              NA            NA
+##   tests_per_case tests_units total_vaccinations people_vaccinated
+## 1             NA                             NA                NA
+## 2             NA                             NA                NA
+## 3             NA                             NA                NA
+## 4             NA                             NA                NA
+##   people_fully_vaccinated total_boosters new_vaccinations
+## 1                      NA             NA               NA
+## 2                      NA             NA               NA
+## 3                      NA             NA               NA
+## 4                      NA             NA               NA
+##   new_vaccinations_smoothed total_vaccinations_per_hundred
+## 1                        NA                             NA
+## 2                        NA                             NA
+## 3                        NA                             NA
+## 4                        NA                             NA
+##   people_vaccinated_per_hundred people_fully_vaccinated_per_hundred
+## 1                            NA                                  NA
+## 2                            NA                                  NA
+## 3                            NA                                  NA
+## 4                            NA                                  NA
+##   total_boosters_per_hundred new_vaccinations_smoothed_per_million
+## 1                         NA                                    NA
+## 2                         NA                                    NA
+## 3                         NA                                    NA
+## 4                         NA                                    NA
 ##   stringency_index population population_density median_age aged_65_older
-## 1               NA   38928341             54.422       18.6         2.581
-## 2                0   38928341             54.422       18.6         2.581
-## 3                0   38928341             54.422       18.6         2.581
-## 4                0   38928341             54.422       18.6         2.581
+## 1             8.33   39835428             54.422       18.6         2.581
+## 2             8.33   39835428             54.422       18.6         2.581
+## 3             8.33   39835428             54.422       18.6         2.581
+## 4             8.33   39835428             54.422       18.6         2.581
 ##   aged_70_older gdp_per_capita extreme_poverty cardiovasc_death_rate
 ## 1         1.337       1803.987              NA               597.029
 ## 2         1.337       1803.987              NA               597.029
@@ -1301,23 +1295,29 @@ div.tocify {
 ## 3                9.59             NA           NA                 37.746
 ## 4                9.59             NA           NA                 37.746
 ##   hospital_beds_per_thousand life_expectancy human_development_index
-## 1                        0.5           64.83                   0.498
-## 2                        0.5           64.83                   0.498
-## 3                        0.5           64.83                   0.498
-## 4                        0.5           64.83                   0.498</code></pre>
+## 1                        0.5           64.83                   0.511
+## 2                        0.5           64.83                   0.511
+## 3                        0.5           64.83                   0.511
+## 4                        0.5           64.83                   0.511
+##   excess_mortality
+## 1               NA
+## 2               NA
+## 3               NA
+## 4               NA</code></pre>
 <hr />
 <p>Seleccionar las variables y filtrar los datos para hacer un subgrupo con datos solamente de Puerto Rico</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>mydat<span class="op">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="op">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">filter</span>(location<span class="op">==</span><span class="st">&quot;Puerto Rico&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">3</span>)<span class="op">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="st">  </span><span class="kw">gt</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location<span class="sc">==</span><span class="st">&quot;Puerto Rico&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="mfwisguvqs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ocanyjacbh .gt_table {
+#mfwisguvqs .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1342,7 +1342,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#ocanyjacbh .gt_heading {
+#mfwisguvqs .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1354,7 +1354,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#ocanyjacbh .gt_title {
+#mfwisguvqs .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1364,7 +1364,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#ocanyjacbh .gt_subtitle {
+#mfwisguvqs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1374,13 +1374,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#ocanyjacbh .gt_bottom_border {
+#mfwisguvqs .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ocanyjacbh .gt_col_headings {
+#mfwisguvqs .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1395,7 +1395,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#ocanyjacbh .gt_col_heading {
+#mfwisguvqs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1415,7 +1415,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#ocanyjacbh .gt_column_spanner_outer {
+#mfwisguvqs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1427,15 +1427,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#ocanyjacbh .gt_column_spanner_outer:first-child {
+#mfwisguvqs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ocanyjacbh .gt_column_spanner_outer:last-child {
+#mfwisguvqs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ocanyjacbh .gt_column_spanner {
+#mfwisguvqs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1447,7 +1447,7 @@ div.tocify {
   width: 100%;
 }
 
-#ocanyjacbh .gt_group_heading {
+#mfwisguvqs .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1469,7 +1469,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#ocanyjacbh .gt_empty_group_heading {
+#mfwisguvqs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1484,15 +1484,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#ocanyjacbh .gt_from_md > :first-child {
+#mfwisguvqs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ocanyjacbh .gt_from_md > :last-child {
+#mfwisguvqs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ocanyjacbh .gt_row {
+#mfwisguvqs .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1511,7 +1511,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#ocanyjacbh .gt_stub {
+#mfwisguvqs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1523,7 +1523,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#ocanyjacbh .gt_summary_row {
+#mfwisguvqs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1533,7 +1533,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#ocanyjacbh .gt_first_summary_row {
+#mfwisguvqs .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1543,7 +1543,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#ocanyjacbh .gt_grand_summary_row {
+#mfwisguvqs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1553,7 +1553,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#ocanyjacbh .gt_first_grand_summary_row {
+#mfwisguvqs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1563,11 +1563,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#ocanyjacbh .gt_striped {
+#mfwisguvqs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ocanyjacbh .gt_table_body {
+#mfwisguvqs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1576,7 +1576,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#ocanyjacbh .gt_footnotes {
+#mfwisguvqs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1590,13 +1590,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#ocanyjacbh .gt_footnote {
+#mfwisguvqs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ocanyjacbh .gt_sourcenotes {
+#mfwisguvqs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1610,46 +1610,47 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#ocanyjacbh .gt_sourcenote {
+#mfwisguvqs .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ocanyjacbh .gt_left {
+#mfwisguvqs .gt_left {
   text-align: left;
 }
 
-#ocanyjacbh .gt_center {
+#mfwisguvqs .gt_center {
   text-align: center;
 }
 
-#ocanyjacbh .gt_right {
+#mfwisguvqs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ocanyjacbh .gt_font_normal {
+#mfwisguvqs .gt_font_normal {
   font-weight: normal;
 }
 
-#ocanyjacbh .gt_font_bold {
+#mfwisguvqs .gt_font_bold {
   font-weight: bold;
 }
 
-#ocanyjacbh .gt_font_italic {
+#mfwisguvqs .gt_font_italic {
   font-style: italic;
 }
 
-#ocanyjacbh .gt_super {
+#mfwisguvqs .gt_super {
   font-size: 65%;
 }
 
-#ocanyjacbh .gt_footnote_marks {
+#mfwisguvqs .gt_footnote_marks {
   font-style: italic;
+  font-weight: normal;
   font-size: 65%;
 }
 </style>
-<div id="ocanyjacbh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1660,145 +1661,133 @@ div.tocify {
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">life_expectancy</th>
     </tr>
   </thead>
-  <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Puerto Rico</td>
-      <td class="gt_row gt_left">2020-03-28</td>
-      <td class="gt_row gt_right">64</td>
-      <td class="gt_row gt_right">64</td>
-      <td class="gt_row gt_right">80.1</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Puerto Rico</td>
-      <td class="gt_row gt_left">2020-03-29</td>
-      <td class="gt_row gt_right">100</td>
-      <td class="gt_row gt_right">36</td>
-      <td class="gt_row gt_right">80.1</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Puerto Rico</td>
-      <td class="gt_row gt_left">2020-03-30</td>
-      <td class="gt_row gt_right">127</td>
-      <td class="gt_row gt_right">27</td>
-      <td class="gt_row gt_right">80.1</td>
-    </tr>
-  </tbody>
+  <tbody class="gt_table_body"></tbody>
   
   
-</table></div>
+</table>
+</div>
 <hr />
 </div>
 <div id="ver-el-nombre-de-todos-los-paises-incluido-en-el-archivo" class="section level1">
 <h1>Ver el nombre de todos los paises incluido en el archivo</h1>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">unique</span>(mydat<span class="op">$</span>location)  <span class="co"># la función &quot;unique&quot; es para saber los valores únicos un una columna</span></span></code></pre></div>
-<pre><code>##   [1] &quot;Afghanistan&quot;                      &quot;Albania&quot;                         
-##   [3] &quot;Algeria&quot;                          &quot;Andorra&quot;                         
-##   [5] &quot;Angola&quot;                           &quot;Anguilla&quot;                        
-##   [7] &quot;Antigua and Barbuda&quot;              &quot;Argentina&quot;                       
-##   [9] &quot;Armenia&quot;                          &quot;Aruba&quot;                           
-##  [11] &quot;Australia&quot;                        &quot;Austria&quot;                         
-##  [13] &quot;Azerbaijan&quot;                       &quot;Bahamas&quot;                         
-##  [15] &quot;Bahrain&quot;                          &quot;Bangladesh&quot;                      
-##  [17] &quot;Barbados&quot;                         &quot;Belarus&quot;                         
-##  [19] &quot;Belgium&quot;                          &quot;Belize&quot;                          
-##  [21] &quot;Benin&quot;                            &quot;Bermuda&quot;                         
-##  [23] &quot;Bhutan&quot;                           &quot;Bolivia&quot;                         
-##  [25] &quot;Bonaire Sint Eustatius and Saba&quot;  &quot;Bosnia and Herzegovina&quot;          
-##  [27] &quot;Botswana&quot;                         &quot;Brazil&quot;                          
-##  [29] &quot;British Virgin Islands&quot;           &quot;Brunei&quot;                          
-##  [31] &quot;Bulgaria&quot;                         &quot;Burkina Faso&quot;                    
-##  [33] &quot;Burundi&quot;                          &quot;Cambodia&quot;                        
-##  [35] &quot;Cameroon&quot;                         &quot;Canada&quot;                          
-##  [37] &quot;Cape Verde&quot;                       &quot;Cayman Islands&quot;                  
-##  [39] &quot;Central African Republic&quot;         &quot;Chad&quot;                            
-##  [41] &quot;Chile&quot;                            &quot;China&quot;                           
-##  [43] &quot;Colombia&quot;                         &quot;Comoros&quot;                         
-##  [45] &quot;Congo&quot;                            &quot;Costa Rica&quot;                      
-##  [47] &quot;Cote d&#39;Ivoire&quot;                    &quot;Croatia&quot;                         
-##  [49] &quot;Cuba&quot;                             &quot;Curacao&quot;                         
-##  [51] &quot;Cyprus&quot;                           &quot;Czech Republic&quot;                  
-##  [53] &quot;Democratic Republic of Congo&quot;     &quot;Denmark&quot;                         
-##  [55] &quot;Djibouti&quot;                         &quot;Dominica&quot;                        
-##  [57] &quot;Dominican Republic&quot;               &quot;Ecuador&quot;                         
-##  [59] &quot;Egypt&quot;                            &quot;El Salvador&quot;                     
-##  [61] &quot;Equatorial Guinea&quot;                &quot;Eritrea&quot;                         
-##  [63] &quot;Estonia&quot;                          &quot;Ethiopia&quot;                        
-##  [65] &quot;Faeroe Islands&quot;                   &quot;Falkland Islands&quot;                
-##  [67] &quot;Fiji&quot;                             &quot;Finland&quot;                         
-##  [69] &quot;France&quot;                           &quot;French Polynesia&quot;                
-##  [71] &quot;Gabon&quot;                            &quot;Gambia&quot;                          
-##  [73] &quot;Georgia&quot;                          &quot;Germany&quot;                         
-##  [75] &quot;Ghana&quot;                            &quot;Gibraltar&quot;                       
-##  [77] &quot;Greece&quot;                           &quot;Greenland&quot;                       
-##  [79] &quot;Grenada&quot;                          &quot;Guam&quot;                            
-##  [81] &quot;Guatemala&quot;                        &quot;Guernsey&quot;                        
-##  [83] &quot;Guinea&quot;                           &quot;Guinea-Bissau&quot;                   
-##  [85] &quot;Guyana&quot;                           &quot;Haiti&quot;                           
-##  [87] &quot;Honduras&quot;                         &quot;Hong Kong&quot;                       
-##  [89] &quot;Hungary&quot;                          &quot;Iceland&quot;                         
-##  [91] &quot;India&quot;                            &quot;Indonesia&quot;                       
-##  [93] &quot;Iran&quot;                             &quot;Iraq&quot;                            
-##  [95] &quot;Ireland&quot;                          &quot;Isle of Man&quot;                     
-##  [97] &quot;Israel&quot;                           &quot;Italy&quot;                           
-##  [99] &quot;Jamaica&quot;                          &quot;Japan&quot;                           
-## [101] &quot;Jersey&quot;                           &quot;Jordan&quot;                          
-## [103] &quot;Kazakhstan&quot;                       &quot;Kenya&quot;                           
-## [105] &quot;Kosovo&quot;                           &quot;Kuwait&quot;                          
-## [107] &quot;Kyrgyzstan&quot;                       &quot;Laos&quot;                            
-## [109] &quot;Latvia&quot;                           &quot;Lebanon&quot;                         
-## [111] &quot;Lesotho&quot;                          &quot;Liberia&quot;                         
-## [113] &quot;Libya&quot;                            &quot;Liechtenstein&quot;                   
-## [115] &quot;Lithuania&quot;                        &quot;Luxembourg&quot;                      
-## [117] &quot;Macedonia&quot;                        &quot;Madagascar&quot;                      
-## [119] &quot;Malawi&quot;                           &quot;Malaysia&quot;                        
-## [121] &quot;Maldives&quot;                         &quot;Mali&quot;                            
-## [123] &quot;Malta&quot;                            &quot;Marshall Islands&quot;                
-## [125] &quot;Mauritania&quot;                       &quot;Mauritius&quot;                       
-## [127] &quot;Mexico&quot;                           &quot;Moldova&quot;                         
-## [129] &quot;Monaco&quot;                           &quot;Mongolia&quot;                        
-## [131] &quot;Montenegro&quot;                       &quot;Montserrat&quot;                      
-## [133] &quot;Morocco&quot;                          &quot;Mozambique&quot;                      
-## [135] &quot;Myanmar&quot;                          &quot;Namibia&quot;                         
-## [137] &quot;Nepal&quot;                            &quot;Netherlands&quot;                     
-## [139] &quot;New Caledonia&quot;                    &quot;New Zealand&quot;                     
-## [141] &quot;Nicaragua&quot;                        &quot;Niger&quot;                           
-## [143] &quot;Nigeria&quot;                          &quot;Northern Mariana Islands&quot;        
-## [145] &quot;Norway&quot;                           &quot;Oman&quot;                            
-## [147] &quot;Pakistan&quot;                         &quot;Palestine&quot;                       
-## [149] &quot;Panama&quot;                           &quot;Papua New Guinea&quot;                
-## [151] &quot;Paraguay&quot;                         &quot;Peru&quot;                            
-## [153] &quot;Philippines&quot;                      &quot;Poland&quot;                          
-## [155] &quot;Portugal&quot;                         &quot;Puerto Rico&quot;                     
-## [157] &quot;Qatar&quot;                            &quot;Romania&quot;                         
-## [159] &quot;Russia&quot;                           &quot;Rwanda&quot;                          
-## [161] &quot;Saint Kitts and Nevis&quot;            &quot;Saint Lucia&quot;                     
-## [163] &quot;Saint Vincent and the Grenadines&quot; &quot;San Marino&quot;                      
-## [165] &quot;Sao Tome and Principe&quot;            &quot;Saudi Arabia&quot;                    
-## [167] &quot;Senegal&quot;                          &quot;Serbia&quot;                          
-## [169] &quot;Seychelles&quot;                       &quot;Sierra Leone&quot;                    
-## [171] &quot;Singapore&quot;                        &quot;Sint Maarten (Dutch part)&quot;       
-## [173] &quot;Slovakia&quot;                         &quot;Slovenia&quot;                        
-## [175] &quot;Solomon Islands&quot;                  &quot;Somalia&quot;                         
-## [177] &quot;South Africa&quot;                     &quot;South Korea&quot;                     
-## [179] &quot;South Sudan&quot;                      &quot;Spain&quot;                           
-## [181] &quot;Sri Lanka&quot;                        &quot;Sudan&quot;                           
-## [183] &quot;Suriname&quot;                         &quot;Swaziland&quot;                       
-## [185] &quot;Sweden&quot;                           &quot;Switzerland&quot;                     
-## [187] &quot;Syria&quot;                            &quot;Taiwan&quot;                          
-## [189] &quot;Tajikistan&quot;                       &quot;Tanzania&quot;                        
-## [191] &quot;Thailand&quot;                         &quot;Timor&quot;                           
-## [193] &quot;Togo&quot;                             &quot;Trinidad and Tobago&quot;             
-## [195] &quot;Tunisia&quot;                          &quot;Turkey&quot;                          
-## [197] &quot;Turks and Caicos Islands&quot;         &quot;Uganda&quot;                          
-## [199] &quot;Ukraine&quot;                          &quot;United Arab Emirates&quot;            
-## [201] &quot;United Kingdom&quot;                   &quot;United States&quot;                   
-## [203] &quot;United States Virgin Islands&quot;     &quot;Uruguay&quot;                         
-## [205] &quot;Uzbekistan&quot;                       &quot;Vanuatu&quot;                         
-## [207] &quot;Vatican&quot;                          &quot;Venezuela&quot;                       
-## [209] &quot;Vietnam&quot;                          &quot;Wallis and Futuna&quot;               
-## [211] &quot;Western Sahara&quot;                   &quot;Yemen&quot;                           
-## [213] &quot;Zambia&quot;                           &quot;Zimbabwe&quot;                        
-## [215] &quot;World&quot;                            &quot;International&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(mydat<span class="sc">$</span>location)  <span class="co"># la función &quot;unique&quot; es para saber los valores únicos un una columna</span></span></code></pre></div>
+<pre><code>##   [1] &quot;Afghanistan&quot;                      &quot;Africa&quot;                          
+##   [3] &quot;Albania&quot;                          &quot;Algeria&quot;                         
+##   [5] &quot;Andorra&quot;                          &quot;Angola&quot;                          
+##   [7] &quot;Anguilla&quot;                         &quot;Antigua and Barbuda&quot;             
+##   [9] &quot;Argentina&quot;                        &quot;Armenia&quot;                         
+##  [11] &quot;Aruba&quot;                            &quot;Asia&quot;                            
+##  [13] &quot;Australia&quot;                        &quot;Austria&quot;                         
+##  [15] &quot;Azerbaijan&quot;                       &quot;Bahamas&quot;                         
+##  [17] &quot;Bahrain&quot;                          &quot;Bangladesh&quot;                      
+##  [19] &quot;Barbados&quot;                         &quot;Belarus&quot;                         
+##  [21] &quot;Belgium&quot;                          &quot;Belize&quot;                          
+##  [23] &quot;Benin&quot;                            &quot;Bermuda&quot;                         
+##  [25] &quot;Bhutan&quot;                           &quot;Bolivia&quot;                         
+##  [27] &quot;Bonaire Sint Eustatius and Saba&quot;  &quot;Bosnia and Herzegovina&quot;          
+##  [29] &quot;Botswana&quot;                         &quot;Brazil&quot;                          
+##  [31] &quot;British Virgin Islands&quot;           &quot;Brunei&quot;                          
+##  [33] &quot;Bulgaria&quot;                         &quot;Burkina Faso&quot;                    
+##  [35] &quot;Burundi&quot;                          &quot;Cambodia&quot;                        
+##  [37] &quot;Cameroon&quot;                         &quot;Canada&quot;                          
+##  [39] &quot;Cape Verde&quot;                       &quot;Cayman Islands&quot;                  
+##  [41] &quot;Central African Republic&quot;         &quot;Chad&quot;                            
+##  [43] &quot;Chile&quot;                            &quot;China&quot;                           
+##  [45] &quot;Colombia&quot;                         &quot;Comoros&quot;                         
+##  [47] &quot;Congo&quot;                            &quot;Cook Islands&quot;                    
+##  [49] &quot;Costa Rica&quot;                       &quot;Cote d&#39;Ivoire&quot;                   
+##  [51] &quot;Croatia&quot;                          &quot;Cuba&quot;                            
+##  [53] &quot;Curacao&quot;                          &quot;Cyprus&quot;                          
+##  [55] &quot;Czechia&quot;                          &quot;Democratic Republic of Congo&quot;    
+##  [57] &quot;Denmark&quot;                          &quot;Djibouti&quot;                        
+##  [59] &quot;Dominica&quot;                         &quot;Dominican Republic&quot;              
+##  [61] &quot;Ecuador&quot;                          &quot;Egypt&quot;                           
+##  [63] &quot;El Salvador&quot;                      &quot;Equatorial Guinea&quot;               
+##  [65] &quot;Eritrea&quot;                          &quot;Estonia&quot;                         
+##  [67] &quot;Eswatini&quot;                         &quot;Ethiopia&quot;                        
+##  [69] &quot;Europe&quot;                           &quot;European Union&quot;                  
+##  [71] &quot;Faeroe Islands&quot;                   &quot;Falkland Islands&quot;                
+##  [73] &quot;Fiji&quot;                             &quot;Finland&quot;                         
+##  [75] &quot;France&quot;                           &quot;French Polynesia&quot;                
+##  [77] &quot;Gabon&quot;                            &quot;Gambia&quot;                          
+##  [79] &quot;Georgia&quot;                          &quot;Germany&quot;                         
+##  [81] &quot;Ghana&quot;                            &quot;Gibraltar&quot;                       
+##  [83] &quot;Greece&quot;                           &quot;Greenland&quot;                       
+##  [85] &quot;Grenada&quot;                          &quot;Guatemala&quot;                       
+##  [87] &quot;Guernsey&quot;                         &quot;Guinea&quot;                          
+##  [89] &quot;Guinea-Bissau&quot;                    &quot;Guyana&quot;                          
+##  [91] &quot;Haiti&quot;                            &quot;Honduras&quot;                        
+##  [93] &quot;Hong Kong&quot;                        &quot;Hungary&quot;                         
+##  [95] &quot;Iceland&quot;                          &quot;India&quot;                           
+##  [97] &quot;Indonesia&quot;                        &quot;International&quot;                   
+##  [99] &quot;Iran&quot;                             &quot;Iraq&quot;                            
+## [101] &quot;Ireland&quot;                          &quot;Isle of Man&quot;                     
+## [103] &quot;Israel&quot;                           &quot;Italy&quot;                           
+## [105] &quot;Jamaica&quot;                          &quot;Japan&quot;                           
+## [107] &quot;Jersey&quot;                           &quot;Jordan&quot;                          
+## [109] &quot;Kazakhstan&quot;                       &quot;Kenya&quot;                           
+## [111] &quot;Kiribati&quot;                         &quot;Kosovo&quot;                          
+## [113] &quot;Kuwait&quot;                           &quot;Kyrgyzstan&quot;                      
+## [115] &quot;Laos&quot;                             &quot;Latvia&quot;                          
+## [117] &quot;Lebanon&quot;                          &quot;Lesotho&quot;                         
+## [119] &quot;Liberia&quot;                          &quot;Libya&quot;                           
+## [121] &quot;Liechtenstein&quot;                    &quot;Lithuania&quot;                       
+## [123] &quot;Luxembourg&quot;                       &quot;Macao&quot;                           
+## [125] &quot;Madagascar&quot;                       &quot;Malawi&quot;                          
+## [127] &quot;Malaysia&quot;                         &quot;Maldives&quot;                        
+## [129] &quot;Mali&quot;                             &quot;Malta&quot;                           
+## [131] &quot;Marshall Islands&quot;                 &quot;Mauritania&quot;                      
+## [133] &quot;Mauritius&quot;                        &quot;Mexico&quot;                          
+## [135] &quot;Micronesia (country)&quot;             &quot;Moldova&quot;                         
+## [137] &quot;Monaco&quot;                           &quot;Mongolia&quot;                        
+## [139] &quot;Montenegro&quot;                       &quot;Montserrat&quot;                      
+## [141] &quot;Morocco&quot;                          &quot;Mozambique&quot;                      
+## [143] &quot;Myanmar&quot;                          &quot;Namibia&quot;                         
+## [145] &quot;Nauru&quot;                            &quot;Nepal&quot;                           
+## [147] &quot;Netherlands&quot;                      &quot;New Caledonia&quot;                   
+## [149] &quot;New Zealand&quot;                      &quot;Nicaragua&quot;                       
+## [151] &quot;Niger&quot;                            &quot;Nigeria&quot;                         
+## [153] &quot;Niue&quot;                             &quot;North America&quot;                   
+## [155] &quot;North Macedonia&quot;                  &quot;Northern Cyprus&quot;                 
+## [157] &quot;Norway&quot;                           &quot;Oceania&quot;                         
+## [159] &quot;Oman&quot;                             &quot;Pakistan&quot;                        
+## [161] &quot;Palau&quot;                            &quot;Palestine&quot;                       
+## [163] &quot;Panama&quot;                           &quot;Papua New Guinea&quot;                
+## [165] &quot;Paraguay&quot;                         &quot;Peru&quot;                            
+## [167] &quot;Philippines&quot;                      &quot;Pitcairn&quot;                        
+## [169] &quot;Poland&quot;                           &quot;Portugal&quot;                        
+## [171] &quot;Qatar&quot;                            &quot;Romania&quot;                         
+## [173] &quot;Russia&quot;                           &quot;Rwanda&quot;                          
+## [175] &quot;Saint Helena&quot;                     &quot;Saint Kitts and Nevis&quot;           
+## [177] &quot;Saint Lucia&quot;                      &quot;Saint Vincent and the Grenadines&quot;
+## [179] &quot;Samoa&quot;                            &quot;San Marino&quot;                      
+## [181] &quot;Sao Tome and Principe&quot;            &quot;Saudi Arabia&quot;                    
+## [183] &quot;Senegal&quot;                          &quot;Serbia&quot;                          
+## [185] &quot;Seychelles&quot;                       &quot;Sierra Leone&quot;                    
+## [187] &quot;Singapore&quot;                        &quot;Sint Maarten (Dutch part)&quot;       
+## [189] &quot;Slovakia&quot;                         &quot;Slovenia&quot;                        
+## [191] &quot;Solomon Islands&quot;                  &quot;Somalia&quot;                         
+## [193] &quot;South Africa&quot;                     &quot;South America&quot;                   
+## [195] &quot;South Korea&quot;                      &quot;South Sudan&quot;                     
+## [197] &quot;Spain&quot;                            &quot;Sri Lanka&quot;                       
+## [199] &quot;Sudan&quot;                            &quot;Suriname&quot;                        
+## [201] &quot;Sweden&quot;                           &quot;Switzerland&quot;                     
+## [203] &quot;Syria&quot;                            &quot;Taiwan&quot;                          
+## [205] &quot;Tajikistan&quot;                       &quot;Tanzania&quot;                        
+## [207] &quot;Thailand&quot;                         &quot;Timor&quot;                           
+## [209] &quot;Togo&quot;                             &quot;Tokelau&quot;                         
+## [211] &quot;Tonga&quot;                            &quot;Trinidad and Tobago&quot;             
+## [213] &quot;Tunisia&quot;                          &quot;Turkey&quot;                          
+## [215] &quot;Turkmenistan&quot;                     &quot;Turks and Caicos Islands&quot;        
+## [217] &quot;Tuvalu&quot;                           &quot;Uganda&quot;                          
+## [219] &quot;Ukraine&quot;                          &quot;United Arab Emirates&quot;            
+## [221] &quot;United Kingdom&quot;                   &quot;United States&quot;                   
+## [223] &quot;Uruguay&quot;                          &quot;Uzbekistan&quot;                      
+## [225] &quot;Vanuatu&quot;                          &quot;Vatican&quot;                         
+## [227] &quot;Venezuela&quot;                        &quot;Vietnam&quot;                         
+## [229] &quot;Wallis and Futuna&quot;                &quot;World&quot;                           
+## [231] &quot;Yemen&quot;                            &quot;Zambia&quot;                          
+## [233] &quot;Zimbabwe&quot;</code></pre>
 <hr />
 </div>
 <div id="importante" class="section level1">
@@ -1816,16 +1805,17 @@ div.tocify {
 <h1>Ejercicio 2</h1>
 <p>(5 puntos)</p>
 <p>Selecciona otro país del Caribe y calcula los mismo parámetros</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>mydat<span class="op">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="op">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span><span class="kw">filter</span>(location <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>))<span class="op">%&gt;%</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">3</span>)<span class="op">%&gt;%</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="st">  </span><span class="kw">gt</span>()</span></code></pre></div>
-<p><style>html {
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="vtvzqhqczy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#vqclzmigig .gt_table {
+#vtvzqhqczy .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1850,7 +1840,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#vqclzmigig .gt_heading {
+#vtvzqhqczy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1862,7 +1852,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#vqclzmigig .gt_title {
+#vtvzqhqczy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1872,7 +1862,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#vqclzmigig .gt_subtitle {
+#vtvzqhqczy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1882,13 +1872,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#vqclzmigig .gt_bottom_border {
+#vtvzqhqczy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vqclzmigig .gt_col_headings {
+#vtvzqhqczy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1903,7 +1893,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#vqclzmigig .gt_col_heading {
+#vtvzqhqczy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1923,7 +1913,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#vqclzmigig .gt_column_spanner_outer {
+#vtvzqhqczy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1935,15 +1925,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#vqclzmigig .gt_column_spanner_outer:first-child {
+#vtvzqhqczy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vqclzmigig .gt_column_spanner_outer:last-child {
+#vtvzqhqczy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vqclzmigig .gt_column_spanner {
+#vtvzqhqczy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1955,7 +1945,7 @@ div.tocify {
   width: 100%;
 }
 
-#vqclzmigig .gt_group_heading {
+#vtvzqhqczy .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1977,7 +1967,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#vqclzmigig .gt_empty_group_heading {
+#vtvzqhqczy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1992,15 +1982,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#vqclzmigig .gt_from_md > :first-child {
+#vtvzqhqczy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vqclzmigig .gt_from_md > :last-child {
+#vtvzqhqczy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vqclzmigig .gt_row {
+#vtvzqhqczy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2019,7 +2009,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#vqclzmigig .gt_stub {
+#vtvzqhqczy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2031,7 +2021,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#vqclzmigig .gt_summary_row {
+#vtvzqhqczy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2041,7 +2031,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#vqclzmigig .gt_first_summary_row {
+#vtvzqhqczy .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2051,7 +2041,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#vqclzmigig .gt_grand_summary_row {
+#vtvzqhqczy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2061,7 +2051,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#vqclzmigig .gt_first_grand_summary_row {
+#vtvzqhqczy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2071,11 +2061,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#vqclzmigig .gt_striped {
+#vtvzqhqczy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vqclzmigig .gt_table_body {
+#vtvzqhqczy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2084,7 +2074,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#vqclzmigig .gt_footnotes {
+#vtvzqhqczy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2098,13 +2088,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#vqclzmigig .gt_footnote {
+#vtvzqhqczy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#vqclzmigig .gt_sourcenotes {
+#vtvzqhqczy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2118,46 +2108,47 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#vqclzmigig .gt_sourcenote {
+#vtvzqhqczy .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#vqclzmigig .gt_left {
+#vtvzqhqczy .gt_left {
   text-align: left;
 }
 
-#vqclzmigig .gt_center {
+#vtvzqhqczy .gt_center {
   text-align: center;
 }
 
-#vqclzmigig .gt_right {
+#vtvzqhqczy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vqclzmigig .gt_font_normal {
+#vtvzqhqczy .gt_font_normal {
   font-weight: normal;
 }
 
-#vqclzmigig .gt_font_bold {
+#vtvzqhqczy .gt_font_bold {
   font-weight: bold;
 }
 
-#vqclzmigig .gt_font_italic {
+#vtvzqhqczy .gt_font_italic {
   font-style: italic;
 }
 
-#vqclzmigig .gt_super {
+#vtvzqhqczy .gt_super {
   font-size: 65%;
 }
 
-#vqclzmigig .gt_footnote_marks {
+#vtvzqhqczy .gt_footnote_marks {
   font-style: italic;
+  font-weight: normal;
   font-size: 65%;
 }
 </style>
-<div id="vqclzmigig" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -2169,48 +2160,45 @@ div.tocify {
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Cuba</td>
-      <td class="gt_row gt_left">2020-03-12</td>
-      <td class="gt_row gt_right">3</td>
-      <td class="gt_row gt_right">3</td>
-      <td class="gt_row gt_right">78.8</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Cuba</td>
-      <td class="gt_row gt_left">2020-03-14</td>
-      <td class="gt_row gt_right">4</td>
-      <td class="gt_row gt_right">1</td>
-      <td class="gt_row gt_right">78.8</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Cuba</td>
-      <td class="gt_row gt_left">2020-03-15</td>
-      <td class="gt_row gt_right">4</td>
-      <td class="gt_row gt_right">0</td>
-      <td class="gt_row gt_right">78.8</td>
-    </tr>
+    <tr><td class="gt_row gt_left">Cuba</td>
+<td class="gt_row gt_left">2020-03-12</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">78.8</td></tr>
+    <tr><td class="gt_row gt_left">Cuba</td>
+<td class="gt_row gt_left">2020-03-13</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">78.8</td></tr>
+    <tr><td class="gt_row gt_left">Cuba</td>
+<td class="gt_row gt_left">2020-03-14</td>
+<td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">78.8</td></tr>
   </tbody>
   
   
-</table></div> ***</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">library</span>(statip)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>mydat<span class="op">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="op">%&gt;%</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="st">  </span><span class="kw">filter</span>(location <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="op">%&gt;%</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="st">  </span><span class="kw">group_by</span>(location)<span class="op">%&gt;%</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean=</span><span class="kw">mean</span>(new_cases),</span>
-<span id="cb15-7"><a href="#cb15-7"></a>            <span class="dt">median=</span><span class="kw">median</span>(new_cases), </span>
-<span id="cb15-8"><a href="#cb15-8"></a>            <span class="dt">de=</span><span class="kw">sd</span>(new_cases),</span>
-<span id="cb15-9"><a href="#cb15-9"></a>            <span class="dt">cuar=</span><span class="kw">quantile</span>(new_cases),</span>
-<span id="cb15-10"><a href="#cb15-10"></a>            <span class="dt">es=</span><span class="kw">sd</span>(new_cases<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(new_cases))))<span class="op">%&gt;%</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="st">  </span><span class="kw">gt</span>()</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;location&#39; (override with `.groups` argument)</code></pre>
+</table>
+</div>
+<hr />
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(statip)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location)<span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(new_cases),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">median=</span><span class="fu">median</span>(new_cases), </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">de=</span><span class="fu">sd</span>(new_cases),</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">cuar=</span><span class="fu">quantile</span>(new_cases),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">es=</span><span class="fu">sd</span>(new_cases<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(new_cases))))<span class="sc">%&gt;%</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;location&#39;. You can override using the `.groups` argument.</code></pre>
+<div id="oedazyuyah" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#iaifxlfask .gt_table {
+#oedazyuyah .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2235,7 +2223,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#iaifxlfask .gt_heading {
+#oedazyuyah .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2247,7 +2235,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#iaifxlfask .gt_title {
+#oedazyuyah .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2257,7 +2245,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#iaifxlfask .gt_subtitle {
+#oedazyuyah .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2267,13 +2255,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#iaifxlfask .gt_bottom_border {
+#oedazyuyah .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iaifxlfask .gt_col_headings {
+#oedazyuyah .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2288,7 +2276,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#iaifxlfask .gt_col_heading {
+#oedazyuyah .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2308,7 +2296,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#iaifxlfask .gt_column_spanner_outer {
+#oedazyuyah .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2320,15 +2308,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#iaifxlfask .gt_column_spanner_outer:first-child {
+#oedazyuyah .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iaifxlfask .gt_column_spanner_outer:last-child {
+#oedazyuyah .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iaifxlfask .gt_column_spanner {
+#oedazyuyah .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2340,7 +2328,7 @@ div.tocify {
   width: 100%;
 }
 
-#iaifxlfask .gt_group_heading {
+#oedazyuyah .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2362,7 +2350,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#iaifxlfask .gt_empty_group_heading {
+#oedazyuyah .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2377,15 +2365,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#iaifxlfask .gt_from_md > :first-child {
+#oedazyuyah .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iaifxlfask .gt_from_md > :last-child {
+#oedazyuyah .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iaifxlfask .gt_row {
+#oedazyuyah .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2404,7 +2392,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#iaifxlfask .gt_stub {
+#oedazyuyah .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2416,7 +2404,7 @@ div.tocify {
   padding-left: 12px;
 }
 
-#iaifxlfask .gt_summary_row {
+#oedazyuyah .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2426,7 +2414,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#iaifxlfask .gt_first_summary_row {
+#oedazyuyah .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2436,7 +2424,7 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#iaifxlfask .gt_grand_summary_row {
+#oedazyuyah .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2446,7 +2434,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#iaifxlfask .gt_first_grand_summary_row {
+#oedazyuyah .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2456,11 +2444,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#iaifxlfask .gt_striped {
+#oedazyuyah .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iaifxlfask .gt_table_body {
+#oedazyuyah .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2469,7 +2457,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#iaifxlfask .gt_footnotes {
+#oedazyuyah .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2483,13 +2471,13 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#iaifxlfask .gt_footnote {
+#oedazyuyah .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#iaifxlfask .gt_sourcenotes {
+#oedazyuyah .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2503,46 +2491,47 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#iaifxlfask .gt_sourcenote {
+#oedazyuyah .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#iaifxlfask .gt_left {
+#oedazyuyah .gt_left {
   text-align: left;
 }
 
-#iaifxlfask .gt_center {
+#oedazyuyah .gt_center {
   text-align: center;
 }
 
-#iaifxlfask .gt_right {
+#oedazyuyah .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iaifxlfask .gt_font_normal {
+#oedazyuyah .gt_font_normal {
   font-weight: normal;
 }
 
-#iaifxlfask .gt_font_bold {
+#oedazyuyah .gt_font_bold {
   font-weight: bold;
 }
 
-#iaifxlfask .gt_font_italic {
+#oedazyuyah .gt_font_italic {
   font-style: italic;
 }
 
-#iaifxlfask .gt_super {
+#oedazyuyah .gt_super {
   font-size: 65%;
 }
 
-#iaifxlfask .gt_footnote_marks {
+#oedazyuyah .gt_footnote_marks {
   font-style: italic;
+  font-weight: normal;
   font-size: 65%;
 }
 </style>
-<div id="iaifxlfask" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -2557,253 +2546,161 @@ div.tocify {
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Bahamas</td>
     </tr>
-    <tr>
-      <td class="gt_row gt_right">29.59917</td>
-      <td class="gt_row gt_right">3.0</td>
-      <td class="gt_row gt_right">45.20374</td>
-      <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">2.905806</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">29.59917</td>
-      <td class="gt_row gt_right">3.0</td>
-      <td class="gt_row gt_right">45.20374</td>
-      <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">2.905806</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">29.59917</td>
-      <td class="gt_row gt_right">3.0</td>
-      <td class="gt_row gt_right">45.20374</td>
-      <td class="gt_row gt_right">3.00</td>
-      <td class="gt_row gt_right">2.905806</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">29.59917</td>
-      <td class="gt_row gt_right">3.0</td>
-      <td class="gt_row gt_right">45.20374</td>
-      <td class="gt_row gt_right">49.75</td>
-      <td class="gt_row gt_right">2.905806</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">29.59917</td>
-      <td class="gt_row gt_right">3.0</td>
-      <td class="gt_row gt_right">45.20374</td>
-      <td class="gt_row gt_right">242.00</td>
-      <td class="gt_row gt_right">2.905806</td>
-    </tr>
+    <tr><td class="gt_row gt_right">35.47706</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">62.36813</td>
+<td class="gt_row gt_right">0.0</td>
+<td class="gt_row gt_right">2.671557</td></tr>
+    <tr><td class="gt_row gt_right">35.47706</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">62.36813</td>
+<td class="gt_row gt_right">0.0</td>
+<td class="gt_row gt_right">2.671557</td></tr>
+    <tr><td class="gt_row gt_right">35.47706</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">62.36813</td>
+<td class="gt_row gt_right">5.0</td>
+<td class="gt_row gt_right">2.671557</td></tr>
+    <tr><td class="gt_row gt_right">35.47706</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">62.36813</td>
+<td class="gt_row gt_right">51.0</td>
+<td class="gt_row gt_right">2.671557</td></tr>
+    <tr><td class="gt_row gt_right">35.47706</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">62.36813</td>
+<td class="gt_row gt_right">527.0</td>
+<td class="gt_row gt_right">2.671557</td></tr>
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Costa Rica</td>
     </tr>
-    <tr>
-      <td class="gt_row gt_right">484.61508</td>
-      <td class="gt_row gt_right">160.5</td>
-      <td class="gt_row gt_right">550.55527</td>
-      <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">34.681722</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">484.61508</td>
-      <td class="gt_row gt_right">160.5</td>
-      <td class="gt_row gt_right">550.55527</td>
-      <td class="gt_row gt_right">13.00</td>
-      <td class="gt_row gt_right">34.681722</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">484.61508</td>
-      <td class="gt_row gt_right">160.5</td>
-      <td class="gt_row gt_right">550.55527</td>
-      <td class="gt_row gt_right">160.50</td>
-      <td class="gt_row gt_right">34.681722</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">484.61508</td>
-      <td class="gt_row gt_right">160.5</td>
-      <td class="gt_row gt_right">550.55527</td>
-      <td class="gt_row gt_right">1001.25</td>
-      <td class="gt_row gt_right">34.681722</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">484.61508</td>
-      <td class="gt_row gt_right">160.5</td>
-      <td class="gt_row gt_right">550.55527</td>
-      <td class="gt_row gt_right">1947.00</td>
-      <td class="gt_row gt_right">34.681722</td>
-    </tr>
+    <tr><td class="gt_row gt_right">882.49369</td>
+<td class="gt_row gt_right">503</td>
+<td class="gt_row gt_right">1088.35887</td>
+<td class="gt_row gt_right">0.0</td>
+<td class="gt_row gt_right">46.198261</td></tr>
+    <tr><td class="gt_row gt_right">882.49369</td>
+<td class="gt_row gt_right">503</td>
+<td class="gt_row gt_right">1088.35887</td>
+<td class="gt_row gt_right">5.5</td>
+<td class="gt_row gt_right">46.198261</td></tr>
+    <tr><td class="gt_row gt_right">882.49369</td>
+<td class="gt_row gt_right">503</td>
+<td class="gt_row gt_right">1088.35887</td>
+<td class="gt_row gt_right">503.0</td>
+<td class="gt_row gt_right">46.198261</td></tr>
+    <tr><td class="gt_row gt_right">882.49369</td>
+<td class="gt_row gt_right">503</td>
+<td class="gt_row gt_right">1088.35887</td>
+<td class="gt_row gt_right">1363.0</td>
+<td class="gt_row gt_right">46.198261</td></tr>
+    <tr><td class="gt_row gt_right">882.49369</td>
+<td class="gt_row gt_right">503</td>
+<td class="gt_row gt_right">1088.35887</td>
+<td class="gt_row gt_right">5992.0</td>
+<td class="gt_row gt_right">46.198261</td></tr>
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Cuba</td>
     </tr>
-    <tr>
-      <td class="gt_row gt_right">30.77959</td>
-      <td class="gt_row gt_right">27.0</td>
-      <td class="gt_row gt_right">23.32417</td>
-      <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">1.490126</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">30.77959</td>
-      <td class="gt_row gt_right">27.0</td>
-      <td class="gt_row gt_right">23.32417</td>
-      <td class="gt_row gt_right">10.00</td>
-      <td class="gt_row gt_right">1.490126</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">30.77959</td>
-      <td class="gt_row gt_right">27.0</td>
-      <td class="gt_row gt_right">23.32417</td>
-      <td class="gt_row gt_right">27.00</td>
-      <td class="gt_row gt_right">1.490126</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">30.77959</td>
-      <td class="gt_row gt_right">27.0</td>
-      <td class="gt_row gt_right">23.32417</td>
-      <td class="gt_row gt_right">48.00</td>
-      <td class="gt_row gt_right">1.490126</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">30.77959</td>
-      <td class="gt_row gt_right">27.0</td>
-      <td class="gt_row gt_right">23.32417</td>
-      <td class="gt_row gt_right">109.00</td>
-      <td class="gt_row gt_right">1.490126</td>
-    </tr>
+    <tr><td class="gt_row gt_right">1342.74681</td>
+<td class="gt_row gt_right">93</td>
+<td class="gt_row gt_right">2547.37574</td>
+<td class="gt_row gt_right">0.0</td>
+<td class="gt_row gt_right">108.719347</td></tr>
+    <tr><td class="gt_row gt_right">1342.74681</td>
+<td class="gt_row gt_right">93</td>
+<td class="gt_row gt_right">2547.37574</td>
+<td class="gt_row gt_right">31.0</td>
+<td class="gt_row gt_right">108.719347</td></tr>
+    <tr><td class="gt_row gt_right">1342.74681</td>
+<td class="gt_row gt_right">93</td>
+<td class="gt_row gt_right">2547.37574</td>
+<td class="gt_row gt_right">93.0</td>
+<td class="gt_row gt_right">108.719347</td></tr>
+    <tr><td class="gt_row gt_right">1342.74681</td>
+<td class="gt_row gt_right">93</td>
+<td class="gt_row gt_right">2547.37574</td>
+<td class="gt_row gt_right">1060.0</td>
+<td class="gt_row gt_right">108.719347</td></tr>
+    <tr><td class="gt_row gt_right">1342.74681</td>
+<td class="gt_row gt_right">93</td>
+<td class="gt_row gt_right">2547.37574</td>
+<td class="gt_row gt_right">9907.0</td>
+<td class="gt_row gt_right">108.719347</td></tr>
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Haiti</td>
     </tr>
-    <tr>
-      <td class="gt_row gt_right">38.20000</td>
-      <td class="gt_row gt_right">15.0</td>
-      <td class="gt_row gt_right">56.65503</td>
-      <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">3.657066</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">38.20000</td>
-      <td class="gt_row gt_right">15.0</td>
-      <td class="gt_row gt_right">56.65503</td>
-      <td class="gt_row gt_right">1.00</td>
-      <td class="gt_row gt_right">3.657066</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">38.20000</td>
-      <td class="gt_row gt_right">15.0</td>
-      <td class="gt_row gt_right">56.65503</td>
-      <td class="gt_row gt_right">15.00</td>
-      <td class="gt_row gt_right">3.657066</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">38.20000</td>
-      <td class="gt_row gt_right">15.0</td>
-      <td class="gt_row gt_right">56.65503</td>
-      <td class="gt_row gt_right">46.50</td>
-      <td class="gt_row gt_right">3.657066</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">38.20000</td>
-      <td class="gt_row gt_right">15.0</td>
-      <td class="gt_row gt_right">56.65503</td>
-      <td class="gt_row gt_right">284.00</td>
-      <td class="gt_row gt_right">3.657066</td>
-    </tr>
+    <tr><td class="gt_row gt_right">39.11645</td>
+<td class="gt_row gt_right">15</td>
+<td class="gt_row gt_right">64.95417</td>
+<td class="gt_row gt_right">0.0</td>
+<td class="gt_row gt_right">2.792598</td></tr>
+    <tr><td class="gt_row gt_right">39.11645</td>
+<td class="gt_row gt_right">15</td>
+<td class="gt_row gt_right">64.95417</td>
+<td class="gt_row gt_right">0.0</td>
+<td class="gt_row gt_right">2.792598</td></tr>
+    <tr><td class="gt_row gt_right">39.11645</td>
+<td class="gt_row gt_right">15</td>
+<td class="gt_row gt_right">64.95417</td>
+<td class="gt_row gt_right">15.0</td>
+<td class="gt_row gt_right">2.792598</td></tr>
+    <tr><td class="gt_row gt_right">39.11645</td>
+<td class="gt_row gt_right">15</td>
+<td class="gt_row gt_right">64.95417</td>
+<td class="gt_row gt_right">48.0</td>
+<td class="gt_row gt_right">2.792598</td></tr>
+    <tr><td class="gt_row gt_right">39.11645</td>
+<td class="gt_row gt_right">15</td>
+<td class="gt_row gt_right">64.95417</td>
+<td class="gt_row gt_right">542.0</td>
+<td class="gt_row gt_right">2.792598</td></tr>
     <tr class="gt_group_heading_row">
       <td colspan="5" class="gt_group_heading">Jamaica</td>
     </tr>
-    <tr>
-      <td class="gt_row gt_right">39.36437</td>
-      <td class="gt_row gt_right">9.0</td>
-      <td class="gt_row gt_right">56.40198</td>
-      <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">3.588772</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">39.36437</td>
-      <td class="gt_row gt_right">9.0</td>
-      <td class="gt_row gt_right">56.40198</td>
-      <td class="gt_row gt_right">3.00</td>
-      <td class="gt_row gt_right">3.588772</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">39.36437</td>
-      <td class="gt_row gt_right">9.0</td>
-      <td class="gt_row gt_right">56.40198</td>
-      <td class="gt_row gt_right">9.00</td>
-      <td class="gt_row gt_right">3.588772</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">39.36437</td>
-      <td class="gt_row gt_right">9.0</td>
-      <td class="gt_row gt_right">56.40198</td>
-      <td class="gt_row gt_right">64.50</td>
-      <td class="gt_row gt_right">3.588772</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">39.36437</td>
-      <td class="gt_row gt_right">9.0</td>
-      <td class="gt_row gt_right">56.40198</td>
-      <td class="gt_row gt_right">326.00</td>
-      <td class="gt_row gt_right">3.588772</td>
-    </tr>
-    <tr class="gt_group_heading_row">
-      <td colspan="5" class="gt_group_heading">Puerto Rico</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">327.54310</td>
-      <td class="gt_row gt_right">189.5</td>
-      <td class="gt_row gt_right">352.98136</td>
-      <td class="gt_row gt_right">0.00</td>
-      <td class="gt_row gt_right">23.174362</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">327.54310</td>
-      <td class="gt_row gt_right">189.5</td>
-      <td class="gt_row gt_right">352.98136</td>
-      <td class="gt_row gt_right">62.00</td>
-      <td class="gt_row gt_right">23.174362</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">327.54310</td>
-      <td class="gt_row gt_right">189.5</td>
-      <td class="gt_row gt_right">352.98136</td>
-      <td class="gt_row gt_right">189.50</td>
-      <td class="gt_row gt_right">23.174362</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">327.54310</td>
-      <td class="gt_row gt_right">189.5</td>
-      <td class="gt_row gt_right">352.98136</td>
-      <td class="gt_row gt_right">539.50</td>
-      <td class="gt_row gt_right">23.174362</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_right">327.54310</td>
-      <td class="gt_row gt_right">189.5</td>
-      <td class="gt_row gt_right">352.98136</td>
-      <td class="gt_row gt_right">1955.00</td>
-      <td class="gt_row gt_right">23.174362</td>
-    </tr>
+    <tr><td class="gt_row gt_right">136.90364</td>
+<td class="gt_row gt_right">69</td>
+<td class="gt_row gt_right">192.62280</td>
+<td class="gt_row gt_right">0.0</td>
+<td class="gt_row gt_right">8.213464</td></tr>
+    <tr><td class="gt_row gt_right">136.90364</td>
+<td class="gt_row gt_right">69</td>
+<td class="gt_row gt_right">192.62280</td>
+<td class="gt_row gt_right">10.0</td>
+<td class="gt_row gt_right">8.213464</td></tr>
+    <tr><td class="gt_row gt_right">136.90364</td>
+<td class="gt_row gt_right">69</td>
+<td class="gt_row gt_right">192.62280</td>
+<td class="gt_row gt_right">69.0</td>
+<td class="gt_row gt_right">8.213464</td></tr>
+    <tr><td class="gt_row gt_right">136.90364</td>
+<td class="gt_row gt_right">69</td>
+<td class="gt_row gt_right">192.62280</td>
+<td class="gt_row gt_right">158.0</td>
+<td class="gt_row gt_right">8.213464</td></tr>
+    <tr><td class="gt_row gt_right">136.90364</td>
+<td class="gt_row gt_right">69</td>
+<td class="gt_row gt_right">192.62280</td>
+<td class="gt_row gt_right">1430.0</td>
+<td class="gt_row gt_right">8.213464</td></tr>
   </tbody>
   
   
-</table></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>mydat<span class="op">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="op">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="st">  </span><span class="kw">filter</span>(location <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="op">%&gt;%</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="st">  </span><span class="kw">group_by</span>(location)<span class="op">%&gt;%</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mode=</span>statip<span class="op">::</span><span class="kw">mfv</span>(new_cases))</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;location&#39; (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 8 x 2
-## # Groups:   location [6]
-##   location     mode
-##   &lt;chr&gt;       &lt;dbl&gt;
-## 1 Bahamas         0
-## 2 Costa Rica      0
-## 3 Cuba            4
-## 4 Cuba           48
-## 5 Haiti           0
-## 6 Jamaica         0
-## 7 Jamaica         2
-## 8 Puerto Rico     0</code></pre>
+</table>
+</div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location)<span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mode=</span>statip<span class="sc">::</span><span class="fu">mfv</span>(new_cases))</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 2
+##   location    mode
+##   &lt;chr&gt;      &lt;dbl&gt;
+## 1 Bahamas        0
+## 2 Costa Rica     0
+## 3 Cuba          48
+## 4 Haiti          0
+## 5 Jamaica        0</code></pre>
 <p>Pregunta 1 (5 puntos)</p>
 <p>promedio mediana moda desviación estándar error estándar cuantiles</p>
 <p>Pregunta 2 (5 puntos)</p>
@@ -2862,7 +2759,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -2871,6 +2768,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

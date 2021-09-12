@@ -13,20 +13,26 @@
 
 <title>Frequencia_Ejercicios_Respuestas</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -38,11 +44,19 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -125,39 +139,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="tutorial.css" type="text/css" />
 
@@ -168,10 +152,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -188,40 +168,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -249,7 +202,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -261,7 +214,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -272,10 +225,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -287,7 +253,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -413,7 +378,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -528,7 +493,7 @@ div.tocify {
       <a href="T15_Selecionar_Pruebas.html">T15 Selección de pruebas corectas</a>
     </li>
     <li>
-      <a href="T16_AKAIKE.html">T16 AIC:Criterio de Información</a>
+      <a href="T16_AKAIKE.html">T16 Criterio de Información</a>
     </li>
   </ul>
 </li>
@@ -566,6 +531,9 @@ div.tocify {
     <li>
       <a href="Ejerc_5_Correlacion.html">Ejercicio de Correlación</a>
     </li>
+    <li>
+      <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -591,7 +559,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -601,7 +569,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2020-11-14&quot;</code></pre>
+<pre><code>## [1] &quot;2021-09-12&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <hr />
 <div id="ejercicios-de-pruebas-de-frecuencias" class="section level1">
@@ -629,11 +597,11 @@ div.tocify {
 <li>Ejercicio 7.17 (5 puntos)</li>
 </ol>
 <p>A study in Southern Brazil assessed the abundance of terrewstrial flatworms by surveying 100 plots. The following table shows the observed number of of flatworms per plot. Using the smaple mean, determine if the distrbiution of the flatworm is random.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>Num_FlatW=<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>Obser_Plots=<span class="kw">c</span>(<span class="dv">52</span>,<span class="dv">33</span>,<span class="dv">12</span>,<span class="dv">3</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a>df=<span class="kw">data.frame</span>(Num_FlatW, Obser_Plots)</span>
-<span id="cb2-5"><a href="#cb2-5"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Num_FlatW<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Obser_Plots<span class="ot">=</span><span class="fu">c</span>(<span class="dv">52</span>,<span class="dv">33</span>,<span class="dv">12</span>,<span class="dv">3</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="fu">data.frame</span>(Num_FlatW, Obser_Plots)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##   Num_FlatW Obser_Plots
 ## 1         0          52
 ## 2         1          33
@@ -644,10 +612,10 @@ div.tocify {
 <li><p>Incluir información sobre los “Flatworms” Aquí hay bastante informacion <a href="https://en.wikipedia.org/wiki/Flatworm" class="uri">https://en.wikipedia.org/wiki/Flatworm</a></p></li>
 </ul>
 <p>The null model is that the frequency is the same for each group, thus you would expect a 25% of the plots to be in each group. Since there are 100 plots, and we would expect 25% in each group we would expect 25 plots for each</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>obs=<span class="kw">c</span>(<span class="dv">52</span>,<span class="dv">33</span>,<span class="dv">12</span>,<span class="dv">3</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>exp=<span class="kw">c</span>(.<span class="dv">25</span>,.<span class="dv">25</span>,.<span class="dv">25</span>,.<span class="dv">25</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">chisq.test</span>(<span class="dt">x=</span>obs, <span class="dt">p=</span>exp)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">=</span><span class="fu">c</span>(<span class="dv">52</span>,<span class="dv">33</span>,<span class="dv">12</span>,<span class="dv">3</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>exp<span class="ot">=</span><span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">25</span>,.<span class="dv">25</span>,.<span class="dv">25</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="at">x=</span>obs, <span class="at">p=</span>exp)</span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
@@ -665,16 +633,16 @@ div.tocify {
 <li>Disassortative mating (also known as negative assortative mating or heterogamy) means that individuals with dissimilar genotypes or phenotypes mate with one another more frequently than would be expected under random mating. Disassortative mating reduces the genetic similarities within the family. ** From Wikipedia.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>Zono=<span class="kw">tribble</span>(<span class="op">~</span>gender, <span class="op">~</span>color_Fem, <span class="op">~</span>White, <span class="op">~</span>Brown,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>            <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="dv">7</span>, <span class="dv">23</span>,</span>
-<span id="cb6-5"><a href="#cb6-5"></a>            <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Brown&quot;</span>, <span class="dv">14</span>, <span class="dv">5</span>)</span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="kw">library</span>(huxtable)</span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="kw">huxtable</span>(Zono) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="st">  </span><span class="kw">set_bottom_border</span>(<span class="dt">row =</span> <span class="dv">1</span>, <span class="dt">col=</span>everywhere, <span class="dt">value=</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="st">  </span><span class="kw">set_caption</span>(<span class="st">&quot;                     Males&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Zono<span class="ot">=</span><span class="fu">tribble</span>(<span class="sc">~</span>gender, <span class="sc">~</span>color_Fem, <span class="sc">~</span>White, <span class="sc">~</span>Brown,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;White&quot;</span>, <span class="dv">7</span>, <span class="dv">23</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Brown&quot;</span>, <span class="dv">14</span>, <span class="dv">5</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(huxtable)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">huxtable</span>(Zono) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_bottom_border</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col=</span>everywhere, <span class="at">value=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_caption</span>(<span class="st">&quot;                     Males&quot;</span>)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <caption style="caption-side: top; text-align: center;">                     Males</caption><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">gender</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">color_Fem</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">White</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Brown</th></tr>
@@ -685,19 +653,19 @@ div.tocify {
 </table>
 
 <p>Prueba de asociación" preparar los datos</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>R1=<span class="kw">c</span>(<span class="dv">7</span>,<span class="dv">23</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>R2=<span class="kw">c</span>(<span class="dv">14</span>,<span class="dv">5</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a>Aves=<span class="kw">matrix</span>(<span class="kw">c</span>(R1, R2), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#Aves</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">rownames</span>(Aves)=<span class="kw">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Brown&quot;</span>)</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="kw">colnames</span>(Aves)=<span class="kw">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Brown&quot;</span>)</span>
-<span id="cb7-9"><a href="#cb7-9"></a>Aves</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>R1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">23</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>R2<span class="ot">=</span><span class="fu">c</span>(<span class="dv">14</span>,<span class="dv">5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>Aves<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(R1, R2), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Aves</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(Aves)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Brown&quot;</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Aves)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Brown&quot;</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>Aves</span></code></pre></div>
 <pre><code>##       White Brown
 ## White     7    23
 ## Brown    14     5</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">chisq.test</span>(Aves, <span class="dt">correct=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Aves, <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -716,16 +684,16 @@ div.tocify {
 <li>Papaveretum (BAN) is a preparation containing a mixture of hydrochloride salts of opium alkaloids. Since 1993, papaveretum has been defined in the British Pharmacopoeia (BP) as a mixture of 253 parts morphine hydrochloride, 23 parts papaverine hydrochloride, and 20 parts codeine hydrochloride. **From wikipedia</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>Papa=<span class="kw">tribble</span>(<span class="op">~</span>Results, <span class="op">~</span>Papaveretum, <span class="op">~</span>Saline,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>            <span class="st">&quot;Pain Better&quot;</span>,  <span class="dv">47</span>, <span class="dv">7</span>,</span>
-<span id="cb11-5"><a href="#cb11-5"></a>            <span class="st">&quot;No Change/Worse&quot;</span>,  <span class="dv">3</span>, <span class="dv">42</span>)</span>
-<span id="cb11-6"><a href="#cb11-6"></a></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="kw">library</span>(huxtable)</span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="kw">huxtable</span>(Papa) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="st">  </span><span class="kw">set_bottom_border</span>(<span class="dt">row =</span> <span class="dv">1</span>, <span class="dt">col=</span>everywhere, <span class="dt">value=</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-10"><a href="#cb11-10"></a><span class="st">  </span><span class="kw">set_caption</span>(<span class="st">&quot;                     Treatment&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Papa<span class="ot">=</span><span class="fu">tribble</span>(<span class="sc">~</span>Results, <span class="sc">~</span>Papaveretum, <span class="sc">~</span>Saline,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Pain Better&quot;</span>,  <span class="dv">47</span>, <span class="dv">7</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;No Change/Worse&quot;</span>,  <span class="dv">3</span>, <span class="dv">42</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(huxtable)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">huxtable</span>(Papa) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_bottom_border</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col=</span>everywhere, <span class="at">value=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_caption</span>(<span class="st">&quot;                     Treatment&quot;</span>)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
 <caption style="caption-side: top; text-align: center;">                     Treatment</caption><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Results</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Papaveretum</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Saline</th></tr>
@@ -736,19 +704,19 @@ div.tocify {
 </table>
 
 <p>Prueba de asociación" preparar los datos</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>R1=<span class="kw">c</span>(<span class="dv">47</span>,<span class="dv">7</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a>R2=<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">42</span>)</span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a>Pain=<span class="kw">matrix</span>(<span class="kw">c</span>(R1, R2), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="co">#Aves</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="kw">rownames</span>(Pain)=<span class="kw">c</span>(<span class="st">&quot;Pain Better&quot;</span>, <span class="st">&quot;No Change/Worse&quot;</span>)</span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="kw">colnames</span>(Pain)=<span class="kw">c</span>(<span class="st">&quot;Papaveretum&quot;</span>, <span class="st">&quot;Saline&quot;</span>)</span>
-<span id="cb12-9"><a href="#cb12-9"></a>Pain</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>R1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">47</span>,<span class="dv">7</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>R2<span class="ot">=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">42</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Pain<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(R1, R2), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Aves</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(Pain)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Pain Better&quot;</span>, <span class="st">&quot;No Change/Worse&quot;</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Pain)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Papaveretum&quot;</span>, <span class="st">&quot;Saline&quot;</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Pain</span></code></pre></div>
 <pre><code>##                 Papaveretum Saline
 ## Pain Better              47      7
 ## No Change/Worse           3     42</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">chisq.test</span>(Pain, <span class="dt">correct=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(Pain, <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -773,16 +741,16 @@ div.tocify {
 <li>Streptomycin is an aminoglycoside antibiotic produced by the soil actinomycete Streptomyces griseus. It acts by binding to the 30S ribosomal subunit of susceptible organisms and disrupting the initiation and elongation steps in protein synthesis. It is bactericidal due to effects that are not fully understood.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb16-2"><a href="#cb16-2"></a></span>
-<span id="cb16-3"><a href="#cb16-3"></a>AntiB=<span class="kw">tribble</span>(<span class="op">~</span>Results, <span class="op">~</span>Streptomycin, <span class="op">~</span>Bed_Rest,</span>
-<span id="cb16-4"><a href="#cb16-4"></a>            <span class="st">&quot;Survived&quot;</span>,  <span class="dv">51</span>, <span class="dv">38</span>,</span>
-<span id="cb16-5"><a href="#cb16-5"></a>            <span class="st">&quot;Died&quot;</span>,  <span class="dv">4</span>, <span class="dv">14</span>)</span>
-<span id="cb16-6"><a href="#cb16-6"></a></span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="kw">library</span>(huxtable)</span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="kw">huxtable</span>(AntiB) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="st">  </span><span class="kw">set_bottom_border</span>(<span class="dt">row =</span> <span class="dv">1</span>, <span class="dt">col=</span>everywhere, <span class="dt">value=</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="st">  </span><span class="kw">set_caption</span>(<span class="st">&quot;                     Treatment&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>AntiB<span class="ot">=</span><span class="fu">tribble</span>(<span class="sc">~</span>Results, <span class="sc">~</span>Streptomycin, <span class="sc">~</span>Bed_Rest,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Survived&quot;</span>,  <span class="dv">51</span>, <span class="dv">38</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Died&quot;</span>,  <span class="dv">4</span>, <span class="dv">14</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(huxtable)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">huxtable</span>(AntiB) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_bottom_border</span>(<span class="at">row =</span> <span class="dv">1</span>, <span class="at">col=</span>everywhere, <span class="at">value=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_caption</span>(<span class="st">&quot;                     Treatment&quot;</span>)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-12">
 <caption style="caption-side: top; text-align: center;">                     Treatment</caption><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Results</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Streptomycin</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 1pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Bed_Rest</th></tr>
@@ -793,22 +761,22 @@ div.tocify {
 </table>
 
 <p>Prueba de asociación" preparar los datos</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>R1=<span class="kw">c</span>(<span class="dv">51</span>,<span class="dv">38</span>)</span>
-<span id="cb17-2"><a href="#cb17-2"></a>R2=<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">14</span>)</span>
-<span id="cb17-3"><a href="#cb17-3"></a></span>
-<span id="cb17-4"><a href="#cb17-4"></a>ANTIBi=<span class="kw">matrix</span>(<span class="kw">c</span>(R1, R2), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="co">#Aves</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="kw">rownames</span>(ANTIBi)=<span class="kw">c</span>(<span class="st">&quot;Survived&quot;</span>, <span class="st">&quot;Died&quot;</span>)</span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="kw">colnames</span>(ANTIBi)=<span class="kw">c</span>(<span class="st">&quot;Streptomycin&quot;</span>, <span class="st">&quot;Bed_Rest&quot;</span>)</span>
-<span id="cb17-9"><a href="#cb17-9"></a>ANTIBi</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>R1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">51</span>,<span class="dv">38</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>R2<span class="ot">=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">14</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>ANTIBi<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(R1, R2), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Aves</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(ANTIBi)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Survived&quot;</span>, <span class="st">&quot;Died&quot;</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ANTIBi)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Streptomycin&quot;</span>, <span class="st">&quot;Bed_Rest&quot;</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ANTIBi</span></code></pre></div>
 <pre><code>##          Streptomycin Bed_Rest
 ## Survived           51       38
 ## Died                4       14</code></pre>
 <ul>
 <li>5 puntos para un trabajo bien presentado y organizado</li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">chisq.test</span>(ANTIBi, <span class="dt">correct=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(ANTIBi, <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -847,7 +815,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -856,6 +824,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
