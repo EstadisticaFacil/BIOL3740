@@ -13,8 +13,8 @@
 
 <title>Cheatsheets</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -48,6 +48,7 @@
 
 
 
+
 <link rel="stylesheet" href="tutorial.css" type="text/css" />
 
 
@@ -72,6 +73,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -297,7 +301,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -313,7 +317,7 @@ div.tocify {
   <a href="schedule.html">Calendario</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Instalación básica
      
     <span class="caret"></span>
@@ -334,7 +338,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Temas
      
     <span class="caret"></span>
@@ -403,7 +407,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Ejercicio
      
     <span class="caret"></span>
@@ -442,7 +446,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Datos
      
     <span class="caret"></span>
@@ -474,27 +478,48 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2021-09-12&quot;</code></pre>
+<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
 <div id="códigos-básicos-en-r" class="section level1">
 <h1>Códigos básicos en R</h1>
 <hr />
 </div>
 <div id="responsabilidad-del-estudiante" class="section level1">
 <h1>Responsabilidad del estudiante</h1>
-<p><span style="color: red;">EL ESTUDIANTE es COMPLETAMENTE RESPONSABLE</span> de ver estos vídeos y entender como usar la plataforma.</p>
+<p><span style="color: red;">EL ESTUDIANTE es COMPLETAMENTE
+RESPONSABLE</span> de ver estos vídeos y entender como usar la
+plataforma.</p>
 <hr />
 </div>
 <div id="base-r" class="section level1">
 <h1>Base R</h1>
-<p>Cuando uno se refiere a Base R se refiere a las funciones básicas del programa. Muchas de estas funciones son las primeras que fueron desarrolladas. Es importante entender la sintaxis del programa p[ara poder hacer los análisis con facilidades. Para ayudar con estos pasos hay mucha información en <em>YouTube</em> disponible sugiero que vean lo siguiente. En el enlace hay 47 vídeos de como utilizar las funciones de R. Mi sugerencia es vean los siguientes vídeos primero 1,2,3,4,25,26. No es necesario ver todos al menos que ya encontró su futura dirección de estudios.</p>
-<p>EL enlace es: <a href="https://www.youtube.com/playlist?list=PL0iUxoCEznfixaKofFkoOho26swycdAmy">Aprender Base R</a></p>
-<p>La sugerencias es que deberían ver los vídeos abajo múltiples veces y después compartir con un otro estudiante y hablar de los que entendió.</p>
+<p>Cuando uno se refiere a Base R se refiere a las funciones básicas del
+programa. Muchas de estas funciones son las primeras que fueron
+desarrolladas. Es importante entender la sintaxis del programa p[ara
+poder hacer los análisis con facilidades. Para ayudar con estos pasos
+hay mucha información en <em>YouTube</em> disponible sugiero que vean lo
+siguiente. En el enlace hay 47 vídeos de como utilizar las funciones de
+R. Mi sugerencia es vean los siguientes vídeos primero 1,2,3,4,25,26. No
+es necesario ver todos al menos que ya encontró su futura dirección de
+estudios.</p>
+<p>EL enlace es: <a
+href="https://www.youtube.com/playlist?list=PL0iUxoCEznfixaKofFkoOho26swycdAmy">Aprender
+Base R</a></p>
+<p>La sugerencias es que deberían ver los vídeos abajo múltiples veces y
+después compartir con un otro estudiante y hablar de los que
+entendió.</p>
 <hr />
 </div>
 <div id="enlace-para-todos-los-cheetsheets" class="section level1">
 <h1>Enlace para todos los Cheetsheets</h1>
-<p>Los <em>cheatsheets</em> son hojas donde se encuentra las funciones principales de algunos paquetes. Son guías para conocer y aplicar las funciones. Abrir el siguiente enlace donde encontrarán muchos “Cheatsheets”, buscan abajo el que se llama “Base R”. Este es la hoja de información básica de como utilizar R.</p>
-<p>En el primer enlace pueden bajar un pdf del <strong>Base R cheatsheet</strong> <a href="https://rstudio.com/resources/cheatsheets/">Página de Cheatsheets</a></p>
+<p>Los <em>cheatsheets</em> son hojas donde se encuentra las funciones
+principales de algunos paquetes. Son guías para conocer y aplicar las
+funciones. Abrir el siguiente enlace donde encontrarán muchos
+“Cheatsheets”, buscan abajo el que se llama “Base R”. Este es la hoja de
+información básica de como utilizar R.</p>
+<p>En el primer enlace pueden bajar un pdf del <strong>Base R
+cheatsheet</strong> <a
+href="https://rstudio.com/resources/cheatsheets/">Página de
+Cheatsheets</a></p>
 <hr />
 <p>También lo pueden encontrar aquí como imagen.</p>
 <p><img src="Graficos/rbase.png" width="100%" /> La segunda pagina</p>
@@ -503,8 +528,11 @@ div.tocify {
 </div>
 <div id="los-cheatsheets-en-español" class="section level1">
 <h1>Los cheatsheets en Español</h1>
-<p>En el siguiente enlace vaya muy abajo y encontrarán los <em>cheatsheets</em> en otros idiomas incluyendo en español.</p>
-<p>En el primer enlace pueden pajar un pdf del cheatsheet <a href="https://rstudio.com/resources/cheatsheets/">Página de Cheatsheets</a></p>
+<p>En el siguiente enlace vaya muy abajo y encontrarán los
+<em>cheatsheets</em> en otros idiomas incluyendo en español.</p>
+<p>En el primer enlace pueden pajar un pdf del cheatsheet <a
+href="https://rstudio.com/resources/cheatsheets/">Página de
+Cheatsheets</a></p>
 </div>
 
 

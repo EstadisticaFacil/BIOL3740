@@ -13,8 +13,8 @@
 
 <title>T13_Correlacion</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -42,6 +42,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -167,6 +168,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -392,7 +396,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -408,7 +412,7 @@ div.tocify {
   <a href="schedule.html">Calendario</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Instalación básica
      
     <span class="caret"></span>
@@ -429,7 +433,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Temas
      
     <span class="caret"></span>
@@ -498,7 +502,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Ejercicio
      
     <span class="caret"></span>
@@ -537,7 +541,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Datos
      
     <span class="caret"></span>
@@ -569,28 +573,49 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2021-09-12&quot;</code></pre>
+<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <hr />
 <div id="install-packages" class="section level2">
 <h2>Install packages</h2>
-<p>La correlaciones son métodos para evaluar la relación entre dos o más variables.</p>
+<p>La correlaciones son métodos para evaluar la relación entre dos o más
+variables.</p>
 <p>Ejemplos</p>
 <blockquote>
 <ul>
-<li>La cantidad de colesterol, LDL (lipoproteínas de baja densidad) y HDL (lipoproteínas de alta densidad).</li>
+<li>La cantidad de colesterol, LDL (lipoproteínas de baja densidad) y
+HDL (lipoproteínas de alta densidad).</li>
 <li>La concentración de vitamina C y la absorción de calcio.</li>
-<li>La consumo de alcohol y la concentración de alcohol en la sangre.</li>
+<li>La consumo de alcohol y la concentración de alcohol en la
+sangre.</li>
 </ul>
 </blockquote>
-<p>Los analísis se hacen comparando las variables continuas en pares. La covarianza es la medida de variabilidad conjunta entre dos variables.</p>
-<p>Primero recordamos la formula para calcular la varianza de una variable</p>
-<p><span class="math display">\[s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{ (x_{ i }-\bar { x } ) } ^{ 2 } }{ n-1 }\]</span></p>
+<p>Los analísis se hacen comparando las variables continuas en pares. La
+covarianza es la medida de variabilidad conjunta entre dos
+variables.</p>
+<p>Primero recordamos la formula para calcular la varianza de una
+variable</p>
+<p><span class="math display">\[s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{
+(x_{ i }-\bar { x } ) } ^{ 2 } }{ n-1 }\]</span></p>
 <p>Ahora la vamos a descomponer</p>
-<p><span class="math display">\[s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{ (x_{ i }-\bar{ x } ) } (x_{ i }-\bar { x } ) }{ n-1 }\]</span> *** # Correlación de Pearson</p>
-<p>Esta la más común y conocida como el Coeficiente de correlación de Pearson. Nota ahora que tenemos dos variables <strong>x</strong> y <strong>y</strong>.</p>
-<p>Podemos ver cual es la relación entre la edad de los estudiantes y cuantas veces fueron a Disney en Orlando, Florida. El objetivo es evaluar el covarianza entre una variable y otra.</p>
+<p><span class="math display">\[s^{ 2 }=\frac { \sum _{ i=1 }^{ n }{
+(x_{ i }-\bar{ x } ) } (x_{ i }-\bar { x } ) }{ n-1 }\]</span> *** #
+Correlación de Pearson</p>
+<p>Esta la más común y conocida como el Coeficiente de correlación de
+Pearson. Nota ahora que tenemos dos variables <strong>x</strong> y
+<strong>y</strong>.</p>
+<p>Podemos ver cual es la relación entre la edad de los estudiantes y
+cuantas veces fueron a Disney en Orlando, Florida. El objetivo es
+evaluar el covarianza entre una variable y otra.</p>
 <table>
+<colgroup>
+<col width="47%" />
+<col width="8%" />
+<col width="8%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Personas</th>
@@ -620,10 +645,27 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<p>La siguiente formula muestra el calculo para el coeficiente de Pearson <span class="math inline">\(\rho\)</span> que se dice <strong>rho</strong> que es el parámetro (el universo). Para significar el coeficiente de una muestra se usa la <strong>r</strong>. Note el numerador y comparalo con la formula anterior. ven que ahora se toma en cuenta tanto el valor en <strong>x</strong> y en <strong>y</strong>.</p>
-<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1({ s }_{ x }{ s }_{ y }) }\]</span> Una otra manera de ver como se calcula el coeficiente de Pearson es usar la siguiente formula.</p>
-<p><span class="math display">\[r=\frac{\sum_{ }^{ }xy-\left(\frac{\sum_{ }^{ }x\sum_{ }^{ }y}{n}\right)}{\sqrt{\left(\sum_{ }^{ }x^2-\frac{\left(\sum_{ }^{ }x\right)^2}{n}\right)\left(\sum_{ }^{ }y^2-\frac{\left(\sum_{ }^{ }y\right)^2}{n}\right)}}\]</span></p>
-<p>Creamos un conjunto de datos en R para demostrar como se calcula a mano. Necesitamos calcular la suma de <strong>x</strong>, la suma de <strong>y</strong>, la suma de los cuadrados de <strong>x</strong> y <strong>y</strong> y la suma los productos cruzados (<strong>xy</strong>).</p>
+<p>La siguiente formula muestra el calculo para el coeficiente de
+Pearson <span class="math inline">\(\rho\)</span> que se dice
+<strong>rho</strong> que es el parámetro (el universo). Para significar
+el coeficiente de una muestra se usa la <strong>r</strong>. Note el
+numerador y comparalo con la formula anterior. ven que ahora se toma en
+cuenta tanto el valor en <strong>x</strong> y en <strong>y</strong>.</p>
+<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{
+y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar {
+y } _{ i }) }  }{ n-1({ s }_{ x }{ s }_{ y }) }\]</span> Una otra manera
+de ver como se calcula el coeficiente de Pearson es usar la siguiente
+formula.</p>
+<p><span class="math display">\[r=\frac{\sum_{ }^{
+}xy-\left(\frac{\sum_{ }^{ }x\sum_{ }^{
+}y}{n}\right)}{\sqrt{\left(\sum_{ }^{ }x^2-\frac{\left(\sum_{ }^{
+}x\right)^2}{n}\right)\left(\sum_{ }^{ }y^2-\frac{\left(\sum_{ }^{
+}y\right)^2}{n}\right)}}\]</span></p>
+<p>Creamos un conjunto de datos en R para demostrar como se calcula a
+mano. Necesitamos calcular la suma de <strong>x</strong>, la suma de
+<strong>y</strong>, la suma de los cuadrados de <strong>x</strong> y
+<strong>y</strong> y la suma los productos cruzados
+(<strong>xy</strong>).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Edad<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">13</span>,<span class="dv">15</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Disney<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dfDisney<span class="ot">&lt;-</span><span class="fu">data.frame</span>(Edad, Disney) <span class="co"># unir las listas en un data frame</span></span>
@@ -631,7 +673,7 @@ div.tocify {
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dfDisney<span class="sc">$</span>Disney2<span class="ot">=</span>dfDisney<span class="sc">$</span>Disney<span class="sc">^</span><span class="dv">2</span> <span class="co"># cuadrar las y</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>dfDisney<span class="sc">$</span>Edad_por_Disney<span class="ot">=</span>dfDisney<span class="sc">$</span>Edad<span class="sc">*</span>dfDisney<span class="sc">$</span>Disney <span class="co"># productos cruzados x*y</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>dfDisney</span></code></pre></div>
-<p><table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:simple example">
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:simple example">
 <col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Edad</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Disney</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Edad2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Disney2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Edad_por_Disney</th></tr>
 <tr>
@@ -645,7 +687,8 @@ div.tocify {
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">15</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">8</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">225</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">64</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">120</td></tr>
 </table>
- Lo que necesitamos ahora es calcular cada una de las variables</p>
+
+<p>Lo que necesitamos ahora es calcular cada una de las variables</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Formulas =</span> <span class="fu">c</span>(<span class="st">&quot;$$</span><span class="sc">\\</span><span class="st">sum x $$&quot;</span>,<span class="st">&quot;$$</span><span class="sc">\\</span><span class="st">sum y$$&quot;</span>,</span>
@@ -708,43 +751,64 @@ Sumas
 </tr>
 </tbody>
 </table>
-<p>Ahora sustituir los valores en la ecuación para calcular el coeficiente de Pearson.</p>
-<p><span class="math display">\[r=\frac{314-\left(\frac{55\cdot27}{5}\right)}{\sqrt{\left(639-\frac{\left(55\right)^2}{5}\right)\left(157-\frac{\left(27\right)^2}{5}\right)}}=0.871\]</span> La función para hacer todos estos calculo es <strong>cor</strong>. Con una correlación de 0.87, esto significa que hay buena correlación positiva entre la edad y la cantidad de veces que han ido a Disney.</p>
+<p>Ahora sustituir los valores en la ecuación para calcular el
+coeficiente de Pearson.</p>
+<p><span
+class="math display">\[r=\frac{314-\left(\frac{55\cdot27}{5}\right)}{\sqrt{\left(639-\frac{\left(55\right)^2}{5}\right)\left(157-\frac{\left(27\right)^2}{5}\right)}}=0.871\]</span>
+La función para hacer todos estos calculo es <strong>cor</strong>. Con
+una correlación de 0.87, esto significa que hay buena correlación
+positiva entre la edad y la cantidad de veces que han ido a Disney.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Edad, Disney)</span></code></pre></div>
 <pre><code>## [1] 0.8711651</code></pre>
 <hr />
 <div id="un-gráfico-de-correlación-sencilla." class="section level3">
 <h3>Un gráfico de Correlación sencilla.</h3>
-<p>Parece haber un patrón de cuando aumenta una variable aumenta la otra.</p>
+<p>Parece haber un patrón de cuando aumenta una variable aumenta la
+otra.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>scatter<span class="ot">&lt;-</span><span class="fu">ggplot</span>(dfDisney, <span class="fu">aes</span>(<span class="at">x=</span>Edad, <span class="at">y=</span>Disney))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>scatter <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">colour=</span><span class="st">&quot;purple&quot;</span>)<span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept=</span><span class="fu">mean</span>(Disney)))<span class="sc">+</span> <span class="co"># las lineas representa el promedio de la variable en *y* los valores</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span><span class="fu">mean</span>(Edad))) <span class="co"># las lineas representa el promedio de la variable en *x* los valores</span></span></code></pre></div>
-<p><img src="T13_Correlacion_files/figure-html/graph%20correlations-1.png" width="60%" style="display: block; margin: auto;" /> *** # El rango del coeficiente Pearson</p>
-<p>El coeficiente de correlación varía de −1 a 1. El valor de 1 implica que la relación entre X e Y es perfecta y positiva, en otra palabra la <strong>x</strong> predice exactamente el valor de <strong>y</strong>. Un valor de -1 implica que los datos predicen una relación negativa perfecta entre la <strong>x</strong> e <strong>y</strong>. Cuando el valor de 0 o cerca esto implica que no existe una correlación lineal entre las variables.</p>
+<p><img src="T13_Correlacion_files/figure-html/graph%20correlations-1.png" width="60%" style="display: block; margin: auto;" />
+*** # El rango del coeficiente Pearson</p>
+<p>El coeficiente de correlación varía de −1 a 1. El valor de 1 implica
+que la relación entre X e Y es perfecta y positiva, en otra palabra la
+<strong>x</strong> predice exactamente el valor de <strong>y</strong>.
+Un valor de -1 implica que los datos predicen una relación negativa
+perfecta entre la <strong>x</strong> e <strong>y</strong>. Cuando el
+valor de 0 o cerca esto implica que no existe una correlación lineal
+entre las variables.</p>
 <hr />
 </div>
 <div id="los-supuestos-de-la-prueba-de-pearson" class="section level3">
 <h3>Los Supuestos de la prueba de Pearson</h3>
 <blockquote>
 <ul>
-<li>Uno de los supuestos de la prueba de análisis de Pearson, es que las dos variables tenga una distribución normal, <strong>Nornal bivariada</strong>.</li>
-<li>Las variables tienen que tener una correlación lineal (por ejemplo: no puede ser cuadrática o logarítmica).</li>
+<li>Uno de los supuestos de la prueba de análisis de Pearson, es que las
+dos variables tenga una distribución normal, <strong>Nornal
+bivariada</strong>.</li>
+<li>Las variables tienen que tener una correlación lineal (por ejemplo:
+no puede ser cuadrática o logarítmica).</li>
 </ul>
 </blockquote>
 <blockquote>
 <ul>
-<li>Ausencia de valores átipicos (o por lo menos sesgan el resultado)</li>
+<li>Ausencia de valores átipicos (o por lo menos sesgan el
+resultado)</li>
 </ul>
 </blockquote>
-<p>Para visualizar una distribución vea lo siguiente. Nota que las dos variables tienen una distribución normal.</p>
+<p>Para visualizar una distribución vea lo siguiente. Nota que las dos
+variables tienen una distribución normal.</p>
 <hr />
 </div>
 </div>
 <div id="gráfico-bivariado-normal" class="section level2">
 <h2>Gráfico Bivariado Normal</h2>
-<p><a href="https://deanattali.com/2015/03/29/ggExtra-r-package/" class="uri">https://deanattali.com/2015/03/29/ggExtra-r-package/</a></p>
-<p>Para visualizar que quiere decir “bivariado normal” Vamos a crear dos conjuntos de datos cada una con una distribución normal, pero con promedio diferentes y desviación estandar.</p>
+<p><a href="https://deanattali.com/2015/03/29/ggExtra-r-package/"
+class="uri">https://deanattali.com/2015/03/29/ggExtra-r-package/</a></p>
+<p>Para visualizar que quiere decir “bivariado normal” Vamos a crear dos
+conjuntos de datos cada una con una distribución normal, pero con
+promedio diferentes y desviación estandar.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">8000</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>b<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">8000</span>, <span class="dv">1</span>, <span class="fl">1.1</span>)</span>
@@ -756,7 +820,9 @@ Sumas
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(out, <span class="fu">aes</span>(values, <span class="at">colour=</span>ind, <span class="at">fill=</span>ind))<span class="sc">+</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">50</span>)<span class="sc">+</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>ind)</span></code></pre></div>
-<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-6-1.png" width="672" /> Ahora visualizamos las dos variables en el mismo gráfico. y se añade en el margen.</p>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+Ahora visualizamos las dos variables en el mismo gráfico. y se añade en
+el margen.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;ggExtra&quot;, dependencies = TRUE)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -771,10 +837,27 @@ Sumas
 <h1>Correlación no-paramétricas</h1>
 <div id="correlación-de-kendall" class="section level2">
 <h2>Correlación de Kendall</h2>
-<p>En estadística, el coeficiente de correlación de Kendall se calcula usando los rangos y no los valores originales, es conocido como el coeficiente tau de Kendall (letra griega τ), es una estadística para medir la asociación ordinal ( en otra palabra el orden de los valores) entre dos variables. La prueba de Kendall es una prueba de hipótesis no paramétrica. Entonces no asumo que los datos tenga una distribución normal. El nombre de la prueba proviene de Maurice Kendall quien desarrolló el método en 1938.</p>
-<p>La diferencias entre este prueba es que los valores se poner en orden del más pequeño al más grande (en cada variable) y se usa el número del ordenamiento para hacer la prueba.</p>
-<p>La correlación de Kendall entre dos variables será alta cuando las observaciones tengan un rango similar (o idéntico para una correlación de +1) (es decir, la posición relativa de las observaciones dentro de la variable: primero, segundo, tercero, etc.) entre las dos variables, y bajo cuando las observaciones tienen un rango diferente (o completamente diferente para una correlación de -1) entre las dos variables.</p>
-<p>Aquí un pequeño conjunto de datos como ejemplo de ordenar los datos. Nota que después de ordenarlos datos son estos que se usan para al calculo. La edad de la persona, el número de veces que fueron a Disney y el orden de cada variable.</p>
+<p>En estadística, el coeficiente de correlación de Kendall se calcula
+usando los rangos y no los valores originales, es conocido como el
+coeficiente tau de Kendall (letra griega τ), es una estadística para
+medir la asociación ordinal ( en otra palabra el orden de los valores)
+entre dos variables. La prueba de Kendall es una prueba de hipótesis no
+paramétrica. Entonces no asumo que los datos tenga una distribución
+normal. El nombre de la prueba proviene de Maurice Kendall quien
+desarrolló el método en 1938.</p>
+<p>La diferencias entre este prueba es que los valores se poner en orden
+del más pequeño al más grande (en cada variable) y se usa el número del
+ordenamiento para hacer la prueba.</p>
+<p>La correlación de Kendall entre dos variables será alta cuando las
+observaciones tengan un rango similar (o idéntico para una correlación
+de +1) (es decir, la posición relativa de las observaciones dentro de la
+variable: primero, segundo, tercero, etc.) entre las dos variables, y
+bajo cuando las observaciones tienen un rango diferente (o completamente
+diferente para una correlación de -1) entre las dos variables.</p>
+<p>Aquí un pequeño conjunto de datos como ejemplo de ordenar los datos.
+Nota que después de ordenarlos datos son estos que se usan para al
+calculo. La edad de la persona, el número de veces que fueron a Disney y
+el orden de cada variable.</p>
 <table>
 <thead>
 <tr class="header">
@@ -823,8 +906,10 @@ Sumas
 <blockquote>
 <ul>
 <li>Los pares de observaciones son independientes.</li>
-<li>Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.</li>
-<li>Se supone que existe una relación monotónica entre las dos variables.</li>
+<li>Se deben medir las dos variables en una escala ordinal, de intervalo
+o de razón.</li>
+<li>Se supone que existe una relación monotónica entre las dos
+variables.</li>
 </ul>
 </blockquote>
 <hr />
@@ -832,16 +917,28 @@ Sumas
 </div>
 <div id="correlación-de-spearman" class="section level2">
 <h2>Correlación de Spearman</h2>
-<p>El coeficiente de correlación de rango de Spearman o el <span class="math inline">\(\rho\)</span> rho de Spearman, desarrollado por Charles Spearman en 1904 era un psicologo. Es una medida no paramétrica de correlación de rango (como la correlación de Kendall). Igual como,la de Kendall usa los rangos para hacer el estadístico, pero usan formulas distinctas.</p>
-<p>La correlación de Spearman entre dos variables será alta cuando las observaciones tengan un rango similar (o idéntico para una correlación de +1) (es decir, la posición relativa de las observaciones dentro de la variable: primero, segundo, tercero, etc.) entre las dos variables, y bajo cuando las observaciones tienen un rango diferente (o completamente diferente para una correlación de -1) entre las dos variables.</p>
+<p>El coeficiente de correlación de rango de Spearman o el <span
+class="math inline">\(\rho\)</span> rho de Spearman, desarrollado por
+Charles Spearman en 1904 era un psicologo. Es una medida no paramétrica
+de correlación de rango (como la correlación de Kendall). Igual como,la
+de Kendall usa los rangos para hacer el estadístico, pero usan formulas
+distinctas.</p>
+<p>La correlación de Spearman entre dos variables será alta cuando las
+observaciones tengan un rango similar (o idéntico para una correlación
+de +1) (es decir, la posición relativa de las observaciones dentro de la
+variable: primero, segundo, tercero, etc.) entre las dos variables, y
+bajo cuando las observaciones tienen un rango diferente (o completamente
+diferente para una correlación de -1) entre las dos variables.</p>
 <hr />
 <div id="los-supuestos-de-spearman" class="section level3">
 <h3>Los supuestos de Spearman</h3>
 <blockquote>
 <ul>
 <li>Los pares de observaciones son independientes.</li>
-<li>Se deben medir las dos variables en una escala ordinal, de intervalo o de razón.</li>
-<li>Se supone que existe una relación monotónica entre las dos variables.</li>
+<li>Se deben medir las dos variables en una escala ordinal, de intervalo
+o de razón.</li>
+<li>Se supone que existe una relación monotónica entre las dos
+variables.</li>
 </ul>
 </blockquote>
 <hr />
@@ -849,7 +946,9 @@ Sumas
 </div>
 <div id="comparación-entre-kendall-y-spearman" class="section level2">
 <h2>Comparación entre Kendall y Spearman</h2>
-<p>La prueba de Kendall tiende a ser más robusta que la Spearman. Lo que esto significa es que cuando el tamaño de muestra es pequeña o hay valores átipicos la prueba de Kendall es preferible.</p>
+<p>La prueba de Kendall tiende a ser más robusta que la Spearman. Lo que
+esto significa es que cuando el tamaño de muestra es pequeña o hay
+valores átipicos la prueba de Kendall es preferible.</p>
 <hr />
 </div>
 </div>
@@ -858,7 +957,11 @@ Sumas
 <div id="como-lidiar-con-na-alternativas" class="section level2">
 <h2>Como lidiar con “NA” alternativas</h2>
 <p>Se usa diferentes</p>
-<p>use = “everything”, Si Hay 1 “NA” en la los datos, elimina la variable completa use = “complete.obs”, Si hay 1 “NA”, Elimina el individuo que tiene “NA” para todas los cálculos use = “pairwise.complete.obs”, Si hay un “NA”, Elimina el individuo solamente si el par evaluado tiene un “NA”.</p>
+<p>use = “everything”, Si Hay 1 “NA” en la los datos, elimina la
+variable completa use = “complete.obs”, Si hay 1 “NA”, Elimina el
+individuo que tiene “NA” para todas los cálculos use =
+“pairwise.complete.obs”, Si hay un “NA”, Elimina el individuo solamente
+si el par evaluado tiene un “NA”.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----Como lidiar con los &quot;NA&quot;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>adverts<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">14</span>,<span class="dv">14</span>,<span class="dv">6</span>,<span class="dv">2</span>)</span>
@@ -902,7 +1005,8 @@ Sumas
 <hr />
 </div>
 </div>
-<div id="la-pruebas-con-los-métodos-de-kendall-y-spearman" class="section level1">
+<div id="la-pruebas-con-los-métodos-de-kendall-y-spearman"
+class="section level1">
 <h1>La pruebas con los métodos de Kendall y Spearman</h1>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(advertNA, <span class="at">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>,  <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>)   </span></code></pre></div>
 <pre><code>##              adverts  comprasNA        age
@@ -917,7 +1021,8 @@ Sumas
 <hr />
 <div id="ejemplo-de-anxiedad-y-correlaciones" class="section level2">
 <h2>Ejemplo de Anxiedad y correlaciones</h2>
-<p>Correlación entre ansiedad, la nota de examen y el tiempo que estudio el estudiante.</p>
+<p>Correlación entre ansiedad, la nota de examen y el tiempo que estudio
+el estudiante.</p>
 <p>Anxiety data</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
@@ -941,12 +1046,15 @@ Sumas
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">22</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">70</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">60.5</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td></tr>
 </table>
 
-<p>Correlación entre anxiedad, la nota del examen y el tiempo de estudio (revise) para 103 estudiantes.</p>
-<p>En el primer chunk se demuestra como se hace el análisis entre dos variables</p>
+<p>Correlación entre anxiedad, la nota del examen y el tiempo de estudio
+(revise) para 103 estudiantes.</p>
+<p>En el primer chunk se demuestra como se hace el análisis entre dos
+variables</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(examData<span class="sc">$</span>Exam, examData<span class="sc">$</span>Anxiety, <span class="at">use =</span> <span class="st">&quot;pairwise.complete.obs&quot;</span>,</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&#39;pearson&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] -0.4409934</code></pre>
-<p>Ahora podemos hacer el calculo de las tres variables junta.esta función permite hacer todos los calculos.</p>
+<p>Ahora podemos hacer el calculo de las tres variables junta.esta
+función permite hacer todos los calculos.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>examData2 <span class="ot">&lt;-</span> examData[, <span class="fu">c</span>(<span class="st">&quot;Exam&quot;</span>, <span class="st">&quot;Anxiety&quot;</span>, <span class="st">&quot;Revise&quot;</span>)]</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(examData2)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
@@ -981,14 +1089,25 @@ Sumas
 </div>
 <div id="r2-el-coeficiente-de-determinación." class="section level1">
 <h1>R^2: El coeficiente de determinación.</h1>
-<p>El coeficiente de determinación es una medida de la proporción de la varianza explica por la variable dependiente (en <strong>x</strong>). La correlación explica la influencia de la relación entre la <strong>x</strong> e <strong>y</strong>, la <span class="math display">\[R^2\]</span> explica cuanto de la varianza en una variable explica la varianza en la otra variable. El rango es 0 a 100, un <span class="math display">\[R^2=0.20\]</span> es que la dependiente explica solamente 20% de la varianza da la independiente.</p>
-<div id="visualizar-el-coeficiente-de-determinación" class="section level2">
+<p>El coeficiente de determinación es una medida de la proporción de la
+varianza explica por la variable dependiente (en <strong>x</strong>). La
+correlación explica la influencia de la relación entre la
+<strong>x</strong> e <strong>y</strong>, la <span
+class="math display">\[R^2\]</span> explica cuanto de la varianza en una
+variable explica la varianza en la otra variable. El rango es 0 a 100,
+un <span class="math display">\[R^2=0.20\]</span> es que la dependiente
+explica solamente 20% de la varianza da la independiente.</p>
+<div id="visualizar-el-coeficiente-de-determinación"
+class="section level2">
 <h2>Visualizar el coeficiente de determinación</h2>
-<p>Podemos visualizar el coeficiente de determinación con unos gráficos.</p>
+<p>Podemos visualizar el coeficiente de determinación con unos
+gráficos.</p>
 <blockquote>
 <ul>
-<li>Se crea dos conjunto de datos uno que tiene más variación que el otro</li>
-<li>Calcula el coeficiente de Pearson y el coeficiente de determinación</li>
+<li>Se crea dos conjunto de datos uno que tiene más variación que el
+otro</li>
+<li>Calcula el coeficiente de Pearson y el coeficiente de
+determinación</li>
 <li>Se añade todo los gráficos.</li>
 </ul>
 </blockquote>
@@ -1002,11 +1121,12 @@ Sumas
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>xycorD<span class="ot">=</span>(<span class="fu">cor</span>(x,y))<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>xycorD</span></code></pre></div>
-<pre><code>## [1] 0.7226915</code></pre>
+<pre><code>## [1] 0.7736253</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>xycorD2<span class="ot">=</span>(<span class="fu">cor</span>(x,y2))<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>xycorD2</span></code></pre></div>
-<pre><code>## [1] 0.9828768</code></pre>
-<p>La diferencia no es la pendiente es solamente cuan disperso están los datos alrededor de la correlación lineal.</p>
+<pre><code>## [1] 0.9835781</code></pre>
+<p>La diferencia no es la pendiente es solamente cuan disperso están los
+datos alrededor de la correlación lineal.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>R2a<span class="ot">=</span><span class="fu">ggplot</span>(xy, <span class="fu">aes</span>(x,y))<span class="sc">+</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)<span class="sc">+</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
@@ -1022,43 +1142,67 @@ Sumas
 <span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
 <span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(R2a,R2b,<span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-10-1.png" width="672" /> ***</p>
+<p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+***</p>
 </div>
 </div>
 <div id="la-prueba-de-correlación" class="section level1">
 <h1>La prueba de correlación</h1>
-<p>Uno puede hacer una prueba para determinar si la correlación es significativamente diferente de cero. Recuerda que cuando el coeficiente es en cero o cerca de cero esto significa que NO hay correlación entre las dos variables.</p>
+<p>Uno puede hacer una prueba para determinar si la correlación es
+significativamente diferente de cero. Recuerda que cuando el coeficiente
+es en cero o cerca de cero esto significa que NO hay correlación entre
+las dos variables.</p>
 <p>Entonces la hipótesis nula y alterna son las siguientes.</p>
 <ol style="list-style-type: decimal">
 <li>Ho: r = 0 (es cerca de cero considerando la variación)</li>
 <li>Ha: r ≠ 0 (entonces la correlación es positiva o negativa)</li>
 </ol>
 <p>La función es <strong>corr.test()</strong></p>
-<p>En adición de determinar si el coeficiente es diferente de cero esta función calcula el intervalo de 95% de confianza del coeficiente. Nota que el coeficiente es 0.81 con un intervalo de confianza entre 0.74-0.87. Si el intervalo solapa el cero la hipótesis nula no sera rechazado.</p>
+<p>En adición de determinar si el coeficiente es diferente de cero esta
+función calcula el intervalo de 95% de confianza del coeficiente. Nota
+que el coeficiente es 0.81 con un intervalo de confianza entre
+0.74-0.87. Si el intervalo solapa el cero la hipótesis nula no sera
+rechazado.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(x, y, <span class="at">method=</span><span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  x and y
-## t = 15.981, df = 98, p-value &lt; 2.2e-16
+## t = 18.301, df = 98, p-value &lt; 2.2e-16
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.7847262 0.8967874
+##  0.8258097 0.9174737
 ## sample estimates:
 ##       cor 
-## 0.8501127</code></pre>
+## 0.8795597</code></pre>
 <hr />
 </div>
 <div id="el-mejor-mentiroso." class="section level1">
 <h1>El mejor mentiroso.</h1>
-<p>El mentiroso más grande del mundo es una competencia anual para decir mentiras, que se celebra en Cumbria, Inglaterra, en el Stanton Inn Bridge Pub. Aquí ben el pub (bar) donde tiene la competencia. Este cuento proviene del libro de Field et al. y de <a href="http://lakelandhuntingmemories.com/auldWillRitson2New.html" class="uri">http://lakelandhuntingmemories.com/auldWillRitson2New.html</a>.</p>
+<p>El mentiroso más grande del mundo es una competencia anual para decir
+mentiras, que se celebra en Cumbria, Inglaterra, en el Stanton Inn
+Bridge Pub. Aquí ben el pub (bar) donde tiene la competencia. Este
+cuento proviene del libro de Field et al. y de <a
+href="http://lakelandhuntingmemories.com/auldWillRitson2New.html"
+class="uri">http://lakelandhuntingmemories.com/auldWillRitson2New.html</a>.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(png)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>img4_path<span class="ot">&lt;-</span><span class="st">&quot;Graficos/Stanton.png&quot;</span></span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">include_graphics</span>(img4_path)</span></code></pre></div>
-<p><img src="Graficos/Stanton.png" width="500px" /> *** Esta competencia es en honor a un hombre que era dueño o que tenia a cargo un “pub” en el siglo 19, su nombre era “Auld Will Ritson; b. 1808-1890”. El era conocido por sus cuentos y historia de folclor de la región. Muchas de estas história no se sabia si eran ciertas o no estos cuentos. Por ejemplo el aseguraba que se acordaba del día que fue bautizado (puede ser que si porque en estos momentos no todos los bautizado se hacia los primeros día del nacer.</p>
-<p>Creatividad = variable continua Posición = es una variable ordenal que va de 1 al 6, recuerda que si está en posición uno es que gano el concurso. Principiante - es una variable binomial, hay solamente dos alternativas. o es principiante (0) o participado en el concurso antes (1).</p>
+<p><img src="Graficos/Stanton.png" width="500px" /> *** Esta competencia
+es en honor a un hombre que era dueño o que tenia a cargo un “pub” en el
+siglo 19, su nombre era “Auld Will Ritson; b. 1808-1890”. El era
+conocido por sus cuentos y historia de folclor de la región. Muchas de
+estas história no se sabia si eran ciertas o no estos cuentos. Por
+ejemplo el aseguraba que se acordaba del día que fue bautizado (puede
+ser que si porque en estos momentos no todos los bautizado se hacia los
+primeros día del nacer.</p>
+<p>Creatividad = variable continua Posición = es una variable ordenal
+que va de 1 al 6, recuerda que si está en posición uno es que gano el
+concurso. Principiante - es una variable binomial, hay solamente dos
+alternativas. o es principiante (0) o participado en el concurso antes
+(1).</p>
 <p>Se usa el conjunto de datos de “The biggest liar” data</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
@@ -1097,7 +1241,11 @@ Sumas
 </table>
 
 <hr />
-<p>Primer paso evaluar si las variables tienen distribución normal bivariado. Si lo es entonces se usa Pearson, si no se debería usar Kendall or Spearman. Lo que uno observa es la variable de creatividad se acerca a un normal, pero la variable de posición. Por consecuencia no se debería usar la correlación de Pearson.</p>
+<p>Primer paso evaluar si las variables tienen distribución normal
+bivariado. Si lo es entonces se usa Pearson, si no se debería usar
+Kendall or Spearman. Lo que uno observa es la variable de creatividad se
+acerca a un normal, pero la variable de posición. Por consecuencia no se
+debería usar la correlación de Pearson.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mentirosos, <span class="fu">aes</span>(Creatividad, Posición)) <span class="sc">+</span> </span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
@@ -1106,7 +1254,10 @@ Sumas
 <span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(p, <span class="at">type =</span> <span class="st">&quot;histogram&quot;</span>)</span></code></pre></div>
 <p><img src="T13_Correlacion_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <hr />
-<p>Prueba de correlación entre la creatividad y la posición en el concurso. Vemos que este caso ambas pruebas tiene el mismo resultado que se rechaza la hipótesis nula y que la creatividad esta relacionado con la posición en el concurso.</p>
+<p>Prueba de correlación entre la creatividad y la posición en el
+concurso. Vemos que este caso ambas pruebas tiene el mismo resultado que
+se rechaza la hipótesis nula y que la creatividad esta relacionado con
+la posición en el concurso.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(mentirosos<span class="sc">$</span>Posición, mentirosos<span class="sc">$</span>Creatividad, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho

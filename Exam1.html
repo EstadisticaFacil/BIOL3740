@@ -14,8 +14,8 @@
 
 <title>Preguntas para el primer examen</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -43,6 +43,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -168,6 +169,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -393,7 +397,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -409,7 +413,7 @@ div.tocify {
   <a href="schedule.html">Calendario</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Instalación básica
      
     <span class="caret"></span>
@@ -430,7 +434,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Temas
      
     <span class="caret"></span>
@@ -499,7 +503,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Ejercicio
      
     <span class="caret"></span>
@@ -538,7 +542,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Datos
      
     <span class="caret"></span>
@@ -575,53 +579,82 @@ div.tocify {
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div id="primer-examen" class="section level1">
 <h1>Primer examen</h1>
-<div id="aqui-estan-las-preguntas-del-primer-examen." class="section level2">
+<div id="aqui-estan-las-preguntas-del-primer-examen."
+class="section level2">
 <h2>Aqui estan las preguntas del primer examen.</h2>
 <p>Se estará seleccionando preguntas de los siguientes ejercicios.</p>
-<p>Cada estudiante se parará haciendo cada uno de los ejercicios en casa, contestando las preguntas. El examen que se ofrecerá por Edmodo, estaré seleccionando algunas de estas preguntas para contestar. El examen sera una mezca de cierto y falso, selección múltiples, respuesta cortas. Hagan todo el trabajo en R. y tenga su documento listo para el examen.</p>
-<p>La preguntas. Muchas de las preguntas son del libro de Havel et al. de las secciones de “Homework Exercise” y los puede conseguir allí en ingles si los desea. Las otras serán de los temas discutido en clase.</p>
+<p>Cada estudiante se parará haciendo cada uno de los ejercicios en
+casa, contestando las preguntas. El examen que se ofrecerá por Edmodo,
+estaré seleccionando algunas de estas preguntas para contestar. El
+examen sera una mezca de cierto y falso, selección múltiples, respuesta
+cortas. Hagan todo el trabajo en R. y tenga su documento listo para el
+examen.</p>
+<p>La preguntas. Muchas de las preguntas son del libro de Havel et
+al. de las secciones de “Homework Exercise” y los puede conseguir allí
+en ingles si los desea. Las otras serán de los temas discutido en
+clase.</p>
 <hr />
 <p>Capitulo #2:</p>
 <ol style="list-style-type: decimal">
 <li>p22, Havel et al.<br />
-A continuación se muestran el tamaño (en mm) de una pequeña muestra de pescado llamada “lobina negra”: 210, 325, 285, 402, 350, 240, 409, 330, 295, 325, 256.
+A continuación se muestran el tamaño (en mm) de una pequeña muestra de
+pescado llamada “lobina negra”: 210, 325, 285, 402, 350, 240, 409, 330,
+295, 325, 256.
 <ul>
 <li>¿Es esa variable de datos continuos o discretos?</li>
-<li>El valor de la calculadora dice que el el promedio es 311.545454545454….. Redondea al valor significativo correcto.</li>
+<li>El valor de la calculadora dice que el el promedio es
+311.545454545454….. Redondea al valor significativo correcto.</li>
 </ul></li>
 </ol>
 <hr />
 <ol start="2" style="list-style-type: decimal">
-<li>p.22, Havel et al.  Las culebras responden a un objeto en movimiento por encima de su cabeza mostrando una respuesta de “escape”. La intensidad de la respuesta puede medirse en una escala subjetiva que va de 3 a 0. Un movimiento rápido de la serpiente de un lugar a otro recibe una puntuación de 3, un movimiento que involucra al menos un tercio del cuerpo de la serpiente pero no lo que resulta en la reubicación del animal recibe una puntuación de 2, un ligero movimiento de la cabeza solo recibe una puntuación de 1, y ninguna respuesta visible recibe una puntuación de 0. Se probaron quince serpientes para determinar la respuesta y recibieron las siguientes puntuaciones. qué tipo de variable son estos datos. 3,2,3,1,3,2,3,3,1,0,2,3,2,0,2.
+<li>p.22, Havel et al.  Las culebras responden a un objeto en movimiento
+por encima de su cabeza mostrando una respuesta de “escape”. La
+intensidad de la respuesta puede medirse en una escala subjetiva que va
+de 3 a 0. Un movimiento rápido de la serpiente de un lugar a otro recibe
+una puntuación de 3, un movimiento que involucra al menos un tercio del
+cuerpo de la serpiente pero no lo que resulta en la reubicación del
+animal recibe una puntuación de 2, un ligero movimiento de la cabeza
+solo recibe una puntuación de 1, y ninguna respuesta visible recibe una
+puntuación de 0. Se probaron quince serpientes para determinar la
+respuesta y recibieron las siguientes puntuaciones. qué tipo de variable
+son estos datos. 3,2,3,1,3,2,3,3,1,0,2,3,2,0,2.
 <ul>
-<li>¿Cual es la función en R para contabilizar cuantos datos hay un en lista?</li>
+<li>¿Cual es la función en R para contabilizar cuantos datos hay un en
+lista?</li>
 <li>¿Cual es la mediana?</li>
 <li>¿Cual es paquete y la función necesaria para calcular la moda?</li>
 </ul></li>
 </ol>
 <hr />
 <ol start="3" style="list-style-type: decimal">
-<li>p22, Havel et al.  Usando la reglas convencional de redondear a tres valores significativo,
+<li>p22, Havel et al.  Usando la reglas convencional de redondear a tres
+valores significativo,
 <ul>
-<li>expresa los siguientes valores correctamente, 106.55, 0.06819, 3.0495, 7815.01, 2.9149, 20.1500</li>
+<li>expresa los siguientes valores correctamente, 106.55, 0.06819,
+3.0495, 7815.01, 2.9149, 20.1500</li>
 </ul></li>
 </ol>
 <hr />
 <ol start="4" style="list-style-type: decimal">
-<li>p36, Havel et al.  En el archivo EX 3.1.csv en el website debajo la pestaña de datos, se encuentra datos sobre la altura de 148 hombres humanos en cm.<br />
+<li>p36, Havel et al.  En el archivo EX 3.1.csv en el website debajo la
+pestaña de datos, se encuentra datos sobre la altura de 148 hombres
+humanos en cm.<br />
 </li>
 </ol>
 <ul>
 <li>Construye un histograma con ggplot.</li>
 <li>¿Cual función se usa para cambiar el color de las barras?</li>
-<li>¿Cual función se usa para cambiar el color de la linea alrededor de las barras?</li>
+<li>¿Cual función se usa para cambiar el color de la linea alrededor de
+las barras?</li>
 <li>¿Que quiere decir el eje de “y” con “count”.</li>
 <li>¿Cual es al promedio de la altura de los hombres?</li>
 <li>¿Cual es la desviación estandar de los datos</li>
 </ul>
 <hr />
 <ol start="5" style="list-style-type: decimal">
-<li>p.39, Havel et al.  Estudia la tabla 4.1 y el modulo T1a en el website.<br />
+<li>p.39, Havel et al.  Estudia la tabla 4.1 y el modulo T1a en el
+website.<br />
 </li>
 </ol>
 <ul>
@@ -632,7 +665,8 @@ A continuación se muestran el tamaño (en mm) de una pequeña muestra de pescad
 </ul>
 <hr />
 <ol start="6" style="list-style-type: decimal">
-<li>p.48, Havel et al.  Estudia lo que es el coeficiente de variación y saber en que situación se debería usar.</li>
+<li>p.48, Havel et al.  Estudia lo que es el coeficiente de variación y
+saber en que situación se debería usar.</li>
 </ol>
 <hr />
 <ol start="7" style="list-style-type: decimal">
@@ -640,7 +674,8 @@ A continuación se muestran el tamaño (en mm) de una pequeña muestra de pescad
 </ol>
 <hr />
 <ol start="8" style="list-style-type: decimal">
-<li>Conocer la definición de todos los términos en la sección <strong>Key Terms</strong> del capitulo 6.</li>
+<li>Conocer la definición de todos los términos en la sección
+<strong>Key Terms</strong> del capitulo 6.</li>
 </ol>
 <hr />
 <ol start="9" style="list-style-type: decimal">

@@ -52,7 +52,9 @@ gt(codes)
 # Buscar los datos
 
 ```{r}
-mydat<- read.csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv')
+library(readr)
+owid_covid_data <- read_csv("Data_files_csv/owid-covid-data.csv")
+mydat=owid_covid_data 
 ```
 
 
@@ -118,7 +120,7 @@ Selecciona otro país del Caribe y calcula los mismo parámetros
 ```{r}
 mydat%>%
   select(location,date, total_cases, new_cases, life_expectancy)%>%
-  filter(location %in% c("Puerto Rico", "Cuba"))%>%
+  filter(location %in% c("Puerto Rico", "Cuba")) %>%
   head(3)%>%
   gt()
 ```
@@ -131,10 +133,10 @@ mydat%>%
   select(location,date, total_cases, new_cases, life_expectancy)%>%
   filter(location %in% c("Puerto Rico", "Cuba", "Jamaica", "Costa Rica", "Haiti", "Bahamas"))%>%
   group_by(location)%>%
-  summarize(mean=mean(new_cases),
-            median=median(new_cases), 
-            de=sd(new_cases),
-            cuar=quantile(new_cases),
+  summarize(mean=mean(new_cases, na.rm=TRUE),
+            median=median(new_cases, na.rm=TRUE), 
+            de=sd(new_cases, na.rm=TRUE),
+            cuar=quantile(new_cases, na.rm=TRUE),
             es=sd(new_cases/sqrt(length(new_cases))))%>%
   gt()
 ```

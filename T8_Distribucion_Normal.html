@@ -13,8 +13,8 @@
 
 <title>T8_Distribucion_Normal</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -42,6 +42,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -167,6 +168,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -392,7 +396,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -408,7 +412,7 @@ div.tocify {
   <a href="schedule.html">Calendario</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Instalación básica
      
     <span class="caret"></span>
@@ -429,7 +433,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Temas
      
     <span class="caret"></span>
@@ -498,7 +502,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Ejercicio
      
     <span class="caret"></span>
@@ -537,7 +541,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Datos
      
     <span class="caret"></span>
@@ -569,11 +573,16 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2021-09-12&quot;</code></pre>
+<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
-<div id="instalar-y-activar-los-siguientes-paquete" class="section level1">
+<div id="instalar-y-activar-los-siguientes-paquete"
+class="section level1">
 <h1>Instalar y activar los siguientes paquete</h1>
-<p>Para instalar el paquete <strong>modeest</strong> es necesario instalar foes otros paquetes antes, <strong>BiocManager</strong> y <strong>genefilter</strong>. Usando el siguiente script pora instalar los paquetes. Nota que en la consola tendrá que aceptar a instalar y seleccionar la “a” para “all”.<br />
+<p>Para instalar el paquete <strong>modeest</strong> es necesario
+instalar foes otros paquetes antes, <strong>BiocManager</strong> y
+<strong>genefilter</strong>. Usando el siguiente script pora instalar
+los paquetes. Nota que en la consola tendrá que aceptar a instalar y
+seleccionar la “a” para “all”.<br />
 Chunk #1</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
@@ -601,10 +610,31 @@ Chunk #1</p>
 </div>
 <div id="la-distribución-normal" class="section level1">
 <h1>La distribución normal</h1>
-<p>Es modulo está enfocado en entender diferentes aspectos de la distribución normal. Muchas pruebas como la prueba de t, correlaciones, regresiones y ANOVA depende que algunos de los conjuntos de datos cumple con una distribución normal. Este tipo de pruebas se pueden referir a pruebas paramétricas.</p>
-<p>La distribución normal tiene una ecuación que describe su distribución. Lo que que se observa es que la ecuación depende de solamente dos valores desconocidos, el promedio universal, µ y la desviación universal <span class="math inline">\(\sigma\)</span>. Nota que aquí estamos considerando todos los datos sobre un variable. Por ejemplo si esta hablando de del tamaño de un especie de pájaro ( El quetzal), es que tendríamos que tener TODOS los datos de cada uno de ellos. Primero vemos como se ve esta distribución y después explicamos porque aunque no tenemos todos los datos una aproximación es suficiente.</p>
-<p><span class="math display">\[P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}\]</span></p>
-<p>El promedio de la población <span class="math inline">\(\mu=\frac{\sum{{x}_{i}}}{{n}_{i}}\)</span>, se usa la letra “mu”, y se refiere al promedio universal. Esto quiere decir que no falta ningún dato. Nota que la distribución es en forma de campana, donde 50% de los datos están por encima del promedio y 50% están por debajo el promedio. Debido que la distribución tiene unos parámetros específico se puede predecir información cuando los datos cumple con tal distribución.</p>
+<p>Es modulo está enfocado en entender diferentes aspectos de la
+distribución normal. Muchas pruebas como la prueba de t, correlaciones,
+regresiones y ANOVA depende que algunos de los conjuntos de datos cumple
+con una distribución normal. Este tipo de pruebas se pueden referir a
+pruebas paramétricas.</p>
+<p>La distribución normal tiene una ecuación que describe su
+distribución. Lo que que se observa es que la ecuación depende de
+solamente dos valores desconocidos, el promedio universal, µ y la
+desviación universal <span class="math inline">\(\sigma\)</span>. Nota
+que aquí estamos considerando todos los datos sobre un variable. Por
+ejemplo si esta hablando de del tamaño de un especie de pájaro ( El
+quetzal), es que tendríamos que tener TODOS los datos de cada uno de
+ellos. Primero vemos como se ve esta distribución y después explicamos
+porque aunque no tenemos todos los datos una aproximación es
+suficiente.</p>
+<p><span class="math display">\[P(x)=\frac{1}{{\sigma\sqrt{
+2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}\]</span></p>
+<p>El promedio de la población <span
+class="math inline">\(\mu=\frac{\sum{{x}_{i}}}{{n}_{i}}\)</span>, se usa
+la letra “mu”, y se refiere al promedio universal. Esto quiere decir que
+no falta ningún dato. Nota que la distribución es en forma de campana,
+donde 50% de los datos están por encima del promedio y 50% están por
+debajo el promedio. Debido que la distribución tiene unos parámetros
+específico se puede predecir información cuando los datos cumple con tal
+distribución.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dfnorm<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">1000000</span>, <span class="dv">0</span>,<span class="dv">1</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dfnorm<span class="ot">=</span><span class="fu">data.frame</span>(dfnorm)</span>
@@ -620,11 +650,21 @@ Chunk #1</p>
 <hr />
 <div id="evaluando-visualmente-la-distribución" class="section level2">
 <h2>Evaluando visualmente la distribución</h2>
-<p>El primer paso de cada investigación es evaluar si los supuestos se cumplen. Si las pruebas necesitan tener una distribución normal uno de los métodos más sencillo construir un histograma de los datos.</p>
+<p>El primer paso de cada investigación es evaluar si los supuestos se
+cumplen. Si las pruebas necesitan tener una distribución normal uno de
+los métodos más sencillo construir un histograma de los datos.</p>
 <p>Usaremos datos que hemos visto en el modulo T5.</p>
-<p>Se necesita el archivo <strong>DownloadFestival</strong> que se encuentra debajo la pestaña de <strong>Los Datos</strong>. El ejemplo proviene de Field et al. (2014).</p>
+<p>Se necesita el archivo <strong>DownloadFestival</strong> que se
+encuentra debajo la pestaña de <strong>Los Datos</strong>. El ejemplo
+proviene de Field et al. (2014).</p>
 <blockquote>
-<p>Una bióloga estaba preocupado por los posibles efectos sobre la salud de los que particpan a un festivales de música. Entonces, un año fue al Download Festival en el Reino Unido (Download Festival UK). Ella midió la higiene del los que participaron al concierto n= 810 durante el festival de 3 días. Cada día intentaba encontrar a todas las personas que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el nivel de limpieza por como olia los participantes</p>
+<p>Una bióloga estaba preocupado por los posibles efectos sobre la salud
+de los que particpan a un festivales de música. Entonces, un año fue al
+Download Festival en el Reino Unido (Download Festival UK). Ella midió
+la higiene del los que participaron al concierto n= 810 durante el
+festival de 3 días. Cada día intentaba encontrar a todas las personas
+que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el
+nivel de limpieza por como olia los participantes</p>
 </blockquote>
 <blockquote>
 <ul>
@@ -656,21 +696,39 @@ Chunk #1</p>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.40e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.85</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
 </table>
 
-<p>Se nota en el histograma que la mayoría de los datos de la higiene de los participantes en el primer día se parece bastante a una distribución normal. Nota que los valores en el eje de <strong>y</strong> es la frecuencia de los valores en el conjunto de datos.</p>
+<p>Se nota en el histograma que la mayoría de los datos de la higiene de
+los participantes en el primer día se parece bastante a una distribución
+normal. Nota que los valores en el eje de <strong>y</strong> es la
+frecuencia de los valores en el conjunto de datos.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dlf, <span class="fu">aes</span>(day1))<span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-8-1.png" width="672" /> ***</p>
+<p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+***</p>
 </div>
 </div>
-<div id="añadiendo-la-distribución-teórica-al-histograma" class="section level1">
+<div id="añadiendo-la-distribución-teórica-al-histograma"
+class="section level1">
 <h1>Añadiendo la distribución teórica al histograma</h1>
-<p>Ahora vamos a añadir la siguiente formula al gráfico <span class="math inline">\(P(x)=\frac{1}{{\sigma\sqrt{ 2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}\)</span>. De esta forma podemos comparar los datos reales (las barras roja) con la distribución teorica si el promedio y la desviación estandar es igual a los datos.</p>
-<p>Se añade el promedio y la desviación estándar con la siguientes funciones. La función *stat_function()** es para calcular parámetros.</p>
+<p>Ahora vamos a añadir la siguiente formula al gráfico <span
+class="math inline">\(P(x)=\frac{1}{{\sigma\sqrt{
+2\pi}}}{e}^{-\frac{{(x-µ)}^{2}}{{2\sigma}^{2}}}\)</span>. De esta forma
+podemos comparar los datos reales (las barras roja) con la distribución
+teorica si el promedio y la desviación estandar es igual a los
+datos.</p>
+<p>Se añade el promedio y la desviación estándar con la siguientes
+funciones. La función *stat_function()** es para calcular
+parámetros.</p>
 <pre><code>            stat_function(fun = dnorm,   # dnorm = la densidad de la distribución normal
             args = list(
             mean = mean(dlf$day2, na.rm = TRUE), # mean = el promedio de los datos
             sd = sd(dlf$day2, na.rm = TRUE))) # sd = la desviación estandar de los datos</code></pre>
-<p>Ahora nota que el eje de <strong>y</strong> no son frecuencias pero son densidades. La suma de todas las densidades es igual a 1.0. Vea que la linea teórica se acerca bastante a las barras del histograma. Este proceso NO es una prueba para determinar si los datos cumple con una distribución normal. Aunque con experiencia visualizando los datos uno puede tener un buen apreciación si los datos cumple suficientemente con la distribución normal para usar las pruebas paramétricas.</p>
+<p>Ahora nota que el eje de <strong>y</strong> no son frecuencias pero
+son densidades. La suma de todas las densidades es igual a 1.0. Vea que
+la linea teórica se acerca bastante a las barras del histograma. Este
+proceso NO es una prueba para determinar si los datos cumple con una
+distribución normal. Aunque con experiencia visualizando los datos uno
+puede tener un buen apreciación si los datos cumple suficientemente con
+la distribución normal para usar las pruebas paramétricas.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hist.dlfc1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dlf, <span class="fu">aes</span>(day1)) <span class="sc">+</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..), <span class="at">colour=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Higiene día 1&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Densidad&quot;</span>)<span class="sc">+</span></span>
@@ -683,7 +741,10 @@ Chunk #1</p>
 <p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <div id="evaluando-datos-no-normal" class="section level2">
 <h2>Evaluando datos no normal</h2>
-<p>Usamos los datos del segundo día y comparamos con el primer día. En este caso vemos que los datos no siguen una distribución normal están sesgados a la izquierda y vemos que “falta” valores pequeños, en otra palabra en este caso los valores negativos.</p>
+<p>Usamos los datos del segundo día y comparamos con el primer día. En
+este caso vemos que los datos no siguen una distribución normal están
+sesgados a la izquierda y vemos que “falta” valores pequeños, en otra
+palabra en este caso los valores negativos.</p>
 <p>Evalúa y compara con el día tres</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hist.dlfc2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dlf, <span class="fu">aes</span>(day2)) <span class="sc">+</span> </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span>..density..), <span class="at">colour=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
@@ -697,14 +758,25 @@ Chunk #1</p>
 <p><img src="T8_Distribucion_Normal_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 </div>
-<div id="datos-teóricos-con-histograma-y-la-función-de-normalidad" class="section level1">
+<div id="datos-teóricos-con-histograma-y-la-función-de-normalidad"
+class="section level1">
 <h1>Datos teóricos con histograma y la función de normalidad</h1>
-<p>Aquí creo una conjunto de datos al azar con la función <strong>rnorm</strong> y se presenta un histograma y se añade la linea teórica de la distribución normal.</p>
-<p>La función <strong>rnorm</strong> creea una lista de datos una promedio y una dispersión específica.</p>
+<p>Aquí creo una conjunto de datos al azar con la función
+<strong>rnorm</strong> y se presenta un histograma y se añade la linea
+teórica de la distribución normal.</p>
+<p>La función <strong>rnorm</strong> creea una lista de datos una
+promedio y una dispersión específica.</p>
 <pre><code>rnorm(n, mean, sd)
 rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</code></pre>
-<p>Es necesario convertir la lista en un <strong>data.frame</strong> en un <strong>tibble</strong> para usar los datos en <strong>ggplot2</strong>. Como los datos provienen de una distribución normal la linea teórica (casi) sigue perfectamente las barras de frecuencia. Más datos que uno tiene más similar las distribución observada (las barras) a la distribución teórica (la linea).</p>
-<p>Haz unos ejercicio de reducir y aumentar el tamaño de muestra, <strong>n</strong> y compara las distribuciones. Evalúa cuando cuando son muy pequeño (n de 30 o menos).</p>
+<p>Es necesario convertir la lista en un <strong>data.frame</strong> en
+un <strong>tibble</strong> para usar los datos en
+<strong>ggplot2</strong>. Como los datos provienen de una distribución
+normal la linea teórica (casi) sigue perfectamente las barras de
+frecuencia. Más datos que uno tiene más similar las distribución
+observada (las barras) a la distribución teórica (la linea).</p>
+<p>Haz unos ejercicio de reducir y aumentar el tamaño de muestra,
+<strong>n</strong> y compara las distribuciones. Evalúa cuando cuando
+son muy pequeño (n de 30 o menos).</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#rnorm(10, 100, 10)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
@@ -760,6 +832,8 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -769,7 +843,9 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -841,14 +917,17 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #djmqwlxojf .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -920,7 +999,26 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#djmqwlxojf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#djmqwlxojf .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #djmqwlxojf .gt_summary_row {
@@ -934,13 +1032,22 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
 }
 
 #djmqwlxojf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#djmqwlxojf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#djmqwlxojf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #djmqwlxojf .gt_grand_summary_row {
@@ -993,7 +1100,10 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
 #djmqwlxojf .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #djmqwlxojf .gt_sourcenotes {
@@ -1012,7 +1122,10 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
 
 #djmqwlxojf .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #djmqwlxojf .gt_left {
@@ -1044,10 +1157,43 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
   font-size: 65%;
 }
 
+#djmqwlxojf .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
 #djmqwlxojf .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
-  font-size: 65%;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#djmqwlxojf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#djmqwlxojf .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#djmqwlxojf .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#djmqwlxojf .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
 }
 </style>
 <table class="gt_table">
@@ -1083,8 +1229,24 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
 </div>
 <div id="qqplot" class="section level1">
 <h1>qqplot</h1>
-<p>El gráfico Q-Q, o gráfico cuantil-cuantil, es una herramienta gráfica que nos ayuda a evaluar si un conjunto de datos proviene de alguna distribución teórica. Por ejemplo, si ejecutamos un análisis estadístico que asume que nuestra variable dependiente está normalmente distribuida, podemos usar un gráfico Q-Q normal para verificar esa suposición, se puede también evaluar otras distribuciones. Nota que es solo una verificación visual, no una prueba estadística. Esto nos permite visualizar si los datos cumple si o no con la distribución teórica.</p>
-<p>Un diagrama Q-Q es un diagrama de dispersión y compara dos conjuntos de cuantiles uno observado y el otro teórico. Si ambos conjuntos de cuantiles provienen de una distribución normal, deberíamos ver los puntos formando una línea que es más o menos recta. Usamos los datos del primer y el segundo día de la higiene de los participantes al concierto de rock. Vean que los puntos están en el primer gráfico siguen una linea recta y la linea teórica (<span style="color: blue;">color azul</span>) sigue estos puntos. Esto sugiere que los datos siguen una distribución normal. En el segundo gráfico vemos que los datos observados no siguen los datos teóricos (<span style="color: red;">color rojo</span>).</p>
+<p>El gráfico Q-Q, o gráfico cuantil-cuantil, es una herramienta gráfica
+que nos ayuda a evaluar si un conjunto de datos proviene de alguna
+distribución teórica. Por ejemplo, si ejecutamos un análisis estadístico
+que asume que nuestra variable dependiente está normalmente distribuida,
+podemos usar un gráfico Q-Q normal para verificar esa suposición, se
+puede también evaluar otras distribuciones. Nota que es solo una
+verificación visual, no una prueba estadística. Esto nos permite
+visualizar si los datos cumple si o no con la distribución teórica.</p>
+<p>Un diagrama Q-Q es un diagrama de dispersión y compara dos conjuntos
+de cuantiles uno observado y el otro teórico. Si ambos conjuntos de
+cuantiles provienen de una distribución normal, deberíamos ver los
+puntos formando una línea que es más o menos recta. Usamos los datos del
+primer y el segundo día de la higiene de los participantes al concierto
+de rock. Vean que los puntos están en el primer gráfico siguen una linea
+recta y la linea teórica (<span style="color: blue;">color azul</span>)
+sigue estos puntos. Esto sugiere que los datos siguen una distribución
+normal. En el segundo gráfico vemos que los datos observados no siguen
+los datos teóricos (<span style="color: red;">color rojo</span>).</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">ggplot</span>(dlf, <span class="fu">aes</span>(<span class="at">sample=</span>day1))<span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>()<span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>)</span>
@@ -1098,17 +1260,48 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
 </div>
 <div id="pruebas-de-normalidad." class="section level1">
 <h1>Pruebas de normalidad.</h1>
-<p>Los ejemplos arriba no son pruebas, son visualización de los datos y con experiencia uno puede reconocer los con juntos de datos que cumple o no con una distribución normal. Al principio, cuando uno comienza a estudiar la estadística esto puede ser un poco confuso. Hay pruebas donde uno puede utiliza para evaluar y rechazar o aceptar si los datos cumple con distribución normal. Estos se introduce ahora por qué muchas de estas pruebas tienden a tener un tipo de error Tipo II alto. En otra palabra se rechaza la hipótesis nula (los datos provienen de una distribución normal) cuando son suficiente normal para las pruebas que se van a usar. Vamos a ver dos de estas pruebas aunque hay muchos en la literatura.</p>
-<p>Por ejemplo Wikipedia menciona por lo menos 8 diferentes pruebas de normalidad <a href="https://en.wikipedia.org/wiki/Normality_test" class="uri">https://en.wikipedia.org/wiki/Normality_test</a>.</p>
+<p>Los ejemplos arriba no son pruebas, son visualización de los datos y
+con experiencia uno puede reconocer los con juntos de datos que cumple o
+no con una distribución normal. Al principio, cuando uno comienza a
+estudiar la estadística esto puede ser un poco confuso. Hay pruebas
+donde uno puede utiliza para evaluar y rechazar o aceptar si los datos
+cumple con distribución normal. Estos se introduce ahora por qué muchas
+de estas pruebas tienden a tener un tipo de error Tipo II alto. En otra
+palabra se rechaza la hipótesis nula (los datos provienen de una
+distribución normal) cuando son suficiente normal para las pruebas que
+se van a usar. Vamos a ver dos de estas pruebas aunque hay muchos en la
+literatura.</p>
+<p>Por ejemplo Wikipedia menciona por lo menos 8 diferentes pruebas de
+normalidad <a href="https://en.wikipedia.org/wiki/Normality_test"
+class="uri">https://en.wikipedia.org/wiki/Normality_test</a>.</p>
 <div id="la-prueba-de-shapiro-wilks" class="section level2">
 <h2>La prueba de Shapiro-Wilks</h2>
-<p>La prueba de Shapiro-Wilk es un prueba para determinar si un muestreo proviene de una distribución normal. Los datos se ponen en orden de los valores y se calcula el estadística de <strong>W</strong>. Aquí no vamos enseñar como hacer los cálculos los que le interesa pueden ir al a la siguiente pagina de <a href="https://en.wikipedia.org/wiki/Shapiro–Wilk_test" class="uri">https://en.wikipedia.org/wiki/Shapiro–Wilk_test</a>. Lo importante es que</p>
-<p>Ho: los datos no son diferentes de una distribución normal Ha: los datos no concuerda con una distribución normal.</p>
-<p>Por consecuencia si se rechaza la hipótesis nula uno dice que los datos no cumplen con una distribución normal.</p>
-<p>Problemas con la prueba. La prueba es sensitiva al tamaño de muestra. Esto quiere decir que cando el tamaño de muestra es demasiado pequeño o grande tiende a dar errores de Tipo II y Tipo I respectivamente.</p>
+<p>La prueba de Shapiro-Wilk es un prueba para determinar si un muestreo
+proviene de una distribución normal. Los datos se ponen en orden de los
+valores y se calcula el estadística de <strong>W</strong>. Aquí no vamos
+enseñar como hacer los cálculos los que le interesa pueden ir al a la
+siguiente pagina de <a
+href="https://en.wikipedia.org/wiki/Shapiro–Wilk_test"
+class="uri">https://en.wikipedia.org/wiki/Shapiro–Wilk_test</a>. Lo
+importante es que</p>
+<p>Ho: los datos no son diferentes de una distribución normal Ha: los
+datos no concuerda con una distribución normal.</p>
+<p>Por consecuencia si se rechaza la hipótesis nula uno dice que los
+datos no cumplen con una distribución normal.</p>
+<p>Problemas con la prueba. La prueba es sensitiva al tamaño de muestra.
+Esto quiere decir que cando el tamaño de muestra es demasiado pequeño o
+grande tiende a dar errores de Tipo II y Tipo I respectivamente.</p>
 <p>Reglas básica.<br />
-1. no utilizar la prueba si el tamaño de muestra es menor de 50 2. no utilizar la prueba si el tamaño de muestra de muy grande (mayor de 200) a. Nota que algunos programa han podido hacer modificación a la formula y ahora se puede utilizar tamaño de muestra hasta 2000 (Stata, SPSS, SAS).</p>
-<p>La función <strong>shapiro.test()</strong> es para evaluar una variable a la vez. Nota que aquí los datos de higiene del primer día sugiere que no cumple con una distribución normal. Cuando las dos alternativas anteriores los daots se ven bastante norma (histograma y qqplot)</p>
+1. no utilizar la prueba si el tamaño de muestra es menor de 50 2. no
+utilizar la prueba si el tamaño de muestra de muy grande (mayor de 200)
+a. Nota que algunos programa han podido hacer modificación a la formula
+y ahora se puede utilizar tamaño de muestra hasta 2000 (Stata, SPSS,
+SAS).</p>
+<p>La función <strong>shapiro.test()</strong> es para evaluar una
+variable a la vez. Nota que aquí los datos de higiene del primer día
+sugiere que no cumple con una distribución normal. Cuando las dos
+alternativas anteriores los daots se ven bastante norma (histograma y
+qqplot)</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dlf<span class="sc">$</span>day1)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
@@ -1118,13 +1311,28 @@ rnorm = (la cantidad de datos generados, promedio, la desviación estandard)</co
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(dlf<span class="sc">$</span>day1)</span></code></pre></div>
 <pre><code>## [1] 810</code></pre>
 </div>
-<div id="la-prueba-de-normalidad-de-anderson-darling" class="section level2">
+<div id="la-prueba-de-normalidad-de-anderson-darling"
+class="section level2">
 <h2>La prueba de normalidad de Anderson-Darling</h2>
-<p>La prueba de Anderson-Darling es una prueba omnibus (una prueba general) EDF para la hipótesis que los datos provienen de una distribución normal. Las pruebas ómnibus son una especie de prueba estadística. Prueban si la varianza explicada en un conjunto de datos es significativamente mayor que la varianza inexplicada, en general. Para más detalle sobre esta prueba vea <a href="https://en.wikipedia.org/wiki/Anderson–Darling_test" class="uri">https://en.wikipedia.org/wiki/Anderson–Darling_test</a>.</p>
-<p>Se necesita la librería <strong>nortest</strong> y la función <strong>ad.test</strong></p>
-<p>Miran ahora que la distribución de los datos cumplen con normalidad cuando la de Shapiro-Wilk rechaza la hipótesis nula.<br />
-El mensaje es que es posible que diferentes pruebas le den información distinta y hay que estar claro sobre los supuestos y la sensitividad de estas pruebas.</p>
-<p>La prueba de Anderson Darling es una de las más poderosas para evaluar si los datos provienen de una distribución normal. D’Agostino (1986) sugiere que la prueba puede ser utilizada con tamaño de muestra tan bajo como n=8.</p>
+<p>La prueba de Anderson-Darling es una prueba omnibus (una prueba
+general) EDF para la hipótesis que los datos provienen de una
+distribución normal. Las pruebas ómnibus son una especie de prueba
+estadística. Prueban si la varianza explicada en un conjunto de datos es
+significativamente mayor que la varianza inexplicada, en general. Para
+más detalle sobre esta prueba vea <a
+href="https://en.wikipedia.org/wiki/Anderson–Darling_test"
+class="uri">https://en.wikipedia.org/wiki/Anderson–Darling_test</a>.</p>
+<p>Se necesita la librería <strong>nortest</strong> y la función
+<strong>ad.test</strong></p>
+<p>Miran ahora que la distribución de los datos cumplen con normalidad
+cuando la de Shapiro-Wilk rechaza la hipótesis nula.<br />
+El mensaje es que es posible que diferentes pruebas le den información
+distinta y hay que estar claro sobre los supuestos y la sensitividad de
+estas pruebas.</p>
+<p>La prueba de Anderson Darling es una de las más poderosas para
+evaluar si los datos provienen de una distribución normal. D’Agostino
+(1986) sugiere que la prueba puede ser utilizada con tamaño de muestra
+tan bajo como n=8.</p>
 <pre><code>*Ralph B. D&#39;Agostino (1986). &quot;Tests for the Normal Distribution&quot;. In D&#39;Agostino, R.B.; Stephens, M.A. (eds.). Goodness-of-Fit Techniques. New York: Marcel Dekker. ISBN 0-8247-7487-6.* </code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>

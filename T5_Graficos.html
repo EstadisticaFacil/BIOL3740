@@ -14,8 +14,8 @@
 
 <title>Gráficos con ggplot2</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -43,6 +43,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -168,6 +169,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -393,7 +397,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -409,7 +413,7 @@ div.tocify {
   <a href="schedule.html">Calendario</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Instalación básica
      
     <span class="caret"></span>
@@ -430,7 +434,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Temas
      
     <span class="caret"></span>
@@ -499,7 +503,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Ejercicio
      
     <span class="caret"></span>
@@ -538,7 +542,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Datos
      
     <span class="caret"></span>
@@ -571,24 +575,41 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2021-09-12&quot;</code></pre>
+<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <div id="gráficos-básicos-con-ggplot2" class="section level1">
 <h1>Gráficos Básicos con ggplot2</h1>
-<p>Este modulo es una introducción corta para la visualización de los datos. El paquete principal que se usa es el <strong>ggplot2</strong>. La visualización de datos es un área especializado y no se podrá hacer justicia al tema al mismo tiempo que se estudia la estadística. Aquí se presenta es una introducción breve del tema. La visualización ayuda a entender los datos ya que la dispersión de ellos impacta que prueba se puede utilizar y el significado de los analisis.</p>
-<p>La información utilizada en este documento proviene en parte del libro <em>Discovering Statistics using R</em> por Andy Field, Jeremy Miles y Zoë Field (2014).</p>
+<p>Este modulo es una introducción corta para la visualización de los
+datos. El paquete principal que se usa es el <strong>ggplot2</strong>.
+La visualización de datos es un área especializado y no se podrá hacer
+justicia al tema al mismo tiempo que se estudia la estadística. Aquí se
+presenta es una introducción breve del tema. La visualización ayuda a
+entender los datos ya que la dispersión de ellos impacta que prueba se
+puede utilizar y el significado de los analisis.</p>
+<p>La información utilizada en este documento proviene en parte del
+libro <em>Discovering Statistics using R</em> por Andy Field, Jeremy
+Miles y Zoë Field (2014).</p>
 </div>
-<div id="como-crear-una-gráfica-de-regresión-lineal-usando-ggplot" class="section level1">
+<div id="como-crear-una-gráfica-de-regresión-lineal-usando-ggplot"
+class="section level1">
 <h1>Como crear una gráfica de regresión lineal usando ggplot</h1>
 <ol style="list-style-type: decimal">
-<li>Subir los datos “Exam Anxiety” Los archivos de datos que se usan en el libro se encuentran en este enlace, <a href="https://studysites.sagepub.com/dsur/study/articles.htm" class="uri">https://studysites.sagepub.com/dsur/study/articles.htm</a></li>
+<li>Subir los datos “Exam Anxiety” Los archivos de datos que se usan en
+el libro se encuentran en este enlace, <a
+href="https://studysites.sagepub.com/dsur/study/articles.htm"
+class="uri">https://studysites.sagepub.com/dsur/study/articles.htm</a></li>
 </ol>
-<p>Seleccionar el archivo <strong>Exam Anxiety</strong>. Note que los datos a la hoja de datos tienen que abrirlo en Excel o otro programa y salvarlo en formato <strong>.csv</strong> antes de seguir los proximos pasos. El siguiente paso es poner el archivo de datos en su proyecto de RStudio.<br />
+<p>Seleccionar el archivo <strong>Exam Anxiety</strong>. Note que los
+datos a la hoja de datos tienen que abrirlo en Excel o otro programa y
+salvarlo en formato <strong>.csv</strong> antes de seguir los proximos
+pasos. El siguiente paso es poner el archivo de datos en su proyecto de
+RStudio.<br />
 *** ## Subir los datos a RStudio</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Exam_Anxiety <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Exam Anxiety.csv&quot;</span>)</span></code></pre></div>
-<p>Para visualizar las primeras y ultimas 6 filas usar <strong>head()</strong> y <strong>tail()</strong> respectivamente.</p>
+<p>Para visualizar las primeras y ultimas 6 filas usar
+<strong>head()</strong> y <strong>tail()</strong> respectivamente.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Exam_Anxiety)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <col><col><col><col><col><tr>
@@ -625,22 +646,52 @@ div.tocify {
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">103</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">20</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">50</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">91.1</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td></tr>
 </table>
 
-<p>Parta ver el nombre de las variables en el archivo se usa la función <strong>names</strong>. Vemos que hay cinco columnas, el <strong>Code</strong> que se refiere a un código que identifica el estudiante, <strong>Revise</strong> el tiempo que el estudiante estudio antes de tomar el examen, <strong>Exam</strong> la nota del estidiante, <strong>Anxiety</strong>, un indice de anxiedad antes de tomar el examen, <strong>Gender</strong> el genero del estudiante.</p>
+<p>Parta ver el nombre de las variables en el archivo se usa la función
+<strong>names</strong>. Vemos que hay cinco columnas, el
+<strong>Code</strong> que se refiere a un código que identifica el
+estudiante, <strong>Revise</strong> el tiempo que el estudiante estudio
+antes de tomar el examen, <strong>Exam</strong> la nota del estidiante,
+<strong>Anxiety</strong>, un indice de anxiedad antes de tomar el
+examen, <strong>Gender</strong> el genero del estudiante.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Exam_Anxiety)</span></code></pre></div>
 <pre><code>## [1] &quot;Code&quot;    &quot;Revise&quot;  &quot;Exam&quot;    &quot;Anxiety&quot; &quot;Gender&quot;</code></pre>
 <hr />
 </div>
 <div id="regresión-lineal" class="section level1">
 <h1>Regresión lineal</h1>
-<p>El primer gráfico es crear una regresión lineal. Para producir una regresión lineal se necesita dos variables con datos continuos Seleccionamos dos variables continua, el nivel de ansiedad y la nota del examen. Para hacer una regresión lineal que sigue el patrón de y=mx+b, hay que utilizar la función geom_smooth(method=lm), la función <strong>lm</strong> se refiere a modelo lineal o ingles <strong>linear model</strong>. Nota que con el programa ggplot2, hay que primero identificar de donde proviene los datos <strong>Exam_Anxiety</strong>, despúes que hay identificar cual; son las variables de este archivo que se van a utilizar, en este caso <strong>y=Exam, x=Anxiety</strong>. El proximoo paso es determinar que tipo de gráfico, y este caso es una regresión lineal.</p>
+<p>El primer gráfico es crear una regresión lineal. Para producir una
+regresión lineal se necesita dos variables con datos continuos
+Seleccionamos dos variables continua, el nivel de ansiedad y la nota del
+examen. Para hacer una regresión lineal que sigue el patrón de y=mx+b,
+hay que utilizar la función geom_smooth(method=lm), la función
+<strong>lm</strong> se refiere a modelo lineal o ingles <strong>linear
+model</strong>. Nota que con el programa ggplot2, hay que primero
+identificar de donde proviene los datos <strong>Exam_Anxiety</strong>,
+despúes que hay identificar cual; son las variables de este archivo que
+se van a utilizar, en este caso <strong>y=Exam, x=Anxiety</strong>. El
+proximoo paso es determinar que tipo de gráfico, y este caso es una
+regresión lineal.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Exam_Anxiety, <span class="fu">aes</span>(<span class="at">y=</span>Exam, <span class="at">x=</span>Anxiety))<span class="sc">+</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">colour=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="co"># linear model</span></span></code></pre></div>
 <p><img src="T5_Graficos_files/figure-html/linear%20graph-1.png" width="672" /></p>
 <hr />
-<div id="añadiendo-color-por-grupo-y-otras-bellezas" class="section level2">
+<div id="añadiendo-color-por-grupo-y-otras-bellezas"
+class="section level2">
 <h2>Añadiendo color por grupo y otras bellezas</h2>
-<p>En este archivo utilizaremos un archivo que se usa muy comúnmente en los análisis de R, para demostrar un análisis o como hacer gráfico. El archivo se llama <strong>iris</strong> y contiene información sobre el tamaño de características florales de tres especies del genero <em>Iris</em>. En este gráfico se añade cuatro componente suplementarios, 1) un puntos para cada par de valores <strong>Sepal.Length, Petal.Length</strong>, 2) se cambia los nombres de las leyendas en <strong>y</strong> y <strong>x</strong> con la función <strong>labs()</strong> = labels, 3) se añade un titulo al gráfico con <strong>ggtitle()</strong>, 4) Note que cada especies tiene un color distinto, esto fue muy fácil incluir añadiendo la función <strong>col=Species</strong>, lo que esto significa es que para cada especies de planta se pone un color diferente.</p>
+<p>En este archivo utilizaremos un archivo que se usa muy comúnmente en
+los análisis de R, para demostrar un análisis o como hacer gráfico. El
+archivo se llama <strong>iris</strong> y contiene información sobre el
+tamaño de características florales de tres especies del genero
+<em>Iris</em>. En este gráfico se añade cuatro componente
+suplementarios, 1) un puntos para cada par de valores
+<strong>Sepal.Length, Petal.Length</strong>, 2) se cambia los nombres de
+las leyendas en <strong>y</strong> y <strong>x</strong> con la función
+<strong>labs()</strong> = labels, 3) se añade un titulo al gráfico con
+<strong>ggtitle()</strong>, 4) Note que cada especies tiene un color
+distinto, esto fue muy fácil incluir añadiendo la función
+<strong>col=Species</strong>, lo que esto significa es que para cada
+especies de planta se pone un color diferente.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(iris)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
 <col><col><col><col><col><tr>
@@ -670,7 +721,13 @@ div.tocify {
 </div>
 <div id="salvar-gráficos-con-ggsave" class="section level2">
 <h2>Salvar gráficos con <strong>ggsave</strong></h2>
-<p>Como salvar un gráfico para usarlo en otros programados o presentación por ejemplo de <strong>MS Power Point</strong>. Se usa la función <strong>ggsave()</strong>. se pone en comilla el nombre que se quiere dar a la figura y se identifica que tipo de archivo se quiere crear, por ejemplo (.tiff, .png, .pdf). Nota que se salvo en un archivo que se llama “Graficos”, es no es necesario, si no lo incluye sera salvado en el proyecto.</p>
+<p>Como salvar un gráfico para usarlo en otros programados o
+presentación por ejemplo de <strong>MS Power Point</strong>. Se usa la
+función <strong>ggsave()</strong>. se pone en comilla el nombre que se
+quiere dar a la figura y se identifica que tipo de archivo se quiere
+crear, por ejemplo (.tiff, .png, .pdf). Nota que se salvo en un archivo
+que se llama “Graficos”, es no es necesario, si no lo incluye sera
+salvado en el proyecto.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Iris_size.png&quot;</span>) <span class="co"># .tiff, .png, .jpeg, .jpg</span></span></code></pre></div>
 </div>
 </div>
@@ -682,14 +739,16 @@ div.tocify {
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Exam Anxiety&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Exam Performance %&quot;</span>)</span></code></pre></div>
 <p><img src="T5_Graficos_files/figure-html/more%20examples-1.png" width="672" /></p>
 </div>
-<div id="regresión-simple-con-puntos-y-intervalo-de-confianza" class="section level1">
+<div id="regresión-simple-con-puntos-y-intervalo-de-confianza"
+class="section level1">
 <h1>Regresión simple con puntos y intervalo de confianza</h1>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>scatter <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Exam_Anxiety, <span class="fu">aes</span>(Anxiety, Exam))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>scatter <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;Red&quot;</span>)<span class="sc">+</span> </span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Exam Anxiety&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Exam Performance %&quot;</span>) </span></code></pre></div>
 <p><img src="T5_Graficos_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<div id="cambio-de-color-del-intervalo-de-confianza" class="section level3">
+<div id="cambio-de-color-del-intervalo-de-confianza"
+class="section level3">
 <h3>Cambio de color del intervalo de confianza</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>scatter <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Exam_Anxiety, <span class="fu">aes</span>(Anxiety, Exam))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>scatter <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
@@ -700,7 +759,11 @@ div.tocify {
 </div>
 <div id="regresión-lineal-por-grupo." class="section level2">
 <h2>Regresión lineal por grupo.</h2>
-<p>Para separar y tener una linea por grupo se usa la función <strong>colour</strong> y se añade la variable de factor. En este caso la variable <strong>Gender</strong> para separar entre hombres y mujer. Se enseña también la función <strong>ggtitle()</strong> para añadir un titulo al gráfico.</p>
+<p>Para separar y tener una linea por grupo se usa la función
+<strong>colour</strong> y se añade la variable de factor. En este caso
+la variable <strong>Gender</strong> para separar entre hombres y mujer.
+Se enseña también la función <strong>ggtitle()</strong> para añadir un
+titulo al gráfico.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Exam_Anxiety, <span class="fu">aes</span>(<span class="at">y=</span>Exam, <span class="at">x=</span>Anxiety, <span class="at">colour=</span>Gender))<span class="sc">+</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour=</span><span class="st">&quot;coral&quot;</span>)<span class="sc">+</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>) <span class="sc">+</span>  <span class="co"># lm (linear model) es para modelos lineales </span></span>
@@ -711,17 +774,28 @@ div.tocify {
 </div>
 <div id="histogramas" class="section level2">
 <h2>Histogramas</h2>
-<p>Un histograma es un gráfico que representa la frecuencia de los valores de un conjunto de datos. pro consecuencia es el eje de <strong>x</strong> se encuentra una variable continua y en el eje de <strong>y</strong> la frecuencia. La frecuencia es lo mismo que el cantidad de veces que aparece los valores en <strong>x</strong> en el conjunto de datos.</p>
-<p>Se necesita el archivo <em>DownloadFestival</em> que se encuentra debajo la pestaña de <strong>Los Datos</strong>. El ejemplo proviene de Field et al. (2014).</p>
+<p>Un histograma es un gráfico que representa la frecuencia de los
+valores de un conjunto de datos. pro consecuencia es el eje de
+<strong>x</strong> se encuentra una variable continua y en el eje de
+<strong>y</strong> la frecuencia. La frecuencia es lo mismo que el
+cantidad de veces que aparece los valores en <strong>x</strong> en el
+conjunto de datos.</p>
+<p>Se necesita el archivo <em>DownloadFestival</em> que se encuentra
+debajo la pestaña de <strong>Los Datos</strong>. El ejemplo proviene de
+Field et al. (2014).</p>
 <pre><code>Una bióloga estaba preocupado por los posibles efectos sobre la salud de los que particpan a un festivales de música. Entonces, un año fue al Download Festival en el Reino Unido (Download Festival UK). Ella midió la higiene del los que participaron al concierto n= 810 durante el festival de 3 días. Cada día intentaba encontrar a todas las personas que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el nivel de limpieza por como olia los participantes
 + 0 = hueles como un cadáver. 
 + 4 = hueles a rosas dulces en un fresco día de primavera</code></pre>
-<p>La hipótesis es que la higiene personal de los asistentes al concierto disminuiría dramáticamente durante los 3 días del festival.</p>
+<p>La hipótesis es que la higiene personal de los asistentes al
+concierto disminuiría dramáticamente durante los 3 días del
+festival.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>DownloadFestival <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/DownloadFestival.csv&quot;</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>FD<span class="ot">=</span>DownloadFestival</span></code></pre></div>
-<p>Construyendo histogramas y detectando valores atípicos. Nota los valores <strong>NA</strong>, estos son los participantes que no se pudieron encontrar en los siguientes días.</p>
+<p>Construyendo histogramas y detectando valores atípicos. Nota los
+valores <strong>NA</strong>, estos son los participantes que no se
+pudieron encontrar en los siguientes días.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(FD, <span class="at">n=</span><span class="dv">2</span>)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:mirar los datos">
 <col><col><col><col><col><tr>
@@ -750,12 +824,20 @@ div.tocify {
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4.76e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.26</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;"></td></tr>
 </table>
 
-<p>Nota que aquí vemos el resultado, y encontramos un problema. Hay participantes que tienen valores que no son entre 0 y 4, que es la escala de higiene. Aunque es difícil ver, pero debido que el gráfico se extiende mayor de 4, es un indice de un problema ya que sabemos que los valores pueden estar solamente entre 0 y 4.</p>
+<p>Nota que aquí vemos el resultado, y encontramos un problema. Hay
+participantes que tienen valores que no son entre 0 y 4, que es la
+escala de higiene. Aunque es difícil ver, pero debido que el gráfico se
+extiende mayor de 4, es un indice de un problema ya que sabemos que los
+valores pueden estar solamente entre 0 y 4.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggplot</span>(FD, <span class="fu">aes</span>(day1))<span class="sc">+</span> </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Hygiene (Day 1 of Festival)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
 <p><img src="T5_Graficos_files/figure-html/histograma-1.png" width="672" /></p>
-<p>Evaluar los datos resumidos, para detectar porque el gráfico se extiende a valores mayor de 4. Nota que el día 1, el valor máximo es de 20. Este probablemente fue un error de poner los datos un la hoja de Excel. Lo que se puede hacer es remover este participante del analisis.</p>
+<p>Evaluar los datos resumidos, para detectar porque el gráfico se
+extiende a valores mayor de 4. Nota que el día 1, el valor máximo es de
+20. Este probablemente fue un error de poner los datos un la hoja de
+Excel. Lo que se puede hacer es remover este participante del
+analisis.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DownloadFestival)</span></code></pre></div>
 <pre><code>##     ticknumb       gender               day1             day2       
 ##  Min.   :2111   Length:810         Min.   : 0.020   Min.   :0.0000  
@@ -773,8 +855,12 @@ div.tocify {
 ##  3rd Qu.:1.5250  
 ##  Max.   :3.4100  
 ##  NA&#39;s   :687</code></pre>
-<p>Se puede remueve valores de un conjunto de datos usando la función <strong>subset( )</strong> y en este caso de la columna <strong>day1</strong> se selecciona solamente los valores menor de 5, de esta forma eliminamos el valore de 20.</p>
-<p>Usamos otra vez <strong>summary( )</strong> para asegurarnos que se solucionó el problema. Ahora vemos que el valor máximo es 3.69.</p>
+<p>Se puede remueve valores de un conjunto de datos usando la función
+<strong>subset( )</strong> y en este caso de la columna
+<strong>day1</strong> se selecciona solamente los valores menor de 5, de
+esta forma eliminamos el valore de 20.</p>
+<p>Usamos otra vez <strong>summary( )</strong> para asegurarnos que se
+solucionó el problema. Ahora vemos que el valor máximo es 3.69.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Festivalday1<span class="ot">=</span><span class="fu">subset</span>(DownloadFestival, day1<span class="sc">&lt;</span><span class="dv">5</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Festivalday1)</span></code></pre></div>
 <pre><code>##     ticknumb       gender               day1            day2       
@@ -803,7 +889,10 @@ div.tocify {
 </div>
 <div id="gráficos-de-caja-box-plots" class="section level2">
 <h2>Gráficos de caja <strong>box plots</strong></h2>
-<p>Para crear un gráfico de caja se usa la función <strong>geom_boxplot()</strong>, si hay solamente un grupo en <strong>x</strong> se pone <strong>x=1</strong> y en la <strong>y</strong> la variable continua.</p>
+<p>Para crear un gráfico de caja se usa la función
+<strong>geom_boxplot()</strong>, si hay solamente un grupo en
+<strong>x</strong> se pone <strong>x=1</strong> y en la
+<strong>y</strong> la variable continua.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>festivalBoxplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Festivalday1, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span>day1))</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>festivalBoxplot <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Gender&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Hygiene (Day 1 of Festival)&quot;</span>)</span></code></pre></div>
 <p><img src="T5_Graficos_files/figure-html/boxplots2-1.png" width="672" /></p>
@@ -811,7 +900,11 @@ div.tocify {
 </div>
 <div id="gráfico-de-caja-por-grupo" class="section level2">
 <h2>Gráfico de caja por grupo</h2>
-<p>Para producir un gráfico de caja por multiples grupos en <strong>x</strong> se añade la variable categorica y en la <strong>y</strong> la variable continua. Si se quiere un color diferente por caja se usa la función <strong>color</strong> con el nombre en de la variable en <strong>x</strong>.</p>
+<p>Para producir un gráfico de caja por multiples grupos en
+<strong>x</strong> se añade la variable categorica y en la
+<strong>y</strong> la variable continua. Si se quiere un color diferente
+por caja se usa la función <strong>color</strong> con el nombre en de la
+variable en <strong>x</strong>.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>festivalBoxplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(Festivalday1, <span class="fu">aes</span>(<span class="at">x=</span>gender,<span class="at">y=</span>day2, <span class="at">colour=</span>gender))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>festivalBoxplot <span class="sc">+</span> </span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
@@ -823,7 +916,13 @@ div.tocify {
 </div>
 <div id="detección-valores-sesgados-o-átipicos." class="section level1">
 <h1>Detección valores sesgados o átipicos.</h1>
-<p>En la función abajo denominado <strong>Valoressesgados</strong> uno puede determinar el porciento de valores que son sesgados. Note que aquí la función no existe y se construye una función para calcularlos porcentajes. Si selecionamos uno de las columnas, el dia 3 del concierto. Vemos que hay 4% de los valores que estén por fuera del intervalo de 95%, y 2.4% de los valores que estén por encima del intervalo de confianza de 99%.</p>
+<p>En la función abajo denominado <strong>Valoressesgados</strong> uno
+puede determinar el porciento de valores que son sesgados. Note que aquí
+la función no existe y se construye una función para calcularlos
+porcentajes. Si selecionamos uno de las columnas, el dia 3 del
+concierto. Vemos que hay 4% de los valores que estén por fuera del
+intervalo de 95%, y 2.4% de los valores que estén por encima del
+intervalo de confianza de 99%.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Valoressesgados<span class="ot">&lt;-</span><span class="cf">function</span>(variable, <span class="at">digits =</span> <span class="dv">2</span>){</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  zvariable<span class="ot">&lt;-</span>(variable<span class="sc">-</span><span class="fu">mean</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">/</span><span class="fu">sd</span>(variable, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -849,13 +948,19 @@ div.tocify {
 ## Valor absoluto z-score mayor de 3.29 =  0.81 %</code></pre>
 <hr />
 </div>
-<div id="gráficos-de-línea-y-intervalo-de-errores" class="section level1">
+<div id="gráficos-de-línea-y-intervalo-de-errores"
+class="section level1">
 <h1>Gráficos de línea y intervalo de errores</h1>
 <ul>
-<li>Learn how to reformat data in the correct type of data frame (as the original data set is not in the correct format) with the function “stack”</li>
+<li>Learn how to reformat data in the correct type of data frame (as the
+original data set is not in the correct format) with the function
+“stack”</li>
 <li>How to add the mean of the variable with “stat_summary”</li>
 <li>How to connect the mean with a line and change color</li>
-<li>How to add the error bars and color (The 95% confidence intervals, created with the stat_summary() function and the “mean_cl_boot” argument are bootstrap confidence intervals using the smean.cl.boot() function in Hmisc)</li>
+<li>How to add the error bars and color (The 95% confidence intervals,
+created with the stat_summary() function and the “mean_cl_boot” argument
+are bootstrap confidence intervals using the smean.cl.boot() function in
+Hmisc)</li>
 </ul>
 <p>Installar la library(Hmisc)</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc) <span class="co"># Se necesita este paquete para poner los intervalos de confianza</span></span>
@@ -872,7 +977,10 @@ div.tocify {
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">13</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">18</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td></tr>
 </table>
 
-<p>Es necesario re-organizar los datos, ya que las 4 diferentes variables están diferentes columnas, necesitamos que están todos los datos en una columna. Se usa la función <strong>stack</strong>. Subseguientemente, se asigna un nombre nuevo a las columnas</p>
+<p>Es necesario re-organizar los datos, ya que las 4 diferentes
+variables están diferentes columnas, necesitamos que están todos los
+datos en una columna. Se usa la función <strong>stack</strong>.
+Subseguientemente, se asigna un nombre nuevo a las columnas</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>hiccups<span class="ot">&lt;-</span><span class="fu">stack</span>(Hiccups) <span class="co"># organizar los datos en dos columnas con la función **stack**</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -897,9 +1005,16 @@ div.tocify {
 </table>
 
 <hr />
-<div id="la-función-stat_summary-para-calcular-indices-sumativos." class="section level2">
-<h2>La función <strong>stat_summary</strong> para calcular indices sumativos.</h2>
-<p>Nota aquí que el promedio, <em>mean</em> es añadido como un punto y que están uniido tambien por una linea, están añadido al eje de <strong>y</strong> con la función <strong>fun.y</strong>. Los intervalos de confianza se añaden con la función <strong>fun.data=mean_cl_boot</strong> y <strong>geom="errorbar</strong>.</p>
+<div id="la-función-stat_summary-para-calcular-indices-sumativos."
+class="section level2">
+<h2>La función <strong>stat_summary</strong> para calcular indices
+sumativos.</h2>
+<p>Nota aquí que el promedio, <em>mean</em> es añadido como un punto y
+que están uniido tambien por una linea, están añadido al eje de
+<strong>y</strong> con la función <strong>fun.y</strong>. Los intervalos
+de confianza se añaden con la función
+<strong>fun.data=mean_cl_boot</strong> y
+<strong>geom=“errorbar</strong>.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hiccups, <span class="fu">aes</span>(<span class="at">y=</span>Num_Hiccups,<span class="at">x=</span>Intervention))<span class="sc">+</span> </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.y =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.y =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>),<span class="at">colour =</span> <span class="st">&quot;Red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span>      </span>
@@ -910,7 +1025,8 @@ div.tocify {
 </div>
 <div id="diagrama-de-tallo-y-hoja" class="section level1">
 <h1>Diagrama de tallo y hoja</h1>
-<p>Este diagrama demuestra la cantidad de datos usando el metodo sugerido por John Tukey</p>
+<p>Este diagrama demuestra la cantidad de datos usando el metodo
+sugerido por John Tukey</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem</span>(Exam_Anxiety<span class="sc">$</span>Anxiety)</span></code></pre></div>
 <pre><code>## 
 ##   The decimal point is 1 digit(s) to the right of the |
@@ -939,47 +1055,9 @@ div.tocify {
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <p><img src="T5_Graficos_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Stem leaf for two groups</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(aplpack)</span></code></pre></div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem.leaf</span>(co2)</span></code></pre></div>
-<pre><code>## 1 | 2: represents 12
-##  leaf unit: 1
-##             n: 468
-##     8    31* | 33344444
-##    70    31. | 55555556666666666666667777777777788888888888888899999999999999
-##   135    32* | 00000000000000001111111111112222222222222222333333333333444444444
-##   187    32. | 5555555566666666677777777777777778888888889999999999
-##   233    33* | 0000000011111111112222222222233333333344444444
-##   (40)   33. | 5555556666666666777777777888889999999999
-##   195    34* | 000000011111112222222222233333334444444
-##   156    34. | 5555555566666666777777788888889999999
-##   119    35* | 00000111111122222222223333333333444444444
-##    78    35. | 555555555666666667777777788888899999999999999
-##    33    36* | 0000001111112222333333444444
-##     5    36. | 55566</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem.leaf.backback</span>(Exam_Anxiety<span class="sc">$</span>Anxiety[<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>],Exam_Anxiety<span class="sc">$</span>Anxiety[<span class="dv">31</span><span class="sc">:</span><span class="dv">60</span>])</span></code></pre></div>
-<pre><code>## Warning: word &#39;0.0560000000000116&#39; too long ...  and has been split to &#39;0.05600000000&#39; and &#39;00116&#39;_________________________________
-##   1 | 2: represents 12, leaf unit: 1 
-## Exam_Anxiety$Anxiety[1:30]
-##                     Exam_Anxiety$Anxiety[31:60]
-## LO:                 LO: 37.132   
-## 0.05600000000       43.58        
-## 00116 27.46                      
-## 34.714                           
-## _________________________________
-##              |  5* |03       4   
-##              |  5. |8        5   
-##    7     4310|  6* |2        6   
-##    9       95|  6. |789      9   
-##   13     3100|  7* |01234   14   
-##   (6)  997555|  7. |555899  (6)  
-##   11    21100|  8* |122234  10   
-##    6     9986|  8. |99       4   
-##    2        1|  9* |3        2   
-##    1        5|  9. |7        1   
-##              | 10* |             
-## _________________________________
-## n:         30       30       
-## _________________________________</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(aplpack)</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#stem.leaf(co2)</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co">#stem.leaf.backback(Exam_Anxiety$Anxiety[1:30],Exam_Anxiety$Anxiety[31:60])</span></span></code></pre></div>
 </div>
 
 

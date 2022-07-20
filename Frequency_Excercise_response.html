@@ -13,8 +13,8 @@
 
 <title>Frequencia_Ejercicios_Respuestas</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -42,6 +42,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -167,6 +168,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -392,7 +396,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -408,7 +412,7 @@ div.tocify {
   <a href="schedule.html">Calendario</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Instalación básica
      
     <span class="caret"></span>
@@ -429,7 +433,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Temas
      
     <span class="caret"></span>
@@ -498,7 +502,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Ejercicio
      
     <span class="caret"></span>
@@ -537,7 +541,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Datos
      
     <span class="caret"></span>
@@ -569,34 +573,44 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2021-09-12&quot;</code></pre>
+<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <hr />
 <div id="ejercicios-de-pruebas-de-frecuencias" class="section level1">
 <h1>Ejercicios de Pruebas de Frecuencias</h1>
 <div id="capitulo-7" class="section level2">
 <h2>Capitulo 7</h2>
-<p>Los ejercicio provienen del Capitulo 7 del libro de la clase Havel et al 2019. Introductory Biological Ststistics, 4th Edition, Waveland Press, Inc. Long Grove, Illinois.</p>
+<p>Los ejercicio provienen del Capitulo 7 del libro de la clase Havel et
+al 2019. Introductory Biological Ststistics, 4th Edition, Waveland
+Press, Inc. Long Grove, Illinois.</p>
 </div>
 <div id="ejericico-de-práctica-no-para-someter" class="section level2">
 <h2>Ejericico de Práctica (no para someter)</h2>
-<p>Los ejercicio de 7.1 al 7.13. son para practicar. Se encuentra las respuestas al final del libro.</p>
+<p>Los ejercicio de 7.1 al 7.13. son para practicar. Se encuentra las
+respuestas al final del libro.</p>
 </div>
 <div id="ejercicio-para-someter." class="section level2">
 <h2>Ejercicio para someter.</h2>
-<p>Ud. someterán los las repuestas a los siguientes ejercicios en un documento .html.</p>
+<p>Ud. someterán los las repuestas a los siguientes ejercicios en un
+documento .html.</p>
 <ul>
-<li>Para cada ejercicio siempre tiene que aclarar cual son las hipótesis nula y alterna.</li>
-<li>Tiene que explicar el concepto biológico si la pregunta menciona uno.<br />
+<li>Para cada ejercicio siempre tiene que aclarar cual son las hipótesis
+nula y alterna.</li>
+<li>Tiene que explicar el concepto biológico si la pregunta menciona
+uno.<br />
 </li>
 <li>Enseñar los cálculos/script para hacer los análisis.</li>
-<li>Interpretar los resultados basado en la pregunta que se hace en el ejercicio.</li>
+<li>Interpretar los resultados basado en la pregunta que se hace en el
+ejercicio.</li>
 </ul>
 <hr />
 <ol style="list-style-type: decimal">
 <li>Ejercicio 7.17 (5 puntos)</li>
 </ol>
-<p>A study in Southern Brazil assessed the abundance of terrewstrial flatworms by surveying 100 plots. The following table shows the observed number of of flatworms per plot. Using the smaple mean, determine if the distrbiution of the flatworm is random.</p>
+<p>A study in Southern Brazil assessed the abundance of terrewstrial
+flatworms by surveying 100 plots. The following table shows the observed
+number of of flatworms per plot. Using the smaple mean, determine if the
+distrbiution of the flatworm is random.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Num_FlatW<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Obser_Plots<span class="ot">=</span><span class="fu">c</span>(<span class="dv">52</span>,<span class="dv">33</span>,<span class="dv">12</span>,<span class="dv">3</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -608,10 +622,17 @@ div.tocify {
 ## 3         2          12
 ## 4         3           3</code></pre>
 <ul>
-<li><p>Null hipotesis, the FREQUENCY SHOULD BE EQUAL among each group. Alternate Hipotesis, the frequency is not equal among each group.</p></li>
-<li><p>Incluir información sobre los “Flatworms” Aquí hay bastante informacion <a href="https://en.wikipedia.org/wiki/Flatworm" class="uri">https://en.wikipedia.org/wiki/Flatworm</a></p></li>
+<li><p>Null hipotesis, the FREQUENCY SHOULD BE EQUAL among each group.
+Alternate Hipotesis, the frequency is not equal among each
+group.</p></li>
+<li><p>Incluir información sobre los “Flatworms” Aquí hay bastante
+informacion <a href="https://en.wikipedia.org/wiki/Flatworm"
+class="uri">https://en.wikipedia.org/wiki/Flatworm</a></p></li>
 </ul>
-<p>The null model is that the frequency is the same for each group, thus you would expect a 25% of the plots to be in each group. Since there are 100 plots, and we would expect 25% in each group we would expect 25 plots for each</p>
+<p>The null model is that the frequency is the same for each group, thus
+you would expect a 25% of the plots to be in each group. Since there are
+100 plots, and we would expect 25% in each group we would expect 25
+plots for each</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">=</span><span class="fu">c</span>(<span class="dv">52</span>,<span class="dv">33</span>,<span class="dv">12</span>,<span class="dv">3</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>exp<span class="ot">=</span><span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">25</span>,.<span class="dv">25</span>,.<span class="dv">25</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -621,16 +642,32 @@ div.tocify {
 ## 
 ## data:  obs
 ## X-squared = 57.84, df = 3, p-value = 1.701e-12</code></pre>
-<p>El resultado tiene un valor de p&lt;0.05, por consecuencia se rechaza la hipotesis nula, y se acepta la alterna. Esto significa que la distribución de los “flatworm” no fue igual en el muestreo. En este caso tenemos muchos sitios donde no se encontró lo “flatworm”, y pocos sitios donde habia 2 o 3 de ellos.</p>
+<p>El resultado tiene un valor de p&lt;0.05, por consecuencia se rechaza
+la hipotesis nula, y se acepta la alterna. Esto significa que la
+distribución de los “flatworm” no fue igual en el muestreo. En este caso
+tenemos muchos sitios donde no se encontró lo “flatworm”, y pocos sitios
+donde habia 2 o 3 de ellos.</p>
 <hr />
 <ol start="2" style="list-style-type: decimal">
 <li>Ejercicio 7.18 (5 puntos)</li>
 </ol>
-<p>White-throated sparrows (<em>Zonothrichia albicolis</em>) occur in two distinct color morphs, referred to as brown and white. It was suspected that females select males of the opposite morph (i.e white females select brown males, and brown females select white males). The phenomenon is known as negative assortative mating. In 30 mated pairs, the color combinations were as follows. Do the results support the hypothesis that negative assortative mating occur in this species.</p>
+<p>White-throated sparrows (<em>Zonothrichia albicolis</em>) occur in
+two distinct color morphs, referred to as brown and white. It was
+suspected that females select males of the opposite morph (i.e white
+females select brown males, and brown females select white males). The
+phenomenon is known as negative assortative mating. In 30 mated pairs,
+the color combinations were as follows. Do the results support the
+hypothesis that negative assortative mating occur in this species.</p>
 <ul>
-<li><p>The females select randomly the males and thus you would have equal number of females selecting white and brown males and vice versa.</p>
+<li><p>The females select randomly the males and thus you would have
+equal number of females selecting white and brown males and vice
+versa.</p>
 <ul>
-<li>Disassortative mating (also known as negative assortative mating or heterogamy) means that individuals with dissimilar genotypes or phenotypes mate with one another more frequently than would be expected under random mating. Disassortative mating reduces the genetic similarities within the family. ** From Wikipedia.</li>
+<li>Disassortative mating (also known as negative assortative mating or
+heterogamy) means that individuals with dissimilar genotypes or
+phenotypes mate with one another more frequently than would be expected
+under random mating. Disassortative mating reduces the genetic
+similarities within the family. ** From Wikipedia.</li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -652,7 +689,7 @@ div.tocify {
 <td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td><td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Brown</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">14</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">5</td></tr>
 </table>
 
-<p>Prueba de asociación" preparar los datos</p>
+<p>Prueba de asociación” preparar los datos</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>R1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">23</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>R2<span class="ot">=</span><span class="fu">c</span>(<span class="dv">14</span>,<span class="dv">5</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -671,17 +708,26 @@ div.tocify {
 ## 
 ## data:  Aves
 ## X-squared = 12.042, df = 1, p-value = 0.0005201</code></pre>
-<p>Se determina que las hembras prefieren el color de macho que son diferente de ellas, ya que el valor de p &lt;0.05.</p>
+<p>Se determina que las hembras prefieren el color de macho que son
+diferente de ellas, ya que el valor de p &lt;0.05.</p>
 <hr />
 <ol start="3" style="list-style-type: decimal">
 <li>Ejercicio 7.21 (5 puntos)</li>
 </ol>
-<p>We would like to test the efficacy of a drug, papaveretum, in treating acute abdominal pain. Based on the results, is asministration of the drug associated with pain relief.</p>
+<p>We would like to test the efficacy of a drug, papaveretum, in
+treating acute abdominal pain. Based on the results, is asministration
+of the drug associated with pain relief.</p>
 <ul>
-<li><p>The null hypothesis is that the drug has no effect of the amount of pain of parients</p></li>
-<li><p>The alternetate hypothesis is that administration of the drug reduces the amount of pain</p>
+<li><p>The null hypothesis is that the drug has no effect of the amount
+of pain of parients</p></li>
+<li><p>The alternetate hypothesis is that administration of the drug
+reduces the amount of pain</p>
 <ul>
-<li>Papaveretum (BAN) is a preparation containing a mixture of hydrochloride salts of opium alkaloids. Since 1993, papaveretum has been defined in the British Pharmacopoeia (BP) as a mixture of 253 parts morphine hydrochloride, 23 parts papaverine hydrochloride, and 20 parts codeine hydrochloride. **From wikipedia</li>
+<li>Papaveretum (BAN) is a preparation containing a mixture of
+hydrochloride salts of opium alkaloids. Since 1993, papaveretum has been
+defined in the British Pharmacopoeia (BP) as a mixture of 253 parts
+morphine hydrochloride, 23 parts papaverine hydrochloride, and 20 parts
+codeine hydrochloride. **From wikipedia</li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -703,7 +749,7 @@ div.tocify {
 <td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">No Change/Worse</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">3</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">42</td></tr>
 </table>
 
-<p>Prueba de asociación" preparar los datos</p>
+<p>Prueba de asociación” preparar los datos</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>R1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">47</span>,<span class="dv">7</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>R2<span class="ot">=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">42</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -722,23 +768,41 @@ div.tocify {
 ## 
 ## data:  Pain
 ## X-squared = 63.426, df = 1, p-value = 1.665e-15</code></pre>
-<p>The result suggest that administration of Papaveretum is effective in reducing pain, as the p value is &lt;0.05.</p>
+<p>The result suggest that administration of Papaveretum is effective in
+reducing pain, as the p value is &lt;0.05.</p>
 <hr />
 <ol start="4" style="list-style-type: decimal">
 <li>Ejercicio 7.27 (5 puntos)</li>
 </ol>
-<p>Shortly after antibiotics were discocered, mdical scientists wanted to determine if streptomycin was effective in the treatment of tuberculosis. At the time, the only treatment for tuberculosis was a long period of bed rest in a snatarium. In an experiment that we would consider unethical today, scientists divided 107 patients into two groups, with one receiving streptomycin and the conrtol group receiving no treatment beyond the bed receiving streptomycin, 4 died, while in the group of the group of 52 patients in the conrtol group 14 died. Was Streptomycin effective in reducing mortality due to tuberculosis (Data from Marshall et al. 1948).</p>
+<p>Shortly after antibiotics were discocered, mdical scientists wanted
+to determine if streptomycin was effective in the treatment of
+tuberculosis. At the time, the only treatment for tuberculosis was a
+long period of bed rest in a snatarium. In an experiment that we would
+consider unethical today, scientists divided 107 patients into two
+groups, with one receiving streptomycin and the conrtol group receiving
+no treatment beyond the bed receiving streptomycin, 4 died, while in the
+group of the group of 52 patients in the conrtol group 14 died. Was
+Streptomycin effective in reducing mortality due to tuberculosis (Data
+from Marshall et al. 1948).</p>
 <ul>
 <li><p>Información sobre Tuberculosis</p>
-<p><a href="https://en.wikipedia.org/wiki/Tuberculosis" class="uri">https://en.wikipedia.org/wiki/Tuberculosis</a></p></li>
+<p><a href="https://en.wikipedia.org/wiki/Tuberculosis"
+class="uri">https://en.wikipedia.org/wiki/Tuberculosis</a></p></li>
 <li><p>Información sobre streptomycin</p></li>
 </ul>
-<p><a href="https://en.wikipedia.org/wiki/Streptomycin" class="uri">https://en.wikipedia.org/wiki/Streptomycin</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Streptomycin"
+class="uri">https://en.wikipedia.org/wiki/Streptomycin</a></p>
 <ul>
-<li><p>The null hypothesis is that equal number of patients would die in the control group and the group receiving the antibiotics.</p></li>
-<li><p>The alternative hypothesis is that the experimental group receiving the antibiotics would have less death.</p>
+<li><p>The null hypothesis is that equal number of patients would die in
+the control group and the group receiving the antibiotics.</p></li>
+<li><p>The alternative hypothesis is that the experimental group
+receiving the antibiotics would have less death.</p>
 <ul>
-<li>Streptomycin is an aminoglycoside antibiotic produced by the soil actinomycete Streptomyces griseus. It acts by binding to the 30S ribosomal subunit of susceptible organisms and disrupting the initiation and elongation steps in protein synthesis. It is bactericidal due to effects that are not fully understood.</li>
+<li>Streptomycin is an aminoglycoside antibiotic produced by the soil
+actinomycete Streptomyces griseus. It acts by binding to the 30S
+ribosomal subunit of susceptible organisms and disrupting the initiation
+and elongation steps in protein synthesis. It is bactericidal due to
+effects that are not fully understood.</li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -760,7 +824,7 @@ div.tocify {
 <td style="vertical-align: top; text-align: left; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Died</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td><td style="vertical-align: top; text-align: right; white-space: normal; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">14</td></tr>
 </table>
 
-<p>Prueba de asociación" preparar los datos</p>
+<p>Prueba de asociación” preparar los datos</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>R1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">51</span>,<span class="dv">38</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>R2<span class="ot">=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">14</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -782,7 +846,10 @@ div.tocify {
 ## 
 ## data:  ANTIBi
 ## X-squared = 7.3761, df = 1, p-value = 0.00661</code></pre>
-<p>The results is that the Antibiotics appear to have an effect in reducing the death rate of patients. Patients which took the antibiotics have a lesser probability of death as the p value is less than &lt;0.05.</p>
+<p>The results is that the Antibiotics appear to have an effect in
+reducing the death rate of patients. Patients which took the antibiotics
+have a lesser probability of death as the p value is less than
+&lt;0.05.</p>
 </div>
 </div>
 

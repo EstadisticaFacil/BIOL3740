@@ -13,8 +13,8 @@
 
 <title>Introduccion_RMarkdown.knit</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -48,6 +48,7 @@
 
 
 
+
 <link rel="stylesheet" href="tutorial.css" type="text/css" />
 
 
@@ -72,6 +73,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -297,7 +301,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -313,7 +317,7 @@ div.tocify {
   <a href="schedule.html">Calendario</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Instalación básica
      
     <span class="caret"></span>
@@ -334,7 +338,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Temas
      
     <span class="caret"></span>
@@ -403,7 +407,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Ejercicio
      
     <span class="caret"></span>
@@ -442,7 +446,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Los Datos
      
     <span class="caret"></span>
@@ -473,7 +477,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2021-09-12&quot;</code></pre>
+<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div id="introducción-a-rmarkdown" class="section level1">
 <h1>Introducción a RMarkdown</h1>
@@ -481,28 +485,38 @@ div.tocify {
 </div>
 <div id="responsabilidad-del-estudiante" class="section level1">
 <h1>Responsabilidad del estudiante</h1>
-<p><span style="color: red;">EL ESTUDIANTE es COMPLETAMENTE RESPONSABLE</span> de ver estos videos y entender como usar la plataforma.</p>
-<p>Mi sugerencias es que deberían ver los vídeos abajo múltiples veces y después compartir con otros estudiantes y hablar de los que entendió y aprendió.</p>
+<p><span style="color: red;">EL ESTUDIANTE es COMPLETAMENTE
+RESPONSABLE</span> de ver estos videos y entender como usar la
+plataforma.</p>
+<p>Mi sugerencias es que deberían ver los vídeos abajo múltiples veces y
+después compartir con otros estudiantes y hablar de los que entendió y
+aprendió.</p>
 <hr />
 </div>
 <div id="como-trabajar-con-un-archivo-rmarkdown" class="section level1">
 <h1>Como Trabajar con un archivo RMarkdown</h1>
-<p>El siguiente modulo es para una introducción a la plataforma R y RMarkdown.</p>
-<p>Vean los siguientes videos en Youtube para aprender los básico de RMarkdown.</p>
+<p>El siguiente modulo es para una introducción a la plataforma R y
+RMarkdown.</p>
+<p>Vean los siguientes videos en Youtube para aprender los básico de
+RMarkdown.</p>
 <div id="video-1" class="section level2">
 <h2>Video #1</h2>
-<p><a href="https://www.youtube.com/watch?v=IPeOWx8KYkI">Manejo del Markdown dentro de RStudio</a></p>
+<p><a href="https://www.youtube.com/watch?v=IPeOWx8KYkI">Manejo del
+Markdown dentro de RStudio</a></p>
 <hr />
 </div>
 <div id="video-2" class="section level2">
 <h2>Video #2</h2>
-<p><a href="https://www.youtube.com/watch?v=y6XdzBNC0_0">Aprende Markdown RÁPIDO!</a></p>
+<p><a href="https://www.youtube.com/watch?v=y6XdzBNC0_0">Aprende
+Markdown RÁPIDO!</a></p>
 <hr />
-<p>Vaya al siguiente website y explora la pestaña de <strong>Sintaxis Markdown</strong></p>
+<p>Vaya al siguiente website y explora la pestaña de <strong>Sintaxis
+Markdown</strong></p>
 <p><a href="https://markdown.es">El website de Markdown</a></p>
 <hr />
 <p>Aquí un otro video en ingles</p>
-<p><a href="https://www.youtube.com/watch?v=DNS7i2m4sB0">R Markdown with RStudio</a></p>
+<p><a href="https://www.youtube.com/watch?v=DNS7i2m4sB0">R Markdown with
+RStudio</a></p>
 </div>
 </div>
 
