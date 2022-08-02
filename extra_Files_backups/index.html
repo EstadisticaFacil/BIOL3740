@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="BIOMETRIA" />
+
+
+<title>Bienvenido a BIOL 3740-002</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="tutorial.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BIOL3740:Biometria</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Descripcion.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Calendario</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Instalación básica
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Instalar-R-RStudio.html">Instalar R y RStudio</a>
+    </li>
+    <li>
+      <a href="Introduccion_RMarkdown.html">RMarkdown</a>
+    </li>
+    <li>
+      <a href="Codigos_basicos_en_R.html">R y Cheatsheets</a>
+    </li>
+    <li>
+      <a href="R_basico.html">R Básico #2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Los Temas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="T1_Intro.html">T1 Introducción a la Estadística</a>
+    </li>
+    <li>
+      <a href="T1a_Poblacion_Muestra.html">T1a Población, Muestreo y Sesgo</a>
+    </li>
+    <li>
+      <a href="T1b_Inferencias_hipotesis.html">T1b Inferencias y hipotesis</a>
+    </li>
+    <li>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
+    </li>
+    <li>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
+    </li>
+    <li>
+      <a href="T4_Medidas_dispersion.html">T4 Medidas de Dispersión</a>
+    </li>
+    <li>
+      <a href="T4a_Estadistica_descriptiva.html">T4a Estadística Descriptiva</a>
+    </li>
+    <li>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
+    </li>
+    <li>
+      <a href="T6_supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
+    </li>
+    <li>
+      <a href="T7_Frecuencias.html">T7 Pruebas de Bondad de Ajuste</a>
+    </li>
+    <li>
+      <a href="T8_Distribucion_Normal.html">T8 La Distribución Normal</a>
+    </li>
+    <li>
+      <a href="T9_Pruebas_una_muestra.html">T9 Prueba de una muestra</a>
+    </li>
+    <li>
+      <a href="T9a_Pruebas_t-Pareados.html">T9a Prueba-t Pareados</a>
+    </li>
+    <li>
+      <a href="T10_Pruebas_t_Independiente.html">T10 Prueba-t No pareados</a>
+    </li>
+    <li>
+      <a href="T11_ANOVA.html">T11 ANOVA</a>
+    </li>
+    <li>
+      <a href="T13_Correlacion.html">T13 Correlación y Covarianza</a>
+    </li>
+    <li>
+      <a href="T14_Regression.html">T14 Regressión</a>
+    </li>
+    <li>
+      <a href="T14a_Regression_logistica.html">T14a Regressión Logística</a>
+    </li>
+    <li>
+      <a href="T15_Selecionar_Pruebas.html">T15 Selección de pruebas corectas</a>
+    </li>
+    <li>
+      <a href="T16_AKAIKE.html">T16 Criterio de Información</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Ejercicio
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Ejerc_1_R4DS.html">Ejercico Introducción</a>
+    </li>
+    <li>
+      <a href="Ejerc_2_R4DS.html">Ejercico Gráficos</a>
+    </li>
+    <li>
+      <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
+    </li>
+    <li>
+      <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
+    </li>
+    <li>
+      <a href="Ejerc_Tend_Central_Dispersion.html">Ejercicio de Tendendia Central y Dispersión</a>
+    </li>
+    <li>
+      <a href="Exam1.html">Preguntas para examen num. 1</a>
+    </li>
+    <li>
+      <a href="Norm7.html">Ejercicio Distribución Normal</a>
+    </li>
+    <li>
+      <a href="Ejercicio_Pruebas_Frecu.html">Ejercicio Pruebas de Frecuencia</a>
+    </li>
+    <li>
+      <a href="Ejerc_5_Correlacion.html">Ejercicio de Correlación</a>
+    </li>
+    <li>
+      <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Los Datos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Archivos_de_Datos.html">Archivos de Datos</a>
+    </li>
+    <li>
+      <a href="COVID-19.html">COVID-19</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Bienvenido a BIOL 3740-002</h1>
+<h4 class="author">BIOMETRIA</h4>
+
+</div>
+
+
+<meta name="google-site-verification" content="sqB47_Ch7slOBSvYTr_Py8z8e57699jN-QJN7JqdvVI" />
+<p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
+<hr />
+<p><strong>Instructor:</strong> Raymond L. Tremblay, PhD</p>
+<p><strong>Oficina</strong>: NL 104<br />
+<strong>Teléfono</strong>: (787) 850-0000 (dept de biología)<br />
+<strong>Coreo electrónico</strong>: raymond.tremblay_at_upr_dot_edu</p>
+<hr />
+<div id="horario-de-clase" class="section level3">
+<h3>Horario de clase</h3>
+<p><strong>Presentación de temas y discusión</strong>: M, J at 9:00-10:20am (80 mins) (NOTE: Necesita traer su laptop!)</p>
+<p><strong>Hora de consulta con Estudiantes</strong>:<br />
+- Martes y Jueves de 1:00 a 3:00pm (NL 104) o por MSTeam “Horas de Consulta”.</p>
+<hr />
+</div>
+<div id="libro-obligatorio." class="section level2">
+<h2>Libro obligatorio.</h2>
+<p>Aquí dos sitios donde pueden conseguir el libro</p>
+<ul>
+<li><p><a href="https://www.amazon.com/Introductory-Biological-Statistics-Fourth-Havel/dp/1478638184/ref=sr_1_1?dchild=1&amp;keywords=Introductory+Biological+Statistics&amp;qid=1594323793&amp;s=books&amp;sr=1-1">Havel et al - Introductory Biological Statistics, 4 edition</a></p></li>
+<li><p><a href="https://www.vitalsource.com/referral?term=9781478639282">Havel et al - Introductory Biological Statistics, 4 edition</a></p></li>
+</ul>
+<div id="libros-sugeridos" class="section level3">
+<h3>Libros sugeridos</h3>
+<ul>
+<li><a href="https://r4ds.had.co.nz">Garrett Grolemund, Hadley Wickham. R for Data Science</a> En Ingles.</li>
+<li><a href="https://es.r4ds.hadley.nz">Garrett Grolemund, Hadley Wickham. R para Ciencia de Datos</a> En Español.</li>
+<li><a href="https://www.amazon.com/Gráficas-Versátiles-ggplot2-Análisis-Spanish-ebook/dp/B07P2Q87H2/ref=sr_1_1?dchild=1&amp;keywords=Graficas+versatiles&amp;qid=1591404029&amp;sr=8-1">Tremblay y Hernández-Serrano, 2018</a>.</li>
+</ul>
+<p>• Artículos revisados por pares serán asignados para fomentar el método de utilizar estas herramientas en ciencias.</p>
+<hr />
+</div>
+<div id="programados" class="section level3">
+<h3>Programados</h3>
+<ul>
+<li><a href="https://cran.r-project.org/">R- free statistical programming language</a></li>
+<li><a href="https://rstudio.com">RStudio</a></li>
+<li>MSExcel, Numbers o Google Sheet</li>
+</ul>
+<hr />
+</div>
+<div id="prerequisitos" class="section level3">
+<h3>Prerequisitos</h3>
+<ul>
+<li>BIOL 3011-3013: Biología General y Laboratorio primer semestre</li>
+<li>BIOL 3012-3014: Biología General y Laboratorio segundo semestre</li>
+</ul>
+<hr />
+</div>
+<div id="descripción-del-curso" class="section level3">
+<h3>Descripción del curso</h3>
+<p>Estudio de diferentes técnicas estadísticas con aplicación a la Biología. Se enfatizará en la estadística descriptiva, análisis de regresiones y correlaciones, pruebas de hipótesis paramétricas y no paramétricas y análisis de frecuencias y varianza. Se hará énfasis en los supuestos de las pruebas, para seleccionar cual método estadístico es adecuado para el diseño experimental y la distribución de los datos. Además, se utilizarán las computadoras como mecanismos para facilitar y agilizar el cómputo y análisis estadístico.</p>
+<hr />
+</div>
+<div id="objetivos-del-curso" class="section level3">
+<h3>Objetivos del curso</h3>
+<p>Al finalizar el curso el estudiante podrá:</p>
+<pre><code>1. Discutir la importancia de la estadística en los estudios biológicos.
+2. Ordenar datos biológicos en forma lógica.
+3. Diferenciar entre los diferentes tipos de datos biológicos.
+4. Diferenciar los diferentes tipos de escalas biológicas.
+5. Organizar y resumir datos en forma de tablas.
+6. Confeccionar polígonos de frecuencia.
+7. Creación de gráficas para demostrar patrones.
+8. Hacer uso adecuado de las diferentes estadísticas descriptivas.
+9. Describir las diferentes medidas de tendencia central.
+10. Basado en las medidas de tendencia central, inferir algunas de las características de la muestra bajo estudio.
+11. Determinar cuándo se deben calcular en forma grupal las medidas de tendencia central y dispersión de la muestra.
+12. Calcular probabilidades en situaciones específicas.
+13. Establecer la diferencia entre distribuciones discretas y continuas.
+14. Formular una hipótesis nula y alterna, adecuada para una situación en particular.
+15. Distinguir de acuerdo al tipo de datos recolectados cuándo utilizar pruebas paramétricas o pruebas no paramétricas.
+16. Evaluar los supuestos de las pruebas, tal como distribución normal e igualdad de varianza
+17. Evaluar la hipótesis nula y determinar el grado de significación de esta hipótesis haciendo uso de los diferentes análisis estadísticos.
+18. Confeccionar tablas de contingencia y establecer homogeneidad.
+19. Determinar cuándo se debe utilizar un análisis de regresión.
+20. Calcular coeficientes de regresión.
+21. Determinar intervalos de confianza y significación de una regresión.
+22. Calcular el coeficiente de correlación.
+23. Realizar comparaciones entre coeficientes de correlación simples.
+24. Desarrollar y analizar diseños experimentales utilizando técnicas de muestreo y recolección de datos apropiados.
+25. Determinar el error de muestra.
+26. Conocer y aplicar las pruebas básicas en estadísticas.
+27. Evaluar situaciones experimentales y poder desarrollar un diseño experimental adecuado y lógico para analizar el problema y llegar a conclusiones.
+28. Se hará énfasis en el uso de programados estadísticos para calcular los índices y probar hipótesis. Los programa de computadora puede incluir R, SPSS, Minitab o otros.  </code></pre>
+<hr />
+</div>
+<div id="puntuación" class="section level3">
+<h3>Puntuación:</h3>
+<p>Este curso sera evaluado con los siguiente items:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Item</th>
+<th align="right">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ejercicios práctico (4-6 total)</td>
+<td align="right">30%</td>
+</tr>
+<tr class="even">
+<td align="left">Pruebas cortas y participación</td>
+<td align="right">20%</td>
+</tr>
+<tr class="odd">
+<td align="left">Examen parcial # 1 (fecha TBD)</td>
+<td align="right">20%</td>
+</tr>
+<tr class="even">
+<td align="left">Examen parcial # 2 (fecha TBD)</td>
+<td align="right">20%</td>
+</tr>
+<tr class="odd">
+<td align="left">Examen Final (fecha TBD)</td>
+<td align="right">10%</td>
+</tr>
+</tbody>
+</table>
+<p>NOTE: Escala de Notas:</p>
+<ul>
+<li>A (100 to 90)</li>
+<li>B (89 to 80)</li>
+<li>C (79 to 70)</li>
+<li>D (69 to 60)</li>
+<li>F (&lt; 60)</li>
+</ul>
+<hr />
+</div>
+<div id="examenes" class="section level3">
+<h3>Examenes:</h3>
+<p>Habrá dos examen parciales y un examen final <em>comprensivo</em>. Estos exámenes serán de selecciones múltiples, pareo, respuesta corta, y análisis de conceptos. El examen final será comprensivo (incluye todos los temas del semestre). En este examen final se hará énfasis en la comprensión y aplicaciones de los supuestos de las pruebas y la capacidad de seleccionar la prueba correcta basado en el diseño experimental y los supuestos.</p>
+<p><span style="color: red;">Es obligatorio tener la camera prendida durante <strong>todo el exámen</strong>. No es permitido usar el celular, Ud. tendrá que demostrar que el celular este detrás de uds antes de comenzar el examen</span></p>
+<hr />
+</div>
+<div id="conferencias" class="section level3">
+<h3>Conferencias</h3>
+<p>En la clase las notas serán basado primeramente en la participación y algunas pruebas cortas. Su participación es esencial para el aprendizaje (y para un ambiente positivo). Aprender <em>NO</em> es un proceso pasivo: los estudiantes deben participar haciendo preguntas y discutir el material con su conocimiento anterior (Su bagaje de conocimiento).</p>
+<hr />
+</div>
+<div id="ejercicios" class="section level3">
+<h3>Ejercicios</h3>
+<p>Los ejercicios están enfocado en la aplicación de conceptos y métodos discutido en la clase y solución de problemas. Se hará un esfuerza de usar datos reales para demostrar como trabajar con los análisis, tablas, y gráficos en R, RStudio y RMarkdown. Típicamente, tendrán solamente una semana para hacer los ejercicios y entregarlos en formato <em>.html</em>.</p>
+<hr />
+</div>
+<div id="faltar-a-clase-y-examen" class="section level3">
+<h3>Faltar a clase y examen:</h3>
+<p><em>Los trabajos cortos y pruebas cortas NO se reponen</em>. Si falta a la clase es su responsabilidad hablar con los otros estudiantes para saber lo que se discutió en la clase. Los examen se reponen solamente por una escusa valida.</p>
+<hr />
+</div>
+<div id="derechos-de-estudiantes-con-impedimentos" class="section level3">
+<h3>Derechos de Estudiantes con Impedimentos</h3>
+<p>La UPR-Humacao cumple con las leyes ADA (Americans with Disabilities Act) y 51 (Servicios Educativos Integrales para Personas con Impedimentos) para garantizar igualdad en el acceso a la educación y servicios. Estudiantes con impedimentos: informe al (la) profesor(a) de cada curso sobre sus necesidades especiales y/o de acomodo razonable para el curso, en la tarjeta de información de la primera semana y visite la Oficina de Servicios para la Población con Impedimentos (SERPI) a la brevedad posible. Se mantendrá la confidencialidad.</p>
+<hr />
+</div>
+<div id="integridad-académica" class="section level3">
+<h3>Integridad académica</h3>
+<p>La Universidad de Puerto Rico promueve los más altos estándares de integridad académica y científica. El Artículo 6.2 del Reglamento General de Estudiantes de la Universidad de Puerto Rico (Certificación Núm. 13, 2009-2010, de la Junta de Síndicos) establece que <span style="color: red;">la deshonestidad académica incluye, pero no se limita a: acciones fraudulentas, la obtención de notas o grados académicos valiéndose de falsas o fraudulentas simulaciones, copiar total o parcialmente la labor académica de otra persona, plagiar total o parcialmente el trabajo de otra persona, copiar total o parcialmente las respuestas de otra persona a las preguntas de un examen, haciendo o consiguiendo que otro tome en su nombre cualquier prueba o examen oral o escrito, así como la ayuda o facilitación para que otra persona incurra en la referida conducta</span>. Cualquiera de estas acciones estará sujeta a sanciones disciplinarias en conformidad con el procedimiento disciplinario establecido en el Reglamento General de Estudiantes de la UPR vigente.</p>
+<hr />
+</div>
+<div id="comentario-sobre-grabar-videos-yo-audio-de-las-clases" class="section level3">
+<h3>Comentario sobre grabar videos y/o audio de las clases</h3>
+<p>Los estudiantes no PUEDEN grabar la clase por forma de video o audio sin el permiso del profesor. Algunos estudiantes con necesidades especiales pueden hablar con el profesor para pedir el permiso. La solicitud y aprobación del permiso tiene que ser por escrito (por ejemplo por email).</p>
+<hr />
+</div>
+<div id="espacio-libre-de-acoso-sexual" class="section level3">
+<h3>Espacio libre de acoso sexual</h3>
+<p>La Universidad de Puerto Rico prohíbe el descrimen por razón de sexo y género en todas sus modalidades, incluyendo el hostigamiento sexual. Según la Política Institucional contra el hostigamiento sexual, en la Universidad de Puerto Rico, Cert. Núm. 130 (2014-2015) de la Junta de Gobierno, si un(a) estudiante está siendo o fue afectado por conductas relacionadas a hostigamiento sexual, puede acudir ante la Oficina del Procurador Estudiantil, el Decanato de Estudiantes o el Coordinador de Cumplimiento con Título IX para una orientación o presentar una querella.</p>
+<hr />
+</div>
+<div id="protocolo-de-la-clase" class="section level3">
+<h3>Protocolo de la Clase</h3>
+<p>Los teléfonos mobiles serán apagado durante la clase. Si necesita una calculadora traerla al salón. El teléfono no debería esta visible durante la clase al menos que pide permiso al instructor. Recuerda que que se usara computadoras portátiles en cada sesión.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

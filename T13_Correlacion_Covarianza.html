@@ -490,7 +490,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
+<pre><code>## [1] &quot;2022-08-02&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <pre class="r"><code>library(ggplot2)</code></pre>
 <p>Correlations and covariance</p>
@@ -577,11 +577,9 @@ head(dlf2)</code></pre>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.40e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.85</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
 </table>
 
-<div id="a-detour-in-the-murky-world-of-covariance"
-class="section level1">
+<div id="a-detour-in-the-murky-world-of-covariance" class="section level1">
 <h1>A detour in the Murky world of covariance</h1>
-<p>The objective is to evaluate whether variables covary, that is if the
-variable explain in part the part of the other.</p>
+<p>The objective is to evaluate whether variables covary, that is if the variable explain in part the part of the other.</p>
 <table>
 <thead>
 <tr class="header">
@@ -620,21 +618,13 @@ variable explain in part the part of the other.</p>
 </tr>
 </tbody>
 </table>
-<div
-id="understanding-covariance-one-needs-to-understand-variance-equation."
-class="section level2">
-<h2>Understanding covariance one needs to understand variance
-equation.</h2>
-<p>[Variance of single variable] <span class="math display">\[s^{ 2
-}=\frac { \sum { { ({ x }_{ i }-\bar { x } ) }^{ 2 } }  }{ n-1
-}\]</span></p>
+<div id="understanding-covariance-one-needs-to-understand-variance-equation." class="section level2">
+<h2>Understanding covariance one needs to understand variance equation.</h2>
+<p>[Variance of single variable] <span class="math display">\[s^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x } ) }^{ 2 } }  }{ n-1 }\]</span></p>
 </div>
-<div id="while-the-covariance-is-the-cross-product-of-the-deviation"
-class="section level2">
+<div id="while-the-covariance-is-the-cross-product-of-the-deviation" class="section level2">
 <h2>While the Covariance is the cross product of the deviation</h2>
-<p>[Covariance] <span class="math display">\[cov(x,y)=\frac { \sum { ({
-x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1 }
-\]</span></p>
+<p>[Covariance] <span class="math display">\[cov(x,y)=\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1 } \]</span></p>
 <pre class="r"><code>x_val=c(5,4,4,6,8)
 y_val=c(8,9,10,13,15)
 Person=c(1,2,3,4,5)
@@ -662,25 +652,16 @@ df</code></pre>
   geom_hline(aes(yintercept=mean(df$x_val)),colour=&quot;Blue&quot;)+
 geom_hline(aes(yintercept=mean(df$y_val)),colour=&quot;red&quot;)</code></pre>
 <p><img src="T13_Correlacion_Covarianza_files/figure-html/variance-1.png" width="672" /></p>
-<p>Because in most cases variables are collected having different
-measurement scales we have to standardize using the standard
-deviation</p>
+<p>Because in most cases variables are collected having different measurement scales we have to standardize using the standard deviation</p>
 </div>
-<div id="thus-we-have-to-use-the-correlation-coefficient"
-class="section level2">
+<div id="thus-we-have-to-use-the-correlation-coefficient" class="section level2">
 <h2>Thus we have to use the Correlation Coefficient:</h2>
 </div>
-<div
-id="this-most-common-is-the-pearson-product-moment-correlation-coefficient-or-pearson-correlation-coeffcient."
-class="section level2">
-<h2>This most common is the Pearson product-moment correlation
-coefficient or Pearson correlation coeffcient.</h2>
-<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{
-y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar {
-y } _{ i }) }  }{ n-1{ s }_{ x }{ s }_{ y } }\]</span></p>
+<div id="this-most-common-is-the-pearson-product-moment-correlation-coefficient-or-pearson-correlation-coeffcient." class="section level2">
+<h2>This most common is the Pearson product-moment correlation coefficient or Pearson correlation coeffcient.</h2>
+<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1{ s }_{ x }{ s }_{ y } }\]</span></p>
 <p>The function to calculate the correlation coefficient is “cor”</p>
-<p>The function to determine if the correlation vetween the 2 variables
-is significant (in other words, different from zero) is “cor.test”.</p>
+<p>The function to determine if the correlation vetween the 2 variables is significant (in other words, different from zero) is “cor.test”.</p>
 <pre class="r"><code>cor(df$x_val, df$y_val)</code></pre>
 <pre><code>## [1] 0.8711651</code></pre>
 <pre class="r"><code>cor.test(df$x_val, df$y_val)</code></pre>
@@ -695,16 +676,12 @@ is significant (in other words, different from zero) is “cor.test”.</p>
 ## sample estimates:
 ##       cor 
 ## 0.8711651</code></pre>
-<p>The correlation of coefficient square <span class="math inline">\({ R
-}^{ 2 }\)</span> (known as the coefficient of determination) is a
-measure of the amount of variability in one variable that is shared by
-the other.</p>
+<p>The correlation of coefficient square <span class="math inline">\({ R }^{ 2 }\)</span> (known as the coefficient of determination) is a measure of the amount of variability in one variable that is shared by the other.</p>
 <p>Simple table of correlation tests</p>
 <ol style="list-style-type: decimal">
 <li>Pearson test, assumes normal bivariate distribution,</li>
 <li>Spearman test, no assumption of normality,</li>
-<li>Kendall test, no assumption of normality, better when sample size
-are small</li>
+<li>Kendall test, no assumption of normality, better when sample size are small</li>
 </ol>
 <p>Let us a look at Anxiety and exam results.</p>
 <p>Choose the data set, examData</p>
@@ -744,10 +721,7 @@ head(examData)</code></pre>
 ## sample estimates:
 ##        cor 
 ## -0.4409934</code></pre>
-<p>One the basic assumption of the Pearson correlation is that the data
-be bivariate normally distributed. NOTE: WHAT WE MEAN ABOUT THE
-“ASSUMPTION” IS THAT WE ARE CONFIDENT THAT THE UNIVERSE IS NORMALLY
-DISTRIBUTED, NOT NECESARILY THAT OUR DATA ARE (SUBSET).</p>
+<p>One the basic assumption of the Pearson correlation is that the data be bivariate normally distributed. NOTE: WHAT WE MEAN ABOUT THE “ASSUMPTION” IS THAT WE ARE CONFIDENT THAT THE UNIVERSE IS NORMALLY DISTRIBUTED, NOT NECESARILY THAT OUR DATA ARE (SUBSET).</p>
 <pre class="r"><code>library(knitr)
 library(png)
 
@@ -757,10 +731,7 @@ include_graphics(img3_path)</code></pre>
 </div>
 <div id="what-does-that-mean" class="section level2">
 <h2>What does that mean</h2>
-<p>Here is a really cool graph that does the figures and most of the
-analysis in one one shot. The package GGally, if you omit
-“ggplot2::aes(colour=Gender)”, the figure will be black and white, and
-not seperated by gender.</p>
+<p>Here is a really cool graph that does the figures and most of the analysis in one one shot. The package GGally, if you omit “ggplot2::aes(colour=Gender)”, the figure will be black and white, and not seperated by gender.</p>
 <pre class="r"><code>library(GGally)
 head(examData)</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:graphic 2">
@@ -782,8 +753,7 @@ head(examData)</code></pre>
 
 <pre class="r"><code>ggpairs(examData, ggplot2::aes(colour=Gender))</code></pre>
 <p><img src="T13_Correlacion_Covarianza_files/figure-html/graphic%202-1.png" width="672" /></p>
-<p>In this code I removed the first column, which is just the code of
-the individual, by examData[,c(2:5)], by removing column #1.</p>
+<p>In this code I removed the first column, which is just the code of the individual, by examData[,c(2:5)], by removing column #1.</p>
 <pre class="r"><code>ggpairs(examData[,c(2:5)], ggplot2::aes(colour=Gender)) </code></pre>
 <p><img src="T13_Correlacion_Covarianza_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ol style="list-style-type: decimal">
@@ -827,12 +797,9 @@ rcorr(as.matrix(examData[,c(&quot;Exam&quot;,&quot;Anxiety&quot;,&quot;Revise&qu
 ## Exam          0       0    
 ## Anxiety  0            0    
 ## Revise   0    0</code></pre>
-<p>When the data do not comply with the assumption of normality you need
-to use Spearman or Kendall</p>
-<p>Choose “The Biggest Liar.csv” data set, contest, where this occurs
-every year in a pub.</p>
-<p>World’s Biggest Liar is an annual competition for telling lies, held
-in Cumbria, England at the Stanton Inn Bridge Pub.</p>
+<p>When the data do not comply with the assumption of normality you need to use Spearman or Kendall</p>
+<p>Choose “The Biggest Liar.csv” data set, contest, where this occurs every year in a pub.</p>
+<p>World’s Biggest Liar is an annual competition for telling lies, held in Cumbria, England at the Stanton Inn Bridge Pub.</p>
 <pre class="r"><code>library(knitr)
 library(png)
 
@@ -874,9 +841,7 @@ head(liarData)</code></pre>
 <h1>EXTRA Stuff</h1>
 <div id="bootstrapping-correlation" class="section level2">
 <h2>Bootstrapping Correlation</h2>
-<p>THERE is no need to make assumptions of the distribution, you can let
-your data speak for itself, and construct the correlation coeffcients
-and 95% confidence interval.</p>
+<p>THERE is no need to make assumptions of the distribution, you can let your data speak for itself, and construct the correlation coeffcients and 95% confidence interval.</p>
 <p>We first create a function</p>
 <pre class="r"><code>bootTau=function(liarData,i)cor(liarData$Position[i],liarData$Creativity[i],
                                 use=&quot;complete.obs&quot;,method = &quot;kendall&quot;)</code></pre>

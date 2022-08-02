@@ -573,7 +573,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
+<pre><code>## [1] &quot;2022-08-02&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <p>Activar los Paquetes</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)  <span class="co"># paquete para visualizar los datos</span></span>
@@ -589,11 +589,7 @@ div.tocify {
 <hr />
 <div id="estadistica-descriptiva" class="section level1">
 <h1>Estadistica descriptiva</h1>
-<p>En los módulos de “Medidas de Tendencias Central” y “Medidas de
-Dispersión” se explicó donde proviene estos parámetros y como calcular
-estos. En este módulo aprenderemos diferentes funciones como calcular
-estos parámetros individualmente y herramienta como calcular todos y
-otros parámetros todo juntos.</p>
+<p>En los módulos de “Medidas de Tendencias Central” y “Medidas de Dispersión” se explicó donde proviene estos parámetros y como calcular estos. En este módulo aprenderemos diferentes funciones como calcular estos parámetros individualmente y herramienta como calcular todos y otros parámetros todo juntos.</p>
 <p>Los indices que veremos aquí incluye</p>
 <ul>
 <li>el promedio</li>
@@ -605,11 +601,7 @@ otros parámetros todo juntos.</p>
 <li>el indice Oblicuidad (en ingles “Skewness”)</li>
 <li>el indice de Curtosis ( en ingles “Kurtosis”)</li>
 </ul>
-<p>Aqui creamos un conjunto de datos de 100 datos con un promedio de 100
-y una desviación estándar de 10. Nota que la función
-<strong>set.seed()</strong> es que el comienzo la simulación sea igual a
-cada vez que se corre, y se el mismo resultado. Esto se añade solamente
-cuando uno esta enseñando y que los resultados sean consistente.</p>
+<p>Aqui creamos un conjunto de datos de 100 datos con un promedio de 100 y una desviación estándar de 10. Nota que la función <strong>set.seed()</strong> es que el comienzo la simulación sea igual a cada vez que se corre, y se el mismo resultado. Esto se añade solamente cuando uno esta enseñando y que los resultados sean consistente.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">10</span>) <span class="co">#(100 datos, x=100, sd=10)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">data.frame</span>(x)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x)</span></code></pre></div>
@@ -640,26 +632,15 @@ cuando uno esta enseñando y que los resultados sean consistente.</p>
 <pre><code>## [1] 123.6114</code></pre>
 <hr />
 <ol style="list-style-type: decimal">
-<li>Quiz 1: Usa R y construye una lista o data frame con los siguientes
-datos y calcular el promedio. Contesta en <strong>MSTeam Form</strong>
-con tu respuesta. 4, 6, 7, 3, 9, 10, 19, 52.</li>
+<li>Quiz 1: Usa R y construye una lista o data frame con los siguientes datos y calcular el promedio. Contesta en <strong>MSTeam Form</strong> con tu respuesta. 4, 6, 7, 3, 9, 10, 19, 52.</li>
 </ol>
 <hr />
 <div id="analisis-con-muchos-datos" class="section level2">
 <h2>Analisis con muchos datos</h2>
-<p>Usaremos datos que hemos visto en el modulo Producción de
-Gráficos.</p>
-<p>Se necesita el archivo <strong>DownloadFestival</strong> que se
-encuentra debajo la pestaña de <strong>Los Datos</strong>. El ejemplo
-proviene de Field et al. (2014).</p>
+<p>Usaremos datos que hemos visto en el modulo Producción de Gráficos.</p>
+<p>Se necesita el archivo <strong>DownloadFestival</strong> que se encuentra debajo la pestaña de <strong>Los Datos</strong>. El ejemplo proviene de Field et al. (2014).</p>
 <blockquote>
-<p>Una bióloga estaba preocupado por los posibles efectos sobre la salud
-de los que particpan a un festivales de música. Entonces, un año fue al
-Download Festival en el Reino Unido (Download Festival UK). Ella midió
-la higiene del los que participaron al concierto n= 810 durante el
-festival de 3 días. Cada día intentaba encontrar a todas las personas
-que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el
-nivel de limpieza por como olia los participantes</p>
+<p>Una bióloga estaba preocupado por los posibles efectos sobre la salud de los que particpan a un festivales de música. Entonces, un año fue al Download Festival en el Reino Unido (Download Festival UK). Ella midió la higiene del los que participaron al concierto n= 810 durante el festival de 3 días. Cada día intentaba encontrar a todas las personas que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el nivel de limpieza por como olia los participantes</p>
 </blockquote>
 <blockquote>
 <ul>
@@ -695,13 +676,7 @@ nivel de limpieza por como olia los participantes</p>
 </div>
 <div id="remover-los-na-del-análisis" class="section level1">
 <h1>Remover los <strong>NA</strong> del análisis</h1>
-<p>Con los datos de los participantes al festival como en algunos diá
-hay participantes donde no tienen los datos se añadió un
-<strong>NA</strong>, es estos casos para que el análisis se logra hay
-que añadir a la función <strong>na.rm=TRUE</strong> que significa
-remover la <strong>NA</strong>. Para dar se cuenta remueve
-<strong>na.rm=TRUE</strong> cuando se usa el “día2” o “día3”, y evalúa
-que pasa.</p>
+<p>Con los datos de los participantes al festival como en algunos diá hay participantes donde no tienen los datos se añadió un <strong>NA</strong>, es estos casos para que el análisis se logra hay que añadir a la función <strong>na.rm=TRUE</strong> que significa remover la <strong>NA</strong>. Para dar se cuenta remueve <strong>na.rm=TRUE</strong> cuando se usa el “día2” o “día3”, y evalúa que pasa.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dlf<span class="sc">$</span>day2, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="co"># na.rm= na remove</span></span></code></pre></div>
 <pre><code>## [1] 0.9609091</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(dlf<span class="sc">$</span>day1, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
@@ -714,27 +689,14 @@ que pasa.</p>
 <pre><code>## [1] 1.79</code></pre>
 <hr />
 <ol start="2" style="list-style-type: decimal">
-<li>Quiz 2: Usa R y construye una lista o data frame con los siguientes
-datos y calcular el promedio. Contesta en <strong>MSTeam Form</strong>
-con tu respuesta. Aquí son la cantidad de publicaciones por mis hermanos
-académicos, cual es la mediana, 1, NA, 1, 2, 73, 6, 2, 78, 16, 16, 87,
-5.</li>
+<li>Quiz 2: Usa R y construye una lista o data frame con los siguientes datos y calcular el promedio. Contesta en <strong>MSTeam Form</strong> con tu respuesta. Aquí son la cantidad de publicaciones por mis hermanos académicos, cual es la mediana, 1, NA, 1, 2, 73, 6, 2, 78, 16, 16, 87, 5.</li>
 </ol>
 <hr />
 </div>
 <div id="resumen-estadístico-de-una-variable" class="section level1">
 <h1>Resumen estadístico de una variable</h1>
-<p>Para ver los estadístico mencionado arriba (menos la moda, oblicuidad
-y curtosis) se puede usar la función <strong>stat.desc()</strong> del
-paquete <strong>pastecs</strong>. Para facilitar la lectura de los
-valores se usa la función “round(x, 3), el tres en esta caso representa
-la cantidad de valores significativos que se demuestra. Si no usamos
-<strong>round()</strong> los valores aparece en notación
-científicas.</p>
-<p>Nota que hay muchos más parámetros calculados. Aparece en la lista en
-orden el valor mínimo: min(), el valor máximo: max(), la mediana:
-median, el promedio: mean, la desviación estándar; std.dev entre
-otros.</p>
+<p>Para ver los estadístico mencionado arriba (menos la moda, oblicuidad y curtosis) se puede usar la función <strong>stat.desc()</strong> del paquete <strong>pastecs</strong>. Para facilitar la lectura de los valores se usa la función “round(x, 3), el tres en esta caso representa la cantidad de valores significativos que se demuestra. Si no usamos <strong>round()</strong> los valores aparece en notación científicas.</p>
+<p>Nota que hay muchos más parámetros calculados. Aparece en la lista en orden el valor mínimo: min(), el valor máximo: max(), la mediana: median, el promedio: mean, la desviación estándar; std.dev entre otros.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stat.desc</span>(dlf[,<span class="fu">c</span>(<span class="st">&quot;day1&quot;</span>)])</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:summary function">
 <col><tr>
@@ -805,12 +767,9 @@ otros.</p>
 
 <hr />
 </div>
-<div id="resumen-estadístico-de-multiples-variables"
-class="section level1">
+<div id="resumen-estadístico-de-multiples-variables" class="section level1">
 <h1>Resumen Estadístico de multiples variables</h1>
-<p>Si uno quiere evaluar múltiples variables continua todas juntos se
-puede usar la misma función pero el componente <strong>c()</strong> se
-añade todas las variables de interés.</p>
+<p>Si uno quiere evaluar múltiples variables continua todas juntos se puede usar la misma función pero el componente <strong>c()</strong> se añade todas las variables de interés.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">stat.desc</span>(dlf[,<span class="fu">c</span>(<span class="st">&quot;day1&quot;</span>,<span class="st">&quot;day2&quot;</span>,<span class="st">&quot;day3&quot;</span>)], <span class="at">basic=</span><span class="cn">FALSE</span>,<span class="at">norm=</span><span class="cn">TRUE</span>), <span class="at">digits=</span><span class="dv">3</span>) <span class="co"># round reduce a 3 valores significativo</span></span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-6">
 <col><col><col><tr>
@@ -845,33 +804,18 @@ añade todas las variables de interés.</p>
 
 <hr />
 <ol start="3" style="list-style-type: decimal">
-<li>Quiz 3: Usa R usa el data.frame <strong>Camas_Hospital</strong> en
-el paquete <strong>ggversa</strong>. Contesta en <strong>MSTeam
-Form</strong> con tu respuesta. Selecciona la variable
-<strong>Camas</strong> que representa el “número de camas por 1000
-personas en muchos países. ¿Cual es el rango (range)?</li>
+<li>Quiz 3: Usa R usa el data.frame <strong>Camas_Hospital</strong> en el paquete <strong>ggversa</strong>. Contesta en <strong>MSTeam Form</strong> con tu respuesta. Selecciona la variable <strong>Camas</strong> que representa el “número de camas por 1000 personas en muchos países. ¿Cual es el rango (range)?</li>
 </ol>
 <hr />
 </div>
 <div id="los-cuantiles" class="section level1">
 <h1>Los Cuantiles</h1>
-<p>Los cuantiles son los valores a intervalos específicos de una
-variable aleatoria continua. Los cuantiles son frecuentemente una mejor
-interpretación de la distribución cuando los valores no tienen una
-distribución normal. Típicamente, la distribución se divide en 4 partes
-con las siguientes partes (los cuantiles 0.25, 0.50 = la mediana, 0.75)
-y se define como <strong>cuartiles</strong>. Para meas detalle pueden
-ver el siguiente enlace <a href="https://en.wikipedia.org/wiki/Quantile"
-class="uri">https://en.wikipedia.org/wiki/Quantile</a>.</p>
-<p>En el siguiente ejemplo se demuestra como tulizar la función
-<strong>quantiles</strong> y seleccionar los cuantiles deseados con el
-comopnente de <strong>probs=c(x,x,x)</strong>.</p>
+<p>Los cuantiles son los valores a intervalos específicos de una variable aleatoria continua. Los cuantiles son frecuentemente una mejor interpretación de la distribución cuando los valores no tienen una distribución normal. Típicamente, la distribución se divide en 4 partes con las siguientes partes (los cuantiles 0.25, 0.50 = la mediana, 0.75) y se define como <strong>cuartiles</strong>. Para meas detalle pueden ver el siguiente enlace <a href="https://en.wikipedia.org/wiki/Quantile" class="uri">https://en.wikipedia.org/wiki/Quantile</a>.</p>
+<p>En el siguiente ejemplo se demuestra como tulizar la función <strong>quantiles</strong> y seleccionar los cuantiles deseados con el comopnente de <strong>probs=c(x,x,x)</strong>.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(dlf<span class="sc">$</span>day1,<span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##     5%    10%    25%    50%    75%    95%    99% 
 ## 0.5945 0.8490 1.3125 1.7900 2.2300 2.9055 3.3173</code></pre>
-<p>Se puede usar también la función <strong>describe</strong> en el
-paquete <strong>pshych</strong> que le da automáticamente estos
-cuantiles.</p>
+<p>Se puede usar también la función <strong>describe</strong> en el paquete <strong>pshych</strong> que le da automáticamente estos cuantiles.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(dlf<span class="sc">$</span>day1)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
 <col><col><col><col><col><col><col><col><col><col><col><col><col><tr>
@@ -884,17 +828,9 @@ cuantiles.</p>
 </div>
 <div id="el-indice-de-oblicuidad-skewness" class="section level1">
 <h1>El indice de Oblicuidad: Skewness</h1>
-<p>El indice de oblicuidad es un indice que describe la simetría en una
-distribución alrededor de su promedio. Otra manera de describirlo es el
-tercer momento, por que los datos se poner a un exponente elevado al
-^3.</p>
-<p>La formula es la siguiente. Lo que se darán cuenta es muy similar a
-la varianza pero note que las diferencias se poner al ^3. Para meas
-información vea este enlace <a
-href="https://en.wikipedia.org/wiki/Skewness"
-class="uri">https://en.wikipedia.org/wiki/Skewness</a>.</p>
-<p><span
-class="math display">\[\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^3\]</span></p>
+<p>El indice de oblicuidad es un indice que describe la simetría en una distribución alrededor de su promedio. Otra manera de describirlo es el tercer momento, por que los datos se poner a un exponente elevado al ^3.</p>
+<p>La formula es la siguiente. Lo que se darán cuenta es muy similar a la varianza pero note que las diferencias se poner al ^3. Para meas información vea este enlace <a href="https://en.wikipedia.org/wiki/Skewness" class="uri">https://en.wikipedia.org/wiki/Skewness</a>.</p>
+<p><span class="math display">\[\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^3\]</span></p>
 <p>Primero voy a crear tres conjuntos de datos</p>
 <ul>
 <li>con distribución normal</li>
@@ -934,9 +870,7 @@ class="math display">\[\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigm
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.665</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.158</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.86&nbsp;</td></tr>
 </table>
 
-<p>El próximo paso es apilar cada columna una sobre la otra. La razón
-que queremos esto es que deseamos reproducir las variables en un mismo
-gráfico</p>
+<p>El próximo paso es apilar cada columna una sobre la otra. La razón que queremos esto es que deseamos reproducir las variables en un mismo gráfico</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df2<span class="ot">=</span>df<span class="sc">%&gt;%</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">&quot;Distribución&quot;</span>, <span class="at">value=</span><span class="st">&quot;valor&quot;</span>, <span class="fu">c</span>(normal, obliz, obldr))</span>
@@ -953,30 +887,20 @@ gráfico</p>
 </table>
 
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unique(df2$Distribución) # función para ver el nombre de las variables en la columna Distribución</span></span></code></pre></div>
-<p>Ahora vamos a ver los datos un gráfico. Vemos que la distribución de
-los datos son muy diferentes, tanto la distribución en azul y verde
-están sesgado a unos valores y tienen una cola o valores más grande
-(azul) o pequeños (verde) que si fuese una distribución normal.</p>
+<p>Ahora vamos a ver los datos un gráfico. Vemos que la distribución de los datos son muy diferentes, tanto la distribución en azul y verde están sesgado a unos valores y tienen una cola o valores más grande (azul) o pequeños (verde) que si fuese una distribución normal.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df2, (<span class="fu">aes</span>(valor, <span class="at">colour=</span>Distribución)))<span class="sc">+</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span>.<span class="dv">01</span>,<span class="dv">1</span>)</span></code></pre></div>
 <p><img src="T4a_Estadistica_descriptiva_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Graficos/Skewness.png&quot;</span>)</span></code></pre></div>
-<p>Ahora se calcula el indice de oblicuidad y comparamos los valores.
-Como regla cuando el nivel de oblicuidad esta entre</p>
+<p>Ahora se calcula el indice de oblicuidad y comparamos los valores. Como regla cuando el nivel de oblicuidad esta entre</p>
 <ul>
-<li>-0.5 y 0.5 se considera dentro de una distribución simétrica
-(normal).</li>
-<li>-1.0 y -0.5 o entre 0.5 y 1.o los valores tienen una oblicuidad
-moderada.</li>
-<li>Menor de -1.0 o mayor de 1.0 los datos tienen una oblicuidad
-grande.</li>
+<li>-0.5 y 0.5 se considera dentro de una distribución simétrica (normal).</li>
+<li>-1.0 y -0.5 o entre 0.5 y 1.o los valores tienen una oblicuidad moderada.</li>
+<li>Menor de -1.0 o mayor de 1.0 los datos tienen una oblicuidad grande.</li>
 </ul>
-<p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función
-de <strong>skewness</strong> en el paquete <strong>e1071</strong></p>
-<p>Para los datos de una distribución normal el valor es muy cerca a
-cero. Para los datos sesgado a la izquierda el indice de oblicuidad es
-positivo y el sesgado a derecha es negativo.</p>
+<p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de <strong>skewness</strong> en el paquete <strong>e1071</strong></p>
+<p>Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos sesgado a la izquierda el indice de oblicuidad es positivo y el sesgado a derecha es negativo.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(e1071)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">skewness</span>(normal<span class="sc">$</span>value) <span class="co"># la oblicuidad de los datos de una distribución normal</span></span></code></pre></div>
 <pre><code>## [1] 0.006368452</code></pre>
@@ -988,17 +912,9 @@ positivo y el sesgado a derecha es negativo.</p>
 </div>
 <div id="el-indice-de-curtosis-kurtosis" class="section level1">
 <h1>El indice de Curtosis: Kurtosis</h1>
-<p>El indice de curtosis es un índice que describe la cola de la una
-distribución alrededor de su promedio. Otra manera de describirlo es el
-cuarto momento, por que los datos se poner a un exponente elevado al ^4.
-El curtosis mide la propensidad de tener daos atípicos.</p>
-<p>La formula es la siguiente. Lo que se darán cuenta es muy similar a
-la varianza pero note que las diferencias se poner al ^4. Para más
-información vea este enlace <a
-href="https://www.wikiwand.com/en/Kurtosis"
-class="uri">https://www.wikiwand.com/en/Kurtosis</a>.</p>
-<p><span
-class="math display">\[\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^4\]</span></p>
+<p>El indice de curtosis es un índice que describe la cola de la una distribución alrededor de su promedio. Otra manera de describirlo es el cuarto momento, por que los datos se poner a un exponente elevado al ^4. El curtosis mide la propensidad de tener daos atípicos.</p>
+<p>La formula es la siguiente. Lo que se darán cuenta es muy similar a la varianza pero note que las diferencias se poner al ^4. Para más información vea este enlace <a href="https://www.wikiwand.com/en/Kurtosis" class="uri">https://www.wikiwand.com/en/Kurtosis</a>.</p>
+<p><span class="math display">\[\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigma}\right)^4\]</span></p>
 <p>Primero voy a crear cuatro conjuntos de datos</p>
 <ul>
 <li>con distribución normal</li>
@@ -1054,9 +970,7 @@ class="math display">\[\frac{1}{N}\sum_{i=}^N\left(\frac{x_i-\overline{x}}{\sigm
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-0.538</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-1.15</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.22</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-1.91</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-2.43&nbsp;</td></tr>
 </table>
 
-<p>El próximo paso es apilar cada columna una sobre la otra. La razón
-que queremos esto es que deseamos reproducir las variables en un mismo
-gráfico</p>
+<p>El próximo paso es apilar cada columna una sobre la otra. La razón que queremos esto es que deseamos reproducir las variables en un mismo gráfico</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>df2<span class="ot">=</span>df<span class="sc">%&gt;%</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">&quot;Distribución&quot;</span>, <span class="at">value=</span><span class="st">&quot;valor&quot;</span>, <span class="fu">c</span>(normal, normalR, normalE, Unif, laplace))</span>
@@ -1073,15 +987,8 @@ gráfico</p>
 </table>
 
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unique(df2$Distribución) #función  para ver el nombre de las variables en la columna Distribución</span></span></code></pre></div>
-<p>Ahora vamos a ver los datos en un gráfico. Vemos que la distribución
-de los datos son muy diferentes, Tiene que concentrar no en el pico de
-la distribución pero las colas de los datos. Nota la distribución normal
-que es de color amarillo, y comparar si la colas están por debajo o por
-encima de esta distribución normal.</p>
-<p>Tanto la distribución uniforme (color rosa) y normal reducido
-(normalR, color azul) las curvas pasan de bajo la curva normal. Al
-contrarío la linea verde y roja son distribuciones que pasan por encima
-de la curva normal, entonces las colas son más predominante.</p>
+<p>Ahora vamos a ver los datos en un gráfico. Vemos que la distribución de los datos son muy diferentes, Tiene que concentrar no en el pico de la distribución pero las colas de los datos. Nota la distribución normal que es de color amarillo, y comparar si la colas están por debajo o por encima de esta distribución normal.</p>
+<p>Tanto la distribución uniforme (color rosa) y normal reducido (normalR, color azul) las curvas pasan de bajo la curva normal. Al contrarío la linea verde y roja son distribuciones que pasan por encima de la curva normal, entonces las colas son más predominante.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>whole<span class="ot">=</span><span class="fu">ggplot</span>(df2, (<span class="fu">aes</span>(valor, <span class="at">colour=</span>Distribución)))<span class="sc">+</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">adjust=</span><span class="dv">5</span>)<span class="sc">+</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)</span>
@@ -1102,21 +1009,13 @@ de la curva normal, entonces las colas son más predominante.</p>
 <span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplotGrob</span>(whole),</span>
 <span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">xmin =</span> <span class="sc">-</span><span class="fl">1.8</span>, <span class="at">xmax =</span> <span class="fl">1.4</span>, <span class="at">ymin =</span> <span class="fl">0.005</span>, <span class="at">ymax =</span> <span class="fl">0.075</span>)</span></code></pre></div>
 <p><img src="T4a_Estadistica_descriptiva_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>Ahora se calcula el indice de curtosis y comparamos los valores. Como
-regla el nivel de curtosis esta significativo si los valores de curtosis
-se enuentra en los siguientes rangos, y se acerca cero no hay curtosis
-(lo que uno espera para una distribución normal.</p>
+<p>Ahora se calcula el indice de curtosis y comparamos los valores. Como regla el nivel de curtosis esta significativo si los valores de curtosis se enuentra en los siguientes rangos, y se acerca cero no hay curtosis (lo que uno espera para una distribución normal.</p>
 <ul>
-<li>Menor de -1.0 los datos están muy aplanados (Uniforme,
-normalR).</li>
+<li>Menor de -1.0 los datos están muy aplanados (Uniforme, normalR).</li>
 <li>Mayor de 1.0 (la distribución de Laplace).</li>
 </ul>
-<p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función
-de <strong>kurtosis</strong> en el paquete <strong>e1071</strong></p>
-<p>Para los datos de una distribución normal el valor es muy cerca a
-cero. Para los datos que tienen exceso de cola el valor de curtosis es
-negativos y cuando el valor de curtosis es positivo hay exceso de datos
-en la cola.</p>
+<p>Ahora evaluamos la oblicuidad de los tres gráficos. se usa la función de <strong>kurtosis</strong> en el paquete <strong>e1071</strong></p>
+<p>Para los datos de una distribución normal el valor es muy cerca a cero. Para los datos que tienen exceso de cola el valor de curtosis es negativos y cuando el valor de curtosis es positivo hay exceso de datos en la cola.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(e1071)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>e1071<span class="sc">::</span><span class="fu">kurtosis</span>(normal<span class="sc">$</span>value) <span class="co"># curtosis de los datos de una distribución normal</span></span></code></pre></div>
 <pre><code>## [1] -0.009931754</code></pre>

@@ -574,51 +574,22 @@ div.tocify {
 
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
+<pre><code>## [1] &quot;2022-08-02&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <hr />
 <div id="el-promedio-un-estimado" class="section level1">
 <h1>El promedio, un estimado</h1>
-<p>En este modulo se evalúa el promedio y la propriedades de una
-distribución normal y el muestreo de para estimar el promedio. En el
-módulo se evalúa la hipótesis de un muestreo y se estima el intervalo de
-confianza para estimar el posible rango del promedio. Es importante
-reconocer que el muestreo para estimar el promedio <span
-class="math inline">\(\overline{x}\)</span> es solamente un estimado. En
-otra palabra no es necesariamente la VERDAD, o dicho de forma
-estadística, el promedio del universo, <span
-class="math inline">\(\mu\)</span> de esta variable.</p>
-<p>Con frecuencia se quiere saber conocer información sobre el verdadero
-promedio, <span class="math inline">\(\mu\)</span> basado en un
-muestreo. Por ejemplo cual es promedio de la edad de las Palmas de
-Sierra en Puerto Rico, cual es el promedio de la presión arterial de los
-humanos, cual es la producción promedio de mangos en los arboles de
-mangos. En cada caso no sabemos cual es el promedio universal, <span
-class="math inline">\(\mu\)</span> y tampoco no sabemos el valor exacto
-de la desviación estándar <span
-class="math inline">\(\sigma\)</span>.</p>
-<p>Para evaluar la hipótesis sobre el promedio de la población <span
-class="math inline">\(\mu\)</span>, uno puede utilizar datos recogido al
-azar, un muestreo y usar estos para inferir cual es el promedio y
-desviación estándar del universo.</p>
+<p>En este modulo se evalúa el promedio y la propriedades de una distribución normal y el muestreo de para estimar el promedio. En el módulo se evalúa la hipótesis de un muestreo y se estima el intervalo de confianza para estimar el posible rango del promedio. Es importante reconocer que el muestreo para estimar el promedio <span class="math inline">\(\overline{x}\)</span> es solamente un estimado. En otra palabra no es necesariamente la VERDAD, o dicho de forma estadística, el promedio del universo, <span class="math inline">\(\mu\)</span> de esta variable.</p>
+<p>Con frecuencia se quiere saber conocer información sobre el verdadero promedio, <span class="math inline">\(\mu\)</span> basado en un muestreo. Por ejemplo cual es promedio de la edad de las Palmas de Sierra en Puerto Rico, cual es el promedio de la presión arterial de los humanos, cual es la producción promedio de mangos en los arboles de mangos. En cada caso no sabemos cual es el promedio universal, <span class="math inline">\(\mu\)</span> y tampoco no sabemos el valor exacto de la desviación estándar <span class="math inline">\(\sigma\)</span>.</p>
+<p>Para evaluar la hipótesis sobre el promedio de la población <span class="math inline">\(\mu\)</span>, uno puede utilizar datos recogido al azar, un muestreo y usar estos para inferir cual es el promedio y desviación estándar del universo.</p>
 <div id="ejemplo-9.1-y-9.2." class="section level2">
 <h2>Ejemplo 9.1 y 9.2.</h2>
-<p>Leen estos dos ejercicios, y considera cual es son los valores del
-universo,<span class="math inline">\(\mu\)</span> y <span
-class="math inline">\(\sigma\)</span> y el promedio del muestreo <span
-class="math inline">\(\overline{x}\)</span>.</p>
+<p>Leen estos dos ejercicios, y considera cual es son los valores del universo,<span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> y el promedio del muestreo <span class="math inline">\(\overline{x}\)</span>.</p>
 </div>
 </div>
 <div id="la-distribución-de-t" class="section level1">
 <h1>La distribución de t</h1>
-<p>Cuando queremos inferir información del promedio o la desviación del
-universo de un muestreo hay que utilizar la distribución de t. La razón
-es que la forma de la distribución normal cambia con el tamaño de
-muestra cuando no sabemos cual es la desviación estándar del universo. A
-medida que uno reduce el tamaño de muestra la distribución se desvía de
-una distribución normal. Para tomar esto en cuenta no usamos la
-distribución normal la de distribución de t, también se dice la
-distribución de t de estudiante.</p>
+<p>Cuando queremos inferir información del promedio o la desviación del universo de un muestreo hay que utilizar la distribución de t. La razón es que la forma de la distribución normal cambia con el tamaño de muestra cuando no sabemos cual es la desviación estándar del universo. A medida que uno reduce el tamaño de muestra la distribución se desvía de una distribución normal. Para tomar esto en cuenta no usamos la distribución normal la de distribución de t, también se dice la distribución de t de estudiante.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(out,<span class="fu">aes</span>(df1x, val, <span class="at">colour=</span>df) )<span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  rlt_theme<span class="sc">+</span></span>
@@ -628,81 +599,32 @@ distribución de t de estudiante.</p>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">xlab</span>(<span class="st">&quot;Valores&quot;</span>)<span class="sc">+</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">ylab</span>(<span class="st">&quot;Densidad&quot;</span>)</span></code></pre></div>
 <p><img src="T9_Pruebas_una_muestra_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>Observa que la distribución de t, cambia dependiendo la forma de la
-densidades con el tamaño de muestra, (grado de libertad es <span
-class="math inline">\(\nu=n-1\)</span>). Tiene que observar dos
-componentes 1. hay menos datos en centrado en el promedio y 2. hay más
-datos en la colas.</p>
-<p>Se usa la distribución de t para calcular el intervalo de confianza y
-la hipótesis del promedio de una muestra, debido que la forma de la
-distribución de t cambia con el tamaño de muestra <span
-class="math inline">\(\nu=n-1\)</span> y también con la razón de error
-Tipo I, <span class="math inline">\(\alpha\)</span>.</p>
+<p>Observa que la distribución de t, cambia dependiendo la forma de la densidades con el tamaño de muestra, (grado de libertad es <span class="math inline">\(\nu=n-1\)</span>). Tiene que observar dos componentes 1. hay menos datos en centrado en el promedio y 2. hay más datos en la colas.</p>
+<p>Se usa la distribución de t para calcular el intervalo de confianza y la hipótesis del promedio de una muestra, debido que la forma de la distribución de t cambia con el tamaño de muestra <span class="math inline">\(\nu=n-1\)</span> y también con la razón de error Tipo I, <span class="math inline">\(\alpha\)</span>.</p>
 <hr />
 </div>
-<div id="cuando-es-que-uno-rechaza-la-hipótesis-nula"
-class="section level1">
+<div id="cuando-es-que-uno-rechaza-la-hipótesis-nula" class="section level1">
 <h1>Cuando es que uno rechaza la hipótesis nula</h1>
-<p>Regresamos a la idea de Tipo de error I. Cuando se selecciona un
-<span class="math inline">\(\alpha=0.05\)</span>, lo que estamos
-diciendo es que hay 5% de probabilidad de cometer un error Tipo 1, que
-es <span style="color: blue;">de rechazar la hipótesis nula cuando uno
-debería aceptarla</span>. Ahora este 5% puede estar divido en dos
-componentes, uno cuando el valor es más pequeño o más grande que el
-valor observado. Por consecuencia el área de rechazar la hipótesis nula
-es 0.025 en la parte negativa y positiva.</p>
-<p>Seleccionamos la curva con un grado de libertad de 5 y evaluamos el
-área de la curva que esta dentro del 95% del intervalo de confianza y lo
-fuera de este rango. Si el promedio estimado de una prueba de t es
-dentro del área en gris se aceptará la hipótesis nula, si esta en el
-área rojo se rechazara la hipótesis nula. NOta que para esta hipótesis
-hay son maneras de rechazar la hipótesis nula.</p>
+<p>Regresamos a la idea de Tipo de error I. Cuando se selecciona un <span class="math inline">\(\alpha=0.05\)</span>, lo que estamos diciendo es que hay 5% de probabilidad de cometer un error Tipo 1, que es <span style="color: blue;">de rechazar la hipótesis nula cuando uno debería aceptarla</span>. Ahora este 5% puede estar divido en dos componentes, uno cuando el valor es más pequeño o más grande que el valor observado. Por consecuencia el área de rechazar la hipótesis nula es 0.025 en la parte negativa y positiva.</p>
+<p>Seleccionamos la curva con un grado de libertad de 5 y evaluamos el área de la curva que esta dentro del 95% del intervalo de confianza y lo fuera de este rango. Si el promedio estimado de una prueba de t es dentro del área en gris se aceptará la hipótesis nula, si esta en el área rojo se rechazara la hipótesis nula. NOta que para esta hipótesis hay son maneras de rechazar la hipótesis nula.</p>
 <p><img src="T9_Pruebas_una_muestra_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <hr />
-<p>La alternativa es que nuestra hipótesis sea nada más de un lado donde
-el total del 5% es en la parte inferior o superior. En esta caso se
-rechaza solamente si se encuentra en esta proporción de los valores de
-t. Nota ahora que el área en esta sección es más grande (incluye más
-valores, no solamente el 2.5% pero el 5% de los valores).</p>
+<p>La alternativa es que nuestra hipótesis sea nada más de un lado donde el total del 5% es en la parte inferior o superior. En esta caso se rechaza solamente si se encuentra en esta proporción de los valores de t. Nota ahora que el área en esta sección es más grande (incluye más valores, no solamente el 2.5% pero el 5% de los valores).</p>
 <p><img src="T9_Pruebas_una_muestra_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="el-intervalo-de-confianza-de-mu" class="section level1">
-<h1>El intervalo de confianza de <span
-class="math inline">\(\mu\)</span></h1>
-<p>Ahora se demuestra como calcular el intervalo de confianza de <span
-class="math inline">\(\mu\)</span>. Seleccionando un conjunto de datos
-al azar <strong>n</strong> se puede calcular el promedio <span
-class="math inline">\(\overline{x}\)</span> y el estimado de la
-desviación estándar <strong>s</strong>, con estos valores podemos
-calcular el rango donde pudiese estar el promedio del universo <span
-class="math inline">\(\mu\)</span> con cieto nivel de confianza (Tipo de
-Error I, <span class="math inline">\(\alpha\)</span>).</p>
+<h1>El intervalo de confianza de <span class="math inline">\(\mu\)</span></h1>
+<p>Ahora se demuestra como calcular el intervalo de confianza de <span class="math inline">\(\mu\)</span>. Seleccionando un conjunto de datos al azar <strong>n</strong> se puede calcular el promedio <span class="math inline">\(\overline{x}\)</span> y el estimado de la desviación estándar <strong>s</strong>, con estos valores podemos calcular el rango donde pudiese estar el promedio del universo <span class="math inline">\(\mu\)</span> con cieto nivel de confianza (Tipo de Error I, <span class="math inline">\(\alpha\)</span>).</p>
 <div id="ejamplo-9.3" class="section level2">
 <h2>Ejamplo 9.3</h2>
-<p>Se selecciona 20 peces machos de una misma especie en un riachuelo de
-Puerto Rico y se mide el largo en millimetros. El promedio es <span
-class="math inline">\(\overline{x}=21.0mm\)</span> y una desviación
-estándar <span class="math inline">\(s=1.76mm\)</span>. Queremos
-construir in intervalo de confianza de 95%. El tamaño de los peces es
-aproximadamente normal.</p>
-<p>Queremos calcular intervalo que incluye 95%, por consecuencia es el
-rango que hay en el área gris de la primera figura.</p>
+<p>Se selecciona 20 peces machos de una misma especie en un riachuelo de Puerto Rico y se mide el largo en millimetros. El promedio es <span class="math inline">\(\overline{x}=21.0mm\)</span> y una desviación estándar <span class="math inline">\(s=1.76mm\)</span>. Queremos construir in intervalo de confianza de 95%. El tamaño de los peces es aproximadamente normal.</p>
+<p>Queremos calcular intervalo que incluye 95%, por consecuencia es el rango que hay en el área gris de la primera figura.</p>
 </div>
 </div>
 <div id="los-limites-del-intervalo" class="section level1">
 <h1>Los limites del intervalo</h1>
-<p>Para calcular el intervalo se necesita se necesita solamente el valor
-de t con la tipo de error I de 95% y que corresponde a un tamaño de
-muestra de 20, <span class="math inline">\(t_{0.05,\ n-1}\)</span>. Para
-conocer este valor hay que ir a una tabla de la distribución de t (vea
-p. 217 en el libro) o usar R para calcular el valor. En la tabla busca
-el error I deseado (0.05) y se busca el grado de libertad <em>n-1</em>,
-<span class="math inline">\(t_{0.05,\ 19}\)</span>. El valor del libro
-es <span class="math inline">\(t = 2.093\)</span>. Si se quisiera un
-Tipo de error I con solamente 1% error el valor seria <span
-class="math inline">\(t=2.8609\)</span>, (busca la información en la
-tabla, o usando la función <strong>qt()</strong>).</p>
+<p>Para calcular el intervalo se necesita se necesita solamente el valor de t con la tipo de error I de 95% y que corresponde a un tamaño de muestra de 20, <span class="math inline">\(t_{0.05,\ n-1}\)</span>. Para conocer este valor hay que ir a una tabla de la distribución de t (vea p. 217 en el libro) o usar R para calcular el valor. En la tabla busca el error I deseado (0.05) y se busca el grado de libertad <em>n-1</em>, <span class="math inline">\(t_{0.05,\ 19}\)</span>. El valor del libro es <span class="math inline">\(t = 2.093\)</span>. Si se quisiera un Tipo de error I con solamente 1% error el valor seria <span class="math inline">\(t=2.8609\)</span>, (busca la información en la tabla, o usando la función <strong>qt()</strong>).</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)) <span class="co"># nota que se usa la mitad de 0.05, por que es una prueba de dos lados. </span></span></code></pre></div>
 <pre><code>## [1] 2.093024</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">21</span><span class="sc">+</span><span class="fu">abs</span>(<span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="sc">*</span>(<span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">20</span>)))</span></code></pre></div>
@@ -710,21 +632,15 @@ tabla, o usando la función <strong>qt()</strong>).</p>
 <div id="el-limite-superior" class="section level2">
 <h2>El limite superior</h2>
 <p>Ahora falta sustituir los valores en la formula</p>
-<p><span class="math inline">\(UL_{0.95}=\overline{x}+\left(t_{0.05,\
-n-1}\cdot\frac{s}{\sqrt{n}}\right)\)</span> <span
-class="math display">\[UL_{0.95}=21+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.823\]</span></p>
+<p><span class="math inline">\(UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)\)</span> <span class="math display">\[UL_{0.95}=21+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.823\]</span></p>
 <hr />
 </div>
 <div id="el-limite-inferior" class="section level2">
 <h2>El limite inferior</h2>
-<p><span class="math inline">\(LL_{0.95}=\overline{x}-\left(t_{0.05,\
-n-1}\cdot\frac{s}{\sqrt{n}}\right)\)</span></p>
-<p><span
-class="math display">\[LL_{0.95}=21-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.176\]</span></p>
+<p><span class="math inline">\(LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)\)</span></p>
+<p><span class="math display">\[LL_{0.95}=21-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.176\]</span></p>
 <hr />
-<p>El intervalo de confianza del <span
-class="math inline">\(\mu\)</span> es entre 20.175-21.825 con un 95% de
-probabilidad.</p>
+<p>El intervalo de confianza del <span class="math inline">\(\mu\)</span> es entre 20.175-21.825 con un 95% de probabilidad.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>UL<span class="ot">=</span><span class="dv">21</span><span class="sc">+</span><span class="fu">abs</span>(<span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">20</span>))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>LL<span class="ot">=</span><span class="dv">21</span><span class="sc">-</span><span class="fu">abs</span>(<span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">19</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">20</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>UL</span></code></pre></div>
@@ -735,19 +651,15 @@ probabilidad.</p>
 </div>
 <div id="menos-o-más-grados-de-libertad" class="section level2">
 <h2>Menos o más grados de libertad</h2>
-<p>Nota lo que pasa si uno tiene menos datos o más datos con el
-intervalo de confianza.</p>
-<p>Con un tamaño de muestra solamente de 5 datos el IC de 95% es entre
-17.824-22.185. Por tener menos datos tenemos menos confianza donde se
-entra el promedio del universo.</p>
+<p>Nota lo que pasa si uno tiene menos datos o más datos con el intervalo de confianza.</p>
+<p>Con un tamaño de muestra solamente de 5 datos el IC de 95% es entre 17.824-22.185. Por tener menos datos tenemos menos confianza donde se entra el promedio del universo.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>UL<span class="ot">=</span><span class="dv">21</span><span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">5</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>LL<span class="ot">=</span><span class="dv">21</span><span class="sc">-</span><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">5</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>UL</span></code></pre></div>
 <pre><code>## [1] 18.81467</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>LL</span></code></pre></div>
 <pre><code>## [1] 23.18533</code></pre>
-<p>Ahora con en tamaño de muestra de 100. Ahora el intervalo de
-confianza esta más estrecho 19.651-20.349</p>
+<p>Ahora con en tamaño de muestra de 100. Ahora el intervalo de confianza esta más estrecho 19.651-20.349</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>UL<span class="ot">=</span><span class="dv">21</span><span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">100</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>LL<span class="ot">=</span><span class="dv">21</span><span class="sc">-</span><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">99</span>)<span class="sc">*</span><span class="fl">1.76</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">100</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>UL</span></code></pre></div>
@@ -759,15 +671,7 @@ confianza esta más estrecho 19.651-20.349</p>
 </div>
 <div id="muchos-muestreos-y-el-universo" class="section level1">
 <h1>Muchos muestreos y el universo</h1>
-<p>Para demostrar lo que quiere decir el intervalo de confianza
-evaluamos el siguiente gráfico. Cada linea horizontal representa un
-muestreo independiente, la pequeña linea vertical representa el promedio
-de este muestreo <span class="math inline">\(\overline{x}\)</span>, y la
-linea vertical que cruza todos los muestreos representa el promedio
-universal <span class="math inline">\(\mu\)</span>. Nota que este caso
-el intervalo de confianza casi siempre cruza el <span
-class="math inline">\(\mu\)</span>, aparte de uno. El muestreo aunque
-proviene de la misma población no incluyo el promedio del universo.</p>
+<p>Para demostrar lo que quiere decir el intervalo de confianza evaluamos el siguiente gráfico. Cada linea horizontal representa un muestreo independiente, la pequeña linea vertical representa el promedio de este muestreo <span class="math inline">\(\overline{x}\)</span>, y la linea vertical que cruza todos los muestreos representa el promedio universal <span class="math inline">\(\mu\)</span>. Nota que este caso el intervalo de confianza casi siempre cruza el <span class="math inline">\(\mu\)</span>, aparte de uno. El muestreo aunque proviene de la misma población no incluyo el promedio del universo.</p>
 <div class="figure">
 <img src="Havel_Figures/9-3%20Series%20-%20Confidence%20Interals.jpg" alt="Su promedio incluye el promedio del universo?" width="70%" />
 <p class="caption">
@@ -775,84 +679,38 @@ Su promedio incluye el promedio del universo?
 </p>
 </div>
 <hr />
-<div id="quiz-estas-preguntas-la-tienen-que-contestar-en-edmodo."
-class="section level3">
+<div id="quiz-estas-preguntas-la-tienen-que-contestar-en-edmodo." class="section level3">
 <h3>QUIZ: estas preguntas la tienen que contestar en Edmodo.</h3>
 <ol style="list-style-type: decimal">
-<li>Title: Ultrasound evaluation of the morphometric patterns of lymph
-nodes of the head and neck in young and middle-aged individuals.
-Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira. doi:
-10.1590/0100-3984.2015.0002.
+<li>Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira. doi: 10.1590/0100-3984.2015.0002.
 <ul>
-<li>En este trabajo evaluaron los ganglios linfáticos de 20 individuos
-sanos. Encontraron que la media de los ganglios linfáticos mastoideos de
-los hombres era de 0,9 cm con una desviación estándar de 0,4 cm.</li>
+<li>En este trabajo evaluaron los ganglios linfáticos de 20 individuos sanos. Encontraron que la media de los ganglios linfáticos mastoideos de los hombres era de 0,9 cm con una desviación estándar de 0,4 cm.</li>
 </ul></li>
 </ol>
 <ul>
-<li>¿Cuál es el intervalo de confianza al 5% de los ganglios linfáticos
-mastoideos en hombres? Responde en Edmodo.</li>
+<li>¿Cuál es el intervalo de confianza al 5% de los ganglios linfáticos mastoideos en hombres? Responde en Edmodo.</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
-<li><p>¿Cuál es la probabilidad que el promedio universal no este
-incluido en el rango anterior de los tamaños de los ganglios linfáticos
-mastoides?<br />
+<li><p>¿Cuál es la probabilidad que el promedio universal no este incluido en el rango anterior de los tamaños de los ganglios linfáticos mastoides?<br />
 Responde en Edmodo.</p></li>
-<li><p>Usando los mismo datos de la pregunta #1. Title: Ultrasound
-evaluation of the morphometric patterns of lymph nodes of the head and
-neck in young and middle-aged individuals. Ogassavara et al. 2016,
-49:225-228, Radiologia Brasileira. doi: 10.1590/0100-3984.2015.0002.</p>
+<li><p>Usando los mismo datos de la pregunta #1. Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira. doi: 10.1590/0100-3984.2015.0002.</p>
 <ul>
-<li>En este trabajo evaluaron los ganglios linfáticos de 20 individuos
-sanos. Encontraron que la media de los ganglios linfáticos mastoideos de
-los hombres era de 0,9 cm con una desviación estándar de 0,4 cm. Ya se
-pudo medir el tamaño de los ganglios linfáticos mastoideos de TODOS los
-hombres del planeta, y se determino que que el promedio es de 0.7 cm con
-una desviación estándar de 0,2 cm.</li>
-<li>Usando los siguientes datos haga la prueba correspondiente en R para
-determinar el valor de t, observado y el valor critico. Responde en
-Edomodo.</li>
+<li>En este trabajo evaluaron los ganglios linfáticos de 20 individuos sanos. Encontraron que la media de los ganglios linfáticos mastoideos de los hombres era de 0,9 cm con una desviación estándar de 0,4 cm. Ya se pudo medir el tamaño de los ganglios linfáticos mastoideos de TODOS los hombres del planeta, y se determino que que el promedio es de 0.7 cm con una desviación estándar de 0,2 cm.</li>
+<li>Usando los siguientes datos haga la prueba correspondiente en R para determinar el valor de t, observado y el valor critico. Responde en Edomodo.</li>
 </ul></li>
-<li><p>Considerando los resultados anteriores se acepta o rechaza la
-hipótesis nula</p></li>
+<li><p>Considerando los resultados anteriores se acepta o rechaza la hipótesis nula</p></li>
 </ol>
 <hr />
 </div>
 </div>
 <div id="pruebas-de-t-un-muesteo" class="section level1">
 <h1>Pruebas de t un muesteo</h1>
-<p>Esta prueba esencialmente calcula la media de los datos y crea un
-intervalo de confianza. Si el valor que estamos probando cae dentro de
-ese intervalo de confianza, concluimos que es el valor verdadero para la
-media de los datos; de lo contrario, concluimos que no es la verdadera
-media. Nota que la <span class="math inline">\(\mu\)</span> representa
-el modelo nulo, o sea la hipótesis nula. Si <span
-class="math inline">\(\mu=0\)</span> decimos que el universo es igual
-cero. En otro ejemplo si por ejemplo decimos que el promedio del nivel
-de colesterol en mujer es <span class="math inline">\(\mu=209.4\)</span>
-y observamos en muestreo de mujeres un promedio de <span
-class="math inline">\(\overline{x}= 196.7\)</span> con una desviación
-estándar de <span class="math inline">\(s=39.1\)</span> es suficiente la
-diferencia para decir que lo que UD observo es significativamente
-diferente del muestreo del universo a un 95% de error <span
-class="math inline">\(\alpha\)</span>. Vamos asumir que se hizo una
-investigación un gran número de mujeres de Puerto Rico y se tiene un
-muestreo de 10,000 de mujeres. Lo que necesitamos hacer ahora es
-sustituir los valores en la formula. Observamos un valor de t observado
-de t=32.48 (el valor es absoluto), y este los comparamos con el valor de
-t critico = 1.96 (valor absoluto). El resultado: el valor de t observado
-es mayor del valor critico y por consecuencia rechazamos lo hipótesis
-nula, y concluimos que el nivel de colesterol en la muestra <span
-class="math inline">\(\overline{x}= 196.7\)</span> es significativamente
-diferente del nivel universal <span
-class="math inline">\(\mu=209.4\)</span>.</p>
+<p>Esta prueba esencialmente calcula la media de los datos y crea un intervalo de confianza. Si el valor que estamos probando cae dentro de ese intervalo de confianza, concluimos que es el valor verdadero para la media de los datos; de lo contrario, concluimos que no es la verdadera media. Nota que la <span class="math inline">\(\mu\)</span> representa el modelo nulo, o sea la hipótesis nula. Si <span class="math inline">\(\mu=0\)</span> decimos que el universo es igual cero. En otro ejemplo si por ejemplo decimos que el promedio del nivel de colesterol en mujer es <span class="math inline">\(\mu=209.4\)</span> y observamos en muestreo de mujeres un promedio de <span class="math inline">\(\overline{x}= 196.7\)</span> con una desviación estándar de <span class="math inline">\(s=39.1\)</span> es suficiente la diferencia para decir que lo que UD observo es significativamente diferente del muestreo del universo a un 95% de error <span class="math inline">\(\alpha\)</span>. Vamos asumir que se hizo una investigación un gran número de mujeres de Puerto Rico y se tiene un muestreo de 10,000 de mujeres. Lo que necesitamos hacer ahora es sustituir los valores en la formula. Observamos un valor de t observado de t=32.48 (el valor es absoluto), y este los comparamos con el valor de t critico = 1.96 (valor absoluto). El resultado: el valor de t observado es mayor del valor critico y por consecuencia rechazamos lo hipótesis nula, y concluimos que el nivel de colesterol en la muestra <span class="math inline">\(\overline{x}= 196.7\)</span> es significativamente diferente del nivel universal <span class="math inline">\(\mu=209.4\)</span>.</p>
 <ul>
 <li>Ho: <span class="math inline">\(\overline{x}=\mu\)</span></li>
 <li>Ha: <span class="math inline">\(\overline{x}≠\mu\)</span></li>
 </ul>
-<p><span
-class="math display">\[|t|=\frac{\left(\overline{x}-\mu_0\right)}{\frac{s}{\sqrt{n}}}\]</span>
-Sustitución de los valores en la prueba de t.</p>
+<p><span class="math display">\[|t|=\frac{\left(\overline{x}-\mu_0\right)}{\frac{s}{\sqrt{n}}}\]</span> Sustitución de los valores en la prueba de t.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>t<span class="ot">=</span><span class="fu">abs</span>((<span class="fl">196.7-209.4</span>)<span class="sc">/</span>((<span class="fl">39.1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">30</span>)) )</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>t <span class="co"># Valor t de observado</span></span></code></pre></div>
 <pre><code>## [1] 1.779048</code></pre>
@@ -862,13 +720,9 @@ Sustitución de los valores en la prueba de t.</p>
 </div>
 <div id="propinas" class="section level1">
 <h1>Propinas</h1>
-<p>Un ejemplo con datos en una tabla Usamos un conjunto de datos en el
-paquete <strong>reshape</strong>, que llama <strong>tips</strong>. Se
-refiere a las propinas quie recibe meseros.</p>
-<p>Nuestra hipótesis es que en promedio, las personas dan una propina de
-$2.50, Esta es nuestra hipótesis <strong>nula</strong></p>
-<p>Nuestra hipótesis <strong>alternativa</strong> es que las personas
-dan significativamente más o menos de $2.50.</p>
+<p>Un ejemplo con datos en una tabla Usamos un conjunto de datos en el paquete <strong>reshape</strong>, que llama <strong>tips</strong>. Se refiere a las propinas quie recibe meseros.</p>
+<p>Nuestra hipótesis es que en promedio, las personas dan una propina de $2.50, Esta es nuestra hipótesis <strong>nula</strong></p>
+<p>Nuestra hipótesis <strong>alternativa</strong> es que las personas dan significativamente más o menos de $2.50.</p>
 <ul>
 <li>Ho: <span class="math inline">\(\overline{x}=\mu\)</span></li>
 <li>Ha: <span class="math inline">\(\overline{x}≠\mu\)</span></li>
@@ -892,23 +746,17 @@ dan significativamente más o menos de $2.50.</p>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">25.3</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4.71</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">No</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Sun</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Dinner</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td></tr>
 </table>
 
-<p>Con la función <strong>t.test()</strong> es muy sencillo hacer la
-prueba, no hay calcular solamente añadir la información.</p>
+<p>Con la función <strong>t.test()</strong> es muy sencillo hacer la prueba, no hay calcular solamente añadir la información.</p>
 <p>Las opciones para esta prueba son las siguientes en roja</p>
 <ul>
 <li>t.test(<span style="color: red;">x</span>, y = NULL,
 <ul>
-<li><span style="color: red;">alternative = c(two.sided, less,
-greater)</span>,</li>
-<li><span style="color: red;">mu = 0</span>, paired = FALSE, var.equal =
-FALSE,</li>
+<li><span style="color: red;">alternative = c(two.sided, less, greater)</span>,</li>
+<li><span style="color: red;">mu = 0</span>, paired = FALSE, var.equal = FALSE,</li>
 <li><span style="color: red;">conf.level = 0.95</span>, …).</li>
 </ul></li>
 </ul>
-<p>El resultado: El valor de t-observado es de 5.625, con un grado de
-libertad de 243 (n=244), y valor de p &lt;0.0001. Por consecuencia se
-rechaza la hipótesis nula y se acepta la alterna. El intervalo de
-confianza del promedio es $2.82 - $3.17, con un promedio de $3.00</p>
+<p>El resultado: El valor de t-observado es de 5.625, con un grado de libertad de 243 (n=244), y valor de p &lt;0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna. El intervalo de confianza del promedio es $2.82 - $3.17, con un promedio de $3.00</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(tips<span class="sc">$</span>tip, <span class="at">alternative=</span><span class="st">&quot;two.sided&quot;</span>, <span class="at">mu=</span><span class="fl">2.5</span>, <span class="at">conf.level =</span> .<span class="dv">95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
@@ -922,25 +770,21 @@ confianza del promedio es $2.82 - $3.17, con un promedio de $3.00</p>
 ## mean of x 
 ##  2.998279</code></pre>
 <hr />
-<div id="cómo-graficar-el-resultado-de-una-prueba-t"
-class="section level2">
+<div id="cómo-graficar-el-resultado-de-una-prueba-t" class="section level2">
 <h2>¿Cómo graficar el resultado de una prueba t?</h2>
 <p>Pasos</p>
 <blockquote>
 <ul>
-<li>Crear una distribución normal de la hipótesis <strong>NULA</strong>
-con un promedio de</li>
+<li>Crear una distribución normal de la hipótesis <strong>NULA</strong> con un promedio de</li>
 <li>Calcule las estadísticas t.test</li>
 <li>Dibuje la media de la estadística t en la figura
 <ul>
-<li>la linea entrecortada representa el intervalo de confianza de
-95%</li>
+<li>la linea entrecortada representa el intervalo de confianza de 95%</li>
 <li>la linea roja representa la estadística de los datos.</li>
 </ul></li>
 </ul>
 </blockquote>
-<p>En este ejemplo observamos que el promedio estimado es por encima del
-intervalo de confianza (la lineas entrecortadas).</p>
+<p>En este ejemplo observamos que el promedio estimado es por encima del intervalo de confianza (la lineas entrecortadas).</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construir una distribución normal de los datos</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>randT<span class="ot">&lt;-</span><span class="fu">rt</span>(<span class="dv">30000</span>, <span class="at">df=</span><span class="fu">NROW</span>(tips)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">+</span><span class="fl">2.5</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>

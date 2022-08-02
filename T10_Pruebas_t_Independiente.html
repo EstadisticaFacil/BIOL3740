@@ -573,7 +573,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
+<pre><code>## [1] &quot;2022-08-02&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)  <span class="co"># para la prueba de leveneTest</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -581,21 +581,10 @@ div.tocify {
 <hr />
 <div id="la-prueba-t-con-datos-independiente" class="section level1">
 <h1>La prueba t con datos independiente</h1>
-<p>Una de las pruebas más común es la de comparar dos grupos y evaluar
-si los promedios de estos grupos son diferentes. Por ejemplo determinar
-si la edad de los estudiantes una clase es diferentes entre mujeres y
-hombres. Evaluar si dos concentraciones de antibiótico resulta en una
-reducción en el tiempo de infección de una enfermedad especifica. NOTA
-IMPORTANTE: los datos provienen de diferentes individuos, solamente un
-valor por individuo. Recuerda que en la prueba anterior de la prueba de
-t con datos pareados tenemos más de un dato por cada
-persona/individuo/unidad de muestreo.</p>
+<p>Una de las pruebas más común es la de comparar dos grupos y evaluar si los promedios de estos grupos son diferentes. Por ejemplo determinar si la edad de los estudiantes una clase es diferentes entre mujeres y hombres. Evaluar si dos concentraciones de antibiótico resulta en una reducción en el tiempo de infección de una enfermedad especifica. NOTA IMPORTANTE: los datos provienen de diferentes individuos, solamente un valor por individuo. Recuerda que en la prueba anterior de la prueba de t con datos pareados tenemos más de un dato por cada persona/individuo/unidad de muestreo.</p>
 <p>Datos</p>
-<p>Producimos un set de datos de diferentes personas, con las siguientes
-variables, el genero, la distancia (dist) viajada por estudiantes que
-van a la universidad de UPR-Utuado y UPR-Bayamón.</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>genero<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;m&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,</span>
+<p>Producimos un set de datos de diferentes personas, con las siguientes variables, el genero, la distancia (dist) viajada por estudiantes que van a la universidad de UPR-Utuado y UPR-Bayamón.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>genero<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;m&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,</span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,</span>
 <span id="cb3-3"><a href="#cb3-3"></a>    <span class="st">&quot;m&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;m&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,</span>
 <span id="cb3-4"><a href="#cb3-4"></a>    <span class="st">&quot;m&quot;</span>,<span class="st">&quot;m&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,<span class="st">&quot;f&quot;</span>,</span>
@@ -658,10 +647,7 @@ class="sourceCode numberSource r numberLines"><code class="sourceCode r"><span i
 </table>
 
 <hr />
-<p>Hacer un gráfico de los datos. Si calculamos el promedio de todos los
-valores de “Y” y lo visualizamos, vemos que muchos de los valores del
-municipio “bayamón” son muy por debajo los valores de la linea y muchos
-de los valores del municipio “utuado” son muy por encima.</p>
+<p>Hacer un gráfico de los datos. Si calculamos el promedio de todos los valores de “Y” y lo visualizamos, vemos que muchos de los valores del municipio “bayamón” son muy por debajo los valores de la linea y muchos de los valores del municipio “utuado” son muy por encima.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mean_dist<span class="ot">=</span><span class="fu">mean</span>(viajes<span class="sc">$</span>dist)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(viajes, <span class="fu">aes</span>(muni, dist, <span class="at">colour=</span>muni))<span class="sc">+</span></span>
@@ -674,39 +660,23 @@ de los valores del municipio “utuado” son muy por encima.</p>
 <div id="la-nula" class="section level3">
 <h3>La Nula</h3>
 <ul>
-<li>Ho: es que la distancia promedia que viaja los estudiantes es igual
-irrelevante del municipio donde estudian</li>
+<li>Ho: es que la distancia promedia que viaja los estudiantes es igual irrelevante del municipio donde estudian</li>
 <li>Ho: Promerio_1 = Promedio_2 o mejor</li>
-<li>Ho: <span
-class="math inline">\(\overline{x}_1=\overline{x}_2\)</span></li>
+<li>Ho: <span class="math inline">\(\overline{x}_1=\overline{x}_2\)</span></li>
 </ul>
 </div>
 <div id="la-alterna" class="section level3">
 <h3>La Alterna</h3>
 <ul>
-<li>Ha: es que la distancia promedia que viaja de los estudiantes no es
-igual (depende del municipio donde provienen)</li>
-<li>Ha: <span
-class="math inline">\(\overline{x}_1\ne\overline{x}_2\)</span></li>
+<li>Ha: es que la distancia promedia que viaja de los estudiantes no es igual (depende del municipio donde provienen)</li>
+<li>Ha: <span class="math inline">\(\overline{x}_1\ne\overline{x}_2\)</span></li>
 </ul>
-<p>Otra alternativa para visualizar es observar la diferencias entre el
-valor de la “y’s” y del promedio de esa variable, o sea los residuales
-(la diferencia entre el promedio y el valor se llaman los
-<strong>residuales</strong>. <span style="color: blue;">Nota que esto
-aparece a la gráfica de residuales de la regresión lineal</span>.</p>
+<p>Otra alternativa para visualizar es observar la diferencias entre el valor de la “y’s” y del promedio de esa variable, o sea los residuales (la diferencia entre el promedio y el valor se llaman los <strong>residuales</strong>. <span style="color: blue;">Nota que esto aparece a la gráfica de residuales de la regresión lineal</span>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, dist, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(dist), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>) <span class="fu">lines</span>(<span class="fu">c</span>(i,i), <span class="fu">c</span>(<span class="fu">mean</span>(dist), dist[i]), <span class="at">col=</span><span class="st">&quot;green&quot;</span>)</span></code></pre></div>
 <p><img src="T10_Pruebas_t_Independiente_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>Ahora vamos a separar la gráfica y visualizar los residuales por
-grupo, en otra palabra, cual son los residuales entre los valores y el
-promedio dentro de los mismos grupos. Se observa en este caso que hay
-menos varianza entre los valores de un mismo grupo. Note que en el grupo
-de <span style="color: blue;"><strong>bayamón</strong></span> que los
-valores son bastante cerca del promedio de este grupo en adición que los
-valores de <span style="color: red;"><strong>utuado</strong></span>
-estan más cerca de su promedio. Compara los residuales con la gráfica
-anterior.</p>
+<p>Ahora vamos a separar la gráfica y visualizar los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay menos varianza entre los valores de un mismo grupo. Note que en el grupo de <span style="color: blue;"><strong>bayamón</strong></span> que los valores son bastante cerca del promedio de este grupo en adición que los valores de <span style="color: red;"><strong>utuado</strong></span> estan más cerca de su promedio. Compara los residuales con la gráfica anterior.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, dist, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(dist[muni<span class="sc">==</span><span class="st">&quot;bayamón&quot;</span>]), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(dist[muni<span class="sc">==</span><span class="st">&quot;utuado&quot;</span>]), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
@@ -724,41 +694,20 @@ anterior.</p>
 </div>
 <div id="comparación-de-dos-grupos" class="section level1">
 <h1>Comparación de dos grupos</h1>
-<p>Hay diferentes acercamiento para hacer la <strong>prueba de
-t</strong> (t-test). Usaremos la más conocida. Donde comparamos el
-promedio de un grupo con el promedio de otro grupo, y determinar si no
-hay diferencias entre los grupos, la diferencias entre uno y el otro
-debería acercarse a cero si no hay diferencia entre los grupos. Hay que
-tomar en cuenta la cantidad de varianza/error en los análisis. Esto se
-toma encuenta considerando el error estándar en la formula
-siguiente.</p>
-<p><span class="math display">\[t=
-\frac{\bar{X_1}-\bar{X_2}}{SE}\]</span></p>
-<p>Más especifico la estadistica de <strong>t</strong> y el
-<strong>error estándar</strong> se calcula de la siguiente forma.</p>
-<p><span
-class="math display">\[t=\frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{{s}^{2}_p}{n_1}+\frac{{s}^{2}_p}{n_2}}}\]</span></p>
-<p>Donde la varianza ponderada (Weighted variance, <span
-class="math inline">\({s}^{2}_p\)</span>), es un indice de la varianza
-de los dos grupos tomando en cuenta el tamaño de muestra de cada grupo.
-Note que la varianza <span class="math inline">\(s^2\)</span> de cada
-grupo es multiplicado por (n-1) para sea “ponderada” basado en el tamaño
-de muestra por grupo. Por consecuencia un grupo que tiene pocos datos,
-“n”, su varianza tendrá menos peso en los análisis.</p>
-<p><span class="math display">\[{s}^{2}_p =
-\frac{(n_1-1){s}^{2}_1+(n_2-1){s}^{2}_2}{n_1+n_2-2}\]</span></p>
+<p>Hay diferentes acercamiento para hacer la <strong>prueba de t</strong> (t-test). Usaremos la más conocida. Donde comparamos el promedio de un grupo con el promedio de otro grupo, y determinar si no hay diferencias entre los grupos, la diferencias entre uno y el otro debería acercarse a cero si no hay diferencia entre los grupos. Hay que tomar en cuenta la cantidad de varianza/error en los análisis. Esto se toma encuenta considerando el error estándar en la formula siguiente.</p>
+<p><span class="math display">\[t= \frac{\bar{X_1}-\bar{X_2}}{SE}\]</span></p>
+<p>Más especifico la estadistica de <strong>t</strong> y el <strong>error estándar</strong> se calcula de la siguiente forma.</p>
+<p><span class="math display">\[t=\frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{{s}^{2}_p}{n_1}+\frac{{s}^{2}_p}{n_2}}}\]</span></p>
+<p>Donde la varianza ponderada (Weighted variance, <span class="math inline">\({s}^{2}_p\)</span>), es un indice de la varianza de los dos grupos tomando en cuenta el tamaño de muestra de cada grupo. Note que la varianza <span class="math inline">\(s^2\)</span> de cada grupo es multiplicado por (n-1) para sea “ponderada” basado en el tamaño de muestra por grupo. Por consecuencia un grupo que tiene pocos datos, “n”, su varianza tendrá menos peso en los análisis.</p>
+<p><span class="math display">\[{s}^{2}_p = \frac{(n_1-1){s}^{2}_1+(n_2-1){s}^{2}_2}{n_1+n_2-2}\]</span></p>
 <hr />
 <div id="la-prueba-t" class="section level3">
 <h3>La prueba t</h3>
-<p>Mi primera prueba para comparar el promedio entre dos grupos. Se usa
-la prueba de “t.test” (t-test).</p>
+<p>Mi primera prueba para comparar el promedio entre dos grupos. Se usa la prueba de “t.test” (t-test).</p>
 <p>La estructura de la prueba es la siguiente (lo mínimo)</p>
 <p>t.test(variable_de_respuesta ~ variable_de_grupo, dataframe)</p>
-<p>La hipótesis nula: Ho: la distancia viajado por la gente de la gente
-de los dos municipios es igual (el valor de “p” sera major de 0.05)</p>
-<p>La hipótesis alterna: Ha: la distancia viajado por la gente no es
-igual por la gente de los dos municipios (el valor de “p” sera menor de
-0.05 )</p>
+<p>La hipótesis nula: Ho: la distancia viajado por la gente de la gente de los dos municipios es igual (el valor de “p” sera major de 0.05)</p>
+<p>La hipótesis alterna: Ha: la distancia viajado por la gente no es igual por la gente de los dos municipios (el valor de “p” sera menor de 0.05 )</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model<span class="ot">=</span><span class="fu">t.test</span>(dist<span class="sc">~</span>muni,<span class="at">data=</span>viajes, <span class="at">paired=</span><span class="cn">FALSE</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
 <pre><code>## 
@@ -821,15 +770,9 @@ igual por la gente de los dos municipios (el valor de “p” sera menor de
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>            <span class="dv">12</span>, <span class="dv">2</span>)</span></code></pre></div>
 <hr />
 </div>
-<div id="gráficar-el-promedio-y-el-intervalo-de-confianza"
-class="section level2">
+<div id="gráficar-el-promedio-y-el-intervalo-de-confianza" class="section level2">
 <h2>Gráficar el promedio y el intervalo de confianza</h2>
-<p>Graficar los datos con el promedio y el intervalo de confianza da un
-resumen de la estadística de forma visual, lo que se visualiza es el
-promedio y el intervalo de 95%. Nota que se usa la función en ggplot2 de
-<strong>stat_summary(fun.data = mean_cl_normal)</strong>, esto quiere
-decir que se esta calculando los valores ASUMIENDO una distribución
-normal de los datos.</p>
+<p>Graficar los datos con el promedio y el intervalo de confianza da un resumen de la estadística de forma visual, lo que se visualiza es el promedio y el intervalo de 95%. Nota que se usa la función en ggplot2 de <strong>stat_summary(fun.data = mean_cl_normal)</strong>, esto quiere decir que se esta calculando los valores ASUMIENDO una distribución normal de los datos.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(gender, dist))<span class="sc">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_cl_normal, <span class="at">geom =</span> <span class="st">&quot;pointrange&quot;</span>)</span></code></pre></div>
 <p><img src="T10_Pruebas_t_Independiente_files/figure-html/graph%20summary%20stats-1.png" width="672" /></p>
@@ -840,12 +783,7 @@ normal de los datos.</p>
 <h1>Pruebas de normalidades</h1>
 <div id="visualización-de-los-datos" class="section level2">
 <h2>Visualización de los datos</h2>
-<p>Siempre se debería producir un gráfico de los datos para tener una
-idea de si los datos cumple con los supuestos de las pruebas. Ahora ver
-las distribución de frecuencia por municipio. Si los datos tuviese una
-distribución <strong>perfecta</strong> normal, se obtendría una
-distribición en forma de campana. Primero NO se debería esperar este
-tipo de distribución cuando tenemos pocos datos.</p>
+<p>Siempre se debería producir un gráfico de los datos para tener una idea de si los datos cumple con los supuestos de las pruebas. Ahora ver las distribución de frecuencia por municipio. Si los datos tuviese una distribución <strong>perfecta</strong> normal, se obtendría una distribición en forma de campana. Primero NO se debería esperar este tipo de distribución cuando tenemos pocos datos.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(viajes, <span class="fu">aes</span>(dist, <span class="at">fill=</span>muni))<span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour=</span><span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>muni)</span></code></pre></div>
@@ -854,23 +792,9 @@ tipo de distribución cuando tenemos pocos datos.</p>
 </div>
 <div id="shapiro-wilks-prueba-de-normalidad" class="section level2">
 <h2>Shapiro-Wilks: Prueba de normalidad</h2>
-<p>La prueba de Shapiro-Wilks fue publicado por Sanuel S. Shapiro and
-Martin Wilk en 1965. La prueba de Shapiro_Wilks es una prueba para
-determinar si lo datos <strong>provienen</strong> de una distribución
-normal. La hipótesis NULA es que los datos provienen de una distribución
-normal, por consecuencia cuando uno acepta la hipótesis nula (p &gt;
-0.05) es que <strong>no hay evidencia de sugerir que los datos no
-provienen de una distribución normal</strong>. Es solamente cuando el
-valor de p es menor de 0.05 que uno rechaza la hipótesis y hay evidencia
-que los datos no provienen de una distribución normal.</p>
+<p>La prueba de Shapiro-Wilks fue publicado por Sanuel S. Shapiro and Martin Wilk en 1965. La prueba de Shapiro_Wilks es una prueba para determinar si lo datos <strong>provienen</strong> de una distribución normal. La hipótesis NULA es que los datos provienen de una distribución normal, por consecuencia cuando uno acepta la hipótesis nula (p &gt; 0.05) es que <strong>no hay evidencia de sugerir que los datos no provienen de una distribución normal</strong>. Es solamente cuando el valor de p es menor de 0.05 que uno rechaza la hipótesis y hay evidencia que los datos no provienen de una distribución normal.</p>
 <p>Problema con la prueba cuando la muestra es grande</p>
-<p>Es típico que cuando uno tiene muchos muchos datos uno puede
-encontrar diferencias significativas entres los grupos, en este caso
-cuando hay muchos datos la prueba pudiese sugerir que los datos no
-tienen distribución normal cuando en realidad se esta detectando
-diferenciales triviales. En la prueba abajo se sugiere de NO utilizarla
-si tiene mayor de 2000 datos. Al contrario cuando tenga muy pocos datos
-(n&lt;50) no se debería usar la prueba de Shapiro-Wilks.</p>
+<p>Es típico que cuando uno tiene muchos muchos datos uno puede encontrar diferencias significativas entres los grupos, en este caso cuando hay muchos datos la prueba pudiese sugerir que los datos no tienen distribución normal cuando en realidad se esta detectando diferenciales triviales. En la prueba abajo se sugiere de NO utilizarla si tiene mayor de 2000 datos. Al contrario cuando tenga muy pocos datos (n&lt;50) no se debería usar la prueba de Shapiro-Wilks.</p>
 <div id="evaluar-la" class="section level3">
 <h3>Evaluar la</h3>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(viajes<span class="sc">$</span>dist)</span></code></pre></div>
@@ -905,13 +829,8 @@ si tiene mayor de 2000 datos. Al contrario cuando tenga muy pocos datos
 </div>
 <div id="method-2-byf.shapiro" class="section level3">
 <h3>Method 2: byf.shapiro()</h3>
-<p>Aqui es una prueba más sensilla para hacer para comprobar que los
-grupos tienen distribución normal. <span style="color: red;">Tiene que
-usar la libreria ‘RVAideMemoire’ y la función byf.shapiro( )</span>
-.</p>
-<p>Recuerda, que si el valor de p es mayor de 0.05, se asume que los
-datos tienen una distribución normal, si es menor de 0.05 se asume que
-no es normal.</p>
+<p>Aqui es una prueba más sensilla para hacer para comprobar que los grupos tienen distribución normal. <span style="color: red;">Tiene que usar la libreria ‘RVAideMemoire’ y la función byf.shapiro( )</span> .</p>
+<p>Recuerda, que si el valor de p es mayor de 0.05, se asume que los datos tienen una distribución normal, si es menor de 0.05 se asume que no es normal.</p>
 <p>Nota la oragnización de la prueba, es como la de la t.test( )</p>
 <p>byf.shapiro(variable_de_respuesta ~ variable_de_grupo, dataframe)</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># de la libreria de (RVAideMemoire)</span></span>
@@ -931,33 +850,17 @@ no es normal.</p>
 </div>
 <div id="prueba-de-igualdad-de-varianza" class="section level1">
 <h1>Prueba de Igualdad de Varianza</h1>
-<p><a
-href="http://www.cookbook-r.com/Statistical_analysis/Homogeneity_of_variance/"
-class="uri">http://www.cookbook-r.com/Statistical_analysis/Homogeneity_of_variance/</a></p>
+<p><a href="http://www.cookbook-r.com/Statistical_analysis/Homogeneity_of_variance/" class="uri">http://www.cookbook-r.com/Statistical_analysis/Homogeneity_of_variance/</a></p>
 <p>Presento 3 alternativas para la prueba de igualdad de varianza.</p>
-<p>Las pruebas siguientes tambiens se llaman pruebas de
-homoscedasticidad de varianza, o sea que la varianza en los diferentes
-grupos es igual. por consecuencia la hipotesis nnula es que la varianza
-del primer grupo es igual a la varianza del segundo grupo (para una
-prueba t). Nota aqui es es importante donde se encuenta el promedio o la
-mediana, lo que es importante es la distribución de los datos.</p>
-<p>Homogemeidad de varianza <span class="math display">\[H_o:  {s}^{2}_1
-= {s}^{2}_2\]</span></p>
+<p>Las pruebas siguientes tambiens se llaman pruebas de homoscedasticidad de varianza, o sea que la varianza en los diferentes grupos es igual. por consecuencia la hipotesis nnula es que la varianza del primer grupo es igual a la varianza del segundo grupo (para una prueba t). Nota aqui es es importante donde se encuenta el promedio o la mediana, lo que es importante es la distribución de los datos.</p>
+<p>Homogemeidad de varianza <span class="math display">\[H_o:  {s}^{2}_1 = {s}^{2}_2\]</span></p>
 <p>y la hipotesis alterna</p>
-<p><span class="math display">\[H_a:  {s}^{2}_1
-\neq  {s}^{2}_2\]</span></p>
-<p>Cuando los datos no cumple con distribución igualdad de varianza se
-dice que los datos heteroscedasticidad.</p>
+<p><span class="math display">\[H_a:  {s}^{2}_1 \neq  {s}^{2}_2\]</span></p>
+<p>Cuando los datos no cumple con distribución igualdad de varianza se dice que los datos heteroscedasticidad.</p>
 <ol style="list-style-type: decimal">
-<li>Bartlett’s test of equality of variance Los datos tienen que cumplir
-con la distribución normal para usar esta prueba, si no cumple tendra
-una mayor probabilidad de rechazar la hipotesis nula.</li>
-<li>Levene’s Test for equality of variance La prueba de Levene los datos
-no son tan sensitivo a la distribución normal, pero no deberia tampoco
-ser muy diferente de ella.</li>
-<li>Fligner-Killeen Test for equality of Variance La prueba de
-Fligner-Killeen los datos NO tiene que cumplir con distribición normal y
-es una prueba robusta cuando hay datos sesgados (outliers).</li>
+<li>Bartlett’s test of equality of variance Los datos tienen que cumplir con la distribución normal para usar esta prueba, si no cumple tendra una mayor probabilidad de rechazar la hipotesis nula.</li>
+<li>Levene’s Test for equality of variance La prueba de Levene los datos no son tan sensitivo a la distribución normal, pero no deberia tampoco ser muy diferente de ella.</li>
+<li>Fligner-Killeen Test for equality of Variance La prueba de Fligner-Killeen los datos NO tiene que cumplir con distribición normal y es una prueba robusta cuando hay datos sesgados (outliers).</li>
 </ol>
 <div id="la-prueba-de-bartlett" class="section level2">
 <h2>La prueba de Bartlett</h2>
@@ -968,8 +871,7 @@ es una prueba robusta cuando hay datos sesgados (outliers).</li>
 ## data:  dist by muni
 ## Bartlett&#39;s K-squared = 9.7164, df = 1, p-value = 0.001826</code></pre>
 </div>
-<div id="prueba-de-levene-para-igualdad-de-varianza"
-class="section level2">
+<div id="prueba-de-levene-para-igualdad-de-varianza" class="section level2">
 <h2>Prueba de Levene para igualdad de Varianza</h2>
 <ul>
 <li>similar to Bartlett’s test</li>
@@ -985,8 +887,7 @@ class="section level2">
 </table>
 
 </div>
-<div id="prueba-de-fligner-killeen-para-igualdad-de-varianza"
-class="section level2">
+<div id="prueba-de-fligner-killeen-para-igualdad-de-varianza" class="section level2">
 <h2>Prueba de Fligner-Killeen para igualdad de Varianza</h2>
 <ul>
 <li>good when the distribution are not normal</li>

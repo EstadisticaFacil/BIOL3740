@@ -573,7 +573,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
+<pre><code>## [1] &quot;2022-08-02&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
@@ -583,13 +583,7 @@ div.tocify {
 <hr />
 <div id="que-es-la-dispersión-en-estadística" class="section level1">
 <h1>Que es la dispersión en estadística</h1>
-<p>Las medidas o indices de dispersión, son indicadores de cuan variable
-los datos son uno del otro. Si todos los valores tienen el mismo valor
-no hay dispersión. Hay múltiples indices de dispersión vamos a evaluar
-solamente algunos de estos indices, para más información pueden ir al
-siguiente enlace <a
-href="https://en.wikipedia.org/wiki/Statistical_dispersion"
-class="uri">https://en.wikipedia.org/wiki/Statistical_dispersion</a>.</p>
+<p>Las medidas o indices de dispersión, son indicadores de cuan variable los datos son uno del otro. Si todos los valores tienen el mismo valor no hay dispersión. Hay múltiples indices de dispersión vamos a evaluar solamente algunos de estos indices, para más información pueden ir al siguiente enlace <a href="https://en.wikipedia.org/wiki/Statistical_dispersion" class="uri">https://en.wikipedia.org/wiki/Statistical_dispersion</a>.</p>
 <p>Los indices que estaremos estudiando son los siguientes</p>
 <ul>
 <li>el rango</li>
@@ -600,13 +594,7 @@ class="uri">https://en.wikipedia.org/wiki/Statistical_dispersion</a>.</p>
 </div>
 <div id="vizualizando-la-dispersión" class="section level1">
 <h1>Vizualizando la dispersión</h1>
-<p>Primero miramos un gráfico donde tenemos datos donde el promedio es
-igual pero la dispersiones son diferentes. Lo que uno observa es que en
-la distribución azul los datos son más similares uno al otro y la
-distribución roja los valores son más diferentes. En el primer conjunto
-de datos se usa 5000 valores con un promedio de 100 y una desviación
-estándar de 10, en el segundo se produce un conjunto de datos de 500
-valores con un promedio de 100 y una desviación estándar de 30.</p>
+<p>Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes. En el primer conjunto de datos se usa 5000 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8690</span>) <span class="co"># esto es para que los valores se queda igual a cada vez que se corre el analisis</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">5000</span>, <span class="dv">100</span>, <span class="dv">10</span>) <span class="co"># la función para generar datos al azar con una distribución normal</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>dfa<span class="ot">=</span><span class="fu">data.frame</span>(a)</span>
@@ -626,13 +614,7 @@ valores con un promedio de 100 y una desviación estándar de 30.</p>
 </div>
 <div id="el-rango" class="section level1">
 <h1>El rango</h1>
-<p>El rango son los valores mínimo y valor máximo de un conjunto de
-datos. Se usa la función <strong>range()</strong>. Usamos los dos
-conjuntos de datos ya creado anteriormente para visualizar los rangos de
-la distribuciones de los gráficos. Lo que uno observa es que el valor
-mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para
-el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es
-203.88.</p>
+<p>El rango son los valores mínimo y valor máximo de un conjunto de datos. Se usa la función <strong>range()</strong>. Usamos los dos conjuntos de datos ya creado anteriormente para visualizar los rangos de la distribuciones de los gráficos. Lo que uno observa es que el valor mínimo del primer conjunto de datos es 59.17 y el máximo es 137.12. Para el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es 203.88.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(dfa<span class="sc">$</span>a)</span></code></pre></div>
 <pre><code>## [1]  67.77126 133.87095</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(dfb<span class="sc">$</span>b)</span></code></pre></div>
@@ -640,8 +622,7 @@ el segundo conjunto de datos el valor mínimo es 1.86 y el máximo es
 </div>
 <div id="ejemplo-de-la-clase" class="section level1">
 <h1>Ejemplo de la clase</h1>
-<div id="cual-es-el-rango-de-la-edad-de-los-padres-de-los-estudiantes"
-class="section level2">
+<div id="cual-es-el-rango-de-la-edad-de-los-padres-de-los-estudiantes" class="section level2">
 <h2>Cual es el rango de la Edad de los padres de los Estudiantes</h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Edad<span class="ot">=</span><span class="fu">c</span>(<span class="dv">57</span>,<span class="dv">50</span>,<span class="dv">43</span>,<span class="dv">39</span>,<span class="dv">54</span>,<span class="dv">50</span>,<span class="dv">59</span>,<span class="dv">49</span>, <span class="dv">57</span>,<span class="dv">51</span>,<span class="dv">43</span>,<span class="dv">47</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Edad</span></code></pre></div>
@@ -686,16 +667,13 @@ class="section level2">
 <h2>La varianza</h2>
 <p>Los pasos para calcular la varianza son los siguientes</p>
 <ul>
-<li>tener un conjunto de datos, aquí lo llamamos
-<strong>Data</strong></li>
+<li>tener un conjunto de datos, aquí lo llamamos <strong>Data</strong></li>
 <li>convertir esta lista en un data frame</li>
 <li>Calcular el promedio de los datos</li>
 <li>restar el promedio de cada valor y cuadralos</li>
-<li>Sumar y restas de <strong>n-1</strong>, done <strong>n</strong> es
-la cantidad de datos</li>
+<li>Sumar y restas de <strong>n-1</strong>, done <strong>n</strong> es la cantidad de datos</li>
 </ul>
-<p><span class="math display">\[{ s }^{ 2 }=\frac { \sum { { ({ x }_{ i
-}-\bar { x }  })^{ 2 } }  }{ n-1 }\]</span></p>
+<p><span class="math display">\[{ s }^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }\]</span></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Data<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Data_df<span class="ot">=</span><span class="fu">data.frame</span>(Data)</span>
@@ -766,14 +744,7 @@ la cantidad de datos</li>
 </div>
 <div id="calcular-la-varianza-con-var" class="section level2">
 <h2>Calcular la varianza con <strong>var()</strong></h2>
-<p>Ahora la manera fácil de hacer los análisis, usar la función
-<strong>var</strong>, y no hay que hacer ninguno de los pasos
-anteriores. Pero es importante que sepa como es el procedimiento de
-calcular la varianza. Nota que la varianza es un indice de la diferencia
-entre el promedio y cada valor. El otro paso es que los valores tienen
-que estar cuadrada las diferencias sino la suma sera de cero. Se usa el
-variancas cuando tenemos confianzas que los datos provienen de una
-distribución normal y que los datos que uno tiene no están sesgados.</p>
+<p>Ahora la manera fácil de hacer los análisis, usar la función <strong>var</strong>, y no hay que hacer ninguno de los pasos anteriores. Pero es importante que sepa como es el procedimiento de calcular la varianza. Nota que la varianza es un indice de la diferencia entre el promedio y cada valor. El otro paso es que los valores tienen que estar cuadrada las diferencias sino la suma sera de cero. Se usa el variancas cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(Data)</span></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
 <hr />
@@ -781,33 +752,17 @@ distribución normal y que los datos que uno tiene no están sesgados.</p>
 </div>
 <div id="la-desviación-estandar" class="section level1">
 <h1>La desviación estandar</h1>
-<p>La varianza es un indice que no esta en la misma unidad que los
-valores recolectado, por ejemplo si se recolecta los datos en
-centímetros, la varianza es en centímetros cuadrados. Por consecuencia
-no es necesariamente el mejor para describir la dispersión. Entonces hay
-que sacar la raíz cuadra de la varianza. La desviación estándar es un
-indice que se usa para describir la dispersión de una población, en otra
-palabra cuan diferentes son los datos uno del otro. Se usa el desviación
-estándar cuando tenemos confianzas que los datos provienen de una
-distribución normal y que los datos que uno tiene no están sesgados.</p>
-<p><span class="math display">\[{ s }=\sqrt { \frac { \sum { { ({ x }_{
-i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }\]</span> o más sencillo</p>
+<p>La varianza es un indice que no esta en la misma unidad que los valores recolectado, por ejemplo si se recolecta los datos en centímetros, la varianza es en centímetros cuadrados. Por consecuencia no es necesariamente el mejor para describir la dispersión. Entonces hay que sacar la raíz cuadra de la varianza. La desviación estándar es un indice que se usa para describir la dispersión de una población, en otra palabra cuan diferentes son los datos uno del otro. Se usa el desviación estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
+<p><span class="math display">\[{ s }=\sqrt { \frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }  }\]</span> o más sencillo</p>
 <p><span class="math display">\[s=\sqrt{s^2}\]</span></p>
-<p>la función <strong>sd</strong>, “standard deviation” es sumamente
-facil de calcular en R.</p>
+<p>la función <strong>sd</strong>, “standard deviation” es sumamente facil de calcular en R.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(Data_df<span class="sc">$</span>Data)  <span class="co"># deviación estandard</span></span></code></pre></div>
 <pre><code>## [1] 1.870829</code></pre>
 <hr />
 </div>
 <div id="el-rango-intertcuartil." class="section level1">
 <h1>El rango intertcuartil.</h1>
-<p>La función básica es <strong>quantile</strong> si lo dejamos sin más
-instrucción calcula los siguientes probabilidades 0%, 25%, 50%
-(mediana), 75%, 100%. Pero si uno quiere los valores que se encuentra en
-una posición especifica hay que usar <strong>type =1</strong> como se ve
-en el segundo ejemplo. Hay 9 tipos de cuantiles con esta función, estos
-se encuentra definido en RStudio. Añade <strong>quantile</strong> en el
-artea de <strong>help</strong> y vera las otras alternativas.</p>
+<p>La función básica es <strong>quantile</strong> si lo dejamos sin más instrucción calcula los siguientes probabilidades 0%, 25%, 50% (mediana), 75%, 100%. Pero si uno quiere los valores que se encuentra en una posición especifica hay que usar <strong>type =1</strong> como se ve en el segundo ejemplo. Hay 9 tipos de cuantiles con esta función, estos se encuentra definido en RStudio. Añade <strong>quantile</strong> en el artea de <strong>help</strong> y vera las otras alternativas.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(Data) <span class="co"># la función básica (0%, 25%, 50% (mediana), 75%, 100%)</span></span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.00 2.25 3.50 4.75 6.00</code></pre>
@@ -918,8 +873,7 @@ artea de <strong>help</strong> y vera las otras alternativas.</p>
 </tr>
 </tbody>
 </table>
-<p>Ahora usamos la función <strong>quantile</strong> con el type=1 de
-calcular los cuartiles y vermos si tenemos los mismos resultados.</p>
+<p>Ahora usamos la función <strong>quantile</strong> con el type=1 de calcular los cuartiles y vermos si tenemos los mismos resultados.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>dat<span class="ot">=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">19</span>,<span class="dv">27</span>,<span class="dv">33</span>,<span class="dv">52</span>,<span class="dv">60</span>,<span class="dv">77</span>,<span class="dv">87</span>,<span class="dv">99</span>,<span class="dv">101</span>,<span class="dv">122</span>,<span class="dv">137</span>,<span class="dv">140</span>,<span class="dv">142</span>,<span class="dv">150</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(dat, <span class="at">type =</span><span class="dv">1</span>)</span></code></pre></div>
@@ -931,27 +885,10 @@ calcular los cuartiles y vermos si tenemos los mismos resultados.</p>
 </div>
 <div id="el-error-estandard" class="section level1">
 <h1>El error estandard</h1>
-<p>El termino correcto es el <em>error de las desviación estándar</em>
-pero típicamente acortado a <em>error estándar</em>. El indice de error
-estándar es para describir cual es la posible dispersión del promedio.
-En otra palabra cuan confiado estamos con el estimado del promedio. Más
-grande el error estándar menos confiado estamos con el promedio. Se usa
-el error estándar cuando tenemos confianzas que los datos provienen de
-una distribución normal y que los datos que uno tiene no están
-sesgados.</p>
-<p>La formula de error estándar es la siguiente usando la desviación
-estándar</p>
-<p><span
-class="math display">\[s_{\overline{x}}=\frac{s}{\sqrt{n}}\]</span> o
-usando la varianza, donde la <strong>n</strong> es la cantidad de
-datos</p>
-<p><span
-class="math display">\[s_{\overline{x}}=\sqrt{\frac{s^2}{n}}\]</span>
-Ahora si usamos los datos enseñado al principio del modulo. Calculamos
-error estándar de ambas distribución. er= error estándar. No hay función
-en R para calcular el error estándar, por consecuencia hay que crear la
-formula para calcular el indice. Vemos que cuando hay más dispersión el
-error estándar es más grande.</p>
+<p>El termino correcto es el <em>error de las desviación estándar</em> pero típicamente acortado a <em>error estándar</em>. El indice de error estándar es para describir cual es la posible dispersión del promedio. En otra palabra cuan confiado estamos con el estimado del promedio. Más grande el error estándar menos confiado estamos con el promedio. Se usa el error estándar cuando tenemos confianzas que los datos provienen de una distribución normal y que los datos que uno tiene no están sesgados.</p>
+<p>La formula de error estándar es la siguiente usando la desviación estándar</p>
+<p><span class="math display">\[s_{\overline{x}}=\frac{s}{\sqrt{n}}\]</span> o usando la varianza, donde la <strong>n</strong> es la cantidad de datos</p>
+<p><span class="math display">\[s_{\overline{x}}=\sqrt{\frac{s^2}{n}}\]</span> Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución. er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice. Vemos que cuando hay más dispersión el error estándar es más grande.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(dfa<span class="sc">$</span>a)</span></code></pre></div>
 <pre><code>## [1] 5000</code></pre>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>es_a<span class="ot">=</span> <span class="fu">sd</span>(dfa<span class="sc">$</span>a)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(dfa<span class="sc">$</span>a))</span>
@@ -964,18 +901,11 @@ error estándar es más grande.</p>
 <pre><code>## [1] 2.204251</code></pre>
 <hr />
 </div>
-<div id="el-intervalo-de-confianza-de-95-del-promedio"
-class="section level1">
+<div id="el-intervalo-de-confianza-de-95-del-promedio" class="section level1">
 <h1>El intervalo de confianza de 95% del promedio</h1>
-<p>Ya que hemos calculado el error estándar podemos calcular la
-dispersión de los promedios. Esto quiere decir que si uno repite la
-recolección de datos el promedio tiene un 95% de probabilidad estar en
-este rango. Uno calcula los limites de la dispersión de los promedios
-usando la siguientes formulas.</p>
-<p><span class="math display">\[Limite\ 95\%\ ariba=\ \overline{x}\
-+\left(ES\ \cdot\ 1.96\right)\]</span></p>
-<p><span class="math display">\[Limite\ 95\%\ abajo=\ \overline{x}\
--\left(ES\ \cdot\ 1.96\right)\]</span></p>
+<p>Ya que hemos calculado el error estándar podemos calcular la dispersión de los promedios. Esto quiere decir que si uno repite la recolección de datos el promedio tiene un 95% de probabilidad estar en este rango. Uno calcula los limites de la dispersión de los promedios usando la siguientes formulas.</p>
+<p><span class="math display">\[Limite\ 95\%\ ariba=\ \overline{x}\ +\left(ES\ \cdot\ 1.96\right)\]</span></p>
+<p><span class="math display">\[Limite\ 95\%\ abajo=\ \overline{x}\ -\left(ES\ \cdot\ 1.96\right)\]</span></p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>Limite_inferior_a<span class="ot">=</span><span class="fu">mean</span>(dfa<span class="sc">$</span>a)<span class="sc">-</span>(es_a<span class="sc">*</span><span class="fl">1.96</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>Limite_superior_a<span class="ot">=</span><span class="fu">mean</span>(dfa<span class="sc">$</span>a)<span class="sc">+</span>(es_a<span class="sc">*</span><span class="fl">1.96</span>)</span>
@@ -996,11 +926,7 @@ usando la siguientes formulas.</p>
 <pre><code>## [1] 99.13609</code></pre>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Limite_superior_b</span></code></pre></div>
 <pre><code>## [1] 103.4564</code></pre>
-<p>Visualizando el intervalos de confianza del promedio. Lo que uno
-observa es que primero el promedio puede ser en localidad diferentes
-porque el conjunto de datos fue menos en el segundo gráfico. Además
-vemos que el intervalo de 95% de confianza del promedio en el segundo es
-más amplio.</p>
+<p>Visualizando el intervalos de confianza del promedio. Lo que uno observa es que primero el promedio puede ser en localidad diferentes porque el conjunto de datos fue menos en el segundo gráfico. Además vemos que el intervalo de 95% de confianza del promedio en el segundo es más amplio.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>CI_a1<span class="ot">=</span><span class="fu">ggplot</span>(dfa, <span class="fu">aes</span>(a))<span class="sc">+</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="at">colour=</span><span class="st">&quot;white&quot;</span>,<span class="at">alpha=</span>.<span class="dv">5</span>, <span class="at">binwidth =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
@@ -1022,23 +948,14 @@ más amplio.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(easyGgplot2)</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot2.multiplot(CI_b.png,CI_b.png, cols=2)</span></span></code></pre></div>
 <hr />
-<div id="el-intervalos-de-confianza-de-los-datos"
-class="section level2">
+<div id="el-intervalos-de-confianza-de-los-datos" class="section level2">
 <h2>El intervalos de confianza de los datos</h2>
-<p>Para tener una idea de la distribución de los datos y cual es el
-porcentaje de valores que esté incluido (asumiendo una distribución
-normal). Podemos crear un gráfico que demuestra el porcentaje incluidos
-basado en la desviación estándar. Nota aquí no es la dispersión del
-promedio pero la dispersión de los datos en la población.</p>
+<p>Para tener una idea de la distribución de los datos y cual es el porcentaje de valores que esté incluido (asumiendo una distribución normal). Podemos crear un gráfico que demuestra el porcentaje incluidos basado en la desviación estándar. Nota aquí no es la dispersión del promedio pero la dispersión de los datos en la población.</p>
 <hr />
 </div>
-<div id="rangos-incluidos-en-intervalos-de-confianza"
-class="section level2">
+<div id="rangos-incluidos-en-intervalos-de-confianza" class="section level2">
 <h2>Rangos incluidos en intervalos de confianza</h2>
-<p>Cálculos el promedio y la desviación estándar de los datos. Lo
-haremos por genero. Si uno calcula el rango de promedio ± 1 sd, esto
-incluye 68.2% de los datos, si incluimos el promedio ± 2 sd incluye
-95.6% de los datos,</p>
+<p>Cálculos el promedio y la desviación estándar de los datos. Lo haremos por genero. Si uno calcula el rango de promedio ± 1 sd, esto incluye 68.2% de los datos, si incluimos el promedio ± 2 sd incluye 95.6% de los datos,</p>
 <table>
 <caption>Rangos incluidos en intervalos de confianza</caption>
 <thead>
@@ -1075,19 +992,10 @@ incluye 68.2% de los datos, si incluimos el promedio ± 2 sd incluye
 </div>
 <div id="ejemplo-del-intervalo-de-confianza" class="section level1">
 <h1>Ejemplo del intervalo de confianza</h1>
-<div id="el-intervalo-de-confianza-de-colesterol-en-los-iranis"
-class="section level2">
+<div id="el-intervalo-de-confianza-de-colesterol-en-los-iranis" class="section level2">
 <h2>El intervalo de confianza de colesterol en los Iranis</h2>
-<p>Comenzamos con evaluar el intervalo de confianza de los datos con
-datos teóricos. Por ejemplo el nivel de colesterol en el plasma varia en
-los humanos. En el siguiente articulo <em>Plasma total cholesterol level
-and some related factors in northern Iranian people</em>. <a
-href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/"
-class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/</a></p>
-<p>Usamos los datos para las mujeres con un promedio de 196.7 y una
-desviación estándar de 39.11. Con estos datos asumimos que esto
-provienen de una distribución normal y que representa las mujeres en
-resto del mundo.</p>
+<p>Comenzamos con evaluar el intervalo de confianza de los datos con datos teóricos. Por ejemplo el nivel de colesterol en el plasma varia en los humanos. En el siguiente articulo <em>Plasma total cholesterol level and some related factors in northern Iranian people</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/" class="uri">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3783780/</a></p>
+<p>Usamos los datos para las mujeres con un promedio de 196.7 y una desviación estándar de 39.11. Con estos datos asumimos que esto provienen de una distribución normal y que representa las mujeres en resto del mundo.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creamos un conjunto de datos para los análisis</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>Col<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">200000</span>, <span class="fl">196.7</span>, <span class="fl">39.11</span>)</span>
@@ -1099,9 +1007,7 @@ resto del mundo.</p>
 <span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>sdCol<span class="ot">=</span>Col<span class="sc">%&gt;%</span></span>
 <span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sd=</span><span class="fu">sd</span>(Col))</span></code></pre></div>
 <hr />
-<p>Visualizar los datos: Uds conoce su nivel de colesterol total? Donde
-se encuentra en esta distribución? Se encuentra en el 68%? Nota que la
-suma de todos los porcentaje es igual a 100%.</p>
+<p>Visualizar los datos: Uds conoce su nivel de colesterol total? Donde se encuentra en esta distribución? Se encuentra en el 68%? Nota que la suma de todos los porcentaje es igual a 100%.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtable)</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1142,16 +1048,11 @@ suma de todos los porcentaje es igual a 100%.</p>
 <span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Graficos/Colesterol_Inter.png&quot;</span>)</span></code></pre></div>
 <hr />
 </div>
-<div id="otro-ejemplo-de-los-intevalos-de-confianzas"
-class="section level2">
+<div id="otro-ejemplo-de-los-intevalos-de-confianzas" class="section level2">
 <h2>Otro ejemplo de los intevalos de confianzas</h2>
 <div id="la-altura-de-los-humanos" class="section level3">
 <h3>La altura de los humanos</h3>
-<p>Para evaluar el 95% de intervalo de confianza usaremos datos de la
-alturas de 500 adultos. Estos datos fueron bajado del siguiente website.
-Están disponible en debajo la pestaña de “Los Datos”. <a
-href="https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data"
-class="uri">https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data</a></p>
+<p>Para evaluar el 95% de intervalo de confianza usaremos datos de la alturas de 500 adultos. Estos datos fueron bajado del siguiente website. Están disponible en debajo la pestaña de “Los Datos”. <a href="https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data" class="uri">https://www.kaggle.com/yersever/500-person-gender-height-weight-bodymassindex/data</a></p>
 <hr />
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
@@ -1602,8 +1503,7 @@ class="uri">https://www.kaggle.com/yersever/500-person-gender-height-weight-body
   
 </table>
 </div>
-<p>Calculamos los promedios y las desviación estándar para añadirlos al
-gráfico</p>
+<p>Calculamos los promedios y las desviación estándar para añadirlos al gráfico</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Alturas_Humanos)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-13">
@@ -1661,9 +1561,7 @@ gráfico</p>
 <span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Genero, Altura_cm)<span class="sc">%&gt;%</span></span>
 <span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Genero<span class="sc">==</span><span class="st">&quot;Hombres&quot;</span>)<span class="sc">%&gt;%</span></span>
 <span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sd=</span><span class="fu">sd</span>(Altura_cm))</span></code></pre></div>
-<p>Aquí el gráfico de la distribución de los datos con un histograma, y
-promedio (negro), el rango de 68% entre las barras azules y el de 95%
-entre las barras roja.</p>
+<p>Aquí el gráfico de la distribución de los datos con un histograma, y promedio (negro), el rango de 68% entre las barras azules y el de 95% entre las barras roja.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>Alturas_Mujer<span class="ot">=</span>Alturas_Humanos<span class="sc">%&gt;%</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Genero, Altura_cm)<span class="sc">%&gt;%</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Genero<span class="sc">==</span><span class="st">&quot;Mujer&quot;</span>)<span class="sc">%&gt;%</span></span>
@@ -1681,8 +1579,7 @@ entre las barras roja.</p>
 <p><img src="Graficos/Alturas_Mujer.jpeg" width="60%" /></p>
 <hr />
 </div>
-<div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres."
-class="section level3">
+<div id="ejercicio-ahora-prepara-el-mismo-gráfico-para-los-hombres." class="section level3">
 <h3>Ejercicio: Ahora prepara el mismo gráfico para los hombres.</h3>
 </div>
 </div>

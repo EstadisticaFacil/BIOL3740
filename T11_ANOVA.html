@@ -573,8 +573,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2022-07-20&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2022-08-02&quot;</span></code></pre></div>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <style type="text/css">
 div.sourceCode pre.chunkout {
@@ -584,8 +583,7 @@ div.sourceCode pre.chunkout {
 <p>Chunk para poder cambiar el color del texto</p>
 <div id="instalar-libreria-si-es-necesario" class="section level2">
 <h2>Instalar libreria si es necesario</h2>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#install.packages(&quot;car&quot;)</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#install.packages(&quot;car&quot;)</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="co">#install.packages(&quot;pastecs&quot;)</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co">#install.packages(&quot;multcomp&quot;)</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="co">#install.packages(&quot;compute.es&quot;)</span></span>
@@ -593,8 +591,7 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 </div>
 <div id="activar-libreria" class="section level1">
 <h1>Activar libreria</h1>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="fu">library</span>(huxtable)</span>
@@ -606,24 +603,9 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 </div>
 <div id="anova" class="section level1">
 <h1>ANOVA</h1>
-<p>Análisis de varianza es un método para comparar 3 o más promedios, al
-contrario de la prueba de t que es para comparar 2 promedios solamente.
-Entonces ANOVA es una extensión de la prueba t. La hipótesis nula es Ho:
-los promedios de los grupos son iguales. ANOVA fue desarrollado por
-Ronald Fisher y es basado en evaluar la varianza total del experimento y
-comparar esta con la varianza en los grupos. Típicamente si la varianza
-explicado entre los grupos es más grande que la varianza dentro los
-grupos se rechaza la hipótesis nula. A continuación veremos como hacer
-estos cálculos.</p>
-<p>Primero hay que explicar porque es necesario ANOVA y no hacer
-múltiples prueba de t. Recuerda que típicamente rechazamos la hipótesis
-nula cuando el valor de p es menor de 0.05, el tipo de error I. A cada
-vez que se hace una prueba t hay 5% de error. Por consecuencia si uno
-hace múltiples pruebas t, hay una posibilidad que se recheza la
-hipótesis nula cuando se debería aceptar. Cuan grande es ese error si
-uno hace múltiples pruebas t.</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(tibble)</span>
+<p>Análisis de varianza es un método para comparar 3 o más promedios, al contrario de la prueba de t que es para comparar 2 promedios solamente. Entonces ANOVA es una extensión de la prueba t. La hipótesis nula es Ho: los promedios de los grupos son iguales. ANOVA fue desarrollado por Ronald Fisher y es basado en evaluar la varianza total del experimento y comparar esta con la varianza en los grupos. Típicamente si la varianza explicado entre los grupos es más grande que la varianza dentro los grupos se rechaza la hipótesis nula. A continuación veremos como hacer estos cálculos.</p>
+<p>Primero hay que explicar porque es necesario ANOVA y no hacer múltiples prueba de t. Recuerda que típicamente rechazamos la hipótesis nula cuando el valor de p es menor de 0.05, el tipo de error I. A cada vez que se hace una prueba t hay 5% de error. Por consecuencia si uno hace múltiples pruebas t, hay una posibilidad que se recheza la hipótesis nula cuando se debería aceptar. Cuan grande es ese error si uno hace múltiples pruebas t.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>Tipo_errorI<span class="ot">=</span><span class="fu">tribble</span>(</span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="sc">~</span>Cantidad_Grupo_k, <span class="sc">~</span>C, <span class="sc">~</span><span class="st">&quot;0.05&quot;</span>, <span class="sc">~</span><span class="st">&quot;0.01&quot;</span>,</span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="st">&quot;2&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;0.05&quot;</span>, <span class="st">&quot;0.01&quot;</span>,</span>
@@ -654,62 +636,36 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 <td colspan="4" style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">* C=k(k-1)/2, que es la cantidad de comparación</td></tr>
 </table>
 
-<p>Nota que si tienes 4 grupos tendrá que hacer 6 pruebas de t, y eso
-eleva la probabilidad de cometer un tipo de error I a 26%, mucho más
-alto que el 5% que uno quisiera. Cuando uno hace la prueba de ANOVA y
-selecciona el nivel de error de 5%, es que el conjunto de todas las
-pruebas tiene ese nivel error posible.</p>
+<p>Nota que si tienes 4 grupos tendrá que hacer 6 pruebas de t, y eso eleva la probabilidad de cometer un tipo de error I a 26%, mucho más alto que el 5% que uno quisiera. Cuando uno hace la prueba de ANOVA y selecciona el nivel de error de 5%, es que el conjunto de todas las pruebas tiene ese nivel error posible.</p>
 <div id="hipótesis-en-anova" class="section level2">
 <h2>Hipótesis en ANOVA</h2>
-<p>La hipótesis nula en ANOVA, es que todos los grupos tienen el mismo
-promedio, o mejor dicho que no hay evidencia que los promedios sean
-distintos. Filosoficamente uno NUNCA uede decir que algo es similar es
-que uno puede decir que no hay evidencia que sean diferentes. Esto
-proviene de el punto imprtante que uno hace un muestreo de la población,
-por consecuencia siempre hay la posibilidad que los datos (el muestreo)
-NO representa la población y hay un tipo de error II (que no se rechaza
-la hipótesis nula cuando se debería rechazar).</p>
-<p>H0: <span class="math inline">\(H_o:\
-\mu_1=\mu_2=\mu_3=...=\mu_k\)</span> Ha: Por lo menos uno de los grupos
-no es igual a los demás.</p>
+<p>La hipótesis nula en ANOVA, es que todos los grupos tienen el mismo promedio, o mejor dicho que no hay evidencia que los promedios sean distintos. Filosoficamente uno NUNCA uede decir que algo es similar es que uno puede decir que no hay evidencia que sean diferentes. Esto proviene de el punto imprtante que uno hace un muestreo de la población, por consecuencia siempre hay la posibilidad que los datos (el muestreo) NO representa la población y hay un tipo de error II (que no se rechaza la hipótesis nula cuando se debería rechazar).</p>
+<p>H0: <span class="math inline">\(H_o:\ \mu_1=\mu_2=\mu_3=...=\mu_k\)</span> Ha: Por lo menos uno de los grupos no es igual a los demás.</p>
 <ul>
-<li>NOTA importante la hipótesis alterna <span style="color: red;">NO es
-que los grupos sean distintos</span>, es que por los menos uno de ellos
-es distinto.</li>
+<li>NOTA importante la hipótesis alterna <span style="color: red;">NO es que los grupos sean distintos</span>, es que por los menos uno de ellos es distinto.</li>
 </ul>
-<p>Ejemplo: Vamos asumir que tenemos 3 grupos, k=3 y que la hipótesis
-nula es la siguiente</p>
+<p>Ejemplo: Vamos asumir que tenemos 3 grupos, k=3 y que la hipótesis nula es la siguiente</p>
 <ul>
 <li>Ho: G1=G2=G3, p &gt;= 0.05</li>
 <li>Ha: Por lo menos uno de estos grupos no es igual a los demas.</li>
 </ul>
-<p>Si encontramos un valor de p &lt;0.05, rechazamos la hipótesis nula y
-de una de las posibles combinaciones pudiese ser G1=G2, G1=G3, pero G2
-no es igual a G3.</p>
+<p>Si encontramos un valor de p &lt;0.05, rechazamos la hipótesis nula y de una de las posibles combinaciones pudiese ser G1=G2, G1=G3, pero G2 no es igual a G3.</p>
 <ul>
-<li>¿Qué son las otras posibles combinaciones que resultaría en que se
-rechaza la hipótesis nula?</li>
+<li>¿Qué son las otras posibles combinaciones que resultaría en que se rechaza la hipótesis nula?</li>
 </ul>
 </div>
 </div>
 <div id="crear-un-conjunto-de-datos" class="section level1">
 <h1>Crear un conjunto de datos</h1>
-<p>Aquí observamos la cantidad de fósforo por parte de millón observado
-en la misma especie de planta cerca tres lagos de Puerto Rico . Los
-datos son ficticios es para demostrar el proceso de hacer los análisis.
-Se observa datos de plantas 3 lagos en Pueto Rico (Caraizo, DosBocas y
-Guineo).</p>
-<p>Nuestra hipótesis nula es que la cantidad de fósforo (partes por
-million) en la plantas es igual en los tres lagos.</p>
+<p>Aquí observamos la cantidad de fósforo por parte de millón observado en la misma especie de planta cerca tres lagos de Puerto Rico . Los datos son ficticios es para demostrar el proceso de hacer los análisis. Se observa datos de plantas 3 lagos en Pueto Rico (Caraizo, DosBocas y Guineo).</p>
+<p>Nuestra hipótesis nula es que la cantidad de fósforo (partes por million) en la plantas es igual en los tres lagos.</p>
 <blockquote>
 <ul>
 <li><span class="math inline">\(H_o:\ \mu_C=\mu_{DB}=\mu_G\)</span></li>
-<li>Por lo menos en uno de estos lagos las plantas tienen una
-concentración de fósforo diferente</li>
+<li>Por lo menos en uno de estos lagos las plantas tienen una concentración de fósforo diferente</li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>id<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>)</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>id<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>)</span>
 <span id="cb5-2"><a href="#cb5-2"></a>Cant_Fos<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">55</span>,<span class="dv">56</span>,<span class="dv">64</span>,<span class="dv">45</span>,<span class="dv">44</span>,</span>
 <span id="cb5-3"><a href="#cb5-3"></a>            <span class="dv">37</span>,<span class="dv">36</span>,<span class="dv">35</span>,<span class="dv">38</span>,<span class="dv">39</span>,</span>
 <span id="cb5-4"><a href="#cb5-4"></a>            <span class="dv">12</span>,<span class="dv">28</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">11</span>,<span class="dv">9</span>)</span>
@@ -757,40 +713,21 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 
 <div id="visualizar-los-datos" class="section level2">
 <h2>Visualizar los datos</h2>
-<p>Hacemos un gráfico de los datos. Calculamos el promedio de todos los
-valores de “Y” (concentración de fósforo en las plantas) y se gráfica,
-vemos que muchos de los valores de las plantas son por debajo los
-valores de la linea y muchos de los valores están por encima. Se observa
-que la concentración de fósforo en plantas que provienen de los lagos
-Caraizo y Guineo son lejos del promedio.</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mean_fosforo<span class="ot">=</span><span class="fu">mean</span>(fosforo<span class="sc">$</span>Cant_Fos)</span>
+<p>Hacemos un gráfico de los datos. Calculamos el promedio de todos los valores de “Y” (concentración de fósforo en las plantas) y se gráfica, vemos que muchos de los valores de las plantas son por debajo los valores de la linea y muchos de los valores están por encima. Se observa que la concentración de fósforo en plantas que provienen de los lagos Caraizo y Guineo son lejos del promedio.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mean_fosforo<span class="ot">=</span><span class="fu">mean</span>(fosforo<span class="sc">$</span>Cant_Fos)</span>
 <span id="cb6-2"><a href="#cb6-2"></a>mean_fosforo</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>## [1] 33.75</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(fosforo, <span class="fu">aes</span>(Lagos, Cant_Fos, <span class="at">colour=</span>Lagos))<span class="sc">+</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>## [1] 33.75</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(fosforo, <span class="fu">aes</span>(Lagos, Cant_Fos, <span class="at">colour=</span>Lagos))<span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>)<span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_fosforo) <span class="co"># geom_hline = linea horizontal</span></span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/plot-1.png" width="672" /></p>
-<p>Otra alternativa y una que ayuda a entender como se hace el cálculos
-es observar la diferencias entre el valor de la “y” y el promedio, o sea
-los residuales. <span style="color: blue;">Nota que esto se parece a la
-grafica de residuales de la regresión lineal</span>. Vimos también este
-tipo de gráfico para la prueba de t.</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, Cant_Fos, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">60</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;red&quot;</span>)</span>
+<p>Otra alternativa y una que ayuda a entender como se hace el cálculos es observar la diferencias entre el valor de la “y” y el promedio, o sea los residuales. <span style="color: blue;">Nota que esto se parece a la grafica de residuales de la regresión lineal</span>. Vimos también este tipo de gráfico para la prueba de t.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, Cant_Fos, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">60</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>) <span class="fu">lines</span>(<span class="fu">c</span>(i,i), <span class="fu">c</span>(<span class="fu">mean</span>(Cant_Fos), Cant_Fos[i]), <span class="at">col=</span><span class="st">&quot;green&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>Ahora vamos a separar el gráfico y ver los residuales por grupo, en
-otra palabra, cual son los residuales entre los valores y el promedio
-dentro de los mismos grupos. Se observa en este caso que hay mucho menos
-varianza entre los valores de un mismo grupo. Este es un indice que los
-lagos explica la varianza (en parte) en concentración de fósforo en las
-plantas.</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, Cant_Fos, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;black&quot;</span>)</span>
+<p>Ahora vamos a separar el gráfico y ver los residuales por grupo, en otra palabra, cual son los residuales entre los valores y el promedio dentro de los mismos grupos. Se observa en este caso que hay mucho menos varianza entre los valores de un mismo grupo. Este es un indice que los lagos explica la varianza (en parte) en concentración de fósforo en las plantas.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, Cant_Fos, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;black&quot;</span>)</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="at">col=</span><span class="st">&quot;orange&quot;</span>)</span>
@@ -807,11 +744,8 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 <p><img src="T11_ANOVA_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <hr />
 <p>Daros donde los grupos son iguales</p>
-<p>En este ejemplo de vemos dos de los grupos donde los residuales
-solapan, este es probable que resulta que estos dos grupos (azul y rojo)
-no sean diferentes.</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>id<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>)</span>
+<p>En este ejemplo de vemos dos de los grupos donde los residuales solapan, este es probable que resulta que estos dos grupos (azul y rojo) no sean diferentes.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>id<span class="ot">&lt;-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>)</span>
 <span id="cb11-2"><a href="#cb11-2"></a>Cant_Fos<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">52</span>,<span class="dv">66</span>,<span class="dv">60</span>,<span class="dv">54</span>,<span class="dv">64</span>,</span>
 <span id="cb11-3"><a href="#cb11-3"></a>            <span class="dv">56</span>,<span class="dv">58</span>,<span class="dv">65</span>,<span class="dv">49</span>,<span class="dv">58</span>,</span>
 <span id="cb11-4"><a href="#cb11-4"></a>            <span class="dv">21</span>,<span class="dv">24</span>,<span class="dv">22</span>,<span class="dv">21</span>,<span class="dv">21</span>,<span class="dv">21</span>)</span>
@@ -821,8 +755,7 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 <span id="cb11-8"><a href="#cb11-8"></a>fosforo2<span class="ot">&lt;-</span><span class="fu">data.frame</span>(id,Cant_Fos,Lagos)</span>
 <span id="cb11-9"><a href="#cb11-9"></a></span>
 <span id="cb11-10"><a href="#cb11-10"></a><span class="fu">attach</span>(fosforo2)</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, Cant_Fos, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;black&quot;</span>)</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, Cant_Fos, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">70</span>), <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;order&quot;</span>, <span class="at">pch=</span><span class="dv">21</span>, <span class="at">bg=</span><span class="st">&quot;black&quot;</span>)</span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Caraizo&quot;</span>]), <span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;DosBocas&quot;</span>]), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(Cant_Fos[Lagos<span class="sc">==</span><span class="st">&quot;Guineo&quot;</span>]), <span class="at">col=</span><span class="st">&quot;orange&quot;</span>)</span>
@@ -842,20 +775,9 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 </div>
 <div id="gráficar-los-datos" class="section level1">
 <h1>Gráficar los datos</h1>
-<p>Gráfica de los datos para observar si hay un patrón observable.
-Repito este punto múltiples veces ya que en mi carrera he visto mucha
-gente haciendo análisis de datos y hacen un análisis estadístico y
-rechazan la hipótesis nula. Si habría tomado el tiempo de visualizar los
-datos se habrían dado cuenta que no era posible este resultado porque
-los datos de los grupos solapan completamente.</p>
-<p>NOTA Aquí los tres pasos para producir un gráfico con el promedio de
-cada grupo. 1. los datos con geom_point 2. los promedios con
-stat_summary(fun.y = mean, geom = “point”), para calcular el promedio
-del grupo 3. Una linea que une los promedios con stat_summary(fun.y =
-mean, geom = “line”), note la diferencia entre los dos uno usa “point”
-el otro usa “line”.</p>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(ggplot2)</span>
+<p>Gráfica de los datos para observar si hay un patrón observable. Repito este punto múltiples veces ya que en mi carrera he visto mucha gente haciendo análisis de datos y hacen un análisis estadístico y rechazan la hipótesis nula. Si habría tomado el tiempo de visualizar los datos se habrían dado cuenta que no era posible este resultado porque los datos de los grupos solapan completamente.</p>
+<p>NOTA Aquí los tres pasos para producir un gráfico con el promedio de cada grupo. 1. los datos con geom_point 2. los promedios con stat_summary(fun.y = mean, geom = “point”), para calcular el promedio del grupo 3. Una linea que une los promedios con stat_summary(fun.y = mean, geom = “line”), note la diferencia entre los dos uno usa “point” el otro usa “line”.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="fu">ggplot</span>(fosforo, <span class="fu">aes</span>(<span class="at">x=</span>Lagos, <span class="at">y=</span>Cant_Fos, <span class="at">colour=</span>Lagos))<span class="sc">+</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a><span class="fu">geom_point</span>()<span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>, </span>
@@ -864,18 +786,10 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 <span id="cb13-7"><a href="#cb13-7"></a>             <span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/graficar%20fosforo-1.png" width="672" /></p>
 <hr />
-<div id="un-gráfico-con-el-intervalo-de-confianza."
-class="section level2">
+<div id="un-gráfico-con-el-intervalo-de-confianza." class="section level2">
 <h2>Un gráfico con el intervalo de confianza.</h2>
-<p>Crear un data frame de los resultados con el package “Rmisc” y la
-función “summarySE”. Los pasos son identificar la variable continua (en
-este caso measurevar=“Cant_Fos”) y la variable discreta que identifica
-los grupos groupvars=“Lagos”. Esto crea un nuevo data frame con los
-datos resumidos que incluye, el nombre de los grupos (Lagos), el tamaño
-de muestra (N), el promedio de la variable (Cant_Fos), la desviación
-estandar (sd), el error estandar (se) y intervalo de confianza (ci).</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(Rmisc)</span>
+<p>Crear un data frame de los resultados con el package “Rmisc” y la función “summarySE”. Los pasos son identificar la variable continua (en este caso measurevar=“Cant_Fos”) y la variable discreta que identifica los grupos groupvars=“Lagos”. Esto crea un nuevo data frame con los datos resumidos que incluye, el nombre de los grupos (Lagos), el tamaño de muestra (N), el promedio de la variable (Cant_Fos), la desviación estandar (sd), el error estandar (se) y intervalo de confianza (ci).</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(Rmisc)</span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a>sum <span class="ot">=</span> <span class="fu">summarySE</span>(fosforo, </span>
 <span id="cb14-4"><a href="#cb14-4"></a>                <span class="at">measurevar=</span><span class="st">&quot;Cant_Fos&quot;</span>, </span>
@@ -894,15 +808,10 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 
 <hr />
 </div>
-<div id="graficar-con-nuestro-nuevo-data-frame-sum."
-class="section level2">
+<div id="graficar-con-nuestro-nuevo-data-frame-sum." class="section level2">
 <h2>Graficar con nuestro nuevo data frame “sum”.</h2>
-<p>Para calcular el 95% del intervalo de confianza del promedio se usa
-la siguiente formula <span class="math inline">\(\overline{x}\ \pm2\cdot
-se\)</span>. Las barras representa el 95% de donde pudiese estar el
-promedio si repetimos el mismo experimento 100 veces.</p>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(sum, <span class="fu">aes</span>(<span class="at">x=</span>Lagos, </span>
+<p>Para calcular el 95% del intervalo de confianza del promedio se usa la siguiente formula <span class="math inline">\(\overline{x}\ \pm2\cdot se\)</span>. Las barras representa el 95% de donde pudiese estar el promedio si repetimos el mismo experimento 100 veces.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(sum, <span class="fu">aes</span>(<span class="at">x=</span>Lagos, </span>
 <span id="cb15-2"><a href="#cb15-2"></a>                <span class="at">y=</span>Cant_Fos)) <span class="sc">+</span></span>
 <span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_point</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span> </span>
 <span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>Cant_Fos<span class="dv">-2</span><span class="sc">*</span>se,</span>
@@ -913,11 +822,9 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 </div>
 <div id="estadística-descriptiva-de-los-lagos" class="section level2">
 <h2>Estadística descriptiva de los Lagos</h2>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(pastecs)</span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(pastecs)</span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="fu">by</span>(fosforo<span class="sc">$</span>Cant_Fos, fosforo<span class="sc">$</span>Lagos, stat.desc)</span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb17-1"><a href="#cb17-1"></a>## fosforo$Lagos: Caraizo</span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb17-1"><a href="#cb17-1"></a>## fosforo$Lagos: Caraizo</span>
 <span id="cb17-2"><a href="#cb17-2"></a>##      nbr.val     nbr.null       nbr.na          min          max        range </span>
 <span id="cb17-3"><a href="#cb17-3"></a>##    5.0000000    0.0000000    0.0000000   44.0000000   64.0000000   20.0000000 </span>
 <span id="cb17-4"><a href="#cb17-4"></a>##          sum       median         mean      SE.mean CI.mean.0.95          var </span>
@@ -948,63 +855,35 @@ class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="so
 <p>Hay 4 supuestos que tenemos que evaluar cuando se hace un ANOVA.</p>
 <blockquote>
 <ul>
-<li>Los datos de cada grupo es una muestra al azar de la
-poblaciones</li>
+<li>Los datos de cada grupo es una muestra al azar de la poblaciones</li>
 <li>La característica medida es son continuas.</li>
-<li>Igualdad de varianza: el error en la varianza en cada grupo es
-igual</li>
+<li>Igualdad de varianza: el error en la varianza en cada grupo es igual</li>
 <li>La variables continuas tienen una distribución normal.</li>
 </ul>
 </blockquote>
 <hr />
 <div id="datos-al-azar" class="section level2">
 <h2>Datos al azar</h2>
-<p>Este paso es uno de diseño experimental. Que los datos sean
-representativos de la poblaciones de interés, y que no sean sesgados a
-un subgrupo. Por ejemplo uno esta probando una vacuno para COVID-19 y la
-prueba evalúa solamente con gente en muy buena condición física (por
-ejemplos atletas). La selección de los participantes tiene que reflejar
-la población a quien se estaría ofreciendo la vacuna.</p>
+<p>Este paso es uno de diseño experimental. Que los datos sean representativos de la poblaciones de interés, y que no sean sesgados a un subgrupo. Por ejemplo uno esta probando una vacuno para COVID-19 y la prueba evalúa solamente con gente en muy buena condición física (por ejemplos atletas). La selección de los participantes tiene que reflejar la población a quien se estaría ofreciendo la vacuna.</p>
 <hr />
 </div>
 <div id="datos-continuos" class="section level2">
 <h2>1. Datos Continuos</h2>
-<p>Los datos tienen que valores continuos, no pueden ser discretos. Por
-ejemplo, no pueden ser binarios (vivo/muerto), tampoco no pueden ser
-conteos (0,1,2,3), si hay poca variación. *** ## 2. Igualdad de
-varianza</p>
-<p>La cantidad de dispersión en cada grupo tiene que ser bien similar
-uno al otro. Esto lo podemos comprobar con una prueba. La hipótesis nula
-es que cada grupo tiene una varianza igual. La hipotesis alterna es que
-por lo menos uno de los grupos no tiene la misma varianza.</p>
+<p>Los datos tienen que valores continuos, no pueden ser discretos. Por ejemplo, no pueden ser binarios (vivo/muerto), tampoco no pueden ser conteos (0,1,2,3), si hay poca variación. *** ## 2. Igualdad de varianza</p>
+<p>La cantidad de dispersión en cada grupo tiene que ser bien similar uno al otro. Esto lo podemos comprobar con una prueba. La hipótesis nula es que cada grupo tiene una varianza igual. La hipotesis alterna es que por lo menos uno de los grupos no tiene la misma varianza.</p>
 <blockquote>
 <ul>
-<li><span class="math display">\[Ho:
-{s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k\]</span></li>
-<li>Ha: Por lo menos uno d elos grupos no tiene la misma varianza que
-los otros. (similar a la Ha de ANOVA)</li>
+<li><span class="math display">\[Ho: {s}^{2}_1={s}^{2}_2={s}^{2}_3…{s}^{2}_k\]</span></li>
+<li>Ha: Por lo menos uno d elos grupos no tiene la misma varianza que los otros. (similar a la Ha de ANOVA)</li>
 </ul>
 </blockquote>
 <hr />
 </div>
 <div id="la-prueba-de-levenes-test" class="section level2">
 <h2>3. La prueba de Levene’s test</h2>
-<p>La prueba de Levene es probablemente la prueba de igualdad de
-varianza la más común aunque hay otras alternativas también. Puede
-encontrar información sobre la prueba de Levene y otras de la pruebas
-aquí <a href="https://en.wikipedia.org/wiki/Levene%27s_test"
-class="uri">https://en.wikipedia.org/wiki/Levene%27s_test</a>. Para
-evaluar sin hay diferencias en la varianza entre los grupos de usa la
-función <strong>leveneTest()</strong>. Si el valor de p es mayor de 0.05
-se acepta la hipótesis nula. <span style="color: red;">Si no cumple con
-el supuesto de igualdad de varianza ver el modulo de Kruskal-Wallis para
-una alternariva como evaluar los datos</span></p>
-<p>Con los datos de la concentración de fósforo en las plantas de tres
-lagos, la prueba de Levene da un resultado de p &gt; 0.21, lo que indica
-que no hay evidencia que la varianza es distinta entre los grupos, por
-consecuencia se acepta la hipótesis nula.</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(car)</span>
+<p>La prueba de Levene es probablemente la prueba de igualdad de varianza la más común aunque hay otras alternativas también. Puede encontrar información sobre la prueba de Levene y otras de la pruebas aquí <a href="https://en.wikipedia.org/wiki/Levene%27s_test" class="uri">https://en.wikipedia.org/wiki/Levene%27s_test</a>. Para evaluar sin hay diferencias en la varianza entre los grupos de usa la función <strong>leveneTest()</strong>. Si el valor de p es mayor de 0.05 se acepta la hipótesis nula. <span style="color: red;">Si no cumple con el supuesto de igualdad de varianza ver el modulo de Kruskal-Wallis para una alternariva como evaluar los datos</span></p>
+<p>Con los datos de la concentración de fósforo en las plantas de tres lagos, la prueba de Levene da un resultado de p &gt; 0.21, lo que indica que no hay evidencia que la varianza es distinta entre los grupos, por consecuencia se acepta la hipótesis nula.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="fu">leveneTest</span>(fosforo<span class="sc">$</span>Cant_Fos, fosforo<span class="sc">$</span>Lagos)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:levene test">
 <col><col><col><tr>
@@ -1019,18 +898,8 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 </div>
 <div id="normalidad" class="section level2">
 <h2>4. Normalidad</h2>
-<p>Tenemos que evaluar si los datos tienen una distribución normal. Como
-se ha discutido en un modulo anterior hay múltiples alternativas. Vamos
-a limitarnos a usar la prueba de qqplot. Vemos que los datos más o menos
-siguen la linea, entonces podemos usar ANOVA. En este caso tenemos pocos
-datos pero si tuviesemos más seria apropiado evaluar cada una aparte. Lo
-más sencillo seria de cambiar la primera linea del siguiente script
-<strong>ggplot(fosforo, aes(sample = Cant_Fos, group=Lagos))</strong>.
-En este caso tendríamos 3 lineas. <span style="color: red;">Si no cumple
-con el supuesto de normalidad ver el modulo de Kruskal-Wallis para una
-alternariva como evaluar los datos</span></p>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(fosforo, <span class="fu">aes</span>(<span class="at">sample =</span> Cant_Fos)) <span class="sc">+</span></span>
+<p>Tenemos que evaluar si los datos tienen una distribución normal. Como se ha discutido en un modulo anterior hay múltiples alternativas. Vamos a limitarnos a usar la prueba de qqplot. Vemos que los datos más o menos siguen la linea, entonces podemos usar ANOVA. En este caso tenemos pocos datos pero si tuviesemos más seria apropiado evaluar cada una aparte. Lo más sencillo seria de cambiar la primera linea del siguiente script <strong>ggplot(fosforo, aes(sample = Cant_Fos, group=Lagos))</strong>. En este caso tendríamos 3 lineas. <span style="color: red;">Si no cumple con el supuesto de normalidad ver el modulo de Kruskal-Wallis para una alternariva como evaluar los datos</span></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(fosforo, <span class="fu">aes</span>(<span class="at">sample =</span> Cant_Fos)) <span class="sc">+</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
 <span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">stat_qq_line</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
 <span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Valores teóricos&quot;</span>)<span class="sc">+</span></span>
@@ -1041,63 +910,24 @@ class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCod
 </div>
 <div id="la-prueba-de-anova" class="section level1">
 <h1>La prueba de ANOVA</h1>
-<p>Finalmente llegamos a la prueba de ANOVA, se usa la función
-<strong>aov()</strong>. En la primera linea vemos el resultado de
-comparar los tres lagos, ven que hay 2 grados de libertad (df=2), esto
-quiere decir que esta incluido en el analisis 3 grapos, porque el grado
-de libertad de calcula tomando la suma de la cantidad de grupos k-1, y
-este ejercicio tenemos 3-1=2. En la misma linea obsertva el valor de p,
-vemos que se rechaza la hipótesis nula (p &lt;0.05). Ya sabemos que por
-lo menos uno de los grupos no es igual a los demás. Pero todavía no
-sabemos que pares son diferentes o si todos. En la segunda linea se
-observa lo otros datos del experimento, lo que aquí se llama los
-residuales.</p>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>LagosModel<span class="ot">&lt;-</span><span class="fu">aov</span>(Cant_Fos<span class="sc">~</span>Lagos, <span class="at">data =</span> fosforo)</span>
+<p>Finalmente llegamos a la prueba de ANOVA, se usa la función <strong>aov()</strong>. En la primera linea vemos el resultado de comparar los tres lagos, ven que hay 2 grados de libertad (df=2), esto quiere decir que esta incluido en el analisis 3 grapos, porque el grado de libertad de calcula tomando la suma de la cantidad de grupos k-1, y este ejercicio tenemos 3-1=2. En la misma linea obsertva el valor de p, vemos que se rechaza la hipótesis nula (p &lt;0.05). Ya sabemos que por lo menos uno de los grupos no es igual a los demás. Pero todavía no sabemos que pares son diferentes o si todos. En la segunda linea se observa lo otros datos del experimento, lo que aquí se llama los residuales.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>LagosModel<span class="ot">&lt;-</span><span class="fu">aov</span>(Cant_Fos<span class="sc">~</span>Lagos, <span class="at">data =</span> fosforo)</span>
 <span id="cb20-2"><a href="#cb20-2"></a></span>
 <span id="cb20-3"><a href="#cb20-3"></a></span>
 <span id="cb20-4"><a href="#cb20-4"></a><span class="fu">summary</span>(LagosModel)</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
 <span id="cb21-2"><a href="#cb21-2"></a>## Lagos        2   3939    1970   49.28 8.55e-07 ***</span>
 <span id="cb21-3"><a href="#cb21-3"></a>## Residuals   13    520      40                     </span>
 <span id="cb21-4"><a href="#cb21-4"></a>## ---</span>
 <span id="cb21-5"><a href="#cb21-5"></a>## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></code></pre></div>
-<p>Una alternativa para evaluar si los datos tienen una igualdad de
-varianza y normalidad es usar la función <strong>plot()</strong>, esta
-función presenta 4 gráficos donde vamos aquí explicar solamente las dos
-primeras. En el primer gráfico se observa una distribución de los
-residuales por grupo. Si los datos están más o menos distribuido de
-forma similar entre los grupos (que los datos de cada grupo tiene más o
-menos la misma cantidad de datos negativos y positivos alrededor del
-residual cero y que esta distribución se ve similar) se suguiere que hay
-igualdad de varianza entre los grupos.</p>
-<p>En el segundo gráfico se observa en qqplot. Si los datos están cerca
-de la linea entrecortada se asume que tiene una distribución normal.
-Nota que hay tres datos que tienen números (5, 3, 12), estos son datos
-que posiblemente sean atípicos, y hay que evaluar si estos datos impacta
-el resultados (veremos esto más tarde, con la prueba de Cooks).</p>
-<div class="sourceCode" id="cb22"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">plot</span>(LagosModel)</span></code></pre></div>
+<p>Una alternativa para evaluar si los datos tienen una igualdad de varianza y normalidad es usar la función <strong>plot()</strong>, esta función presenta 4 gráficos donde vamos aquí explicar solamente las dos primeras. En el primer gráfico se observa una distribución de los residuales por grupo. Si los datos están más o menos distribuido de forma similar entre los grupos (que los datos de cada grupo tiene más o menos la misma cantidad de datos negativos y positivos alrededor del residual cero y que esta distribución se ve similar) se suguiere que hay igualdad de varianza entre los grupos.</p>
+<p>En el segundo gráfico se observa en qqplot. Si los datos están cerca de la linea entrecortada se asume que tiene una distribución normal. Nota que hay tres datos que tienen números (5, 3, 12), estos son datos que posiblemente sean atípicos, y hay que evaluar si estos datos impacta el resultados (veremos esto más tarde, con la prueba de Cooks).</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">plot</span>(LagosModel)</span></code></pre></div>
 <p><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-1.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-2.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-3.png" width="672" /><img src="T11_ANOVA_files/figure-html/ANOVA%20residuals-4.png" width="672" /></p>
 <div id="prueba-de-post-hoc" class="section level2">
 <h2>PRUEBA de Post-Hoc</h2>
-<p>Importante este paso <span style="color: blue;">se hace solamente si
-se rechaza la hipótesis nula de la prueba de ANOVA</span>. Si aceptamos
-la hipótesis nula ya se acabo, no hay más nada que hacer y este paso
-aquí no se evalúa. Este tipo de prueba Post-Hoc se refiere a una prueba
-que se hace después de otra. Ya se hizo la de ANOVA y se rechazo y ahora
-queremos evaluar cual de los grupos es distinto uno al otro.</p>
-<p>Hay en la literatura más de 10 pruebas que se puede utilizar después
-de un ANOVA, para tener un poco más de información pueden ir al
-siguiente website <a href="https://www.statisticshowto.com/post-hoc/"
-class="uri">https://www.statisticshowto.com/post-hoc/</a>. Aquí vamos a
-presentar solamente dos de estás. Estas dos son frecuentemente
-utilizadas en ciencias medicas por ser las primeras haber sido
-desarrolladas. Nota que el nivel de tipo de error I, es por el conjunto
-total de las pruebas hecha. Si selecciona un alfa de 0.05, entonces la
-probabilidad de cometer el error tipo I es de 5% para el total de
-pruebas.</p>
+<p>Importante este paso <span style="color: blue;">se hace solamente si se rechaza la hipótesis nula de la prueba de ANOVA</span>. Si aceptamos la hipótesis nula ya se acabo, no hay más nada que hacer y este paso aquí no se evalúa. Este tipo de prueba Post-Hoc se refiere a una prueba que se hace después de otra. Ya se hizo la de ANOVA y se rechazo y ahora queremos evaluar cual de los grupos es distinto uno al otro.</p>
+<p>Hay en la literatura más de 10 pruebas que se puede utilizar después de un ANOVA, para tener un poco más de información pueden ir al siguiente website <a href="https://www.statisticshowto.com/post-hoc/" class="uri">https://www.statisticshowto.com/post-hoc/</a>. Aquí vamos a presentar solamente dos de estás. Estas dos son frecuentemente utilizadas en ciencias medicas por ser las primeras haber sido desarrolladas. Nota que el nivel de tipo de error I, es por el conjunto total de las pruebas hecha. Si selecciona un alfa de 0.05, entonces la probabilidad de cometer el error tipo I es de 5% para el total de pruebas.</p>
 <blockquote>
 <ul>
 <li>Bonferroni test</li>
@@ -1107,12 +937,9 @@ pruebas.</p>
 </div>
 <div id="prueba-de-bonferroni" class="section level2">
 <h2>Prueba de Bonferroni</h2>
-<p>Vemos ahora el se hizo 3 pruebas, y cada una tiene un valor de p
-menor de 5%, por consecuencia cada grupo es distinto uno del otro.</p>
-<div class="sourceCode" id="cb23"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">pairwise.t.test</span>(fosforo<span class="sc">$</span>Cant_Fos, fosforo<span class="sc">$</span>Lagos, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="co"># Nota aqui se usa los datos originales, el error de todos las pruebas se limita a 5%.  </span></span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>## </span>
+<p>Vemos ahora el se hizo 3 pruebas, y cada una tiene un valor de p menor de 5%, por consecuencia cada grupo es distinto uno del otro.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">pairwise.t.test</span>(fosforo<span class="sc">$</span>Cant_Fos, fosforo<span class="sc">$</span>Lagos, <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="co"># Nota aqui se usa los datos originales, el error de todos las pruebas se limita a 5%.  </span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a>## </span>
 <span id="cb24-2"><a href="#cb24-2"></a>##  Pairwise comparisons using t tests with pooled SD </span>
 <span id="cb24-3"><a href="#cb24-3"></a>## </span>
 <span id="cb24-4"><a href="#cb24-4"></a>## data:  fosforo$Cant_Fos and fosforo$Lagos </span>
@@ -1125,18 +952,11 @@ class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="so
 </div>
 <div id="prueba-de-tukey" class="section level2">
 <h2>Prueba de Tukey</h2>
-<p>En la prueba de Tukey vemos el resultado de las pruebas Post-Hoc. El
-resultado es lo mismo que la prueba anterior donde cada grupo es
-significativamente diferente uno del otro. En mucha ocasiones el resulto
-puede diferir. Si esto ocurre hay que evaluar bien cual es el nivel de
-confiabilidad que queremos. Algunos pruebas Post_Hoc tienden a rechazar
-con meas frecuencia que otra.</p>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">library</span>(multcomp)</span>
+<p>En la prueba de Tukey vemos el resultado de las pruebas Post-Hoc. El resultado es lo mismo que la prueba anterior donde cada grupo es significativamente diferente uno del otro. En mucha ocasiones el resulto puede diferir. Si esto ocurre hay que evaluar bien cual es el nivel de confiabilidad que queremos. Algunos pruebas Post_Hoc tienden a rechazar con meas frecuencia que otra.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">library</span>(multcomp)</span>
 <span id="cb25-2"><a href="#cb25-2"></a>postHocs<span class="fl">.1</span><span class="ot">&lt;-</span><span class="fu">glht</span>(LagosModel, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Lagos =</span> <span class="st">&quot;Tukey&quot;</span>))  </span>
 <span id="cb25-3"><a href="#cb25-3"></a><span class="fu">summary</span>(postHocs<span class="fl">.1</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre
-class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>## </span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>## </span>
 <span id="cb26-2"><a href="#cb26-2"></a>##   Simultaneous Tests for General Linear Hypotheses</span>
 <span id="cb26-3"><a href="#cb26-3"></a>## </span>
 <span id="cb26-4"><a href="#cb26-4"></a>## Multiple Comparisons of Means: Tukey Contrasts</span>
@@ -1146,7 +966,7 @@ class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="so
 <span id="cb26-8"><a href="#cb26-8"></a>## </span>
 <span id="cb26-9"><a href="#cb26-9"></a>## Linear Hypotheses:</span>
 <span id="cb26-10"><a href="#cb26-10"></a>##                         Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00451 ** </span>
+<span id="cb26-11"><a href="#cb26-11"></a>## DosBocas - Caraizo == 0  -15.800      3.999  -3.951  0.00435 ** </span>
 <span id="cb26-12"><a href="#cb26-12"></a>## Guineo - Caraizo == 0    -37.633      3.828  -9.830  &lt; 0.001 ***</span>
 <span id="cb26-13"><a href="#cb26-13"></a>## Guineo - DosBocas == 0   -21.833      3.828  -5.703  &lt; 0.001 ***</span>
 <span id="cb26-14"><a href="#cb26-14"></a>## ---</span>
@@ -1156,15 +976,13 @@ class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="so
 <div id="super-heroes-and-injuries" class="section level2">
 <h2>SUPER HEROES and INJURIES</h2>
 <p>Vea la sección de ejercicio</p>
-<div id="rename-the-categories-with-super-hero-names"
-class="section level4">
+<div id="rename-the-categories-with-super-hero-names" class="section level4">
 <h4>Rename the categories with super hero names</h4>
 <blockquote>
 <ul>
 <li>Evaluar la distribución de los datos de respuestas (los en Y)</li>
 <li>Evaluar la homogeneidad de varianza</li>
-<li>Visualizar los datos Puntos y promedios y intervalo de
-confianza</li>
+<li>Visualizar los datos Puntos y promedios y intervalo de confianza</li>
 <li>Hacer la prueba de ANOVA con aov()</li>
 <li>Evaluar la figura de residuales</li>
 <li>Evaluar la gráfica de qq, para la normalidad</li>

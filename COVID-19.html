@@ -575,35 +575,22 @@ div.tocify {
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div id="datos-de-covid-19" class="section level1">
 <h1>Datos de COVID-19</h1>
-<p>El siguiente archivo es para tener acceso a datos sobre los casos de
-COVID-19 por día en todo el planeta. El archivo esta mantenido en el
-siguiente enlace <a
-href="https://github.com/owid/covid-19-data/tree/master/public/data"
-class="uri">https://github.com/owid/covid-19-data/tree/master/public/data</a></p>
+<p>El siguiente archivo es para tener acceso a datos sobre los casos de COVID-19 por día en todo el planeta. El archivo esta mantenido en el siguiente enlace <a href="https://github.com/owid/covid-19-data/tree/master/public/data" class="uri">https://github.com/owid/covid-19-data/tree/master/public/data</a></p>
 <p>Para más información vea al website.</p>
 <div id="lista-de-la-variables" class="section level2">
 <h2>Lista de la variables</h2>
 <p>Las variables incluido al 4 de agosto son:</p>
-<p>iso_code, continent, location, date, total_cases, new_cases,
-total_deaths, new_deaths, total_cases_per_million,
-new_cases_per_million, total_deaths_per_million, new_deaths_per_million,
-total_tests, new_tests, new_tests_smoothed, total_tests_per_thousand,
-new_tests_per_thousand, new_tests_smoothed_per_thousand, tests_per_case,
-positive_rate, tests_units, stringency_index, population,
-population_density, median_age, aged_65_older, aged_70_older,
-gdp_per_capita, extreme_poverty, cardiovasc_death_rate,
-diabetes_prevalence, female_smokers, male_smokers,
-handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
+<p>iso_code, continent, location, date, total_cases, new_cases, total_deaths, new_deaths, total_cases_per_million, new_cases_per_million, total_deaths_per_million, new_deaths_per_million, total_tests, new_tests, new_tests_smoothed, total_tests_per_thousand, new_tests_per_thousand, new_tests_smoothed_per_thousand, tests_per_case, positive_rate, tests_units, stringency_index, population, population_density, median_age, aged_65_older, aged_70_older, gdp_per_capita, extreme_poverty, cardiovasc_death_rate, diabetes_prevalence, female_smokers, male_smokers, handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
 <p>Para la descripción de las variables vea este enlace.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>codes<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(codes)</span></code></pre></div>
-<div id="wcxnhqjshk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rgslpzgmas" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wcxnhqjshk .gt_table {
+#rgslpzgmas .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -628,7 +615,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-left-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_heading {
+#rgslpzgmas .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -640,7 +627,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-right-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_title {
+#rgslpzgmas .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -652,7 +639,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-bottom-width: 0;
 }
 
-#wcxnhqjshk .gt_subtitle {
+#rgslpzgmas .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -664,13 +651,13 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-top-width: 0;
 }
 
-#wcxnhqjshk .gt_bottom_border {
+#rgslpzgmas .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_col_headings {
+#rgslpzgmas .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -685,7 +672,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-right-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_col_heading {
+#rgslpzgmas .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -705,7 +692,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   overflow-x: hidden;
 }
 
-#wcxnhqjshk .gt_column_spanner_outer {
+#rgslpzgmas .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -717,15 +704,15 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   padding-right: 4px;
 }
 
-#wcxnhqjshk .gt_column_spanner_outer:first-child {
+#rgslpzgmas .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wcxnhqjshk .gt_column_spanner_outer:last-child {
+#rgslpzgmas .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wcxnhqjshk .gt_column_spanner {
+#rgslpzgmas .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -737,7 +724,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   width: 100%;
 }
 
-#wcxnhqjshk .gt_group_heading {
+#rgslpzgmas .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -762,7 +749,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   vertical-align: middle;
 }
 
-#wcxnhqjshk .gt_empty_group_heading {
+#rgslpzgmas .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -777,15 +764,15 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   vertical-align: middle;
 }
 
-#wcxnhqjshk .gt_from_md > :first-child {
+#rgslpzgmas .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wcxnhqjshk .gt_from_md > :last-child {
+#rgslpzgmas .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wcxnhqjshk .gt_row {
+#rgslpzgmas .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -804,7 +791,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   overflow-x: hidden;
 }
 
-#wcxnhqjshk .gt_stub {
+#rgslpzgmas .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -817,7 +804,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   padding-right: 5px;
 }
 
-#wcxnhqjshk .gt_stub_row_group {
+#rgslpzgmas .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -831,11 +818,11 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   vertical-align: top;
 }
 
-#wcxnhqjshk .gt_row_group_first td {
+#rgslpzgmas .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wcxnhqjshk .gt_summary_row {
+#rgslpzgmas .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -845,16 +832,16 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   padding-right: 5px;
 }
 
-#wcxnhqjshk .gt_first_summary_row {
+#rgslpzgmas .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_first_summary_row.thick {
+#rgslpzgmas .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wcxnhqjshk .gt_last_summary_row {
+#rgslpzgmas .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -864,7 +851,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-bottom-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_grand_summary_row {
+#rgslpzgmas .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -874,7 +861,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   padding-right: 5px;
 }
 
-#wcxnhqjshk .gt_first_grand_summary_row {
+#rgslpzgmas .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -884,11 +871,11 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-top-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_striped {
+#rgslpzgmas .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wcxnhqjshk .gt_table_body {
+#rgslpzgmas .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -897,7 +884,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-bottom-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_footnotes {
+#rgslpzgmas .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -911,7 +898,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-right-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_footnote {
+#rgslpzgmas .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -920,7 +907,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   padding-right: 5px;
 }
 
-#wcxnhqjshk .gt_sourcenotes {
+#rgslpzgmas .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -934,7 +921,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   border-right-color: #D3D3D3;
 }
 
-#wcxnhqjshk .gt_sourcenote {
+#rgslpzgmas .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -942,36 +929,36 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   padding-right: 5px;
 }
 
-#wcxnhqjshk .gt_left {
+#rgslpzgmas .gt_left {
   text-align: left;
 }
 
-#wcxnhqjshk .gt_center {
+#rgslpzgmas .gt_center {
   text-align: center;
 }
 
-#wcxnhqjshk .gt_right {
+#rgslpzgmas .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wcxnhqjshk .gt_font_normal {
+#rgslpzgmas .gt_font_normal {
   font-weight: normal;
 }
 
-#wcxnhqjshk .gt_font_bold {
+#rgslpzgmas .gt_font_bold {
   font-weight: bold;
 }
 
-#wcxnhqjshk .gt_font_italic {
+#rgslpzgmas .gt_font_italic {
   font-style: italic;
 }
 
-#wcxnhqjshk .gt_super {
+#rgslpzgmas .gt_super {
   font-size: 65%;
 }
 
-#wcxnhqjshk .gt_two_val_uncert {
+#rgslpzgmas .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -980,31 +967,31 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
   margin-left: 0.1em;
 }
 
-#wcxnhqjshk .gt_footnote_marks {
+#rgslpzgmas .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#wcxnhqjshk .gt_asterisk {
+#rgslpzgmas .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wcxnhqjshk .gt_slash_mark {
+#rgslpzgmas .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#wcxnhqjshk .gt_fraction_numerator {
+#rgslpzgmas .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#wcxnhqjshk .gt_fraction_denominator {
+#rgslpzgmas .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1298,8 +1285,7 @@ handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
 </div>
 <div id="acceso-a-los-datos" class="section level2">
 <h2>Acceso a los datos</h2>
-<p>Para tener acceso a los datos en un archivo .csv usar el siguiente
-enlace</p>
+<p>Para tener acceso a los datos en un archivo .csv usar el siguiente enlace</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat&lt;- read.csv(&#39;https://covid.ourworldindata.org/data/latest/owid-covid-latest.csv&#39;)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#COVID_19&lt;-read.csv(&#39;https://covid.ourworldindata.org/data/owid-covid-data.csv&#39;) # Need better wifi</span></span>

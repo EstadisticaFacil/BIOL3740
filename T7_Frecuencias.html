@@ -573,27 +573,15 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-07-20&quot;</code></pre>
+<pre><code>## [1] &quot;2022-08-02&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <hr />
-<div id="bondad-de-ajuste-y-table-de-contingencia"
-class="section level1">
+<div id="bondad-de-ajuste-y-table-de-contingencia" class="section level1">
 <h1>Bondad de ajuste y Table de Contingencia</h1>
-<p>Este tipo de prueba es frecuentemente conocido erróneamente como la
-prueba de Chi cuadrado. Los tipos de datos necesarios son distintos a
-las pruebas anteriores. En las pruebas que en los próximos módulos
-siempre habrá por lo menos una variable donde la unidad era el número de
-individuos, el largo o ancho en una unidad (cm, metro, celsius, etc) o
-sea una variable continua. Ahora para la pruebas de Bondad de ajuste y
-Tabla de Contingencia se contabiliza el número de eventos por categoría.
-En otra palabra es la frecuencia que ocurre un evento.</p>
-<p>En esta sección no estamos interesado en evaluar los valores con
-datos que son continuos como la altura o el tamaño. Las variables que se
-usa son variables categóricas, o sea los valores son la frecuencia de un
-evento (o la ausencia de un evento).</p>
+<p>Este tipo de prueba es frecuentemente conocido erróneamente como la prueba de Chi cuadrado. Los tipos de datos necesarios son distintos a las pruebas anteriores. En las pruebas que en los próximos módulos siempre habrá por lo menos una variable donde la unidad era el número de individuos, el largo o ancho en una unidad (cm, metro, celsius, etc) o sea una variable continua. Ahora para la pruebas de Bondad de ajuste y Tabla de Contingencia se contabiliza el número de eventos por categoría. En otra palabra es la frecuencia que ocurre un evento.</p>
+<p>En esta sección no estamos interesado en evaluar los valores con datos que son continuos como la altura o el tamaño. Las variables que se usa son variables categóricas, o sea los valores son la frecuencia de un evento (o la ausencia de un evento).</p>
 <blockquote>
-<p>Los datos tienen que caer exactamente en una categoría, por
-ejemplo</p>
+<p>Los datos tienen que caer exactamente en una categoría, por ejemplo</p>
 </blockquote>
 <blockquote>
 <ul>
@@ -602,45 +590,31 @@ ejemplo</p>
 <li>blanco, rojo, verde, azul.</li>
 <li>estar embarazada o no.</li>
 <li>Tiene el fenotipo dominante o recesivo.</li>
-<li>En una herencia mendeliana, los individuos son homocigóticos
-recesivo, dominantes o heterocigóticos.</li>
+<li>En una herencia mendeliana, los individuos son homocigóticos recesivo, dominantes o heterocigóticos.</li>
 </ul>
 </blockquote>
 <hr />
 </div>
 <div id="qué-son-supuestos" class="section level1">
 <h1>Qué son supuestos</h1>
-<p>Cuando hablamos de supuestos estamos hablando de las condiciones
-necesarias para que la prueba sea utilizada. El incumplimiento de los
-supuestos resulta en que el los resultados de la prueba tenga un nivel
-de tipo de error I y tipo de error II más grande que los especificado
-(por ejemplo si selecciona un <span
-class="math inline">\(\alpha\)</span> de 0.05, el error seria más
-grande). Si se usa datos usa datos erróneos puede ser que la prueba sea
-completamente invalida.</p>
+<p>Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para que la prueba sea utilizada. El incumplimiento de los supuestos resulta en que el los resultados de la prueba tenga un nivel de tipo de error I y tipo de error II más grande que los especificado (por ejemplo si selecciona un <span class="math inline">\(\alpha\)</span> de 0.05, el error seria más grande). Si se usa datos usa datos erróneos puede ser que la prueba sea completamente invalida.</p>
 <hr />
 </div>
-<div id="los-supuestos-de-las-pruebas-de-frecuencias."
-class="section level1">
+<div id="los-supuestos-de-las-pruebas-de-frecuencias." class="section level1">
 <h1>Los supuestos de las pruebas de frecuencias.</h1>
 <ul>
 <li>Los datos son frecuencias.</li>
-<li>Las frecuencias son mutuamente exclusivas (no caen en múltiples
-categorías).</li>
+<li>Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).</li>
 <li>Las observaciones son independiente una de la otra.</li>
 <li>Cada categoría tiene una frecuencia esperada suficiente grande:
 <ul>
-<li>ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o
-menos categorías</li>
-<li>no más de 20% de las categorías que tengan un valor esperado de &lt;
-5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor
-de 1.</li>
+<li>ninguna de las frecuencia esperada sea menor de 5 cuando hay 4 o menos categorías</li>
+<li>no más de 20% de las categorías que tengan un valor esperado de &lt; 5 cuando hay más de 5 categorías y ninguna tiene un valor esperado menor de 1.</li>
 </ul></li>
 </ul>
 <hr />
 </div>
-<div id="instalar-y-activar-los-siguientes-packages"
-class="section level1">
+<div id="instalar-y-activar-los-siguientes-packages" class="section level1">
 <h1>Instalar y activar los siguientes packages</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#----Instalar los paquetes-----</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gmodels&quot;)</span></span>
@@ -656,28 +630,10 @@ class="section level1">
 <hr />
 <div id="gregory-mendel-y-sus-guisantes" class="section level2">
 <h2>Gregory Mendel y sus guisantes</h2>
-<p>Gregory Mendel (1822-1884) el padre de herencia “mendeliana” estaba
-interesada en determinar como se hereda las características de los
-organismos. En clases de biología y genética uno de los primeros
-ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel
-sugerió que es la razón de herencia. Si un fenotipo es heredado por un
-mecanismo sencillo de un gen con solamente dos alelos donde uno de los
-alelos es dominante y el otro es recesivo entonces hay solamente dos
-fenotipos posible. Por consecuencia lo más básico es determinar si la
-frecuencia de los fenotipos en una población sigue una razón mendeliana
-de 3:1, en otra palabra por cada 3 individuos de un fenotipo “x” hay un
-individuo del fenotipo “y”.</p>
-<p>Los datos que estaremos usando provenien directamente de los trabajos
-de Mendel. Aquí esta la publicación original en aleman y la referencia a
-la traducción en ingles.</p>
-<p>Mendel, J.G. (1866). “Versuche über Pflanzenhybriden”, Verhandlungen
-des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865,
-Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.;
-Bateson, William (1901). “Experiments in plant hybridization” (PDF).
-Journal of the Royal Horticultural Society. 26: 1–32.</p>
-<p>Tabla de los resultados de experimentos original de Gregor Mendel con
-semillas redondas y arrugadas. Cada uno represente un experimento y la
-cantidad de guisantes redondos o arrugadas.</p>
+<p>Gregory Mendel (1822-1884) el padre de herencia “mendeliana” estaba interesada en determinar como se hereda las características de los organismos. En clases de biología y genética uno de los primeros ejemplos de herencia mendeliana es evaluar si cumple con lo que Mendel sugerió que es la razón de herencia. Si un fenotipo es heredado por un mecanismo sencillo de un gen con solamente dos alelos donde uno de los alelos es dominante y el otro es recesivo entonces hay solamente dos fenotipos posible. Por consecuencia lo más básico es determinar si la frecuencia de los fenotipos en una población sigue una razón mendeliana de 3:1, en otra palabra por cada 3 individuos de un fenotipo “x” hay un individuo del fenotipo “y”.</p>
+<p>Los datos que estaremos usando provenien directamente de los trabajos de Mendel. Aquí esta la publicación original en aleman y la referencia a la traducción en ingles.</p>
+<p>Mendel, J.G. (1866). “Versuche über Pflanzenhybriden”, Verhandlungen des naturforschenden Vereines in Brünn, Bd. IV für das Jahr, 1865, Abhandlungen: 3–47, [1]. For the English translation, see: Druery, C.T.; Bateson, William (1901). “Experiments in plant hybridization” (PDF). Journal of the Royal Horticultural Society. 26: 1–32.</p>
+<p>Tabla de los resultados de experimentos original de Gregor Mendel con semillas redondas y arrugadas. Cada uno represente un experimento y la cantidad de guisantes redondos o arrugadas.</p>
 <table>
 <thead>
 <tr class="header">
@@ -744,30 +700,15 @@ cantidad de guisantes redondos o arrugadas.</p>
 </tr>
 </tbody>
 </table>
-<p>En la pagina número 10 del articulo observamos los resultados de
-diferentes experimentos. En el experimento 1, la Planta #1, produjo un
-total de 57 semillas donde 45 eran redonda y 12 eran arrugadas. Si lo
-que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25
-que seria las proporciones esperada. Creamos un vector de datos de los
-valores observados (obs) y un vector de datos para la proporción
-esperada (esp).</p>
+<p>En la pagina número 10 del articulo observamos los resultados de diferentes experimentos. En el experimento 1, la Planta #1, produjo un total de 57 semillas donde 45 eran redonda y 12 eran arrugadas. Si lo que esperamos es una razón de 3:1, los que se se espera es que 0.75:0.25 que seria las proporciones esperada. Creamos un vector de datos de los valores observados (obs) y un vector de datos para la proporción esperada (esp).</p>
 <hr />
 </div>
 </div>
 <div id="bondad-de-ajuste." class="section level1">
 <h1>Bondad de Ajuste.</h1>
-<p>La prueba de bondad de ajuste y de tabla de contingencia son pruebas
-que evalúa la cantidad/frecuencia en las categorías y lo compara con un
-modelo nulo. En este caso lo que se compará es la cantidad de la
-frecuencia observada <span class="math inline">\(o\)</span>, con la
-frecuencia esperada <span class="math inline">\(e\)</span>. La formula
-es la siguiente</p>
-<p><span
-class="math display">\[\chi^2=\sum_{n=i}^n\frac{\left(o-e\right)^2}{e}\]</span></p>
-<p>Usamos un ejemplo sencillo de los datos de Mendel haciendo los
-cálculos a mano de una proporción 3:1 de herencia de los fenotipos
-redonda:arrugada. Los datos son de la primer linea de uno de los
-experimentos que hizo Mendel.</p>
+<p>La prueba de bondad de ajuste y de tabla de contingencia son pruebas que evalúa la cantidad/frecuencia en las categorías y lo compara con un modelo nulo. En este caso lo que se compará es la cantidad de la frecuencia observada <span class="math inline">\(o\)</span>, con la frecuencia esperada <span class="math inline">\(e\)</span>. La formula es la siguiente</p>
+<p><span class="math display">\[\chi^2=\sum_{n=i}^n\frac{\left(o-e\right)^2}{e}\]</span></p>
+<p>Usamos un ejemplo sencillo de los datos de Mendel haciendo los cálculos a mano de una proporción 3:1 de herencia de los fenotipos redonda:arrugada. Los datos son de la primer linea de uno de los experimentos que hizo Mendel.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">57</span><span class="sc">*</span>.<span class="dv">75</span></span></code></pre></div>
 <pre><code>## [1] 42.75</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">57</span><span class="sc">*</span>.<span class="dv">25</span></span></code></pre></div>
@@ -887,31 +828,17 @@ Esperado
 <li>Cuadrar las diferencias</li>
 <li>División por el valor esperado (da los Chi Square parcial)</li>
 <li>Sumar los valores en #4.</li>
-<li>buscar en una tabla de Chi Square el valor critico de Chi Square
-para la cantidad de grupos menos 1 y el <span
-class="math inline">\(\alpha\)</span> correspondiente. En este caso se
-busca un <span class="math inline">\(\alpha\)</span> de 0.05 y el grado
-de libertad (n-1) = 2-1, n es el número de grupos.</li>
+<li>buscar en una tabla de Chi Square el valor critico de Chi Square para la cantidad de grupos menos 1 y el <span class="math inline">\(\alpha\)</span> correspondiente. En este caso se busca un <span class="math inline">\(\alpha\)</span> de 0.05 y el grado de libertad (n-1) = 2-1, n es el número de grupos.</li>
 </ul>
 </blockquote>
-<p>Para determinar si es significado el valor de Chi Square observado se
-compara con el valor critico (de la tabla). Aquí usamos R para conseguir
-este valor. Note aquí se usa (1-0.05= 0.95) y el grado de libertad que
-es 1. Ahora se compara ese valor con 0.4737, Si el valor observado es
-menor que el valor 3.841459 se acepta la hipótesis nula. En este caso no
-hay evidencia que los fenotipos se hereden diferente a 3:1.</p>
+<p>Para determinar si es significado el valor de Chi Square observado se compara con el valor critico (de la tabla). Aquí usamos R para conseguir este valor. Note aquí se usa (1-0.05= 0.95) y el grado de libertad que es 1. Ahora se compara ese valor con 0.4737, Si el valor observado es menor que el valor 3.841459 se acepta la hipótesis nula. En este caso no hay evidencia que los fenotipos se hereden diferente a 3:1.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 3.841459</code></pre>
-<p>No hay ninguna razón de hacer los cálculos a mano si tenemos a R para
-hacerlo. Nota aquí se hace la misma prueba con los mismos datos y
-tenemos el mismo resultado.</p>
+<p>No hay ninguna razón de hacer los cálculos a mano si tenemos a R para hacerlo. Nota aquí se hace la misma prueba con los mismos datos y tenemos el mismo resultado.</p>
 <hr />
 <div id="primer-ejemplo" class="section level2">
 <h2>Primer ejemplo</h2>
-<p>Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene
-un Chi Cuadrado de 0.48, p =.49. Como el valor de <em>p</em> es mayor a
-0.05, no se rechaza la hipótesis nula y que la frecuencia no es
-diferente de una proporción de 3:1.</p>
+<p>Lo que uno observa es el valor de la prueba de Bondad de ajuste tiene un Chi Cuadrado de 0.48, p =.49. Como el valor de <em>p</em> es mayor a 0.05, no se rechaza la hipótesis nula y que la frecuencia no es diferente de una proporción de 3:1.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">12</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>esp<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.75</span>,<span class="fl">0.25</span>) <span class="co"># este el modelo nulo</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -925,17 +852,8 @@ diferente de una proporción de 3:1.</p>
 </div>
 <div id="segundo-ejemplo" class="section level2">
 <h2>Segundo ejemplo</h2>
-<p>Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de
-todo el experimento sigue un patrón de 3:1. Se observa un Chi cuadrado
-de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y
-se concluye que la frecuencia de semillas redondas:redondas no es
-distintas a 3:1. Se acepta la hipotesis nula.</p>
-<p>Vemos que a re-evaluar los experimentos de G. Mendel tenemos un
-resultado que apoya su predicciones. Nota que G. Mendel
-<strong>NO</strong> tenia pruebas estadísticas para determinar si las
-frecuencias eran diferente o no de 3:1. El hizo observaciones y llego a
-unas conclusiones. Se acuerda cuando fue desarrollado este método y por
-quien?</p>
+<p>Ahora evaluamos si la frecuencia de semillas redondas:arrugadas de todo el experimento sigue un patrón de 3:1. Se observa un Chi cuadrado de 0.83 y un valor de p=0.36, otra vez el valor es por encima de 0.05, y se concluye que la frecuencia de semillas redondas:redondas no es distintas a 3:1. Se acepta la hipotesis nula.</p>
+<p>Vemos que a re-evaluar los experimentos de G. Mendel tenemos un resultado que apoya su predicciones. Nota que G. Mendel <strong>NO</strong> tenia pruebas estadísticas para determinar si las frecuencias eran diferente o no de 3:1. El hizo observaciones y llego a unas conclusiones. Se acuerda cuando fue desarrollado este método y por quien?</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>obs<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">336</span>,<span class="dv">101</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>esp<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.75</span>,<span class="fl">0.25</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -948,12 +866,7 @@ quien?</p>
 <hr />
 <p><img src="Graficos/Tweety.svg.png" width="25%" style="float:right; padding:10px" /></p>
 <ol style="list-style-type: decimal">
-<li><p>Ejercicio: Cien pajaritos recibieron semillas de girasol con
-rayas negras o semillas negras. Setenta y cinco eligieron semillas
-negras. ¿Podemos concluir que la población de la que se tomó esta
-muestra tiene preferencia por las semillas de girasol negras sobre las
-semillas de girasol rayadas? (traducido del extracto 7.1 de Havel et
-al.).</p>
+<li><p>Ejercicio: Cien pajaritos recibieron semillas de girasol con rayas negras o semillas negras. Setenta y cinco eligieron semillas negras. ¿Podemos concluir que la población de la que se tomó esta muestra tiene preferencia por las semillas de girasol negras sobre las semillas de girasol rayadas? (traducido del extracto 7.1 de Havel et al.).</p>
 <ul>
 <li>¿Cual es la hipótesis nula?</li>
 <li>¿cual es la hipótesis alterna?</li>
@@ -971,24 +884,11 @@ al.).</p>
 <h1>Prueba de Bondad de Ajuste</h1>
 <p>Esta prueba se usa para</p>
 <p>Los siguientes datos son de Field, Miles and Field 2012.</p>
-<p>Este conjunto de datos represente un experimento ficticio de tratar
-de entrenar 200 gatos para que bailan basado en si se la da una
-recompensa o no. Este esta basado en el concepto del psicólogo Ruso Ivan
-Pavlov (1849-1936) de que se puede enseñar o sea motivar a una acción
-dando una recompensa. Lo que se llama “condicionar” un proceso de
-aprendizaje que ocurre entre la asociación de un estimulo ambiental y un
-comportamiento.</p>
+<p>Este conjunto de datos represente un experimento ficticio de tratar de entrenar 200 gatos para que bailan basado en si se la da una recompensa o no. Este esta basado en el concepto del psicólogo Ruso Ivan Pavlov (1849-1936) de que se puede enseñar o sea motivar a una acción dando una recompensa. Lo que se llama “condicionar” un proceso de aprendizaje que ocurre entre la asociación de un estimulo ambiental y un comportamiento.</p>
 <p>Primero entramos los datos directamente en una tabla</p>
 <p>Los datos son los siguientes:</p>
-<p>A 38 gatos se la ha dado una recompensa, y de estos 28 bailaron y 10
-no bailaron. A 162 no se la dado recompensa, y de estos 48 bailaron y
-114 no bailaron.</p>
-<p>Se crea dos listas con los resultados y se une estas dos filas con
-<strong>cbind()</strong> y después se la añade un nombre a las filas con
-<strong>rownames()</strong>. Vemos ahora la tabla de frecuencias de
-cuantos gatos bailaron o no y si fueron entrenado por comido o cariño.
-Nota que no se puede añadir la tilde <strong>~</strong> a la
-<strong>n</strong> de cariño.</p>
+<p>A 38 gatos se la ha dado una recompensa, y de estos 28 bailaron y 10 no bailaron. A 162 no se la dado recompensa, y de estos 48 bailaron y 114 no bailaron.</p>
+<p>Se crea dos listas con los resultados y se une estas dos filas con <strong>cbind()</strong> y después se la añade un nombre a las filas con <strong>rownames()</strong>. Vemos ahora la tabla de frecuencias de cuantos gatos bailaron o no y si fueron entrenado por comido o cariño. Nota que no se puede añadir la tilde <strong>~</strong> a la <strong>n</strong> de cariño.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Crear la tabla de contingencia</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>comida <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">28</span>)</span>
@@ -1005,13 +905,7 @@ Nota que no se puede añadir la tilde <strong>~</strong> a la
 <hr />
 <div id="gráfico-de-mosaico" class="section level2">
 <h2>Gráfico de Mosaico</h2>
-<p>Podemos visualizar la frecuencia de los datos con un gráfico de
-mosaico. Si la hipótesis nula la organización de las cajas deberían ser
-más o menos de la mismq proporción (relativo a su frecuencia). En este
-caso lo que uno observa es que los que reciben comida y no bailan, la
-caja es mucha más pequeña que los que bailan y reciben comida. Nota que
-esto no es una prueba es una visualización de los datos y puede ayudar a
-entender el patrón.</p>
+<p>Podemos visualizar la frecuencia de los datos con un gráfico de mosaico. Si la hipótesis nula la organización de las cajas deberían ser más o menos de la mismq proporción (relativo a su frecuencia). En este caso lo que uno observa es que los que reciben comida y no bailan, la caja es mucha más pequeña que los que bailan y reciben comida. Nota que esto no es una prueba es una visualización de los datos y puede ayudar a entender el patrón.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(catsTable)</span></code></pre></div>
 <p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <hr />
@@ -1020,53 +914,31 @@ entender el patrón.</p>
 <div id="prueba-de-independencia-de-frecuencia." class="section level1">
 <h1>Prueba de Independencia de frecuencia.</h1>
 <p>En ingles se le conoce como “Contingency Tables”</p>
-<p>Los valores esperados en esta caso son calculados directamente de la
-tabla. Para cada celda <span class="math inline">\(E_{ij}\)</span> donde
-la {i} representa la fila y la {j} las columnas. El valor esperado se
-calcula multiplicando la suma de la fila por la suma <span
-class="math inline">\({R_i}\)</span> de la suma de la columna <span
-class="math inline">\({C_j}\)</span>. La formula de los valores
-esperados es la siguiente, donde la N es la suma total de datos. El
-primer paso es sumar la filas y la columnas de la tabla.</p>
+<p>Los valores esperados en esta caso son calculados directamente de la tabla. Para cada celda <span class="math inline">\(E_{ij}\)</span> donde la {i} representa la fila y la {j} las columnas. El valor esperado se calcula multiplicando la suma de la fila por la suma <span class="math inline">\({R_i}\)</span> de la suma de la columna <span class="math inline">\({C_j}\)</span>. La formula de los valores esperados es la siguiente, donde la N es la suma total de datos. El primer paso es sumar la filas y la columnas de la tabla.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>catsTable</span></code></pre></div>
 <pre><code>##           comida carino
 ## No_bailan     10    114
 ## bailan        28     48</code></pre>
-<p><span class="math display">\[E_{ij}=\frac{\left(R_i\cdot
-C_j\right)}{N}\]</span></p>
+<p><span class="math display">\[E_{ij}=\frac{\left(R_i\cdot C_j\right)}{N}\]</span></p>
 <p>Cálculos dos de los valores esperados</p>
 <ul>
 <li>Los gatos que reciban comida y bailan</li>
 </ul>
-<p><span class="math display">\[E_{12}=\frac{\left(R_2\cdot
-C_1\right)}{N}= \frac{(38*76)}{200}=14.44\]</span></p>
+<p><span class="math display">\[E_{12}=\frac{\left(R_2\cdot C_1\right)}{N}= \frac{(38*76)}{200}=14.44\]</span></p>
 <ul>
 <li>Los gatos que reciban cariño y no bailan</li>
 </ul>
-<p><span class="math display">\[E_{21}=\frac{\left(R_1\cdot
-C_2\right)}{N}= \frac{(124*162)}{200}=100.44\]</span> La prueba es
-exactamente igual como la anterior donde comparamos el valor observado
-con el valor esperado. Por ser más de una fila la formula cambia.</p>
-<p><span
-class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}\]</span></p>
+<p><span class="math display">\[E_{21}=\frac{\left(R_1\cdot C_2\right)}{N}= \frac{(124*162)}{200}=100.44\]</span> La prueba es exactamente igual como la anterior donde comparamos el valor observado con el valor esperado. Por ser más de una fila la formula cambia.</p>
+<p><span class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(o-e\right)^2}{e}\]</span></p>
 <p>El Chi Cuadrado final es</p>
-<p><span
-class="math display">\[\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36\]</span></p>
+<p><span class="math display">\[\chi^2=\frac{(10-23.56)^2}{23.56}+\frac{(28-14.44)^2}{14.44}+\frac{(114-100.44)^2}{100.44}+\frac{(48-61.56)^2}{61.56}=25.36\]</span></p>
 <p><span class="math display">\[\chi^2=25.36\]</span></p>
 <hr />
 </div>
 <div id="la-función-crosstable" class="section level1">
 <h1>La función CrossTable</h1>
-<p>Con esta función se calcula el chi cuadrado con los valores
-esperados. Nota la leyenda al principio para poder entender la
-organización de los datos. El grado de liberta se calcula con la
-siguiente formula, el numero de filas -1 multiplicado por la cantidad de
-columnas -1, df= (R-1)(C-1). df = es para grado de libertad. Si tiene
-solamente 1 grado de libertad hay que usar el resultado de la prueba de
-<strong>Yates de continuidad</strong>, que hace una corrección para la
-poca cantidad de grados de libertad.</p>
-<p><span
-class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(\left|o-e\right|-0.5\right)^2}{e}\]</span></p>
+<p>Con esta función se calcula el chi cuadrado con los valores esperados. Nota la leyenda al principio para poder entender la organización de los datos. El grado de liberta se calcula con la siguiente formula, el numero de filas -1 multiplicado por la cantidad de columnas -1, df= (R-1)(C-1). df = es para grado de libertad. Si tiene solamente 1 grado de libertad hay que usar el resultado de la prueba de <strong>Yates de continuidad</strong>, que hace una corrección para la poca cantidad de grados de libertad.</p>
+<p><span class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(\left|o-e\right|-0.5\right)^2}{e}\]</span></p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(catsTable, <span class="at">fisher =</span> <span class="cn">TRUE</span>, <span class="at">chisq =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">expected =</span> <span class="cn">TRUE</span>, <span class="at">sresid =</span> <span class="cn">TRUE</span>, <span class="at">format =</span> <span class="st">&quot;SAS&quot;</span>)</span></code></pre></div>
 <pre><code>## 
@@ -1138,16 +1010,10 @@ class="math display">\[\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(\left|o-e\righ
 ## 
 ## </code></pre>
 <hr />
-<p><a href="https://www.youtube.com/watch?v=Uw6W8NaJmfo">Enlace a un
-Video de la serpiente</a></p>
+<p><a href="https://www.youtube.com/watch?v=Uw6W8NaJmfo">Enlace a un Video de la serpiente</a></p>
 <p><img src="Graficos/Northern_Water_Snake.jpg" width="60%" style="float:right; padding:10px" /></p>
 <ol start="2" style="list-style-type: decimal">
-<li>Ejercicio: Un herpetólogo sospecha que las serpientes de agua
-hembras que se alimentan en el lago Michigan migran a los estanques del
-interior en el otoño para dar a luz a sus crías. Si esta hipótesis es
-correcta, cabría esperar que las hembras fueran mucho más propensas a
-migrar en ese momento que los machos. Se recopilaron los siguientes
-datos. (De Havel et al.)</li>
+<li>Ejercicio: Un herpetólogo sospecha que las serpientes de agua hembras que se alimentan en el lago Michigan migran a los estanques del interior en el otoño para dar a luz a sus crías. Si esta hipótesis es correcta, cabría esperar que las hembras fueran mucho más propensas a migrar en ese momento que los machos. Se recopilaron los siguientes datos. (De Havel et al.)</li>
 </ol>
 <table>
 <thead>
@@ -1179,11 +1045,7 @@ datos. (De Havel et al.)</li>
 </div>
 <div id="análisis-con-datos-en-formato-de-tabla" class="section level1">
 <h1>Análisis con datos en formato de tabla</h1>
-<p>Estos son los mismos datos pero no sumado, en otra palabra es
-información específica sobre cada gato y su tratamiento y si bailo o no.
-La ventaja de este método es que uno no tiene que hacer el calculo y
-sumar la frecuancias, se deja la función <strong>CrossTable</strong>
-hacer la suma. Miran bien la tabla.</p>
+<p>Estos son los mismos datos pero no sumado, en otra palabra es información específica sobre cada gato y su tratamiento y si bailo o no. La ventaja de este método es que uno no tiene que hacer el calculo y sumar la frecuancias, se deja la función <strong>CrossTable</strong> hacer la suma. Miran bien la tabla.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># La data sin sumar</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>Training<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">38</span>), <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">162</span>))</span>
@@ -2073,9 +1935,7 @@ hacer la suma. Miran bien la tabla.</p>
 </table>
 </div>
 <hr />
-<p>Nota que aquí se llama cada columna aparte en la función
-(catsData<span class="math inline">\(Training,
-catsData\)</span>Dance).</p>
+<p>Nota que aquí se llama cada columna aparte en la función (catsData<span class="math inline">\(Training, catsData\)</span>Dance).</p>
 </div>
 <div id="prueba-de-independencia" class="section level1">
 <h1>Prueba de independencia</h1>
@@ -2164,12 +2024,9 @@ catsData\)</span>Dance).</p>
 <p><img src="T7_Frecuencias_files/figure-html/test2-1.png" width="672" /></p>
 <hr />
 </div>
-<div id="el-color-de-pello-es-independiente-del-sexo"
-class="section level1">
+<div id="el-color-de-pello-es-independiente-del-sexo" class="section level1">
 <h1>El color de pello es independiente del sexo</h1>
-<p>En la siguiente tabla se encuentra el color de pello de estudiantes
-de la UPR. La hipótesis es que el color de pelo no esta asociado al sexo
-de los estudiantes.</p>
+<p>En la siguiente tabla se encuentra el color de pello de estudiantes de la UPR. La hipótesis es que el color de pelo no esta asociado al sexo de los estudiantes.</p>
 <table>
 <thead>
 <tr class="header">
@@ -2215,8 +2072,7 @@ de los estudiantes.</p>
 ## Mujer     32     43    16    9
 ## Hombre    55     65    64   16</code></pre>
 <p>¿Cual es la hipótesis nula? ¿Cual es la hipótesis alterna?</p>
-<p>El resultado de la prueba. ¿Se acepta o rechaza la hipótesis
-nula?</p>
+<p>El resultado de la prueba. ¿Se acepta o rechaza la hipótesis nula?</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(HairColour, <span class="at">fisher =</span> <span class="cn">TRUE</span>, <span class="at">chisq =</span> <span class="cn">TRUE</span>, <span class="at">expected =</span> <span class="cn">TRUE</span>, <span class="at">sresid =</span> <span class="cn">TRUE</span>, <span class="at">format =</span> <span class="st">&quot;SPSS&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##    Cell Contents
@@ -2276,26 +2132,19 @@ nula?</p>
 </div>
 <div id="prueba-de-exacta-de-fisher" class="section level1">
 <h1>Prueba de Exacta de Fisher</h1>
-<p>La prueba Exacta de Fisher es similar a la prueba de Bondad de Ajuste
-para evaluar si hay asociación entre dos variables categorías. La
-diferencia importante es que no es necesario que el valor esperado sea
-mayor de 5. Por consecuencia se puede usar con muestras más
-pequeñas.</p>
+<p>La prueba Exacta de Fisher es similar a la prueba de Bondad de Ajuste para evaluar si hay asociación entre dos variables categorías. La diferencia importante es que no es necesario que el valor esperado sea mayor de 5. Por consecuencia se puede usar con muestras más pequeñas.</p>
 <hr />
-<div id="los-supuestos-de-las-prueba-exacta-de-fisher."
-class="section level3">
+<div id="los-supuestos-de-las-prueba-exacta-de-fisher." class="section level3">
 <h3>Los supuestos de las prueba Exacta de Fisher.</h3>
 <blockquote>
 <ul>
 <li>Los datos son frecuencias.</li>
-<li>Las frecuencias son mutuamente exclusivas (no caen en múltiples
-categorías).</li>
+<li>Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).</li>
 <li>Las observaciones son independiente una de la otra.</li>
 <li>La tabla tiene 2 filas y 2 columnas.</li>
 </ul>
 </blockquote>
-<p>Usando los datos de serpientes del ejemplo 7.4 del libro de Havel et
-al. </p>
+<p>Usando los datos de serpientes del ejemplo 7.4 del libro de Havel et al. </p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>responde <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">3</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>no_responde <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">6</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>serpiente <span class="ot">&lt;-</span> <span class="fu">cbind</span>(responde, no_responde)</span>
@@ -2308,12 +2157,7 @@ al. </p>
 <p>Se puede visualizar los datos con el Mosaico</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(serpiente)</span></code></pre></div>
 <p><img src="T7_Frecuencias_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>Nota que se usa la misma función que anterior pero en los resultados
-hay que fijarse en la sección que dice <strong>Fisher’s Exact
-test</strong>. Lo que uno observa es que el valor de <strong>p</strong>
-es menor de 0.05 por consecuencia se rechaza la hipótesis nula. Lo que
-significa es que para la serpiente el angulo donde proviene el estimulo
-resulta en una repuesta diferente.</p>
+<p>Nota que se usa la misma función que anterior pero en los resultados hay que fijarse en la sección que dice <strong>Fisher’s Exact test</strong>. Lo que uno observa es que el valor de <strong>p</strong> es menor de 0.05 por consecuencia se rechaza la hipótesis nula. Lo que significa es que para la serpiente el angulo donde proviene el estimulo resulta en una repuesta diferente.</p>
 <hr />
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(serpiente)</span></code></pre></div>
 <pre><code>## 
