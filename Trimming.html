@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Raymond L. Tremblay" />
+
+<meta name="date" content="2021-10-27" />
+
+<title>BVec</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BIOL3740:Biometria</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="Descripcion.html">Home</a>
+</li>
+<li>
+  <a href="schedule.html">Calendario</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Instalación básica
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Instalar-R-RStudio.html">Instalar R y RStudio</a>
+    </li>
+    <li>
+      <a href="Introduccion_RMarkdown.html">RMarkdown</a>
+    </li>
+    <li>
+      <a href="Codigos_basicos_en_R.html">R y Cheatsheets</a>
+    </li>
+    <li>
+      <a href="R_basico.html">R Básico #2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Temas
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="T1_Intro.html">T1 Introducción a la Estadística</a>
+    </li>
+    <li>
+      <a href="T1a_Poblacion_Muestra.html">T1a Población, Muestreo y Sesgo</a>
+    </li>
+    <li>
+      <a href="T1b_Inferencias_hipotesis.html">T1b Inferencias y hipotesis</a>
+    </li>
+    <li>
+      <a href="T2_Historia.html">T2 Historia breve de la estadística cuantitativa</a>
+    </li>
+    <li>
+      <a href="T3_Medidas_tendencia_central.html">T3 Medidas de Tedencias Central</a>
+    </li>
+    <li>
+      <a href="T4_Medidas_dispersion.html">T4 Medidas de Dispersión</a>
+    </li>
+    <li>
+      <a href="T4a_Estadistica_descriptiva.html">T4a Estadística Descriptiva</a>
+    </li>
+    <li>
+      <a href="T5_Graficos.html">T5 Explorando los datos con gráficos</a>
+    </li>
+    <li>
+      <a href="T6_supuestos.html">T6 Los Supuestos de las pruebas parametricas</a>
+    </li>
+    <li>
+      <a href="T7_Frecuencias.html">T7 Pruebas de Bondad de Ajuste</a>
+    </li>
+    <li>
+      <a href="T8_Distribucion_Normal.html">T8 La Distribución Normal</a>
+    </li>
+    <li>
+      <a href="T9_Pruebas_una_muestra.html">T9 Prueba de una muestra</a>
+    </li>
+    <li>
+      <a href="T9a_Pruebas_t-Pareados.html">T9a Prueba-t Pareados</a>
+    </li>
+    <li>
+      <a href="T10_Pruebas_t_Independiente.html">T10 Prueba-t No pareados</a>
+    </li>
+    <li>
+      <a href="T11_ANOVA.html">T11 ANOVA</a>
+    </li>
+    <li>
+      <a href="T13_Correlacion.html">T13 Correlación y Covarianza</a>
+    </li>
+    <li>
+      <a href="T14_Regression.html">T14 Regressión</a>
+    </li>
+    <li>
+      <a href="T14a_Regression_logistica.html">T14a Regressión Logística</a>
+    </li>
+    <li>
+      <a href="T15_Selecionar_Pruebas.html">T15 Selección de pruebas corectas</a>
+    </li>
+    <li>
+      <a href="T16_AKAIKE.html">T16 Criterio de Información</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Ejercicio
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Ejerc_1_R4DS.html">Ejercico Introducción</a>
+    </li>
+    <li>
+      <a href="Ejerc_2_R4DS.html">Ejercico Gráficos</a>
+    </li>
+    <li>
+      <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
+    </li>
+    <li>
+      <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
+    </li>
+    <li>
+      <a href="Ejerc_Tend_Central_Dispersion.html">Ejercicio de Tendendia Central y Dispersión</a>
+    </li>
+    <li>
+      <a href="Exam1.html">Preguntas para examen num. 1</a>
+    </li>
+    <li>
+      <a href="Norm7.html">Ejercicio Distribución Normal</a>
+    </li>
+    <li>
+      <a href="Ejercicio_Pruebas_Frecu.html">Ejercicio Pruebas de Frecuencia</a>
+    </li>
+    <li>
+      <a href="Ejerc_5_Correlacion.html">Ejercicio de Correlación</a>
+    </li>
+    <li>
+      <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Los Datos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Archivos_de_Datos.html">Archivos de Datos</a>
+    </li>
+    <li>
+      <a href="COVID-19.html">COVID-19</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">BVec</h1>
+<h4 class="author">Raymond L. Tremblay</h4>
+<h4 class="date">10/27/2021</h4>
+
+</div>
+
+
+<pre class="r"><code>trimpb&lt;-function(x,y=NULL,tr=.2,alpha=.05,nboot=2000,WIN=FALSE,win=.1,
+                plotit=FALSE,pop=1,null.value=0,pr=TRUE,xlab=&quot;X&quot;,fr=NA,SEED=TRUE){
+ #
+ #   Compute a 1-alpha confidence interval for
+ #   a trimmed mean.
+ #
+ #   The default number of bootstrap samples is nboot=2000
+ #
+ #   win is the amount of Winsorizing before bootstrapping
+ #   when WIN=T.
+ #
+ #   Missing values are automatically removed.
+ #
+ #  nv is null value. That test hypothesis trimmed mean equals nv
+ #
+ #  plotit=TRUE gives a plot of the bootstrap values
+ #  pop=1 results in the expected frequency curve.
+ #  pop=2 kernel density estimate
+ #  pop=3 boxplot
+ #  pop=4 stem-and-leaf
+ #  pop=5 histogram
+ #  pop=6 adaptive kernel density estimate.
+ #
+ #  fr controls the amount of smoothing when plotting the bootstrap values
+ #  via the function rdplot. fr=NA means the function will use fr=.8
+ #  (When plotting bivariate data, rdplot uses fr=.6 by default.)
+ #
+ #  If y is not null, the function uses x-y; so can be used for two dependent variables.
+ #
+ if(pr){
+   print(&quot;The p-value returned by this function is based on the&quot;)
+   print(&quot;null value specified by the argument null.value, which defaults to 0&quot;)
+ }
+ if(!is.null(y))x=x-y
+ x&lt;-x[!is.na(x)]
+ if(WIN){
+   if(win &gt; tr)stop(&quot;The amount of Winsorizing must be &lt;= to the amount of trimming&quot;)
+   x&lt;-winval(x,win)
+ }
+ crit&lt;-alpha/2
+ icl&lt;-round(crit*nboot)+1
+ icu&lt;-nboot-icl
+ bvec&lt;-NA
+ if(SEED)set.seed(2) # set seed of random number generator so that
+ #             results can be duplicated.
+ data&lt;-matrix(sample(x,size=length(x)*nboot,replace=TRUE),nrow=nboot)
+ #datatr&lt;-apply(data,tr)
+ bvec&lt;-apply(data,1,mean,tr) # Bootstrapped trimmed means
+ bvec&lt;-sort(bvec)
+ #p.value&lt;-sum(bvec&lt;null.value)/nboot
+ p.value&lt;-mean(bvec&lt;null.value)+.5*mean(bvec==null.value)
+ p.value&lt;-2*min(p.value,1-p.value)
+ ci&lt;-NA
+ ci[1]&lt;-bvec[icl]
+ ci[2]&lt;-bvec[icu]
+ if(plotit){
+   if(pop==1)rdplot(as.vector(bvec),fr=fr,xlab=xlab)
+   if(pop==2)kdplot(as.vector(bvec),rval=rval)
+   if(pop==3)boxplot(as.vector(bvec))
+   if(pop==4)stem(as.vector(bvec))
+   if(pop==5)hist(as.vector(bvec))
+   if(pop==6)akerd(as.vector(bvec),xlab=xlab)
+ }
+ list(estimate=mean(x,tr=tr),ci=ci,bvec=bvec,data=data,p.value=p.value)
+}</code></pre>
+<pre class="r"><code>df=c(1:50)</code></pre>
+<pre class="r"><code>trimpb(df, nboot=5)</code></pre>
+<pre><code>## [1] &quot;The p-value returned by this function is based on the&quot;
+## [1] &quot;null value specified by the argument null.value, which defaults to 0&quot;</code></pre>
+<pre><code>## $estimate
+## [1] 25.5
+## 
+## $ci
+## [1] 21.86667 26.53333
+## 
+## $bvec
+## [1] 21.86667 22.33333 23.93333 26.53333 28.63333
+## 
+## $data
+##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13] [,14]
+## [1,]   21    8   41   16   33   38   45    9    2    23    33    30     7    28
+## [2,]   15   17   50   32   41   41   46    8   18    48    18    37    50     4
+## [3,]    6   29   11   50   48   46   16   45    3    41     8    34    38     9
+## [4,]    6   17    1    8   36   40    6    6    3    45    36    21    44    42
+## [5,]   32   12    3   39   43   16   19   30    1    15    45    13    20    47
+##      [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25] [,26]
+## [1,]    50    35     5    36    11    37    50     1    38    48    47    35
+## [2,]     6     8    38    17     9    43    25     4    23    19    13    27
+## [3,]    32    32    49    49    15    49    23    22    28    37     9    32
+## [4,]    15    13     9    16    42    12    28    24    46    20     5    33
+## [5,]    13    17    15    21    14    25    20    29     7    21    26    39
+##      [,27] [,28] [,29] [,30] [,31] [,32] [,33] [,34] [,35] [,36] [,37] [,38]
+## [1,]    14     3    32     8    13    39    33    42    12    12    18    43
+## [2,]    25    38    41     4    17    29    27    18    30     3    47     2
+## [3,]    11     1    17    30    37    24    29    20    22    37    32    14
+## [4,]     5    44    23    34    48     8    49    45    16    47    35    34
+## [5,]    35     2     5     8    36    26    20    50    14    50    18    21
+##      [,39] [,40] [,41] [,42] [,43] [,44] [,45] [,46] [,47] [,48] [,49] [,50]
+## [1,]    30    22    48    43    45    35    18    36    41    50     8    18
+## [2,]    12    25    25    16    30    27     8    10    17    43    13    12
+## [3,]    27    14    31     6    11     6    23     3    13     3    32    20
+## [4,]    11    24    22    24    50    42    36    49    26    20    10    50
+## [5,]    35     6    39    38    44     7     1    14    11    43     8    30
+## 
+## $p.value
+## [1] 0</code></pre>
+<pre class="r"><code>winval&lt;-function(x,tr=.2){
+#
+#  Winsorize the data in the vector x.
+#  tr is the amount of Winsorization which defaults to .2.
+#
+#  This function is used by several other functions that come with this book.
+#
+y&lt;-sort(x)
+n&lt;-length(x)
+ibot&lt;-floor(tr*n)+1
+itop&lt;-length(x)-ibot+1
+xbot&lt;-y[ibot]
+xtop&lt;-y[itop]
+winval&lt;-ifelse(x&lt;=xbot,xbot,x)
+winval&lt;-ifelse(winval&gt;=xtop,xtop,winval)
+list(winval, y, xbot, xtop)
+}</code></pre>
+<pre class="r"><code>df2=c(1:100)
+winval(df2, tr = .05)</code></pre>
+<pre><code>## [[1]]
+##   [1]  6  6  6  6  6  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+##  [26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+##  [51] 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75
+##  [76] 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 95 95 95 95 95
+## 
+## [[2]]
+##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
+##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
+##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
+##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
+##  [91]  91  92  93  94  95  96  97  98  99 100
+## 
+## [[3]]
+## [1] 6
+## 
+## [[4]]
+## [1] 95</code></pre>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
