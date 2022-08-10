@@ -176,7 +176,11 @@
         self._setEventHandlers();
 
         // Binding to the Window load event to make sure the correct scrollTop is calculated
+<<<<<<< Updated upstream
         $(window).on("load", function() {
+=======
+        $(window).load(function() {
+>>>>>>> Stashed changes
 
           // Sets the active TOC item
           self._setActiveElement(true);
