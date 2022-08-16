@@ -52,12 +52,15 @@ Los indices que estaremos estudiando son los siguientes
   - el rango
   - la varianza
   - la desviación estándar
-  - el error estándar.
+  - el error estándar
+  - el rango intercuarti
+  - el intervalo de confianza de 95%
  
+***
  
 # Vizualizando la dispersión 
   
-Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes.  En el primer conjunto de datos se usa 5000 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.
+Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero la dispersiones son diferentes. Lo que uno observa es que en la distribución azul los datos son más similares uno al otro y la distribución roja los valores son más diferentes.  En el primer conjunto de datos se usa 500 valores con un promedio de 100 y una desviación estándar de 10, en el segundo se produce un conjunto de datos de 500 valores con un promedio de 100 y una desviación estándar de 30.
 
 
 ```{r, ch2}
@@ -67,7 +70,7 @@ a=rnorm(5000, 100, 10) # la función para generar datos al azar con una distribu
 dfa=data.frame(a)
  # r is for random
  # norm =distribución normal
-
+#a
 b=rnorm(500, 100, 50)
 dfb=data.frame(b)
 ```
@@ -100,6 +103,9 @@ range(dfb$b)
 
 ```
 
+
+***
+
 # Ejemplo de la clase
 
 ## Cual es el rango de la Edad de los padres de los Estudiantes
@@ -114,6 +120,7 @@ range(Edad)
 range(Edad_df$Edad)
 ```
 
+***
 
 ## La varianza
 
@@ -124,10 +131,10 @@ Los pasos para calcular la varianza son los siguientes
 + Calcular el promedio de los datos
 + restar el promedio de cada valor y cuadralos
 + Sumar y restas de **n-1**, done **n** es la cantidad de datos
++ el numerador se llama la **suma de los cuadrados** = SS
 
 
-
-$${ s }^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }$$
+$${ s }^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x }  })^{ 2 } }  }{ n-1 }=\frac{SS}{n-1}$$
 
 ```{r, ch7}
 library(tidyverse)
@@ -143,8 +150,11 @@ sum(Data_df$Diff) # si los valores no se cuadra la suma sera zero.
 Data_df$SS=(Data_df$Data-Data_df$mean_Data)^2 # SS para la suma de los cuadrados 
 Data_df
 sum(Data_df$SS)
- #  Este indice se llama la desviación del promedio que es la suma de los cuadrados
 ```
+ 
+ ###  Este indice se llama la desviación del promedio que es la suma de los cuadrados
+
+
 ***
 
 ## Calcular la varianza con **var()**
@@ -185,7 +195,9 @@ La función básica es **quantile** si lo dejamos sin más instrucción calcula 
 quantile(Data) # la función básica (0%, 25%, 50% (mediana), 75%, 100%)
 
 # Seleccionar los cuantiles específicos.
-quantile(Data, probs = c(0.015, 0.25, 0.50,.75, .975))   
+quantile(Data, probs = c(0.025, 0.25, 0.50,.75, .975))   
+
+
 ```
 
 
@@ -210,7 +222,8 @@ Para explicar estos conceptos mejor visualizamos los datos
 | 14 | 142   |         |             |
 | 15 | 150   |         |             |
 
-Ahora usamos la función **quantile** con el type=1 de calcular los cuartiles y vermos si tenemos los mismos resultados.  
+Ahora usamos la función **quantile** con el type=1 de calcular los cuartiles y ver si tenemos los mismos resultados.
+
 ```{r, ch11}
 
 dat=c(3,19,27,33,52,60,77,87,99,101,122,137,140,142,150)
@@ -231,9 +244,11 @@ El termino correcto es el *error de las desviación estándar* pero típicamente
 La formula de error estándar es la siguiente usando la desviación estándar
 
 $$s_{\overline{x}}=\frac{s}{\sqrt{n}}$$
+
 o usando la varianza, donde la **n** es la cantidad de datos
 
 $$s_{\overline{x}}=\sqrt{\frac{s^2}{n}}$$
+
 Ahora si usamos los datos enseñado al principio del modulo. Calculamos error estándar de ambas distribución.  er= error estándar. No hay función en R para calcular el error estándar, por consecuencia hay que crear la formula para calcular el indice.  Vemos que cuando hay más dispersión el error estándar es más grande.  
 
 ```{r, ch12}
