@@ -9,14 +9,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Raymond_L_Tremblay" />
 
 
-<title>Introduccion_RMarkdown.knit</title>
+<title>Quiz_1</title>
 
 <script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,10 +30,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -43,13 +43,22 @@
   ul.task-list{list-style: none;}
     </style>
 
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
 
 
 
 
 
 
-<link rel="stylesheet" href="tutorial.css" type="text/css" />
 
 
 
@@ -218,69 +227,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -288,16 +234,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -488,48 +424,62 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Quiz_1</h1>
+<h4 class="author">Raymond_L_Tremblay</h4>
+<h4 class="date">8/22/2022</h4>
 
 </div>
 
 
-<p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-08-22&quot;</code></pre>
-<p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
-<div id="introducción-a-rmarkdown" class="section level1">
-<h1>Introducción a RMarkdown</h1>
-<hr />
-</div>
-<div id="responsabilidad-del-estudiante" class="section level1">
-<h1>Responsabilidad del estudiante</h1>
-<p><span style="color: red;">EL ESTUDIANTE es COMPLETAMENTE RESPONSABLE</span> de ver estos videos y entender como usar la plataforma.</p>
-<p>Mi sugerencias es que deberían ver los vídeos abajo múltiples veces y después compartir con otros estudiantes y hablar de los que entendió y aprendió.</p>
-<hr />
-</div>
-<div id="como-trabajar-con-un-archivo-rmarkdown" class="section level1">
-<h1>Como Trabajar con un archivo RMarkdown</h1>
-<p>El siguiente modulo es para una introducción a la plataforma R y RMarkdown.</p>
-<p>Vean los siguientes videos en Youtube para aprender los básico de RMarkdown.</p>
-<div id="video-1" class="section level2">
-<h2>Video #1</h2>
-<p><a href="https://www.youtube.com/watch?v=IPeOWx8KYkI">Manejo del Markdown dentro de RStudio</a></p>
-<hr />
-</div>
-<div id="video-2" class="section level2">
-<h2>Video #2</h2>
-<p><a href="https://www.youtube.com/watch?v=y6XdzBNC0_0">Aprende Markdown RÁPIDO!</a></p>
-<hr />
-<p>Vaya al siguiente website y explora la pestaña de <strong>Sintaxis Markdown</strong></p>
-<p><a href="https://markdown.es">El website de Markdown</a></p>
-<hr />
-<p>Aquí un otro video en ingles</p>
-<p><a href="https://www.youtube.com/watch?v=DNS7i2m4sB0">R Markdown with RStudio</a></p>
-</div>
+<div id="quiz-1-de-tendencia-central-y-de-dispersión" class="section level1">
+<h1>Quiz 1 de tendencia central y de dispersión</h1>
+<p>Usando los datos siguientes calcula los siguientes estadisticos (identifica claramente cada estadístico)</p>
+<ul>
+<li>promedio</li>
+<li>mediana</li>
+<li>moda</li>
+<li>varianza</li>
+<li>los cuantiles (2.5, 25, 50, 75, 97.5)</li>
+<li>desviación estandar</li>
+<li>error estandard</li>
+<li>el intervalo de confianza de 95% del promedio</li>
+<li>Haz un histograma de los datos
+<ul>
+<li>incluir un color de su preferencia</li>
+<li>cambiar los nombres de los ejes</li>
+</ul></li>
+</ul>
+<p>Los Datos: Los datos muestran el número de “homerun” al bate de la liga Americana de baseball en los ultimos 30 años. Cada número es la cantidad máxima de Homerun en uno de los años.</p>
+<pre class="r"><code>HOMERUN =tribble(
+  ~&quot;Numeros_Homerum&quot;,
+  40,  43, 40, 53, 47, 
+  46, 44, 57, 43, 43, 
+  52, 44, 54, 47, 51, 
+  39, 48, 36, 37, 56, 
+  42, 54, 56, 49, 54,
+  52, 40, 48, 50, 40
+)
+
+HOMERUN</code></pre>
+<pre><code>## # A tibble: 30 × 1
+##    Numeros_Homerum
+##              &lt;dbl&gt;
+##  1              40
+##  2              43
+##  3              40
+##  4              53
+##  5              47
+##  6              46
+##  7              44
+##  8              57
+##  9              43
+## 10              43
+## # … with 20 more rows
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -562,35 +512,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
