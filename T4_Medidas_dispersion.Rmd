@@ -67,18 +67,22 @@ Primero miramos un gráfico donde tenemos datos donde el promedio es igual pero 
 
 set.seed(8690) # esto es para que los valores se queda igual a cada vez que se corre el analisis
 a=rnorm(5000, 100, 10) # la función para generar datos al azar con una distribución normal
+
 dfa=data.frame(a)
+dfa
  # r is for random
  # norm =distribución normal
 #a
-b=rnorm(500, 100, 50)
+b=rnorm(50, 100, 50)
 dfb=data.frame(b)
 ```
 
 
 ```{r, ch3, out.width = '60%'}
-dispersion=ggplot(dfa, aes(a))+
-  geom_density(fill="blue", alpha=.5)+
+library(ggplot2)
+
+ggplot(dfa, aes(a))+
+  geom_density(fill="blue")+
   geom_density(dfb, mapping=aes(b,fill="red", alpha=.5 ))+
   theme(legend.position = "none") +
   geom_vline(aes(xintercept = 100, colour="red"))
@@ -403,7 +407,7 @@ Usamos los datos para las mujeres con un promedio de 196.7 y una desviación est
 ```{r}
 # Creamos un conjunto de datos para los análisis
 
-Col=rnorm(200000, 196.7, 39.11)
+Col=rnorm(1000, 196.7, 39.11)
 Col=data_frame(Col)
 
 promCol=Col%>%
@@ -461,6 +465,7 @@ geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour="orange")+
   annotate("text", x=70, y = .0005, label="0.1%")+
   annotate("text", x=330, y = .0005, label="0.1%")
 
+Colesterol_Inter
 ggsave("Graficos/Colesterol_Inter.png")
 
 ```
