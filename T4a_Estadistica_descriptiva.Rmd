@@ -122,11 +122,11 @@ Se necesita el archivo **DownloadFestival** que se encuentra debajo la pestaña 
 ```{r, warning=FALSE}
 
 library(readr)
-DownloadFestival_No_Outlier <- read_csv("Data_files_csv/DownloadFestival_No_Outlier.csv")
+DownloadFestival <- read_csv("Data_files_csv/DownloadFestival.csv")
 
 
 
-dlf=DownloadFestival_No_Outlier  #usamos un nombre más corta para facilitar  
+dlf=DownloadFestival  #usamos un nombre más corta para facilitar  
 head(dlf) # ver las 3 primeras filas
 
 ```
@@ -150,9 +150,6 @@ median(dlf$day1, na.rm=TRUE)
 
 ***
 
-2. Quiz 2:
-    Usa R y construye una lista o data frame con los siguientes datos y calcular el promedio.  Contesta en **MSTeam Form** con tu respuesta.  Aquí son la cantidad de publicaciones por mis hermanos académicos, cual es la mediana, 1, NA, 1, 2, 73, 6, 2, 78, 16, 16, 87, 5. 
-
 ***
 
 # Resumen estadístico de una variable
@@ -162,6 +159,8 @@ Para ver los estadístico mencionado arriba (menos la moda, oblicuidad y curtosi
 Nota que hay muchos más parámetros calculados.  Aparece en la lista en orden el valor mínimo: min(), el valor máximo: max(), la mediana: median, el promedio: mean, la desviación estándar; std.dev entre otros.  
 
 ```{r summary function, warning=FALSE}
+
+library(pastecs)
 stat.desc(dlf[,c("day1")])
 
 

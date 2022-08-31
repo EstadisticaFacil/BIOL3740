@@ -1,0 +1,70 @@
+---
+title: "Proportion_CI"
+author: "Raymond L. Tremblay"
+date: "8/29/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+
+p=1/48000
+z=1.96
+n=1000
+p
+sdp=sqrt((p*(1-p)/n))
+sdp
+p+z*sdp
+p-z*sdp
+
+```
+
+
+
+```{r}
+p=1/48000
+q=1-p
+z=1.96
+n=250000
+p
+q
+n*p
+n*q
+p-z*sqrt((p*q)/n) # lower confidence interval
+p   # point estimate
+p+z*sqrt((p*q)/n) # upper confidence interval
+```
+
+
+
+
+
+
+
+```{r}
+p=/48000
+q=1-p
+z=1.96
+n=250000
+p
+q
+n*p
+n*q
+p-z*sqrt((p*q)/n) # lower confidence interval
+p   # point estimate
+p+z*sqrt((p*q)/n) # upper confidence interval
+```
+
+
+
+
+
+18 fold increase in false positive of preterm versus term
+
+30 fold incease 
+
+

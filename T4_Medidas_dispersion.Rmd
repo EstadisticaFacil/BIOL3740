@@ -8,7 +8,6 @@ output:
 #    theme: simplex
     toc: yes
     toc_float: yes
-    code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -70,11 +69,11 @@ set.seed(8690) # esto es para que los valores se queda igual a cada vez que se c
 a=rnorm(5000, 100, 10) # la función para generar datos al azar con una distribución normal
 
 dfa=data.frame(a)
-#dfa
+dfa
  # r is for random
  # norm =distribución normal
 #a
-b=rnorm(50, 100, 50)
+b=rnorm(500, 100, 50)
 dfb=data.frame(b)
 ```
 
@@ -124,6 +123,51 @@ Edad_df
 range(Edad)
 range(Edad_df$Edad)
 ```
+
+
+```{r}
+Dist_V=c(14, 71, 16, 43, 32, 17.1, 11, 53, 16.2, 47, 18.2, 39, 9, 16.2)
+
+df=data.frame(Dist_V) # para poner los datos un un data frame
+
+df
+```
+
+Caluclar la varianza
+
+```{r}
+var(df$Dist_V)
+```
+
+
+Desviación estandard
+
+```{r}
+sd(df$Dist_V)
+```
+
+
+Error estandard
+
+```{r}
+error_e= sd(df$Dist_V)/sqrt(length(df$Dist_V))
+error_e
+```
+
+
+95% de la distribución
+
+
+```{r}
+Limite_inferior_a=mean(df$Dist_V)-(error_e*1.96)
+
+Limite_superior_a=mean(df$Dist_V)+(error_e*1.96)
+
+
+Limite_inferior_a
+Limite_superior_a
+```
+
 
 ***
 
@@ -408,7 +452,7 @@ Usamos los datos para las mujeres con un promedio de 196.7 y una desviación est
 ```{r}
 # Creamos un conjunto de datos para los análisis
 
-Col=rnorm(1000, 196.7, 39.11)
+Col=rnorm(200000, 196.7, 39.11)
 Col=data_frame(Col)
 
 promCol=Col%>%
@@ -466,7 +510,6 @@ geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour="orange")+
   annotate("text", x=70, y = .0005, label="0.1%")+
   annotate("text", x=330, y = .0005, label="0.1%")
 
-Colesterol_Inter
 ggsave("Graficos/Colesterol_Inter.png")
 
 ```
@@ -571,5 +614,10 @@ knitr::include_graphics("Graficos/Alturas_Mujer.jpeg")
 ```
 
  
+The tallest building in the world, el numero de pisos
+
+88, 88, 110, 88, 80, 69, 102, 78, 70, 55,
+79, 85, 80, 100, 60, 90, 77, 55, 75, 55,
+54, 60, 75, 64, 105, 56, 71, 70, 65, 72
 
 

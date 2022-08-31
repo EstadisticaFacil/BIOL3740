@@ -1,0 +1,150 @@
+---
+title: "T4_new_2022"
+author: "Raymond L. Tremblay"
+date: "8/24/2022"
+output:   
+    html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+#    theme: simplex
+    toc: yes
+    toc_float: yes
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, echo=FALSE, fig.show = "hold", out.width = "20%", fig.align = "default"}
+knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+```
+
+Aãdir las librerias
+
+```{r}
+library(tidyverse)
+```
+
+
+
+## Analisis con muchos datos
+
+Usaremos datos que hemos visto en el modulo Producción de Gráficos.  
+
+Se necesita el archivo **DownloadFestival** que se encuentra debajo la pestaña de **Los Datos**. El ejemplo proviene de Field et al. (2014).
+
+
+>  Una bióloga estaba preocupado por los posibles efectos sobre la salud de los que particpan a un festivales de música. Entonces, un año fue al Download Festival en el Reino Unido (Download Festival UK). Ella midió la higiene del los que participaron al concierto n= 810 durante el festival de 3 días. Cada día intentaba encontrar a todas las personas que censó el primer día. Los valores asignado fueron de 0 a 4 sobre el nivel de limpieza por como olia los participantes
+
+>    + 0 = hueles como un cadáver. 
+>    + 4 = hueles a rosas dulces en un fresco día de primavera
+  
+  
+```{r}
+library(readr)
+DownloadFestival <- read_csv("Data_files_csv/DownloadFestival.csv")
+
+dlf=DownloadFestival
+
+head(dlf)
+tail(dlf) 
+
+dlf
+```
+
+
+
+
+
+```{r, warning=FALSE}
+
+library(readr)
+DownloadFestival <- read_csv("Data_files_csv/DownloadFestival.csv")
+
+
+
+dlf=DownloadFestival  #usamos un nombre más corta para facilitar los analisis 
+head(dlf) # ver las 3 primeras filas
+
+```
+
+
+
+
+
+```{r}
+dlf %>% 
+  summarize(
+    promedio_dia1=mean(day1),
+    stand=sd(day1),
+    promedio_dia2=mean(day2, na.rm=TRUE)
+    )
+
+
+#promedio_dia2=mean(day2, na.rm=TRUE)
+```
+
+
+Crear una figura de los datos
+
+```{r}
+library(ggplot2)
+
+ggplot(dlf, aes(day1))+
+  geom_histogram(colour="white", fill="lightpink4")
+
+
+
+```
+
+
+
+
+```{r}
+max(dlf$day1)
+```
+
+
+
+
+Remover los datos incorrectos
+
+```{r}
+dlf=dlf %>% 
+  filter(day1 < 4.01)
+
+max(dlf$day1)
+```
+
+
+
+```{r}
+library(readr)
+X2022_Estuiantes_BioMetria <- read_csv("2022_Estuiantes_BioMetria.csv")
+
+MA_PA=X2022_Estuiantes_BioMetria
+```
+
+
+
+
+```{r}
+ggplot(MA_PA, aes(Num_Hern_Papa, fill=Genero))+
+  geom_histogram(colour="white")+
+  facet_wrap(~Genero)
+```
+
+
+```{r}
+ggplot(MA_PA, aes(Num_Hern_Papa, fill=Genero))+
+  geom_histogram(colour="white")
+```
+
+
+```{r}
+```
+
+
