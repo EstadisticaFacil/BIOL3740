@@ -13,7 +13,7 @@
 
 <title>T1a_Poblacion_muestra</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -431,6 +431,9 @@ div.tocify {
       <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
     </li>
     <li>
+      <a href="Ejerc_Ten_Central_Disp_Graficos.html">Ejercicio de Tendencia Central y Dispersión</a>
+    </li>
+    <li>
       <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
     </li>
     <li>
@@ -450,6 +453,9 @@ div.tocify {
     </li>
     <li>
       <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
+    <li>
+      <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
     </li>
   </ul>
 </li>
@@ -494,26 +500,55 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-08-22&quot;</code></pre>
+<pre><code>## [1] &quot;2022-09-07&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div id="qué-es-la-estadística" class="section level1">
 <h1>¿Qué es la estadística?</h1>
-<p>Usando la definición de Snedecor y Cochran (1989) la estadística son las técnicas para la “recolección, análisis y la habilidad de tener una conclusión de los datos”. También pudiésemos decir que la estadística es el estudio de la incertidumbre.</p>
+<p>Usando la definición de Snedecor y Cochran (1989) la estadística son
+las técnicas para la “recolección, análisis y la habilidad de tener una
+conclusión de los datos”. También pudiésemos decir que la estadística es
+el estudio de la incertidumbre.</p>
 </div>
 <div id="el-concepto-de-población" class="section level1">
 <h1>El concepto de población</h1>
-<p>Este concepto en estadística es sumamente diferente a la visión popular. En el concepto popular, social y geográfico una población es un conjunto de individuos de una especie o un concepto nacionalista (por ejemplos los Argentinos, o puertoriqueños). Típicamente se refiere a un grupo de individuos en un país, estado. El concepto de población en estadística es diferente en que se refiere a <strong>TODOS</strong> en el universo. Por consecuencia se fuésemos hacer un estudio de la población de puertoriqueños, tendríamos que incluir a todos ellos irrelevante de donde vive en el planeta. Por consecuencia el concepto de población en estadística siempre se refiere a todos los individuos sin que falte ni uno. Pudiésemos modificar nuestro estudio y decir que se va a estudiar una población más reducida. Por ejemplo la población de los puertoriqueños que viven en Puerto Rico en tal fecha. Aun así seria imposible recolectar datos de cada uno, porque siempre habrá algún individuo que no vamos a poder recolectar los datos. Por consecuencia el concepto de población es uno teórico.</p>
+<p>Este concepto en estadística es sumamente diferente a la visión
+popular. En el concepto popular, social y geográfico una población es un
+conjunto de individuos de una especie o un concepto nacionalista (por
+ejemplos los Argentinos, o puertoriqueños). Típicamente se refiere a un
+grupo de individuos en un país, estado. El concepto de población en
+estadística es diferente en que se refiere a <strong>TODOS</strong> en
+el universo. Por consecuencia se fuésemos hacer un estudio de la
+población de puertoriqueños, tendríamos que incluir a todos ellos
+irrelevante de donde vive en el planeta. Por consecuencia el concepto de
+población en estadística siempre se refiere a todos los individuos sin
+que falte ni uno. Pudiésemos modificar nuestro estudio y decir que se va
+a estudiar una población más reducida. Por ejemplo la población de los
+puertoriqueños que viven en Puerto Rico en tal fecha. Aun así seria
+imposible recolectar datos de cada uno, porque siempre habrá algún
+individuo que no vamos a poder recolectar los datos. Por consecuencia el
+concepto de población es uno teórico.</p>
 <hr />
 </div>
 <div id="el-concepto-de-muestreo" class="section level1">
 <h1>El concepto de muestreo</h1>
-<p>Un muestreo es el subgrupo de la población, donde el objetivo es que este muestro sea representativo de la población. Por ejemplo un hace una recolección de información para saber cual es el nivel de estrés que la pandemia de COVID-19 tiene sobre los estudiantes universitarios. Seria un trabajo fenomenal recolectar datos sobre <strong>TODOS</strong> los estudiantes, pero su podría recolectar información sobre un subgrupo de ellos con la espera que los datos represente la población de estudiantes universitarios.</p>
+<p>Un muestreo es el subgrupo de la población, donde el objetivo es que
+este muestro sea representativo de la población. Por ejemplo un hace una
+recolección de información para saber cual es el nivel de estrés que la
+pandemia de COVID-19 tiene sobre los estudiantes universitarios. Seria
+un trabajo fenomenal recolectar datos sobre <strong>TODOS</strong> los
+estudiantes, pero su podría recolectar información sobre un subgrupo de
+ellos con la espera que los datos represente la población de estudiantes
+universitarios.</p>
 <hr />
 </div>
 <div id="griego-y-latin" class="section level1">
 <h1>Griego y Latin</h1>
-<p>Cuando uno quiere referir a la población/parámetro uno utiliza las letras del alfabeto griego y cuando nos referimos a un muestreo se usa la letra del alfabeto en latín.</p>
-<p>En la siguiente tabla se observa algunos de los variables que veremos en los módulos siguientes. En los próximos módulos regresaremos al significado de estos parámetros.</p>
+<p>Cuando uno quiere referir a la población/parámetro uno utiliza las
+letras del alfabeto griego y cuando nos referimos a un muestreo se usa
+la letra del alfabeto en latín.</p>
+<p>En la siguiente tabla se observa algunos de los variables que veremos
+en los módulos siguientes. En los próximos módulos regresaremos al
+significado de estos parámetros.</p>
 <table>
 <thead>
 <tr>
@@ -589,14 +624,35 @@ Proporción
 </div>
 <div id="la-verdad-versus-un-estimado" class="section level1">
 <h1>La verdad versus un estimado</h1>
-<p>Cuando uno hace una investigación esta buscando la “verdad” en otra palabra estamos a la búsqueda de la información de la población. Desafortunadamente raramente podemos tener TODA los datos por consecuencia esperamos que la muestra sea una buena representación de la “verdad”. Por consecuencia se espera que el promedio de la muestra se acerca a promedio del universo (la verdad). Matemáticamente uno lo puede escribir de la siguiente manera <span class="math inline">\(\overline{x}\approx\mu\)</span>. El gran problema en la ciencia es que nunca estamos 100% seguro de los trabajos de investigación porque nunca sabemos el <span class="math inline">\(\mu\)</span>. Este valor es casi siempre desconocido.</p>
+<p>Cuando uno hace una investigación esta buscando la “verdad” en otra
+palabra estamos a la búsqueda de la información de la población.
+Desafortunadamente raramente podemos tener TODA los datos por
+consecuencia esperamos que la muestra sea una buena representación de la
+“verdad”. Por consecuencia se espera que el promedio de la muestra se
+acerca a promedio del universo (la verdad). Matemáticamente uno lo puede
+escribir de la siguiente manera <span
+class="math inline">\(\overline{x}\approx\mu\)</span>. El gran problema
+en la ciencia es que nunca estamos 100% seguro de los trabajos de
+investigación porque nunca sabemos el <span
+class="math inline">\(\mu\)</span>. Este valor es casi siempre
+desconocido.</p>
 </div>
 <div id="muestreos-al-azar" class="section level1">
 <h1>Muestreos al azar</h1>
-<p>Una de las áreas de estudio importante es saber organizar un estudio para responder a unas preguntas y que no sea sesgado (en ingles “bias”). Cuando se selecciona los datos necesitamos asegurar que los datos sean representativos de la población de interés, el <span class="math inline">\(\mu\)</span>. Si por ejemplo queremos saber el nivel de colesterol en la población de puertoriqueños que viven en Puerto Rico el diseño del muestreo tiene que tomar en cuenta ese grupo y la muestra tiene que representar ese grupo.</p>
-<p>Pregunta corta: Explica el sesgo de los diferentes métodos, como se podría mejorar el muestreo?</p>
+<p>Una de las áreas de estudio importante es saber organizar un estudio
+para responder a unas preguntas y que no sea sesgado (en ingles “bias”).
+Cuando se selecciona los datos necesitamos asegurar que los datos sean
+representativos de la población de interés, el <span
+class="math inline">\(\mu\)</span>. Si por ejemplo queremos saber el
+nivel de colesterol en la población de puertoriqueños que viven en
+Puerto Rico el diseño del muestreo tiene que tomar en cuenta ese grupo y
+la muestra tiene que representar ese grupo.</p>
+<p>Pregunta corta: Explica el sesgo de los diferentes métodos, como se
+podría mejorar el muestreo?</p>
 <ol style="list-style-type: decimal">
-<li>¿Cual de las siguientes alternativas es un mejor diseño experimental para deteminar el nivel de colestrerol de los puertoriqueños que viven en Puerto Rico?</li>
+<li>¿Cual de las siguientes alternativas es un mejor diseño experimental
+para deteminar el nivel de colestrerol de los puertoriqueños que viven
+en Puerto Rico?</li>
 </ol>
 <blockquote>
 <ul>
@@ -604,11 +660,13 @@ Proporción
 <li>Se muestrea paciente que llegan a la oficina de un medico</li>
 <li>Se muestrea paciente que llegan a la sala de emergencia</li>
 <li>Se muestrea gente de multiples edades</li>
-<li>Se muestrea gente de multiples edades y distribuido por toda la isla</li>
+<li>Se muestrea gente de multiples edades y distribuido por toda la
+isla</li>
 </ul>
 </blockquote>
 </div>
-<div id="error-de-muestreo-precisión-exactitud-y-sesgos" class="section level1">
+<div id="error-de-muestreo-precisión-exactitud-y-sesgos"
+class="section level1">
 <h1>Error de muestreo: Precisión, Exactitud y Sesgos</h1>
 </div>
 

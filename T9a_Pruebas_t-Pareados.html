@@ -13,7 +13,7 @@
 
 <title>T9a: Pruebas t-Pareados</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -542,6 +542,9 @@ div.tocify {
       <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
     </li>
     <li>
+      <a href="Ejerc_Ten_Central_Disp_Graficos.html">Ejercicio de Tendencia Central y Dispersión</a>
+    </li>
+    <li>
       <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
     </li>
     <li>
@@ -561,6 +564,9 @@ div.tocify {
     </li>
     <li>
       <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
+    <li>
+      <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
     </li>
   </ul>
 </li>
@@ -605,12 +611,23 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-08-22&quot;</code></pre>
+<pre><code>## [1] &quot;2022-09-07&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div id="datos-dependientes" class="section level1">
 <h1>Datos dependientes</h1>
-<p>Si tienes datos que no son independiente, es necesario usar la prueba con datos pareados (paired t-test). Cuando se refiere a datos no independiente es que hay evidencia que los datos pueden estar relacionado de una forma. En el siguiente ejemplo tenemos la altura de los padres y el altura de el hijo. Hay evidencia que la genética influencia la altura de los humanos, también hay el ambiente. Si el ambiente (nutrición, etc) es la única variable que tiene influencia sobre la altura pudiese que no se debería encontrar una relación entre la altura del padre y el hijo. Si la genética es la única variable que impacta la altura de los humanos, en este caso deberíamos encontrar una muy fuerte correlación entre la alturas de los padres y los hijos.</p>
-<p>Los datos provienen del paquete <strong>UsingR</strong> y el archivo se llama <strong>father.son</strong></p>
+<p>Si tienes datos que no son independiente, es necesario usar la prueba
+con datos pareados (paired t-test). Cuando se refiere a datos no
+independiente es que hay evidencia que los datos pueden estar
+relacionado de una forma. En el siguiente ejemplo tenemos la altura de
+los padres y el altura de el hijo. Hay evidencia que la genética
+influencia la altura de los humanos, también hay el ambiente. Si el
+ambiente (nutrición, etc) es la única variable que tiene influencia
+sobre la altura pudiese que no se debería encontrar una relación entre
+la altura del padre y el hijo. Si la genética es la única variable que
+impacta la altura de los humanos, en este caso deberíamos encontrar una
+muy fuerte correlación entre la alturas de los padres y los hijos.</p>
+<p>Los datos provienen del paquete <strong>UsingR</strong> y el archivo
+se llama <strong>father.son</strong></p>
 <p>Primero mire los datos y los nombres de las variables.</p>
 <p>Paired Two-Sample T-test</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(Hmisc)</span>
@@ -636,7 +653,15 @@ div.tocify {
 <hr />
 <div id="visualizar-la-correlación" class="section level2">
 <h2>Visualizar la correlación</h2>
-<p>Antes de hacer la prueba es recomendado hacer un gráfico de puntos para visualizar los datos y observar si hay un patrón. Vemos a medida que aumenta la altura de los padres los hijos tienden a estar más altos. parece que hay una correlación en la altura de los hijos basado en la altura del padre. Por consecuencia la altura de los hijos no son independiente de la altura de los padres. Aunque hay evidencia que el ambiente, tal como el acceso a recursos (comida, leche, etc) tiene impacto sobre la altura de los humanos, la genética también tiene impacto to sobre la altura de los humanos.</p>
+<p>Antes de hacer la prueba es recomendado hacer un gráfico de puntos
+para visualizar los datos y observar si hay un patrón. Vemos a medida
+que aumenta la altura de los padres los hijos tienden a estar más altos.
+parece que hay una correlación en la altura de los hijos basado en la
+altura del padre. Por consecuencia la altura de los hijos no son
+independiente de la altura de los padres. Aunque hay evidencia que el
+ambiente, tal como el acceso a recursos (comida, leche, etc) tiene
+impacto sobre la altura de los humanos, la genética también tiene
+impacto to sobre la altura de los humanos.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(father.son, <span class="fu">aes</span>(fheight, sheight))<span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  rlt_theme<span class="sc">+</span></span>
@@ -648,25 +673,46 @@ div.tocify {
 </div>
 <div id="la-prueba-de-t-pareado" class="section level1">
 <h1>La prueba de t-pareado</h1>
-<p>La prueba de t-con datos pareados es la misma que la prueba de t con un grupo, <strong>t.test()</strong>.</p>
-<p>La hipótesis nula es que la diferencia entre los datos dependientes es igual a cero. La <strong>d</strong> se refiere a la diferencia entre los pares de datos. Nota entonces que el análisis se hace evaluando si el promedio de las diferencias es igual a cero. Nota que el valor de t es absoluto <span class="math inline">\(\left|t\right|\)</span>, un valor negativo es igual que un valor positivo.</p>
+<p>La prueba de t-con datos pareados es la misma que la prueba de t con
+un grupo, <strong>t.test()</strong>.</p>
+<p>La hipótesis nula es que la diferencia entre los datos dependientes
+es igual a cero. La <strong>d</strong> se refiere a la diferencia entre
+los pares de datos. Nota entonces que el análisis se hace evaluando si
+el promedio de las diferencias es igual a cero. Nota que el valor de t
+es absoluto <span class="math inline">\(\left|t\right|\)</span>, un
+valor negativo es igual que un valor positivo.</p>
 <ul>
 <li>Ho: <span class="math inline">\(\overline{x_d}=0\)</span></li>
 <li>Ha: <span class="math inline">\(\overline{x_d}≠0\)</span></li>
 </ul>
 <p>La prueba de t con datos pareados.</p>
-<p><span class="math display">\[\left|t\right|=\bar{\frac{d}{\frac{s_d}{\sqrt{n}}}}\]</span></p>
-<p>Si el valor absoluto de las estadísticas de la prueba <span class="math inline">\(\begin{array}{l}t=\left|t\right|\\\end{array}\)</span> es mayor que el valor crítico, entonces la diferencia es significativa. El nivel critico del valor <strong>p</strong> corresponde al indicado en la tabla de la prueba tomando en cuanta el grado de libertad, la cantidad de error I y si es de un lado o ambos lados.</p>
+<p><span
+class="math display">\[\left|t\right|=\bar{\frac{d}{\frac{s_d}{\sqrt{n}}}}\]</span></p>
+<p>Si el valor absoluto de las estadísticas de la prueba <span
+class="math inline">\(\begin{array}{l}t=\left|t\right|\\\end{array}\)</span>
+es mayor que el valor crítico, entonces la diferencia es significativa.
+El nivel critico del valor <strong>p</strong> corresponde al indicado en
+la tabla de la prueba tomando en cuanta el grado de libertad, la
+cantidad de error I y si es de un lado o ambos lados.</p>
 <p>Las opciones para esta prueba son las siguientes en roja</p>
 <ul>
-<li>t.test(<span style="color: red;">x</span>, <span style="color: red;">y</span>,
+<li>t.test(<span style="color: red;">x</span>, <span
+style="color: red;">y</span>,
 <ul>
-<li><span style="color: red;">alternative = c(two.sided, less, greater)</span>,</li>
-<li>mu =, <span style="color: red;">paired = FALSE</span>, var.equal = FALSE,</li>
+<li><span style="color: red;">alternative = c(two.sided, less,
+greater)</span>,</li>
+<li>mu =, <span style="color: red;">paired = FALSE</span>, var.equal =
+FALSE,</li>
 <li><span style="color: red;">conf.level = 0.95</span>, …).</li>
 </ul></li>
 </ul>
-<p>El resultado: El valor de <span class="math inline">\(\left|t\right|\)</span> observado es de 11.789, con un grado de libertad de 1077 (n=1078), y un valor de p &lt;0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna. El intervalo de confianza del promedio es -1.163 a -0.831, con un promedio de -0.99. Esto significa que los padres tiende a estar una pulgada (-0.99) más bajo que los hijos.</p>
+<p>El resultado: El valor de <span
+class="math inline">\(\left|t\right|\)</span> observado es de 11.789,
+con un grado de libertad de 1077 (n=1078), y un valor de p &lt;0.0001.
+Por consecuencia se rechaza la hipótesis nula y se acepta la alterna. El
+intervalo de confianza del promedio es -1.163 a -0.831, con un promedio
+de -0.99. Esto significa que los padres tiende a estar una pulgada
+(-0.99) más bajo que los hijos.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(father.son<span class="sc">$</span>fheight, father.son<span class="sc">$</span>sheight, <span class="at">paired=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
@@ -682,7 +728,13 @@ div.tocify {
 <hr />
 <div id="visualizar-la-diferencias" class="section level2">
 <h2>Visualizar la diferencias</h2>
-<p>Podemos visualizar la diferencia entre los hijos y los padres. Vemos el promedio si no tuviese diferencia (la linea azul), esto es nuestra hipótesis nula, y el estimado (el promedio de la diferencias es rojo, con el intervalo de confianza en las lineas entrecortada). Si nuestro estimado (el intervalo de confianza de 95%) hubiese incluido la linea azul la prueba no seria significativa, y se aceptaría la hipótesis nula.</p>
+<p>Podemos visualizar la diferencia entre los hijos y los padres. Vemos
+el promedio si no tuviese diferencia (la linea azul), esto es nuestra
+hipótesis nula, y el estimado (el promedio de la diferencias es rojo,
+con el intervalo de confianza en las lineas entrecortada). Si nuestro
+estimado (el intervalo de confianza de 95%) hubiese incluido la linea
+azul la prueba no seria significativa, y se aceptaría la hipótesis
+nula.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>father.son<span class="sc">$</span>heightDiff<span class="ot">&lt;-</span>father.son<span class="sc">$</span>fheight<span class="sc">-</span>father.son<span class="sc">$</span>sheight <span class="co"># para calcular la diferencia entre el padre y el hijo. </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(father.son, <span class="fu">aes</span>(<span class="at">x=</span>fheight<span class="sc">-</span>sheight))<span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
@@ -702,11 +754,13 @@ div.tocify {
 </div>
 </div>
 </div>
-<div id="paired-t-test-números-de-niños-abuela-y-madre" class="section level1">
+<div id="paired-t-test-números-de-niños-abuela-y-madre"
+class="section level1">
 <h1>Paired t-test, Números de niños abuela y madre</h1>
 <div id="ejercicio-de-clase" class="section level2">
 <h2>Ejercicio de clase</h2>
-<p>Vamos a evaluar si la cantidad de hijos cambia entre su abuela y su madre.</p>
+<p>Vamos a evaluar si la cantidad de hijos cambia entre su abuela y su
+madre.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>abuela<span class="ot">=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>madre<span class="ot">=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="fu">data.frame</span>(abuela,madre)</span>
@@ -784,10 +838,25 @@ div.tocify {
 <hr />
 </div>
 </div>
-<div id="cultivador-de-toronjas-con-parcelas-pareadas" class="section level1">
+<div id="cultivador-de-toronjas-con-parcelas-pareadas"
+class="section level1">
 <h1>Cultivador de Toronjas con parcelas pareadas</h1>
-<p>Un cultivador heredo 18 parcelas donde hay árboles de toronjas cada una en diferentes municipios. El quiere saber si al añadir abono, la cosecha de toronjas aumenta. El podría decidir que de seleccionar 9 de estas parcelas y añadir abono y las otras 9 sin abono. El problema con este diseño experimental es que es bien conocido que el suelo varia de un sitio a otro y que el clima varia también. Es más apropiado que el divide cada parcela en 2, y que la mitad recibe el abono y la otra mitad sirva de control (sin abono). Cual sera el efecto del abono sobre la producción de toronjas en parcelas pareadas en Puerto Rico.</p>
-<p>La cantidad de Toronjas producidas por árbol en fincas pareadas, cada finca tiene una parcela con abono y la otra la otra parcela sin abono. Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono sobre la producción de toronjas, se enseña solamente los primeros 8 pares de valores en la tabla. Cada parcela es del mismo tamaño con la misma cantidad de arboles. Los datos completos están en el próximo chunk.</p>
+<p>Un cultivador heredo 18 parcelas donde hay árboles de toronjas cada
+una en diferentes municipios. El quiere saber si al añadir abono, la
+cosecha de toronjas aumenta. El podría decidir que de seleccionar 9 de
+estas parcelas y añadir abono y las otras 9 sin abono. El problema con
+este diseño experimental es que es bien conocido que el suelo varia de
+un sitio a otro y que el clima varia también. Es más apropiado que el
+divide cada parcela en 2, y que la mitad recibe el abono y la otra mitad
+sirva de control (sin abono). Cual sera el efecto del abono sobre la
+producción de toronjas en parcelas pareadas en Puerto Rico.</p>
+<p>La cantidad de Toronjas producidas por árbol en fincas pareadas, cada
+finca tiene una parcela con abono y la otra la otra parcela sin abono.
+Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono
+sobre la producción de toronjas, se enseña solamente los primeros 8
+pares de valores en la tabla. Cada parcela es del mismo tamaño con la
+misma cantidad de arboles. Los datos completos están en el próximo
+chunk.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(huxtable)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>Toronja<span class="ot">=</span><span class="fu">tribble</span>(</span>
@@ -835,12 +904,18 @@ div.tocify {
 <ul>
 <li>Primero añadimos los datos en listas y la unimos en un df.<br />
 </li>
-<li>Se calcula la diferencias de producción de toronjas por parcela.</li>
+<li>Se calcula la diferencias de producción de toronjas por
+parcela.</li>
 <li>Cual es el promedio de las diferencias.</li>
 <li>Hacer la prueba de t con datos pareado.</li>
 </ul>
 </blockquote>
-<p>El resultado: El valor de t-observado es de 8.80, con un grado de libertad de 17 (n=18), y valor de p &lt;0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna. El intervalo de confianza del promedio es 198.5 - 323.7, con un promedio de 261. Esto significa que a añadir fertilizante la producción de toronjas aumento de en promedio de 261 toronjas.</p>
+<p>El resultado: El valor de t-observado es de 8.80, con un grado de
+libertad de 17 (n=18), y valor de p &lt;0.0001. Por consecuencia se
+rechaza la hipótesis nula y se acepta la alterna. El intervalo de
+confianza del promedio es 198.5 - 323.7, con un promedio de 261. Esto
+significa que a añadir fertilizante la producción de toronjas aumento de
+en promedio de 261 toronjas.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Fert<span class="ot">=</span><span class="fu">c</span>(<span class="dv">2250</span>,<span class="dv">2410</span>, <span class="dv">2260</span>,<span class="dv">2200</span>, <span class="dv">2360</span>, </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>     <span class="dv">2320</span>,<span class="dv">2240</span>,<span class="dv">2300</span>,<span class="dv">2090</span>, <span class="dv">2250</span>,<span class="dv">2410</span>, <span class="dv">2260</span>,<span class="dv">2200</span>, <span class="dv">2360</span>, </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>     <span class="dv">2320</span>,<span class="dv">2240</span>,<span class="dv">2300</span>,<span class="dv">2090</span>)</span>
@@ -867,16 +942,29 @@ div.tocify {
 ## mean difference 
 ##        261.1111</code></pre>
 <hr />
-<div id="el-número-de-hojas-por-planta-en-diferentes-momentos-tiempo." class="section level2">
+<div id="el-número-de-hojas-por-planta-en-diferentes-momentos-tiempo."
+class="section level2">
 <h2>El número de Hojas por planta en diferentes momentos (tiempo).</h2>
-<p>Los datos representa cuantas hojas tenían las <strong>mismas</strong> plantas en diferentes momentos de su muestreo. Por consecuencia los datos nos son independiente. Los datos provienen de datos recolectados en el Yunque en una pequeña orquídea epifita, <em>Lepanthes eltoroensis</em> Stimson. Aquí una foto de la planta.</p>
+<p>Los datos representa cuantas hojas tenían las <strong>mismas</strong>
+plantas en diferentes momentos de su muestreo. Por consecuencia los
+datos nos son independiente. Los datos provienen de datos recolectados
+en el Yunque en una pequeña orquídea epifita, <em>Lepanthes
+eltoroensis</em> Stimson. Aquí una foto de la planta.</p>
 <div class="figure" style="text-align: center">
 <img src="Graficos/L_eltoroensis.jpg" alt="*Lepanthes eltoroensis*" width="40%" />
 <p class="caption">
 <em>Lepanthes eltoroensis</em>
 </p>
 </div>
-<p>El archivo de datos tiene información sobre la cantidad de hojas que tiene cada una de las plantas marcadas después del huracán Georges (1998). La plantas fueron muestreado a cada 6 meses comenzando 6 meses después del huracán por 6 años (13 muestreos). Fueron seguidos 1084 plantas distintas, aunque no todos están muestreados a cada tiempo. Cada fila representa un individuo, si no hay información en un tiempo puede ser que la planta a) no fue encontrada en este muestreo, b) que la planta este muerta o que c) fue antes que la planta creciera (todavía no había germinado).</p>
+<p>El archivo de datos tiene información sobre la cantidad de hojas que
+tiene cada una de las plantas marcadas después del huracán Georges
+(1998). La plantas fueron muestreado a cada 6 meses comenzando 6 meses
+después del huracán por 6 años (13 muestreos). Fueron seguidos 1084
+plantas distintas, aunque no todos están muestreados a cada tiempo. Cada
+fila representa un individuo, si no hay información en un tiempo puede
+ser que la planta a) no fue encontrada en este muestreo, b) que la
+planta este muerta o que c) fue antes que la planta creciera (todavía no
+había germinado).</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Lepanthes_eltoroensis_Georges_STUDENT <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Lepanthes_eltoroensis_Georges_STUDENT.csv&quot;</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -905,8 +993,11 @@ div.tocify {
 <pre><code>## [1] 1084</code></pre>
 <hr />
 <ol style="list-style-type: decimal">
-<li><p>Compara si la cantidad de hojas por plante es igual entre el primer muestreo (1) y el segundo muestreo (2). y contesta la siguientes preguntas.</p>
-<p>Se someterá un documento html en Edmodo contestando las siguientes preguntas.</p></li>
+<li><p>Compara si la cantidad de hojas por plante es igual entre el
+primer muestreo (1) y el segundo muestreo (2). y contesta la siguientes
+preguntas.</p>
+<p>Se someterá un documento html en Edmodo contestando las siguientes
+preguntas.</p></li>
 </ol>
 <p><span style="color: blue;">Cual son sus conclusiones.</span></p>
 <blockquote>
@@ -915,7 +1006,8 @@ div.tocify {
 <li>¿Cual es la hipotesis nula?</li>
 <li>¿Haz la prueba corecta para evaluar la hipotesis?</li>
 <li>¿Cual es el valor de t observado?</li>
-<li>¿Cual es el promedio de diferencias entre un muestreo y el otro?</li>
+<li>¿Cual es el promedio de diferencias entre un muestreo y el
+otro?</li>
 <li>¿Cual es el intervalo de confianza del promedio?</li>
 <li>¿Cumple con el supuesto de esta prueba? enseña la evidencia.</li>
 <li>¿Se acepta o rechaza la hipótesis nula?
@@ -969,12 +1061,14 @@ div.tocify {
 ## 13.555556  3.777778</code></pre>
 <hr />
 </div>
-<div id="supuestos-de-la-prueba-de-t-con-datos-pareados." class="section level2">
+<div id="supuestos-de-la-prueba-de-t-con-datos-pareados."
+class="section level2">
 <h2>Supuestos de la prueba de t con datos pareados.</h2>
 <p>Los supuestos de la prueba t-pareados.</p>
 <blockquote>
 <ul>
-<li>Las variables dependientes sean valores continuos (intervalos o razón).</li>
+<li>Las variables dependientes sean valores continuos (intervalos o
+razón).</li>
 <li>Qué los individuos sean observaciones independientes.</li>
 <li>Qué las diferencias sean normales.</li>
 <li>Qué no hay valores atípicos.</li>

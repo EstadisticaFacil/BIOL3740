@@ -13,7 +13,7 @@
 
 <title>T13_Correlación_Covarianza</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -542,6 +542,9 @@ div.tocify {
       <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
     </li>
     <li>
+      <a href="Ejerc_Ten_Central_Disp_Graficos.html">Ejercicio de Tendencia Central y Dispersión</a>
+    </li>
+    <li>
       <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
     </li>
     <li>
@@ -561,6 +564,9 @@ div.tocify {
     </li>
     <li>
       <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
+    <li>
+      <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
     </li>
   </ul>
 </li>
@@ -605,7 +611,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-08-22&quot;</code></pre>
+<pre><code>## [1] &quot;2022-09-07&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <p>Correlations and covariance</p>
@@ -692,9 +698,11 @@ div.tocify {
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2.40e+03</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.85</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td></tr>
 </table>
 
-<div id="a-detour-in-the-murky-world-of-covariance" class="section level1">
+<div id="a-detour-in-the-murky-world-of-covariance"
+class="section level1">
 <h1>A detour in the Murky world of covariance</h1>
-<p>The objective is to evaluate whether variables covary, that is if the variable explain in part the part of the other.</p>
+<p>The objective is to evaluate whether variables covary, that is if the
+variable explain in part the part of the other.</p>
 <table>
 <thead>
 <tr class="header">
@@ -733,13 +741,21 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<div id="understanding-covariance-one-needs-to-understand-variance-equation." class="section level2">
-<h2>Understanding covariance one needs to understand variance equation.</h2>
-<p>[Variance of single variable] <span class="math display">\[s^{ 2 }=\frac { \sum { { ({ x }_{ i }-\bar { x } ) }^{ 2 } }  }{ n-1 }\]</span></p>
+<div
+id="understanding-covariance-one-needs-to-understand-variance-equation."
+class="section level2">
+<h2>Understanding covariance one needs to understand variance
+equation.</h2>
+<p>[Variance of single variable] <span class="math display">\[s^{ 2
+}=\frac { \sum { { ({ x }_{ i }-\bar { x } ) }^{ 2 } }  }{ n-1
+}\]</span></p>
 </div>
-<div id="while-the-covariance-is-the-cross-product-of-the-deviation" class="section level2">
+<div id="while-the-covariance-is-the-cross-product-of-the-deviation"
+class="section level2">
 <h2>While the Covariance is the cross product of the deviation</h2>
-<p>[Covariance] <span class="math display">\[cov(x,y)=\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1 } \]</span></p>
+<p>[Covariance] <span class="math display">\[cov(x,y)=\frac { \sum { ({
+x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1 }
+\]</span></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x_val<span class="ot">=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y_val<span class="ot">=</span><span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">13</span>,<span class="dv">15</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Person<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
@@ -767,16 +783,25 @@ div.tocify {
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept=</span><span class="fu">mean</span>(df<span class="sc">$</span>x_val)),<span class="at">colour=</span><span class="st">&quot;Blue&quot;</span>)<span class="sc">+</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept=</span><span class="fu">mean</span>(df<span class="sc">$</span>y_val)),<span class="at">colour=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="T13_Correlacion_Covarianza_files/figure-html/variance-1.png" width="672" /></p>
-<p>Because in most cases variables are collected having different measurement scales we have to standardize using the standard deviation</p>
+<p>Because in most cases variables are collected having different
+measurement scales we have to standardize using the standard
+deviation</p>
 </div>
-<div id="thus-we-have-to-use-the-correlation-coefficient" class="section level2">
+<div id="thus-we-have-to-use-the-correlation-coefficient"
+class="section level2">
 <h2>Thus we have to use the Correlation Coefficient:</h2>
 </div>
-<div id="this-most-common-is-the-pearson-product-moment-correlation-coefficient-or-pearson-correlation-coeffcient." class="section level2">
-<h2>This most common is the Pearson product-moment correlation coefficient or Pearson correlation coeffcient.</h2>
-<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{ y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar { y } _{ i }) }  }{ n-1{ s }_{ x }{ s }_{ y } }\]</span></p>
+<div
+id="this-most-common-is-the-pearson-product-moment-correlation-coefficient-or-pearson-correlation-coeffcient."
+class="section level2">
+<h2>This most common is the Pearson product-moment correlation
+coefficient or Pearson correlation coeffcient.</h2>
+<p><span class="math display">\[r=\frac { cov(x,y) }{ { s }_{ x }{ s }_{
+y } } =\frac { \sum { ({ x }_{ i }-\bar { x } _{ i })({ y }_{ i }-\bar {
+y } _{ i }) }  }{ n-1{ s }_{ x }{ s }_{ y } }\]</span></p>
 <p>The function to calculate the correlation coefficient is “cor”</p>
-<p>The function to determine if the correlation vetween the 2 variables is significant (in other words, different from zero) is “cor.test”.</p>
+<p>The function to determine if the correlation vetween the 2 variables
+is significant (in other words, different from zero) is “cor.test”.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>x_val, df<span class="sc">$</span>y_val)</span></code></pre></div>
 <pre><code>## [1] 0.8711651</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df<span class="sc">$</span>x_val, df<span class="sc">$</span>y_val)</span></code></pre></div>
@@ -791,12 +816,16 @@ div.tocify {
 ## sample estimates:
 ##       cor 
 ## 0.8711651</code></pre>
-<p>The correlation of coefficient square <span class="math inline">\({ R }^{ 2 }\)</span> (known as the coefficient of determination) is a measure of the amount of variability in one variable that is shared by the other.</p>
+<p>The correlation of coefficient square <span class="math inline">\({ R
+}^{ 2 }\)</span> (known as the coefficient of determination) is a
+measure of the amount of variability in one variable that is shared by
+the other.</p>
 <p>Simple table of correlation tests</p>
 <ol style="list-style-type: decimal">
 <li>Pearson test, assumes normal bivariate distribution,</li>
 <li>Spearman test, no assumption of normality,</li>
-<li>Kendall test, no assumption of normality, better when sample size are small</li>
+<li>Kendall test, no assumption of normality, better when sample size
+are small</li>
 </ol>
 <p>Let us a look at Anxiety and exam results.</p>
 <p>Choose the data set, examData</p>
@@ -836,7 +865,10 @@ div.tocify {
 ## sample estimates:
 ##        cor 
 ## -0.4409934</code></pre>
-<p>One the basic assumption of the Pearson correlation is that the data be bivariate normally distributed. NOTE: WHAT WE MEAN ABOUT THE “ASSUMPTION” IS THAT WE ARE CONFIDENT THAT THE UNIVERSE IS NORMALLY DISTRIBUTED, NOT NECESARILY THAT OUR DATA ARE (SUBSET).</p>
+<p>One the basic assumption of the Pearson correlation is that the data
+be bivariate normally distributed. NOTE: WHAT WE MEAN ABOUT THE
+“ASSUMPTION” IS THAT WE ARE CONFIDENT THAT THE UNIVERSE IS NORMALLY
+DISTRIBUTED, NOT NECESARILY THAT OUR DATA ARE (SUBSET).</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(png)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -846,7 +878,10 @@ div.tocify {
 </div>
 <div id="what-does-that-mean" class="section level2">
 <h2>What does that mean</h2>
-<p>Here is a really cool graph that does the figures and most of the analysis in one one shot. The package GGally, if you omit “ggplot2::aes(colour=Gender)”, the figure will be black and white, and not seperated by gender.</p>
+<p>Here is a really cool graph that does the figures and most of the
+analysis in one one shot. The package GGally, if you omit
+“ggplot2::aes(colour=Gender)”, the figure will be black and white, and
+not seperated by gender.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(examData)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:graphic 2">
@@ -868,7 +903,8 @@ div.tocify {
 
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(examData, ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">colour=</span>Gender))</span></code></pre></div>
 <p><img src="T13_Correlacion_Covarianza_files/figure-html/graphic%202-1.png" width="672" /></p>
-<p>In this code I removed the first column, which is just the code of the individual, by examData[,c(2:5)], by removing column #1.</p>
+<p>In this code I removed the first column, which is just the code of
+the individual, by examData[,c(2:5)], by removing column #1.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(examData[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)], ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">colour=</span>Gender)) </span></code></pre></div>
 <p><img src="T13_Correlacion_Covarianza_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ol style="list-style-type: decimal">
@@ -912,9 +948,12 @@ div.tocify {
 ## Exam          0       0    
 ## Anxiety  0            0    
 ## Revise   0    0</code></pre>
-<p>When the data do not comply with the assumption of normality you need to use Spearman or Kendall</p>
-<p>Choose “The Biggest Liar.csv” data set, contest, where this occurs every year in a pub.</p>
-<p>World’s Biggest Liar is an annual competition for telling lies, held in Cumbria, England at the Stanton Inn Bridge Pub.</p>
+<p>When the data do not comply with the assumption of normality you need
+to use Spearman or Kendall</p>
+<p>Choose “The Biggest Liar.csv” data set, contest, where this occurs
+every year in a pub.</p>
+<p>World’s Biggest Liar is an annual competition for telling lies, held
+in Cumbria, England at the Stanton Inn Bridge Pub.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(png)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -956,7 +995,9 @@ div.tocify {
 <h1>EXTRA Stuff</h1>
 <div id="bootstrapping-correlation" class="section level2">
 <h2>Bootstrapping Correlation</h2>
-<p>THERE is no need to make assumptions of the distribution, you can let your data speak for itself, and construct the correlation coeffcients and 95% confidence interval.</p>
+<p>THERE is no need to make assumptions of the distribution, you can let
+your data speak for itself, and construct the correlation coeffcients
+and 95% confidence interval.</p>
 <p>We first create a function</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>bootTau<span class="ot">=</span><span class="cf">function</span>(liarData,i)<span class="fu">cor</span>(liarData<span class="sc">$</span>Position[i],liarData<span class="sc">$</span>Creativity[i],</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>,<span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>)</span></code></pre></div>

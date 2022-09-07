@@ -2,15 +2,14 @@
 title: "T4_new_2022"
 author: "Raymond L. Tremblay"
 date: "8/24/2022"
-output:   
-    html_document:
+output:
+  html_document:
     css: tutorial.css
     fig_caption: yes
     highlight: pygments
 #    theme: simplex
     toc: yes
     toc_float: yes
-    code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -75,7 +74,7 @@ head(dlf) # ver las 3 primeras filas
 
 
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 dlf %>% 
   summarize(
     promedio_dia1=mean(day1),
@@ -90,7 +89,7 @@ dlf %>%
 
 Crear una figura de los datos
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 library(ggplot2)
 
 ggplot(dlf, aes(day1))+
@@ -103,7 +102,7 @@ ggplot(dlf, aes(day1))+
 
 
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 max(dlf$day1)
 ```
 
@@ -112,7 +111,7 @@ max(dlf$day1)
 
 Remover los datos incorrectos
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 dlf=dlf %>% 
   filter(day1 < 4.01)
 
@@ -144,7 +143,5 @@ ggplot(MA_PA, aes(Num_Hern_Papa, fill=Genero))+
 ```
 
 
-```{r}
-```
 
 

@@ -13,7 +13,7 @@
 
 <title>Medidas de tendencia central</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -542,6 +542,9 @@ div.tocify {
       <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
     </li>
     <li>
+      <a href="Ejerc_Ten_Central_Disp_Graficos.html">Ejercicio de Tendencia Central y Dispersión</a>
+    </li>
+    <li>
       <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
     </li>
     <li>
@@ -561,6 +564,9 @@ div.tocify {
     </li>
     <li>
       <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
+    </li>
+    <li>
+      <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
     </li>
   </ul>
 </li>
@@ -605,7 +611,7 @@ div.tocify {
 
 
 <p>Fecha de la ultima revisión</p>
-<pre><code>## [1] &quot;2022-08-22&quot;</code></pre>
+<pre><code>## [1] &quot;2022-09-07&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
@@ -614,7 +620,13 @@ div.tocify {
 <hr />
 <div id="medida-de-tendencia-central" class="section level1">
 <h1>Medida de tendencia central</h1>
-<p>La medidas de tendencia central se llaman así, porque el valor indica la distribución de los datos y los indices tiende a estar en <strong>el centro</strong> de la distribución. Hay por lo menos 16 tipos de medidas de tendencias centrales <a href="https://en.wikipedia.org/wiki/Central_tendency" class="uri">https://en.wikipedia.org/wiki/Central_tendency</a>. En este curso estaremos solamente mencionado 3 de estas medidas.</p>
+<p>La medidas de tendencia central se llaman así, porque el valor indica
+la distribución de los datos y los indices tiende a estar en <strong>el
+centro</strong> de la distribución. Hay por lo menos 16 tipos de medidas
+de tendencias centrales <a
+href="https://en.wikipedia.org/wiki/Central_tendency"
+class="uri">https://en.wikipedia.org/wiki/Central_tendency</a>. En este
+curso estaremos solamente mencionado 3 de estas medidas.</p>
 <ul>
 <li>El promedio a arithmetico</li>
 <li>La mediana</li>
@@ -624,16 +636,27 @@ div.tocify {
 </div>
 <div id="calculando-el-promedio" class="section level1">
 <h1>Calculando el promedio</h1>
-<p>Aquí creamos una lista de datos con la función <strong>c( )</strong> y con la función <strong>mean</strong> podemos calcular el promedio. El promedio es la suma de los valores divido por la cantidad de valores en la lista.<br />
-<span class="math display">\[\bar{x}=\frac{\sum_{i=1}^{n}x_i}n\]</span></p>
+<p>Aquí creamos una lista de datos con la función <strong>c( )</strong>
+y con la función <strong>mean</strong> podemos calcular el promedio. El
+promedio es la suma de los valores divido por la cantidad de valores en
+la lista.<br />
+<span
+class="math display">\[\bar{x}=\frac{\sum_{i=1}^{n}x_i}n\]</span></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <hr />
-<div id="cuando-el-promedio-no-esta-localizado-en-el-centro" class="section level2">
+<div id="cuando-el-promedio-no-esta-localizado-en-el-centro"
+class="section level2">
 <h2>Cuando el promedio no esta localizado en el centro</h2>
-<p>Digamos que yo tengo la cantidad de semillas producida por 11 plantas, la primera no produjo semillas, la segunda 2 semillas y subsiguientemente hasta la ultima que tuvo una producción de 1000 semillas. Nota que en este caso el promedio no se encuentra el el centro de los datos, por consecuencia NO es un buen indicador de la tendencia central de los datos. Cuando esto ocurre uno no debería usar el promedio para describir la tendencia central de los datos.</p>
+<p>Digamos que yo tengo la cantidad de semillas producida por 11
+plantas, la primera no produjo semillas, la segunda 2 semillas y
+subsiguientemente hasta la ultima que tuvo una producción de 1000
+semillas. Nota que en este caso el promedio no se encuentra el el centro
+de los datos, por consecuencia NO es un buen indicador de la tendencia
+central de los datos. Cuando esto ocurre uno no debería usar el promedio
+para describir la tendencia central de los datos.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">1000</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)<span class="sc">/</span><span class="fu">length</span>(x)</span></code></pre></div>
 <pre><code>## [1] 95</code></pre>
@@ -646,8 +669,21 @@ div.tocify {
 </div>
 <div id="con-n-impares" class="section level2">
 <h2>Con <strong>n</strong> impares</h2>
-<p>Cuando el promedio no es indice adecuado de la tendencia central tenemos dos alternativas, la mediana y la moda. La mediana es el valor en el centro después de haber organizado los datos del más pequeño al más grande.</p>
-<p><span class="math display">\[Mediana\ =\frac{\left({x}_{n+1}\right)^{th}}{2}\]</span> Donde <strong>n</strong> es la cantidad de valores en orden del más pequeño al grande. Por consecuencia se selecciona el valor en el centro de todos los valores. Lo que la función de mediana hace es poner los valores en orden y después determina cual es el valor en el centro. Aquí para demostrar los que hace la función 1) creo un una lista de valores, 2) pongo los datos en orden 3) y mirando los valores en orden vemos que el valor <strong>6</strong> es el valor en el centro. Pero este paso no es necesario ya que la función <strong>median</strong> lo hace automaticamente.</p>
+<p>Cuando el promedio no es indice adecuado de la tendencia central
+tenemos dos alternativas, la mediana y la moda. La mediana es el valor
+en el centro después de haber organizado los datos del más pequeño al
+más grande.</p>
+<p><span class="math display">\[Mediana\
+=\frac{\left({x}_{n+1}\right)^{th}}{2}\]</span> Donde <strong>n</strong>
+es la cantidad de valores en orden del más pequeño al grande. Por
+consecuencia se selecciona el valor en el centro de todos los valores.
+Lo que la función de mediana hace es poner los valores en orden y
+después determina cual es el valor en el centro. Aquí para demostrar los
+que hace la función 1) creo un una lista de valores, 2) pongo los datos
+en orden 3) y mirando los valores en orden vemos que el valor
+<strong>6</strong> es el valor en el centro. Pero este paso no es
+necesario ya que la función <strong>median</strong> lo hace
+automaticamente.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>b<span class="ot">=</span><span class="fu">c</span>(<span class="dv">247</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">43626</span>,<span class="dv">26</span>,<span class="dv">23</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">24</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>b<span class="ot">=</span><span class="fu">sort</span>(b)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(b)</span></code></pre></div>
@@ -657,8 +693,12 @@ div.tocify {
 </div>
 <div id="con-n-pares" class="section level2">
 <h2>Con <strong>n</strong> pares</h2>
-<p>Cuando hay una cantidad de datos pares, los dos valores en el centro son sumado y el promedio es calculado.</p>
-<p><span class="math display">\[Mediana\ =\frac{1}{2}* (\frac{\left({x}_{n+1}\right)^{th}}{2}+\frac{\left({x}_{n+1}\right)^{th}}{2})\]</span> En el siguiente caso tanto el valor de 6 y 7 se encuentra en el centro, por consecuencia la mediana es el promedio de estos valores.</p>
+<p>Cuando hay una cantidad de datos pares, los dos valores en el centro
+son sumado y el promedio es calculado.</p>
+<p><span class="math display">\[Mediana\ =\frac{1}{2}*
+(\frac{\left({x}_{n+1}\right)^{th}}{2}+\frac{\left({x}_{n+1}\right)^{th}}{2})\]</span>
+En el siguiente caso tanto el valor de 6 y 7 se encuentra en el centro,
+por consecuencia la mediana es el promedio de estos valores.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>b<span class="ot">=</span><span class="fu">c</span>(<span class="dv">247</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">43626</span>,<span class="dv">26</span>,<span class="dv">23</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">24</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">7</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>b<span class="ot">=</span><span class="fu">sort</span>(b)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>b</span></code></pre></div>
@@ -670,18 +710,30 @@ div.tocify {
 </div>
 <div id="la-moda" class="section level2">
 <h2>La moda</h2>
-<p>La moda es el valor más común. Parta encontrar la moda, hay que instalar dos programas. Primero instalar <strong>devtools</strong> y despues correr el siguiente <strong>chunk</strong> para instaslar el package <strong>modeest</strong>, para mode estimates. Quitar <strong>#</strong> para correr la función.</p>
+<p>La moda es el valor más común. Parta encontrar la moda, hay que
+instalar dos programas. Primero instalar <strong>devtools</strong> y
+despues correr el siguiente <strong>chunk</strong> para instaslar el
+package <strong>modeest</strong>, para mode estimates. Quitar
+<strong>#</strong> para correr la función.</p>
 <p>Activar el packete</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(statip)</span></code></pre></div>
-<p>Ya pueden ahora usar la <strong>mfv</strong> para encontrar la moda de conjunto de datos. Lo que vemos es que el valor de <strong>7</strong> es el más comun en la lista de datos.</p>
+<p>Ya pueden ahora usar la <strong>mfv</strong> para encontrar la moda
+de conjunto de datos. Lo que vemos es que el valor de <strong>7</strong>
+es el más comun en la lista de datos.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>statip<span class="sc">::</span><span class="fu">mfv1</span>(b)</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <hr />
 </div>
 </div>
-<div id="cuando-es-que-el-promedio-mediana-y-moda-son-iguales" class="section level1">
+<div id="cuando-es-que-el-promedio-mediana-y-moda-son-iguales"
+class="section level1">
 <h1>Cuando es que el promedio, mediana y moda son iguales?</h1>
-<p>Los tres valores de tendencia central son iguales cuando la distribución es normal, conocida también como en forma de campana. Aquí preparo un lista de datos con distribución normal, y evaluamos donde están los tres valores de tendencia central. Se usa la función <strong>rpois</strong>, para crear un conjunto de datos al azar con 100000, datos, un promedio de 100.</p>
+<p>Los tres valores de tendencia central son iguales cuando la
+distribución es normal, conocida también como en forma de campana. Aquí
+preparo un lista de datos con distribución normal, y evaluamos donde
+están los tres valores de tendencia central. Se usa la función
+<strong>rpois</strong>, para crear un conjunto de datos al azar con
+100000, datos, un promedio de 100.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="fu">rpois</span>(<span class="dv">5000</span>, <span class="dv">100</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df1<span class="ot">=</span><span class="fu">data.frame</span>(df)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df1, <span class="at">n=</span><span class="dv">2</span>)</span></code></pre></div>
@@ -689,17 +741,24 @@ div.tocify {
 <col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">df</th></tr>
 <tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">102</td></tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">87</td></tr>
 <tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">89</td></tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">96</td></tr>
 </table>
 
-<p>Lo que uno observa es que los tres valores son muy cercano uno del otro.</p>
+<p>Lo que uno observa es que los tres valores son muy cercano uno del
+otro.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(statip)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#mean(df1$df)</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#median(df1$df)</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#statip::mfv(df1$df)</span></span></code></pre></div>
-<p>Podemos visualizar estos datos usamos dos gráfico, En el gráfico de la izquierda se ve una distribución normal con las tres lineas (promedio, mediana y moda). En el gráfico de la derecha se observa la misma información pero solamente los valores entre 96 y 101. Se observa que la mediana y el promedio son igual y la moda varia un poco, se encuentra donde la barra es más alta. Se observa que los tres valores son cerca del centro.</p>
+<p>Podemos visualizar estos datos usamos dos gráfico, En el gráfico de
+la izquierda se ve una distribución normal con las tres lineas
+(promedio, mediana y moda). En el gráfico de la derecha se observa la
+misma información pero solamente los valores entre 96 y 101. Se observa
+que la mediana y el promedio son igual y la moda varia un poco, se
+encuentra donde la barra es más alta. Se observa que los tres valores
+son cerca del centro.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pro<span class="ot">=</span><span class="fu">mean</span>(df1<span class="sc">$</span>df)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>med<span class="ot">=</span><span class="fu">median</span>(df1<span class="sc">$</span>df)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>mod<span class="ot">=</span>statip<span class="sc">::</span><span class="fu">mfv</span>(df1<span class="sc">$</span>df)</span></code></pre></div>
@@ -721,9 +780,14 @@ div.tocify {
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(a,b, <span class="at">ncol=</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="T3_Medidas_tendencia_central_files/figure-html/together-1.png" width="672" /></p>
 <hr />
-<div id="distribución-cuando-los-tres-valores-de-tendencia-centrtal-no-son-iguales." class="section level2">
-<h2>Distribución cuando los tres valores de tendencia centrtal no son iguales.</h2>
-<p>En estas distribuciones uno observa que hay exceso de vaslores pequeños o grande. Esto resulta en que los tres indices de tendencias centrales no se encuentra cerca uno del otro.</p>
+<div
+id="distribución-cuando-los-tres-valores-de-tendencia-centrtal-no-son-iguales."
+class="section level2">
+<h2>Distribución cuando los tres valores de tendencia centrtal no son
+iguales.</h2>
+<p>En estas distribuciones uno observa que hay exceso de vaslores
+pequeños o grande. Esto resulta en que los tres indices de tendencias
+centrales no se encuentra cerca uno del otro.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>dfb1<span class="ot">=</span><span class="fu">round</span>(<span class="fu">rbeta</span>(<span class="dv">10000</span>, <span class="dv">3</span>,<span class="dv">1</span>, <span class="at">ncp =</span> <span class="dv">0</span>),<span class="dv">3</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>dfb1<span class="ot">=</span><span class="fu">tibble</span>(dfb1)</span>
@@ -776,8 +840,12 @@ div.tocify {
 </div>
 <div id="variables-binomial" class="section level1">
 <h1>Variables binomial</h1>
-<p>En el siguiente ejemplo podemos ver claramente que las medidas de tendencias central no son adecuada.</p>
-<p>Primero producimos un conjunto de datos que tiene solamente dos alternativas 0 y 1. Para facilitar los datos e imaginar lo que quiere decir estos datos que cuando es un 0 la persona no tiene hijos y cuando es un 1 tiene hijos.</p>
+<p>En el siguiente ejemplo podemos ver claramente que las medidas de
+tendencias central no son adecuada.</p>
+<p>Primero producimos un conjunto de datos que tiene solamente dos
+alternativas 0 y 1. Para facilitar los datos e imaginar lo que quiere
+decir estos datos que cuando es un 0 la persona no tiene hijos y cuando
+es un 1 tiene hijos.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>dfBin<span class="ot">=</span><span class="fu">replicate</span>(<span class="dv">10000</span>,<span class="fu">rbinom</span>(<span class="fu">length</span>(.<span class="dv">6</span>), <span class="at">size=</span><span class="dv">1</span>,<span class="at">prob =</span><span class="fl">0.6</span>))</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>dfBin<span class="ot">=</span><span class="fu">data.frame</span>(dfBin)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dfBin)</span></code></pre></div>
@@ -787,23 +855,26 @@ div.tocify {
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
 <tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
-<tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0</td></tr>
 <tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0</td></tr>
 <tr>
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1</td></tr>
 </table>
 
-<p>Ahora vamos a producir el gráfico. Lo que uno observa es que el promedio esta en el centro cerca de .6, pero no hay ningún dato cerca del promedio. El promedio no representa la “tendencia central” de la distribución.</p>
+<p>Ahora vamos a producir el gráfico. Lo que uno observa es que el
+promedio esta en el centro cerca de .6, pero no hay ningún dato cerca
+del promedio. El promedio no representa la “tendencia central” de la
+distribución.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>mea<span class="ot">=</span><span class="fu">mean</span>(dfBin<span class="sc">$</span>dfBin)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>med<span class="ot">=</span><span class="fu">median</span>(dfBin<span class="sc">$</span>dfBin)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>mod<span class="ot">=</span><span class="fu">mfv</span>(dfBin<span class="sc">$</span>dfBin)</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>mea</span></code></pre></div>
-<pre><code>## [1] 0.6004</code></pre>
+<pre><code>## [1] 0.6014</code></pre>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dfBin, <span class="fu">aes</span>(dfBin))<span class="sc">+</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="at">colour=</span><span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> mea), <span class="at">colour=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>

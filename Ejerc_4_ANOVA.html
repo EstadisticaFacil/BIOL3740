@@ -13,7 +13,7 @@
 
 <title>SUPERHEROES</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -529,6 +529,9 @@ div.tocify {
       <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
     </li>
     <li>
+      <a href="Ejerc_Ten_Central_Disp_Graficos.html">Ejercicio de Tendencia Central y Dispersión</a>
+    </li>
+    <li>
       <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
     </li>
     <li>
@@ -549,6 +552,9 @@ div.tocify {
     <li>
       <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
     </li>
+    <li>
+      <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -563,18 +569,6 @@ div.tocify {
     </li>
     <li>
       <a href="COVID-19.html">COVID-19</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Quiz
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="Quiz_1">Quiz 1: Tendencia central y dispersión</a>
     </li>
   </ul>
 </li>
@@ -596,16 +590,23 @@ div.tocify {
 
 
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
-<p>En este documentos .rmd tiene lo beasico para comenzar el ejercicio.</p>
+<p>En este documentos .rmd tiene lo beasico para comenzar el
+ejercicio.</p>
 <div id="superheroes-y-lesiones" class="section level2">
 <h2>Superheroes y Lesiones</h2>
-<p>Los datos representa la gravedad de lesiones que tienen niños que se disfrazan de su superheroes favorito y después llegan a un hospital por alguna lesión. Los niños son categorizados con un nivel gravedad de lesión, más alto el valor más serio era la lesión. Los datos provienen de Field et al. </p>
+<p>Los datos representa la gravedad de lesiones que tienen niños que se
+disfrazan de su superheroes favorito y después llegan a un hospital por
+alguna lesión. Los niños son categorizados con un nivel gravedad de
+lesión, más alto el valor más serio era la lesión. Los datos provienen
+de Field et al. </p>
 <p>Subir los datos de <strong>Superhero.csv</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readr)</span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb1-2"><a href="#cb1-2"></a>Superhero <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Superhero.csv&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">head</span>(Superhero)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>## # A tibble: 6 × 2</span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>## # A tibble: 6 × 2</span>
 <span id="cb2-2"><a href="#cb2-2"></a>##    hero injury</span>
 <span id="cb2-3"><a href="#cb2-3"></a>##   &lt;dbl&gt;  &lt;dbl&gt;</span>
 <span id="cb2-4"><a href="#cb2-4"></a>## 1     1     51</span>
@@ -614,14 +615,20 @@ div.tocify {
 <span id="cb2-7"><a href="#cb2-7"></a>## 4     1     20</span>
 <span id="cb2-8"><a href="#cb2-8"></a>## 5     1     47</span>
 <span id="cb2-9"><a href="#cb2-9"></a>## 6     1     37</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">unique</span>(Superhero<span class="sc">$</span>heronames)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>## NULL</span></code></pre></div>
-<p>Renombrar los nombres de las categorías para los tipos de Superheroes. En el archivo como están identificados las categorías de superheroes?</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#Superhero</span></span>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">unique</span>(Superhero<span class="sc">$</span>heronames)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>## NULL</span></code></pre></div>
+<p>Renombrar los nombres de las categorías para los tipos de
+Superheroes. En el archivo como están identificados las categorías de
+superheroes?</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#Superhero</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>Superhero<span class="sc">$</span>heronames<span class="ot">&lt;-</span><span class="fu">factor</span>(Superhero<span class="sc">$</span>hero, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), </span>
 <span id="cb5-3"><a href="#cb5-3"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Spiderman&quot;</span>,<span class="st">&quot;Superman&quot;</span>, <span class="st">&quot;Hulk&quot;</span>, <span class="st">&quot;Ninja Turtle&quot;</span>))</span>
 <span id="cb5-4"><a href="#cb5-4"></a>Superhero</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>## # A tibble: 30 × 3</span>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>## # A tibble: 30 × 3</span>
 <span id="cb6-2"><a href="#cb6-2"></a>##     hero injury heronames</span>
 <span id="cb6-3"><a href="#cb6-3"></a>##    &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;    </span>
 <span id="cb6-4"><a href="#cb6-4"></a>##  1     1     51 Spiderman</span>
@@ -634,10 +641,11 @@ div.tocify {
 <span id="cb6-11"><a href="#cb6-11"></a>##  8     1     40 Spiderman</span>
 <span id="cb6-12"><a href="#cb6-12"></a>##  9     2     69 Superman </span>
 <span id="cb6-13"><a href="#cb6-13"></a>## 10     2     32 Superman </span>
-<span id="cb6-14"><a href="#cb6-14"></a>## # … with 20 more rows</span>
-<span id="cb6-15"><a href="#cb6-15"></a>## # ℹ Use `print(n = ...)` to see more rows</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">names</span>(Superhero)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>## [1] &quot;hero&quot;      &quot;injury&quot;    &quot;heronames&quot;</span></code></pre></div>
+<span id="cb6-14"><a href="#cb6-14"></a>## # … with 20 more rows</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode numberSource r numberLines lineAnchors"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">names</span>(Superhero)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>## [1] &quot;hero&quot;      &quot;injury&quot;    &quot;heronames&quot;</span></code></pre></div>
 </div>
 <div id="la-preguntas" class="section level2">
 <h2>La preguntas</h2>
@@ -645,7 +653,8 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Evaluar la distribución de los datos de respuestas (los en Y)</li>
 <li>Evaluar la homogeneidad de varianza</li>
-<li>Visualizar los datos Puntos y promedios y intervalo de confianza</li>
+<li>Visualizar los datos Puntos y promedios y intervalo de
+confianza</li>
 <li>Hacer la prueba de ANOVA con aov()</li>
 <li>Evaluar la figura de residuales</li>
 <li>Evaluar la gráfica de qq, para la normalidad</li>

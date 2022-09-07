@@ -1,0 +1,98 @@
+---
+title: "QUIZ_2"
+author: "Raymond_L_Tremblay"
+date: "8/22/2022"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+#    theme: simplex
+    toc: yes
+    toc_float: yes
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+#  Quiz 1 de tendencia central y de dispersión
+
+***
+
+### Usando los datos siguientes calcula los siguientes estadísticos 
+
+#### Evalua cada uno y despues abrá MSTeam para contestar las preguntas
+
+  - promedio
+  - mediana
+  - moda
+  - varianza
+  - los cuantiles (2.5, 25, 50, 75, 97.5)
+  - desviación estandar
+  - error estandard
+  - el intervalo de confianza de 95% del promedio
+  - Haz un histograma de los datos
+    - incluir un color de su preferencia
+    - cambiar los nombres de los ejes
+    
+    
+    
+```{r include=FALSE}
+library(tidyverse)
+library(statip)
+```
+  
+  
+***  
+
+Los Datos:  Los datos muestran el número de "homerun" al bate de la liga Americana de baseball en los ultimos 30 años. Cada número es la cantidad máxima de Homerun en uno de los años.  
+  
+
+
+```{r}
+HOMERUN =tribble(
+  ~"Numeros_Homerum",
+  40,  43, 40, 53, 47, 
+  46, 44, 57, 43, 43, 
+  52, 44, 54, 47, 51, 
+  39, 48, 36, 37, 56, 
+  42, 54, 56, 49, 54,
+  52, 40, 48, 50, 40
+)
+
+HOMERUN
+```
+
+
+
+
+```{r eval=FALSE, include=FALSE}
+mean(HOMERUN$Numeros_Homerum)
+median(HOMERUN$Numeros_Homerum)
+mfv1(HOMERUN$Numeros_Homerum)
+var(HOMERUN$Numeros_Homerum)
+quantile(HOMERUN$Numeros_Homerum, probs = c(0.025, 0.25, 0.50,.75, .975))
+sd(HOMERUN$Numeros_Homerum)
+error_e= sd(HOMERUN$Numeros_Homerum)/sqrt(length(HOMERUN$Numeros_Homerum))
+error_e
+
+Limite_inferior_b=mean(HOMERUN$Numeros_Homerum)-(error_e*1.96)
+Limite_superior_b=mean(HOMERUN$Numeros_Homerum)+(error_e*1.96)
+
+Limite_inferior_b
+Limite_superior_b
+```
+
+
+
+
+```{r eval=FALSE, include=FALSE}
+ggplot(HOMERUN, aes(Numeros_Homerum))+
+  geom_histogram(fill="blue", color="white")
+```
+
+
+

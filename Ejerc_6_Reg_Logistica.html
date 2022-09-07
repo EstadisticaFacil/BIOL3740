@@ -13,7 +13,7 @@
 
 <title>Ejerc_6_Reg_Logistica</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -529,6 +529,9 @@ div.tocify {
       <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
     </li>
     <li>
+      <a href="Ejerc_Ten_Central_Disp_Graficos.html">Ejercicio de Tendencia Central y Dispersión</a>
+    </li>
+    <li>
       <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
     </li>
     <li>
@@ -549,6 +552,9 @@ div.tocify {
     <li>
       <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
     </li>
+    <li>
+      <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -563,18 +569,6 @@ div.tocify {
     </li>
     <li>
       <a href="COVID-19.html">COVID-19</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Quiz
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="Quiz_1">Quiz 1: Tendencia central y dispersión</a>
     </li>
   </ul>
 </li>
@@ -597,13 +591,15 @@ div.tocify {
 
 <div id="regresión-logística" class="section level2">
 <h2>Regresión Logística</h2>
-<p>Este ejercicio es para practicar como hacer una Regresión logística</p>
+<p>Este ejercicio es para practicar como hacer una Regresión
+logística</p>
 <p>Los temas incluye.</p>
 <ul>
 <li>Construir un modelo de una regresión logística</li>
 <li>Determinar si los coeficientes son diferentes de cero</li>
 <li>Construir un gráfico de la relación logística usando ggplot2</li>
-<li>Determinar los valores de probabilidades especifico para algunos valores “X”</li>
+<li>Determinar los valores de probabilidades especifico para algunos
+valores “X”</li>
 </ul>
 </div>
 <div id="ejercicio" class="section level1">
@@ -613,8 +609,17 @@ div.tocify {
 </div>
 <div id="los-datos" class="section level2">
 <h2>Los Datos</h2>
-<p>Los datos provienen de un estudio realizado por Mary N. Karn and L. S. Penrose publicado en <strong>Annals of Eugenics</strong>, titulado <strong>Birth Weight and gestation time in relation to maternal age, parity and infant survival</strong> publicado en 1951. Estaremos usando solamente una parte de los datos. El periodo de gestación y el peso de los bebés varones al nacer y su supervivencia (fallecio= 0 y sobrevivio= 1). Para facilitar el trabajo he modificado los datos un poco para cumplir con las tareas asignada.</p>
-<p>En el archivo “Karn_Penrose_infant_survivorship.csv” tiene datos sobre 7036 nacimientos entre los años 1935 y 1946. El archivo tiene 4 columnas:</p>
+<p>Los datos provienen de un estudio realizado por Mary N. Karn and L.
+S. Penrose publicado en <strong>Annals of Eugenics</strong>, titulado
+<strong>Birth Weight and gestation time in relation to maternal age,
+parity and infant survival</strong> publicado en 1951. Estaremos usando
+solamente una parte de los datos. El periodo de gestación y el peso de
+los bebés varones al nacer y su supervivencia (fallecio= 0 y sobrevivio=
+1). Para facilitar el trabajo he modificado los datos un poco para
+cumplir con las tareas asignada.</p>
+<p>En el archivo “Karn_Penrose_infant_survivorship.csv” tiene datos
+sobre 7036 nacimientos entre los años 1935 y 1946. El archivo tiene 4
+columnas:</p>
 <ul>
 <li>Line_number = la secuencia de los datos</li>
 <li>Gestation_Time_days = El periodo de gestación en días</li>
@@ -634,7 +639,9 @@ div.tocify {
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>KPdata<span class="ot">=</span>Karn_Penrose_infant_survivorship</span></code></pre></div>
 <hr />
 <ol style="list-style-type: decimal">
-<li>Pregunta: Explique en sus propias palabras cuales son las hipótesis que se pueden probar. Especificamente mencione si la hipótesis es una hipótesis nula o alterna. (4 puntos)</li>
+<li>Pregunta: Explique en sus propias palabras cuales son las hipótesis
+que se pueden probar. Especificamente mencione si la hipótesis es una
+hipótesis nula o alterna. (4 puntos)</li>
 </ol>
 <hr />
 <ol start="2" style="list-style-type: decimal">
@@ -652,22 +659,28 @@ div.tocify {
 <p>Evaluando la distribución de la variable de respuesta</p>
 <hr />
 <ol start="4" style="list-style-type: decimal">
-<li>Pregunta: Usando la prueba correcta evalúa la relación entre la supervivencia y:</li>
+<li>Pregunta: Usando la prueba correcta evalúa la relación entre la
+supervivencia y:</li>
 </ol>
 <ul>
 <li>periodo de gestación (2 puntos)</li>
 <li>peso de los varones al nacer (2 puntos)</li>
-<li>determina si los coeficientes son significativos de cada una de las pruebas y explica que quiere decir la prueba (4 puntos)</li>
+<li>determina si los coeficientes son significativos de cada una de las
+pruebas y explica que quiere decir la prueba (4 puntos)</li>
 </ul>
 <hr />
 <ol start="5" style="list-style-type: decimal">
-<li>Graficar la Relación entre la supervivencia y el peso de los bebes (2 puntos)</li>
+<li>Graficar la Relación entre la supervivencia y el peso de los bebes
+(2 puntos)</li>
 </ol>
 <hr />
 <ol start="6" style="list-style-type: decimal">
-<li>Cual es la probabilidad de un bebe de 4 lbs sobrevivir (2 puntos)</li>
-<li>Cual es la probabilidad de un bebe de 7 lbs sobrevivir (2 puntos)</li>
-<li>Preguntar a su familia cual era el peso de nacer cuando Ud. nacio, calcula la probabilidad de sobrevivir (3 puntos)</li>
+<li>Cual es la probabilidad de un bebe de 4 lbs sobrevivir (2
+puntos)</li>
+<li>Cual es la probabilidad de un bebe de 7 lbs sobrevivir (2
+puntos)</li>
+<li>Preguntar a su familia cual era el peso de nacer cuando Ud. nacio,
+calcula la probabilidad de sobrevivir (3 puntos)</li>
 </ol>
 </div>
 </div>

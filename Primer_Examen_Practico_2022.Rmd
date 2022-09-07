@@ -1,0 +1,296 @@
+---
+title: "Primer_examen_practico_2022"
+author: "RLTremblay"
+date: "2022-09-05"
+output: 
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+#    theme: simplex
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Este es un examen practico. ES OBLIGATORIO ENSEñAR todos los codigos (script)
+
+### Múltiples destrezas estarán evaluado en este examen.
+
+1. Trabajar con funciones R básico
+
+2. Hacer análisis de tendencia central y dispersión
+
+3. Preparar gráficos básicos con ggplot2
+
+4. Organizar un documento en RMarkdown que este bien organizado y profesional
+
+5. Salvar su documento en .html, y subir este documento en MSTeam
+
+
+
+## Fecha de entrega del examen: 
+
+
+ - Instala el paquete "ggversa" (si no los haz hecho todavía)
+ - Activa el paquete
+ - Si necesita otros paquetes para correr las funciones actívalo en el "chunk" donde necesita este paquete 
+
+```{r}
+library(ggversa)
+```
+
+
+***
+
+
+### 1.  Demuestra la primera 6 filas del archivo "Camas_Hospital"; estos datos se encuentra en el paquete "ggversa"
+
+#### Las variables son: 
+ 
+ - Pais = Países del mundo
+
+ - Year = El año del los datos
+
+ - Población = El tamaño poblacional de este país
+
+ - Camas = El número de camas por 1,000 habitantes
+
+
+```{r}
+head(Camas_Hospital)
+```
+
+***
+
+### 2. Cuantas filas hay en este archivo?
+
+```{r}
+tail(Camas_Hospital)
+length(Camas_Hospital$Camas)
+```
+
+***
+
+### 3. Calcula el promedio de números de camas en los hospitales en general
+
+```{r}
+mean(Camas_Hospital$Camas)
+```
+
+
+***
+
+
+### 4. Calcula la mediana de números de camas en los hospitales en general
+
+```{r}
+median(Camas_Hospital$Camas)
+```
+
+***
+
+
+# 4. Calcula la moda de números de camas en los hospitales en general
+
+```{r}
+library(statip)
+mfv(Camas_Hospital$Camas)
+```
+
+
+***
+
+### 5. Haz un histograma de la cantidad de camas por pais
+
+  - pon una linea blanca alrededor de cada barra
+  - cambia el color de la barras a tu color favorito 
+
+```{r}
+library(ggplot2)
+ggplot(Camas_Hospital, aes(Camas))+
+  geom_histogram(colour="white", fill="orange")
+```
+
+***
+
+
+### 6. Ahora usando el mismos archivo de datos selecciona **solamente** los datos del 2006 y crea un nuevo data frame que se llama "Datos2006"
+
+
+```{r}
+library(tidyverse)
+Datos2006 = 
+  Camas_Hospital %>% 
+  filter(Year=="2006")
+
+
+```
+
+
+***
+
+# 7 Enseña solamente los primeros 6 filas de este archivo
+
+
+```{r}
+head(Datos2006)
+```
+
+***
+
+
+### 8. Usando la función correcta cual son los cuantiles del número de Camas para el año 2006. 
+
+ - Recuerda que tiene que usar el nombre del dataframe$nombre_de_la_columna
+ - Enseñe los cuantiles .05, .10, .25, .50, .75, 90, .95 solamente
+
+```{r}
+quantile(Datos2006$Camas, probs = c(0.05, 0.10, 0.25, 0.50, 0.75, .90, .95))
+```
+
+
+
+***
+
+### 9. Calcular el error estandard del número de camas por hanbitante del año 2006
+
+```{r}
+es_a= sd(Datos2006$Camas)/sqrt(length(Datos2006$Camas))
+es_a
+```
+
+
+***
+
+### 10. Calcula el intervalo de confianza del promedio 
+
+
+```{r, ch13}
+Limite_inferior_a=mean(Datos2006$Camas)-(es_a*1.96)
+
+Limite_superior_a=mean(Datos2006$Camas)+(es_a*1.96)
+
+Limite_inferior_a # limite inferior 95%
+mean(Datos2006$Camas)   # El promedio
+Limite_superior_a # el limite superior 95%
+```
+
+***
+
+### 11. Contesta la siguiente pregunta
+
+Explica por que la mediana y el promedio del número de camas por habitantes no son iguales
+
+
+***
+
+### 12.  Usando los mismos datos de 2006.
+
+Calcula el intervalo de confianza de 68.2% de los datos (no del promedio)
+  - Vea la presentación de Medidas de dispersión 
+
+
+```{r}
+Limite_inferior_pop=mean(Datos2006$Camas)-sd(Datos2006$Camas)
+
+Limite_superior_pop=mean(Datos2006$Camas)+sd(Datos2006$Camas)
+
+Limite_inferior_pop # limite inferior 68.5%
+mean(Datos2006$Camas)   # El promedio
+Limite_superior_pop # el limite superior 68.5%
+```
+
+
+### 13. Usando el archivo **PartosInfantes**
+
+ - en el paquete ggversa 
+  
+  - Definición de las variables
+
+      - El archivo incluye 5 columnas con 156 filas, los datos provienen del World Development Indicators, 07_22_2016.
+
+      - NMI = Número de Muertes de Infantes, Niños que mueren en el parto o natimuerto
+
+      - NMP = Número de Muertes por Parto, las madres que mueren al parir
+
+      - GSPC = El en Salud per Cápita, gasto aportado a la salud por persona
+
+      - Grupo = Región del mundo, AM = America, AF = Africa, AS = Asia, EU = Europa, MO = Medio Oriente, O = Oceania (EU) (el grupo EF/ ese es un error)
+
+      - País = El nombre del pais
+
+
+ Haga un gráfico de "histograma "Box plot" del **log(NMP)** dividio por Región del Mundo 
+
+```{r}
+ggplot(PartosInfantes, aes(x=1,y=log(NMP), colour=Grupo))+ 
+  geom_boxplot() 
+
+#PartosInfantes |> 
+ # filter(Grupo=="EF")
+```
+
+***
+
+### 14. Considerando el gráfico anterior
+
+ Contesta la siguiente pregunta.
+ 
+ En que continente la **mediana** de madre muere a dar a parto es el **mayor**?  (Excluye el grupo EF/ ese es un error)
+ 
+ En que continente la **mediana** de madre que muere a dar a parto es **segundo mejor** (menos muertes)?  
+
+
+
+***
+
+### 15. Crear una hoja de datos en Excel/Numbers /Google sheet y subirlo a RStudio
+
+ - Abre una hoja para subir los siguientes datos
+ - Después sube el archivo a RStudio (enseña el script que subiste los datos)
+ - Enseñar los primero seis datos
+ 
+ Los datos provienen de este sitio: https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_more
+ 
+```{r}
+#The tallest building in the world, el numero de pisos
+library(gt)
+
+df=tribble(
+  ~ "Numeros de Pisos", ~"País",
+  163, "United Arab Emirates",
+  128, "China",
+  128, "China",
+  123, "South Korea",
+  120, "Saudi Arabia",
+  128, "Malaysia"
+  
+)
+gt(df)
+
+```
+ 
+
+
+***
+
+
+
+
+
+
+# El trabajo sera sometido en formato .html y subido a la plataforma de MSTeam. 
+
+Fecha:
+Hora limite:
+
+El trabajo es individual
+  - No pueden PREGUNTAR a nadie por ayuda (Pueden preguntar a mi por ayuda)..... Si se escucha de una persona que no sigue esta regla el examen será anulado por TODOS. y será ofrecido en la clase....
+  
+  
+
+

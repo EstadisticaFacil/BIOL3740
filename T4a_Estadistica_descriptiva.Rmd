@@ -443,3 +443,17 @@ ggplot(Camas_Hospital, aes(Camas))+
   geom_histogram()
 ```
 
+
+
+
+```{r}
+dfNormal=data.frame(data=rnorm(1000000))
+head(dfNormal)
+
+ggplot(dfNormal, aes(data))+
+  geom_histogram(colour="white", fill="orange")+
+  xlim(-4, 4)
+
+ggsave("Normal.png")
+```
+

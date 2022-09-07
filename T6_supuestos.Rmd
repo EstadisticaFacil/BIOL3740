@@ -60,7 +60,7 @@ pacman::p_load(car, pastecs, psych, ggplot2, ggversa, knitr, GGally,
 
 
 # Activar los paquetes
-library(ggversa)
+library(ggversa) # un paquete con datos
 library(knitr)
 library(GGally)
 library(tidyverse)
@@ -121,13 +121,21 @@ Note aquí el **-** (el signo de resta) antes de **which**.
 ### Selección de los datos
 
 ```{r BecasaDeMar, rexample=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
-BecasaDeMar=Godwits
+BecasaDeMar=Godwits # en el paquete ggversa
 
-BecasaDeMar=BecasaDeMar[-which(BecasaDeMar$SEX=="0"),]
+BecasaDeMar
+
+BecasaDeMar=BecasaDeMar[-which(BecasaDeMar$SEX ==0),]
+
+#unique(BecasaDeMar$SEX)
+
 
 BecasaDeMar$fSEXO <- factor(BecasaDeMar$SEX,
             levels = c(1, 2),
             labels = c("Hembra", "Macho"))
+
+unique(BecasaDeMar$fSEXO)
+
 
 BecasaDeMar$fPERIODO <- factor(BecasaDeMar$PERIOD,
             levels = c(0, 1, 2),
@@ -141,7 +149,9 @@ BecasaDeMar$fPERIODO <- factor(BecasaDeMar$PERIOD,
 ```{r BecasaDeMarBP}
 
 BecasaMar <- ggplot(BecasaDeMar,
-                    aes(y=mgconsumed, fSEXO))
+                    aes(y=mgconsumed, x=fSEXO))
+
+
 BecasaMar + geom_boxplot(notch=TRUE)+
             facet_wrap(~fPERIODO)+
   theme(axis.title=element_text(size=12,face="bold"),
@@ -171,6 +181,8 @@ modelflower=lm(Number_of_Flowers~Height_Inflo,
          data=dipodium2)
 
 summary(modelflower)
+
+plot(modelflower)
 
 
 ggplot(dipodium2, aes(Height_Inflo, Number_of_Flowers))+

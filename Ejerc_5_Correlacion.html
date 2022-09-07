@@ -13,7 +13,7 @@
 
 <title>Ejerc_5_Correlacion</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -529,6 +529,9 @@ div.tocify {
       <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
     </li>
     <li>
+      <a href="Ejerc_Ten_Central_Disp_Graficos.html">Ejercicio de Tendencia Central y Dispersión</a>
+    </li>
+    <li>
       <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
     </li>
     <li>
@@ -549,6 +552,9 @@ div.tocify {
     <li>
       <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
     </li>
+    <li>
+      <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -563,18 +569,6 @@ div.tocify {
     </li>
     <li>
       <a href="COVID-19.html">COVID-19</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Quiz
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="Quiz_1">Quiz 1: Tendencia central y dispersión</a>
     </li>
   </ul>
 </li>
@@ -595,26 +589,34 @@ div.tocify {
 </div>
 
 
-<div id="ejercicio-de-corelación-trabajo-para-entregar" class="section level1">
+<div id="ejercicio-de-corelación-trabajo-para-entregar"
+class="section level1">
 <h1>Ejercicio de Corelación: Trabajo para entregar</h1>
 <p>Objetivos:</p>
 <ul>
-<li>Determinar si el estudiante puede evaluar si las variables tienen una distribución normal o no</li>
-<li>Basado en lo anterior seleccionar la prueba de correlación correspondiente</li>
+<li>Determinar si el estudiante puede evaluar si las variables tienen
+una distribución normal o no</li>
+<li>Basado en lo anterior seleccionar la prueba de correlación
+correspondiente</li>
 <li>Calcular el coeficiente de determinación</li>
 <li>Visualizar la correlación</li>
 </ul>
 <div id="los-datos" class="section level2">
 <h2>Los Datos</h2>
-<p>Las variables en el archivo <strong>urine</strong> en el paquete <strong>boot</strong></p>
+<p>Las variables en el archivo <strong>urine</strong> en el paquete
+<strong>boot</strong></p>
 <ul>
-<li><p>r = Indicator of the presence of calcium oxalate crystals.</p></li>
+<li><p>r = Indicator of the presence of calcium oxalate
+crystals.</p></li>
 <li><p>gravity = The specific gravity of the urine.</p></li>
 <li><p>ph = The pH reading of the urine.</p></li>
-<li><p>osmo = The osmolarity of the urine. Osmolarity is proportional to the concentration of molecules in solution.</p></li>
-<li><p>cond = The conductivity of the urine. Conductivity is proportional to the concentration of charged ions in solution.</p></li>
+<li><p>osmo = The osmolarity of the urine. Osmolarity is proportional to
+the concentration of molecules in solution.</p></li>
+<li><p>cond = The conductivity of the urine. Conductivity is
+proportional to the concentration of charged ions in solution.</p></li>
 <li><p>urea = The urea concentration in millimoles per litre.</p></li>
-<li><p>calc = The calcium concentration in millimoles per litre.</p></li>
+<li><p>calc = The calcium concentration in millimoles per
+litre.</p></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(urine) </span></code></pre></div>
@@ -626,16 +628,22 @@ div.tocify {
 ## 5 0   1.005 6.52  187  7.5   91 1.16
 ## 6 0   1.020 5.27  668 25.3  252 3.34</code></pre>
 <ol style="list-style-type: decimal">
-<li>Evaluar si las 6 variables (excluye la variable “r”) cumple con distribución normales. Usa uno de los métodos que hemos aprendido para evaluar cada variable.</li>
+<li>Evaluar si las 6 variables (excluye la variable “r”) cumple con
+distribución normales. Usa uno de los métodos que hemos aprendido para
+evaluar cada variable.</li>
 </ol>
 <ul>
-<li>Explicar que prueba utilizas y interpretas los resultados. (5 puntos)</li>
+<li>Explicar que prueba utilizas y interpretas los resultados. (5
+puntos)</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>Estimado de correlación entre las seis variables</li>
 </ol>
 <ul>
-<li><p>Tomando en cuenta lo que observaste en la pruebas anterior, selecciona la prueba correcta para evaluar la correlación entre las variables. (5 puntos). Tiene que seleccionar la prueba correcta, no hay puntos parcial.</p>
+<li><p>Tomando en cuenta lo que observaste en la pruebas anterior,
+selecciona la prueba correcta para evaluar la correlación entre las
+variables. (5 puntos). Tiene que seleccionar la prueba correcta, no hay
+puntos parcial.</p>
 <ul>
 <li>Cual variables tienen una correlación mayor (2 puntos)</li>
 <li>Cual variables tiene la correlación menor (2 puntos)</li>
@@ -650,21 +658,24 @@ div.tocify {
 <li>gravity y urea</li>
 <li>ph y calc</li>
 </ul></li>
-<li>Cual de estos pares explica mejor la relación entre una variable y la otra (2 puntos)</li>
+<li>Cual de estos pares explica mejor la relación entre una variable y
+la otra (2 puntos)</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li>ggMarginal</li>
 </ol>
 <p>Selecciona un par de variables de la correlación anterior:</p>
 <ul>
-<li>Prepare un gráfico para demostrar la correlación y su distribución usando ggMarginal (2 puntos).</li>
+<li>Prepare un gráfico para demostrar la correlación y su distribución
+usando ggMarginal (2 puntos).</li>
 <li>Interpretar el gráfico (2 puntos)</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
 <li>Busqueda de literatura</li>
 </ol>
 <ul>
-<li>Buscar en la literatura evidencia de la ultima grafica/correlación y como interpretar esta correlación (2 puntos)</li>
+<li>Buscar en la literatura evidencia de la ultima grafica/correlación y
+como interpretar esta correlación (2 puntos)</li>
 <li>Añadir las referencias (2 puntos)</li>
 </ul>
 </div>

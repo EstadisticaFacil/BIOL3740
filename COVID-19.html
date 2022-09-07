@@ -13,7 +13,7 @@
 
 <title>COVID_19_DATOS</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -529,6 +529,9 @@ div.tocify {
       <a href="Ejerc_3_Intro.html">Calculos Sencillos</a>
     </li>
     <li>
+      <a href="Ejerc_Ten_Central_Disp_Graficos.html">Ejercicio de Tendencia Central y Dispersión</a>
+    </li>
+    <li>
       <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
     </li>
     <li>
@@ -549,6 +552,9 @@ div.tocify {
     <li>
       <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
     </li>
+    <li>
+      <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -563,18 +569,6 @@ div.tocify {
     </li>
     <li>
       <a href="COVID-19.html">COVID-19</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Quiz
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="Quiz_1">Quiz 1: Tendencia central y dispersión</a>
     </li>
   </ul>
 </li>
@@ -598,22 +592,35 @@ div.tocify {
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div id="datos-de-covid-19" class="section level1">
 <h1>Datos de COVID-19</h1>
-<p>El siguiente archivo es para tener acceso a datos sobre los casos de COVID-19 por día en todo el planeta. El archivo esta mantenido en el siguiente enlace <a href="https://github.com/owid/covid-19-data/tree/master/public/data" class="uri">https://github.com/owid/covid-19-data/tree/master/public/data</a></p>
+<p>El siguiente archivo es para tener acceso a datos sobre los casos de
+COVID-19 por día en todo el planeta. El archivo esta mantenido en el
+siguiente enlace <a
+href="https://github.com/owid/covid-19-data/tree/master/public/data"
+class="uri">https://github.com/owid/covid-19-data/tree/master/public/data</a></p>
 <p>Para más información vea al website.</p>
 <div id="lista-de-la-variables" class="section level2">
 <h2>Lista de la variables</h2>
 <p>Las variables incluido al 4 de agosto son:</p>
-<p>iso_code, continent, location, date, total_cases, new_cases, total_deaths, new_deaths, total_cases_per_million, new_cases_per_million, total_deaths_per_million, new_deaths_per_million, total_tests, new_tests, new_tests_smoothed, total_tests_per_thousand, new_tests_per_thousand, new_tests_smoothed_per_thousand, tests_per_case, positive_rate, tests_units, stringency_index, population, population_density, median_age, aged_65_older, aged_70_older, gdp_per_capita, extreme_poverty, cardiovasc_death_rate, diabetes_prevalence, female_smokers, male_smokers, handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
+<p>iso_code, continent, location, date, total_cases, new_cases,
+total_deaths, new_deaths, total_cases_per_million,
+new_cases_per_million, total_deaths_per_million, new_deaths_per_million,
+total_tests, new_tests, new_tests_smoothed, total_tests_per_thousand,
+new_tests_per_thousand, new_tests_smoothed_per_thousand, tests_per_case,
+positive_rate, tests_units, stringency_index, population,
+population_density, median_age, aged_65_older, aged_70_older,
+gdp_per_capita, extreme_poverty, cardiovasc_death_rate,
+diabetes_prevalence, female_smokers, male_smokers,
+handwashing_facilities, hospital_beds_per_thousand, life_expectancy</p>
 <p>Para la descripción de las variables vea este enlace.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>codes<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(codes)</span></code></pre></div>
-<div id="rgslpzgmas" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hthqvbbgrh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#rgslpzgmas .gt_table {
+#hthqvbbgrh .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -638,7 +645,7 @@ div.tocify {
   border-left-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_heading {
+#hthqvbbgrh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -650,7 +657,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_title {
+#hthqvbbgrh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -662,7 +669,7 @@ div.tocify {
   border-bottom-width: 0;
 }
 
-#rgslpzgmas .gt_subtitle {
+#hthqvbbgrh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -674,13 +681,13 @@ div.tocify {
   border-top-width: 0;
 }
 
-#rgslpzgmas .gt_bottom_border {
+#hthqvbbgrh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_col_headings {
+#hthqvbbgrh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -695,7 +702,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_col_heading {
+#hthqvbbgrh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -715,7 +722,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#rgslpzgmas .gt_column_spanner_outer {
+#hthqvbbgrh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -727,15 +734,15 @@ div.tocify {
   padding-right: 4px;
 }
 
-#rgslpzgmas .gt_column_spanner_outer:first-child {
+#hthqvbbgrh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rgslpzgmas .gt_column_spanner_outer:last-child {
+#hthqvbbgrh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rgslpzgmas .gt_column_spanner {
+#hthqvbbgrh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -747,7 +754,7 @@ div.tocify {
   width: 100%;
 }
 
-#rgslpzgmas .gt_group_heading {
+#hthqvbbgrh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -772,7 +779,7 @@ div.tocify {
   vertical-align: middle;
 }
 
-#rgslpzgmas .gt_empty_group_heading {
+#hthqvbbgrh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -787,15 +794,15 @@ div.tocify {
   vertical-align: middle;
 }
 
-#rgslpzgmas .gt_from_md > :first-child {
+#hthqvbbgrh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rgslpzgmas .gt_from_md > :last-child {
+#hthqvbbgrh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rgslpzgmas .gt_row {
+#hthqvbbgrh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -814,7 +821,7 @@ div.tocify {
   overflow-x: hidden;
 }
 
-#rgslpzgmas .gt_stub {
+#hthqvbbgrh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -827,7 +834,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#rgslpzgmas .gt_stub_row_group {
+#hthqvbbgrh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -841,11 +848,11 @@ div.tocify {
   vertical-align: top;
 }
 
-#rgslpzgmas .gt_row_group_first td {
+#hthqvbbgrh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rgslpzgmas .gt_summary_row {
+#hthqvbbgrh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -855,16 +862,16 @@ div.tocify {
   padding-right: 5px;
 }
 
-#rgslpzgmas .gt_first_summary_row {
+#hthqvbbgrh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_first_summary_row.thick {
+#hthqvbbgrh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rgslpzgmas .gt_last_summary_row {
+#hthqvbbgrh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -874,7 +881,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_grand_summary_row {
+#hthqvbbgrh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -884,7 +891,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#rgslpzgmas .gt_first_grand_summary_row {
+#hthqvbbgrh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -894,11 +901,11 @@ div.tocify {
   border-top-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_striped {
+#hthqvbbgrh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rgslpzgmas .gt_table_body {
+#hthqvbbgrh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -907,7 +914,7 @@ div.tocify {
   border-bottom-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_footnotes {
+#hthqvbbgrh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -921,7 +928,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_footnote {
+#hthqvbbgrh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -930,7 +937,7 @@ div.tocify {
   padding-right: 5px;
 }
 
-#rgslpzgmas .gt_sourcenotes {
+#hthqvbbgrh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -944,7 +951,7 @@ div.tocify {
   border-right-color: #D3D3D3;
 }
 
-#rgslpzgmas .gt_sourcenote {
+#hthqvbbgrh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -952,82 +959,75 @@ div.tocify {
   padding-right: 5px;
 }
 
-#rgslpzgmas .gt_left {
+#hthqvbbgrh .gt_left {
   text-align: left;
 }
 
-#rgslpzgmas .gt_center {
+#hthqvbbgrh .gt_center {
   text-align: center;
 }
 
-#rgslpzgmas .gt_right {
+#hthqvbbgrh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rgslpzgmas .gt_font_normal {
+#hthqvbbgrh .gt_font_normal {
   font-weight: normal;
 }
 
-#rgslpzgmas .gt_font_bold {
+#hthqvbbgrh .gt_font_bold {
   font-weight: bold;
 }
 
-#rgslpzgmas .gt_font_italic {
+#hthqvbbgrh .gt_font_italic {
   font-style: italic;
 }
 
-#rgslpzgmas .gt_super {
+#hthqvbbgrh .gt_super {
   font-size: 65%;
 }
 
-#rgslpzgmas .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
-#rgslpzgmas .gt_footnote_marks {
+#hthqvbbgrh .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#rgslpzgmas .gt_asterisk {
+#hthqvbbgrh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rgslpzgmas .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#hthqvbbgrh .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#rgslpzgmas .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#hthqvbbgrh .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#rgslpzgmas .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#hthqvbbgrh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hthqvbbgrh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hthqvbbgrh .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">column</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">source</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">category</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">description</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">column</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">source</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">category</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">description</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1166,7 +1166,7 @@ div.tocify {
     <tr><td class="gt_row gt_left">tests_units</td>
 <td class="gt_row gt_left">National government reports</td>
 <td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">Units used by the location to report its testing data. A country file can't contain  mixed units. Valid units are 'people tested' (number of people tested), 'tests performed' (number of tests performed. a single person can be tested more than once in a given day) and 'samples tested' (number of samples tested. In some cases, more than one sample may be required to perform a given test.)</td></tr>
+<td class="gt_row gt_left">Units used by the location to report its testing data. A country file can't contain mixed units. All metrics concerning testing data use the specified test unit. Valid units are 'people tested' (number of people tested), 'tests performed' (number of tests performed. a single person can be tested more than once in a given day) and 'samples tested' (number of samples tested. In some cases, more than one sample may be required to perform a given test.)</td></tr>
     <tr><td class="gt_row gt_left">total_vaccinations</td>
 <td class="gt_row gt_left">National government reports</td>
 <td class="gt_row gt_left">Vaccinations</td>
@@ -1308,7 +1308,8 @@ div.tocify {
 </div>
 <div id="acceso-a-los-datos" class="section level2">
 <h2>Acceso a los datos</h2>
-<p>Para tener acceso a los datos en un archivo .csv usar el siguiente enlace</p>
+<p>Para tener acceso a los datos en un archivo .csv usar el siguiente
+enlace</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat&lt;- read.csv(&#39;https://covid.ourworldindata.org/data/latest/owid-covid-latest.csv&#39;)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#COVID_19&lt;-read.csv(&#39;https://covid.ourworldindata.org/data/owid-covid-data.csv&#39;) # Need better wifi</span></span>

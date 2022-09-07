@@ -53,7 +53,7 @@ Los indices que estaremos estudiando son los siguientes
   - la varianza
   - la desviación estándar
   - el error estándar
-  - el rango intercuarti
+  - el rango intercuartil
   - el intervalo de confianza de 95%
  
 ***
@@ -453,7 +453,7 @@ Usamos los datos para las mujeres con un promedio de 196.7 y una desviación est
 # Creamos un conjunto de datos para los análisis
 
 Col=rnorm(200000, 196.7, 39.11)
-Col=data_frame(Col)
+Col=data.frame(Col)
 
 promCol=Col%>%
   summarise(Mean=mean(Col))
@@ -509,6 +509,7 @@ geom_vline(aes(xintercept = as.numeric(promCol-3*sdCol)), colour="orange")+
   annotate("text", x=295, y = .001, label="2.1%")+
   annotate("text", x=70, y = .0005, label="0.1%")+
   annotate("text", x=330, y = .0005, label="0.1%")
+Colesterol_Inter
 
 ggsave("Graficos/Colesterol_Inter.png")
 
