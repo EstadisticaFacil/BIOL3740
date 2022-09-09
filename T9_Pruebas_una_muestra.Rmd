@@ -265,11 +265,13 @@ gridExtra::grid.arrange(d7,d8, ncol=2)
 
 Ahora se demuestra como calcular el intervalo de confianza de $\mu$.  Seleccionando un conjunto de datos al azar **n** se puede calcular el promedio $\overline{x}$ y el estimado de la desviación estándar **s**, con estos valores podemos calcular el rango donde pudiese estar el promedio del universo $\mu$ con cieto nivel de confianza (Tipo de Error I, $\alpha$).  
 
-## Ejamplo 9.3
+## Ejemplo 9.3
 
   Se selecciona 20 peces machos de una misma especie en un riachuelo de Puerto Rico y se mide el largo en millimetros. El promedio es $\overline{x}=21.0mm$ y una desviación estándar $s=1.76mm$. Queremos construir in intervalo de confianza de 95%. El tamaño de los peces es aproximadamente normal.  
 
 Queremos calcular intervalo que incluye 95%, por consecuencia es el rango que hay en el área gris de la primera figura.  
+
+***
 
 # Los limites del intervalo
 
@@ -282,7 +284,10 @@ abs(qt(0.025, 19)) # nota que se usa la mitad de 0.05, por que es una prueba de 
 
 21+abs(qt(0.025, 19)*(1.76/sqrt(20)))
 ```
- 
+
+
+***
+
 ## El limite superior
  
 Ahora falta sustituir los valores en la formula
@@ -349,11 +354,12 @@ knitr::include_graphics("Havel_Figures/9-3 Series - Confidence Interals.jpg")
 
 ***
 
-### QUIZ: estas preguntas la tienen que contestar en Edmodo.
+### QUIZ: estas preguntas la tienen que contestar en una asignación.
 
 1.  Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira.  doi: 10.1590/0100-3984.2015.0002. 
+
     + En este trabajo evaluaron los ganglios linfáticos de 20 individuos sanos. Encontraron que la media de los ganglios linfáticos mastoideos de los hombres era de 0,9 cm con una desviación estándar de 0,4 cm. 
-   + ¿Cuál es el intervalo de confianza al 5% de los ganglios linfáticos mastoideos en hombres? Responde en Edmodo. 
+    + ¿Cuál es el intervalo de confianza al 95% de los ganglios linfáticos mastoideos en hombres? . 
 
 ```{r, eval=FALSE, echo=FALSE}
 UL=0.9+qt(0.025, 19)*0.4/sqrt(20)
@@ -364,11 +370,12 @@ LL
 ```
 
 2. ¿Cuál es la probabilidad que el promedio universal no este incluido en el rango anterior de los tamaños de los ganglios linfáticos mastoides?  
- Responde en Edmodo. 
+ 
 
 3. Usando los mismo datos de la pregunta #1. Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira.  doi: 10.1590/0100-3984.2015.0002. 
+
     + En este trabajo evaluaron los ganglios linfáticos de 20 individuos sanos. Encontraron que la media de los ganglios linfáticos mastoideos de los hombres era de 0,9 cm con una desviación estándar de 0,4 cm.  Ya se pudo medir el tamaño de los ganglios linfáticos mastoideos de TODOS los hombres del planeta, y se determino que que el promedio es de 0.7 cm con una desviación estándar de 0,2 cm.
-   + Usando los siguientes datos haga la prueba correspondiente en R para determinar el valor de t, observado y el valor critico.  Responde en Edomodo.  
+    + Usando los siguientes datos haga la prueba correspondiente en R para determinar el valor de t, observado y el valor critico.  
 
 ```{r, eval=FALSE, echo=FALSE}
 t=abs((0.9-0.7)/((0.4)/sqrt(20)) )
@@ -377,7 +384,7 @@ abs(qt(0.025, 19))  # valor de t-critico, de la tabla
 ```
 
 
-4. Considerando los resultados anteriores se acepta o rechaza la hipótesis nula
+4. ¿Considerando los resultados anteriores se acepta o rechaza la hipótesis nula?
 
 
 ***
@@ -402,6 +409,7 @@ abs(qt(0.025, 29))  # valor de t-critico, de la tabla
 
 
 ***
+
 # Propinas
 
 Un ejemplo con datos en una tabla
@@ -419,8 +427,9 @@ data(tips, package="reshape2")
 head(tips)
 ```
 
+***
 
-Con la función **t.test()** es muy sencillo hacer la prueba, no hay calcular solamente añadir la información.  
+Con la función **t.test()** es muy sencillo hacer la prueba, no hay que calcular hay solamente que añadir la información.  
 
 Las opciones para esta prueba son las siguientes en roja
 
