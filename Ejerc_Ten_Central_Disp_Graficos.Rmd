@@ -17,41 +17,103 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-***
-
-Calcular el promedio, mediana, moda y rango de los datos de las estrellas más cercana a la tierra
-
-
-```{r echo=FALSE, out.width= "65%"}
-knitr::include_graphics("Graficos_Ejerc/Distances_Stars.png")
-```
-
-
-
-***
-
-
-Calular los cuantiles mencionado en la pregunta
-
-```{r echo=FALSE, out.width= "65%"}
-knitr::include_graphics("Graficos_Ejerc/The data show the population.png")
+```{r}
+library(tidyverse)
+library(gt)
 ```
 
 ***
 
-Calcular el promedio, mediana, moda de los datos de las estrellas más cercana a la tierra
 
-```{r echo=FALSE, out.width= "65%"}
-knitr::include_graphics("Graficos_Ejerc/Earnings of Nonliving Celebrities Forbes magazine.png")
+
+## Distancia de las estrellas más brillantes de las que son 100 años luz o menos
+
+### Calcular el promedio, mediana, moda y rango de los datos de las estrellas más cercana a la tierra
+
+```{r}
+Distancia_Estrellas=tribble(
+  ~Distancia,
+  8.6,36.7,42.2,16.8,33.7,87.9,4.4,25.3,11.4,25.1,51.5
+)
+
+gt(Distancia_Estrellas)
 ```
+
+
 
 
 ***
 
-Calcular el rango, varianza, desviación estandard y error estandard
+## Los datos representan las poblaciones (en 1'000) en Puerto Rico en el año 2020
 
 
-```{r echo=FALSE, out.width= "65%"}
-knitr::include_graphics("Graficos_Ejerc/Passenger_vehical_death.png")
+#### Calular los cuantiles mencionado en la pregunta
+
+```{r}
+PR_poblacion=tribble(
+  ~Poblacion,
+  18.0, 38.1,55.1,24.2,24.6,25.6,87.7,15.8,22.7,28.9,185.2,47.1,127.2
+)
+
+gt(PR_poblacion)
 ```
+
+
+
+
+***
+
+
+## Los datos representan la cantidad de dinero ganado por arttistas (fallecidos) en milliones de dollares
+
+
+
+#### Calcular el promedio, mediana, moda de los datos de las estrellas más cercana a la tierra
+
+
+
+```{r}
+Dinero_Artista=tribble(
+  ~Artista, ~Dinero,
+ "Kurt Corbain", 50,
+ "Elvis Presley",42,
+ "Charles Chultz", 35,
+ "John Lennon", 24,
+ "Ray Charles", 10,
+ "Marilyn Monroe",8,
+ "Johny Cash",8,
+ "J.R.R. Tolkein", 7,
+ "George Harrison", 7,
+ "Bob Marley",7,
+ "Albert Einstein" ,20,
+ "And Wharhol",19
+)
+
+gt(Dinero_Artista)
+```
+
+
+
+
+***
+
+## La catidad de personas fallecidos en acidentes de carro en año especifico en los 50 estados.
+
+### Calcular el rango, varianza, desviación estandard y error estandard
+### Haz un histograma de estos datos
+
+
+```{r}
+Fallecidos_Carro=tribble(
+  ~Fallecidos,
+  778,309,1110,324,705,1067,826,76,205,152,218,492,
+  65,186,712,193,262,452,875,82,
+  730,1185,2707,1279,390,305,123,948,343,602,
+  69,451,951,104,985,155,450,2080,565,875,
+  414,981,2786,82,793,214,130,396,620,797
+
+)
+
+gt(Fallecidos_Carro)
+```
+

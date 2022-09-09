@@ -593,13 +593,6 @@ Dispersión</h1>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.0      ✔ stringr 1.4.1 
-## ✔ purrr   0.3.4      ✔ forcats 0.5.2 
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <div id="este-trabajo-es-para-someter." class="section level1">
 <h1>Este trabajo es para someter.</h1>
 <div id="fecha-limite-es-el-31-de-agosto-a-las-1159pm"
@@ -613,18 +606,18 @@ class="section level2">
 </div>
 <div id="buscar-la-metadata" class="section level1">
 <h1>Buscar la metadata</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>codes<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>codes<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="visualizar-la-meta-data" class="section level1">
 <h1>Visualizar la meta data</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(codes)</span></code></pre></div>
-<div id="qvojlmzuvt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(codes)</span></code></pre></div>
+<div id="tzslvaavva" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qvojlmzuvt .gt_table {
+#tzslvaavva .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -649,7 +642,7 @@ class="section level2">
   border-left-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_heading {
+#tzslvaavva .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -661,7 +654,7 @@ class="section level2">
   border-right-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_title {
+#tzslvaavva .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -673,7 +666,7 @@ class="section level2">
   border-bottom-width: 0;
 }
 
-#qvojlmzuvt .gt_subtitle {
+#tzslvaavva .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -685,13 +678,13 @@ class="section level2">
   border-top-width: 0;
 }
 
-#qvojlmzuvt .gt_bottom_border {
+#tzslvaavva .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_col_headings {
+#tzslvaavva .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -706,7 +699,7 @@ class="section level2">
   border-right-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_col_heading {
+#tzslvaavva .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -726,7 +719,7 @@ class="section level2">
   overflow-x: hidden;
 }
 
-#qvojlmzuvt .gt_column_spanner_outer {
+#tzslvaavva .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -738,15 +731,15 @@ class="section level2">
   padding-right: 4px;
 }
 
-#qvojlmzuvt .gt_column_spanner_outer:first-child {
+#tzslvaavva .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qvojlmzuvt .gt_column_spanner_outer:last-child {
+#tzslvaavva .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qvojlmzuvt .gt_column_spanner {
+#tzslvaavva .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -758,7 +751,7 @@ class="section level2">
   width: 100%;
 }
 
-#qvojlmzuvt .gt_group_heading {
+#tzslvaavva .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -783,7 +776,7 @@ class="section level2">
   vertical-align: middle;
 }
 
-#qvojlmzuvt .gt_empty_group_heading {
+#tzslvaavva .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -798,15 +791,15 @@ class="section level2">
   vertical-align: middle;
 }
 
-#qvojlmzuvt .gt_from_md > :first-child {
+#tzslvaavva .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qvojlmzuvt .gt_from_md > :last-child {
+#tzslvaavva .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qvojlmzuvt .gt_row {
+#tzslvaavva .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -825,7 +818,7 @@ class="section level2">
   overflow-x: hidden;
 }
 
-#qvojlmzuvt .gt_stub {
+#tzslvaavva .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -838,7 +831,7 @@ class="section level2">
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_stub_row_group {
+#tzslvaavva .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -852,11 +845,11 @@ class="section level2">
   vertical-align: top;
 }
 
-#qvojlmzuvt .gt_row_group_first td {
+#tzslvaavva .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qvojlmzuvt .gt_summary_row {
+#tzslvaavva .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -866,16 +859,16 @@ class="section level2">
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_first_summary_row {
+#tzslvaavva .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_first_summary_row.thick {
+#tzslvaavva .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qvojlmzuvt .gt_last_summary_row {
+#tzslvaavva .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -885,7 +878,7 @@ class="section level2">
   border-bottom-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_grand_summary_row {
+#tzslvaavva .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -895,7 +888,7 @@ class="section level2">
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_first_grand_summary_row {
+#tzslvaavva .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -905,11 +898,11 @@ class="section level2">
   border-top-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_striped {
+#tzslvaavva .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qvojlmzuvt .gt_table_body {
+#tzslvaavva .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -918,7 +911,7 @@ class="section level2">
   border-bottom-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_footnotes {
+#tzslvaavva .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -932,7 +925,7 @@ class="section level2">
   border-right-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_footnote {
+#tzslvaavva .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -941,7 +934,7 @@ class="section level2">
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_sourcenotes {
+#tzslvaavva .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -955,7 +948,7 @@ class="section level2">
   border-right-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_sourcenote {
+#tzslvaavva .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -963,64 +956,64 @@ class="section level2">
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_left {
+#tzslvaavva .gt_left {
   text-align: left;
 }
 
-#qvojlmzuvt .gt_center {
+#tzslvaavva .gt_center {
   text-align: center;
 }
 
-#qvojlmzuvt .gt_right {
+#tzslvaavva .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qvojlmzuvt .gt_font_normal {
+#tzslvaavva .gt_font_normal {
   font-weight: normal;
 }
 
-#qvojlmzuvt .gt_font_bold {
+#tzslvaavva .gt_font_bold {
   font-weight: bold;
 }
 
-#qvojlmzuvt .gt_font_italic {
+#tzslvaavva .gt_font_italic {
   font-style: italic;
 }
 
-#qvojlmzuvt .gt_super {
+#tzslvaavva .gt_super {
   font-size: 65%;
 }
 
-#qvojlmzuvt .gt_footnote_marks {
+#tzslvaavva .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#qvojlmzuvt .gt_asterisk {
+#tzslvaavva .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qvojlmzuvt .gt_indent_1 {
+#tzslvaavva .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qvojlmzuvt .gt_indent_2 {
+#tzslvaavva .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qvojlmzuvt .gt_indent_3 {
+#tzslvaavva .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qvojlmzuvt .gt_indent_4 {
+#tzslvaavva .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qvojlmzuvt .gt_indent_5 {
+#tzslvaavva .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1312,16 +1305,16 @@ class="section level2">
 </div>
 <div id="buscar-los-datos" class="section level1">
 <h1>Buscar los datos</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat&lt;- read.csv(&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv&#39;)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat_compl &lt;- read.csv(&#39;https://covid.ourworldindata.org/data/owid-covid-data.csv&#39;)</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat=mydat_compl</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>mydat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;Data_files_csv/owid-covid-data.xlsx&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydat, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat&lt;- read.csv(&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv&#39;)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat_compl &lt;- read.csv(&#39;https://covid.ourworldindata.org/data/owid-covid-data.csv&#39;)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat=mydat_compl</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>mydat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;Data_files_csv/owid-covid-data.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydat, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 67
 ##   iso_code conti…¹ locat…² date  total…³ new_c…⁴ new_c…⁵ total…⁶ new_d…⁷ new_d…⁸
 ##   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
@@ -1339,18 +1332,18 @@ class="section level2">
 <hr />
 <p>Seleccionar las variables y filtrar los datos para hacer un subgrupo
 con datos solamente de Puerto Rico</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location<span class="sc">==</span><span class="st">&quot;Puerto Rico&quot;</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="uqpcquxujk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location<span class="sc">==</span><span class="st">&quot;Puerto Rico&quot;</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="whbqvlyxdl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#uqpcquxujk .gt_table {
+#whbqvlyxdl .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1375,7 +1368,7 @@ con datos solamente de Puerto Rico</p>
   border-left-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_heading {
+#whbqvlyxdl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1387,7 +1380,7 @@ con datos solamente de Puerto Rico</p>
   border-right-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_title {
+#whbqvlyxdl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1399,7 +1392,7 @@ con datos solamente de Puerto Rico</p>
   border-bottom-width: 0;
 }
 
-#uqpcquxujk .gt_subtitle {
+#whbqvlyxdl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1411,13 +1404,13 @@ con datos solamente de Puerto Rico</p>
   border-top-width: 0;
 }
 
-#uqpcquxujk .gt_bottom_border {
+#whbqvlyxdl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_col_headings {
+#whbqvlyxdl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1432,7 +1425,7 @@ con datos solamente de Puerto Rico</p>
   border-right-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_col_heading {
+#whbqvlyxdl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1452,7 +1445,7 @@ con datos solamente de Puerto Rico</p>
   overflow-x: hidden;
 }
 
-#uqpcquxujk .gt_column_spanner_outer {
+#whbqvlyxdl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1464,15 +1457,15 @@ con datos solamente de Puerto Rico</p>
   padding-right: 4px;
 }
 
-#uqpcquxujk .gt_column_spanner_outer:first-child {
+#whbqvlyxdl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uqpcquxujk .gt_column_spanner_outer:last-child {
+#whbqvlyxdl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uqpcquxujk .gt_column_spanner {
+#whbqvlyxdl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1484,7 +1477,7 @@ con datos solamente de Puerto Rico</p>
   width: 100%;
 }
 
-#uqpcquxujk .gt_group_heading {
+#whbqvlyxdl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1509,7 +1502,7 @@ con datos solamente de Puerto Rico</p>
   vertical-align: middle;
 }
 
-#uqpcquxujk .gt_empty_group_heading {
+#whbqvlyxdl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1524,15 +1517,15 @@ con datos solamente de Puerto Rico</p>
   vertical-align: middle;
 }
 
-#uqpcquxujk .gt_from_md > :first-child {
+#whbqvlyxdl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uqpcquxujk .gt_from_md > :last-child {
+#whbqvlyxdl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uqpcquxujk .gt_row {
+#whbqvlyxdl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1551,7 +1544,7 @@ con datos solamente de Puerto Rico</p>
   overflow-x: hidden;
 }
 
-#uqpcquxujk .gt_stub {
+#whbqvlyxdl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1564,7 +1557,7 @@ con datos solamente de Puerto Rico</p>
   padding-right: 5px;
 }
 
-#uqpcquxujk .gt_stub_row_group {
+#whbqvlyxdl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1578,11 +1571,11 @@ con datos solamente de Puerto Rico</p>
   vertical-align: top;
 }
 
-#uqpcquxujk .gt_row_group_first td {
+#whbqvlyxdl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uqpcquxujk .gt_summary_row {
+#whbqvlyxdl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1592,16 +1585,16 @@ con datos solamente de Puerto Rico</p>
   padding-right: 5px;
 }
 
-#uqpcquxujk .gt_first_summary_row {
+#whbqvlyxdl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_first_summary_row.thick {
+#whbqvlyxdl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uqpcquxujk .gt_last_summary_row {
+#whbqvlyxdl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1611,7 +1604,7 @@ con datos solamente de Puerto Rico</p>
   border-bottom-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_grand_summary_row {
+#whbqvlyxdl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1621,7 +1614,7 @@ con datos solamente de Puerto Rico</p>
   padding-right: 5px;
 }
 
-#uqpcquxujk .gt_first_grand_summary_row {
+#whbqvlyxdl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1631,11 +1624,11 @@ con datos solamente de Puerto Rico</p>
   border-top-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_striped {
+#whbqvlyxdl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uqpcquxujk .gt_table_body {
+#whbqvlyxdl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1644,7 +1637,7 @@ con datos solamente de Puerto Rico</p>
   border-bottom-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_footnotes {
+#whbqvlyxdl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1658,7 +1651,7 @@ con datos solamente de Puerto Rico</p>
   border-right-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_footnote {
+#whbqvlyxdl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1667,7 +1660,7 @@ con datos solamente de Puerto Rico</p>
   padding-right: 5px;
 }
 
-#uqpcquxujk .gt_sourcenotes {
+#whbqvlyxdl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1681,7 +1674,7 @@ con datos solamente de Puerto Rico</p>
   border-right-color: #D3D3D3;
 }
 
-#uqpcquxujk .gt_sourcenote {
+#whbqvlyxdl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1689,64 +1682,64 @@ con datos solamente de Puerto Rico</p>
   padding-right: 5px;
 }
 
-#uqpcquxujk .gt_left {
+#whbqvlyxdl .gt_left {
   text-align: left;
 }
 
-#uqpcquxujk .gt_center {
+#whbqvlyxdl .gt_center {
   text-align: center;
 }
 
-#uqpcquxujk .gt_right {
+#whbqvlyxdl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uqpcquxujk .gt_font_normal {
+#whbqvlyxdl .gt_font_normal {
   font-weight: normal;
 }
 
-#uqpcquxujk .gt_font_bold {
+#whbqvlyxdl .gt_font_bold {
   font-weight: bold;
 }
 
-#uqpcquxujk .gt_font_italic {
+#whbqvlyxdl .gt_font_italic {
   font-style: italic;
 }
 
-#uqpcquxujk .gt_super {
+#whbqvlyxdl .gt_super {
   font-size: 65%;
 }
 
-#uqpcquxujk .gt_footnote_marks {
+#whbqvlyxdl .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#uqpcquxujk .gt_asterisk {
+#whbqvlyxdl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uqpcquxujk .gt_indent_1 {
+#whbqvlyxdl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uqpcquxujk .gt_indent_2 {
+#whbqvlyxdl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uqpcquxujk .gt_indent_3 {
+#whbqvlyxdl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uqpcquxujk .gt_indent_4 {
+#whbqvlyxdl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uqpcquxujk .gt_indent_5 {
+#whbqvlyxdl .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1787,7 +1780,7 @@ con datos solamente de Puerto Rico</p>
 <div id="ver-el-nombre-de-todos-los-paises-incluido-en-el-archivo"
 class="section level1">
 <h1>Ver el nombre de todos los paises incluido en el archivo</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(mydat<span class="sc">$</span>location)  <span class="co"># la función &quot;unique&quot; es para saber los valores únicos un una columna</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(mydat<span class="sc">$</span>location)  <span class="co"># la función &quot;unique&quot; es para saber los valores únicos un una columna</span></span></code></pre></div>
 <pre><code>##   [1] &quot;Afghanistan&quot;                      &quot;Africa&quot;                          
 ##   [3] &quot;Albania&quot;                          &quot;Algeria&quot;                         
 ##   [5] &quot;Andorra&quot;                          &quot;Angola&quot;                          
@@ -1930,17 +1923,17 @@ la desviación estándar - el error estándar - los cuartiles</p>
 <h1>Ejercicio 2</h1>
 <p>(5 puntos)</p>
 <p>Selecciona otro país del Caribe y calcula los mismo parámetros</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="fsiwyykogw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="oydojrlxct" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#fsiwyykogw .gt_table {
+#oydojrlxct .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1965,7 +1958,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-left-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_heading {
+#oydojrlxct .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1977,7 +1970,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_title {
+#oydojrlxct .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1989,7 +1982,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-bottom-width: 0;
 }
 
-#fsiwyykogw .gt_subtitle {
+#oydojrlxct .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2001,13 +1994,13 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-top-width: 0;
 }
 
-#fsiwyykogw .gt_bottom_border {
+#oydojrlxct .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_col_headings {
+#oydojrlxct .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2022,7 +2015,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_col_heading {
+#oydojrlxct .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2042,7 +2035,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   overflow-x: hidden;
 }
 
-#fsiwyykogw .gt_column_spanner_outer {
+#oydojrlxct .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2054,15 +2047,15 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 4px;
 }
 
-#fsiwyykogw .gt_column_spanner_outer:first-child {
+#oydojrlxct .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fsiwyykogw .gt_column_spanner_outer:last-child {
+#oydojrlxct .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fsiwyykogw .gt_column_spanner {
+#oydojrlxct .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2074,7 +2067,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   width: 100%;
 }
 
-#fsiwyykogw .gt_group_heading {
+#oydojrlxct .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2099,7 +2092,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   vertical-align: middle;
 }
 
-#fsiwyykogw .gt_empty_group_heading {
+#oydojrlxct .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2114,15 +2107,15 @@ la desviación estándar - el error estándar - los cuartiles</p>
   vertical-align: middle;
 }
 
-#fsiwyykogw .gt_from_md > :first-child {
+#oydojrlxct .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fsiwyykogw .gt_from_md > :last-child {
+#oydojrlxct .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fsiwyykogw .gt_row {
+#oydojrlxct .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2141,7 +2134,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   overflow-x: hidden;
 }
 
-#fsiwyykogw .gt_stub {
+#oydojrlxct .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2154,7 +2147,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fsiwyykogw .gt_stub_row_group {
+#oydojrlxct .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2168,11 +2161,11 @@ la desviación estándar - el error estándar - los cuartiles</p>
   vertical-align: top;
 }
 
-#fsiwyykogw .gt_row_group_first td {
+#oydojrlxct .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fsiwyykogw .gt_summary_row {
+#oydojrlxct .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2182,16 +2175,16 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fsiwyykogw .gt_first_summary_row {
+#oydojrlxct .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_first_summary_row.thick {
+#oydojrlxct .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fsiwyykogw .gt_last_summary_row {
+#oydojrlxct .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2201,7 +2194,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-bottom-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_grand_summary_row {
+#oydojrlxct .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2211,7 +2204,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fsiwyykogw .gt_first_grand_summary_row {
+#oydojrlxct .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2221,11 +2214,11 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-top-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_striped {
+#oydojrlxct .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fsiwyykogw .gt_table_body {
+#oydojrlxct .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2234,7 +2227,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-bottom-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_footnotes {
+#oydojrlxct .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2248,7 +2241,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_footnote {
+#oydojrlxct .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2257,7 +2250,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fsiwyykogw .gt_sourcenotes {
+#oydojrlxct .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2271,7 +2264,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-color: #D3D3D3;
 }
 
-#fsiwyykogw .gt_sourcenote {
+#oydojrlxct .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2279,64 +2272,64 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fsiwyykogw .gt_left {
+#oydojrlxct .gt_left {
   text-align: left;
 }
 
-#fsiwyykogw .gt_center {
+#oydojrlxct .gt_center {
   text-align: center;
 }
 
-#fsiwyykogw .gt_right {
+#oydojrlxct .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fsiwyykogw .gt_font_normal {
+#oydojrlxct .gt_font_normal {
   font-weight: normal;
 }
 
-#fsiwyykogw .gt_font_bold {
+#oydojrlxct .gt_font_bold {
   font-weight: bold;
 }
 
-#fsiwyykogw .gt_font_italic {
+#oydojrlxct .gt_font_italic {
   font-style: italic;
 }
 
-#fsiwyykogw .gt_super {
+#oydojrlxct .gt_super {
   font-size: 65%;
 }
 
-#fsiwyykogw .gt_footnote_marks {
+#oydojrlxct .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#fsiwyykogw .gt_asterisk {
+#oydojrlxct .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fsiwyykogw .gt_indent_1 {
+#oydojrlxct .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fsiwyykogw .gt_indent_2 {
+#oydojrlxct .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fsiwyykogw .gt_indent_3 {
+#oydojrlxct .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fsiwyykogw .gt_indent_4 {
+#oydojrlxct .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fsiwyykogw .gt_indent_5 {
+#oydojrlxct .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2373,22 +2366,22 @@ la desviación estándar - el error estándar - los cuartiles</p>
 </table>
 </div>
 <hr />
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(statip)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mydat <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">%&gt;%</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(new_cases, <span class="at">na.rm=</span>T),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">median=</span><span class="fu">median</span>(new_cases, <span class="at">na.rm=</span>T), </span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">de=</span><span class="fu">sd</span>(new_cases, <span class="at">na.rm=</span>T))<span class="sc">%&gt;%</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="fwnlepmdba" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(statip)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mydat <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(new_cases, <span class="at">na.rm=</span>T),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">median=</span><span class="fu">median</span>(new_cases, <span class="at">na.rm=</span>T), </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">de=</span><span class="fu">sd</span>(new_cases, <span class="at">na.rm=</span>T))<span class="sc">%&gt;%</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="qhdhtromlg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#fwnlepmdba .gt_table {
+#qhdhtromlg .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2413,7 +2406,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-left-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_heading {
+#qhdhtromlg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2425,7 +2418,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_title {
+#qhdhtromlg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2437,7 +2430,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-bottom-width: 0;
 }
 
-#fwnlepmdba .gt_subtitle {
+#qhdhtromlg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2449,13 +2442,13 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-top-width: 0;
 }
 
-#fwnlepmdba .gt_bottom_border {
+#qhdhtromlg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_col_headings {
+#qhdhtromlg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2470,7 +2463,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_col_heading {
+#qhdhtromlg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2490,7 +2483,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   overflow-x: hidden;
 }
 
-#fwnlepmdba .gt_column_spanner_outer {
+#qhdhtromlg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2502,15 +2495,15 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 4px;
 }
 
-#fwnlepmdba .gt_column_spanner_outer:first-child {
+#qhdhtromlg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fwnlepmdba .gt_column_spanner_outer:last-child {
+#qhdhtromlg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fwnlepmdba .gt_column_spanner {
+#qhdhtromlg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2522,7 +2515,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   width: 100%;
 }
 
-#fwnlepmdba .gt_group_heading {
+#qhdhtromlg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2547,7 +2540,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   vertical-align: middle;
 }
 
-#fwnlepmdba .gt_empty_group_heading {
+#qhdhtromlg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2562,15 +2555,15 @@ la desviación estándar - el error estándar - los cuartiles</p>
   vertical-align: middle;
 }
 
-#fwnlepmdba .gt_from_md > :first-child {
+#qhdhtromlg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fwnlepmdba .gt_from_md > :last-child {
+#qhdhtromlg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fwnlepmdba .gt_row {
+#qhdhtromlg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2589,7 +2582,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   overflow-x: hidden;
 }
 
-#fwnlepmdba .gt_stub {
+#qhdhtromlg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2602,7 +2595,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fwnlepmdba .gt_stub_row_group {
+#qhdhtromlg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2616,11 +2609,11 @@ la desviación estándar - el error estándar - los cuartiles</p>
   vertical-align: top;
 }
 
-#fwnlepmdba .gt_row_group_first td {
+#qhdhtromlg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fwnlepmdba .gt_summary_row {
+#qhdhtromlg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2630,16 +2623,16 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fwnlepmdba .gt_first_summary_row {
+#qhdhtromlg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_first_summary_row.thick {
+#qhdhtromlg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fwnlepmdba .gt_last_summary_row {
+#qhdhtromlg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2649,7 +2642,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-bottom-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_grand_summary_row {
+#qhdhtromlg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2659,7 +2652,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fwnlepmdba .gt_first_grand_summary_row {
+#qhdhtromlg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2669,11 +2662,11 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-top-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_striped {
+#qhdhtromlg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fwnlepmdba .gt_table_body {
+#qhdhtromlg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2682,7 +2675,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-bottom-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_footnotes {
+#qhdhtromlg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2696,7 +2689,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_footnote {
+#qhdhtromlg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2705,7 +2698,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fwnlepmdba .gt_sourcenotes {
+#qhdhtromlg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2719,7 +2712,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-color: #D3D3D3;
 }
 
-#fwnlepmdba .gt_sourcenote {
+#qhdhtromlg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2727,64 +2720,64 @@ la desviación estándar - el error estándar - los cuartiles</p>
   padding-right: 5px;
 }
 
-#fwnlepmdba .gt_left {
+#qhdhtromlg .gt_left {
   text-align: left;
 }
 
-#fwnlepmdba .gt_center {
+#qhdhtromlg .gt_center {
   text-align: center;
 }
 
-#fwnlepmdba .gt_right {
+#qhdhtromlg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fwnlepmdba .gt_font_normal {
+#qhdhtromlg .gt_font_normal {
   font-weight: normal;
 }
 
-#fwnlepmdba .gt_font_bold {
+#qhdhtromlg .gt_font_bold {
   font-weight: bold;
 }
 
-#fwnlepmdba .gt_font_italic {
+#qhdhtromlg .gt_font_italic {
   font-style: italic;
 }
 
-#fwnlepmdba .gt_super {
+#qhdhtromlg .gt_super {
   font-size: 65%;
 }
 
-#fwnlepmdba .gt_footnote_marks {
+#qhdhtromlg .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#fwnlepmdba .gt_asterisk {
+#qhdhtromlg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fwnlepmdba .gt_indent_1 {
+#qhdhtromlg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fwnlepmdba .gt_indent_2 {
+#qhdhtromlg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fwnlepmdba .gt_indent_3 {
+#qhdhtromlg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fwnlepmdba .gt_indent_4 {
+#qhdhtromlg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fwnlepmdba .gt_indent_5 {
+#qhdhtromlg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2828,11 +2821,11 @@ la desviación estándar - el error estándar - los cuartiles</p>
   
 </table>
 </div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location)<span class="sc">%&gt;%</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mode=</span>statip<span class="sc">::</span><span class="fu">mfv</span>(new_cases))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location)<span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mode=</span>statip<span class="sc">::</span><span class="fu">mfv</span>(new_cases))</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   location     mode
 ##   &lt;chr&gt;       &lt;dbl&gt;
