@@ -75,7 +75,7 @@ Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para
   - Los datos son frecuencias.
   - Las frecuencias son mutuamente exclusivas (no caen en múltiples categorías).
   - Las observaciones son independiente una de la otra.
-  - Cada categoría tiene una **frecuencia** esperada suficiente grande: 
+  - Cada categoría tiene una **frecuencia esperada** suficiente grande: 
       + ninguna de las **frecuencia esperada** sea menor de 5 cuando hay 4 o menos categorías
       + no más de 20% de las categorías que tengan un valor esperado de < 5 cuando hay más de 5 categorías y ninguna tiene un valor **esperado** menor de 1. 
 
@@ -84,7 +84,7 @@ Cuando hablamos de supuestos estamos hablando de las condiciones necesarias para
 # Instalar y activar los siguientes packages
 
 ```{r library}
-#----Instalar los paquetes-----
+#----Instalar los paquetes si es necesario-----
 #install.packages("gmodels")
 #install.packages("MASS")
 if (!require("pacman")) install.packages("pacman")
@@ -92,9 +92,9 @@ pacman::p_load(gmodels, MASS, gt)
 
 #------Activar los paquetes-----
 
-library(gmodels) 
-library(MASS) 
-library(gt)
+library(gmodels) ## Analisis de datos de frecuencia
+library(MASS) ## graficar los datos con la función "mosaicpLot"
+library(gt) ## "Grammer of Tables", tablas más bonitas
 
 ```
 
@@ -273,7 +273,9 @@ mosaicplot(catsTable)
 ```
 
 
+***
 
+Haz un tabla con diferentes cantidad de frecuencia y gráficolos con mosaicplot para evaluar como cambia el gráfico.  
 
 
 ***
