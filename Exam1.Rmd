@@ -84,7 +84,7 @@ x=c(106.55, 0.06819, 3.0495, 7815.01, 2.9149, 20.1500)
 
 ***
 4. p36, Havel et al. 
-  En el archivo EX 3.1.csv en el website debajo la pestaña de datos, se encuentra datos sobre la altura de 148 hombres humanos en cm.  
+  En el archivo EX 3.1.csv en el website del curso debajo la pestaña de "Datos", se encuentra datos sobre la altura de 148 hombres humanos en cm.  
   -  Construye un histograma con ggplot. 
   - ¿Cual función se usa para cambiar el color de las barras?
   - ¿Cual función se usa para cambiar el color de la linea alrededor de las barras?
@@ -105,12 +105,25 @@ ggplot(EX_3_1, aes(Height_cm))+
 
 
 mean(EX_3_1 $Height_cm)
+median(EX_3_1$Height_cm)
 sd(EX_3_1$Height_cm)
 var(EX_3_1$Height_cm)
 se=sd(EX_3_1$Height_cm)/(sqrt(length(EX_3_1$Height_cm)))
 se
+
+UL=mean(EX_3_1 $Height_cm)+se*1.96
+UL
+LL=mean(EX_3_1 $Height_cm)-se*1.96
+LL
 ```
-  
+
+
+```{r}
+quantile(EX_3_1 $Height_cm, probs=c(0.05,.1, .25, .5, .75, .95, .99))
+```
+
+
+
 ***
 
 5. p.39, Havel et al. 
