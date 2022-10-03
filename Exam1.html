@@ -556,6 +556,9 @@ div.tocify {
     <li>
       <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
     </li>
+    <li>
+      <a href="Ejerc_7_Bondad_de_Ajuste.html">Quiz sobre Bondad de Ajuste</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -593,14 +596,6 @@ div.tocify {
 
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
-## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.0      ✔ stringr 1.4.1 
-## ✔ readr   2.1.2      ✔ forcats 0.5.2 
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <div id="primer-examen" class="section level1">
 <h1>Primer examen</h1>
@@ -662,9 +657,9 @@ valores significativo,
 </ol>
 <hr />
 <ol start="4" style="list-style-type: decimal">
-<li>p36, Havel et al.  En el archivo EX 3.1.csv en el website debajo la
-pestaña de datos, se encuentra datos sobre la altura de 148 hombres
-humanos en cm.<br />
+<li>p36, Havel et al.  En el archivo EX 3.1.csv en el website del curso
+debajo la pestaña de “Datos”, se encuentra datos sobre la altura de 148
+hombres humanos en cm.<br />
 </li>
 </ol>
 <ul>
@@ -676,6 +671,7 @@ las barras?</li>
 <li>¿Cual es al promedio de la altura de los hombres?</li>
 <li>¿Cual es la desviación estandar de los datos</li>
 </ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#quantile(EX_3_1$Height_cm, probs=c(0.05,.1, .25, .5, .75, .95, .99))</span></span></code></pre></div>
 <hr />
 <ol start="5" style="list-style-type: decimal">
 <li>p.39, Havel et al.  Estudia la tabla 4.1 y el modulo T1a en el

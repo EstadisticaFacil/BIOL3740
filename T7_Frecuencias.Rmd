@@ -133,6 +133,7 @@ La prueba de bondad de ajuste y de tabla de contingencia son pruebas que evalúa
 
 $$\chi^2=\sum_{n=i}^n\frac{\left(o-e\right)^2}{e}$$
 
+
 Usamos un ejemplo sencillo de los datos de Mendel haciendo los cálculos a mano de una proporción 3:1 de herencia de los fenotipos redonda:arrugada.  Los datos son de la primer linea de uno de los experimentos que hizo Mendel. 
 
 ```{r width}
@@ -324,6 +325,7 @@ $$\chi^2=25.36$$
 Con esta función se calcula el chi cuadrado con los valores esperados. Nota la leyenda al principio para poder entender la organización de los datos.    El grado de liberta se calcula con la siguiente formula, el numero de filas -1 multiplicado por la cantidad de columnas -1, df= (R-1)(C-1). df = es para grado de libertad.  Si tiene solamente 1 grado de libertad hay que usar el resultado de la prueba de **Yates de continuidad**, que hace una corrección para la poca cantidad de grados de libertad. 
 
 $$\chi^2=\sum_{n=i}^n\sum_{n=j}^n\frac{\left(\left|o-e\right|-0.5\right)^2}{e}$$
+
 
 
 ```{r test}
