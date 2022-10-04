@@ -1,0 +1,126 @@
+---
+title: "Ejerc_8_Dist_Normal"
+author: "Raymond_L_Tremblay"
+date: "2022-10-04"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+#    theme: simplex
+    toc: yes
+    toc_float: yes
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(gt)
+```
+
+Esta documento tiene algunos ejercicios para evaluar si una distribución es normal
+  
+  Tema:
+  
+  - construir un histograma de los datos
+  - superponer una distribución teorica sobre el histograma
+  - evaluar si los datos tienen una distribución normal usando qqplot
+  - evaluar se los datos tienen una distribución noemral usando la prueba de Shaipro_Wilks y Anderson-Darling
+    
+    
+ ## Construir un histograma con los siguientes datos
+ 
+ 1. Usa el paquete **ggversa**, y el archivo **SparrowsElphick** y haga un histograma de los pesos (wt) de los pajaros capturados
+ 
+ ## El gráfico se debería ver como el siguiente
+  - nota las lineas blancas alrededor de las barras
+  - nota que se cambio el nombre del eje de "x"
+  - nota que se cambio el nombre del eje de "y"
+  
+  
+```{r, echo=FALSE, fig.show = "hold", out.width = "50%", fig.align = "default"}
+knitr::include_graphics("Graficos/sparrow.jpg")
+
+```
+
+ Foto de : https://birdcallsradio.com/episode-097-chris-elphick/
+ 
+ 
+```{r}
+library(ggversa)
+gt(head(SparrowsElphick))
+```
+
+***
+ 
+ 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+ggplot(SparrowsElphick, aes(wt))+
+         geom_histogram(colour="white")+
+  ylab("Fecuencia")+
+  xlab("Peso en gramos de los ")
+```
+ 
+***
+ 
+Ahora a esta misma gráfica añadele la distribución normal teórica, el grafico se debería ver más o menos de la siguiente forma. 
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+ggplot(SparrowsElphick, aes(wt))+
+         geom_histogram(aes(y=..density..),colour="white")+
+  ylab("Fecuencia")+
+  xlab("Peso en gramos de los ")+
+    stat_function(fun = dnorm, 
+                args = list(mean = mean(SparrowsElphick$wt, na.rm = TRUE), 
+                sd = sd(SparrowsElphick$wt, na.rm = TRUE)), 
+                colour = "green", size = 1)
+```
+
+***
+
+## QQPLOT
+
+
+ - Ahora haz un gráfico de **qqplot** y determina si la distribución de los datos de peso de los finches tienen una distribución normal.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(SparrowsElphick, aes(sample=wt))+
+  geom_qq()+
+  geom_qq_line(colour="blue")
+```
+
+***
+## Shapiro-Wilk test
+
+
+ - Haz la prueba de Shapiro-Wilks para determinar si la distribución de los datos son significativamente diferente de una distribución normal.
+ _ basado en los supuestos de esta prueba ¿Se debería utiliza la "Shapiro-Wilks" para evaluar la distribución normal.
+ 
+ 
+ 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+shapiro.test(SparrowsElphick$wt)
+length(SparrowsElphick$wt)
+```
+
+***
+
+## Anderson-Darling
+
+ - Haz la prueba de Anderson-Darling para determinar si la distribución de los datos son significativamente diferente de una distribución normal.
+
+- ¿La distribución de los pesos es significativamente diferente de una distribución normal?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(nortest)
+ad.test(SparrowsElphick$wt)
+```
+
+***
