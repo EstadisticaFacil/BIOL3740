@@ -22,24 +22,24 @@ library(tidyverse)
 library(gt)
 ```
 
-Esta documento tiene algunos ejercicios para evaluar si una distribución es normal
+
+## Evaluación de distribución normal
+
+Este documento tiene algunos ejercicios para evaluar si una distribución es normal. Los códigos (scripts) se encuentran en el archivo **T8 La Distribución Normal**. 
   
   Tema:
   
   - construir un histograma de los datos
-  - superponer una distribución teorica sobre el histograma
+  - sobreponer una distribución teórica sobre el histograma
   - evaluar si los datos tienen una distribución normal usando qqplot
-  - evaluar se los datos tienen una distribución noemral usando la prueba de Shaipro_Wilks y Anderson-Darling
+  - evaluar se los datos tienen una distribución normal usando la prueba de Shaipro_Wilks y Anderson-Darling
     
     
- ## Construir un histograma con los siguientes datos
+## Construir un histograma con los siguientes datos
  
  1. Usa el paquete **ggversa**, y el archivo **SparrowsElphick** y haga un histograma de los pesos (wt) de los pajaros capturados
  
- ## El gráfico se debería ver como el siguiente
-  - nota las lineas blancas alrededor de las barras
-  - nota que se cambio el nombre del eje de "x"
-  - nota que se cambio el nombre del eje de "y"
+
   
   
 ```{r, echo=FALSE, fig.show = "hold", out.width = "50%", fig.align = "default"}
@@ -49,6 +49,10 @@ knitr::include_graphics("Graficos/sparrow.jpg")
 
  Foto de : https://birdcallsradio.com/episode-097-chris-elphick/
  
+### El gráfico se debería ver como el siguiente
+  - nota las lineas blancas alrededor de las barras
+  - nota que se cambio el nombre del eje de "x"
+  - nota que se cambio el nombre del eje de "y"
  
 ```{r}
 library(ggversa)
@@ -104,7 +108,7 @@ ggplot(SparrowsElphick, aes(sample=wt))+
  _ basado en los supuestos de esta prueba ¿Se debería utiliza la "Shapiro-Wilks" para evaluar la distribución normal.
  
  
- 
+#### Lograste tener este resultado?  
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 shapiro.test(SparrowsElphick$wt)
 length(SparrowsElphick$wt)
@@ -118,6 +122,8 @@ length(SparrowsElphick$wt)
 
 - ¿La distribución de los pesos es significativamente diferente de una distribución normal?
 
+
+#### Lograste tener este resultado?
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(nortest)
 ad.test(SparrowsElphick$wt)
