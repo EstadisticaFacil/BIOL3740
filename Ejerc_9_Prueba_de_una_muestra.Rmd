@@ -1,0 +1,115 @@
+---
+title: "Ejerc_9_Prueba_de_una_muestra"
+author: "Raymond_L_Tremblay"
+date: "2022-10-10"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+    toc: yes
+    toc_float: yes
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***
+
+```{r}
+library(tidyverse)
+```
+
+# Pruebas de una muestra
+
+Los siguientes ejercicios provienen de los conceptos aprendidos en "Pruebas de una muestra"
+
+ANTES de abrir el quiz en MSTeam haz todos los ejercicios aqui. 
+
+***
+
+1.  Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira.  doi: 10.1590/0100-3984.2015.0002. 
+
+    + En este trabajo evaluaron los ganglios linfáticos de 20 individuos sanos. Encontraron que la media de los ganglios linfáticos mastoideos de los hombres era de 0,9 cm con una desviación estándar de 0,4 cm. 
+    + ¿Cuál es el intervalo de confianza al 95% de los ganglios linfáticos mastoideos en hombres? . 
+
+```{r, eval=FALSE, echo=FALSE}
+UL=0.9+qt(0.025, 19)*0.4/sqrt(20)
+LL=0.9-qt(0.025, 19)*0.4/sqrt(20)
+UL
+LL
+
+```
+
+
+***
+
+2. Usando los mismo datos de la pregunta #1. Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira.  doi: 10.1590/0100-3984.2015.0002. 
+
+    + En este trabajo evaluaron los ganglios linfáticos de 20 individuos sanos. Encontraron que la media de los ganglios linfáticos mastoideos de los hombres era de 0,9 cm con una desviación estándar de 0,4 cm.  Ya se pudo medir el tamaño de los ganglios linfáticos mastoideos de TODOS los hombres del planeta, y se determino que que el promedio es de 0.7 cm con una desviación estándar de 0,2 cm.
+    + Usando los siguientes datos haga la prueba correspondiente en R para determinar el valor de t, observado y el valor critico.  
+
+```{r, eval=FALSE, echo=FALSE}
+t=abs((0.9-0.7)/((0.4)/sqrt(20)) )
+t # Valor t de observado
+abs(qt(0.025, 19))  # valor de t-critico, de la tabla
+```
+
+
+***
+
+# Ejercicio de práctica 1: Amigos de Facebook
+
+ 
+ Mucha gente creen que la cantidad promedio de amigos en Facebook es 338 con una desviación estandard de 43.2.  En un muestro al azar de 50 estudiantes universitarios en un pais se calculo que el promedio de estos estudiantes es de 350 amigos.  Al nivel de 5% de error determina si hay evidencia que los estudiante tenga mayor numero de amigos que el promedio anunciado por Facebook  
+
+```{r include=FALSE}
+t=abs((328-350)/((43.2)/sqrt(50)) )
+t # Valor t de observado
+abs(qt(0.025, 49))  # valor de t-critico, de la tabla
+```
+
+4. Cual es valor de t
+
+5. Cual es el valor de t critico
+
+6. ¿Se rechaza o acepta la hipótesis nula?
+
+***
+
+
+# Ejercicio de práctica 2: Dias de enfermedades
+
+
+Un dueño de una impresa dice que su insiste que la cantidad de días promedio de enfermedades de sus empleados es menor que el promedio nacional de 10.  Los datos de 40 empleados sigue.  Determina si hay evidencia para creer el comentario del dueño de esta impresa.
+
+```{r}
+dias_E=tribble(
+  ~dias_e,
+  0,6,12,3,3,5,4,1,
+  3,9,6,0,7,6,3,4,
+  7,4,7,1,0,8,12,3,
+  2,5,10,5,15,3,2,5,
+  3,11,8,2,2,4,1,9
+)
+dias_E
+```
+
+
+7. ¿Cual es la hipótesis nula?
+
+8. Cual es el valor de "t"
+
+9. Cual es le valor de "p"
+
+10. Aceptas o rechazas la hipótesis nula
+
+11. ¿Cual es el intervalo de confianza del número de días enfermo de estos trabajadores?
+
+
+***
+
+
+

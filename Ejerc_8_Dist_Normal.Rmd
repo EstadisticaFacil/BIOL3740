@@ -17,7 +17,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r CA}
 library(tidyverse)
 library(gt)
 ```
@@ -42,28 +42,29 @@ Este documento tiene algunos ejercicios para evaluar si una distribución es nor
 
   
   
-```{r, echo=FALSE, fig.show = "hold", out.width = "50%", fig.align = "default"}
+```{r C1, echo=FALSE, fig.show = "hold", out.width = "20%", fig.align = "default"}
 knitr::include_graphics("Graficos/sparrow.jpg")
 
 ```
 
  Foto de : https://birdcallsradio.com/episode-097-chris-elphick/
  
-### El gráfico se debería ver como el siguiente
 
-  - nota las lineas blancas alrededor de las barras
-  - nota que se cambio el nombre del eje de "x"
-  - nota que se cambio el nombre del eje de "y"
  
-```{r}
+```{r, C2}
 library(ggversa)
 gt(head(SparrowsElphick))
 ```
 
 ***
  
+ ### Constuye un histograma de la distribución de los pesos de los pajaros. 
+
+  - las lineas blancas alrededor de las barras
+  - que se cambio el nombre del eje de "x"
+  - que se cambio el nombre del eje de "y"
  
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r, C3, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 ggplot(SparrowsElphick, aes(wt))+
          geom_histogram(colour="white")+
@@ -73,10 +74,10 @@ ggplot(SparrowsElphick, aes(wt))+
  
 ***
  
-Ahora a esta misma gráfica añadele la distribución normal teórica, el grafico se debería ver más o menos de la siguiente forma. 
+Ahora a esta misma gráfica añádele la distribución normal teórica, el gráfico 
 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r, C4, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
 ggplot(SparrowsElphick, aes(wt))+
          geom_histogram(aes(y=..density..),colour="white")+
@@ -95,7 +96,7 @@ ggplot(SparrowsElphick, aes(wt))+
 
  - Ahora haz un gráfico de **qqplot** y determina si la distribución de los datos de peso de los finches tienen una distribución normal.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r, C5, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 ggplot(SparrowsElphick, aes(sample=wt))+
   geom_qq()+
   geom_qq_line(colour="blue")
@@ -106,11 +107,11 @@ ggplot(SparrowsElphick, aes(sample=wt))+
 
 
  - Haz la prueba de Shapiro-Wilks para determinar si la distribución de los datos son significativamente diferente de una distribución normal.
- _ basado en los supuestos de esta prueba ¿Se debería utiliza la "Shapiro-Wilks" para evaluar la distribución normal.
+ - Basado en los supuestos de esta prueba ¿Se debería utiliza la "Shapiro-Wilks" para evaluar la distribución normal.
  
  
 #### Lograste tener este resultado?  
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, C6, echo=FALSE, include=FALSE}
 shapiro.test(SparrowsElphick$wt)
 length(SparrowsElphick$wt)
 ```
@@ -125,7 +126,7 @@ length(SparrowsElphick$wt)
 
 
 #### Lograste tener este resultado?
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 library(nortest)
 ad.test(SparrowsElphick$wt)
 ```
