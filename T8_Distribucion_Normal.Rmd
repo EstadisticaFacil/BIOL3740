@@ -46,25 +46,14 @@ knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
 
 # Instalar y activar los siguientes paquete
 
-Para instalar el paquete **modeest** es necesario instalar foes otros paquetes antes, **BiocManager** y **genefilter**.  Usando el siguiente script pora instalar los paquetes.  Nota que en la consola tendrá que aceptar a instalar y seleccionar la "a" para "all".  
-Chunk #1
 
-```{r, eval=FALSE}
-
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("genefilter")
-
-
-```
 
 
 ```{r packages, eval=FALSE}
 
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load( car, GGally, ggversa, pastecs, psych, pander, ggplot2, nortest, Hmisc, boot, knitr, modeest)
-R.version
+pacman::p_load( car, GGally, ggversa, pastecs, psych, pander, ggplot2, nortest, Hmisc, boot, knitr,tidyverse, gt, gridExtra)
+
 
 ```
 
@@ -75,7 +64,7 @@ library(nortest) # paquete para probar la normalidad
 library(car) # paquete para análisis de correlación
 library(ggplot2)  # paquete para visualizar los datos
 library(ggversa) # paquete para diferentes conjuntos de datos
-library(modeest) # paquete para calcular la moda 
+
 library(GGally) # Un paquete basado un ggplot2 para visualizar correlaciones 
 library(pastecs) # paquete para análisis tiempo-espacial usado en ecología 
 library(psych) # paquete para análisis psicométrica, psicológica y de personalidad 

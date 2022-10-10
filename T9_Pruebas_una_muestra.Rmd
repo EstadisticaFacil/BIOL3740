@@ -19,11 +19,12 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 
 ```{r}
 library(gridExtra)
+library(tidyverse)
 ```
 
 
 ```{r, echo=FALSE}
-library(tidyverse)
+
 
 rlt_theme <- theme(axis.title.y = element_text(colour="grey20",size=15,face="bold"),
         axis.text.x = element_text(colour="grey20",size=10, face="bold"),
@@ -190,7 +191,7 @@ ggplot(out,aes(df1x, val, colour=df) )+
                      ylab("Densidad")
 ```
 
-Observa que la distribución de t, cambia dependiendo la forma de la densidades con el tamaño de muestra, (grado de libertad es $\nu=n-1$).  Tiene que observar dos componentes 1. hay menos datos en  centrado en el promedio y 2. hay más datos en la colas.  
+Observa que la distribución de t, cuando cambio el tamaño de muestra, (grado de libertad es $\nu=n-1$).  Tiene que observar dos componentes 1. hay menos datos en  centrado en el promedio y 2. hay más datos en la colas.  
 
 Se usa la distribución de t para calcular el intervalo de confianza y la hipótesis del promedio de una muestra, debido que la forma de la distribución de t cambia con el tamaño de muestra $\nu=n-1$ y también con la razón de error Tipo I, $\alpha$.  
 
@@ -276,7 +277,7 @@ Queremos calcular intervalo que incluye 95%, por consecuencia es el rango que ha
 # Los limites del intervalo
 
 
-Para calcular el intervalo se necesita se necesita solamente el valor de t con la tipo de error I de 95% y que corresponde a un tamaño de muestra de 20, $t_{0.05,\ n-1}$. Para conocer este valor hay que ir a una tabla de la distribución de t (vea p. 217 en el libro) o usar R para calcular el valor.  En la tabla busca el error I deseado (0.05) y se busca el grado de libertad *n-1*, $t_{0.05,\ 19}$. El valor del libro es $t = 2.093$. Si se quisiera un Tipo de error I con solamente 1% error el valor seria $t=2.8609$, (busca la información en la tabla, o usando la función **qt()**).  
+Para calcular el intervalo se necesita solamente el valor de t con la tipo de error I de 95% y que corresponde a un tamaño de muestra de 20, $t_{0.05,\ n-1}$. Para conocer este valor hay que ir a una tabla de la distribución de t (vea p. 217 en el libro) o usar R para calcular el valor.  En la tabla busca el error I deseado (0.05) y se busca el grado de libertad *n-1*, $t_{0.05,\ 19}$. El valor del libro es $t = 2.093$. Si se quisiera un Tipo de error I con solamente 1% error el valor seria $t=2.8609$, (busca la información en la tabla, o usando la función **qt()**).  
  
 ```{r}
 abs(qt(0.025, 19)) # nota que se usa la mitad de 0.05, por que es una prueba de dos lados. 
@@ -292,7 +293,8 @@ abs(qt(0.025, 19)) # nota que se usa la mitad de 0.05, por que es una prueba de 
  
 Ahora falta sustituir los valores en la formula
 
-$UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
+$$UL_{0.95}=\overline{x}+\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$$
+
 $$UL_{0.95}=21+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.823$$
 
 
@@ -300,10 +302,12 @@ $$UL_{0.95}=21+2.093*\left(\frac{1.76}{\sqrt{20}}\right)=21.823$$
 
 ## El limite inferior
 
-$LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$
+$$LL_{0.95}=\overline{x}-\left(t_{0.05,\ n-1}\cdot\frac{s}{\sqrt{n}}\right)$$
+
 
 
 $$LL_{0.95}=21-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.176$$
+
 
 
 ***
@@ -369,10 +373,10 @@ LL
 
 ```
 
-2. ¿Cuál es la probabilidad que el promedio universal no este incluido en el rango anterior de los tamaños de los ganglios linfáticos mastoides?  
+
  
 
-3. Usando los mismo datos de la pregunta #1. Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira.  doi: 10.1590/0100-3984.2015.0002. 
+2. Usando los mismo datos de la pregunta #1. Title: Ultrasound evaluation of the morphometric patterns of lymph nodes of the head and neck in young and middle-aged individuals. Ogassavara et al. 2016, 49:225-228, Radiologia Brasileira.  doi: 10.1590/0100-3984.2015.0002. 
 
     + En este trabajo evaluaron los ganglios linfáticos de 20 individuos sanos. Encontraron que la media de los ganglios linfáticos mastoideos de los hombres era de 0,9 cm con una desviación estándar de 0,4 cm.  Ya se pudo medir el tamaño de los ganglios linfáticos mastoideos de TODOS los hombres del planeta, y se determino que que el promedio es de 0.7 cm con una desviación estándar de 0,2 cm.
     + Usando los siguientes datos haga la prueba correspondiente en R para determinar el valor de t, observado y el valor critico.  
@@ -384,7 +388,6 @@ abs(qt(0.025, 19))  # valor de t-critico, de la tabla
 ```
 
 
-4. ¿Considerando los resultados anteriores se acepta o rechaza la hipótesis nula?
 
 
 ***
@@ -393,7 +396,11 @@ abs(qt(0.025, 19))  # valor de t-critico, de la tabla
 # Pruebas de t un muesteo
 
 
-Esta prueba esencialmente calcula la media de los datos y crea un intervalo de confianza. Si el valor que estamos probando cae dentro de ese intervalo de confianza, concluimos que es el valor verdadero para la media de los datos; de lo contrario, concluimos que no es la verdadera media. Nota que la $\mu$ representa el modelo nulo, o sea la hipótesis nula.  Si $\mu=0$ decimos que el universo es igual cero.  En otro ejemplo si por ejemplo decimos que el promedio del nivel de colesterol en mujer es $\mu=209.4$ y observamos en muestreo de mujeres un promedio de $\overline{x}= 196.7$ con una desviación estándar de $s=39.1$ es suficiente la diferencia para decir que lo que UD observo es significativamente diferente del muestreo del universo a un 95% de error $\alpha$.   Vamos asumir que se hizo una investigación un gran número de mujeres de Puerto Rico y se tiene un muestreo de 10,000 de mujeres.  Lo que necesitamos hacer ahora es sustituir los valores en la formula.  Observamos un valor de t observado de t=32.48 (el valor es absoluto), y este los comparamos con el valor de t critico = 1.96 (valor absoluto). El resultado: el valor de t observado es mayor del valor critico y por consecuencia rechazamos lo hipótesis nula, y concluimos que el nivel de colesterol en la muestra $\overline{x}= 196.7$ es significativamente diferente del nivel universal $\mu=209.4$.   
+Esta prueba esencialmente calcula la media de los datos y crea un intervalo de confianza. Si el valor que estamos probando cae dentro de ese intervalo de confianza, concluimos que es el valor verdadero para la media de los datos; de lo contrario, concluimos que no es la verdadera media. Nota que la $\mu$ representa el modelo nulo, o sea la hipótesis nula.  Si $\mu=0$ decimos que el universo es igual cero.  En otro ejemplo si por ejemplo decimos que el promedio del nivel de colesterol en mujer es $\mu=209.4$ y observamos en muestreo de mujeres un promedio de $\overline{x}= 196.7$ con una desviación estándar de $s=39.1$. 
+
+Eso suficiente la diferencia para decir que lo que UD observo es significativamente diferente del muestreo del universo a un 95% de error $\alpha$?   Vamos asumir que se hizo una investigación un gran número de mujeres de Puerto Rico y se tiene un muestreo de 10,000 de mujeres.  Lo que necesitamos hacer ahora es sustituir los valores en la formula.  Observamos un valor de t observado de t=32.48 (el valor es absoluto), y este los comparamos con el valor de t critico = 1.96 (valor absoluto).
+
+El resultado: el valor de t observado es mayor del valor critico y por consecuencia rechazamos lo hipótesis nula, y concluimos que el nivel de colesterol en la muestra $\overline{x}= 196.7$ es significativamente diferente del nivel universal $\mu=209.4$.   
 
   + Ho: $\overline{x}=\mu$
   + Ha: $\overline{x}≠\mu$
@@ -408,12 +415,14 @@ abs(qt(0.025, 29))  # valor de t-critico, de la tabla
 ```
 
 
+
+
 ***
 
 # Propinas
 
 Un ejemplo con datos en una tabla
-Usamos un conjunto de datos en el paquete **reshape**, que llama **tips**.  Se refiere a las propinas quie recibe meseros.  
+Usamos un conjunto de datos en el paquete **reshape**, que llama **tips**.  Se refiere a las propinas que recibe los meseros.  
 
 Nuestra hipótesis es que en promedio, las personas dan una propina de $2.50, Esta es nuestra hipótesis **nula**
 
@@ -438,14 +447,17 @@ Las opciones para esta prueba son las siguientes en roja
     +  `r colorize("mu = 0", "red")`, paired = FALSE, var.equal = FALSE,
     +  `r colorize("conf.level = 0.95", "red")`, ...).
        
-El resultado:  El valor de t-observado es de 5.625, con un grado de libertad de 243 (n=244), y valor de p <0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna.  El intervalo de confianza del promedio es $2.82 - $3.17, con un promedio de $3.00
+
 
 ```{r t test}
 t.test(tips$tip, alternative="two.sided", mu=2.5, conf.level = .95)
 
 ```
 
+El resultado:  El valor de t-observado es de 5.625, con un grado de libertad de 243 (n=244), y valor de p <0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna.  El intervalo de confianza del promedio es $2.82 - $3.17, con un promedio de $3.00
 ***
+
+
 
 ## ¿Cómo graficar el resultado de una prueba t?
 
@@ -484,3 +496,47 @@ ggplot(data.frame(x=randT))+
 ***
 
 
+***
+
+# Ejercicio de práctica 1: Amigos de Facebook
+
+ 
+ Mucha gente creen que la cantidad promedio de amigos en Facebook es 338 con una desviación estandard de 43.2.  En un muestro al azar de 50 estudiantes universitarios en un pais se calculo que el promedio de estos estudiantes es de 350 amigos.  Al nivel de 5% de error determina si hay evidencia que los estudiante tenga mayor numero de amigos que el promedio anunciado por Facebook  
+
+```{r include=FALSE}
+t=abs((328-350)/((43.2)/sqrt(50)) )
+t # Valor t de observado
+abs(qt(0.025, 49))  # valor de t-critico, de la tabla
+```
+
+4. Cual es valor de t
+
+5. Cual es el valor de t critico
+
+6. ¿Se rechaza o acepta la hipótesis nula?
+
+***
+
+
+# Ejercicio de práctica 2: Dias de enfermedades
+
+
+Un dueño de una impresa dice que su insiste que la cantidad de días promedio de enfermedades de sus empleados es menor que el promedio nacional de 10.  Los datos de 40 empleados sigue.  Determina si hay evidencia para creer el comentario del dueño de esta impresa.
+
+```{r}
+dias_E=tribble(
+  ~dias_e,
+  0,6,12,3,3,5,4,1,
+  3,9,6,0,7,6,3,4,
+  7,4,7,1,0,8,12,3,
+  2,5,10,5,15,3,2,5,
+  3,11,8,2,2,4,1,9
+)
+dias_E
+```
+
+
+```{r t test2, include=FALSE}
+t.test(dias_E$dias_e, alternative="two.sided", mu=10, conf.level = .95)
+
+```
