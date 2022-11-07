@@ -13,7 +13,7 @@
 
 <title>T11_ANOVA</title>
 
-<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -282,8 +282,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -291,16 +291,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -566,13 +559,19 @@ div.tocify {
       <a href="Ejerc_6_Reg_Logistica.html">Ejercicio de Regressión Logistica</a>
     </li>
     <li>
-      <a href="QUIZ_2.html">Quiz 2: Tendencia central y dispersión</a>
+      <a href="QUIZ_2.html">Quiz: Tendencia central y dispersión</a>
     </li>
     <li>
       <a href="Ejerc_7_Bondad_de_Ajuste.html">Quiz sobre Bondad de Ajuste</a>
     </li>
     <li>
-      <a href="Ejerc_8_Dist_Normal">Ejercicio: distribución normal</a>
+      <a href="Ejerc_8_Dist_Normal.html">Ejercicio: distribución normal</a>
+    </li>
+    <li>
+      <a href="Ejerc_9_Prueba_de_una_muestra.html">Quiz: Prueba de una muestra</a>
+    </li>
+    <li>
+      <a href="Ejerc_A_Prueba_t_datos_pareados.html">Quiz: Prueba de t con datos pareados</a>
     </li>
   </ul>
 </li>
@@ -618,7 +617,7 @@ div.tocify {
 
 <p>Fecha de la ultima revisión</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2022-10-04&quot;</span></code></pre></div>
+class="sourceCode numberSource numberLines lineAnchors chunkout"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>## [1] &quot;2022-11-07&quot;</span></code></pre></div>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <style type="text/css">
 div.sourceCode pre.chunkout {
