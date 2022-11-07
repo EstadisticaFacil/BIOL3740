@@ -1,0 +1,512 @@
+gt(Fallecidos_Carros)
+gt(Fallecidos_Carro)
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gt)
+Distancia_Estrellas=tribble(
+~Distancia,
+8.6,36.7,42.2,16.8,33.7,87.9,4.4,25.3,11.4,25.1,51.5
+)
+gt(Distancia_Estrellas)
+PR_poblacion=tribble(
+~Poblacion,
+18.0, 38.1,55.1,24.2,24.6,25.6,87.7,15.8,22.7,28.9,185.2,47.1,127.2
+)
+gt(PR_poblacion)
+Dinero_Artista=tribble(
+~Artista, ~Dinero,
+"Kurt Corbain", 50,
+"Elvis Presley",42,
+"Charles Chultz", 35,
+"John Lennon", 24,
+"Ray Charles", 10,
+"Marilyn Monroe",8,
+"Johny Cash",8,
+"J.R.R. Tolkein", 7,
+"George Harrison", 7,
+"Bob Marley",7,
+"Albert Einstein" ,20,
+"And Wharhol",19
+)
+gt(Dinero_Artista)
+Fallecidos_Carro=tribble(
+~Fallecidos,
+778,309,1110,324,705,1067,826,76,205,152,218,492,
+65,186,712,193,262,452,875,82,
+730,1185,2707,1279,390,305,123,948,343,602,
+69,451,951,104,985,155,450,2080,565,875,
+414,981,2786,82,793,214,130,396,620,797
+)
+gt(Fallecidos_Carro)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+library(gridExtra)
+library(tidyverse)
+rlt_theme <- theme(axis.title.y = element_text(colour="grey20",size=15,face="bold"),
+axis.text.x = element_text(colour="grey20",size=10, face="bold"),
+axis.text.y = element_text(colour="grey20",size=15,face="bold"),
+axis.title.x = element_text(colour="grey20",size=15,face="bold"))+
+theme(
+# Remove panel border
+panel.border = element_blank(),
+# Remove panel grid lines
+panel.grid.major = element_blank(),
+panel.grid.minor = element_blank(),
+# Remove panel background
+panel.background = element_blank(),
+# add thicker border lines
+axis.line.x = element_line(colour = "black", size = 1),
+axis.line.y = element_line(colour = "black", size = 1)
+)
+# The palette with grey:
+cbPalette1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+# The palette with black:
+cbPalette2 <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+# To use for fills, add
+#  scale_fill_manual(values=cbPalette)
+# To use for line and point colors, add
+#scale_colour_manual(values=cbPalette)
+colorize <- function(x, color) {
+if (knitr::is_latex_output()) {
+sprintf("\\textcolor{%s}{%s}", color, x)
+} else if (knitr::is_html_output()) {
+sprintf("<span style='color: %s;'>%s</span>", color,
+x)
+} else x
+}
+#`r colorize("some words in red", "red")`
+Sys.Date()
+colorize <- function(x, color) {
+if (knitr::is_latex_output()) {
+sprintf("\\textcolor{%s}{%s}", color, x)
+} else if (knitr::is_html_output()) {
+sprintf("<span style='color: %s;'>%s</span>", color,
+x)
+} else x
+}
+#`r colorize("some words in red", "red")`
+knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+x <- seq(from=-5, to=5, by=0.1)
+df1=plot(function(x) dt(x, df = 1), -7, 7, ylim = c(0, 0.42),
+main="", yaxs="i")
+df1x=df1$x
+df1y=df1$y
+df=cbind(df1x, df1y)
+df
+df3=plot(function(x) dt(x, df = 3), -7, 7, ylim = c(0, 0.42),
+main="", yaxs="i")
+df3x=df3$x
+df3y=df3$y
+df3=cbind(df3x, df3y)
+df5=plot(function(x) dt(x, df = 5), -7, 7, ylim = c(0, 0.42),
+main="", yaxs="i")
+df5x=df5$x
+df5y=df5$y
+df5=cbind(df5x, df5y)
+dfinf=plot(function(x) dt(x, df = 1000000), -7, 7, ylim = c(0, 0.42),
+main="", yaxs="i")
+dfinfx=dfinf$x
+dfinfy=dfinf$y
+dfinf=cbind(dfinfx, dfinfy)
+dfc=cbind(df1x, df1y, df3y, df5y, dfinfy )
+dfcc=as.data.frame(dfc)
+dfcc
+head(dfcc, n=4)
+library(tidyverse)
+out <- dfcc %>%
+gather(key=df, val, -df1x)%>%
+arrange(desc(df1x))
+head(out, 12)
+ggplot(out,aes(df1x, val, colour=df) )+
+geom_line()+
+rlt_theme+
+scale_colour_manual(name = "Grado de \nlibertad", values = c("blue", "red", "springgreen4", "black"),
+labels = expression(nu[1], nu[2],nu[5], nu[infinity]))+
+theme(legend.position = c(0.8, 0.8))+
+xlab("Valores")+
+ylab("Densidad")
+library(tidyverse)
+subdf5=out%>%
+dplyr::select(df, df1x,val)%>%
+filter(df=="df5y")
+subdf5
+d5=ggplot(subdf5, aes(df5x, val) )+
+geom_area(fill="grey")+
+xlab("Valores")+
+ylab("Densidad")
+d5
+rand5=2.571
+# subset region and plot
+db5 <- ggplot_build(d5)$data[[1]]
+head(db5, n=3)
+d6 <- d5 + geom_area(data = subset(db5, x > rand5), aes(x=x, y=y), fill="red")+
+geom_area(data = subset(db5, x < -rand5), aes(x=x, y=y), fill="red")+
+rlt_theme
+d6
+randsup=2.015
+d8 <- d5 + geom_area(data = subset(db5, x > randsup), aes(x=x, y=y), fill="red")+
+rlt_theme
+d7 <- d5 +
+geom_area(data = subset(db5, x < -randsup), aes(x=x, y=y), fill="red")+
+rlt_theme
+gridExtra::grid.arrange(d7,d8, ncol=2)
+abs(qt(0.025, 19)) # nota que se usa la mitad de 0.05, por que es una prueba de dos lados.
+21+abs(qt(0.025, 19)*(1.76/sqrt(20)))
+UL=21+abs(qt(0.025, 19)*1.76/sqrt(20))
+LL=21-abs(qt(0.025, 19)*1.76/sqrt(20))
+UL
+LL
+UL=21+qt(0.025, 4)*1.76/sqrt(5)
+LL=21-qt(0.025, 4)*1.76/sqrt(5)
+UL
+LL
+UL=21+qt(0.025, 99)*1.76/sqrt(100)
+LL=21-qt(0.025, 99)*1.76/sqrt(100)
+UL
+LL
+knitr::include_graphics("Havel_Figures/9-3 Series - Confidence Interals.jpg")
+t=abs((196.7-209.4)/((39.1)/sqrt(30)) )
+t # Valor t de observado
+abs(qt(0.025, 29))  # valor de t-critico, de la tabla
+data(tips, package="reshape2")
+head(tips)
+t.test(tips$tip, alternative="two.sided", mu=2.5, conf.level = .95)
+# construir una distribución normal de los datos
+randT<-rt(30000, df=NROW(tips)-1)+2.5
+# Hacer la prueba de t
+tipTTest<-t.test(tips$tip, alternative = "two.sided", mu=2.50)
+tipTTest
+# Graficar los resultados
+ggplot(data.frame(x=randT))+
+geom_density(aes(x=x), fill="grey", color="grey")+ # La densidad de los datos
+geom_vline(xintercept = tipTTest$statistic, colour="red")+ # El resultado de la prueba estadística
+geom_vline(xintercept = mean(randT)+c(-2,2)*sd(randT), linetype=2)+ # El intervalo de confianza
+xlab("Promedio de propina")
+UL=0.9+qt(0.025, 19)*0.4/sqrt(20)
+LL=0.9-qt(0.025, 19)*0.4/sqrt(20)
+UL
+LL
+knitr::opts_chunk$set(echo = TRUE)
+snk=c(3,2,3,1,3,2,3,3,1,0,2,3,2,0,2)
+length(snk)
+mean(snk)
+median(snk)
+statip::mfv(snk)
+library(readr)
+library(ggplot2)
+EX_3_1 <- read_csv("Data_files_Havel/Chapter 3/EX_3.1.csv")
+head(EX_3_1)
+ggplot(EX_3_1, aes(Height_cm))+
+geom_histogram(fill="blue", colour="white")
+mean(EX_3_1 $Height_cm)
+sd(EX_3_1$Height_cm)
+var(EX_3_1$Height_cm)
+se=sd(EX_3_1$Height_cm)/(sqrt(length(EX_3_1$Height_cm)))
+se
+median(EX_3_1$Height_cm)
+mean(EX_3_1 $Height_cm)
+sd(EX_3_1$Height_cm)
+UL=mean(EX_3_1 $Height_cm)+se*1.96
+UL
+UL=mean(EX_3_1 $Height_cm)+se*1.96
+UL
+LL=mean(EX_3_1 $Height_cm)-se*1.96
+LL
+UL
+quantiles(EX_3_1 $Height_cm, probs=c(0.05,.1, .25, .5, .75, .95. .99))
+quantiles(EX_3_1 $Height_cm, probs=c(0.05,.1, .25, .5, .75, .95, .99))
+quantile(EX_3_1 $Height_cm, probs=c(0.05,.1, .25, .5, .75, .95, .99))
+knitr::opts_chunk$set(echo = TRUE)
+knitr::include_graphics("Graficos/musarana.jpg")
+library(tidyverse)
+musaraña=tribble{
+musarana=tribble{
+musarana=tribble(
+~Tipo_comida, ~ frecuencia,
+"C1", 13,
+"C2", 26,
+"C3", 31,
+"C4", 14,
+"C5", 28,
+"C6", 14
+)
+musaraña=tribble(
+~Tipo_comida, ~ frecuencia,
+"C1", 13,
+"C2", 26,
+"C3", 31,
+"C4", 14,
+"C5", 28,
+"C6", 14
+)
+musaraña
+library(gmodels)
+126/6
+library(gmodels)
+obs<-c(13, 26, 31, 14, 28, 14)
+esp<-c(21,21,21,21,21,21)
+126/6
+chisq.test(x=obs, p=esp)
+126/6
+21/126
+library(gmodels)
+obs<-c(13, 26, 31, 14, 28, 14)
+esp<-c(0.1666,0.1666,0.1666,0.1666,0.1666,0.1666)
+126/6
+21/126
+chisq.test(x=obs, p=esp)
+21/126
+125/6
+21/125
+library(gmodels)
+obs<-c(13, 26, 31, 14, 28, 14)
+esp<-c(0.168,0.168,0.168,0.168,0.168,0.168)
+125/6
+21/125
+chisq.test(x=obs, p=esp)
+125/6
+20.83333/125
+chisq.test(x=obs, p=esp)
+20.83333/125
+120/6
+20/120
+120/6
+120/5
+24/120
+musaraña=tribble(
+~Tipo_comida, ~ frecuencia,
+"C1", 13,
+"C2", 26,
+"C3", 31,
+"C4", 14,
+"C5", 28
+)
+musaraña
+musaraña=tribble(
+~Tipo_comida, ~ frecuencia,
+"C1", 13,
+"C2", 26,
+"C3", 31,
+"C4", 14,
+"C5", 28
+)
+musaraña
+sum(musaraña$frecuencia)
+musaraña=tribble(
+~Tipo_comida, ~ frecuencia,
+"C1", 13,
+"C2", 26,
+"C3", 31,
+"C4", 14,
+"C5", 28
+)
+sum(musaraña$frecuencia)
+sum(musaraña$frecuencia)
+musaraña=tribble(
+~Tipo_comida, ~frecuencia,
+"C1", 13,
+"C2", 26,
+"C3", 31,
+"C4", 14,
+"C5", 28,
+"C6", 13
+)
+sum(musaraña$frecuencia)
+musaraña=tribble(
+~Tipo_comida, ~frecuencia,
+"C1", 13,
+"C2", 26,
+"C3", 39,
+"C4", 14,
+"C5", 28
+)
+sum(musaraña$frecuencia)
+library(gmodels)
+obs<-c(13, 26, 39, 14, 28)
+esp<-c(.2,.2,.2,.2,.2)
+120/5
+24/120
+chisq.test(x=obs, p=esp)
+mofetas=tribble(
+~TRegion, ~con_rabia, ~sin_rabia
+"Region1", 14, 29,
+mofetas=tribble(
+~TRegion, ~con_rabia, ~sin_rabia,
+"Region1", 14, 29,
+"Region2", 12, 38
+)
+mofetas
+knitr::include_graphics("Graficos/Skunk.jpg")
+knitr::include_graphics("Graficos/Skunk.jpeg")
+library(tidyverse)
+library(gt)
+library(gmodels)
+gt(mofetas)
+knitr::include_graphics("Graficos/Skunk.jpeg", caption= "https://www.britannica.com/animal/skunk")
+con_rabia <- c(14, 12)
+sin_rabia <- c(29,38)
+snakeTable <- cbind(Region1, Region2)
+#Crear la tabla de contingencia
+con_rabia <- c(14, 12)
+sin_rabia <- c(29,38)
+Mofetatable <- cbind(con_rabia, sin_rabia)
+rownames(Mofetatable)<-c("Region_1", "Region_2") # Añade el nombre a las filas
+Mofetatable
+CrossTable(Mofetatable)
+CrossTable(Mofetatable, fisher = TRUE, chisq = TRUE, expected = TRUE,
+sresid = TRUE, format = "SPSS")
+knitr::opts_chunk$set(echo = TRUE)
+library(gt)
+library(tidyverse)
+knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+quantile(EX_3_1 $Height_cm, probs=c(0.05,.1, .25, .5, .75, .95, .99))
+knitr::opts_chunk$set(echo = TRUE)
+library(gt)
+library(tidyverse)
+knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+quantile(EX_3_1$Height_cm, probs=c(0.05,.1, .25, .5, .75, .95, .99))
+library(readr)
+library(ggplot2)
+EX_3_1 <- read_csv("Data_files_Havel/Chapter 3/EX_3.1.csv")
+head(EX_3_1)
+ggplot(EX_3_1, aes(Height_cm))+
+geom_histogram(fill="blue", colour="white")
+mean(EX_3_1 $Height_cm)
+median(EX_3_1$Height_cm)
+sd(EX_3_1$Height_cm)
+var(EX_3_1$Height_cm)
+se=sd(EX_3_1$Height_cm)/(sqrt(length(EX_3_1$Height_cm)))
+se
+UL=mean(EX_3_1 $Height_cm)+se*1.96
+UL
+LL=mean(EX_3_1 $Height_cm)-se*1.96
+LL
+quantile(EX_3_1$Height_cm, probs=c(0.05,.1, .25, .5, .75, .95, .99))
+knitr::opts_chunk$set(echo = TRUE)
+library(gt)
+library(tidyverse)
+knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+quantile(EX_3_1$Height_cm, probs=c(0.05,.1, .25, .5, .75, .95, .99))
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gt)
+Distancia_Estrellas=tribble(
+~Distancia,
+8.6,36.7,42.2,16.8,33.7,87.9,4.4,25.3,11.4,25.1,51.5
+)
+gt(Distancia_Estrellas)
+PR_poblacion=tribble(
+~Poblacion,
+18.0, 38.1,55.1,24.2,24.6,25.6,87.7,15.8,22.7,28.9,185.2,47.1,127.2
+)
+gt(PR_poblacion)
+Dinero_Artista=tribble(
+~Artista, ~Dinero,
+"Kurt Corbain", 50,
+"Elvis Presley",42,
+"Charles Chultz", 35,
+"John Lennon", 24,
+"Ray Charles", 10,
+"Marilyn Monroe",8,
+"Johny Cash",8,
+"J.R.R. Tolkein", 7,
+"George Harrison", 7,
+"Bob Marley",7,
+"Albert Einstein" ,20,
+"And Wharhol",19
+)
+gt(Dinero_Artista)
+Fallecidos_Carro=tribble(
+~Fallecidos,
+778,309,1110,324,705,1067,826,76,205,152,218,492,
+65,186,712,193,262,452,875,82,
+730,1185,2707,1279,390,305,123,948,343,602,
+69,451,951,104,985,155,450,2080,565,875,
+414,981,2786,82,793,214,130,396,620,797
+)
+gt(Fallecidos_Carro)
+knitr::opts_chunk$set(echo = TRUE)
+library(ggversa)
+library(tidyverse)
+head(Internet2)
+geom_h
+geom_histogram()
+head(Internet2)
+ggplot(Internet2, aes(SubscripcionesMobiles)+
+geom_histogram()
+ggplot(Internet2, aes(SubscripcionesMobiles))+
+geom_histogram()
+head(SparrowsElphick)
+ggplot(SparrowsElphick, aes(wt))+
+geom_histogram()
+ggplot(SparrowsElphick, aes(wt))+
+geom_histogram(colour="white")
+library(ggversa)
+head(SparrowsElphick)
+library(gt)
+knitr::include_graphics("Graficos/sparrows.jpeg")
+knitr::include_graphics("Graficos/sparrows.jpg")
+knitr::include_graphics("Graficos/sparrow.jpg")
+ggplot(SparrowsElphick, aes(wt))+
+geom_histogram(colour="white")+
+ylab("Fecuencia")+
+xlab("Peso en gramos de los ")+
+stat_function(fun = dnorm,
+args = list(mean = mean(SparrowsElphick$wt, na.rm = TRUE),
+sd = sd(SparrowsElphick$wt, na.rm = TRUE)),
+colour = "green", size = 1)
+ggplot(SparrowsElphick, aes(wt))+
+geom_histogram(aes(y=..density..),colour="white")+
+ylab("Fecuencia")+
+xlab("Peso en gramos de los ")+
+stat_function(fun = dnorm,
+args = list(mean = mean(SparrowsElphick$wt, na.rm = TRUE),
+sd = sd(SparrowsElphick$wt, na.rm = TRUE)),
+colour = "green", size = 1)
+ggplot(SparrowsElphick, aes(sample=wt))+
+geom_qq()+
+geom_qq_line(colour="blue")
+shapiro.test(SparrowsElphick$wt)
+length(SparrowsElphick$wt)
+library(nortest)
+library(nortest)
+ad.test(SparrowsElphick$wt)
+knitr::opts_chunk$set(echo = TRUE)
+mofetas=tribble(
+~TRegion, ~con_rabia, ~sin_rabia,
+"Region1", 14, 29,
+"Region2", 12, 38
+)
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gt)
+library(gmodels)
+knitr::include_graphics("Graficos/musarana.jpg")
+musaraña=tribble(
+~Tipo_comida, ~frecuencia,
+"C1", 13,
+"C2", 26,
+"C3", 39,
+"C4", 14,
+"C5", 28
+)
+gt(musaraña)
+knitr::include_graphics("Graficos/Skunk.jpeg")
+mofetas=tribble(
+~TRegion, ~con_rabia, ~sin_rabia,
+"Region1", 14, 29,
+"Region2", 12, 38
+)
+gt(mofetas)
+#Crear la tabla de contingencia
+con_rabia <- c(14, 29)
+sin_rabia <- c(12,38)
+Mofetatable <- cbind(con_rabia, sin_rabia)
+rownames(Mofetatable)<-c("Region_1", "Region_2") # Añade el nombre a las filas
+Mofetatable
+CrossTable(Mofetatable, fisher = TRUE, chisq = TRUE, expected = TRUE,
+sresid = TRUE, format = "SPSS")
+library(gmodels)
+obs<-c(13, 26, 39, 14, 28)
+esp<-c(.2,.2,.2,.2,.2)
+chisq.test(x=obs, p=esp)
+R.version

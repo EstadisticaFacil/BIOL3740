@@ -315,8 +315,8 @@ $$LL_{0.95}=21-2.093*\left(\frac{1.76}{\sqrt{20}}\right)=20.176$$
 El intervalo de confianza del $\mu$ es entre 20.175-21.825 con un 95% de probabilidad. 
 
 ```{r}
-UL=21+abs(qt(0.025, 19)*1.76/sqrt(20))
-LL=21-abs(qt(0.025, 19)*1.76/sqrt(20))
+UL=20+abs(qt(0.025, 19)*1.76/sqrt(20))
+LL=20-abs(qt(0.025, 19)*1.76/sqrt(20))
 UL
 LL
 ```
@@ -384,7 +384,7 @@ LL
 ```{r, eval=FALSE, echo=FALSE}
 t=abs((0.9-0.7)/((0.4)/sqrt(20)) )
 t # Valor t de observado
-abs(qt(0.025, 19))  # valor de t-critico, de la tabla
+abs(qt(0.025, 18))  # valor de t-critico, de la tabla
 ```
 
 

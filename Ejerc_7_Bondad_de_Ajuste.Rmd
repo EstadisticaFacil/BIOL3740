@@ -82,6 +82,8 @@ Los siguientes datos son las frecuencias de mofetas encontrada con rabia en dos 
 ```{r, echo=FALSE, fig.show = "hold", out.width = "50%", fig.align = "default"}
 knitr::include_graphics("Graficos/Skunk.jpeg")
 
+R.version
+
 ```
 
 Photo from: https://www.britannica.com/animal/skunk
@@ -105,8 +107,8 @@ gt(mofetas)
 ```{r, eval=FALSE, echo=FALSE}
 #Crear la tabla de contingencia
 
-con_rabia <- c(14, 12)
-sin_rabia <- c(29,38)
+con_rabia <- c(14, 29)
+sin_rabia <- c(12,38)
 Mofetatable <- cbind(con_rabia, sin_rabia)
 
 
