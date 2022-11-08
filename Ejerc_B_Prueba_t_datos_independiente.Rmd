@@ -17,6 +17,12 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+```{r include=FALSE}
+library(tidyverse)
+```
+
+
 ***
 
 ## El siguiente ejercicio es para una prueba corta donde tendrán que contestar en MSTeam.  
@@ -25,3 +31,129 @@ El tema es sobre la **prueba de t con datos independiente**.
 
 
 La prueba corta tiene los siguientes objetivos. Evalúa cada pregunta antes de abrir el documento en MSTeam (Tendrán un tiempo limitado el momento que abré MSTeam)
+
+
+Los datos son de pacientes que tienen Esclorosis muscular (MS).  A cada uno de estos pacientes se evaluó los niveles de IgG, un indicador de anticuerpo.
+
+Información básica sobre el anticuerpo, tambien conocido como **Immunoglobin**.
+
+
+```{r include=FALSE}
+Tabla= tribble(
+  ~Ig, ~"Que es", ~"Posible cause cuando es bajo", ~"Posible cause cuando es alto",
+  "IgG", 
+  "Major type of antibody found in the blood that can enter tissues and fight infection. In its four forms, provides the majority of antibody-based immunity against invading pathogens. The only antibody capable of crossing the placenta to give passive immunity to the fetus.", 
+  "Low levels occur in Waldenstrom's macroglobulinemia, where high levels of IgM antibodies may inhibit the growth of B-cells that make IgG. Other conditions that cause low levels include some types of leukemia and a type of kidney damage (nephrotic syndrome). In rare cases, some people are born with a lack of IgG antibodies. These people are more likely to develop infections.",
+  "May mean a long-term (chronic) infection, such as AIDS, is present. Levels of IgG are higher in IgG MGUS, IgG multiple myeloma, long-term hepatitis, and multiple sclerosis (MS). In multiple myeloma, tumor cells make only one type of IgG antibody (monoclonal); the other conditions cause an increase in many types of IgG antibodies (polyclonal)."
+)
+library(huxtable)
+Tabla2=as_hux(Tabla)
+```
+
+***
+
+### Tabla de que es IgG y algunos de sus causas
+```{r echo=FALSE}
+Tabla2 |> set_all_padding(4) %>% 
+      set_outer_padding(0) %>% 
+      set_number_format(2) %>% 
+      set_bold(row = 1, col = everywhere) %>% 
+      set_bottom_border(row = 1, col = everywhere) %>% 
+      set_width(0.4)
+```
+
+***
+
+La prueba corta tiene los siguientes objetivos. Evalúa cada pregunta antes de abrir el documento en MSTeam (Tendrán un tiempo limitado el momento que abré MSTeam)
+
+1. Poder subir los datos a R
+2. Hacer la "prueba de t" que corresponde
+3. Interpretar los resultados
+4. Subir una gráfico de los resultados a MSTeam
+5. Explicar cúal(es) es(son) el/los supuesto(s) de esta prueba
+6. Hacer una prueba para determinar si el/los supuesto(s) es/son validado(s)
+7. Escribir claramente la hipótesis nula
+8. Escribir claramente la hipótesis alterna
+9. ¿Cuales son las hipótesis de los supuestos?
+
+
+Los datos
+
+```{r}
+library(readxl)
+Immuno_markers_MS <- read_excel("Data_files_csv/Immuno_markers_MS.xlsx")
+Imm=Immuno_markers_MS
+
+```
+
+***
+
+En este archivo tiene tres columnas. 
+
+  - El sexo del paciente, "F" o "M".
+  - Un indice de los IgG, en una mustra de cada paciente con MS
+  - Un indice de IgG synthesis rate : 
+      - The reference interval is –9.9 to +3.3 mg per day. Negative values are considered normal. Multiple sclerosis patients usually have a synthesis rate >8.0.
+  
+
+***
+
+### 1. Calcular el promedio y desviación estandard y el tamaño de muestra de los dos grupos del nivel de IgG  
+      
+      
+```{r eval=FALSE, include=FALSE}
+
+
+Imm |> 
+  group_by(Gender) |> 
+  summarize(mean=mean(IgGIdx, na.rm=TRUE),
+           sd=sd(IgGIdx, na.rm=TRUE),
+           n=n())
+
+```
+
+
+***   
+
+### 2. Hacer la prueba para evaluar si las mujeres y hombres tienen un IgG diferente
+
+```{r eval=FALSE, include=FALSE}
+
+t.test(IgGIdx~Gender, Imm)
+
+
+```
+
+***
+
+### 3. Haz un histograma de la variable "IgG" por genero, a) un color diferente por "Gender"
+
+  - Para salvar el gráfico usa ggsave("nombre_de_tu_grafico.png").  Para subir lo a MSTeam.
+
+  - Ahora su gráfico sera salvado en su proyecto con el nombre que le dio.
+
+```{r eval=FALSE, include=FALSE}
+ggplot(Imm, aes(IgGIdx, fill=Gender))+
+  geom_histogram(colour="white")+
+  facet_wrap(~Gender)
+```
+
+
+***
+
+### 4. Determina si la prueba cumple con el/los supuesto(s) de una prueba de t con datos independientes?
+
+
+```{r eval=FALSE, include=FALSE}
+library(RVAideMemoire)
+byf.shapiro(IgGIdx~Gender, Imm)
+```
+
+
+
+
+```{r eval=FALSE, include=FALSE}
+bartlett.test(IgGIdx~Gender, Imm)
+```
+
+***

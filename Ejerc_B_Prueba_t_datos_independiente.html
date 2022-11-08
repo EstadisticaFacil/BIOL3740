@@ -48,6 +48,117 @@
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -519,6 +630,90 @@ independiente</strong>.</p>
 <p>La prueba corta tiene los siguientes objetivos. Evalúa cada pregunta
 antes de abrir el documento en MSTeam (Tendrán un tiempo limitado el
 momento que abré MSTeam)</p>
+<p>Los datos son de pacientes que tienen Esclorosis muscular (MS). A
+cada uno de estos pacientes se evaluó los niveles de IgG, un indicador
+de anticuerpo.</p>
+<p>Información básica sobre el anticuerpo, tambien conocido como
+<strong>Immunoglobin</strong>.</p>
+<hr />
+<div id="tabla-de-que-es-igg-y-algunos-de-sus-causas"
+class="section level3">
+<h3>Tabla de que es IgG y algunos de sus causas</h3>
+<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 40%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
+<col><col><col><col><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 0pt 4pt 4pt 0pt; font-weight: bold;">Ig</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 0pt 4pt 4pt 4pt; font-weight: bold;">Que es</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 0pt 4pt 4pt 4pt; font-weight: bold;">Posible cause cuando es bajo</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 0pt 0pt 4pt 4pt; font-weight: bold;">Posible cause cuando es alto</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 4pt 4pt 0pt 0pt; font-weight: normal;">IgG</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 4pt 4pt 0pt 4pt; font-weight: normal;">Major type of antibody found in the blood that can enter tissues and fight infection. In its four forms, provides the majority of antibody-based immunity against invading pathogens. The only antibody capable of crossing the placenta to give passive immunity to the fetus.</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 4pt 4pt 0pt 4pt; font-weight: normal;">Low levels occur in Waldenstrom's macroglobulinemia, where high levels of IgM antibodies may inhibit the growth of B-cells that make IgG. Other conditions that cause low levels include some types of leukemia and a type of kidney damage (nephrotic syndrome). In rare cases, some people are born with a lack of IgG antibodies. These people are more likely to develop infections.</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 4pt 0pt 0pt 4pt; font-weight: normal;">May mean a long-term (chronic) infection, such as AIDS, is present. Levels of IgG are higher in IgG MGUS, IgG multiple myeloma, long-term hepatitis, and multiple sclerosis (MS). In multiple myeloma, tumor cells make only one type of IgG antibody (monoclonal); the other conditions cause an increase in many types of IgG antibodies (polyclonal).</td></tr>
+</table>
+
+<hr />
+<p>La prueba corta tiene los siguientes objetivos. Evalúa cada pregunta
+antes de abrir el documento en MSTeam (Tendrán un tiempo limitado el
+momento que abré MSTeam)</p>
+<ol style="list-style-type: decimal">
+<li>Poder subir los datos a R</li>
+<li>Hacer la “prueba de t” que corresponde</li>
+<li>Interpretar los resultados</li>
+<li>Subir una gráfico de los resultados a MSTeam</li>
+<li>Explicar cúal(es) es(son) el/los supuesto(s) de esta prueba</li>
+<li>Hacer una prueba para determinar si el/los supuesto(s) es/son
+validado(s)</li>
+<li>Escribir claramente la hipótesis nula</li>
+<li>Escribir claramente la hipótesis alterna</li>
+<li>¿Cuales son las hipótesis de los supuestos?</li>
+</ol>
+<p>Los datos</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Immuno_markers_MS <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;Data_files_csv/Immuno_markers_MS.xlsx&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Imm<span class="ot">=</span>Immuno_markers_MS</span></code></pre></div>
+<hr />
+<p>En este archivo tiene tres columnas.</p>
+<ul>
+<li>El sexo del paciente, “F” o “M”.</li>
+<li>Un indice de los IgG, en una mustra de cada paciente con MS</li>
+<li>Un indice de IgG synthesis rate :
+<ul>
+<li>The reference interval is –9.9 to +3.3 mg per day. Negative values
+are considered normal. Multiple sclerosis patients usually have a
+synthesis rate &gt;8.0.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div
+id="calcular-el-promedio-y-desviación-estandard-y-el-tamaño-de-muestra-de-los-dos-grupos-del-nivel-de-igg"
+class="section level3">
+<h3>1. Calcular el promedio y desviación estandard y el tamaño de
+muestra de los dos grupos del nivel de IgG</h3>
+<hr />
+</div>
+<div
+id="hacer-la-prueba-para-evaluar-si-las-mujeres-y-hombres-tienen-un-igg-diferente"
+class="section level3">
+<h3>2. Hacer la prueba para evaluar si las mujeres y hombres tienen un
+IgG diferente</h3>
+<hr />
+</div>
+<div
+id="haz-un-histograma-de-la-variable-igg-por-genero-a-un-color-diferente-por-gender"
+class="section level3">
+<h3>3. Haz un histograma de la variable “IgG” por genero, a) un color
+diferente por “Gender”</h3>
+<ul>
+<li><p>Para salvar el gráfico usa ggsave(“nombre_de_tu_grafico.png”).
+Para subir lo a MSTeam.</p></li>
+<li><p>Ahora su gráfico sera salvado en su proyecto con el nombre que le
+dio.</p></li>
+</ul>
+<hr />
+</div>
+<div
+id="determina-si-la-prueba-cumple-con-ellos-supuestos-de-una-prueba-de-t-con-datos-independientes"
+class="section level3">
+<h3>4. Determina si la prueba cumple con el/los supuesto(s) de una
+prueba de t con datos independientes?</h3>
+<hr />
+</div>
 </div>
 
 
