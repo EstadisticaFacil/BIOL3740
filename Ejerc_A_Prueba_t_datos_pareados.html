@@ -431,35 +431,45 @@ $(document).ready(function () {
 </div>
 
 
-<p>El siguiente ejercicio es para un quiz donde tendrean que contestar
-en MSTeam.</p>
-<p>El quiz es sobre la prueba de t con datos pareados.</p>
-<p>Tendrá una prueba corta los siguientes objetivos. Evaluar cada
-pregunta antes de abrir el documento en MSTeam (Tendrán un tiempo
-limitado el momento que abré MSTeam)</p>
+<div
+id="el-siguiente-ejercicio-es-para-una-prueba-corta-donde-tendrán-que-contestar-en-msteam."
+class="section level2">
+<h2>El siguiente ejercicio es para una prueba corta donde tendrán que
+contestar en MSTeam.</h2>
+<p>El tema es sobre la <strong>prueba de t con datos
+pareados</strong>.</p>
+<p>La prueba corta tiene los siguientes objetivos. Evalúa cada pregunta
+antes de abrir el documento en MSTeam (Tendrán un tiempo limitado el
+momento que abré MSTeam)</p>
 <ol style="list-style-type: decimal">
 <li>Poder subir los datos a R</li>
 <li>Hacer la “prueba de t”</li>
 <li>Interpretar los resultados</li>
 <li>Subir una gráfico de los resultados a MSTeam</li>
-<li>Explicar con los supuestos de esta prueba</li>
-<li>Hacer una prueba para determinar si los supuestos son validados</li>
+<li>Explicar cúal(es) es(son) el/los supuesto(s) de esta prueba</li>
+<li>Hacer una prueba para determinar si el/los supuesto(s) es/son
+validado(s)</li>
 <li>Escribir claramente la hipótesis nula</li>
 <li>Escribir claramente la hipótesis alterna</li>
 </ol>
-<p>El primer ejercicio</p>
-<p>Usa los datos del archivo
-“Lepanthes_eltoroensis_Georges_STUDENT.csv”</p>
-<p>En el archivo encontrá datos sobre la cantidad de hojas que tiene
+<p>Los datos provienen de una investigación donde se evaluó el impacto
+del huracán Georges son una pequeña orquídea endémica de Puerto Rico en
+el Yunque. La especies es <em>Lepanthes eltoroensis</em> y crece sobre
+árboles.</p>
+<p><img src="Graficos/L_eltoroensis.jpg" style="width:40.0%" /></p>
+<hr />
+<p>Usa los datos del archivo “Lepanthes_eltoroensis_Georges_STUDENT.csv”
+- Los datos están en archivo atado tanto al email como en MSTeam.</p>
+<p>En el archivo encontrará datos sobre la cantidad de hojas que tiene
 cada planta. Los datos fueron recopilado por 6 años a cada dos meses. El
-primer muestreo fue la columna T1, y el ultimo muestreo T12 (despues de
+primer muestreo fue la columna T1, y el último muestreo T12 (despues de
 6 años). El primer muestreo fue después del huracán Georges.</p>
 <p>Usando estas dos columnas evalúa si las plantas tenían la misma
-cantidad de hojas al principio</p>
+cantidad de hojas al principio y al final de 6 años.</p>
 <pre class="r"><code>library(readr)
 Lepanthes_eltoroensis_Georges_STUDENT &lt;- read_csv(&quot;Data_files_csv/Lepanthes_eltoroensis_Georges_STUDENT.csv&quot;)</code></pre>
 <pre><code>## Rows: 1084 Columns: 12
-## ── Column specification ───────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## dbl (12): T1, T2, T3, T5, T6, T7, T8, T9, T10, T11, T12, T13
 ## 
@@ -470,19 +480,19 @@ Lepanthes_eltoroensis_Georges_STUDENT &lt;- read_csv(&quot;Data_files_csv/Lepant
 <div
 id="calcula-el-promedio-y-la-desviación-estandard-del-número-de-hoja-en-cada-tiempo."
 class="section level3">
-<h3>Calcula el promedio y la desviación estandard del número de hoja en
-cada tiempo.</h3>
+<h3>1. Calcula el promedio y la desviación estandard del número de hoja
+en cada tiempo.</h3>
 <hr />
 </div>
-<div id="haz-la-prueba-de-t--con-datos-pareados" class="section level3">
-<h3>Haz la prueba de t- con datos pareados</h3>
+<div id="haz-la-prueba-de-t-con-datos-pareados" class="section level3">
+<h3>2. Haz la <em>prueba de t-con datos pareados</em></h3>
 <hr />
 </div>
 <div
 id="haz-un-gráficos-histograma-de-las-diferencias-entre-el-tiempo-t12-y-t1."
 class="section level3">
-<h3>Haz un gráficos “histograma” de las diferencias entre el tiempo T12
-y T1.</h3>
+<h3>3. Haz un gráficos “histograma” de las diferencias entre el tiempo
+T12 y T1.</h3>
 <ul>
 <li><p>Para salvar el gráfico usa ggsave(“nombre_de_tu_grafico.png”).
 Para subir lo a MSTeam.</p></li>
@@ -492,11 +502,12 @@ dio.</p></li>
 <hr />
 </div>
 <div
-id="determina-si-la-prueba-cumple-con-el-supuesto-de-una-prueba-de-t-con-datos-pareados"
+id="determina-si-la-prueba-cumple-con-ellos-supuestos-de-una-prueba-de-t-con-datos-pareados"
 class="section level3">
-<h3>Determina si la prueba cumple con el supuesto de una prueba de t con
-datos pareados?</h3>
+<h3>4. Determina si la prueba cumple con el/los supuesto(s) de una
+prueba de t con datos pareados?</h3>
 <hr />
+</div>
 </div>
 
 

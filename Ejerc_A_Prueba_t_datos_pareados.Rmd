@@ -10,32 +10,38 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-El siguiente ejercicio es para un quiz donde tendrean que contestar en MSTeam.  
+## El siguiente ejercicio es para una prueba corta donde tendrán que contestar en MSTeam.  
 
-El quiz es sobre la prueba de t con datos pareados.
+El tema es sobre la **prueba de t con datos pareados**.
 
 
-Tendrá una prueba corta los siguientes objetivos. Evaluar cada pregunta antes de abrir el documento en MSTeam (Tendrán un tiempo limitado el momento que abré MSTeam)
+La prueba corta tiene los siguientes objetivos. Evalúa cada pregunta antes de abrir el documento en MSTeam (Tendrán un tiempo limitado el momento que abré MSTeam)
 
 1. Poder subir los datos a R
 2. Hacer la "prueba de t"
 3. Interpretar los resultados
 4. Subir una gráfico de los resultados a MSTeam
-5. Explicar con los supuestos de esta prueba
-6. Hacer una prueba para determinar si los supuestos son validados
+5. Explicar cúal(es) es(son) el/los supuesto(s) de esta prueba
+6. Hacer una prueba para determinar si el/los supuesto(s) es/son validado(s)
 7. Escribir claramente la hipótesis nula
 8. Escribir claramente la hipótesis alterna
 
 
 
-El primer ejercicio
+Los datos provienen de una investigación donde se evaluó el impacto del huracán Georges son una pequeña orquídea endémica de Puerto Rico en el Yunque. La especies es *Lepanthes eltoroensis* y crece sobre árboles.  
 
+![](Graficos/L_eltoroensis.jpg){width=40%}
 
-Usa los datos del archivo "Lepanthes_eltoroensis_Georges_STUDENT.csv" 
+***
 
-En el archivo encontrá datos sobre la cantidad de hojas que tiene cada planta.  Los datos fueron recopilado por 6 años a cada dos meses. El primer muestreo fue la columna T1, y el ultimo muestreo T12 (despues de 6 años). El primer muestreo fue después del huracán Georges. 
+Usa los datos del archivo "Lepanthes_eltoroensis_Georges_STUDENT.csv"
+ - Los datos están en archivo atado tanto al email como en MSTeam.
+ 
+ 
 
-Usando estas dos columnas evalúa si las plantas tenían la misma cantidad de hojas al principio 
+En el archivo encontrará datos sobre la cantidad de hojas que tiene cada planta.  Los datos fueron recopilado por 6 años a cada dos meses. El primer muestreo fue la columna T1, y el último muestreo T12 (despues de 6 años). El primer muestreo fue después del huracán Georges. 
+
+Usando estas dos columnas evalúa si las plantas tenían la misma cantidad de hojas al principio y al final de 6 años. 
 
 ```{r}
 library(readr)
@@ -45,7 +51,7 @@ Lep=Lepanthes_eltoroensis_Georges_STUDENT
 ```
 ***
 
-### Calcula el promedio y la desviación estandard del número de hoja en cada tiempo.
+### 1. Calcula el promedio y la desviación estandard del número de hoja en cada tiempo.
  
 ```{r eval=FALSE, include=FALSE}
 mean(Lep$T1, na.rm = TRUE)
@@ -56,7 +62,7 @@ sd(Lep$T12, na.rm = TRUE)
  
 ***
 
-### Haz la prueba de t- con datos pareados
+### 2. Haz la *prueba de t-con datos pareados*
 
 ```{r eval=FALSE, include=FALSE}
 t.test(Lep$T1, Lep$T12, paired=TRUE)
@@ -64,7 +70,7 @@ t.test(Lep$T1, Lep$T12, paired=TRUE)
 
 ***
 
-### Haz un gráficos "histograma" de las diferencias entre el tiempo T12 y T1.
+### 3. Haz un gráficos "histograma" de las diferencias entre el tiempo T12 y T1.
 
   - Para salvar el gráfico usa ggsave("nombre_de_tu_grafico.png").  Para subir lo a MSTeam.
 
@@ -81,7 +87,7 @@ ggplot(Lep, aes(dif_T12_T1))+
 
 ***
 
-### Determina si la prueba cumple con el supuesto de una prueba de t con datos pareados?
+### 4. Determina si la prueba cumple con el/los supuesto(s) de una prueba de t con datos pareados?
  
 ```{r eval=FALSE, include=FALSE}
 shapiro.test(Lep$dif_T12_T1)
