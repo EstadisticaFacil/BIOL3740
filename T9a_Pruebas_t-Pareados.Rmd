@@ -215,17 +215,25 @@ library(tibble)
 library(huxtable)
 Toronja=tribble(
   ~Fertilizante, ~Sin_Fertilizante, ~Municipio,
-  "2250",		"1920" , "Utuado",
- "2410",				"2020",  "Cabo Rojo",
- "2260",				"2060",  "Manati",
- "2200",	 			"1960",  "Yabucoa",		
- "2360",				"1960", "Humacao", 
- "2320",				"2140","Caguas",
- "2240",				"1980", "San Juan",
- "2300",				"1940", "Jayuya",
- "2090",				"1790","Ponce"
+  2250,		1920 , "Utuado",
+ 2410,				2020,  "Cabo Rojo",
+ 2260,				2060,  "Manati",
+ 2200,	 			1960,  "Yabucoa",		
+ 2360,				1960, "Humacao", 
+ 2320,				2140,"Caguas",
+ 2240,				1980, "San Juan",
+ 2300,				1940, "Jayuya",
+ 2090,				1790,"Ponce"
 )
+Toronja
+Toronja$dif_F_NF=Toronja$Fertilizante-Toronja$Sin_Fertilizante
 
+Toronja
+library(ggplot2)
+ggplot(Toronja, aes(dif_F_NF))+
+  geom_histogram()
+
+ggsave("Mi_super_grafico.png")
 
 huxtable(Toronja)%>%
   theme_article(header_col = TRUE)%>%
@@ -324,7 +332,7 @@ model2
 
 ## Anxiedad y Alacranes
 
-Con un indice de Ansiedad. Más alto el número más ansieso.  
+Con un indice de Ansiedad. Más alto el número más ansioso.
 
 ```{r anxiety}
 picture=c(1,2,5,2,8,4,5,0,7)

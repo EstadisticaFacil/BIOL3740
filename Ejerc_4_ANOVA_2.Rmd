@@ -1,0 +1,174 @@
+---
+title: "Ejerc_4_ANOVA_2"
+author: "Raymond_L_Tremblay"
+date: "2022-11-14"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+ #   theme: simplex
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+
+```{r}
+library(tidyverse)
+library(gt)
+library(Rmisc)
+library(multcomp)
+library(car)
+```
+
+
+
+***
+
+## Human Mortality Database
+
+#### Reliability and Accuracy Matter
+
+The Human Mortality Database (HMD) is the world´s leading scientific data resource on mortality in developed countries. The HMD provides detailed high-quality harmonized mortality and population estimates to researchers, students, journalists, policy analysts, and others interested in the human longevity. The HMD follows open data principles.
+
+https://www.mortality.org/Home/Index
+
+
+Usando los datos de natalidad en estados unidos desde 1933 a 2020.  
+
+ - En el archivo encontrarán tres columnas informativas, 
+    - Year, 
+    - Month y 
+    - Births (total de nacimiento en este mes y año)
+
+***
+
+Los datos estan en el website dabajo la pestaña de datos **Archivos de datos**.
+
+
+
+```{r include=FALSE}
+library(readr)
+USAbirthbymonth <- read_csv("Data_files_csv/USAbirthbymonth.csv")
+birth=USAbirthbymonth
+
+```
+
+
+***
+
+## Aqui los primeras 6 filas del df
+```{r echo=FALSE}
+gt(head(birth))
+```
+
+ 1. Cambiar los nombres de la variable de mes numérica a factor dando a las variables el nombre del mes que le corresponde. (5 pts)
+ 
+
+
+
+```{r include=FALSE}
+birth$monthnames<-factor(birth$Month, levels=c(1:12),
+                         labels = c("Jan", "Feb", "Mar","Apr",
+                                    "May", "Jun", "Jul", "Aug",
+                                    "Sep", "Oct", "Nov", "Dec"))
+birth
+```
+
+ 2. Haz un gráfico del promedio de nacimiento y la variación en natalidad por mes. (3 pts)
+
+
+```{r include=FALSE}
+
+ggplot(birth, aes(x=monthnames, y=Births, colour=Year))+
+geom_point()+
+  stat_summary(fun = mean, geom = "point", size = 2, 
+                    aes(group=1), colour = "black")+
+  stat_summary(fun = mean, geom = "line", size = 1, 
+             aes(group=1), colour = "red")
+```
+
+
+
+
+
+
+```{r include=FALSE}
+
+
+sum = summarySE(birth, 
+                measurevar="Births", 
+                groupvars="monthnames")
+sum
+```
+
+
+ 3. Haz un gráfico del promedio y intervalo de 95% por mes (5 pts)
+
+
+```{r include=FALSE}
+
+
+ggplot(sum, aes(x=monthnames, 
+                y=Births)) +
+  geom_point(colour="blue")+ 
+  geom_errorbar(aes(ymin=Births-2*se,
+                    ymax=Births+2*se), 
+                width=.2, size=0.7)
+```
+
+
+
+4. Haz la prueba que corresponde para determinar si los grupos son iguales (8 pts).
+    - Cual es la hipótesis NULA?
+    - Cual es la hipótesis ALTERNA?
+    - Cual es el resultado de la prueba?
+    - Cual es el grado de libertad?
+    - Cuantos datos totales hay en el análisis?
+    
+
+```{r include=FALSE}
+model_b=aov(Births~monthnames, data=birth)
+summary(model_b)
+```
+
+
+ 5. Evalúa los supuestos de esta prueba, explicando si acepta que los datos cumple con los supuestos (10 pts)
+    - Homogeneidad de Varianza
+    - Normalidad
+    - Explica claramente cada prueba y si interpretación
+  
+
+
+```{r eval=FALSE, include=FALSE}
+plot(model_b)
+```
+
+
+```{r eval=FALSE, include=FALSE}
+leveneTest(birth$Births, birth$monthnames)
+```
+
+
+6. Haz la prueba de Post-Hoc de Bonferroni y contesta la siguientes pregunta. (6 pts)
+   - Cual(es) es/son los mes(es) que la natalidad difiere de enero.
+   - Cual(es) es/son los mes(es) que la natalidad difiere de agosto.
+
+
+```{r include=FALSE}
+pairwise.t.test(birth$Births, birth$monthnames, p.adjust.method = "bonferroni")
+
+
+
+
+
+postHocs.1<-glht(model_b, linfct = mcp(monthnames = "Tukey"))  
+summary(postHocs.1)
+```
+

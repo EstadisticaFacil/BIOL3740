@@ -104,10 +104,11 @@ En este archivo tiene tres columnas.
 ```{r eval=FALSE, include=FALSE}
 
 
-Imm |> 
-  group_by(Gender) |> 
-  summarize(mean=mean(IgGIdx, na.rm=TRUE),
-           sd=sd(IgGIdx, na.rm=TRUE),
+Imm |> dplyr::select(Gender, IgGIdx) |> 
+  group_by(Gender) |>
+  filter(!is.na(IgGIdx)) |> 
+  summarise(mean=mean(IgGIdx),
+           sd=sd(IgGIdx),
            n=n())
 
 ```
@@ -153,7 +154,7 @@ byf.shapiro(IgGIdx~Gender, Imm)
 
 
 ```{r eval=FALSE, include=FALSE}
-bartlett.test(IgGIdx~Gender, Imm)
+bartlett.test(IgGId¿Cual x~Gender, Imm)
 ```
 
 ***
