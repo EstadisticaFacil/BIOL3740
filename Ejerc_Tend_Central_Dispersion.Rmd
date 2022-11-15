@@ -19,7 +19,7 @@ knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
 ```
 
 
-```{r}
+```{r, one}
 library(gt)
 library(tidyverse)
 ```
@@ -36,14 +36,14 @@ library(tidyverse)
 
 # Buscar la metadata
 
-```{r}
+```{r, two}
 codes<-read.csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv')
 ```
 
 ***
 # Visualizar la meta data
 
-```{r}
+```{r, three}
 gt(codes)
 ```
 
@@ -51,7 +51,7 @@ gt(codes)
 
 # Buscar los datos
 
-```{r}
+```{r, four}
 #mydat<- read.csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv')
 
 
@@ -65,7 +65,7 @@ mydat <- read_excel("Data_files_csv/owid-covid-data.xlsx")
 
 
 
-```{r}
+```{r, five}
 
 
 head(mydat, 4)
@@ -74,17 +74,16 @@ head(mydat, 4)
 
 Seleccionar las variables y filtrar los datos para hacer un subgrupo con datos solamente de Puerto Rico
 
-```{r}
-library(tidyverse)
-```
 
 
-```{r}
-mydat%>%
-  select(location,date, total_cases, new_cases, life_expectancy)%>%
-  filter(location=="Puerto Rico")%>%
-  head(3)%>%
-  gt()
+
+```{r, six}
+df1=mydat %>%
+  dplyr::select(location,date, total_cases, new_cases, life_expectancy)%>%
+  filter(location == "Puerto Rico") %>%
+  head() 
+
+  gt(df1)
 ```
 
 
@@ -93,7 +92,7 @@ mydat%>%
 
 # Ver el nombre de todos los paises incluido en el archivo
 
-```{r,}
+```{r, seven}
 unique(mydat$location)  # la función "unique" es para saber los valores únicos un una columna
 ```
 ***
@@ -125,9 +124,9 @@ Calcula los siguientes parámetros de números de nuevos casos de COVID-19 por d
 
 Selecciona otro país del Caribe y calcula los mismo parámetros
 
-```{r}
+```{r, eight}
 mydat%>%
-  select(location,date, total_cases, new_cases, life_expectancy)%>%
+  dplyr::select(location,date, total_cases, new_cases, life_expectancy)%>%
   filter(location %in% c("Puerto Rico", "Cuba"))%>%
   head(3)%>%
   gt()
@@ -135,16 +134,16 @@ mydat%>%
 ***
 
 
-```{r}
+```{r, nine}
 library(statip)
 
 mydat %>%
-  select(location,date, total_cases, new_cases, life_expectancy)%>%
+  dplyr::select(location,date, total_cases, new_cases, life_expectancy)%>%
   filter(location %in% c("Puerto Rico", "Cuba", "Jamaica", "Costa Rica", "Haiti", "Bahamas"))%>%
   group_by(location) %>%
   summarize(mean=mean(new_cases, na.rm=T),
             median=median(new_cases, na.rm=T), 
-            de=sd(new_cases, na.rm=T))%>%
+            de=sd(new_cases, na.rm=T))  %>%
   gt()
 
 
@@ -154,9 +153,9 @@ mydat %>%
 
 
 
-```{r}
+```{r, ten}
 mydat%>%
-  select(location,date, total_cases, new_cases, life_expectancy)%>%
+  dplyr::select(location,date, total_cases, new_cases, life_expectancy)%>%
   filter(location %in% c("Puerto Rico", "Cuba", "Jamaica", "Costa Rica", "Haiti", "Bahamas"))%>%
   group_by(location)%>%
   summarize(mode=statip::mfv(new_cases))

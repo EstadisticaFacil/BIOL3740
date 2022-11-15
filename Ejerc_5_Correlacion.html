@@ -13,7 +13,7 @@
 
 <title>Ejerc_5_Correlacion</title>
 
-<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -528,6 +528,9 @@ div.tocify {
       <a href="Ejerc_4_ANOVA.html">Ejercicio de ANOVA</a>
     </li>
     <li>
+      <a href="Ejerc_4_ANOVA_2.html">Ejercicio de ANOVA_2</a>
+    </li>
+    <li>
       <a href="Ejerc_Tend_Central_Dispersion.html">Ejercicio de Tendendia Central y Dispersión</a>
     </li>
     <li>
@@ -559,6 +562,9 @@ div.tocify {
     </li>
     <li>
       <a href="Ejerc_A_Prueba_t_datos_pareados.html">Quiz: Prueba de t con datos pareados</a>
+    </li>
+    <li>
+      <a href="Ejerc_B_Prueba_t_datos_independiente.html">Quiz: Prueba de t con datos independientes</a>
     </li>
   </ul>
 </li>
@@ -623,8 +629,19 @@ proportional to the concentration of charged ions in solution.</p></li>
 <li><p>calc = The calcium concentration in millimoles per
 litre.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(urine) </span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;boot&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:car&#39;:
+## 
+##     logit</code></pre>
+<pre><code>## The following object is masked from &#39;package:survival&#39;:
+## 
+##     aml</code></pre>
+<pre><code>## The following object is masked from &#39;package:lattice&#39;:
+## 
+##     melanoma</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(urine) </span></code></pre></div>
 <pre><code>##   r gravity   ph osmo cond urea calc
 ## 1 0   1.021 4.91  725   NA  443 2.45
 ## 2 0   1.017 5.74  577 20.0  296 4.49
