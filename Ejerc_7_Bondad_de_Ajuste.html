@@ -95,7 +95,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +108,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -518,6 +518,9 @@ div.tocify {
     <li>
       <a href="T16_AKAIKE.html">T16 Criterio de Información</a>
     </li>
+    <li>
+      <a href="T17_Non_Parametric_2022.html">T17 Pruebas No Paramétrica</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -654,7 +657,7 @@ class="uri">https://www.laguiadelvaron.com/wp-content/uploads/2020/08/reaparece-
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;C5&quot;</span>, <span class="dv">28</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(musaraña)</span></code></pre></div>
-<div id="usaykjrsbq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="usaykjrsbq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -694,6 +697,11 @@ class="uri">https://www.laguiadelvaron.com/wp-content/uploads/2020/08/reaparece-
   border-right-style: none;
   border-right-width: 1px;
   border-right-color: #D3D3D3;
+}
+
+#usaykjrsbq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #usaykjrsbq .gt_title {
@@ -816,6 +824,7 @@ class="uri">https://www.laguiadelvaron.com/wp-content/uploads/2020/08/reaparece-
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #usaykjrsbq .gt_empty_group_heading {
@@ -1063,21 +1072,21 @@ class="uri">https://www.laguiadelvaron.com/wp-content/uploads/2020/08/reaparece-
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Tipo_comida</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">frecuencia</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Tipo_comida">Tipo_comida</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="frecuencia">frecuencia</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">C1</td>
-<td class="gt_row gt_right">13</td></tr>
-    <tr><td class="gt_row gt_left">C2</td>
-<td class="gt_row gt_right">26</td></tr>
-    <tr><td class="gt_row gt_left">C3</td>
-<td class="gt_row gt_right">39</td></tr>
-    <tr><td class="gt_row gt_left">C4</td>
-<td class="gt_row gt_right">14</td></tr>
-    <tr><td class="gt_row gt_left">C5</td>
-<td class="gt_row gt_right">28</td></tr>
+    <tr><td headers="Tipo_comida" class="gt_row gt_left">C1</td>
+<td headers="frecuencia" class="gt_row gt_right">13</td></tr>
+    <tr><td headers="Tipo_comida" class="gt_row gt_left">C2</td>
+<td headers="frecuencia" class="gt_row gt_right">26</td></tr>
+    <tr><td headers="Tipo_comida" class="gt_row gt_left">C3</td>
+<td headers="frecuencia" class="gt_row gt_right">39</td></tr>
+    <tr><td headers="Tipo_comida" class="gt_row gt_left">C4</td>
+<td headers="frecuencia" class="gt_row gt_right">14</td></tr>
+    <tr><td headers="Tipo_comida" class="gt_row gt_left">C5</td>
+<td headers="frecuencia" class="gt_row gt_right">28</td></tr>
   </tbody>
   
   
@@ -1102,10 +1111,10 @@ class="uri">https://www.laguiadelvaron.com/wp-content/uploads/2020/08/reaparece-
 <p>Los siguientes datos son las frecuencias de mofetas encontrada con
 rabia en dos diferentes región geográficas.</p>
 <pre><code>##                _                           
-## platform       x86_64-apple-darwin17.0     
-## arch           x86_64                      
-## os             darwin17.0                  
-## system         x86_64, darwin17.0          
+## platform       aarch64-apple-darwin20      
+## arch           aarch64                     
+## os             darwin20                    
+## system         aarch64, darwin20           
 ## status                                     
 ## major          4                           
 ## minor          2.2                         
@@ -1126,7 +1135,7 @@ class="uri">https://www.britannica.com/animal/skunk</a></p>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(mofetas)</span></code></pre></div>
-<div id="zlvyruiszm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="zlvyruiszm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1166,6 +1175,11 @@ class="uri">https://www.britannica.com/animal/skunk</a></p>
   border-right-style: none;
   border-right-width: 1px;
   border-right-color: #D3D3D3;
+}
+
+#zlvyruiszm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #zlvyruiszm .gt_title {
@@ -1288,6 +1302,7 @@ class="uri">https://www.britannica.com/animal/skunk</a></p>
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #zlvyruiszm .gt_empty_group_heading {
@@ -1535,18 +1550,18 @@ class="uri">https://www.britannica.com/animal/skunk</a></p>
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">TRegion</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">con_rabia</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">sin_rabia</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="TRegion">TRegion</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="con_rabia">con_rabia</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sin_rabia">sin_rabia</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">Region1</td>
-<td class="gt_row gt_right">14</td>
-<td class="gt_row gt_right">29</td></tr>
-    <tr><td class="gt_row gt_left">Region2</td>
-<td class="gt_row gt_right">12</td>
-<td class="gt_row gt_right">38</td></tr>
+    <tr><td headers="TRegion" class="gt_row gt_left">Region1</td>
+<td headers="con_rabia" class="gt_row gt_right">14</td>
+<td headers="sin_rabia" class="gt_row gt_right">29</td></tr>
+    <tr><td headers="TRegion" class="gt_row gt_left">Region2</td>
+<td headers="con_rabia" class="gt_row gt_right">12</td>
+<td headers="sin_rabia" class="gt_row gt_right">38</td></tr>
   </tbody>
   
   

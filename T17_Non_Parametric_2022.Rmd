@@ -1,0 +1,451 @@
+---
+title: "15_Non_parametric"
+author: "RLT"
+date: "6/26/2017"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+#    theme: simplex
+    toc: yes
+    toc_float: yes
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***
+
+
+#Non-parametric tests
+
+All the previous tests assume that the data have different characteristics, such as normal distribution and homogeneity of variance.  If the data CANNOT comply with these assumptions then the previous tests should not be used and alternative tests have to be explored.  One set of tests are known as "Non-Parametric tests" or "Distribution Free Tests".  
+
+Most of these tests do no use the **original data** but use the **Ranks** of the data. That is is done by assigning "new values" to the original data. The lowest value is assigned the rank of 1, the the next lowest value the rank of 2, and so on.  Thus the highest value has the highest rank.  
+
+Then the analysis are on the **ranks** and NOT on the original values.
+
+
+
+
+***
+
+# Los paquetes 
+
+```{r packages}
+#install.packages("car")
+#install.packages("clinfun")
+#install.packages("ggplot2")
+#install.packages("pastecs")
+#install.packages("pgirmess")
+```
+
+
+##  Activating packages
+
+```{r activating packages}
+library(car)  # Companion to applied Regression
+library(clinfun) # Clinical Trial Design and Data Analysis Functions
+library(ggplot2) # Graphic production
+library(pastecs) # Package for analysis of Space -Time ecological Series
+library(pgirmess) # Spatial Analysis and Data Mining for Field Ecologist
+```
+
+
+## Wilcoxon rank-sum test
+
+The function "gl()" is a function that generates factors by specifying the pattern of their levels
+gl(n, k, lenght=n*k, labels=1:n, ordered=FALSE)
+
+# The hypothesis:
+## The level of depression posterior to the intake of alcohol is the same as those which take ecstasy.  
+### Is this the null or alternate hipothesis?
+
+
+The data come from 20 participants, 10 drinking alcohol and 10 taking ecstasy.  Posterior to their consumption the "Beck Depression Inventory" was conducted on each of the participants.  The scale is from 0 (happy) to 63 (truly depressed)
+
+
+https://www.ismanet.org/doctoryourspirit/pdfs/Beck-Depression-Inventory-BDI.pdf
+
+https://en.wikipedia.org/wiki/Beck_Depression_Inventory
+
+
+
+
+# Enter raw data
+```{r Enter data}
+
+sundayBDI<-c(15, 35, 16, 18, 19, 
+             17, 27, 16, 13, 20, 
+             16, 15, 20, 15, 16, 
+             13, 14, 19, 18, 18)
+wedsBDI<-c(28, 35, 35, 24, 39, 32, 
+           27, 29, 36, 35, 5, 6, 
+           30, 8, 9, 7, 6, 17, 
+           3, 10)
+drug<-gl(2, 10, labels = c("Ecstasy", "Alcohol"))
+Gender=gl(2, 10, labels = c("Male", "Female"))
+
+drugData<-data.frame(Gender, drug, sundayBDI, wedsBDI)
+drugData
+```
+
+# Or Import the data
+
+# Exploratory analysis
+```{r}
+library(readr)
+Drug <- read_csv("Data_files_csv/Drug.csv")
+
+head(Drug)
+```
+
+
+## Descriptive statistics.
+Note here we can use drugData[,c(2:3)], that we want the stats for column 2 and 3, and these be seperated by the drug (column 1). 
+
+NOTE the shapiro wilks test on the last line.  
+
+```{r descriptive stats}
+names(drugData)
+by(drugData[,c(3:4)], drugData$drug, stat.desc, basic=TRUE, norm=TRUE)
+
+#shapiro.test(drugData$sundayBDI)  # this is to look at all the data, it is not the appropriate way to do the analisis of normality, why?
+#shapiro.test(drugData$wedsBDI) # this is to look at all the data, it is not the appropriate way to do the analisis of normality, why?
+```
+
+
+### Do a histogram by factor level for anxiety for Sunday.
+
+```{r}
+library(ggplot2)
+
+ggplot(drugData, aes(x=sundayBDI, fill=drug))+
+  geom_histogram(colour="white")+
+  facet_grid(~drug)
+
+```
+
+
+***
+
+
+# Test of equality of variance
+  This is one of the assumptions of parametric tests
+
+```{r equality of variance}
+
+#leveneTest(drugData$sundayBDI, drugData$drug, center = "mean")
+leveneTest(drugData$sundayBDI, drugData$drug, center = "median")
+
+
+
+#leveneTest(drugData$wedsBDI, drugData$drug, center = "mean")
+leveneTest(drugData$wedsBDI, drugData$drug, center = "median")
+```
+
+
+
+***
+
+
+# Wilcoxon rank-sum test
+
+
+
+
+wilcox.test(x, y = NULL, alternative = c("two.sided", "less", "greater"),
+         mu = 0, paired = FALSE, exact = FALSE, 
+         correct = FALSE, conf.level = 0.95, na.action = na.exclude)
+
+
+
+# This is how to assing the Rank by Hand...... This is an example, the scripts will do this automatically.  
+
+Look for the smallest value......in the wedsBDI......  
+
+
+
+
+```{r}
+drugData$wedsRank=rank(drugData$wedsBDI)
+drugData
+
+```
+
+***
+
+# Wilcoxon test: A non-parametric test 
+
+```{r wilcoxon test}
+names(drugData)
+head(drugData)
+sunModel<-wilcox.test(sundayBDI ~ drug, data = drugData)
+sunModel
+
+
+wedModel<-wilcox.test(wedsBDI ~ drug, data = drugData)
+wedModel
+
+```
+
+***
+
+# the following approach is better because it can deal with ties (values that are equal)
+
+```{r}
+sunModel2<-wilcox.test(sundayBDI ~ drug, data = drugData, exact = FALSE, correct= FALSE, conf.int=T)
+sunModel2
+wedModel2<-wilcox.test(wedsBDI ~ drug, data = drugData, exact = FALSE, correct= FALSE, conf.int=T)
+wedModel2
+
+```
+
+***
+
+# Class Excercise
+# How many time have you gone to Disney, and is there a difference between genders?
+
+Use Wilcoxon Test
+
+```{r disney}
+
+Disney=c(3,5,0,1,2,
+         0,2,0,2,3,
+         2,1,4, 3, 
+         2, 1, 2, 6,7,
+         11, 7, 9)
+
+Gender=c("F","F","F","F","F",
+         "F","F","F","F","F",
+         "F","F","F","F",
+        "M","M","M","M","M",
+        "M","M","M")
+DF=data.frame(Disney,Gender)
+DF
+```
+
+***
+```{r disney2}
+ggplot(DF, aes(y=Disney, x=Gender))+
+  geom_boxplot()
+
+
+ggplot(DF, aes(x=Disney, fill=Gender))+
+  geom_histogram()+
+  facet_grid(~Gender)
+
+
+wilcox.test(Disney ~ Gender, data = DF,exact = FALSE, correct= FALSE, conf.int=T )
+```
+
+
+***
+
+
+# Comparing two related conditions: the Wilcoxon signed-rank test (similar to paired t-test)
+## Do not confuse with the Wilcoxon rank-sum test (similar to unpaired t-test)
+
+We now want to compare the results from sunday and Wendsday, but now the data come from the same individuals.
+# BDI = Becks depression index Change
+```{r WSRT}
+drugData$BDIchange<-drugData$wedsBDI-drugData$sundayBDI # calculate differences
+
+
+
+drugData$BDIchange
+
+head(drugData)
+
+
+drugData
+by(drugData$BDIchange, drugData$drug, stat.desc, basic = FALSE, norm = TRUE)
+
+
+
+
+boxplot<-ggplot(drugData, aes(drug, BDIchange)) + 
+  geom_boxplot()
+boxplot
+
+alcoholData<-subset(drugData, drug == "Alcohol") # subset the data for alcohol
+ecstasyData<-subset(drugData, drug == "Ecstasy") # subset the data for ecstasy
+
+
+alcoholModel<-wilcox.test(alcoholData$wedsBDI, alcoholData$sundayBDI,  paired = TRUE, exact = TRUE, correct= FALSE)
+alcoholModel
+
+ecstasyModel<-wilcox.test(ecstasyData$wedsBDI, ecstasyData$sundayBDI, paired = TRUE, exact = FALSE,correct= FALSE)   # Note that the option "exact=FALSE" has to be added becase there are ties.  
+ecstasyModel
+
+
+```
+
+***
+
+# Krukall-Wallis Test
+
+This is a test similar to ANOVA, thus multiple groups, 3+ grupos
+
+However, you test for the differences in than rank among groups (not the mean).   
+
+The null hypothesis is that the sum or mean rank in Ho: G1 = G2 = G3......Gk
+The alternative hypothesis is that at least one of the groups rank is different from another one.  
+
+
+***
+
+# Soya and the effect on sperm production in human males.
+
+### Soy food and isoflavone intake in relation to semen quality parameters among men from an infertility clinic
+
+
+Jorge E. Chavarro  Thomas L. Toth  Sonita M. Sadio  Russ Hauser
+Hum Reprod. 2008 Nov;23(11):2584-90. doi: 10.1093/humrep/den243. Epub 2008 Jul 23.
+
+
+They found that the amount of sperm production is reduced in males which consume more soya 
+
+Abstract
+BACKGROUND:
+High isoflavone intake has been related to decreased fertility in animal studies, but data in humans are scarce. Thus, we examined the association of soy foods and isoflavones intake with semen quality parameters.
+METHODS:
+The intake of 15 soy-based foods in the previous 3 months was assessed for 99 male partners of subfertile couples who presented for semen analyses to the Massachusetts General Hospital Fertility Center. Linear and quantile regression were used to determine the association of soy foods and isoflavones intake with semen quality parameters while adjusting for personal characteristics.
+RESULTS:
+There was an inverse association between soy food intake and sperm concentration that remained significant after accounting for age, abstinence time, body mass index, caffeine and alcohol intake and smoking. In the multivariate-adjusted analyses, men in the highest category of soy food intake had 41 million sperm/ml less than men who did not consume soy foods (95% confidence interval = -74, -8; P, trend = 0.02). Results for individual soy isoflavones were similar to the results for soy foods and were strongest for glycitein, but did not reach statistical significance. The inverse relation between soy food intake and sperm concentration was more pronounced in the high end of the distribution (90th and 75th percentile) and among overweight or obese men. Soy food and soy isoflavone intake were unrelated to sperm motility, sperm morphology or ejaculate volume.
+CONCLUSIONS:
+These data suggest that higher intake of soy foods and soy isoflavones is associated with lower sperm concentration.
+
+
+
+Quantity per day 
+0           ref
+0.01-0.07  -84
+0.08-0.29  -1
+>0.30      -41
+
+
+Now let us look at the data from Field, soya.csv. 
+
+```{r soya}
+library(readr)
+
+Soyadf <- read_csv("Data_files_csv/Soya.csv")
+
+head(Soyadf)
+
+unique(Soyadf$Soya)
+```
+
+
+# Hacer un boxplot de los datos en un nuevo chunk
+
+```{r}
+library(ggplot2)
+
+ggplot(Soyadf, aes(x=Soya, y=Sperm, fill=Soya))+
+  geom_boxplot()
+```
+
+
+***
+
+
+Descriptive statistics
+ When adding "norm=TRUE" will perform Shapiro_Wilks Normality test. 
+```{r desc}
+library(pastecs)
+
+by(Soyadf$Sperm, Soyadf$Soya, stat.desc, basic = FALSE, norm = TRUE)
+
+
+
+```
+
+
+***
+
+# Kruskall Wallis test is similar to an ANOVA without assuming normal distribution or equality of variance.  
+
+HO: R1=R2=R3=R4
+HA: Por lo menos uno los grupos es diferente
+
+```{r KW}
+
+
+# Traditional approach
+kruskal.test(Sperm~as.factor(Soya), data=Soyadf)
+
+
+```
+
+
+***
+
+```{r}
+
+library(coin)
+#Approximative (Monte Carlo) Fisher-Pitman test
+modelkt=kruskal_test(Sperm~as.factor(Soya), data=Soyadf, distribution = approximate(nresample = 10000))
+modelkt
+
+
+
+
+
+#op <- par(no.readonly = TRUE) # save current settings
+#layout(matrix(1:3, nrow = 3))
+#s1 <- support(modelkt); d1 <- dperm(modelkt, s1)
+#plot(s1, d1, type = "h", main = "Mid-score: 0",
+#     xlab = "Test Statistic", ylab = "Density")
+
+#pperm(modelkt, q=c(0.05, 0.5, 0.95))
+
+
+#s=support(modelkt)
+#quantile(s, c(.025, 0.975))
+
+```
+
+***
+
+```{r ranks}
+Soyadf$Ranks=rank(Soyadf$Sperm)
+head(Soyadf)
+by(Soyadf$Ranks, Soyadf$Soya, median)
+
+```
+
+***
+
+Post Hoc TUKEY like test (Nemenyi test)
+The values shown are the p=values,  the pair are significantly different if the p is below 0.05
+
+```{r posthoc}
+#kruskalmc(Sperm~as.factor(SoyaConsumption), data=Soyadf)
+library(pgirmess)
+
+kruskalmc(Sperm~Soya, data=Soyadf)
+```
+
+### Note
+Only for method = "Chisq" a tie correction is employed.
+
+dist="Tukey"
+
+
+```{r nemenyi}
+library(PMCMRplus)
+
+kwAllPairsNemenyiTest(Sperm~as.factor(Soya) , data=Soyadf, dist="Chisq")
+# Try "Chi Square" = Chisq
+```
+
+
+
+
+
+

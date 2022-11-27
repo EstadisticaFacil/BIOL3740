@@ -56,6 +56,7 @@ knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
 div.sourceCode pre.chunkout {
   background: white;
 }
+
 ```
 
 Chunk para poder cambiar el color del texto
@@ -615,6 +616,8 @@ line +geom_point()+
 
 library(car)
 car::leveneTest(Superhero$injury, Superhero$heronames)
+
+bartlett.test(injury~heronames, data=Superhero)
 ```
 
 ```{r grafica3, eval=FALSE, echo=FALSE}
@@ -645,7 +648,7 @@ ggplot(sum2, aes(x=heronames,
 SuperHeroModel<-aov(injury~heronames, data = Superhero)
 
 summary(SuperHeroModel)
-summary.lm(SuperHeroModel)
+#summary.lm(SuperHeroModel)
 ```
 
 ```{r hero residuals, eval=FALSE, echo=FALSE}
