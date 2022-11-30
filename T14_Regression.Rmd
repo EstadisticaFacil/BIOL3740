@@ -270,9 +270,9 @@ ggplot(Album_Sales_1_new, aes(sequence, cooks.distance))+
 
 ## Paso 1
 
-Primer paso, mirar los coeficientes.
+1. Primer paso, mirar los coeficientes.
 
-El resultado: El coeficiente (intercepto) y la pendiente del *model1*
+  - El resultado: El coeficiente (intercepto) y la pendiente del *model1*
 
 ## Paso 2
 
@@ -342,7 +342,33 @@ ggplot(model1, aes(x=.fitted, y=.resid))+
 
 
 
-Excercise
+## Porque podemos usar la alternativas anterior
+
+Cuando R corre un analisis, hace muchos calculos y guarda parate de estos calculos como lista de datos.
+
+Para ver algunos de los valores calculado uno pone el nombre del modelo y la añade el **$** y deberia aparecer la lista de los valores calculados. o otra alternativa es usar la función ls() = list() para ver el nombre de las variables
+
+```{r}
+ls(model1)
+
+# model1$residuals  # Por ejemplo para ver los residuales del modelo
+```
+
+
+
+***
+
+# Ejercicio #1 
+
+Usa los enviado por MSTeam llamado "Alturas_Humanos
+
+ - En este archivo vemos tres columnas. Genero, Altura de la persona (Altura_cm) y Peso de la persona (Peso_kg) 
+
+ - Evalua cada paso para determinar si hay una relación entre la altura y el peso de las personas.
+ - Haz un gráfico de la relación entre la altura y el peso
+ - Evalúa el modelo de regresión entre las dos variables
+ - Evalúa los supuestos
+ 
 
 ```{r}
 library(readr)
@@ -352,12 +378,73 @@ head(Alturas_Humanos)
 ```
 
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 model2=lm(Altura_cm~Peso_kg, data=Alturas_Humanos)
 summary(model2)
 ```
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 plot(model2)
 ```
 
+
+```{r eval=FALSE, include=FALSE}
+ggplot(Alturas_Humanos, aes(Peso_kg, Altura_cm))+
+geom_point()+
+geom_smooth(method=lm)+
+theme(axis.title=element_text(size=20,face="bold"),
+axis.text=element_text(size=20, face="bold"))+
+labs(x="Altura en cm", y="Peso")
+```
+
+
+
+***
+
+
+# Ejercicio #2 
+
+## Datos sobre la orquidea **Dipodium**
+
+Los datos se encuentra en el paquete **ggversa** debajo el nombre de *dipodium*.
+
+ - Evalua todos los pasos para ver si la altura de inflorescencia es un predictor de la cantidad de flores que tiene una planta.
+
+```{r eval=FALSE, include=FALSE}
+library(ggversa)
+```
+
+
+```{r eval=FALSE, include=FALSE}
+ggplot(dipodium, aes(Height_Inflo, Number_of_Flowers))+
+geom_point()+
+geom_smooth(method=lm)+
+theme(axis.title=element_text(size=20,face="bold"),
+axis.text=element_text(size=20, face="bold"))+
+labs(x="Altura de la Inflorescencia",
+y="Cantidad de Flores")
+```
+
+
+```{r eval=FALSE, include=FALSE}
+modelD=lm(Number_of_Flowers~ Height_Inflo, data = dipodium)
+summary(modelD)
+
+```
+
+
+
+```{r eval=FALSE, include=FALSE}
+plot(modelD)
+```
+
+
+```{r eval=FALSE, include=FALSE}
+ggplot(dipodium, aes(Height_Inflo, Number_of_Flowers))+
+geom_point()+
+geom_abline(intercept=-2.197 , slope = 0.451)+
+theme(axis.title=element_text(size=20,face="bold"),
+axis.text=element_text(size=20, face="bold"))+
+labs(x="Altura de la Inflorescencia",
+y="Cantidad de Flores")
+```
