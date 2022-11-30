@@ -14,7 +14,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Ejercicio de Corelación: Trabajo para entregar
+# Ejercicio de Corelación: Despues de hacer los ejercicios habrá preguntas en MSTeam para contestar. 
 
   Objetivos:
   
@@ -25,11 +25,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r, eval=FALSE, echo=FALSE}
 library(MASS)
-data()
+# data() # To see all the datasets available 
 
 ```
 
+
+***
+
 ## Los Datos
+
+The data were obtained from Andrews, D.F. and Herzberg, A.M. (1985) Data: A Collection of Problems from Many Fields for the Student and Research Worker. Springer-Verlag.
 
 Las variables en el archivo **urine** en el paquete **boot**
 
@@ -48,15 +53,20 @@ Las variables en el archivo **urine** en el paquete **boot**
 + calc = The calcium concentration in millimoles per litre.
 
 
+
+
 ```{r}
 library(boot)
 head(urine) 
 ```
 
+***
 
-1. Evaluar si las 6 variables (excluye la variable "r") cumple con distribución normales. Usa uno de los métodos que hemos aprendido para evaluar cada variable.
+1. Evaluar si las 6 variables (excluye la variable "r") cumple con distribución normales. 
+
+ - Usa dos de los métodos que hemos aprendido para evaluar cada variable si cumple con distribución normal.
   
-  + Explicar que prueba utilizas y interpretas los resultados. (5 puntos) 
+  - Explicar que prueba utilizas y interpretas los resultados.
   
 
 ```{r, eval=FALSE, echo=FALSE}
@@ -70,12 +80,27 @@ shapiro.test(urine$calc)
 ```
 
 
+2. Usando el gráfico de qq-plot gráfica la correlación "menos normal" de las pruebas anteriores.  Salva este gráfico en .png o .jpeg.  
+
+
+```{r eval=FALSE, include=FALSE}
+library(ggplot2)
+
+ggplot(urine, aes(sample=calc))+
+  geom_qq()+
+  geom_qq_line()
+```
+
+
+
+***
+
 2. Estimado de correlación entre las seis variables
 
-+ Tomando en cuenta lo que observaste en la pruebas anterior, selecciona la prueba correcta para evaluar la correlación entre las variables. (5 puntos).   Tiene que seleccionar la prueba correcta, no hay puntos parcial. 
++ Tomando en cuenta lo que observaste en la pruebas anterior, selecciona la prueba correcta entre Pearson o Kendall, para evaluar la correlaciones entre las variables.   Tiene que seleccionar la prueba correcta.  
 
-    + Cual variables tienen una correlación mayor (2 puntos)
-    + Cual variables tiene la correlación menor (2 puntos)
+    + Cual variables tienen una correlación mayor
+    + Cual variables tiene la correlación menor
 
 
 ```{r, eval=FALSE, echo=FALSE}
@@ -84,26 +109,35 @@ cor(urine[, c("gravity", "ph", "cond", "urea", "calc")], use = "pairwise.complet
 ```
 
 
+***
+
 3. Coeficiente de determinación
 
- + Calcula el coeficiente de determinación entre: (2 puntos)
-     + gravity y urea
+ + Calcula el coeficiente de determinación entre:
+     + calcium y urea
      + ph y calc
      
   + Cual de estos pares explica mejor la relación entre una variable y la otra (2 puntos)  
 
 ```{r, eval=FALSE, echo=FALSE}
-cor(urine$gravity, urine$urea)^2
+cor(urine$calc, urine$urea)^2
 cor(urine$ph, urine$calc)^2
 ```
 
 
-3.  ggMarginal
+***
+
+4. ¿Como se interpreta el coeficiente de determinación?
+
+***
+
+5.  Usa la funcción **ggMarginal** del paquete ggEXTRA
 
 Selecciona un par de variables de la correlación anterior:
 
-  + Prepare un gráfico para demostrar la correlación y su distribución usando ggMarginal (2 puntos). 
-  + Interpretar el gráfico (2 puntos)
+  + Prepare un gráfico para demostrar la correlación y su distribución usando **ggMarginal**. 
+  + Interpretar el gráfico y compara con la prueba de normalidad que hiciste anteriormente
+  + salva el grafico en formato .jpeg o .png
 
 ```{r, eval=FALSE, echo=FALSE}
 library(ggplot2)
@@ -115,10 +149,9 @@ p
 ggExtra::ggMarginal(p, type = "histogram")
 ```
 
-4. Busqueda de literatura
+***
 
- + Buscar en la literatura evidencia de la ultima grafica/correlación y como interpretar esta correlación (2 puntos)
- + Añadir las referencias  (2 puntos)
+6. ¿Cual son los supuestos para usar la correlación de Pearson?
 
 
 

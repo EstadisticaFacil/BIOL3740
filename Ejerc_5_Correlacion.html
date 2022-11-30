@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -603,9 +603,11 @@ div.tocify {
 </div>
 
 
-<div id="ejercicio-de-corelación-trabajo-para-entregar"
+<div
+id="ejercicio-de-corelación-despues-de-hacer-los-ejercicios-habrá-preguntas-en-msteam-para-contestar."
 class="section level1">
-<h1>Ejercicio de Corelación: Trabajo para entregar</h1>
+<h1>Ejercicio de Corelación: Despues de hacer los ejercicios habrá
+preguntas en MSTeam para contestar.</h1>
 <p>Objetivos:</p>
 <ul>
 <li>Determinar si el estudiante puede evaluar si las variables tienen
@@ -615,8 +617,12 @@ correspondiente</li>
 <li>Calcular el coeficiente de determinación</li>
 <li>Visualizar la correlación</li>
 </ul>
+<hr />
 <div id="los-datos" class="section level2">
 <h2>Los Datos</h2>
+<p>The data were obtained from Andrews, D.F. and Herzberg, A.M. (1985)
+Data: A Collection of Problems from Many Fields for the Student and
+Research Worker. Springer-Verlag.</p>
 <p>Las variables en el archivo <strong>urine</strong> en el paquete
 <strong>boot</strong></p>
 <ul>
@@ -632,19 +638,8 @@ proportional to the concentration of charged ions in solution.</p></li>
 <li><p>calc = The calcium concentration in millimoles per
 litre.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;boot&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:car&#39;:
-## 
-##     logit</code></pre>
-<pre><code>## The following object is masked from &#39;package:survival&#39;:
-## 
-##     aml</code></pre>
-<pre><code>## The following object is masked from &#39;package:lattice&#39;:
-## 
-##     melanoma</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(urine) </span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(urine) </span></code></pre></div>
 <pre><code>##   r gravity   ph osmo cond urea calc
 ## 1 0   1.021 4.91  725   NA  443 2.45
 ## 2 0   1.017 5.74  577 20.0  296 4.49
@@ -652,57 +647,68 @@ litre.</p></li>
 ## 4 0   1.011 5.51  408 12.6  224 2.15
 ## 5 0   1.005 6.52  187  7.5   91 1.16
 ## 6 0   1.020 5.27  668 25.3  252 3.34</code></pre>
+<hr />
 <ol style="list-style-type: decimal">
 <li>Evaluar si las 6 variables (excluye la variable “r”) cumple con
-distribución normales. Usa uno de los métodos que hemos aprendido para
-evaluar cada variable.</li>
+distribución normales.</li>
 </ol>
 <ul>
-<li>Explicar que prueba utilizas y interpretas los resultados. (5
-puntos)</li>
+<li><p>Usa dos de los métodos que hemos aprendido para evaluar cada
+variable si cumple con distribución normal.</p></li>
+<li><p>Explicar que prueba utilizas y interpretas los
+resultados.</p></li>
 </ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Usando el gráfico de qq-plot gráfica la correlación “menos normal”
+de las pruebas anteriores. Salva este gráfico en .png o .jpeg.</li>
+</ol>
+<hr />
 <ol start="2" style="list-style-type: decimal">
 <li>Estimado de correlación entre las seis variables</li>
 </ol>
 <ul>
 <li><p>Tomando en cuenta lo que observaste en la pruebas anterior,
-selecciona la prueba correcta para evaluar la correlación entre las
-variables. (5 puntos). Tiene que seleccionar la prueba correcta, no hay
-puntos parcial.</p>
+selecciona la prueba correcta entre Pearson o Kendall, para evaluar la
+correlaciones entre las variables. Tiene que seleccionar la prueba
+correcta.</p>
 <ul>
-<li>Cual variables tienen una correlación mayor (2 puntos)</li>
-<li>Cual variables tiene la correlación menor (2 puntos)</li>
+<li>Cual variables tienen una correlación mayor</li>
+<li>Cual variables tiene la correlación menor</li>
 </ul></li>
 </ul>
+<hr />
 <ol start="3" style="list-style-type: decimal">
 <li>Coeficiente de determinación</li>
 </ol>
 <ul>
-<li>Calcula el coeficiente de determinación entre: (2 puntos)
+<li>Calcula el coeficiente de determinación entre:
 <ul>
-<li>gravity y urea</li>
+<li>calcium y urea</li>
 <li>ph y calc</li>
 </ul></li>
 <li>Cual de estos pares explica mejor la relación entre una variable y
 la otra (2 puntos)</li>
 </ul>
-<ol start="3" style="list-style-type: decimal">
-<li>ggMarginal</li>
+<hr />
+<ol start="4" style="list-style-type: decimal">
+<li>¿Como se interpreta el coeficiente de determinación?</li>
+</ol>
+<hr />
+<ol start="5" style="list-style-type: decimal">
+<li>Usa la funcción <strong>ggMarginal</strong> del paquete ggEXTRA</li>
 </ol>
 <p>Selecciona un par de variables de la correlación anterior:</p>
 <ul>
 <li>Prepare un gráfico para demostrar la correlación y su distribución
-usando ggMarginal (2 puntos).</li>
-<li>Interpretar el gráfico (2 puntos)</li>
+usando <strong>ggMarginal</strong>.</li>
+<li>Interpretar el gráfico y compara con la prueba de normalidad que
+hiciste anteriormente</li>
+<li>salva el grafico en formato .jpeg o .png</li>
 </ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Busqueda de literatura</li>
+<hr />
+<ol start="6" style="list-style-type: decimal">
+<li>¿Cual son los supuestos para usar la correlación de Pearson?</li>
 </ol>
-<ul>
-<li>Buscar en la literatura evidencia de la ultima grafica/correlación y
-como interpretar esta correlación (2 puntos)</li>
-<li>Añadir las referencias (2 puntos)</li>
-</ul>
 </div>
 </div>
 

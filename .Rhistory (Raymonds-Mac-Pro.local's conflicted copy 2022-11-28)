@@ -1,0 +1,512 @@
+dias_E=tribble(
+~dias_e,
+0,6,12,3,3,5,4,1,
+3,9,6,0,7,6,3,4,
+7,4,7,1,0,8,12,3,
+2,5,10,5,15,3,2,5,
+3,11,8,2,2,4,1,9
+)
+dias_E
+t.test(dias_E$dias_e, alternative="two.sided", mu=10, conf.level = .95)
+install.packages(c("curl", "Ecfun", "effectsize", "evaluate", "gert", "ggforce", "isoband", "lifecycle", "nlme", "purrr", "rainbow", "rmarkdown", "RSQLite", "Rttf2pt1", "testthat"))
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gt)
+Distancia_Estrellas=tribble(
+~Distancia,
+8.6,36.7,42.2,16.8,33.7,87.9,4.4,25.3,11.4,25.1,51.5
+)
+gt(Distancia_Estrellas)
+PR_poblacion=tribble(
+~Poblacion,
+18.0, 38.1,55.1,24.2,24.6,25.6,87.7,15.8,22.7,28.9,185.2,47.1,127.2
+)
+gt(PR_poblacion)
+Dinero_Artista=tribble(
+~Artista, ~Dinero,
+"Kurt Corbain", 50,
+"Elvis Presley",42,
+"Charles Chultz", 35,
+"John Lennon", 24,
+"Ray Charles", 10,
+"Marilyn Monroe",8,
+"Johny Cash",8,
+"J.R.R. Tolkein", 7,
+"George Harrison", 7,
+"Bob Marley",7,
+"Albert Einstein" ,20,
+"And Wharhol",19
+)
+gt(Dinero_Artista)
+Fallecidos_Carro=tribble(
+~Fallecidos,
+778,309,1110,324,705,1067,826,76,205,152,218,492,
+65,186,712,193,262,452,875,82,
+730,1185,2707,1279,390,305,123,948,343,602,
+69,451,951,104,985,155,450,2080,565,875,
+414,981,2786,82,793,214,130,396,620,797
+)
+gt(Fallecidos_Carro)
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gt)
+knitr::include_graphics("Graficos/sparrow.jpg")
+library(ggversa)
+gt(head(SparrowsElphick))
+ggplot(SparrowsElphick, aes(wt))+
+geom_histogram(colour="white")+
+ylab("Fecuencia")+
+xlab("Peso en gramos de los ")
+ggplot(SparrowsElphick, aes(wt))+
+geom_histogram(aes(y=..density..),colour="white")+
+ylab("Fecuencia")+
+xlab("Peso en gramos de los ")+
+stat_function(fun = dnorm,
+args = list(mean = mean(SparrowsElphick$wt, na.rm = TRUE),
+sd = sd(SparrowsElphick$wt, na.rm = TRUE)),
+colour = "green", size = 1)
+ggplot(SparrowsElphick, aes(sample=wt))+
+geom_qq()+
+geom_qq_line(colour="blue")
+shapiro.test(SparrowsElphick$wt)
+length(SparrowsElphick$wt)
+library(nortest)
+ad.test(SparrowsElphick$wt)
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gt)
+knitr::include_graphics("Graficos/sparrow.jpg")
+library(ggversa)
+gt(head(SparrowsElphick))
+shapiro.test(SparrowsElphick$wt)
+length(SparrowsElphick$wt)
+shapiro.test(SparrowsElphick$wt)
+length(SparrowsElphick$wt)
+library(nortest)
+ad.test(SparrowsElphick$wt)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+UL=20+abs(qt(0.025, 19)*1.76/sqrt(20))
+LL=20-abs(qt(0.025, 19)*1.76/sqrt(20))
+UL
+LL
+UL=0.9+qt(0.025, 19)*0.4/sqrt(20)
+LL=0.9-qt(0.025, 19)*0.4/sqrt(20)
+UL
+LL
+abs(qt(0.025, 19))  # valor de t-critico, de la tabla
+abs(qt(0.025, 20))  # valor de t-critico, de la tabla
+abs(qt(0.025, 18))  # valor de t-critico, de la tabla
+install.packages(c("actuar", "ade4", "AER", "afex", "akima", "AlgDesign", "aod", "arm", "aweek", "BaSTA", "bayestestR", "BiocManager", "blob", "bookdown", "brew", "broom", "broom.mixed", "bslib", "callr", "car", "caret", "checkmate", "chron", "circlize", "classInt", "cli", "clue", "cluster", "cobs", "commonmark", "compareDF", "conquer", "cpp11", "crayon", "crul", "cubature", "curl", "data.table", "datawizard", "datos", "DBI", "dbplyr", "ddalpha", "DEoptimR", "desc", "desctable", "DescTools", "deSolve", "devtools", "DHARMa", "dials", "digest", "distributional", "dlstats", "dotCall64", "downlit", "dplyr", "DT", "dtplyr", "e1071", "Ecdat", "Ecfun", "effects", "effectsize", "ellipse", "emmeans", "enetLTS", "estimability", "evaluate", "Exact", "expint", "expss", "extRemes", "FactoMineR", "fansi", "farver", "fBasics", "fda", "fGarch", "flexmix", "flextable", "FNN", "fontawesome", "forcats", "foreign", "formatR", "furrr", "future", "future.apply", "gap", "gargle", "gbm", "gdata", "generics", "geometry", "gert", "gganimate", "ggcorrplot", "ggeffects", "ggExtra", "ggforce", "ggformula", "ggplot2", "ggridges", "ggsignif", "gh", "gifski", "gitcreds", "gld", "glmnet", "globals", "gmodels", "googlesheets4", "gplots", "gt", "gtable", "gtools", "hardhat", "haven", "Hmisc", "hms", "htmlTable", "htmltools", "httpuv", "httr", "huxtable", "igraph", "infer", "insight", "interp", "invGauss", "ipred", "isoband", "jsonlite", "jtools", "JuliaCall", "Kendall", "kernlab", "klaR", "knitr", "ks", "labelled", "Lahman", "lars", "latex2exp", "latticeExtra", "lavaan", "lawstat", "leaflet", "learnr", "lhs", "lifecycle", "lme4", "lmom", "lmtest", "locfit", "loo", "lpSolve", "maditr", "magrittr", "maptools", "markdown", "MASS", "Matrix", "matrixcalc", "MatrixModels", "matrixStats", "MBESS", "mboost", "mclust", "MCMCpack", "mgcv", "mi", "minqa", "mnormt", "modeldata", "modelr", "moments", "mosaic", "mosaicCore", "mosaicData", "multcomp", "nlme", "nloptr", "nnet", "np", "officer", "OpenMx", "openssl", "openxlsx", "optimx", "orthopolynom", "outliers", "packrat", "palmerpenguins", "parallelly", "parameters", "parsnip", "partykit", "patchwork", "pcaPP", "PearsonDS", "performance", "pillar", "pkgdown", "pkgload", "pkgsearch", "pls", "plyr", "polspline", "polyclip", "polynom", "posterior", "pracma", "processx", "progressr", "proxy", "ps", "pspearman", "psych", "purrr", "pwr2ppl", "quantmod", "QuantPsyc", "quantreg", "R.cache", "R.methodsS3", "R.oo", "R.utils", "ragg", "rainbow", "randomForest", "rankFD", "raster", "rbibutils", "RColorBrewer", "Rcpp", "RcppArmadillo", "RcppEigen", "RCurl", "Rdpack", "readr", "readxl", "recipes", "renv", "reprex", "reshape", "reticulate", "rgl", "rinat", "rlang", "rmarkdown", "Rmisc", "rms", "robust", "robustbase", "robustHD", "roxygen2", "rpart", "rprojroot", "rrcov", "rsample", "rsconnect", "RSQLite", "rstan", "rstanarm", "rstantools", "rstudioapi", "Rttf2pt1", "rversions", "rvest", "s2", "sandwich", "sass", "scales", "scatterplot3d", "sem", "semTools", "sf", "sfsmisc", "shiny", "sjlabelled", "sjPlot", "skimr", "sm", "sn", "snowfall", "sp", "spdep", "stagePop", "stringi", "stringr", "styler", "survival", "sys", "tables", "terra", "testthat", "TH.data", "tibble", "tidymodels", "tidyr", "tidyselect", "tidyverse", "timeDate", "timeSeries", "tinytex", "TMB", "tseries", "tune", "tweenr", "tzdb", "usethis", "uuid", "V8", "vcd", "vctrs", "vegan", "VGAM", "viridisLite", "visNetwork", "vroom", "WebPower", "webshot", "wiqid", "wk", "workflows", "workflowsets", "WRS2", "xaringan", "xfun", "XML", "xts", "yaml", "yardstick", "yulab.utils", "zip", "zoo"))
+install.packages(c("DescTools", "deSolve", "expss", "pcaPP", "rrcov"))
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+library(tidyverse)
+rlt_theme <- theme(axis.title.y = element_text(colour="grey20",size=15,face="bold"),
+axis.text.x = element_text(colour="grey20",size=10, face="bold"),
+axis.text.y = element_text(colour="grey20",size=15,face="bold"),
+axis.title.x = element_text(colour="grey20",size=15,face="bold"))+
+theme(
+# Remove panel border
+panel.border = element_blank(),
+# Remove panel grid lines
+panel.grid.major = element_blank(),
+panel.grid.minor = element_blank(),
+# Remove panel background
+panel.background = element_blank(),
+# add thicker border lines
+axis.line.x = element_line(colour = "black", size = 1),
+axis.line.y = element_line(colour = "black", size = 1)
+)
+# The palette with grey:
+cbPalette1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+# The palette with black:
+cbPalette2 <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+# To use for fills, add
+#  scale_fill_manual(values=cbPalette)
+# To use for line and point colors, add
+#scale_colour_manual(values=cbPalette)
+colorize <- function(x, color) {
+if (knitr::is_latex_output()) {
+sprintf("\\textcolor{%s}{%s}", color, x)
+} else if (knitr::is_html_output()) {
+sprintf("<span style='color: %s;'>%s</span>", color,
+x)
+} else x
+}
+#`r colorize("some words in red", "red")`
+Sys.Date()
+knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+require(Hmisc)
+require(UsingR)
+head(father.son)
+ggplot(father.son, aes(fheight, sheight))+
+geom_point()+
+rlt_theme+
+xlab("Alturas de los padres")+
+ylab("Alturas de los hijos")
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+dias_E=tribble(
+~dias_e,
+0,6,12,3,3,5,4,1,
+3,9,6,0,7,6,3,4,
+7,4,7,1,0,8,12,3,
+2,5,10,5,15,3,2,5,
+3,11,8,2,2,4,1,9
+)
+dias_E
+t.test(dias_E$dias_e, alternative="two.sided", mu=10, conf.level = .95)
+t.test(dias_E$dias_e, alternative="two.sided", mu=10, conf.level = .95)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+library(tibble)
+library(huxtable)
+Toronja=tribble(
+~Fertilizante, ~Sin_Fertilizante, ~Municipio,
+"2250",		"1920" , "Utuado",
+"2410",				"2020",  "Cabo Rojo",
+"2260",				"2060",  "Manati",
+"2200",	 			"1960",  "Yabucoa",
+"2360",				"1960", "Humacao",
+"2320",				"2140","Caguas",
+"2240",				"1980", "San Juan",
+"2300",				"1940", "Jayuya",
+"2090",				"1790","Ponce"
+)
+huxtable(Toronja)%>%
+theme_article(header_col = TRUE)%>%
+set_bottom_border(row = 1, col = everywhere, value = 1)%>%
+set_caption("La cantidad de toronjas producidas en parceles en diferentes municipios")
+Toronja$dif_F_NF=Toronja$Fertilizante-Toronja$Sin_Fertilizante
+Toronja
+Toronja=tribble(
+~Fertilizante, ~Sin_Fertilizante, ~Municipio,
+2250,		1920 , "Utuado",
+2410,				2020,  "Cabo Rojo",
+2260,				2060,  "Manati",
+2200,	 			1960,  "Yabucoa",
+2360,				1960, "Humacao",
+2320,				2140,"Caguas",
+2240,				1980, "San Juan",
+2300,				1940, "Jayuya",
+2090,				1790,"Ponce"
+)
+Toronja
+Toronja$dif_F_NF=Toronja$Fertilizante-Toronja$Sin_Fertilizante
+Toronja
+Toronja=tribble(
+~Fertilizante, ~Sin_Fertilizante, ~Municipio,
+2250,		1920 , "Utuado",
+2410,				2020,  "Cabo Rojo",
+2260,				2060,  "Manati",
+2200,	 			1960,  "Yabucoa",
+2360,				1960, "Humacao",
+2320,				2140,"Caguas",
+2240,				1980, "San Juan",
+2300,				1940, "Jayuya",
+2090,				1790,"Ponce"
+)
+Toronja
+Toronja$dif_F_NF=Toronja$Fertilizante-Toronja$Sin_Fertilizante
+Toronja
+ggplot(Toronja, aes(dif_F_NF))+
+geom_histogram()
+library(ggplot2)
+ggplot(Toronja, aes(dif_F_NF))+
+geom_histogram()
+ggsave("Mi_super_grafico.png")
+install.packages(c("actuar", "ade4", "afex", "BiocManager", "bookdown", "bslib", "callr", "colourpicker", "DescTools", "deSolve", "dials", "effectsize", "emmeans", "evaluate", "expint", "expss", "fGarch", "flextable", "fontawesome", "future", "future.apply", "ggplot2", "ggrepel", "HKprocess", "huxtable", "lava", "learnr", "lme4", "lubridate", "maps", "markdown", "Matrix", "mclust", "modelr", "parsedate", "parsnip", "PBSddesolve", "pcaPP", "pkgload", "pkgsearch", "plotly", "plyr", "processx", "ps", "R.utils", "R2admb", "RcppArmadillo", "RcppEigen", "rcrossref", "recipes", "rgdal", "rmarkdown", "rmutil", "roxygen2", "rrcov", "rstatix", "servr", "sf", "shiny", "sp", "styler", "V8", "xaringan", "XML", "zip"))
+install.packages(c("actuar", "ade4", "afex", "BiocManager", "bookdown", "bslib", "callr", "colourpicker", "DescTools", "deSolve", "dials", "effectsize", "emmeans", "evaluate", "expint", "expss", "fGarch", "flextable", "fontawesome", "future", "future.apply", "ggplot2", "ggrepel", "HKprocess", "huxtable", "lava", "learnr", "lme4", "lubridate", "maps", "markdown", "Matrix", "mclust", "modelr", "parsedate", "parsnip", "PBSddesolve", "pcaPP", "pkgload", "pkgsearch", "plotly", "plyr", "processx", "ps", "R.utils", "R2admb", "RcppArmadillo", "RcppEigen", "rcrossref", "recipes", "rgdal", "rmarkdown", "rmutil", "roxygen2", "rrcov", "rstatix", "servr", "sf", "shiny", "sp", "styler", "V8", "xaringan", "XML", "zip"))
+install.packages(c("actuar", "ade4", "afex", "BiocManager", "bookdown", "bslib", "callr", "colourpicker", "DescTools", "deSolve", "dials", "effectsize", "emmeans", "evaluate", "expint", "expss", "fGarch", "flextable", "fontawesome", "future", "future.apply", "ggplot2", "ggrepel", "HKprocess", "huxtable", "lava", "learnr", "lme4", "lubridate", "maps", "markdown", "Matrix", "mclust", "modelr", "parsedate", "parsnip", "PBSddesolve", "pcaPP", "pkgload", "pkgsearch", "plotly", "plyr", "processx", "ps", "R.utils", "R2admb", "RcppArmadillo", "RcppEigen", "rcrossref", "recipes", "rgdal", "rmarkdown", "rmutil", "roxygen2", "rrcov", "rstatix", "servr", "sf", "shiny", "sp", "styler", "V8", "xaringan", "XML", "zip"))
+install.packages(c("actuar", "ade4", "afex", "BiocManager", "bookdown", "bslib", "callr", "colourpicker", "DescTools", "deSolve", "dials", "effectsize", "emmeans", "evaluate", "expint", "expss", "fGarch", "flextable", "fontawesome", "future", "future.apply", "ggplot2", "ggrepel", "HKprocess", "huxtable", "lava", "learnr", "lme4", "lubridate", "maps", "markdown", "Matrix", "mclust", "modelr", "parsedate", "parsnip", "PBSddesolve", "pcaPP", "pkgload", "pkgsearch", "plotly", "plyr", "processx", "ps", "R.utils", "R2admb", "RcppArmadillo", "RcppEigen", "rcrossref", "recipes", "rgdal", "rmarkdown", "rmutil", "roxygen2", "rrcov", "rstatix", "servr", "sf", "shiny", "sp", "styler", "V8", "xaringan", "XML", "zip"))
+install.packages(c("actuar", "ade4", "afex", "BiocManager", "bookdown", "bslib", "callr", "colourpicker", "DescTools", "deSolve", "dials", "effectsize", "emmeans", "evaluate", "expint", "expss", "fGarch", "flextable", "fontawesome", "future", "future.apply", "ggplot2", "ggrepel", "HKprocess", "huxtable", "lava", "learnr", "lme4", "lubridate", "maps", "markdown", "Matrix", "mclust", "modelr", "parsedate", "parsnip", "PBSddesolve", "pcaPP", "pkgload", "pkgsearch", "plotly", "plyr", "processx", "ps", "R.utils", "R2admb", "RcppArmadillo", "RcppEigen", "rcrossref", "recipes", "rgdal", "rmarkdown", "rmutil", "roxygen2", "rrcov", "rstatix", "servr", "sf", "shiny", "sp", "styler", "V8", "xaringan", "XML", "zip"))
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+knitr::opts_chunk$set(
+class.source = "numberLines lineAnchors",
+class.output = c("numberLines lineAnchors chunkout")
+)
+colorize <- function(x, color) {
+if (knitr::is_latex_output()) {
+sprintf("\\textcolor{%s}{%s}", color, x)
+} else if (knitr::is_html_output()) {
+sprintf("<span style='color: %s;'>%s</span>", color,
+x)
+} else x
+}
+library(tidyverse)
+library(ggplot2)
+library(huxtable)
+library(tidyverse)
+library(ggplot2)
+library(huxtable)
+library(car)
+library(pastecs)
+library(multcomp)
+library(compute.es)
+library(WRS2)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+knitr::opts_chunk$set(
+class.source = "numberLines lineAnchors",
+class.output = c("numberLines lineAnchors chunkout")
+)
+colorize <- function(x, color) {
+if (knitr::is_latex_output()) {
+sprintf("\\textcolor{%s}{%s}", color, x)
+} else if (knitr::is_html_output()) {
+sprintf("<span style='color: %s;'>%s</span>", color,
+x)
+} else x
+}
+#`r colorize("some words in red", "red")`
+Sys.Date()
+knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+colorize <- function(x, color) {
+if (knitr::is_latex_output()) {
+sprintf("\\textcolor{%s}{%s}", color, x)
+} else if (knitr::is_html_output()) {
+sprintf("<span style='color: %s;'>%s</span>", color,
+x)
+} else x
+}
+#install.packages("car")
+#install.packages("pastecs")
+#install.packages("multcomp")
+#install.packages("compute.es")
+#install.packages("WRS2", repos="http://R-Forge.R-project.org")
+library(tidyverse)
+library(ggplot2)
+library(huxtable)
+library(car)
+library(pastecs)
+library(multcomp)
+library(compute.es)
+library(WRS2)
+library(tibble)
+Tipo_errorI=tribble(
+~Cantidad_Grupo_k, ~C, ~"0.05", ~"0.01",
+"2","1","0.05", "0.01",
+"3", "3", "0.14", "0.03",
+"4", "6", "0.26", "0.06",
+"5", "10", "0.40", "0.10",
+"6", "15", "0.54", "0.14"
+)
+huxtable(Tipo_errorI)%>%
+theme_article(header_col = FALSE)%>%
+set_bottom_border(row = 1, col = everywhere, value = 1) %>%
+set_caption("La probabilidad de cometer un error tipo I usando la prueba de t para cada pares de prueba (C)")%>%
+add_footnote("* C=k(k-1)/2, que es la cantidad de comparación")
+id<-(1:16)
+Cant_Fos<-c(55,56,64,45,44,
+37,36,35,38,39,
+12,28,15,16,11,9)
+Lagos<-c(rep(1,5),rep(2,5), rep(3,6))
+Lagos<-factor(Lagos, levels = c(1:3),
+labels = c("Caraizo", "DosBocas", "Guineo"))
+fosforo<-data.frame(id,Cant_Fos,Lagos)
+fosforo
+mean_fosforo=mean(fosforo$Cant_Fos)
+mean_fosforo
+ggplot(fosforo, aes(Lagos, Cant_Fos, colour=Lagos))+
+geom_jitter(width = 0.1)+
+geom_hline(yintercept = mean_fosforo) # geom_hline = linea horizontal
+plot(1:16, Cant_Fos, ylim=c(0, 60), ylab="y", xlab = "order", pch=21, bg="red")
+abline(h=mean(Cant_Fos), col="blue")
+for(i in 1:16) lines(c(i,i), c(mean(Cant_Fos), Cant_Fos[i]), col="green")
+plot(1:16, Cant_Fos, ylim=c(0, 70), ylab="y", xlab = "order", pch=21, bg="black")
+abline(h=mean(Cant_Fos[Lagos=="Caraizo"]), col="blue")
+abline(h=mean(Cant_Fos[Lagos=="DosBocas"]), col="red")
+abline(h=mean(Cant_Fos[Lagos=="Guineo"]), col="orange")
+index<- 1:length(Cant_Fos)
+for (i in 1:length(index)){
+if(Lagos[i]=="Caraizo")
+lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="Caraizo"]), Cant_Fos[i]), col="blue")
+else if (Lagos[i]=="Guineo")
+lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="Guineo"]), Cant_Fos[i]), col="orange")
+else
+lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="DosBocas"]), Cant_Fos[i]), col="red")
+}
+id<-(1:16)
+Cant_Fos<-c(52,66,60,54,64,
+56,58,65,49,58,
+21,24,22,21,21,21)
+Lagos<-c(rep(1,5),rep(2,5), rep(3,6))
+Lagos<-factor(Lagos, levels = c(1:3),
+labels = c("Caraizo", "DosBocas", "Guineo"))
+fosforo2<-data.frame(id,Cant_Fos,Lagos)
+attach(fosforo2)
+plot(1:16, Cant_Fos, ylim=c(0, 70), ylab="y", xlab = "order", pch=21, bg="black")
+abline(h=mean(Cant_Fos[Lagos=="Caraizo"]), col="blue")
+abline(h=mean(Cant_Fos[Lagos=="DosBocas"]), col="red")
+abline(h=mean(Cant_Fos[Lagos=="Guineo"]), col="orange")
+index<- 1:length(Cant_Fos)
+for (i in 1:length(index)){
+if(Lagos[i]=="Caraizo")
+lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="Caraizo"]), Cant_Fos[i]), col="blue")
+else if (Lagos[i]=="Guineo")
+lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="Guineo"]), Cant_Fos[i]), col="orange")
+else
+lines(c(index[i], index[i]), c(mean(Cant_Fos[Lagos=="DosBocas"]), Cant_Fos[i]), col="red")
+}
+library(ggplot2)
+ggplot(fosforo, aes(x=Lagos, y=Cant_Fos, colour=Lagos))+
+geom_point()+
+stat_summary(fun = mean, geom = "point", size = 2,
+aes(group=1), colour = "black")+
+stat_summary(fun = mean, geom = "line", size = 1,
+aes(group=1), colour = "red")
+library(Rmisc)
+sum = summarySE(fosforo,
+measurevar="Cant_Fos",
+groupvars="Lagos")
+sum
+ggplot(sum, aes(x=Lagos,
+y=Cant_Fos)) +
+geom_point(colour="blue")+
+geom_errorbar(aes(ymin=Cant_Fos-2*se,
+ymax=Cant_Fos+2*se),
+width=.2, size=0.7)
+library(pastecs)
+by(fosforo$Cant_Fos, fosforo$Lagos, stat.desc)
+library(car)
+leveneTest(fosforo$Cant_Fos, fosforo$Lagos)
+ggplot(fosforo, aes(sample = Cant_Fos)) +
+stat_qq() +
+stat_qq_line(colour="blue")+
+xlab("Valores teóricos")+
+ylab("Valores observados")
+LagosModel<-aov(Cant_Fos~Lagos, data = fosforo)
+summary(LagosModel)
+plot(LagosModel)
+pairwise.t.test(fosforo$Cant_Fos, fosforo$Lagos, p.adjust.method = "bonferroni") # Nota aqui se usa los datos originales, el error de todos las pruebas se limita a 5%.
+library(multcomp)
+postHocs.1<-glht(LagosModel, linfct = mcp(Lagos = "Tukey"))
+summary(postHocs.1)
+library(readr)
+Superhero <- read_csv("Data_files_csv/Superhero.csv")
+tail(Superhero)
+unique(Superhero$heronames)
+#Superhero
+Superhero$heronames<-factor(Superhero$hero, levels = c(1:4),
+labels = c("Spiderman","Superman", "Hulk", "Ninja Turtle"))
+Superhero
+names(Superhero)
+library(ggplot2)
+line <- ggplot(Superhero, aes(heronames, injury))
+line +geom_point()+
+stat_summary(fun.y = mean, geom = "line", size = 1,
+aes(group=1), colour = "#FF6633")+
+stat_summary(fun.y = mean, geom = "point", size = 3,
+aes(group=1), colour = "red")
+library(car)
+car::leveneTest(Superhero$injury, Superhero$heronames)
+library(Rmisc)   # this is a function to create
+#a data frame of summary data
+sum2 = summarySE(Superhero,
+measurevar="injury",
+groupvars=c("heronames"))
+sum2
+ggplot(sum2, aes(x=heronames,
+y=injury)) +
+geom_errorbar(aes(ymin=injury-2*se,
+ymax=injury+2*se),
+width=.2, size=0.7)+
+geom_point(colour="blue")
+# Hacer la prueba de ANOVA con aov()
+SuperHeroModel<-aov(injury~heronames, data = Superhero)
+summary(SuperHeroModel)
+summary.lm(SuperHeroModel)
+# Evaluar la figura de los residuales
+# Evaluar la grafica de qq
+plot(SuperHeroModel)
+# Hacer la prueba de post-hoc si es necesario!!!!!
+pairwise.t.test(Superhero$injury, Superhero$heronames, p.adjust.method = "bonferroni")
+postHocs.2<-glht(SuperHeroModel, linfct = mcp(heronames = "Tukey"))
+summary(postHocs.2)
+#Superhero
+Superhero$heronames<-factor(Superhero$hero, levels = c(1:4),
+labels = c("Spiderman","Superman", "Hulk", "Ninja Turtle"))
+Superhero
+names(Superhero)
+bartlett.test(injury~heronames, data=Superhero)
+car::leveneTest(Superhero$injury, Superhero$heronames)
+# Hacer la prueba de ANOVA con aov()
+SuperHeroModel<-aov(injury~heronames, data = Superhero)
+summary(SuperHeroModel)
+summary.lm(SuperHeroModel)
+summary(SuperHeroModel)
+# Evaluar la figura de los residuales
+# Evaluar la grafica de qq
+plot(SuperHeroModel)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+colorize <- function(x, color) {
+if (knitr::is_latex_output()) {
+sprintf("\\textcolor{%s}{%s}", color, x)
+} else if (knitr::is_html_output()) {
+sprintf("<span style='color: %s;'>%s</span>", color,
+x)
+} else x
+}
+#`r colorize("some words in red", "red")`
+Sys.Date()
+knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+library(ggplot2)
+library(readr)
+DownloadFestival <- read_csv("Data_files_csv/DownloadFestival.csv")
+dlf=DownloadFestival  #use shorter data.frame names to make your life easier.....
+head(dlf)
+tail(dlf)
+summary(dlf)
+dlf2=subset(dlf, dlf$day1<5)
+ggplot(dlf2, aes(day1))+
+geom_histogram(color="white")
+library(ggplot2)
+head(dlf2)
+x_val=c(5,4,4,6,8)
+y_val=c(8,9,10,13,15)
+Person=c(1,2,3,4,5)
+meanx=mean(x_val)
+df=data.frame(Person,x_val,y_val)
+df
+ggplot(df)+
+geom_point(data=df, aes(x=Person,y=x_val),colour="Blue")+
+geom_point(data=df,aes(x=Person,y=y_val), colour="red")+
+geom_hline(aes(yintercept=mean(df$x_val)),colour="Blue")+
+geom_hline(aes(yintercept=mean(df$y_val)),colour="red")
+cor(df$x_val, df$y_val)
+cor.test(df$x_val, df$y_val)
+library(readr)
+Exam_Anxiety <- read_csv("Data_files_csv/Exam Anxiety.csv")
+examData=Exam_Anxiety
+head(examData)
+ggplot(examData, aes(y=Exam, x=Anxiety))+
+geom_point()
+cor.test(examData$Exam,examData$Anxiety)
+library(knitr)
+library(png)
+img3_path<-"Graficos/Bivariate_normal.png"
+include_graphics(img3_path)
+library(GGally)
+head(examData)
+ggpairs(examData, ggplot2::aes(colour=Gender))
+ggpairs(examData[,c(2:5)], ggplot2::aes(colour=Gender))
+library(readr)
+Lep_rupPetal_All_Data <- read_csv("Data_files_csv/Lep_rupPetal_All_Data.csv")
+Lep=Lep_rupPetal_All_Data
+names(Lep)
+library(Hmisc)
+rcorr(as.matrix(examData[,c("Exam","Anxiety","Revise")]))
+library(knitr)
+library(png)
+img4_path<-"Graficos/Stanton.png"
+include_graphics(img4_path)
+library(Hmisc)
+library(readr)
+The_Biggest_Liar <- read_csv("Data_files_csv/The Biggest Liar.csv")
+liarData=The_Biggest_Liar
+head(liarData)
+cor(liarData$Position, liarData$Creativity, method = "pearson")
+cor(liarData$Position, liarData$Creativity, method = "spearman")
+cor(liarData$Position, liarData$Creativity, method = "kendall")
+bootTau=function(liarData,i)cor(liarData$Position[i],liarData$Creativity[i],
+use="complete.obs",method = "kendall")
+ggplot(liarData, aes(Creativity, Position))+
+geom_point()
