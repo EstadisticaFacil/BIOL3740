@@ -628,8 +628,7 @@ div.tocify {
 <pre><code>## [1] &quot;2022-11-30&quot;</code></pre>
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
 <hr />
-<p>Activar las librerias, averiguar que TIENE instalado estos
-paquetes</p>
+<p>Activar las librerias, averiguar que TIENE instalado estos paquetes</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(QuantPsyc)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
@@ -639,18 +638,10 @@ paquetes</p>
 <hr />
 <div id="regresión-lineal" class="section level1">
 <h1>Regresión Lineal</h1>
-<p>La regresión lineal es el modelo básico de evaluar si hay una
-relación <em>lineal</em> o sea <em>recta</em> entre dos variable. Esta
-relación entre las variables puedes ser positiva o negativa. Hay otro
-tipos de regresión, que incluye regresión no lineal tal como cuadrática
-<span class="math display">\[x^2\]</span> o cúbica <span
-class="math display">\[x^3\]</span>, logarítmica <span
-class="math display">\[log(x)\]</span> entre muchas otras
-alternativas.</p>
+<p>La regresión lineal es el modelo básico de evaluar si hay una relación <em>lineal</em> o sea <em>recta</em> entre dos variable. Esta relación entre las variables puedes ser positiva o negativa. Hay otro tipos de regresión, que incluye regresión no lineal tal como cuadrática <span class="math display">\[x^2\]</span> o cúbica <span class="math display">\[x^3\]</span>, logarítmica <span class="math display">\[log(x)\]</span> entre muchas otras alternativas.</p>
 <p>Aquí estaremos evaluando solamente la regresión lineal</p>
 <p>Primero paso es subir los datos:</p>
-<p>El números de barres en un bario y la cantidad de asesinados en este
-barrio (Datos ficticios)</p>
+<p>El números de barres en un bario y la cantidad de asesinados en este barrio (Datos ficticios)</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pubs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/pubs.csv&quot;</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pubs</span></code></pre></div>
@@ -673,50 +664,13 @@ barrio (Datos ficticios)</p>
 </div>
 <div id="la-función-lm" class="section level1">
 <h1>la función lm()</h1>
-<p>Como hacer un regresión lineal (Linear Regression) simple, usando la
-función <strong>lm()</strong>, para “linear model”= modelo lineal. Una
-regresión necesita dos variable continuas (vea el módulo de
-correlación). Es importante que estas variable tenga una distribución
-normales. La diferencia entre una correlación y una regresión es que la
-primera es un análisis que describe el patrón y en la segunda es que no
-solamente describe el patrón pero hace predicción sobre la relación
-entre las variables. Usando la regresión uno calcula tambien una linea
-que describe la relación entre las variables. Esta variable se puede
-describe como <span class="math inline">\(y=m_x+b\)</span> donde la
-<strong>m</strong> representa la pendiente y la <em>b</em> representa el
-intercepto. También lo pueden ver en libros de la siguiente forma <span
-class="math inline">\(y=\alpha+\beta_x\)</span> donde la <span
-class="math inline">\(\beta\)</span> <em>beta</em> representa la
-pendiente y la <span class="math inline">\(\alpha\)</span> el
-intercepto.</p>
-<p>La formula de lm() se compone de lm(y~x, data= “df”). Nota la tilde
-<strong>~</strong>. Hay dos pruebas la priemra para determinar si <span
-class="math inline">\(\alpha\)</span> es distinto de cero. La hipótesis
-nula es</p>
-<p>Ho: el intercepto <span class="math inline">\(\alpha\)</span> es
-igual a cero Ha: el intercepto, <span
-class="math inline">\(\alpha\)</span> no es igual a cero. Entonces el
-punto donde la linea intercepta el cero puede estar mayor de o menor de
-cero.</p>
-<p>La segunda hipótesis nula es que la pendiente es diferente de cero,
-esto quiere decir que la pendiente no sugiere un patrón de aumentar y
-disminuir entre las dos variables.</p>
-<p>Ho: la pendiente <span class="math inline">\(\beta\)</span> es igual
-a cero Ha: la pendiente, <span class="math inline">\(\alpha\)</span> no
-es igual a cero. Entonces la relación entre las dos variables es o
-positiva o negativa.</p>
-<p>Ahora evaluamos los resultados de la regresión entre el número de
-barres en un vecindarios y la mortalidad en este mismo sector. Se
-observa que los coeficientes de la linea son <span
-class="math inline">\(y=3352+14.3*x\)</span>. Entonce el intercepto en
-cero comienza en 3352 fatalidades y por cada bar suplementario hay 14.3
-más fatalidad.</p>
-<p>Ahora para determinar si estos valores son significativo hay que
-evaluar el valor de <strong>p</strong> en cada linea. La hipótesis nula
-del intercepto tiene un valor de p =0.005, que sugiere que se debería
-rechazar la hipótesis nula, y por consecuencia aceptamos la hipótesis
-alterna. La pendiente tiene un valor de p=0.015 y también se rechaza la
-hipotesis nula.</p>
+<p>Como hacer un regresión lineal (Linear Regression) simple, usando la función <strong>lm()</strong>, para “linear model”= modelo lineal. Una regresión necesita dos variable continuas (vea el módulo de correlación). Es importante que estas variable tenga una distribución normales. La diferencia entre una correlación y una regresión es que la primera es un análisis que describe el patrón y en la segunda es que no solamente describe el patrón pero hace predicción sobre la relación entre las variables. Usando la regresión uno calcula tambien una linea que describe la relación entre las variables. Esta variable se puede describe como <span class="math inline">\(y=m_x+b\)</span> donde la <strong>m</strong> representa la pendiente y la <em>b</em> representa el intercepto. También lo pueden ver en libros de la siguiente forma <span class="math inline">\(y=\alpha+\beta_x\)</span> donde la <span class="math inline">\(\beta\)</span> <em>beta</em> representa la pendiente y la <span class="math inline">\(\alpha\)</span> el intercepto.</p>
+<p>La formula de lm() se compone de lm(y~x, data= “df”). Nota la tilde <strong>~</strong>. Hay dos pruebas la priemra para determinar si <span class="math inline">\(\alpha\)</span> es distinto de cero. La hipótesis nula es</p>
+<p>Ho: el intercepto <span class="math inline">\(\alpha\)</span> es igual a cero Ha: el intercepto, <span class="math inline">\(\alpha\)</span> no es igual a cero. Entonces el punto donde la linea intercepta el cero puede estar mayor de o menor de cero.</p>
+<p>La segunda hipótesis nula es que la pendiente es diferente de cero, esto quiere decir que la pendiente no sugiere un patrón de aumentar y disminuir entre las dos variables.</p>
+<p>Ho: la pendiente <span class="math inline">\(\beta\)</span> es igual a cero Ha: la pendiente, <span class="math inline">\(\alpha\)</span> no es igual a cero. Entonces la relación entre las dos variables es o positiva o negativa.</p>
+<p>Ahora evaluamos los resultados de la regresión entre el número de barres en un vecindarios y la mortalidad en este mismo sector. Se observa que los coeficientes de la linea son <span class="math inline">\(y=3352+14.3*x\)</span>. Entonce el intercepto en cero comienza en 3352 fatalidades y por cada bar suplementario hay 14.3 más fatalidad.</p>
+<p>Ahora para determinar si estos valores son significativo hay que evaluar el valor de <strong>p</strong> en cada linea. La hipótesis nula del intercepto tiene un valor de p =0.005, que sugiere que se debería rechazar la hipótesis nula, y por consecuencia aceptamos la hipótesis alterna. La pendiente tiene un valor de p=0.015 y también se rechaza la hipotesis nula.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pubReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortalidad<span class="sc">~</span>barres, <span class="at">data =</span> pubs) </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(pubReg) # Si no se acuerda de la funcíon que sigue</span></span>
@@ -811,9 +765,7 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </div>
 <div id="visualización-de-la-regresión" class="section level1">
 <h1>Visualización de la regresión</h1>
-<p>Se observa que hay un aumento en fatalidades con aumento en el número
-de barres. Pero nota el valor a la derecha que parece ser muy atípico
-comparado a los otros.</p>
+<p>Se observa que hay un aumento en fatalidades con aumento en el número de barres. Pero nota el valor a la derecha que parece ser muy atípico comparado a los otros.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pubs, <span class="fu">aes</span>(<span class="at">x=</span>barres, <span class="at">y=</span>mortalidad))<span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)<span class="sc">+</span> <span class="co"># modelo lineal</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
@@ -822,12 +774,7 @@ comparado a los otros.</p>
 </div>
 <div id="el-impacto-de-valores-atípico" class="section level1">
 <h1>El impacto de valores atípico</h1>
-<p>En cierta ocasiones valores fuera de lo normal pueden hacer grandes
-cambios en el resultado, en este caso la regresión. ¿Cual es el efecto
-del valor grande? Removemos ese valor del archivo de datos y revaluamos
-el modelo (la regresión lineal). Nota que ahora el modelo es sumamente
-diferente <span class="math inline">\(y=-163.7+103.2*x\)</span>. ¿Ahora
-se rechaza las dos hipótesis?</p>
+<p>En cierta ocasiones valores fuera de lo normal pueden hacer grandes cambios en el resultado, en este caso la regresión. ¿Cual es el efecto del valor grande? Removemos ese valor del archivo de datos y revaluamos el modelo (la regresión lineal). Nota que ahora el modelo es sumamente diferente <span class="math inline">\(y=-163.7+103.2*x\)</span>. ¿Ahora se rechaza las dos hipótesis?</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pubsnew <span class="ot">&lt;-</span> pubs[ <span class="fu">which</span>(pubs<span class="sc">$</span>barres<span class="sc">&lt;</span><span class="dv">80</span>), ]  <span class="co"># remover el valor grande</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pubsnew<span class="ot">=</span>pubsnew <span class="sc">%&gt;%</span> </span>
@@ -931,14 +878,8 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </div>
 <div id="la-venta-de-discos-de-música" class="section level1">
 <h1>La venta de discos de música</h1>
-<p>Ahora un set de datos más complejo y más realista a los que uno
-encontraría en un estudio de en medicina, sociología o ecológica.</p>
-<p>Los datos representa la cantidad de dinero dedicado a la promoción de
-diferentes CD’s de una compañia de música y la cantidad de CD
-(CD/downloads) vendido. El la primera linea se observa la cantidad de
-libras esterlina, <strong>£</strong> (UK) dedicado a la promoción del
-album de música, en la primera linea vemos que se gasto £10,256, y
-después la cantidad de CD vendido fue 330.</p>
+<p>Ahora un set de datos más complejo y más realista a los que uno encontraría en un estudio de en medicina, sociología o ecológica.</p>
+<p>Los datos representa la cantidad de dinero dedicado a la promoción de diferentes CD’s de una compañia de música y la cantidad de CD (CD/downloads) vendido. El la primera linea se observa la cantidad de libras esterlina, <strong>£</strong> (UK) dedicado a la promoción del album de música, en la primera linea vemos que se gasto £10,256, y después la cantidad de CD vendido fue 330.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Album_Sales_1_new <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Album_Sales_1_new.csv&quot;</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
@@ -953,25 +894,8 @@ después la cantidad de CD vendido fue 330.</p>
 ## 6   569.    170</code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(Album_Sales_1_new<span class="sc">$</span>adverts)  <span class="co"># cuantas files de datos hay en el data frame</span></span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
-<p>Comenzamos con hacer un gráfico entre las dos variables. Nota que en
-la parte de <strong>geom_smooth()</strong>, tiene que incluir
-<strong>method=lm</strong>, esto significa que el método de construir la
-linea usara la regresión lineal. Se añade a la función lineal <span
-class="math inline">\(\epsilon\)</span> que representa los errores de
-los valores al comparar con la linea que representa el mejor modelo.</p>
-<p><span class="math display">\[Y_{ i }=\beta _{ 0 }+\beta _{ 1 }X_{ i
-}+\epsilon _{ i }\]</span> Recuerda que <span
-class="math inline">\(\beta _{ 0 }\)</span> es el intercepto y el <span
-class="math inline">\(\beta _{ 1 }X_{ i }\)</span> es la pendiente. El
-área sombreada es el área de 95 de intervalo de confianza. Esto quiere
-decir que la mejor linea, intercepto y pendiente podría variar en este
-rango si repetimos el experimento. Nota aquí todas las alternativas,
-añadí los dos extremos, con una pendiente mayor (roja) y una menor
-(violeta). Cada punto representa la venta de CD con su correspondiente
-cantidad dedicada a la promoción. Los <span
-class="math inline">\(epsilon\)</span> seria la diferencia entre la
-mejor linea y el valor original, esto se llama tambien los
-residuales.</p>
+<p>Comenzamos con hacer un gráfico entre las dos variables. Nota que en la parte de <strong>geom_smooth()</strong>, tiene que incluir <strong>method=lm</strong>, esto significa que el método de construir la linea usara la regresión lineal. Se añade a la función lineal <span class="math inline">\(\epsilon\)</span> que representa los errores de los valores al comparar con la linea que representa el mejor modelo.</p>
+<p><span class="math display">\[Y_{ i }=\beta _{ 0 }+\beta _{ 1 }X_{ i }+\epsilon _{ i }\]</span> Recuerda que <span class="math inline">\(\beta _{ 0 }\)</span> es el intercepto y el <span class="math inline">\(\beta _{ 1 }X_{ i }\)</span> es la pendiente. El área sombreada es el área de 95 de intervalo de confianza. Esto quiere decir que la mejor linea, intercepto y pendiente podría variar en este rango si repetimos el experimento. Nota aquí todas las alternativas, añadí los dos extremos, con una pendiente mayor (roja) y una menor (violeta). Cada punto representa la venta de CD con su correspondiente cantidad dedicada a la promoción. Los <span class="math inline">\(epsilon\)</span> seria la diferencia entre la mejor linea y el valor original, esto se llama tambien los residuales.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Album_Sales_1_new,<span class="fu">aes</span>(<span class="at">x=</span>adverts, <span class="at">y=</span>sales))<span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se =</span> <span class="cn">TRUE</span>)<span class="sc">+</span></span>
@@ -979,9 +903,7 @@ residuales.</p>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">120</span>, <span class="at">xend=</span><span class="dv">2250</span>, <span class="at">yend=</span><span class="dv">380</span>), <span class="at">colour=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">150</span>, <span class="at">xend=</span><span class="dv">2250</span>, <span class="at">yend=</span><span class="dv">320</span>), <span class="at">colour=</span><span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
 <p><img src="T14_Regression_files/figure-html/advertizing%20graph-1.png" width="672" /></p>
-<p>El modelo lineal con la función <strong>lm()</strong>. ¿Como
-interpretas los coeficientes y si estos son significativos, si se
-rechaza la hipótesis nula?</p>
+<p>El modelo lineal con la función <strong>lm()</strong>. ¿Como interpretas los coeficientes y si estos son significativos, si se rechaza la hipótesis nula?</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
@@ -1088,21 +1010,12 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <div id="supuestos-de-la-regresión-lineal" class="section level1">
 <h1>Supuestos de la regresión lineal</h1>
 <ol style="list-style-type: decimal">
-<li><p>Igualdad de varianza: En el primer gráfico evaluar si los datos
-están distribuido más o menos igual. y que no un más variación un un
-área del gráfico que otro.</p></li>
-<li><p>Normalidad de los datos: En el segundo gráfico evaluar la figura
-de qqplot.</p></li>
-<li><p>Evaluar si hay datos sesgados (atípicos) que influencia los
-resultados</p></li>
-<li><p>En el cuarto gráfico evaluar si hay valores que tienen mucho peso
-si se incluyen o no en el análisis. Estos van a ser
-identificado</p></li>
+<li><p>Igualdad de varianza: En el primer gráfico evaluar si los datos están distribuido más o menos igual. y que no un más variación un un área del gráfico que otro.</p></li>
+<li><p>Normalidad de los datos: En el segundo gráfico evaluar la figura de qqplot.</p></li>
+<li><p>Evaluar si hay datos sesgados (atípicos) que influencia los resultados</p></li>
+<li><p>En el cuarto gráfico evaluar si hay valores que tienen mucho peso si se incluyen o no en el análisis. Estos van a ser identificado</p></li>
 </ol>
-<p>En el presente gráfico hay tres valores que hay que evaluar
-(1,42,169), estos valores se tiene que asegurar que son correctos.
-Siempre es bueno remover los valores sesgados y rehacer el análisis para
-observar cuan diferente son los resultas.</p>
+<p>En el presente gráfico hay tres valores que hay que evaluar (1,42,169), estos valores se tiene que asegurar que son correctos. Siempre es bueno remover los valores sesgados y rehacer el análisis para observar cuan diferente son los resultas.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1)  <span class="co"># Evaluar los supuestos, 1. Igualdad de varianza, 2. Normalidad, 4. Datos sesgados (Cook&#39;s Distance)</span></span></code></pre></div>
 <p><img src="T14_Regression_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-5-3.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
 <hr />
@@ -1110,22 +1023,11 @@ observar cuan diferente son los resultas.</p>
 <div id="cooks-distance" class="section level1">
 <h1>Cook’s Distance</h1>
 <p>Evaluar si hay unos valores que sesgan los resultados.</p>
-<p>FROM WIKIPEDIA Definition. Data points with large residuals
-(outliers) and/or high leverage may distort the outcome and accuracy of
-a regression. Cook’s distance measures the effect of deleting a given
-observation. Points with a large Cook’s distance are considered to merit
-closer examination in the analysis.</p>
-<p>Detecting highly influential observations There are different
-opinions regarding what cut-off values to use for spotting highly
-influential points. A simple operational guideline of D_i&gt;1 has been
-suggested.</p>
-<p>Others have indicated that D_i&gt;4/n, where n is the number of
-observations, might be used.</p>
-<p>Aqui enseño como añadir 1. los valores de “cook.distance” a su
-archivo 2. Añadir una columna de “secuencia” de los datos 3. Crear una
-gráfica de las distancia de Cook.<br />
-4. Which values have Di larger than 1, which values have Cook’s
-distances larger 4/n?</p>
+<p>FROM WIKIPEDIA Definition. Data points with large residuals (outliers) and/or high leverage may distort the outcome and accuracy of a regression. Cook’s distance measures the effect of deleting a given observation. Points with a large Cook’s distance are considered to merit closer examination in the analysis.</p>
+<p>Detecting highly influential observations There are different opinions regarding what cut-off values to use for spotting highly influential points. A simple operational guideline of D_i&gt;1 has been suggested.</p>
+<p>Others have indicated that D_i&gt;4/n, where n is the number of observations, might be used.</p>
+<p>Aqui enseño como añadir 1. los valores de “cook.distance” a su archivo 2. Añadir una columna de “secuencia” de los datos 3. Crear una gráfica de las distancia de Cook.<br />
+4. Which values have Di larger than 1, which values have Cook’s distances larger 4/n?</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">/</span><span class="fu">length</span>(Album_Sales_1_new<span class="sc">$</span>adverts)</span></code></pre></div>
 <pre><code>## [1] 0.02</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Album_Sales_1_new<span class="sc">$</span>cooks.distance<span class="ot">&lt;-</span><span class="fu">cooks.distance</span>(model1)</span>
@@ -1174,8 +1076,7 @@ distances larger 4/n?</p>
 <li>Primer paso, mirar los coeficientes.</li>
 </ol>
 <ul>
-<li>El resultado: El coeficiente (intercepto) y la pendiente del
-<em>model1</em></li>
+<li>El resultado: El coeficiente (intercepto) y la pendiente del <em>model1</em></li>
 </ul>
 </div>
 <div id="paso-2" class="section level2">
@@ -1185,14 +1086,8 @@ distances larger 4/n?</p>
 </ol>
 <!-- -->
 <ol style="list-style-type: lower-alpha">
-<li><p>La primera hipótesis, Determinar si el intercepto es igual a
-cero. Mira el valor de p, Pr(&gt;|t|), determinar si el valor es menor
-de 0.05, si lo es se rechaza la Ho y por consecuencia tenemos confianza
-que el intercepto no incluye cero.</p></li>
-<li><p>La segunda hipótesis nula Deteminar si la pendiente es igual a
-cero. Mira el valor de p, Pr(&gt;|t|), como el valor es menor de p=0.05,
-se rechaza la Ho y por consecuencia tenemos confianza que la pendiente
-no incluye cero.</p></li>
+<li><p>La primera hipótesis, Determinar si el intercepto es igual a cero. Mira el valor de p, Pr(&gt;|t|), determinar si el valor es menor de 0.05, si lo es se rechaza la Ho y por consecuencia tenemos confianza que el intercepto no incluye cero.</p></li>
+<li><p>La segunda hipótesis nula Deteminar si la pendiente es igual a cero. Mira el valor de p, Pr(&gt;|t|), como el valor es menor de p=0.05, se rechaza la Ho y por consecuencia tenemos confianza que la pendiente no incluye cero.</p></li>
 </ol>
 </div>
 <div id="paso-3" class="section level2">
@@ -1312,23 +1207,17 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <hr />
 </div>
 </div>
-<div id="alternativa-para-gráficar-los-residuales"
-class="section level1">
+<div id="alternativa-para-gráficar-los-residuales" class="section level1">
 <h1>Alternativa para Gráficar los residuales</h1>
-<div id="plot-the-residuals-and-the-fitted-values"
-class="section level2">
+<div id="plot-the-residuals-and-the-fitted-values" class="section level2">
 <h2>Plot the residuals and the fitted values</h2>
 <div id="evaluating-residuals" class="section level3">
 <h3>Evaluating residuals:</h3>
-<p>If we observe that the residuals are randomly distributed (no
-pattern, a straigth line), then we can assume that there is equality of
-variance along the “x” axis.</p>
+<p>If we observe that the residuals are randomly distributed (no pattern, a straigth line), then we can assume that there is equality of variance along the “x” axis.</p>
 <div id="definition-of-residuals" class="section level4">
 <h4>Definition of Residuals</h4>
-<p>A quantity remaining after other things have been subtracted or
-allowed for. <strong>FROM Wikipedia</strong></p>
-<p>A residual (or fitting deviation), on the other hand, is an
-observable estimate of the unobservable statistical error.</p>
+<p>A quantity remaining after other things have been subtracted or allowed for. <strong>FROM Wikipedia</strong></p>
+<p>A residual (or fitting deviation), on the other hand, is an observable estimate of the unobservable statistical error.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;advertizingReg&quot;, nota que este no es un data frame pero un modelo</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The main figure</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Album_Sales_1_new,<span class="fu">aes</span>(<span class="at">x=</span>adverts, <span class="at">y=</span>sales))<span class="sc">+</span></span>
@@ -1343,15 +1232,10 @@ observable estimate of the unobservable statistical error.</p>
 </div>
 </div>
 </div>
-<div id="porque-podemos-usar-la-alternativas-anterior"
-class="section level2">
+<div id="porque-podemos-usar-la-alternativas-anterior" class="section level2">
 <h2>Porque podemos usar la alternativas anterior</h2>
-<p>Cuando R corre un analisis, hace muchos calculos y guarda parate de
-estos calculos como lista de datos.</p>
-<p>Para ver algunos de los valores calculado uno pone el nombre del
-modelo y la añade el <strong>$</strong> y deberia aparecer la lista de
-los valores calculados. o otra alternativa es usar la función ls() =
-list() para ver el nombre de las variables</p>
+<p>Cuando R corre un analisis, hace muchos calculos y guarda parate de estos calculos como lista de datos.</p>
+<p>Para ver algunos de los valores calculado uno pone el nombre del modelo y la añade el <strong>$</strong> y deberia aparecer la lista de los valores calculados. o otra alternativa es usar la función ls() = list() para ver el nombre de las variables</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(model1)</span></code></pre></div>
 <pre><code>##  [1] &quot;assign&quot;        &quot;call&quot;          &quot;coefficients&quot;  &quot;df.residual&quot;  
 ##  [5] &quot;effects&quot;       &quot;fitted.values&quot; &quot;model&quot;         &quot;qr&quot;           
@@ -1364,10 +1248,8 @@ list() para ver el nombre de las variables</p>
 <h1>Ejercicio #1</h1>
 <p>Usa los enviado por MSTeam llamado “Alturas_Humanos</p>
 <ul>
-<li><p>En este archivo vemos tres columnas. Genero, Altura de la persona
-(Altura_cm) y Peso de la persona (Peso_kg)</p></li>
-<li><p>Evalua cada paso para determinar si hay una relación entre la
-altura y el peso de las personas.</p></li>
+<li><p>En este archivo vemos tres columnas. Genero, Altura de la persona (Altura_cm) y Peso de la persona (Peso_kg)</p></li>
+<li><p>Evalua cada paso para determinar si hay una relación entre la altura y el peso de las personas.</p></li>
 <li><p>Haz un gráfico de la relación entre la altura y el peso</p></li>
 <li><p>Evalúa el modelo de regresión entre las dos variables</p></li>
 <li><p>Evalúa los supuestos</p></li>
@@ -1391,11 +1273,9 @@ altura y el peso de las personas.</p></li>
 <h1>Ejercicio #2</h1>
 <div id="datos-sobre-la-orquidea-dipodium" class="section level2">
 <h2>Datos sobre la orquidea <strong>Dipodium</strong></h2>
-<p>Los datos se encuentra en el paquete <strong>ggversa</strong> debajo
-el nombre de <em>dipodium</em>.</p>
+<p>Los datos se encuentra en el paquete <strong>ggversa</strong> debajo el nombre de <em>dipodium</em>.</p>
 <ul>
-<li>Evalua todos los pasos para ver si la altura de inflorescencia es un
-predictor de la cantidad de flores que tiene una planta.</li>
+<li>Evalua todos los pasos para ver si la altura de inflorescencia es un predictor de la cantidad de flores que tiene una planta.</li>
 </ul>
 </div>
 </div>

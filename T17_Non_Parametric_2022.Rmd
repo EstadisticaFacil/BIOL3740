@@ -309,23 +309,24 @@ Hum Reprod. 2008 Nov;23(11):2584-90. doi: 10.1093/humrep/den243. Epub 2008 Jul 2
 
 They found that the amount of sperm production is reduced in males which consume more soya 
 
-Abstract
-BACKGROUND:
+## Abstract
+
+### BACKGROUND:
+
 High isoflavone intake has been related to decreased fertility in animal studies, but data in humans are scarce. Thus, we examined the association of soy foods and isoflavones intake with semen quality parameters.
-METHODS:
+
+### METHODS:
+
 The intake of 15 soy-based foods in the previous 3 months was assessed for 99 male partners of subfertile couples who presented for semen analyses to the Massachusetts General Hospital Fertility Center. Linear and quantile regression were used to determine the association of soy foods and isoflavones intake with semen quality parameters while adjusting for personal characteristics.
-RESULTS:
+
+### RESULTS:
+
 There was an inverse association between soy food intake and sperm concentration that remained significant after accounting for age, abstinence time, body mass index, caffeine and alcohol intake and smoking. In the multivariate-adjusted analyses, men in the highest category of soy food intake had 41 million sperm/ml less than men who did not consume soy foods (95% confidence interval = -74, -8; P, trend = 0.02). Results for individual soy isoflavones were similar to the results for soy foods and were strongest for glycitein, but did not reach statistical significance. The inverse relation between soy food intake and sperm concentration was more pronounced in the high end of the distribution (90th and 75th percentile) and among overweight or obese men. Soy food and soy isoflavone intake were unrelated to sperm motility, sperm morphology or ejaculate volume.
-CONCLUSIONS:
+
+### CONCLUSIONS:
+
 These data suggest that higher intake of soy foods and soy isoflavones is associated with lower sperm concentration.
 
-
-
-Quantity per day 
-0           ref
-0.01-0.07  -84
-0.08-0.29  -1
->0.30      -41
 
 
 Now let us look at the data from Field, soya.csv. 
@@ -347,7 +348,8 @@ unique(Soyadf$Soya)
 library(ggplot2)
 
 ggplot(Soyadf, aes(x=Soya, y=Sperm, fill=Soya))+
-  geom_boxplot()
+  geom_boxplot()+
+  theme(axis.text.x = element_text(angle = 90))
 ```
 
 
@@ -424,23 +426,21 @@ by(Soyadf$Ranks, Soyadf$Soya, median)
 Post Hoc TUKEY like test (Nemenyi test)
 The values shown are the p=values,  the pair are significantly different if the p is below 0.05
 
-```{r posthoc}
-#kruskalmc(Sperm~as.factor(SoyaConsumption), data=Soyadf)
-library(pgirmess)
 
-kruskalmc(Sperm~Soya, data=Soyadf)
-```
+### Note   
 
-### Note
-Only for method = "Chisq" a tie correction is employed.
 
-dist="Tukey"
+dist="Tukey", correction for ties done
 
 
 ```{r nemenyi}
 library(PMCMRplus)
+kwAllPairsNemenyiTest(Sperm~as.factor(Soya) , data=Soyadf)
 
-kwAllPairsNemenyiTest(Sperm~as.factor(Soya) , data=Soyadf, dist="Chisq")
+
+
+model1=kwAllPairsNemenyiTest(Sperm~as.factor(Soya) , data=Soyadf) # para más detalles
+summary(model1)
 # Try "Chi Square" = Chisq
 ```
 
