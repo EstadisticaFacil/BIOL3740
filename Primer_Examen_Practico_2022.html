@@ -94,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -107,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -571,6 +571,9 @@ div.tocify {
     <li>
       <a href="Ejerc_B_Prueba_t_datos_independiente.html">Quiz: Prueba de t con datos independientes</a>
     </li>
+    <li>
+      <a href="Ejerc_C_Regression_Lineal.html">Quiz: Regresión Lineal</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -900,12 +903,12 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
 <span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(df)</span></code></pre></div>
-<div id="aacobtmqlj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rxruyxtocc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#aacobtmqlj .gt_table {
+#rxruyxtocc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -930,7 +933,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-left-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_heading {
+#rxruyxtocc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -942,12 +945,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#aacobtmqlj .gt_title {
+#rxruyxtocc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -959,7 +957,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-width: 0;
 }
 
-#aacobtmqlj .gt_subtitle {
+#rxruyxtocc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -971,13 +969,13 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-top-width: 0;
 }
 
-#aacobtmqlj .gt_bottom_border {
+#rxruyxtocc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_col_headings {
+#rxruyxtocc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -992,7 +990,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_col_heading {
+#rxruyxtocc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1012,7 +1010,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   overflow-x: hidden;
 }
 
-#aacobtmqlj .gt_column_spanner_outer {
+#rxruyxtocc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1024,15 +1022,15 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 4px;
 }
 
-#aacobtmqlj .gt_column_spanner_outer:first-child {
+#rxruyxtocc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aacobtmqlj .gt_column_spanner_outer:last-child {
+#rxruyxtocc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aacobtmqlj .gt_column_spanner {
+#rxruyxtocc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1044,7 +1042,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   width: 100%;
 }
 
-#aacobtmqlj .gt_group_heading {
+#rxruyxtocc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1067,10 +1065,9 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
-  text-align: left;
 }
 
-#aacobtmqlj .gt_empty_group_heading {
+#rxruyxtocc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1085,15 +1082,15 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   vertical-align: middle;
 }
 
-#aacobtmqlj .gt_from_md > :first-child {
+#rxruyxtocc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aacobtmqlj .gt_from_md > :last-child {
+#rxruyxtocc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aacobtmqlj .gt_row {
+#rxruyxtocc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1112,7 +1109,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   overflow-x: hidden;
 }
 
-#aacobtmqlj .gt_stub {
+#rxruyxtocc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1125,7 +1122,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#aacobtmqlj .gt_stub_row_group {
+#rxruyxtocc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1139,11 +1136,11 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   vertical-align: top;
 }
 
-#aacobtmqlj .gt_row_group_first td {
+#rxruyxtocc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aacobtmqlj .gt_summary_row {
+#rxruyxtocc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1153,16 +1150,16 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#aacobtmqlj .gt_first_summary_row {
+#rxruyxtocc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_first_summary_row.thick {
+#rxruyxtocc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aacobtmqlj .gt_last_summary_row {
+#rxruyxtocc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1172,7 +1169,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_grand_summary_row {
+#rxruyxtocc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1182,7 +1179,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#aacobtmqlj .gt_first_grand_summary_row {
+#rxruyxtocc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1192,11 +1189,11 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-top-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_striped {
+#rxruyxtocc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aacobtmqlj .gt_table_body {
+#rxruyxtocc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1205,7 +1202,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_footnotes {
+#rxruyxtocc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1219,7 +1216,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_footnote {
+#rxruyxtocc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1228,7 +1225,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#aacobtmqlj .gt_sourcenotes {
+#rxruyxtocc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1242,7 +1239,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#aacobtmqlj .gt_sourcenote {
+#rxruyxtocc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1250,64 +1247,64 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#aacobtmqlj .gt_left {
+#rxruyxtocc .gt_left {
   text-align: left;
 }
 
-#aacobtmqlj .gt_center {
+#rxruyxtocc .gt_center {
   text-align: center;
 }
 
-#aacobtmqlj .gt_right {
+#rxruyxtocc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aacobtmqlj .gt_font_normal {
+#rxruyxtocc .gt_font_normal {
   font-weight: normal;
 }
 
-#aacobtmqlj .gt_font_bold {
+#rxruyxtocc .gt_font_bold {
   font-weight: bold;
 }
 
-#aacobtmqlj .gt_font_italic {
+#rxruyxtocc .gt_font_italic {
   font-style: italic;
 }
 
-#aacobtmqlj .gt_super {
+#rxruyxtocc .gt_super {
   font-size: 65%;
 }
 
-#aacobtmqlj .gt_footnote_marks {
+#rxruyxtocc .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#aacobtmqlj .gt_asterisk {
+#rxruyxtocc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aacobtmqlj .gt_indent_1 {
+#rxruyxtocc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aacobtmqlj .gt_indent_2 {
+#rxruyxtocc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aacobtmqlj .gt_indent_3 {
+#rxruyxtocc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aacobtmqlj .gt_indent_4 {
+#rxruyxtocc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aacobtmqlj .gt_indent_5 {
+#rxruyxtocc .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1315,23 +1312,23 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Numeros de Pisos">Numeros de Pisos</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="País">País</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Numeros de Pisos</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">País</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="Numeros de Pisos" class="gt_row gt_right">163</td>
-<td headers="País" class="gt_row gt_left">United Arab Emirates</td></tr>
-    <tr><td headers="Numeros de Pisos" class="gt_row gt_right">128</td>
-<td headers="País" class="gt_row gt_left">China</td></tr>
-    <tr><td headers="Numeros de Pisos" class="gt_row gt_right">128</td>
-<td headers="País" class="gt_row gt_left">China</td></tr>
-    <tr><td headers="Numeros de Pisos" class="gt_row gt_right">123</td>
-<td headers="País" class="gt_row gt_left">South Korea</td></tr>
-    <tr><td headers="Numeros de Pisos" class="gt_row gt_right">120</td>
-<td headers="País" class="gt_row gt_left">Saudi Arabia</td></tr>
-    <tr><td headers="Numeros de Pisos" class="gt_row gt_right">128</td>
-<td headers="País" class="gt_row gt_left">Malaysia</td></tr>
+    <tr><td class="gt_row gt_right">163</td>
+<td class="gt_row gt_left">United Arab Emirates</td></tr>
+    <tr><td class="gt_row gt_right">128</td>
+<td class="gt_row gt_left">China</td></tr>
+    <tr><td class="gt_row gt_right">128</td>
+<td class="gt_row gt_left">China</td></tr>
+    <tr><td class="gt_row gt_right">123</td>
+<td class="gt_row gt_left">South Korea</td></tr>
+    <tr><td class="gt_row gt_right">120</td>
+<td class="gt_row gt_left">Saudi Arabia</td></tr>
+    <tr><td class="gt_row gt_right">128</td>
+<td class="gt_row gt_left">Malaysia</td></tr>
   </tbody>
   
   

@@ -94,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -107,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -571,6 +571,9 @@ div.tocify {
     <li>
       <a href="Ejerc_B_Prueba_t_datos_independiente.html">Quiz: Prueba de t con datos independientes</a>
     </li>
+    <li>
+      <a href="Ejerc_C_Regression_Lineal.html">Quiz: Regresión Lineal</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -667,12 +670,12 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
 </div>
 <div id="aqui-los-primeras-6-filas-del-df" class="section level2">
 <h2>Aqui los primeras 6 filas del df</h2>
-<div id="qvojlmzuvt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wxoziungiq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qvojlmzuvt .gt_table {
+#wxoziungiq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -697,7 +700,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-left-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_heading {
+#wxoziungiq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -709,12 +712,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-right-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#qvojlmzuvt .gt_title {
+#wxoziungiq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -726,7 +724,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-bottom-width: 0;
 }
 
-#qvojlmzuvt .gt_subtitle {
+#wxoziungiq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -738,13 +736,13 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-top-width: 0;
 }
 
-#qvojlmzuvt .gt_bottom_border {
+#wxoziungiq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_col_headings {
+#wxoziungiq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -759,7 +757,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-right-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_col_heading {
+#wxoziungiq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -779,7 +777,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   overflow-x: hidden;
 }
 
-#qvojlmzuvt .gt_column_spanner_outer {
+#wxoziungiq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -791,15 +789,15 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   padding-right: 4px;
 }
 
-#qvojlmzuvt .gt_column_spanner_outer:first-child {
+#wxoziungiq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qvojlmzuvt .gt_column_spanner_outer:last-child {
+#wxoziungiq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qvojlmzuvt .gt_column_spanner {
+#wxoziungiq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -811,7 +809,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   width: 100%;
 }
 
-#qvojlmzuvt .gt_group_heading {
+#wxoziungiq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -834,10 +832,9 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
-  text-align: left;
 }
 
-#qvojlmzuvt .gt_empty_group_heading {
+#wxoziungiq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -852,15 +849,15 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   vertical-align: middle;
 }
 
-#qvojlmzuvt .gt_from_md > :first-child {
+#wxoziungiq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qvojlmzuvt .gt_from_md > :last-child {
+#wxoziungiq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qvojlmzuvt .gt_row {
+#wxoziungiq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -879,7 +876,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   overflow-x: hidden;
 }
 
-#qvojlmzuvt .gt_stub {
+#wxoziungiq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -892,7 +889,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_stub_row_group {
+#wxoziungiq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -906,11 +903,11 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   vertical-align: top;
 }
 
-#qvojlmzuvt .gt_row_group_first td {
+#wxoziungiq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qvojlmzuvt .gt_summary_row {
+#wxoziungiq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -920,16 +917,16 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_first_summary_row {
+#wxoziungiq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_first_summary_row.thick {
+#wxoziungiq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qvojlmzuvt .gt_last_summary_row {
+#wxoziungiq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -939,7 +936,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-bottom-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_grand_summary_row {
+#wxoziungiq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -949,7 +946,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_first_grand_summary_row {
+#wxoziungiq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -959,11 +956,11 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-top-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_striped {
+#wxoziungiq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qvojlmzuvt .gt_table_body {
+#wxoziungiq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -972,7 +969,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-bottom-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_footnotes {
+#wxoziungiq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -986,7 +983,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-right-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_footnote {
+#wxoziungiq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -995,7 +992,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_sourcenotes {
+#wxoziungiq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1009,7 +1006,7 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   border-right-color: #D3D3D3;
 }
 
-#qvojlmzuvt .gt_sourcenote {
+#wxoziungiq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1017,64 +1014,64 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   padding-right: 5px;
 }
 
-#qvojlmzuvt .gt_left {
+#wxoziungiq .gt_left {
   text-align: left;
 }
 
-#qvojlmzuvt .gt_center {
+#wxoziungiq .gt_center {
   text-align: center;
 }
 
-#qvojlmzuvt .gt_right {
+#wxoziungiq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qvojlmzuvt .gt_font_normal {
+#wxoziungiq .gt_font_normal {
   font-weight: normal;
 }
 
-#qvojlmzuvt .gt_font_bold {
+#wxoziungiq .gt_font_bold {
   font-weight: bold;
 }
 
-#qvojlmzuvt .gt_font_italic {
+#wxoziungiq .gt_font_italic {
   font-style: italic;
 }
 
-#qvojlmzuvt .gt_super {
+#wxoziungiq .gt_super {
   font-size: 65%;
 }
 
-#qvojlmzuvt .gt_footnote_marks {
+#wxoziungiq .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#qvojlmzuvt .gt_asterisk {
+#wxoziungiq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qvojlmzuvt .gt_indent_1 {
+#wxoziungiq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qvojlmzuvt .gt_indent_2 {
+#wxoziungiq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qvojlmzuvt .gt_indent_3 {
+#wxoziungiq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qvojlmzuvt .gt_indent_4 {
+#wxoziungiq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qvojlmzuvt .gt_indent_5 {
+#wxoziungiq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1082,37 +1079,37 @@ class="uri">https://www.mortality.org/Home/Index</a></p>
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="PopName">PopName</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Year">Year</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Month">Month</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Births">Births</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">PopName</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Year</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Month</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Births</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="PopName" class="gt_row gt_left">USA</td>
-<td headers="Year" class="gt_row gt_right">1933</td>
-<td headers="Month" class="gt_row gt_right">1</td>
-<td headers="Births" class="gt_row gt_right">180545</td></tr>
-    <tr><td headers="PopName" class="gt_row gt_left">USA</td>
-<td headers="Year" class="gt_row gt_right">1934</td>
-<td headers="Month" class="gt_row gt_right">1</td>
-<td headers="Births" class="gt_row gt_right">182698</td></tr>
-    <tr><td headers="PopName" class="gt_row gt_left">USA</td>
-<td headers="Year" class="gt_row gt_right">1935</td>
-<td headers="Month" class="gt_row gt_right">1</td>
-<td headers="Births" class="gt_row gt_right">186051</td></tr>
-    <tr><td headers="PopName" class="gt_row gt_left">USA</td>
-<td headers="Year" class="gt_row gt_right">1936</td>
-<td headers="Month" class="gt_row gt_right">1</td>
-<td headers="Births" class="gt_row gt_right">182221</td></tr>
-    <tr><td headers="PopName" class="gt_row gt_left">USA</td>
-<td headers="Year" class="gt_row gt_right">1937</td>
-<td headers="Month" class="gt_row gt_right">1</td>
-<td headers="Births" class="gt_row gt_right">182232</td></tr>
-    <tr><td headers="PopName" class="gt_row gt_left">USA</td>
-<td headers="Year" class="gt_row gt_right">1938</td>
-<td headers="Month" class="gt_row gt_right">1</td>
-<td headers="Births" class="gt_row gt_right">194557</td></tr>
+    <tr><td class="gt_row gt_left">USA</td>
+<td class="gt_row gt_right">1933</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">180545</td></tr>
+    <tr><td class="gt_row gt_left">USA</td>
+<td class="gt_row gt_right">1934</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">182698</td></tr>
+    <tr><td class="gt_row gt_left">USA</td>
+<td class="gt_row gt_right">1935</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">186051</td></tr>
+    <tr><td class="gt_row gt_left">USA</td>
+<td class="gt_row gt_right">1936</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">182221</td></tr>
+    <tr><td class="gt_row gt_left">USA</td>
+<td class="gt_row gt_right">1937</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">182232</td></tr>
+    <tr><td class="gt_row gt_left">USA</td>
+<td class="gt_row gt_right">1938</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">194557</td></tr>
   </tbody>
   
   
