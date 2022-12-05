@@ -1,0 +1,85 @@
+---
+title: "Ejerc_C_Regresión_lineal"
+author: "Raymond_L_Tremblay"
+output:
+  html_document:
+    css: tutorial.css
+    fig_caption: yes
+    highlight: pygments
+#    theme: simplex
+    toc: yes
+    toc_float: yes
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r include=FALSE}
+library(tidyverse)
+```
+
+
+
+## Ejercicio de Regresión
+
+# Fungal growth
+
+ - Fungal growth from soil samples were cultured in the presence of different concentrations of Cadnium (in µM). The density of fungal growth (x 10^6/ml) in each of the cultures was determined after a period of incubation.  Para conocer más sobre estas interacciones vea el siguiente enlace.  https://bmcmicrobiol.biomedcentral.com/articles/10.1186/s12866-022-02488-z
+
+
+ 
+ 
+```{r}
+DATA=tribble(~Cadnium, ~Fungal_Growth,
+             0, 6.6,
+             0, 6.9,
+             0, 7.2,
+             1, 6.8, 
+             1, 6.0,
+             1, 5.6,
+             2, 6.4,
+             2, 6.0,
+             2, 5.4,
+             4, 4.8,
+             4, 4.4,
+             4, 3.9,
+             6, 2.6,
+             6, 3.1,
+             6, 3.4,
+             8, 1.0,
+             8, 1.3,
+             8, 1.7,
+             10, 0.2,
+             10, 0.3,
+             10, 0.5)
+
+DATA
+```
+
+***
+
+1. Haz un gráfico de la relación entre la concentración de Cadnium y el crecimiento de hongos
+  - Añade la mejor linea ( la regresión lineal)
+  - Tenga el gráfico listo para subir a MSTeam
+  
+2. Evalúa el modelo de la regresión lineal
+  - Se acepta o rechaza LAS hipótesis
+  
+3. Evalúa los supuestos de esta prueba.
+
+***
+
+## Contesta las preguntas en MSTeam
+
+
+
+
+
+
+
+ 
+ 
