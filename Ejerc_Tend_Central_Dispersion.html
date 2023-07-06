@@ -13,7 +13,7 @@
 
 <title>Ejercicio de Tendencia Central y Dispersión</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -608,8 +608,8 @@ Dispersión</h1>
 
 
 <p><img src="Graficos/hex_ggversa.png" width="20%" /><img src="Graficos/hex_error.png" width="20%" /></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <div id="este-trabajo-es-para-someter." class="section level1">
 <h1>Este trabajo es para someter.</h1>
 <div id="fecha-limite-es-el-31-de-agosto-a-las-1159pm"
@@ -623,20 +623,32 @@ class="section level2">
 </div>
 <div id="buscar-la-metadata" class="section level1">
 <h1>Buscar la metadata</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>codes<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>codes<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-codebook.csv&#39;</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="visualizar-la-meta-data" class="section level1">
 <h1>Visualizar la meta data</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(codes)</span></code></pre></div>
-<div id="gopiebccmq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">gt</span>(codes)</span></code></pre></div>
+<div id="gopiebccmq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gopiebccmq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gopiebccmq thead, #gopiebccmq tbody, #gopiebccmq tfoot, #gopiebccmq tr, #gopiebccmq td, #gopiebccmq th {
+  border-style: none;
+}
+
+#gopiebccmq p {
+  margin: 0;
+  padding: 0;
 }
 
 #gopiebccmq .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -659,16 +671,9 @@ class="section level2">
   border-left-color: #D3D3D3;
 }
 
-#gopiebccmq .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#gopiebccmq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #gopiebccmq .gt_title {
@@ -687,12 +692,24 @@ class="section level2">
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#gopiebccmq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #gopiebccmq .gt_bottom_border {
@@ -768,6 +785,10 @@ class="section level2">
   width: 100%;
 }
 
+#gopiebccmq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #gopiebccmq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -791,6 +812,7 @@ class="section level2">
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #gopiebccmq .gt_empty_group_heading {
@@ -866,6 +888,10 @@ class="section level2">
   border-top-width: 2px;
 }
 
+#gopiebccmq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #gopiebccmq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -915,6 +941,16 @@ class="section level2">
   border-top-color: #D3D3D3;
 }
 
+#gopiebccmq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #gopiebccmq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -945,8 +981,8 @@ class="section level2">
 #gopiebccmq .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1003,10 +1039,9 @@ class="section level2">
 }
 
 #gopiebccmq .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #gopiebccmq .gt_asterisk {
@@ -1034,285 +1069,285 @@ class="section level2">
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">column</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">source</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">category</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">description</th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="column">column</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="source">source</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="category">category</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="description">description</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">iso_code</td>
-<td class="gt_row gt_left">International Organization for Standardization</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">ISO 3166-1 alpha-3 – three-letter country codes. Note that OWID-defined regions (e.g. continents like 'Europe') contain prefix 'OWID_'.</td></tr>
-    <tr><td class="gt_row gt_left">continent</td>
-<td class="gt_row gt_left">Our World in Data</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Continent of the geographical location</td></tr>
-    <tr><td class="gt_row gt_left">location</td>
-<td class="gt_row gt_left">Our World in Data</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Geographical location. Location 'International' considers special regions (Diamond Princess and MS Zaandam cruises). </td></tr>
-    <tr><td class="gt_row gt_left">date</td>
-<td class="gt_row gt_left">Our World in Data</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Date of observation</td></tr>
-    <tr><td class="gt_row gt_left">total_cases</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed cases</td>
-<td class="gt_row gt_left">Total confirmed cases of COVID-19. Counts can include probable cases, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">new_cases</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed cases</td>
-<td class="gt_row gt_left">New confirmed cases of COVID-19. Counts can include probable cases, where reported. In rare cases where our source reports a negative daily change due to a data correction, we set this metric to NA.</td></tr>
-    <tr><td class="gt_row gt_left">new_cases_smoothed</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed cases</td>
-<td class="gt_row gt_left">New confirmed cases of COVID-19 (7-day smoothed). Counts can include probable cases, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">total_deaths</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed deaths</td>
-<td class="gt_row gt_left">Total deaths attributed to COVID-19. Counts can include probable deaths, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">new_deaths</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed deaths</td>
-<td class="gt_row gt_left">New deaths attributed to COVID-19. Counts can include probable deaths, where reported. In rare cases where our source reports a negative daily change due to a data correction, we set this metric to NA.</td></tr>
-    <tr><td class="gt_row gt_left">new_deaths_smoothed</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed deaths</td>
-<td class="gt_row gt_left">New deaths attributed to COVID-19 (7-day smoothed). Counts can include probable deaths, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">total_cases_per_million</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed cases</td>
-<td class="gt_row gt_left">Total confirmed cases of COVID-19 per 1,000,000 people. Counts can include probable cases, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">new_cases_per_million</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed cases</td>
-<td class="gt_row gt_left">New confirmed cases of COVID-19 per 1,000,000 people. Counts can include probable cases, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">new_cases_smoothed_per_million</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed cases</td>
-<td class="gt_row gt_left">New confirmed cases of COVID-19 (7-day smoothed) per 1,000,000 people. Counts can include probable cases, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">total_deaths_per_million</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed deaths</td>
-<td class="gt_row gt_left">Total deaths attributed to COVID-19 per 1,000,000 people. Counts can include probable deaths, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">new_deaths_per_million</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed deaths</td>
-<td class="gt_row gt_left">New deaths attributed to COVID-19 per 1,000,000 people. Counts can include probable deaths, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">new_deaths_smoothed_per_million</td>
-<td class="gt_row gt_left">COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University</td>
-<td class="gt_row gt_left">Confirmed deaths</td>
-<td class="gt_row gt_left">New deaths attributed to COVID-19 (7-day smoothed) per 1,000,000 people. Counts can include probable deaths, where reported.</td></tr>
-    <tr><td class="gt_row gt_left">reproduction_rate</td>
-<td class="gt_row gt_left">Arroyo Marioli et al. (2020). https://doi.org/10.2139/ssrn.3581633</td>
-<td class="gt_row gt_left">Reproduction rate</td>
-<td class="gt_row gt_left">Real-time estimate of the effective reproduction rate (R) of COVID-19. See https://github.com/crondonm/TrackingR/tree/main/Estimates-Database</td></tr>
-    <tr><td class="gt_row gt_left">icu_patients</td>
-<td class="gt_row gt_left">National government reports and European CDC</td>
-<td class="gt_row gt_left">Hospital &amp; ICU</td>
-<td class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day</td></tr>
-    <tr><td class="gt_row gt_left">icu_patients_per_million</td>
-<td class="gt_row gt_left">National government reports and European CDC</td>
-<td class="gt_row gt_left">Hospital &amp; ICU</td>
-<td class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day per 1,000,000 people</td></tr>
-    <tr><td class="gt_row gt_left">hosp_patients</td>
-<td class="gt_row gt_left">National government reports and European CDC</td>
-<td class="gt_row gt_left">Hospital &amp; ICU</td>
-<td class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day</td></tr>
-    <tr><td class="gt_row gt_left">hosp_patients_per_million</td>
-<td class="gt_row gt_left">National government reports and European CDC</td>
-<td class="gt_row gt_left">Hospital &amp; ICU</td>
-<td class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day per 1,000,000 people</td></tr>
-    <tr><td class="gt_row gt_left">weekly_icu_admissions</td>
-<td class="gt_row gt_left">National government reports and European CDC</td>
-<td class="gt_row gt_left">Hospital &amp; ICU</td>
-<td class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week (reporting date and the preceeding 6 days)</td></tr>
-    <tr><td class="gt_row gt_left">weekly_icu_admissions_per_million</td>
-<td class="gt_row gt_left">National government reports and European CDC</td>
-<td class="gt_row gt_left">Hospital &amp; ICU</td>
-<td class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week per 1,000,000 people (reporting date and the preceeding 6 days)</td></tr>
-    <tr><td class="gt_row gt_left">weekly_hosp_admissions</td>
-<td class="gt_row gt_left">National government reports and European CDC</td>
-<td class="gt_row gt_left">Hospital &amp; ICU</td>
-<td class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week (reporting date and the preceeding 6 days)</td></tr>
-    <tr><td class="gt_row gt_left">weekly_hosp_admissions_per_million</td>
-<td class="gt_row gt_left">National government reports and European CDC</td>
-<td class="gt_row gt_left">Hospital &amp; ICU</td>
-<td class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week per 1,000,000 people (reporting date and the preceeding 6 days)</td></tr>
-    <tr><td class="gt_row gt_left">total_tests</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">Total tests for COVID-19</td></tr>
-    <tr><td class="gt_row gt_left">new_tests</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">New tests for COVID-19 (only calculated for consecutive days)</td></tr>
-    <tr><td class="gt_row gt_left">total_tests_per_thousand</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">Total tests for COVID-19 per 1,000 people</td></tr>
-    <tr><td class="gt_row gt_left">new_tests_per_thousand</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">New tests for COVID-19 per 1,000 people</td></tr>
-    <tr><td class="gt_row gt_left">new_tests_smoothed</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">New tests for COVID-19 (7-day smoothed). For countries that don't report testing data on a daily basis, we assume that testing changed equally on a daily basis over any periods in which no data was reported. This produces a complete series of daily figures, which is then averaged over a rolling 7-day window</td></tr>
-    <tr><td class="gt_row gt_left">new_tests_smoothed_per_thousand</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">New tests for COVID-19 (7-day smoothed) per 1,000 people</td></tr>
-    <tr><td class="gt_row gt_left">positive_rate</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">The share of COVID-19 tests that are positive, given as a rolling 7-day average (this is the inverse of tests_per_case)</td></tr>
-    <tr><td class="gt_row gt_left">tests_per_case</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">Tests conducted per new confirmed case of COVID-19, given as a rolling 7-day average (this is the inverse of positive_rate)</td></tr>
-    <tr><td class="gt_row gt_left">tests_units</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Tests &amp; positivity</td>
-<td class="gt_row gt_left">Units used by the location to report its testing data. A country file can't contain mixed units. All metrics concerning testing data use the specified test unit. Valid units are 'people tested' (number of people tested), 'tests performed' (number of tests performed. a single person can be tested more than once in a given day) and 'samples tested' (number of samples tested. In some cases, more than one sample may be required to perform a given test.)</td></tr>
-    <tr><td class="gt_row gt_left">total_vaccinations</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Total number of COVID-19 vaccination doses administered</td></tr>
-    <tr><td class="gt_row gt_left">people_vaccinated</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Total number of people who received at least one vaccine dose</td></tr>
-    <tr><td class="gt_row gt_left">people_fully_vaccinated</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Total number of people who received all doses prescribed by the initial vaccination protocol</td></tr>
-    <tr><td class="gt_row gt_left">total_boosters</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Total number of COVID-19 vaccination booster doses administered (doses administered beyond the number prescribed by the vaccination protocol)</td></tr>
-    <tr><td class="gt_row gt_left">new_vaccinations</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">New COVID-19 vaccination doses administered (only calculated for consecutive days)</td></tr>
-    <tr><td class="gt_row gt_left">new_vaccinations_smoothed</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">New COVID-19 vaccination doses administered (7-day smoothed). For countries that don't report vaccination data on a daily basis, we assume that vaccination changed equally on a daily basis over any periods in which no data was reported. This produces a complete series of daily figures, which is then averaged over a rolling 7-day window</td></tr>
-    <tr><td class="gt_row gt_left">total_vaccinations_per_hundred</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Total number of COVID-19 vaccination doses administered per 100 people in the total population</td></tr>
-    <tr><td class="gt_row gt_left">people_vaccinated_per_hundred</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Total number of people who received at least one vaccine dose per 100 people in the total population</td></tr>
-    <tr><td class="gt_row gt_left">people_fully_vaccinated_per_hundred</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Total number of people who received all doses prescribed by the initial vaccination protocol per 100 people in the total population</td></tr>
-    <tr><td class="gt_row gt_left">total_boosters_per_hundred</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Total number of COVID-19 vaccination booster doses administered per 100 people in the total population</td></tr>
-    <tr><td class="gt_row gt_left">new_vaccinations_smoothed_per_million</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">New COVID-19 vaccination doses administered (7-day smoothed) per 1,000,000 people in the total population</td></tr>
-    <tr><td class="gt_row gt_left">new_people_vaccinated_smoothed</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Daily number of people receiving their first vaccine dose (7-day smoothed)</td></tr>
-    <tr><td class="gt_row gt_left">new_people_vaccinated_smoothed_per_hundred</td>
-<td class="gt_row gt_left">National government reports</td>
-<td class="gt_row gt_left">Vaccinations</td>
-<td class="gt_row gt_left">Daily number of people receiving their first vaccine dose (7-day smoothed) per 100 people in the total population</td></tr>
-    <tr><td class="gt_row gt_left">stringency_index</td>
-<td class="gt_row gt_left">Oxford COVID-19 Government Response Tracker, Blavatnik School of Government</td>
-<td class="gt_row gt_left">Policy responses</td>
-<td class="gt_row gt_left">Government Response Stringency Index: composite measure based on 9 response indicators including school closures, workplace closures, and travel bans, rescaled to a value from 0 to 100 (100 = strictest response)</td></tr>
-    <tr><td class="gt_row gt_left">population</td>
-<td class="gt_row gt_left">United Nations, Department of Economic and Social Affairs, Population Division, World Population Prospects 2019 Revision</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Population (latest available values). See https://github.com/owid/covid-19-data/blob/master/scripts/input/un/population_latest.csv for full list of sources</td></tr>
-    <tr><td class="gt_row gt_left">population_density</td>
-<td class="gt_row gt_left">World Bank World Development Indicators, sourced from Food and Agriculture Organization and World Bank estimates</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Number of people divided by land area, measured in square kilometers, most recent year available</td></tr>
-    <tr><td class="gt_row gt_left">median_age</td>
-<td class="gt_row gt_left">UN Population Division, World Population Prospects, 2017 Revision</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Median age of the population, UN projection for 2020</td></tr>
-    <tr><td class="gt_row gt_left">aged_65_older</td>
-<td class="gt_row gt_left">World Bank World Development Indicators based on age/sex distributions of United Nations World Population Prospects 2017 Revision</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Share of the population that is 65 years and older, most recent year available</td></tr>
-    <tr><td class="gt_row gt_left">aged_70_older</td>
-<td class="gt_row gt_left">United Nations, Department of Economic and Social Affairs, Population Division (2017), World Population Prospects 2017 Revision</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Share of the population that is 70 years and older in 2015</td></tr>
-    <tr><td class="gt_row gt_left">gdp_per_capita</td>
-<td class="gt_row gt_left">World Bank World Development Indicators, source from World Bank, International Comparison Program database</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Gross domestic product at purchasing power parity (constant 2011 international dollars), most recent year available</td></tr>
-    <tr><td class="gt_row gt_left">extreme_poverty</td>
-<td class="gt_row gt_left">World Bank World Development Indicators, sourced from World Bank Development Research Group</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Share of the population living in extreme poverty, most recent year available since 2010</td></tr>
-    <tr><td class="gt_row gt_left">cardiovasc_death_rate</td>
-<td class="gt_row gt_left">Global Burden of Disease Collaborative Network, Global Burden of Disease Study 2017 Results</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Death rate from cardiovascular disease in 2017 (annual number of deaths per 100,000 people)</td></tr>
-    <tr><td class="gt_row gt_left">diabetes_prevalence</td>
-<td class="gt_row gt_left">World Bank World Development Indicators, sourced from International Diabetes Federation, Diabetes Atlas</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Diabetes prevalence (% of population aged 20 to 79) in 2017</td></tr>
-    <tr><td class="gt_row gt_left">female_smokers</td>
-<td class="gt_row gt_left">World Bank World Development Indicators, sourced from World Health Organization, Global Health Observatory Data Repository</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Share of women who smoke, most recent year available</td></tr>
-    <tr><td class="gt_row gt_left">male_smokers</td>
-<td class="gt_row gt_left">World Bank World Development Indicators, sourced from World Health Organization, Global Health Observatory Data Repository</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Share of men who smoke, most recent year available</td></tr>
-    <tr><td class="gt_row gt_left">handwashing_facilities</td>
-<td class="gt_row gt_left">United Nations Statistics Division</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Share of the population with basic handwashing facilities on premises, most recent year available</td></tr>
-    <tr><td class="gt_row gt_left">hospital_beds_per_thousand</td>
-<td class="gt_row gt_left">OECD, Eurostat, World Bank, national government records and other sources</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Hospital beds per 1,000 people, most recent year available since 2010</td></tr>
-    <tr><td class="gt_row gt_left">life_expectancy</td>
-<td class="gt_row gt_left">James C. Riley, Clio Infra, United Nations Population Division</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">Life expectancy at birth in 2019</td></tr>
-    <tr><td class="gt_row gt_left">human_development_index</td>
-<td class="gt_row gt_left">United Nations Development Programme (UNDP)</td>
-<td class="gt_row gt_left">Others</td>
-<td class="gt_row gt_left">A composite index measuring average achievement in three basic dimensions of human development—a long and healthy life, knowledge and a decent standard of living. Values for 2019, imported from http://hdr.undp.org/en/indicators/137506</td></tr>
-    <tr><td class="gt_row gt_left">excess_mortality</td>
-<td class="gt_row gt_left">Human Mortality Database (2021), World Mortality Dataset (2021)</td>
-<td class="gt_row gt_left">Excess mortality</td>
-<td class="gt_row gt_left">Percentage difference between the reported number of weekly or monthly deaths in 2020–2021 and the projected number of deaths for the same period based on previous years. For more information, see https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality</td></tr>
-    <tr><td class="gt_row gt_left">excess_mortality_cumulative</td>
-<td class="gt_row gt_left">Human Mortality Database (2021), World Mortality Dataset (2021)</td>
-<td class="gt_row gt_left">Excess mortality</td>
-<td class="gt_row gt_left">Percentage difference between the cumulative number of deaths since 1 January 2020 and the cumulative projected deaths for the same period based on previous years. For more information, see https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality</td></tr>
-    <tr><td class="gt_row gt_left">excess_mortality_cumulative_absolute</td>
-<td class="gt_row gt_left">Human Mortality Database (2021), World Mortality Dataset (2021)</td>
-<td class="gt_row gt_left">Excess mortality</td>
-<td class="gt_row gt_left">Cumulative difference between the reported number of deaths since 1 January 2020 and the projected number of deaths for the same period based on previous years. For more information, see https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality</td></tr>
-    <tr><td class="gt_row gt_left">excess_mortality_cumulative_per_million</td>
-<td class="gt_row gt_left">Human Mortality Database (2021), World Mortality Dataset (2021)</td>
-<td class="gt_row gt_left">Excess mortality</td>
-<td class="gt_row gt_left">Cumulative difference between the reported number of deaths since 1 January 2020 and the projected number of deaths for the same period based on previous years, per million people. For more information, see https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">iso_code</td>
+<td headers="source" class="gt_row gt_left">International Organization for Standardization</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">ISO 3166-1 alpha-3 – three-letter country codes. Note that OWID-defined regions (e.g. continents like 'Europe') contain prefix 'OWID_'.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">continent</td>
+<td headers="source" class="gt_row gt_left">Our World in Data</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Continent of the geographical location</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">location</td>
+<td headers="source" class="gt_row gt_left">Our World in Data</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Geographical location</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">date</td>
+<td headers="source" class="gt_row gt_left">Our World in Data</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Date of observation</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_cases</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed cases</td>
+<td headers="description" class="gt_row gt_left">Total confirmed cases of COVID-19. Counts can include probable cases, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_cases</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed cases</td>
+<td headers="description" class="gt_row gt_left">New confirmed cases of COVID-19. Counts can include probable cases, where reported. In rare cases where our source reports a negative daily change due to a data correction, we set this metric to NA.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_cases_smoothed</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed cases</td>
+<td headers="description" class="gt_row gt_left">New confirmed cases of COVID-19 (7-day smoothed). Counts can include probable cases, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_deaths</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed deaths</td>
+<td headers="description" class="gt_row gt_left">Total deaths attributed to COVID-19. Counts can include probable deaths, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_deaths</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed deaths</td>
+<td headers="description" class="gt_row gt_left">New deaths attributed to COVID-19. Counts can include probable deaths, where reported. In rare cases where our source reports a negative daily change due to a data correction, we set this metric to NA.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_deaths_smoothed</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed deaths</td>
+<td headers="description" class="gt_row gt_left">New deaths attributed to COVID-19 (7-day smoothed). Counts can include probable deaths, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_cases_per_million</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed cases</td>
+<td headers="description" class="gt_row gt_left">Total confirmed cases of COVID-19 per 1,000,000 people. Counts can include probable cases, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_cases_per_million</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed cases</td>
+<td headers="description" class="gt_row gt_left">New confirmed cases of COVID-19 per 1,000,000 people. Counts can include probable cases, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_cases_smoothed_per_million</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed cases</td>
+<td headers="description" class="gt_row gt_left">New confirmed cases of COVID-19 (7-day smoothed) per 1,000,000 people. Counts can include probable cases, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_deaths_per_million</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed deaths</td>
+<td headers="description" class="gt_row gt_left">Total deaths attributed to COVID-19 per 1,000,000 people. Counts can include probable deaths, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_deaths_per_million</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed deaths</td>
+<td headers="description" class="gt_row gt_left">New deaths attributed to COVID-19 per 1,000,000 people. Counts can include probable deaths, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_deaths_smoothed_per_million</td>
+<td headers="source" class="gt_row gt_left">COVID-19 Dashboard by the WHO</td>
+<td headers="category" class="gt_row gt_left">Confirmed deaths</td>
+<td headers="description" class="gt_row gt_left">New deaths attributed to COVID-19 (7-day smoothed) per 1,000,000 people. Counts can include probable deaths, where reported.</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">reproduction_rate</td>
+<td headers="source" class="gt_row gt_left">Arroyo Marioli et al. (2020). https://doi.org/10.2139/ssrn.3581633</td>
+<td headers="category" class="gt_row gt_left">Reproduction rate</td>
+<td headers="description" class="gt_row gt_left">Real-time estimate of the effective reproduction rate (R) of COVID-19. See https://github.com/crondonm/TrackingR/tree/main/Estimates-Database</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">icu_patients</td>
+<td headers="source" class="gt_row gt_left">National government reports and European CDC</td>
+<td headers="category" class="gt_row gt_left">Hospital &amp; ICU</td>
+<td headers="description" class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">icu_patients_per_million</td>
+<td headers="source" class="gt_row gt_left">National government reports and European CDC</td>
+<td headers="category" class="gt_row gt_left">Hospital &amp; ICU</td>
+<td headers="description" class="gt_row gt_left">Number of COVID-19 patients in intensive care units (ICUs) on a given day per 1,000,000 people</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">hosp_patients</td>
+<td headers="source" class="gt_row gt_left">National government reports and European CDC</td>
+<td headers="category" class="gt_row gt_left">Hospital &amp; ICU</td>
+<td headers="description" class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">hosp_patients_per_million</td>
+<td headers="source" class="gt_row gt_left">National government reports and European CDC</td>
+<td headers="category" class="gt_row gt_left">Hospital &amp; ICU</td>
+<td headers="description" class="gt_row gt_left">Number of COVID-19 patients in hospital on a given day per 1,000,000 people</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">weekly_icu_admissions</td>
+<td headers="source" class="gt_row gt_left">National government reports and European CDC</td>
+<td headers="category" class="gt_row gt_left">Hospital &amp; ICU</td>
+<td headers="description" class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week (reporting date and the preceeding 6 days)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">weekly_icu_admissions_per_million</td>
+<td headers="source" class="gt_row gt_left">National government reports and European CDC</td>
+<td headers="category" class="gt_row gt_left">Hospital &amp; ICU</td>
+<td headers="description" class="gt_row gt_left">Number of COVID-19 patients newly admitted to intensive care units (ICUs) in a given week per 1,000,000 people (reporting date and the preceeding 6 days)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">weekly_hosp_admissions</td>
+<td headers="source" class="gt_row gt_left">National government reports and European CDC</td>
+<td headers="category" class="gt_row gt_left">Hospital &amp; ICU</td>
+<td headers="description" class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week (reporting date and the preceeding 6 days)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">weekly_hosp_admissions_per_million</td>
+<td headers="source" class="gt_row gt_left">National government reports and European CDC</td>
+<td headers="category" class="gt_row gt_left">Hospital &amp; ICU</td>
+<td headers="description" class="gt_row gt_left">Number of COVID-19 patients newly admitted to hospitals in a given week per 1,000,000 people (reporting date and the preceeding 6 days)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_tests</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Tests &amp; positivity</td>
+<td headers="description" class="gt_row gt_left">Total tests for COVID-19</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_tests</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Tests &amp; positivity</td>
+<td headers="description" class="gt_row gt_left">New tests for COVID-19 (only calculated for consecutive days)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_tests_per_thousand</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Tests &amp; positivity</td>
+<td headers="description" class="gt_row gt_left">Total tests for COVID-19 per 1,000 people</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_tests_per_thousand</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Tests &amp; positivity</td>
+<td headers="description" class="gt_row gt_left">New tests for COVID-19 per 1,000 people</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_tests_smoothed</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Tests &amp; positivity</td>
+<td headers="description" class="gt_row gt_left">New tests for COVID-19 (7-day smoothed). For countries that don't report testing data on a daily basis, we assume that testing changed equally on a daily basis over any periods in which no data was reported. This produces a complete series of daily figures, which is then averaged over a rolling 7-day window</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_tests_smoothed_per_thousand</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Tests &amp; positivity</td>
+<td headers="description" class="gt_row gt_left">New tests for COVID-19 (7-day smoothed) per 1,000 people</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">positive_rate</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Tests &amp; positivity</td>
+<td headers="description" class="gt_row gt_left">The share of COVID-19 tests that are positive, given as a rolling 7-day average (this is the inverse of tests_per_case)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">tests_per_case</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Tests &amp; positivity</td>
+<td headers="description" class="gt_row gt_left">Tests conducted per new confirmed case of COVID-19, given as a rolling 7-day average (this is the inverse of positive_rate)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">tests_units</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Tests &amp; positivity</td>
+<td headers="description" class="gt_row gt_left">Units used by the location to report its testing data. A country file can't contain mixed units. All metrics concerning testing data use the specified test unit. Valid units are 'people tested' (number of people tested), 'tests performed' (number of tests performed. a single person can be tested more than once in a given day) and 'samples tested' (number of samples tested. In some cases, more than one sample may be required to perform a given test.)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_vaccinations</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Total number of COVID-19 vaccination doses administered</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">people_vaccinated</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Total number of people who received at least one vaccine dose</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">people_fully_vaccinated</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Total number of people who received all doses prescribed by the initial vaccination protocol</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_boosters</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Total number of COVID-19 vaccination booster doses administered (doses administered beyond the number prescribed by the vaccination protocol)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_vaccinations</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">New COVID-19 vaccination doses administered (only calculated for consecutive days)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_vaccinations_smoothed</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">New COVID-19 vaccination doses administered (7-day smoothed). For countries that don't report vaccination data on a daily basis, we assume that vaccination changed equally on a daily basis over any periods in which no data was reported. This produces a complete series of daily figures, which is then averaged over a rolling 7-day window</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_vaccinations_per_hundred</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Total number of COVID-19 vaccination doses administered per 100 people in the total population</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">people_vaccinated_per_hundred</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Total number of people who received at least one vaccine dose per 100 people in the total population</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">people_fully_vaccinated_per_hundred</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Total number of people who received all doses prescribed by the initial vaccination protocol per 100 people in the total population</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">total_boosters_per_hundred</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Total number of COVID-19 vaccination booster doses administered per 100 people in the total population</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_vaccinations_smoothed_per_million</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">New COVID-19 vaccination doses administered (7-day smoothed) per 1,000,000 people in the total population</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_people_vaccinated_smoothed</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Daily number of people receiving their first vaccine dose (7-day smoothed)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">new_people_vaccinated_smoothed_per_hundred</td>
+<td headers="source" class="gt_row gt_left">National government reports</td>
+<td headers="category" class="gt_row gt_left">Vaccinations</td>
+<td headers="description" class="gt_row gt_left">Daily number of people receiving their first vaccine dose (7-day smoothed) per 100 people in the total population</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">stringency_index</td>
+<td headers="source" class="gt_row gt_left">Oxford COVID-19 Government Response Tracker, Blavatnik School of Government</td>
+<td headers="category" class="gt_row gt_left">Policy responses</td>
+<td headers="description" class="gt_row gt_left">Government Response Stringency Index: composite measure based on 9 response indicators including school closures, workplace closures, and travel bans, rescaled to a value from 0 to 100 (100 = strictest response)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">population</td>
+<td headers="source" class="gt_row gt_left">United Nations, Department of Economic and Social Affairs, Population Division, World Population Prospects 2019 Revision</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Population (latest available values). See https://github.com/owid/covid-19-data/blob/master/scripts/input/un/population_latest.csv for full list of sources</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">population_density</td>
+<td headers="source" class="gt_row gt_left">World Bank World Development Indicators, sourced from Food and Agriculture Organization and World Bank estimates</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Number of people divided by land area, measured in square kilometers, most recent year available</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">median_age</td>
+<td headers="source" class="gt_row gt_left">UN Population Division, World Population Prospects, 2017 Revision</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Median age of the population, UN projection for 2020</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">aged_65_older</td>
+<td headers="source" class="gt_row gt_left">World Bank World Development Indicators based on age/sex distributions of United Nations World Population Prospects 2017 Revision</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Share of the population that is 65 years and older, most recent year available</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">aged_70_older</td>
+<td headers="source" class="gt_row gt_left">United Nations, Department of Economic and Social Affairs, Population Division (2017), World Population Prospects 2017 Revision</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Share of the population that is 70 years and older in 2015</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">gdp_per_capita</td>
+<td headers="source" class="gt_row gt_left">World Bank World Development Indicators, source from World Bank, International Comparison Program database</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Gross domestic product at purchasing power parity (constant 2011 international dollars), most recent year available</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">extreme_poverty</td>
+<td headers="source" class="gt_row gt_left">World Bank World Development Indicators, sourced from World Bank Development Research Group</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Share of the population living in extreme poverty, most recent year available since 2010</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">cardiovasc_death_rate</td>
+<td headers="source" class="gt_row gt_left">Global Burden of Disease Collaborative Network, Global Burden of Disease Study 2017 Results</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Death rate from cardiovascular disease in 2017 (annual number of deaths per 100,000 people)</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">diabetes_prevalence</td>
+<td headers="source" class="gt_row gt_left">World Bank World Development Indicators, sourced from International Diabetes Federation, Diabetes Atlas</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Diabetes prevalence (% of population aged 20 to 79) in 2017</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">female_smokers</td>
+<td headers="source" class="gt_row gt_left">World Bank World Development Indicators, sourced from World Health Organization, Global Health Observatory Data Repository</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Share of women who smoke, most recent year available</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">male_smokers</td>
+<td headers="source" class="gt_row gt_left">World Bank World Development Indicators, sourced from World Health Organization, Global Health Observatory Data Repository</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Share of men who smoke, most recent year available</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">handwashing_facilities</td>
+<td headers="source" class="gt_row gt_left">United Nations Statistics Division</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Share of the population with basic handwashing facilities on premises, most recent year available</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">hospital_beds_per_thousand</td>
+<td headers="source" class="gt_row gt_left">OECD, Eurostat, World Bank, national government records and other sources</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Hospital beds per 1,000 people, most recent year available since 2010</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">life_expectancy</td>
+<td headers="source" class="gt_row gt_left">James C. Riley, Clio Infra, United Nations Population Division</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">Life expectancy at birth in 2019</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">human_development_index</td>
+<td headers="source" class="gt_row gt_left">United Nations Development Programme (UNDP)</td>
+<td headers="category" class="gt_row gt_left">Others</td>
+<td headers="description" class="gt_row gt_left">A composite index measuring average achievement in three basic dimensions of human development—a long and healthy life, knowledge and a decent standard of living. Values for 2019, imported from http://hdr.undp.org/en/indicators/137506</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">excess_mortality</td>
+<td headers="source" class="gt_row gt_left">Human Mortality Database (2021), World Mortality Dataset (2021)</td>
+<td headers="category" class="gt_row gt_left">Excess mortality</td>
+<td headers="description" class="gt_row gt_left">Percentage difference between the reported number of weekly or monthly deaths in 2020–2021 and the projected number of deaths for the same period based on previous years. For more information, see https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">excess_mortality_cumulative</td>
+<td headers="source" class="gt_row gt_left">Human Mortality Database (2021), World Mortality Dataset (2021)</td>
+<td headers="category" class="gt_row gt_left">Excess mortality</td>
+<td headers="description" class="gt_row gt_left">Percentage difference between the cumulative number of deaths since 1 January 2020 and the cumulative projected deaths for the same period based on previous years. For more information, see https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">excess_mortality_cumulative_absolute</td>
+<td headers="source" class="gt_row gt_left">Human Mortality Database (2021), World Mortality Dataset (2021)</td>
+<td headers="category" class="gt_row gt_left">Excess mortality</td>
+<td headers="description" class="gt_row gt_left">Cumulative difference between the reported number of deaths since 1 January 2020 and the projected number of deaths for the same period based on previous years. For more information, see https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality</td></tr>
+    <tr><td headers="column" class="gt_row gt_left">excess_mortality_cumulative_per_million</td>
+<td headers="source" class="gt_row gt_left">Human Mortality Database (2021), World Mortality Dataset (2021)</td>
+<td headers="category" class="gt_row gt_left">Excess mortality</td>
+<td headers="description" class="gt_row gt_left">Cumulative difference between the reported number of deaths since 1 January 2020 and the projected number of deaths for the same period based on previous years, per million people. For more information, see https://github.com/owid/covid-19-data/tree/master/public/data/excess_mortality</td></tr>
   </tbody>
   
   
@@ -1322,16 +1357,16 @@ class="section level2">
 </div>
 <div id="buscar-los-datos" class="section level1">
 <h1>Buscar los datos</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat&lt;- read.csv(&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv&#39;)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat_compl &lt;- read.csv(&#39;https://covid.ourworldindata.org/data/owid-covid-data.csv&#39;)</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#mydat=mydat_compl</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>mydat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;Data_files_csv/owid-covid-data.xlsx&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mydat, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#mydat&lt;- read.csv(&#39;https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv&#39;)</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#mydat_compl &lt;- read.csv(&#39;https://covid.ourworldindata.org/data/owid-covid-data.csv&#39;)</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#mydat=mydat_compl</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>mydat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;Data_files_csv/owid-covid-data.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">head</span>(mydat, <span class="dv">4</span>)</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:five">
 <col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">iso_code</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">continent</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">location</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">date</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_cases</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_cases</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_cases_smoothed</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_deaths</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_deaths</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_deaths_smoothed</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_cases_per_million</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_cases_per_million</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_cases_smoothed_per_million</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_deaths_per_million</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_deaths_per_million</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_deaths_smoothed_per_million</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">reproduction_rate</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">icu_patients</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">icu_patients_per_million</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">hosp_patients</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">hosp_patients_per_million</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">weekly_icu_admissions</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">weekly_icu_admissions_per_million</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">weekly_hosp_admissions</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">weekly_hosp_admissions_per_million</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_tests</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_tests</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_tests_per_thousand</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_tests_per_thousand</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_tests_smoothed</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_tests_smoothed_per_thousand</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">positive_rate</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">tests_per_case</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">tests_units</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_vaccinations</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">people_vaccinated</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">people_fully_vaccinated</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_boosters</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_vaccinations</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_vaccinations_smoothed</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_vaccinations_per_hundred</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">people_vaccinated_per_hundred</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">people_fully_vaccinated_per_hundred</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">total_boosters_per_hundred</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_vaccinations_smoothed_per_million</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_people_vaccinated_smoothed</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">new_people_vaccinated_smoothed_per_hundred</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">stringency_index</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">population</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">population_density</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">median_age</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">aged_65_older</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">aged_70_older</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">gdp_per_capita</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">extreme_poverty</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">cardiovasc_death_rate</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">diabetes_prevalence</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">female_smokers</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">male_smokers</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">handwashing_facilities</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">hospital_beds_per_thousand</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">life_expectancy</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">human_development_index</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">excess_mortality_cumulative_absolute</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">excess_mortality_cumulative</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">excess_mortality</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">excess_mortality_cumulative_per_million</th></tr>
@@ -1348,20 +1383,32 @@ class="section level2">
 <hr />
 <p>Seleccionar las variables y filtrar los datos para hacer un subgrupo
 con datos solamente de Puerto Rico</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df1<span class="ot">=</span>mydat <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">&quot;Puerto Rico&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(df1)</span></code></pre></div>
-<div id="ccdilsvvad" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>df1<span class="ot">=</span>mydat <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">&quot;Puerto Rico&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">head</span>() </span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="fu">gt</span>(df1)</span></code></pre></div>
+<div id="ccdilsvvad" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ccdilsvvad table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ccdilsvvad thead, #ccdilsvvad tbody, #ccdilsvvad tfoot, #ccdilsvvad tr, #ccdilsvvad td, #ccdilsvvad th {
+  border-style: none;
+}
+
+#ccdilsvvad p {
+  margin: 0;
+  padding: 0;
 }
 
 #ccdilsvvad .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1384,16 +1431,9 @@ con datos solamente de Puerto Rico</p>
   border-left-color: #D3D3D3;
 }
 
-#ccdilsvvad .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#ccdilsvvad .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #ccdilsvvad .gt_title {
@@ -1412,12 +1452,24 @@ con datos solamente de Puerto Rico</p>
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#ccdilsvvad .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #ccdilsvvad .gt_bottom_border {
@@ -1493,6 +1545,10 @@ con datos solamente de Puerto Rico</p>
   width: 100%;
 }
 
+#ccdilsvvad .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #ccdilsvvad .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -1516,6 +1572,7 @@ con datos solamente de Puerto Rico</p>
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #ccdilsvvad .gt_empty_group_heading {
@@ -1591,6 +1648,10 @@ con datos solamente de Puerto Rico</p>
   border-top-width: 2px;
 }
 
+#ccdilsvvad .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #ccdilsvvad .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -1640,6 +1701,16 @@ con datos solamente de Puerto Rico</p>
   border-top-color: #D3D3D3;
 }
 
+#ccdilsvvad .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #ccdilsvvad .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -1670,8 +1741,8 @@ con datos solamente de Puerto Rico</p>
 #ccdilsvvad .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1728,10 +1799,9 @@ con datos solamente de Puerto Rico</p>
 }
 
 #ccdilsvvad .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #ccdilsvvad .gt_asterisk {
@@ -1759,48 +1829,48 @@ con datos solamente de Puerto Rico</p>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">location</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">date</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">total_cases</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">new_cases</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">life_expectancy</th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="location">location</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="date">date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="total_cases">total_cases</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="new_cases">new_cases</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="life_expectancy">life_expectancy</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">Puerto Rico</td>
-<td class="gt_row gt_right">2020-03-01</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">80.1</td></tr>
-    <tr><td class="gt_row gt_left">Puerto Rico</td>
-<td class="gt_row gt_right">2020-03-02</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">80.1</td></tr>
-    <tr><td class="gt_row gt_left">Puerto Rico</td>
-<td class="gt_row gt_right">2020-03-03</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">80.1</td></tr>
-    <tr><td class="gt_row gt_left">Puerto Rico</td>
-<td class="gt_row gt_right">2020-03-04</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">80.1</td></tr>
-    <tr><td class="gt_row gt_left">Puerto Rico</td>
-<td class="gt_row gt_right">2020-03-05</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">80.1</td></tr>
-    <tr><td class="gt_row gt_left">Puerto Rico</td>
-<td class="gt_row gt_right">2020-03-06</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">NA</td>
-<td class="gt_row gt_right">80.1</td></tr>
+    <tr><td headers="location" class="gt_row gt_left">Puerto Rico</td>
+<td headers="date" class="gt_row gt_right">2020-03-01</td>
+<td headers="total_cases" class="gt_row gt_right">NA</td>
+<td headers="new_cases" class="gt_row gt_right">NA</td>
+<td headers="life_expectancy" class="gt_row gt_right">80.1</td></tr>
+    <tr><td headers="location" class="gt_row gt_left">Puerto Rico</td>
+<td headers="date" class="gt_row gt_right">2020-03-02</td>
+<td headers="total_cases" class="gt_row gt_right">NA</td>
+<td headers="new_cases" class="gt_row gt_right">NA</td>
+<td headers="life_expectancy" class="gt_row gt_right">80.1</td></tr>
+    <tr><td headers="location" class="gt_row gt_left">Puerto Rico</td>
+<td headers="date" class="gt_row gt_right">2020-03-03</td>
+<td headers="total_cases" class="gt_row gt_right">NA</td>
+<td headers="new_cases" class="gt_row gt_right">NA</td>
+<td headers="life_expectancy" class="gt_row gt_right">80.1</td></tr>
+    <tr><td headers="location" class="gt_row gt_left">Puerto Rico</td>
+<td headers="date" class="gt_row gt_right">2020-03-04</td>
+<td headers="total_cases" class="gt_row gt_right">NA</td>
+<td headers="new_cases" class="gt_row gt_right">NA</td>
+<td headers="life_expectancy" class="gt_row gt_right">80.1</td></tr>
+    <tr><td headers="location" class="gt_row gt_left">Puerto Rico</td>
+<td headers="date" class="gt_row gt_right">2020-03-05</td>
+<td headers="total_cases" class="gt_row gt_right">NA</td>
+<td headers="new_cases" class="gt_row gt_right">NA</td>
+<td headers="life_expectancy" class="gt_row gt_right">80.1</td></tr>
+    <tr><td headers="location" class="gt_row gt_left">Puerto Rico</td>
+<td headers="date" class="gt_row gt_right">2020-03-06</td>
+<td headers="total_cases" class="gt_row gt_right">NA</td>
+<td headers="new_cases" class="gt_row gt_right">NA</td>
+<td headers="life_expectancy" class="gt_row gt_right">80.1</td></tr>
   </tbody>
   
   
@@ -1811,7 +1881,7 @@ con datos solamente de Puerto Rico</p>
 <div id="ver-el-nombre-de-todos-los-paises-incluido-en-el-archivo"
 class="section level1">
 <h1>Ver el nombre de todos los paises incluido en el archivo</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(mydat<span class="sc">$</span>location)  <span class="co"># la función &quot;unique&quot; es para saber los valores únicos un una columna</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">unique</span>(mydat<span class="sc">$</span>location)  <span class="co"># la función &quot;unique&quot; es para saber los valores únicos un una columna</span></span></code></pre></div>
 <pre><code>##   [1] &quot;Afghanistan&quot;                      &quot;Africa&quot;                          
 ##   [3] &quot;Albania&quot;                          &quot;Algeria&quot;                         
 ##   [5] &quot;Andorra&quot;                          &quot;Angola&quot;                          
@@ -1954,19 +2024,31 @@ la desviación estándar - el error estándar - los cuartiles</p>
 <h1>Ejercicio 2</h1>
 <p>(5 puntos)</p>
 <p>Selecciona otro país del Caribe y calcula los mismo parámetros</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="tadislgnvk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="tadislgnvk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tadislgnvk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#tadislgnvk thead, #tadislgnvk tbody, #tadislgnvk tfoot, #tadislgnvk tr, #tadislgnvk td, #tadislgnvk th {
+  border-style: none;
+}
+
+#tadislgnvk p {
+  margin: 0;
+  padding: 0;
 }
 
 #tadislgnvk .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1989,16 +2071,9 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-left-color: #D3D3D3;
 }
 
-#tadislgnvk .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#tadislgnvk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #tadislgnvk .gt_title {
@@ -2017,12 +2092,24 @@ la desviación estándar - el error estándar - los cuartiles</p>
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#tadislgnvk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #tadislgnvk .gt_bottom_border {
@@ -2098,6 +2185,10 @@ la desviación estándar - el error estándar - los cuartiles</p>
   width: 100%;
 }
 
+#tadislgnvk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #tadislgnvk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -2121,6 +2212,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #tadislgnvk .gt_empty_group_heading {
@@ -2196,6 +2288,10 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-top-width: 2px;
 }
 
+#tadislgnvk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #tadislgnvk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -2245,6 +2341,16 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-top-color: #D3D3D3;
 }
 
+#tadislgnvk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #tadislgnvk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -2275,8 +2381,8 @@ la desviación estándar - el error estándar - los cuartiles</p>
 #tadislgnvk .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -2333,10 +2439,9 @@ la desviación estándar - el error estándar - los cuartiles</p>
 }
 
 #tadislgnvk .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #tadislgnvk .gt_asterisk {
@@ -2364,57 +2469,69 @@ la desviación estándar - el error estándar - los cuartiles</p>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">location</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">date</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">total_cases</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">new_cases</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">life_expectancy</th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="location">location</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="date">date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="total_cases">total_cases</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="new_cases">new_cases</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="life_expectancy">life_expectancy</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">Cuba</td>
-<td class="gt_row gt_right">2020-03-12</td>
-<td class="gt_row gt_right">3</td>
-<td class="gt_row gt_right">3</td>
-<td class="gt_row gt_right">78.8</td></tr>
-    <tr><td class="gt_row gt_left">Cuba</td>
-<td class="gt_row gt_right">2020-03-13</td>
-<td class="gt_row gt_right">4</td>
-<td class="gt_row gt_right">1</td>
-<td class="gt_row gt_right">78.8</td></tr>
-    <tr><td class="gt_row gt_left">Cuba</td>
-<td class="gt_row gt_right">2020-03-14</td>
-<td class="gt_row gt_right">4</td>
-<td class="gt_row gt_right">0</td>
-<td class="gt_row gt_right">78.8</td></tr>
+    <tr><td headers="location" class="gt_row gt_left">Cuba</td>
+<td headers="date" class="gt_row gt_right">2020-03-12</td>
+<td headers="total_cases" class="gt_row gt_right">3</td>
+<td headers="new_cases" class="gt_row gt_right">3</td>
+<td headers="life_expectancy" class="gt_row gt_right">78.8</td></tr>
+    <tr><td headers="location" class="gt_row gt_left">Cuba</td>
+<td headers="date" class="gt_row gt_right">2020-03-13</td>
+<td headers="total_cases" class="gt_row gt_right">4</td>
+<td headers="new_cases" class="gt_row gt_right">1</td>
+<td headers="life_expectancy" class="gt_row gt_right">78.8</td></tr>
+    <tr><td headers="location" class="gt_row gt_left">Cuba</td>
+<td headers="date" class="gt_row gt_right">2020-03-14</td>
+<td headers="total_cases" class="gt_row gt_right">4</td>
+<td headers="new_cases" class="gt_row gt_right">0</td>
+<td headers="life_expectancy" class="gt_row gt_right">78.8</td></tr>
   </tbody>
   
   
 </table>
 </div>
 <hr />
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(statip)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>mydat <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">%&gt;%</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(new_cases, <span class="at">na.rm=</span>T),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">median=</span><span class="fu">median</span>(new_cases, <span class="at">na.rm=</span>T), </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">de=</span><span class="fu">sd</span>(new_cases, <span class="at">na.rm=</span>T))  <span class="sc">%&gt;%</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="fpnxtirrug" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">library</span>(statip)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>mydat <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">%&gt;%</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(new_cases, <span class="at">na.rm=</span>T),</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>            <span class="at">median=</span><span class="fu">median</span>(new_cases, <span class="at">na.rm=</span>T), </span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>            <span class="at">de=</span><span class="fu">sd</span>(new_cases, <span class="at">na.rm=</span>T))  <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="fpnxtirrug" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fpnxtirrug table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#fpnxtirrug thead, #fpnxtirrug tbody, #fpnxtirrug tfoot, #fpnxtirrug tr, #fpnxtirrug td, #fpnxtirrug th {
+  border-style: none;
+}
+
+#fpnxtirrug p {
+  margin: 0;
+  padding: 0;
 }
 
 #fpnxtirrug .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -2437,16 +2554,9 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-left-color: #D3D3D3;
 }
 
-#fpnxtirrug .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#fpnxtirrug .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #fpnxtirrug .gt_title {
@@ -2465,12 +2575,24 @@ la desviación estándar - el error estándar - los cuartiles</p>
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#fpnxtirrug .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #fpnxtirrug .gt_bottom_border {
@@ -2546,6 +2668,10 @@ la desviación estándar - el error estándar - los cuartiles</p>
   width: 100%;
 }
 
+#fpnxtirrug .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #fpnxtirrug .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -2569,6 +2695,7 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #fpnxtirrug .gt_empty_group_heading {
@@ -2644,6 +2771,10 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-top-width: 2px;
 }
 
+#fpnxtirrug .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #fpnxtirrug .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -2693,6 +2824,16 @@ la desviación estándar - el error estándar - los cuartiles</p>
   border-top-color: #D3D3D3;
 }
 
+#fpnxtirrug .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #fpnxtirrug .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -2723,8 +2864,8 @@ la desviación estándar - el error estándar - los cuartiles</p>
 #fpnxtirrug .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -2781,10 +2922,9 @@ la desviación estándar - el error estándar - los cuartiles</p>
 }
 
 #fpnxtirrug .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #fpnxtirrug .gt_asterisk {
@@ -2812,29 +2952,29 @@ la desviación estándar - el error estándar - los cuartiles</p>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">mean</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">median</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">de</th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean">mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="median">median</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="de">de</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_right">540.3386</td>
-<td class="gt_row gt_right">43</td>
-<td class="gt_row gt_right">1805.497</td></tr>
+    <tr><td headers="mean" class="gt_row gt_right">540.3386</td>
+<td headers="median" class="gt_row gt_right">43</td>
+<td headers="de" class="gt_row gt_right">1805.497</td></tr>
   </tbody>
   
   
 </table>
 </div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location)<span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mode=</span>statip<span class="sc">::</span><span class="fu">mfv</span>(new_cases))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>mydat<span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(location,date, total_cases, new_cases, life_expectancy)<span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Puerto Rico&quot;</span>, <span class="st">&quot;Cuba&quot;</span>, <span class="st">&quot;Jamaica&quot;</span>, <span class="st">&quot;Costa Rica&quot;</span>, <span class="st">&quot;Haiti&quot;</span>, <span class="st">&quot;Bahamas&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="fu">group_by</span>(location)<span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mode=</span>statip<span class="sc">::</span><span class="fu">mfv</span>(new_cases))</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:ten">
 <col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mode</th></tr>

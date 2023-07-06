@@ -15,7 +15,7 @@
 
 <title>Ejerc_Ten_Central_Disp_Graficos_2022</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -31,7 +31,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -95,7 +95,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -108,7 +108,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -631,8 +631,8 @@ div.tocify {
 </div>
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code></pre></div>
 <hr />
 <div
 id="distancia-de-las-estrellas-más-brillantes-de-las-que-son-100-años-luz-o-menos"
@@ -644,20 +644,32 @@ id="calcular-el-promedio-mediana-moda-y-rango-de-los-datos-de-las-estrellas-más
 class="section level3">
 <h3>Calcular el promedio, mediana, moda y rango de los datos de las
 estrellas más cercana a la tierra</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Distancia_Estrellas<span class="ot">=</span><span class="fu">tribble</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Distancia,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">8.6</span>,<span class="fl">36.7</span>,<span class="fl">42.2</span>,<span class="fl">16.8</span>,<span class="fl">33.7</span>,<span class="fl">87.9</span>,<span class="fl">4.4</span>,<span class="fl">25.3</span>,<span class="fl">11.4</span>,<span class="fl">25.1</span>,<span class="fl">51.5</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(Distancia_Estrellas)</span></code></pre></div>
-<div id="btzyjzajmq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>Distancia_Estrellas<span class="ot">=</span><span class="fu">tribble</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="sc">~</span>Distancia,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fl">8.6</span>,<span class="fl">36.7</span>,<span class="fl">42.2</span>,<span class="fl">16.8</span>,<span class="fl">33.7</span>,<span class="fl">87.9</span>,<span class="fl">4.4</span>,<span class="fl">25.3</span>,<span class="fl">11.4</span>,<span class="fl">25.1</span>,<span class="fl">51.5</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">gt</span>(Distancia_Estrellas)</span></code></pre></div>
+<div id="btzyjzajmq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#btzyjzajmq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#btzyjzajmq thead, #btzyjzajmq tbody, #btzyjzajmq tfoot, #btzyjzajmq tr, #btzyjzajmq td, #btzyjzajmq th {
+  border-style: none;
+}
+
+#btzyjzajmq p {
+  margin: 0;
+  padding: 0;
 }
 
 #btzyjzajmq .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -680,16 +692,9 @@ estrellas más cercana a la tierra</h3>
   border-left-color: #D3D3D3;
 }
 
-#btzyjzajmq .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#btzyjzajmq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #btzyjzajmq .gt_title {
@@ -708,12 +713,24 @@ estrellas más cercana a la tierra</h3>
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#btzyjzajmq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #btzyjzajmq .gt_bottom_border {
@@ -789,6 +806,10 @@ estrellas más cercana a la tierra</h3>
   width: 100%;
 }
 
+#btzyjzajmq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #btzyjzajmq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -812,6 +833,7 @@ estrellas más cercana a la tierra</h3>
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #btzyjzajmq .gt_empty_group_heading {
@@ -887,6 +909,10 @@ estrellas más cercana a la tierra</h3>
   border-top-width: 2px;
 }
 
+#btzyjzajmq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #btzyjzajmq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -936,6 +962,16 @@ estrellas más cercana a la tierra</h3>
   border-top-color: #D3D3D3;
 }
 
+#btzyjzajmq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #btzyjzajmq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -966,8 +1002,8 @@ estrellas más cercana a la tierra</h3>
 #btzyjzajmq .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1024,10 +1060,9 @@ estrellas más cercana a la tierra</h3>
 }
 
 #btzyjzajmq .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #btzyjzajmq .gt_asterisk {
@@ -1055,25 +1090,25 @@ estrellas más cercana a la tierra</h3>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Distancia</th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Distancia">Distancia</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_right">8.6</td></tr>
-    <tr><td class="gt_row gt_right">36.7</td></tr>
-    <tr><td class="gt_row gt_right">42.2</td></tr>
-    <tr><td class="gt_row gt_right">16.8</td></tr>
-    <tr><td class="gt_row gt_right">33.7</td></tr>
-    <tr><td class="gt_row gt_right">87.9</td></tr>
-    <tr><td class="gt_row gt_right">4.4</td></tr>
-    <tr><td class="gt_row gt_right">25.3</td></tr>
-    <tr><td class="gt_row gt_right">11.4</td></tr>
-    <tr><td class="gt_row gt_right">25.1</td></tr>
-    <tr><td class="gt_row gt_right">51.5</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">8.6</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">36.7</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">42.2</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">16.8</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">33.7</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">87.9</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">4.4</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">25.3</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">11.4</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">25.1</td></tr>
+    <tr><td headers="Distancia" class="gt_row gt_right">51.5</td></tr>
   </tbody>
   
   
@@ -1090,20 +1125,32 @@ el año 2020</h2>
 <div id="calular-los-cuantiles-mencionado-en-la-pregunta"
 class="section level4">
 <h4>Calular los cuantiles mencionado en la pregunta</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>PR_poblacion<span class="ot">=</span><span class="fu">tribble</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Poblacion,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fl">18.0</span>, <span class="fl">38.1</span>,<span class="fl">55.1</span>,<span class="fl">24.2</span>,<span class="fl">24.6</span>,<span class="fl">25.6</span>,<span class="fl">87.7</span>,<span class="fl">15.8</span>,<span class="fl">22.7</span>,<span class="fl">28.9</span>,<span class="fl">185.2</span>,<span class="fl">47.1</span>,<span class="fl">127.2</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(PR_poblacion)</span></code></pre></div>
-<div id="ypolvfzhda" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>PR_poblacion<span class="ot">=</span><span class="fu">tribble</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="sc">~</span>Poblacion,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fl">18.0</span>, <span class="fl">38.1</span>,<span class="fl">55.1</span>,<span class="fl">24.2</span>,<span class="fl">24.6</span>,<span class="fl">25.6</span>,<span class="fl">87.7</span>,<span class="fl">15.8</span>,<span class="fl">22.7</span>,<span class="fl">28.9</span>,<span class="fl">185.2</span>,<span class="fl">47.1</span>,<span class="fl">127.2</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">gt</span>(PR_poblacion)</span></code></pre></div>
+<div id="ypolvfzhda" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ypolvfzhda table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ypolvfzhda thead, #ypolvfzhda tbody, #ypolvfzhda tfoot, #ypolvfzhda tr, #ypolvfzhda td, #ypolvfzhda th {
+  border-style: none;
+}
+
+#ypolvfzhda p {
+  margin: 0;
+  padding: 0;
 }
 
 #ypolvfzhda .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1126,16 +1173,9 @@ class="section level4">
   border-left-color: #D3D3D3;
 }
 
-#ypolvfzhda .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#ypolvfzhda .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #ypolvfzhda .gt_title {
@@ -1154,12 +1194,24 @@ class="section level4">
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#ypolvfzhda .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #ypolvfzhda .gt_bottom_border {
@@ -1235,6 +1287,10 @@ class="section level4">
   width: 100%;
 }
 
+#ypolvfzhda .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #ypolvfzhda .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -1258,6 +1314,7 @@ class="section level4">
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #ypolvfzhda .gt_empty_group_heading {
@@ -1333,6 +1390,10 @@ class="section level4">
   border-top-width: 2px;
 }
 
+#ypolvfzhda .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #ypolvfzhda .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -1382,6 +1443,16 @@ class="section level4">
   border-top-color: #D3D3D3;
 }
 
+#ypolvfzhda .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #ypolvfzhda .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -1412,8 +1483,8 @@ class="section level4">
 #ypolvfzhda .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1470,10 +1541,9 @@ class="section level4">
 }
 
 #ypolvfzhda .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #ypolvfzhda .gt_asterisk {
@@ -1501,27 +1571,27 @@ class="section level4">
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Poblacion</th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Poblacion">Poblacion</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_right">18.0</td></tr>
-    <tr><td class="gt_row gt_right">38.1</td></tr>
-    <tr><td class="gt_row gt_right">55.1</td></tr>
-    <tr><td class="gt_row gt_right">24.2</td></tr>
-    <tr><td class="gt_row gt_right">24.6</td></tr>
-    <tr><td class="gt_row gt_right">25.6</td></tr>
-    <tr><td class="gt_row gt_right">87.7</td></tr>
-    <tr><td class="gt_row gt_right">15.8</td></tr>
-    <tr><td class="gt_row gt_right">22.7</td></tr>
-    <tr><td class="gt_row gt_right">28.9</td></tr>
-    <tr><td class="gt_row gt_right">185.2</td></tr>
-    <tr><td class="gt_row gt_right">47.1</td></tr>
-    <tr><td class="gt_row gt_right">127.2</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">18.0</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">38.1</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">55.1</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">24.2</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">24.6</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">25.6</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">87.7</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">15.8</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">22.7</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">28.9</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">185.2</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">47.1</td></tr>
+    <tr><td headers="Poblacion" class="gt_row gt_right">127.2</td></tr>
   </tbody>
   
   
@@ -1540,31 +1610,43 @@ id="calcular-el-promedio-mediana-moda-de-los-datos-de-las-estrellas-más-cercana
 class="section level4">
 <h4>Calcular el promedio, mediana, moda de los datos de las estrellas
 más cercana a la tierra</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Dinero_Artista<span class="ot">=</span><span class="fu">tribble</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Artista, <span class="sc">~</span>Dinero,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;Kurt Corbain&quot;</span>, <span class="dv">50</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;Elvis Presley&quot;</span>,<span class="dv">42</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;Charles Chultz&quot;</span>, <span class="dv">35</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;John Lennon&quot;</span>, <span class="dv">24</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;Ray Charles&quot;</span>, <span class="dv">10</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;Marilyn Monroe&quot;</span>,<span class="dv">8</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;Johny Cash&quot;</span>,<span class="dv">8</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;J.R.R. Tolkein&quot;</span>, <span class="dv">7</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;George Harrison&quot;</span>, <span class="dv">7</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;Bob Marley&quot;</span>,<span class="dv">7</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;Albert Einstein&quot;</span> ,<span class="dv">20</span>,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a> <span class="st">&quot;And Wharhol&quot;</span>,<span class="dv">19</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(Dinero_Artista)</span></code></pre></div>
-<div id="lyhjxobtlv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>Dinero_Artista<span class="ot">=</span><span class="fu">tribble</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="sc">~</span>Artista, <span class="sc">~</span>Dinero,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a> <span class="st">&quot;Kurt Corbain&quot;</span>, <span class="dv">50</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a> <span class="st">&quot;Elvis Presley&quot;</span>,<span class="dv">42</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a> <span class="st">&quot;Charles Chultz&quot;</span>, <span class="dv">35</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a> <span class="st">&quot;John Lennon&quot;</span>, <span class="dv">24</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a> <span class="st">&quot;Ray Charles&quot;</span>, <span class="dv">10</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a> <span class="st">&quot;Marilyn Monroe&quot;</span>,<span class="dv">8</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a> <span class="st">&quot;Johny Cash&quot;</span>,<span class="dv">8</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a> <span class="st">&quot;J.R.R. Tolkein&quot;</span>, <span class="dv">7</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a> <span class="st">&quot;George Harrison&quot;</span>, <span class="dv">7</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a> <span class="st">&quot;Bob Marley&quot;</span>,<span class="dv">7</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a> <span class="st">&quot;Albert Einstein&quot;</span> ,<span class="dv">20</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a> <span class="st">&quot;And Wharhol&quot;</span>,<span class="dv">19</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>)</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="fu">gt</span>(Dinero_Artista)</span></code></pre></div>
+<div id="lyhjxobtlv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lyhjxobtlv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lyhjxobtlv thead, #lyhjxobtlv tbody, #lyhjxobtlv tfoot, #lyhjxobtlv tr, #lyhjxobtlv td, #lyhjxobtlv th {
+  border-style: none;
+}
+
+#lyhjxobtlv p {
+  margin: 0;
+  padding: 0;
 }
 
 #lyhjxobtlv .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1587,16 +1669,9 @@ más cercana a la tierra</h4>
   border-left-color: #D3D3D3;
 }
 
-#lyhjxobtlv .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#lyhjxobtlv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #lyhjxobtlv .gt_title {
@@ -1615,12 +1690,24 @@ más cercana a la tierra</h4>
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#lyhjxobtlv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #lyhjxobtlv .gt_bottom_border {
@@ -1696,6 +1783,10 @@ más cercana a la tierra</h4>
   width: 100%;
 }
 
+#lyhjxobtlv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #lyhjxobtlv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -1719,6 +1810,7 @@ más cercana a la tierra</h4>
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #lyhjxobtlv .gt_empty_group_heading {
@@ -1794,6 +1886,10 @@ más cercana a la tierra</h4>
   border-top-width: 2px;
 }
 
+#lyhjxobtlv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #lyhjxobtlv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -1843,6 +1939,16 @@ más cercana a la tierra</h4>
   border-top-color: #D3D3D3;
 }
 
+#lyhjxobtlv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #lyhjxobtlv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -1873,8 +1979,8 @@ más cercana a la tierra</h4>
 #lyhjxobtlv .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -1931,10 +2037,9 @@ más cercana a la tierra</h4>
 }
 
 #lyhjxobtlv .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #lyhjxobtlv .gt_asterisk {
@@ -1962,39 +2067,39 @@ más cercana a la tierra</h4>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Artista</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Dinero</th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Artista">Artista</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Dinero">Dinero</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">Kurt Corbain</td>
-<td class="gt_row gt_right">50</td></tr>
-    <tr><td class="gt_row gt_left">Elvis Presley</td>
-<td class="gt_row gt_right">42</td></tr>
-    <tr><td class="gt_row gt_left">Charles Chultz</td>
-<td class="gt_row gt_right">35</td></tr>
-    <tr><td class="gt_row gt_left">John Lennon</td>
-<td class="gt_row gt_right">24</td></tr>
-    <tr><td class="gt_row gt_left">Ray Charles</td>
-<td class="gt_row gt_right">10</td></tr>
-    <tr><td class="gt_row gt_left">Marilyn Monroe</td>
-<td class="gt_row gt_right">8</td></tr>
-    <tr><td class="gt_row gt_left">Johny Cash</td>
-<td class="gt_row gt_right">8</td></tr>
-    <tr><td class="gt_row gt_left">J.R.R. Tolkein</td>
-<td class="gt_row gt_right">7</td></tr>
-    <tr><td class="gt_row gt_left">George Harrison</td>
-<td class="gt_row gt_right">7</td></tr>
-    <tr><td class="gt_row gt_left">Bob Marley</td>
-<td class="gt_row gt_right">7</td></tr>
-    <tr><td class="gt_row gt_left">Albert Einstein</td>
-<td class="gt_row gt_right">20</td></tr>
-    <tr><td class="gt_row gt_left">And Wharhol</td>
-<td class="gt_row gt_right">19</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">Kurt Corbain</td>
+<td headers="Dinero" class="gt_row gt_right">50</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">Elvis Presley</td>
+<td headers="Dinero" class="gt_row gt_right">42</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">Charles Chultz</td>
+<td headers="Dinero" class="gt_row gt_right">35</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">John Lennon</td>
+<td headers="Dinero" class="gt_row gt_right">24</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">Ray Charles</td>
+<td headers="Dinero" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">Marilyn Monroe</td>
+<td headers="Dinero" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">Johny Cash</td>
+<td headers="Dinero" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">J.R.R. Tolkein</td>
+<td headers="Dinero" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">George Harrison</td>
+<td headers="Dinero" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">Bob Marley</td>
+<td headers="Dinero" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">Albert Einstein</td>
+<td headers="Dinero" class="gt_row gt_right">20</td></tr>
+    <tr><td headers="Artista" class="gt_row gt_left">And Wharhol</td>
+<td headers="Dinero" class="gt_row gt_right">19</td></tr>
   </tbody>
   
   
@@ -2016,25 +2121,37 @@ estandard</h3>
 </div>
 <div id="haz-un-histograma-de-estos-datos" class="section level3">
 <h3>Haz un histograma de estos datos</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Fallecidos_Carro<span class="ot">=</span><span class="fu">tribble</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Fallecidos,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">778</span>,<span class="dv">309</span>,<span class="dv">1110</span>,<span class="dv">324</span>,<span class="dv">705</span>,<span class="dv">1067</span>,<span class="dv">826</span>,<span class="dv">76</span>,<span class="dv">205</span>,<span class="dv">152</span>,<span class="dv">218</span>,<span class="dv">492</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">65</span>,<span class="dv">186</span>,<span class="dv">712</span>,<span class="dv">193</span>,<span class="dv">262</span>,<span class="dv">452</span>,<span class="dv">875</span>,<span class="dv">82</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">730</span>,<span class="dv">1185</span>,<span class="dv">2707</span>,<span class="dv">1279</span>,<span class="dv">390</span>,<span class="dv">305</span>,<span class="dv">123</span>,<span class="dv">948</span>,<span class="dv">343</span>,<span class="dv">602</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">69</span>,<span class="dv">451</span>,<span class="dv">951</span>,<span class="dv">104</span>,<span class="dv">985</span>,<span class="dv">155</span>,<span class="dv">450</span>,<span class="dv">2080</span>,<span class="dv">565</span>,<span class="dv">875</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">414</span>,<span class="dv">981</span>,<span class="dv">2786</span>,<span class="dv">82</span>,<span class="dv">793</span>,<span class="dv">214</span>,<span class="dv">130</span>,<span class="dv">396</span>,<span class="dv">620</span>,<span class="dv">797</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(Fallecidos_Carro)</span></code></pre></div>
-<div id="ktreowqhrx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>Fallecidos_Carro<span class="ot">=</span><span class="fu">tribble</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="sc">~</span>Fallecidos,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="dv">778</span>,<span class="dv">309</span>,<span class="dv">1110</span>,<span class="dv">324</span>,<span class="dv">705</span>,<span class="dv">1067</span>,<span class="dv">826</span>,<span class="dv">76</span>,<span class="dv">205</span>,<span class="dv">152</span>,<span class="dv">218</span>,<span class="dv">492</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="dv">65</span>,<span class="dv">186</span>,<span class="dv">712</span>,<span class="dv">193</span>,<span class="dv">262</span>,<span class="dv">452</span>,<span class="dv">875</span>,<span class="dv">82</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="dv">730</span>,<span class="dv">1185</span>,<span class="dv">2707</span>,<span class="dv">1279</span>,<span class="dv">390</span>,<span class="dv">305</span>,<span class="dv">123</span>,<span class="dv">948</span>,<span class="dv">343</span>,<span class="dv">602</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="dv">69</span>,<span class="dv">451</span>,<span class="dv">951</span>,<span class="dv">104</span>,<span class="dv">985</span>,<span class="dv">155</span>,<span class="dv">450</span>,<span class="dv">2080</span>,<span class="dv">565</span>,<span class="dv">875</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="dv">414</span>,<span class="dv">981</span>,<span class="dv">2786</span>,<span class="dv">82</span>,<span class="dv">793</span>,<span class="dv">214</span>,<span class="dv">130</span>,<span class="dv">396</span>,<span class="dv">620</span>,<span class="dv">797</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="fu">gt</span>(Fallecidos_Carro)</span></code></pre></div>
+<div id="ktreowqhrx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ktreowqhrx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ktreowqhrx thead, #ktreowqhrx tbody, #ktreowqhrx tfoot, #ktreowqhrx tr, #ktreowqhrx td, #ktreowqhrx th {
+  border-style: none;
+}
+
+#ktreowqhrx p {
+  margin: 0;
+  padding: 0;
 }
 
 #ktreowqhrx .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -2057,16 +2174,9 @@ estandard</h3>
   border-left-color: #D3D3D3;
 }
 
-#ktreowqhrx .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#ktreowqhrx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #ktreowqhrx .gt_title {
@@ -2085,12 +2195,24 @@ estandard</h3>
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#ktreowqhrx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #ktreowqhrx .gt_bottom_border {
@@ -2166,6 +2288,10 @@ estandard</h3>
   width: 100%;
 }
 
+#ktreowqhrx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #ktreowqhrx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -2189,6 +2315,7 @@ estandard</h3>
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #ktreowqhrx .gt_empty_group_heading {
@@ -2264,6 +2391,10 @@ estandard</h3>
   border-top-width: 2px;
 }
 
+#ktreowqhrx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #ktreowqhrx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -2313,6 +2444,16 @@ estandard</h3>
   border-top-color: #D3D3D3;
 }
 
+#ktreowqhrx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #ktreowqhrx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -2343,8 +2484,8 @@ estandard</h3>
 #ktreowqhrx .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -2401,10 +2542,9 @@ estandard</h3>
 }
 
 #ktreowqhrx .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #ktreowqhrx .gt_asterisk {
@@ -2432,64 +2572,64 @@ estandard</h3>
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Fallecidos</th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Fallecidos">Fallecidos</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_right">778</td></tr>
-    <tr><td class="gt_row gt_right">309</td></tr>
-    <tr><td class="gt_row gt_right">1110</td></tr>
-    <tr><td class="gt_row gt_right">324</td></tr>
-    <tr><td class="gt_row gt_right">705</td></tr>
-    <tr><td class="gt_row gt_right">1067</td></tr>
-    <tr><td class="gt_row gt_right">826</td></tr>
-    <tr><td class="gt_row gt_right">76</td></tr>
-    <tr><td class="gt_row gt_right">205</td></tr>
-    <tr><td class="gt_row gt_right">152</td></tr>
-    <tr><td class="gt_row gt_right">218</td></tr>
-    <tr><td class="gt_row gt_right">492</td></tr>
-    <tr><td class="gt_row gt_right">65</td></tr>
-    <tr><td class="gt_row gt_right">186</td></tr>
-    <tr><td class="gt_row gt_right">712</td></tr>
-    <tr><td class="gt_row gt_right">193</td></tr>
-    <tr><td class="gt_row gt_right">262</td></tr>
-    <tr><td class="gt_row gt_right">452</td></tr>
-    <tr><td class="gt_row gt_right">875</td></tr>
-    <tr><td class="gt_row gt_right">82</td></tr>
-    <tr><td class="gt_row gt_right">730</td></tr>
-    <tr><td class="gt_row gt_right">1185</td></tr>
-    <tr><td class="gt_row gt_right">2707</td></tr>
-    <tr><td class="gt_row gt_right">1279</td></tr>
-    <tr><td class="gt_row gt_right">390</td></tr>
-    <tr><td class="gt_row gt_right">305</td></tr>
-    <tr><td class="gt_row gt_right">123</td></tr>
-    <tr><td class="gt_row gt_right">948</td></tr>
-    <tr><td class="gt_row gt_right">343</td></tr>
-    <tr><td class="gt_row gt_right">602</td></tr>
-    <tr><td class="gt_row gt_right">69</td></tr>
-    <tr><td class="gt_row gt_right">451</td></tr>
-    <tr><td class="gt_row gt_right">951</td></tr>
-    <tr><td class="gt_row gt_right">104</td></tr>
-    <tr><td class="gt_row gt_right">985</td></tr>
-    <tr><td class="gt_row gt_right">155</td></tr>
-    <tr><td class="gt_row gt_right">450</td></tr>
-    <tr><td class="gt_row gt_right">2080</td></tr>
-    <tr><td class="gt_row gt_right">565</td></tr>
-    <tr><td class="gt_row gt_right">875</td></tr>
-    <tr><td class="gt_row gt_right">414</td></tr>
-    <tr><td class="gt_row gt_right">981</td></tr>
-    <tr><td class="gt_row gt_right">2786</td></tr>
-    <tr><td class="gt_row gt_right">82</td></tr>
-    <tr><td class="gt_row gt_right">793</td></tr>
-    <tr><td class="gt_row gt_right">214</td></tr>
-    <tr><td class="gt_row gt_right">130</td></tr>
-    <tr><td class="gt_row gt_right">396</td></tr>
-    <tr><td class="gt_row gt_right">620</td></tr>
-    <tr><td class="gt_row gt_right">797</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">778</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">309</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">1110</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">324</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">705</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">1067</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">826</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">76</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">205</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">152</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">218</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">492</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">65</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">186</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">712</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">193</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">262</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">452</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">875</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">82</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">730</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">1185</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">2707</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">1279</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">390</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">305</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">123</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">948</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">343</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">602</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">69</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">451</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">951</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">104</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">985</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">155</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">450</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">2080</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">565</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">875</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">414</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">981</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">2786</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">82</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">793</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">214</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">130</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">396</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">620</td></tr>
+    <tr><td headers="Fallecidos" class="gt_row gt_right">797</td></tr>
   </tbody>
   
   

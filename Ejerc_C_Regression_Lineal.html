@@ -14,7 +14,7 @@
 
 <title>Ejerc_C_Regresión_lineal</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -94,7 +94,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -107,7 +107,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -643,30 +643,30 @@ siguiente enlace. <a
 href="https://bmcmicrobiol.biomedcentral.com/articles/10.1186/s12866-022-02488-z"
 class="uri">https://bmcmicrobiol.biomedcentral.com/articles/10.1186/s12866-022-02488-z</a></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>DATA<span class="ot">=</span><span class="fu">tribble</span>(<span class="sc">~</span>Cadnium, <span class="sc">~</span>Fungal_Growth,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">0</span>, <span class="fl">6.6</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>             <span class="dv">0</span>, <span class="fl">6.9</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>             <span class="dv">0</span>, <span class="fl">7.2</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>             <span class="dv">1</span>, <span class="fl">6.8</span>, </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>             <span class="dv">1</span>, <span class="fl">6.0</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>             <span class="dv">1</span>, <span class="fl">5.6</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>             <span class="dv">2</span>, <span class="fl">6.4</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>             <span class="dv">2</span>, <span class="fl">6.0</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>             <span class="dv">2</span>, <span class="fl">5.4</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>             <span class="dv">4</span>, <span class="fl">4.8</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>             <span class="dv">4</span>, <span class="fl">4.4</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>             <span class="dv">4</span>, <span class="fl">3.9</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>             <span class="dv">6</span>, <span class="fl">2.6</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>             <span class="dv">6</span>, <span class="fl">3.1</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>             <span class="dv">6</span>, <span class="fl">3.4</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>             <span class="dv">8</span>, <span class="fl">1.0</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>             <span class="dv">8</span>, <span class="fl">1.3</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>             <span class="dv">8</span>, <span class="fl">1.7</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>             <span class="dv">10</span>, <span class="fl">0.2</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>             <span class="dv">10</span>, <span class="fl">0.3</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>             <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>DATA</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>DATA<span class="ot">=</span><span class="fu">tribble</span>(<span class="sc">~</span>Cadnium, <span class="sc">~</span>Fungal_Growth,</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>             <span class="dv">0</span>, <span class="fl">6.6</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>             <span class="dv">0</span>, <span class="fl">6.9</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>             <span class="dv">0</span>, <span class="fl">7.2</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>             <span class="dv">1</span>, <span class="fl">6.8</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>             <span class="dv">1</span>, <span class="fl">6.0</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>             <span class="dv">1</span>, <span class="fl">5.6</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>             <span class="dv">2</span>, <span class="fl">6.4</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>             <span class="dv">2</span>, <span class="fl">6.0</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>             <span class="dv">2</span>, <span class="fl">5.4</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>             <span class="dv">4</span>, <span class="fl">4.8</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>             <span class="dv">4</span>, <span class="fl">4.4</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>             <span class="dv">4</span>, <span class="fl">3.9</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>             <span class="dv">6</span>, <span class="fl">2.6</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>             <span class="dv">6</span>, <span class="fl">3.1</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>             <span class="dv">6</span>, <span class="fl">3.4</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>             <span class="dv">8</span>, <span class="fl">1.0</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>             <span class="dv">8</span>, <span class="fl">1.3</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>             <span class="dv">8</span>, <span class="fl">1.7</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>             <span class="dv">10</span>, <span class="fl">0.2</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>             <span class="dv">10</span>, <span class="fl">0.3</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>             <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>DATA</span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-2">
 <col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Cadnium</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Fungal_Growth</th></tr>
