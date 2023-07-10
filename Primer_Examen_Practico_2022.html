@@ -653,6 +653,8 @@ datos se encuentra en el paquete “ggversa”</h3>
 <li><p>Camas = El número de camas por 1,000 habitantes</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">head</span>(Camas_Hospital)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-2">
 <col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pais</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Year</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Poblacion</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Camas</th></tr>
@@ -675,7 +677,9 @@ datos se encuentra en el paquete “ggversa”</h3>
 </div>
 <div id="cuantas-filas-hay-en-este-archivo" class="section level3">
 <h3>2. Cuantas filas hay en este archivo?</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">tail</span>(Camas_Hospital)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">tail</span>(Camas_Hospital)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
 <col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pais</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Year</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Poblacion</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Camas</th></tr>
@@ -693,7 +697,7 @@ datos se encuentra en el paquete “ggversa”</h3>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Yemen, Rep.</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2006</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">21093973</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.7&nbsp;</td></tr>
 </table>
 
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">length</span>(Camas_Hospital<span class="sc">$</span>Camas)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">length</span>(Camas_Hospital<span class="sc">$</span>Camas)</span></code></pre></div>
 <pre><code>## [1] 134</code></pre>
 <hr />
 </div>
@@ -702,7 +706,7 @@ id="calcula-el-promedio-de-números-de-camas-en-los-hospitales-en-general"
 class="section level3">
 <h3>3. Calcula el promedio de números de camas en los hospitales en
 general</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">mean</span>(Camas_Hospital<span class="sc">$</span>Camas)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">mean</span>(Camas_Hospital<span class="sc">$</span>Camas)</span></code></pre></div>
 <pre><code>## [1] 5.11237</code></pre>
 <hr />
 </div>
@@ -711,7 +715,7 @@ id="calcula-la-mediana-de-números-de-camas-en-los-hospitales-en-general"
 class="section level3">
 <h3>4. Calcula la mediana de números de camas en los hospitales en
 general</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">median</span>(Camas_Hospital<span class="sc">$</span>Camas)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">median</span>(Camas_Hospital<span class="sc">$</span>Camas)</span></code></pre></div>
 <pre><code>## [1] 4.7</code></pre>
 <hr />
 </div>
@@ -721,8 +725,8 @@ id="calcula-la-moda-de-números-de-camas-en-los-hospitales-en-general"
 class="section level1">
 <h1>4. Calcula la moda de números de camas en los hospitales en
 general</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">library</span>(statip)</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">mfv</span>(Camas_Hospital<span class="sc">$</span>Camas)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">library</span>(statip)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">mfv</span>(Camas_Hospital<span class="sc">$</span>Camas)</span></code></pre></div>
 <pre><code>## [1] 1.3</code></pre>
 <hr />
 <div id="haz-un-histograma-de-la-cantidad-de-camas-por-pais"
@@ -732,9 +736,9 @@ class="section level3">
 <li>pon una linea blanca alrededor de cada barra</li>
 <li>cambia el color de la barras a tu color favorito</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">ggplot</span>(Camas_Hospital, <span class="fu">aes</span>(Camas))<span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">ggplot</span>(Camas_Hospital, <span class="fu">aes</span>(Camas))<span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="Primer_Examen_Practico_2022_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <hr />
@@ -745,17 +749,19 @@ class="section level3">
 <h3>6. Ahora usando el mismos archivo de datos selecciona
 <strong>solamente</strong> los datos del 2006 y crea un nuevo data frame
 que se llama “Datos2006”</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>Datos2006 <span class="ot">=</span> </span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  Camas_Hospital <span class="sc">%&gt;%</span> </span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">filter</span>(Year<span class="sc">==</span><span class="st">&quot;2006&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>Datos2006 <span class="ot">=</span> </span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  Camas_Hospital <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="fu">filter</span>(Year<span class="sc">==</span><span class="st">&quot;2006&quot;</span>)</span></code></pre></div>
 <hr />
 </div>
 </div>
 <div id="enseña-solamente-los-primeros-6-filas-de-este-archivo"
 class="section level1">
 <h1>7 Enseña solamente los primeros 6 filas de este archivo</h1>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">head</span>(Datos2006)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">head</span>(Datos2006)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-9">
 <col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pais</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Year</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Poblacion</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Camas</th></tr>
@@ -784,7 +790,7 @@ Camas para el año 2006.</h3>
 dataframe$nombre_de_la_columna</li>
 <li>Enseñe los cuantiles .05, .10, .25, .50, .75, 90, .95 solamente</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">quantile</span>(Datos2006<span class="sc">$</span>Camas, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>, .<span class="dv">90</span>, .<span class="dv">95</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">quantile</span>(Datos2006<span class="sc">$</span>Camas, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>, .<span class="dv">90</span>, .<span class="dv">95</span>))</span></code></pre></div>
 <pre><code>##     5%    10%    25%    50%    75%    90%    95% 
 ## 1.0000 1.3000 2.2650 4.3331 6.5500 8.0400 8.6820</code></pre>
 <hr />
@@ -794,23 +800,23 @@ id="calcular-el-error-estandard-del-número-de-camas-por-hanbitante-del-año-200
 class="section level3">
 <h3>9. Calcular el error estandard del número de camas por hanbitante
 del año 2006</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>es_a<span class="ot">=</span> <span class="fu">sd</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(Datos2006<span class="sc">$</span>Camas))</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>es_a</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>es_a<span class="ot">=</span> <span class="fu">sd</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(Datos2006<span class="sc">$</span>Camas))</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>es_a</span></code></pre></div>
 <pre><code>## [1] 0.3447128</code></pre>
 <hr />
 </div>
 <div id="calcula-el-intervalo-de-confianza-del-promedio"
 class="section level3">
 <h3>10. Calcula el intervalo de confianza del promedio</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>Limite_inferior_a<span class="ot">=</span><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">-</span>(es_a<span class="sc">*</span><span class="fl">1.96</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>Limite_superior_a<span class="ot">=</span><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">+</span>(es_a<span class="sc">*</span><span class="fl">1.96</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>Limite_inferior_a <span class="co"># limite inferior 95%</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>Limite_inferior_a<span class="ot">=</span><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">-</span>(es_a<span class="sc">*</span><span class="fl">1.96</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>Limite_superior_a<span class="ot">=</span><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">+</span>(es_a<span class="sc">*</span><span class="fl">1.96</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>Limite_inferior_a <span class="co"># limite inferior 95%</span></span></code></pre></div>
 <pre><code>## [1] 3.936715</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)   <span class="co"># El promedio</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)   <span class="co"># El promedio</span></span></code></pre></div>
 <pre><code>## [1] 4.612352</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>Limite_superior_a <span class="co"># el limite superior 95%</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>Limite_superior_a <span class="co"># el limite superior 95%</span></span></code></pre></div>
 <pre><code>## [1] 5.287989</code></pre>
 <hr />
 </div>
@@ -824,15 +830,15 @@ habitantes no son iguales</p>
 <h3>12. Usando los mismos datos de 2006.</h3>
 <p>Calcula el intervalo de confianza de 68.2% de los datos (no del
 promedio) - Vea la presentación de Medidas de dispersión</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>Limite_inferior_pop<span class="ot">=</span><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">-</span><span class="fu">sd</span>(Datos2006<span class="sc">$</span>Camas)</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>Limite_superior_pop<span class="ot">=</span><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">+</span><span class="fu">sd</span>(Datos2006<span class="sc">$</span>Camas)</span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>Limite_inferior_pop <span class="co"># limite inferior 68.5%</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>Limite_inferior_pop<span class="ot">=</span><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">-</span><span class="fu">sd</span>(Datos2006<span class="sc">$</span>Camas)</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>Limite_superior_pop<span class="ot">=</span><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)<span class="sc">+</span><span class="fu">sd</span>(Datos2006<span class="sc">$</span>Camas)</span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>Limite_inferior_pop <span class="co"># limite inferior 68.5%</span></span></code></pre></div>
 <pre><code>## [1] 1.790757</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)   <span class="co"># El promedio</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="fu">mean</span>(Datos2006<span class="sc">$</span>Camas)   <span class="co"># El promedio</span></span></code></pre></div>
 <pre><code>## [1] 4.612352</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>Limite_superior_pop <span class="co"># el limite superior 68.5%</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>Limite_superior_pop <span class="co"># el limite superior 68.5%</span></span></code></pre></div>
 <pre><code>## [1] 7.433948</code></pre>
 </div>
 <div id="usando-el-archivo-partosinfantes" class="section level3">
@@ -857,12 +863,12 @@ un error)</p></li>
 </ul>
 <p>Haga un gráfico de “histograma”Box plot” del
 <strong>log(NMP)</strong> dividio por Región del Mundo</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">ggplot</span>(PartosInfantes, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span><span class="fu">log</span>(NMP), <span class="at">colour=</span>Grupo))<span class="sc">+</span> </span>
-<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">ggplot</span>(PartosInfantes, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span><span class="fu">log</span>(NMP), <span class="at">colour=</span>Grupo))<span class="sc">+</span> </span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 <p><img src="Primer_Examen_Practico_2022_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co">#PartosInfantes |&gt; </span></span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a> <span class="co"># filter(Grupo==&quot;EF&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co">#PartosInfantes |&gt; </span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a> <span class="co"># filter(Grupo==&quot;EF&quot;)</span></span></code></pre></div>
 <hr />
 </div>
 <div id="considerando-el-gráfico-anterior" class="section level3">
@@ -889,37 +895,37 @@ datos)</li>
 <p>Los datos provienen de este sitio: <a
 href="https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_more"
 class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_more</a></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co">#The tallest building in the world, el numero de pisos</span></span>
-<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>df<span class="ot">=</span><span class="fu">tribble</span>(</span>
-<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>  <span class="sc">~</span> <span class="st">&quot;Numeros de Pisos&quot;</span>, <span class="sc">~</span><span class="st">&quot;País&quot;</span>,</span>
-<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>  <span class="dv">163</span>, <span class="st">&quot;United Arab Emirates&quot;</span>,</span>
-<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>  <span class="dv">128</span>, <span class="st">&quot;China&quot;</span>,</span>
-<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a>  <span class="dv">128</span>, <span class="st">&quot;China&quot;</span>,</span>
-<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a>  <span class="dv">123</span>, <span class="st">&quot;South Korea&quot;</span>,</span>
-<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a>  <span class="dv">120</span>, <span class="st">&quot;Saudi Arabia&quot;</span>,</span>
-<span id="cb35-11"><a href="#cb35-11" tabindex="-1"></a>  <span class="dv">128</span>, <span class="st">&quot;Malaysia&quot;</span></span>
-<span id="cb35-12"><a href="#cb35-12" tabindex="-1"></a>  </span>
-<span id="cb35-13"><a href="#cb35-13" tabindex="-1"></a>)</span>
-<span id="cb35-14"><a href="#cb35-14" tabindex="-1"></a><span class="fu">gt</span>(df)</span></code></pre></div>
-<div id="ngohexbbjk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ngohexbbjk table {
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co">#The tallest building in the world, el numero de pisos</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>df<span class="ot">=</span><span class="fu">tribble</span>(</span>
+<span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>  <span class="sc">~</span> <span class="st">&quot;Numeros de Pisos&quot;</span>, <span class="sc">~</span><span class="st">&quot;País&quot;</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a>  <span class="dv">163</span>, <span class="st">&quot;United Arab Emirates&quot;</span>,</span>
+<span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a>  <span class="dv">128</span>, <span class="st">&quot;China&quot;</span>,</span>
+<span id="cb38-8"><a href="#cb38-8" tabindex="-1"></a>  <span class="dv">128</span>, <span class="st">&quot;China&quot;</span>,</span>
+<span id="cb38-9"><a href="#cb38-9" tabindex="-1"></a>  <span class="dv">123</span>, <span class="st">&quot;South Korea&quot;</span>,</span>
+<span id="cb38-10"><a href="#cb38-10" tabindex="-1"></a>  <span class="dv">120</span>, <span class="st">&quot;Saudi Arabia&quot;</span>,</span>
+<span id="cb38-11"><a href="#cb38-11" tabindex="-1"></a>  <span class="dv">128</span>, <span class="st">&quot;Malaysia&quot;</span></span>
+<span id="cb38-12"><a href="#cb38-12" tabindex="-1"></a>  </span>
+<span id="cb38-13"><a href="#cb38-13" tabindex="-1"></a>)</span>
+<span id="cb38-14"><a href="#cb38-14" tabindex="-1"></a><span class="fu">gt</span>(df)</span></code></pre></div>
+<div id="hnklzpmgfg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hnklzpmgfg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ngohexbbjk thead, #ngohexbbjk tbody, #ngohexbbjk tfoot, #ngohexbbjk tr, #ngohexbbjk td, #ngohexbbjk th {
+#hnklzpmgfg thead, #hnklzpmgfg tbody, #hnklzpmgfg tfoot, #hnklzpmgfg tr, #hnklzpmgfg td, #hnklzpmgfg th {
   border-style: none;
 }
 
-#ngohexbbjk p {
+#hnklzpmgfg p {
   margin: 0;
   padding: 0;
 }
 
-#ngohexbbjk .gt_table {
+#hnklzpmgfg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -945,12 +951,12 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-left-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_caption {
+#hnklzpmgfg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ngohexbbjk .gt_title {
+#hnklzpmgfg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -962,7 +968,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-width: 0;
 }
 
-#ngohexbbjk .gt_subtitle {
+#hnklzpmgfg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -974,7 +980,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-top-width: 0;
 }
 
-#ngohexbbjk .gt_heading {
+#hnklzpmgfg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -986,13 +992,13 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_bottom_border {
+#hnklzpmgfg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_col_headings {
+#hnklzpmgfg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1007,7 +1013,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_col_heading {
+#hnklzpmgfg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1027,7 +1033,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   overflow-x: hidden;
 }
 
-#ngohexbbjk .gt_column_spanner_outer {
+#hnklzpmgfg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1039,15 +1045,15 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 4px;
 }
 
-#ngohexbbjk .gt_column_spanner_outer:first-child {
+#hnklzpmgfg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ngohexbbjk .gt_column_spanner_outer:last-child {
+#hnklzpmgfg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ngohexbbjk .gt_column_spanner {
+#hnklzpmgfg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1059,11 +1065,11 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   width: 100%;
 }
 
-#ngohexbbjk .gt_spanner_row {
+#hnklzpmgfg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ngohexbbjk .gt_group_heading {
+#hnklzpmgfg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1089,7 +1095,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   text-align: left;
 }
 
-#ngohexbbjk .gt_empty_group_heading {
+#hnklzpmgfg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1104,15 +1110,15 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   vertical-align: middle;
 }
 
-#ngohexbbjk .gt_from_md > :first-child {
+#hnklzpmgfg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ngohexbbjk .gt_from_md > :last-child {
+#hnklzpmgfg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ngohexbbjk .gt_row {
+#hnklzpmgfg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1131,7 +1137,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   overflow-x: hidden;
 }
 
-#ngohexbbjk .gt_stub {
+#hnklzpmgfg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1144,7 +1150,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#ngohexbbjk .gt_stub_row_group {
+#hnklzpmgfg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1158,15 +1164,15 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   vertical-align: top;
 }
 
-#ngohexbbjk .gt_row_group_first td {
+#hnklzpmgfg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ngohexbbjk .gt_row_group_first th {
+#hnklzpmgfg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ngohexbbjk .gt_summary_row {
+#hnklzpmgfg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1176,16 +1182,16 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#ngohexbbjk .gt_first_summary_row {
+#hnklzpmgfg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_first_summary_row.thick {
+#hnklzpmgfg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ngohexbbjk .gt_last_summary_row {
+#hnklzpmgfg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1195,7 +1201,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_grand_summary_row {
+#hnklzpmgfg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1205,7 +1211,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#ngohexbbjk .gt_first_grand_summary_row {
+#hnklzpmgfg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1215,7 +1221,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-top-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_last_grand_summary_row_top {
+#hnklzpmgfg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1225,11 +1231,11 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_striped {
+#hnklzpmgfg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ngohexbbjk .gt_table_body {
+#hnklzpmgfg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1238,7 +1244,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_footnotes {
+#hnklzpmgfg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1252,7 +1258,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_footnote {
+#hnklzpmgfg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1261,7 +1267,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#ngohexbbjk .gt_sourcenotes {
+#hnklzpmgfg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1275,7 +1281,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#ngohexbbjk .gt_sourcenote {
+#hnklzpmgfg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1283,63 +1289,63 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#ngohexbbjk .gt_left {
+#hnklzpmgfg .gt_left {
   text-align: left;
 }
 
-#ngohexbbjk .gt_center {
+#hnklzpmgfg .gt_center {
   text-align: center;
 }
 
-#ngohexbbjk .gt_right {
+#hnklzpmgfg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ngohexbbjk .gt_font_normal {
+#hnklzpmgfg .gt_font_normal {
   font-weight: normal;
 }
 
-#ngohexbbjk .gt_font_bold {
+#hnklzpmgfg .gt_font_bold {
   font-weight: bold;
 }
 
-#ngohexbbjk .gt_font_italic {
+#hnklzpmgfg .gt_font_italic {
   font-style: italic;
 }
 
-#ngohexbbjk .gt_super {
+#hnklzpmgfg .gt_super {
   font-size: 65%;
 }
 
-#ngohexbbjk .gt_footnote_marks {
+#hnklzpmgfg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ngohexbbjk .gt_asterisk {
+#hnklzpmgfg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ngohexbbjk .gt_indent_1 {
+#hnklzpmgfg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ngohexbbjk .gt_indent_2 {
+#hnklzpmgfg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ngohexbbjk .gt_indent_3 {
+#hnklzpmgfg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ngohexbbjk .gt_indent_4 {
+#hnklzpmgfg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ngohexbbjk .gt_indent_5 {
+#hnklzpmgfg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

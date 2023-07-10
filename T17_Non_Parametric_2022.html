@@ -721,6 +721,8 @@ class="uri">https://en.wikipedia.org/wiki/Beck_Depression_Inventory</a></p>
 <span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>drugData<span class="ot">&lt;-</span><span class="fu">data.frame</span>(Gender, drug, sundayBDI, wedsBDI)</span>
 <span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>drugData</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:Enter data">
 <col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Gender</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">drug</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sundayBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsBDI</th></tr>
@@ -772,17 +774,19 @@ class="uri">https://en.wikipedia.org/wiki/Beck_Depression_Inventory</a></p>
 </div>
 <div id="exploratory-analysis" class="section level1">
 <h1>Exploratory analysis</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>Drug <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Drug.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>Drug <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Drug.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 20 Columns: 3
-## ── Column specification ──────────────────────────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): drug
 ## dbl (2): sundayBDI, wedsBDI
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">head</span>(Drug)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">head</span>(Drug)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-1">
 <col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">drug</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sundayBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsBDI</th></tr>
@@ -805,9 +809,9 @@ class="uri">https://en.wikipedia.org/wiki/Beck_Depression_Inventory</a></p>
 <p>Note here we can use drugData[,c(2:3)], that we want the stats for
 column 2 and 3, and these be seperated by the drug (column 1).</p>
 <p>NOTE the shapiro wilks test on the last line.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">names</span>(drugData)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">names</span>(drugData)</span></code></pre></div>
 <pre><code>## [1] &quot;Gender&quot;    &quot;drug&quot;      &quot;sundayBDI&quot; &quot;wedsBDI&quot;</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">by</span>(drugData[,<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)], drugData<span class="sc">$</span>drug, stat.desc, <span class="at">basic=</span><span class="cn">TRUE</span>, <span class="at">norm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">by</span>(drugData[,<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)], drugData<span class="sc">$</span>drug, stat.desc, <span class="at">basic=</span><span class="cn">TRUE</span>, <span class="at">norm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## drugData$drug: Ecstasy
 ##                 sundayBDI     wedsBDI
 ## nbr.val       10.00000000  10.0000000
@@ -853,16 +857,16 @@ column 2 and 3, and these be seperated by the drug (column 1).</p>
 ## kurt.2SE      -0.55842624 4.043886e-01
 ## normtest.W     0.95946584 7.534665e-01
 ## normtest.p     0.77976459 3.933024e-03</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co">#shapiro.test(drugData$sundayBDI)  # this is to look at all the data, it is not the appropriate way to do the analisis of normality, why?</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co">#shapiro.test(drugData$wedsBDI) # this is to look at all the data, it is not the appropriate way to do the analisis of normality, why?</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co">#shapiro.test(drugData$sundayBDI)  # this is to look at all the data, it is not the appropriate way to do the analisis of normality, why?</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="co">#shapiro.test(drugData$wedsBDI) # this is to look at all the data, it is not the appropriate way to do the analisis of normality, why?</span></span></code></pre></div>
 <div id="do-a-histogram-by-factor-level-for-anxiety-for-sunday."
 class="section level3">
 <h3>Do a histogram by factor level for anxiety for Sunday.</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">ggplot</span>(drugData, <span class="fu">aes</span>(<span class="at">x=</span>sundayBDI, <span class="at">fill=</span>drug))<span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour=</span><span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>drug)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="fu">ggplot</span>(drugData, <span class="fu">aes</span>(<span class="at">x=</span>sundayBDI, <span class="at">fill=</span>drug))<span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour=</span><span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>drug)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="T17_Non_Parametric_2022_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <hr />
@@ -872,8 +876,10 @@ class="section level3">
 <div id="test-of-equality-of-variance" class="section level1">
 <h1>Test of equality of variance</h1>
 <p>This is one of the assumptions of parametric tests</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co">#leveneTest(drugData$sundayBDI, drugData$drug, center = &quot;mean&quot;)</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">leveneTest</span>(drugData<span class="sc">$</span>sundayBDI, drugData<span class="sc">$</span>drug, <span class="at">center =</span> <span class="st">&quot;median&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co">#leveneTest(drugData$sundayBDI, drugData$drug, center = &quot;mean&quot;)</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">leveneTest</span>(drugData<span class="sc">$</span>sundayBDI, drugData<span class="sc">$</span>drug, <span class="at">center =</span> <span class="st">&quot;median&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:equality of variance">
 <col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
@@ -883,8 +889,10 @@ class="section level3">
 <td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">18</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
 </table>
 
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co">#leveneTest(drugData$wedsBDI, drugData$drug, center = &quot;mean&quot;)</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">leveneTest</span>(drugData<span class="sc">$</span>wedsBDI, drugData<span class="sc">$</span>drug, <span class="at">center =</span> <span class="st">&quot;median&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co">#leveneTest(drugData$wedsBDI, drugData$drug, center = &quot;mean&quot;)</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">leveneTest</span>(drugData<span class="sc">$</span>wedsBDI, drugData<span class="sc">$</span>drug, <span class="at">center =</span> <span class="st">&quot;median&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:equality of variance">
 <col><col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Df</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">F value</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Pr(&gt;F)</th></tr>
@@ -908,8 +916,10 @@ class="section level1">
 <h1>This is how to assing the Rank by Hand…… This is an example, the
 scripts will do this automatically.</h1>
 <p>Look for the smallest value……in the wedsBDI……</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>drugData<span class="sc">$</span>wedsRank<span class="ot">=</span><span class="fu">rank</span>(drugData<span class="sc">$</span>wedsBDI)</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>drugData</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>drugData<span class="sc">$</span>wedsRank<span class="ot">=</span><span class="fu">rank</span>(drugData<span class="sc">$</span>wedsBDI)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>drugData</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
 <col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Gender</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">drug</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sundayBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsRank</th></tr>
@@ -959,9 +969,11 @@ scripts will do this automatically.</h1>
 </div>
 <div id="wilcoxon-test-a-non-parametric-test" class="section level1">
 <h1>Wilcoxon test: A non-parametric test</h1>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">names</span>(drugData)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">names</span>(drugData)</span></code></pre></div>
 <pre><code>## [1] &quot;Gender&quot;    &quot;drug&quot;      &quot;sundayBDI&quot; &quot;wedsBDI&quot;   &quot;wedsRank&quot;</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">head</span>(drugData)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">head</span>(drugData)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:wilcoxon test">
 <col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Gender</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">drug</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sundayBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsRank</th></tr>
@@ -979,20 +991,20 @@ scripts will do this automatically.</h1>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Ecstasy</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">17</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">32</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">15</td></tr>
 </table>
 
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>sunModel<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(sundayBDI <span class="sc">~</span> drug, <span class="at">data =</span> drugData)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>sunModel<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(sundayBDI <span class="sc">~</span> drug, <span class="at">data =</span> drugData)</span></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
 ## compute exact p-value with ties</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>sunModel</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>sunModel</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  sundayBDI by drug
 ## W = 64.5, p-value = 0.2861
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>wedModel<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(wedsBDI <span class="sc">~</span> drug, <span class="at">data =</span> drugData)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>wedModel<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(wedsBDI <span class="sc">~</span> drug, <span class="at">data =</span> drugData)</span></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(x = DATA[[1L]], y = DATA[[2L]], ...): cannot
 ## compute exact p-value with ties</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>wedModel</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>wedModel</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -1006,8 +1018,8 @@ id="the-following-approach-is-better-because-it-can-deal-with-ties-values-that-a
 class="section level1">
 <h1>the following approach is better because it can deal with ties
 (values that are equal)</h1>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>sunModel2<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(sundayBDI <span class="sc">~</span> drug, <span class="at">data =</span> drugData, <span class="at">exact =</span> <span class="cn">FALSE</span>, <span class="at">correct=</span> <span class="cn">FALSE</span>, <span class="at">conf.int=</span>T)</span>
-<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>sunModel2</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>sunModel2<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(sundayBDI <span class="sc">~</span> drug, <span class="at">data =</span> drugData, <span class="at">exact =</span> <span class="cn">FALSE</span>, <span class="at">correct=</span> <span class="cn">FALSE</span>, <span class="at">conf.int=</span>T)</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>sunModel2</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test
 ## 
@@ -1019,8 +1031,8 @@ class="section level1">
 ## sample estimates:
 ## difference in location 
 ##               1.000023</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>wedModel2<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(wedsBDI <span class="sc">~</span> drug, <span class="at">data =</span> drugData, <span class="at">exact =</span> <span class="cn">FALSE</span>, <span class="at">correct=</span> <span class="cn">FALSE</span>, <span class="at">conf.int=</span>T)</span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>wedModel2</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>wedModel2<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(wedsBDI <span class="sc">~</span> drug, <span class="at">data =</span> drugData, <span class="at">exact =</span> <span class="cn">FALSE</span>, <span class="at">correct=</span> <span class="cn">FALSE</span>, <span class="at">conf.int=</span>T)</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>wedModel2</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test
 ## 
@@ -1043,19 +1055,21 @@ class="section level1">
 <h1>How many time have you gone to Disney, and is there a difference
 between genders?</h1>
 <p>Use Wilcoxon Test</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>Disney<span class="ot">=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,</span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>         <span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>,</span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>         <span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>, <span class="dv">3</span>, </span>
-<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>         <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>,<span class="dv">7</span>,</span>
-<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>         <span class="dv">11</span>, <span class="dv">7</span>, <span class="dv">9</span>)</span>
-<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a>Gender<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,</span>
-<span id="cb36-8"><a href="#cb36-8" tabindex="-1"></a>         <span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,</span>
-<span id="cb36-9"><a href="#cb36-9" tabindex="-1"></a>         <span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,</span>
-<span id="cb36-10"><a href="#cb36-10" tabindex="-1"></a>        <span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,</span>
-<span id="cb36-11"><a href="#cb36-11" tabindex="-1"></a>        <span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>)</span>
-<span id="cb36-12"><a href="#cb36-12" tabindex="-1"></a>DF<span class="ot">=</span><span class="fu">data.frame</span>(Disney,Gender)</span>
-<span id="cb36-13"><a href="#cb36-13" tabindex="-1"></a>DF</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>Disney<span class="ot">=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,</span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>         <span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>,</span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>         <span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>, <span class="dv">3</span>, </span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a>         <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>,<span class="dv">7</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>         <span class="dv">11</span>, <span class="dv">7</span>, <span class="dv">9</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a>Gender<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,</span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a>         <span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,</span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a>         <span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,</span>
+<span id="cb42-10"><a href="#cb42-10" tabindex="-1"></a>        <span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,</span>
+<span id="cb42-11"><a href="#cb42-11" tabindex="-1"></a>        <span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;M&quot;</span>)</span>
+<span id="cb42-12"><a href="#cb42-12" tabindex="-1"></a>DF<span class="ot">=</span><span class="fu">data.frame</span>(Disney,Gender)</span>
+<span id="cb42-13"><a href="#cb42-13" tabindex="-1"></a>DF</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:disney">
 <col><col><tr>
 <th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Disney</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Gender</th></tr>
@@ -1106,15 +1120,15 @@ between genders?</h1>
 </table>
 
 <hr />
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">ggplot</span>(DF, <span class="fu">aes</span>(<span class="at">y=</span>Disney, <span class="at">x=</span>Gender))<span class="sc">+</span></span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">ggplot</span>(DF, <span class="fu">aes</span>(<span class="at">y=</span>Disney, <span class="at">x=</span>Gender))<span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="T17_Non_Parametric_2022_files/figure-html/disney2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">ggplot</span>(DF, <span class="fu">aes</span>(<span class="at">x=</span>Disney, <span class="at">fill=</span>Gender))<span class="sc">+</span></span>
-<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
-<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>Gender)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="fu">ggplot</span>(DF, <span class="fu">aes</span>(<span class="at">x=</span>Disney, <span class="at">fill=</span>Gender))<span class="sc">+</span></span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>Gender)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="T17_Non_Parametric_2022_files/figure-html/disney2-2.png" width="672" /></p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(Disney <span class="sc">~</span> Gender, <span class="at">data =</span> DF,<span class="at">exact =</span> <span class="cn">FALSE</span>, <span class="at">correct=</span> <span class="cn">FALSE</span>, <span class="at">conf.int=</span>T )</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(Disney <span class="sc">~</span> Gender, <span class="at">data =</span> DF,<span class="at">exact =</span> <span class="cn">FALSE</span>, <span class="at">correct=</span> <span class="cn">FALSE</span>, <span class="at">conf.int=</span>T )</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test
 ## 
@@ -1141,14 +1155,16 @@ t-test)</h2>
 <p>We now want to compare the results from sunday and Wendsday, but now
 the data come from the same individuals. # BDI = Becks depression index
 Change</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>drugData<span class="sc">$</span>BDIchange<span class="ot">&lt;-</span>drugData<span class="sc">$</span>wedsBDI<span class="sc">-</span>drugData<span class="sc">$</span>sundayBDI <span class="co"># calculate differences</span></span>
-<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a></span>
-<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>drugData<span class="sc">$</span>BDIchange</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>drugData<span class="sc">$</span>BDIchange<span class="ot">&lt;-</span>drugData<span class="sc">$</span>wedsBDI<span class="sc">-</span>drugData<span class="sc">$</span>sundayBDI <span class="co"># calculate differences</span></span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" tabindex="-1"></a>drugData<span class="sc">$</span>BDIchange</span></code></pre></div>
 <pre><code>##  [1]  13   0  19   6  20  15   0  13  23  15 -11  -9  10  -7  -7  -6  -8  -2 -15
 ## [20]  -8</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="fu">head</span>(drugData)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="fu">head</span>(drugData)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:WSRT">
 <col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Gender</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">drug</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sundayBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsRank</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">BDIchange</th></tr>
@@ -1166,7 +1182,9 @@ Change</p>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Male</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Ecstasy</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">17</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">32</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">15</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">15</td></tr>
 </table>
 
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>drugData</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>drugData</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:WSRT">
 <col><col><col><col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Gender</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">drug</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sundayBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsBDI</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">wedsRank</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">BDIchange</th></tr>
@@ -1212,7 +1230,7 @@ Change</p>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Female</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Alcohol</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">18</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">10</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">8&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-8</td></tr>
 </table>
 
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="fu">by</span>(drugData<span class="sc">$</span>BDIchange, drugData<span class="sc">$</span>drug, stat.desc, <span class="at">basic =</span> <span class="cn">FALSE</span>, <span class="at">norm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="fu">by</span>(drugData<span class="sc">$</span>BDIchange, drugData<span class="sc">$</span>drug, stat.desc, <span class="at">basic =</span> <span class="cn">FALSE</span>, <span class="at">norm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## drugData$drug: Ecstasy
 ##       median         mean      SE.mean CI.mean.0.95          var      std.dev 
 ##   14.0000000   12.4000000    2.5307004    5.7248420   64.0444444    8.0027773 
@@ -1228,26 +1246,26 @@ Change</p>
 ##  -1.05302969   1.23907117   0.90174219   0.98664006   0.36973617   0.82795980 
 ##   normtest.p 
 ##   0.03161929</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>boxplot<span class="ot">&lt;-</span><span class="fu">ggplot</span>(drugData, <span class="fu">aes</span>(drug, BDIchange)) <span class="sc">+</span> </span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>boxplot</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a>boxplot<span class="ot">&lt;-</span><span class="fu">ggplot</span>(drugData, <span class="fu">aes</span>(drug, BDIchange)) <span class="sc">+</span> </span>
+<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb57-3"><a href="#cb57-3" tabindex="-1"></a>boxplot</span></code></pre></div>
 <p><img src="T17_Non_Parametric_2022_files/figure-html/WSRT-1.png" width="672" /></p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>alcoholData<span class="ot">&lt;-</span><span class="fu">subset</span>(drugData, drug <span class="sc">==</span> <span class="st">&quot;Alcohol&quot;</span>) <span class="co"># subset the data for alcohol</span></span>
-<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a>ecstasyData<span class="ot">&lt;-</span><span class="fu">subset</span>(drugData, drug <span class="sc">==</span> <span class="st">&quot;Ecstasy&quot;</span>) <span class="co"># subset the data for ecstasy</span></span>
-<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a></span>
-<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="#cb49-5" tabindex="-1"></a>alcoholModel<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(alcoholData<span class="sc">$</span>wedsBDI, alcoholData<span class="sc">$</span>sundayBDI,  <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">exact =</span> <span class="cn">TRUE</span>, <span class="at">correct=</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>alcoholData<span class="ot">&lt;-</span><span class="fu">subset</span>(drugData, drug <span class="sc">==</span> <span class="st">&quot;Alcohol&quot;</span>) <span class="co"># subset the data for alcohol</span></span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>ecstasyData<span class="ot">&lt;-</span><span class="fu">subset</span>(drugData, drug <span class="sc">==</span> <span class="st">&quot;Ecstasy&quot;</span>) <span class="co"># subset the data for ecstasy</span></span>
+<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" tabindex="-1"></a>alcoholModel<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(alcoholData<span class="sc">$</span>wedsBDI, alcoholData<span class="sc">$</span>sundayBDI,  <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">exact =</span> <span class="cn">TRUE</span>, <span class="at">correct=</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(alcoholData$wedsBDI, alcoholData$sundayBDI, :
 ## cannot compute exact p-value with ties</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>alcoholModel</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>alcoholModel</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank test
 ## 
 ## data:  alcoholData$wedsBDI and alcoholData$sundayBDI
 ## V = 8, p-value = 0.04657
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>ecstasyModel<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(ecstasyData<span class="sc">$</span>wedsBDI, ecstasyData<span class="sc">$</span>sundayBDI, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>,<span class="at">correct=</span> <span class="cn">FALSE</span>)   <span class="co"># Note that the option &quot;exact=FALSE&quot; has to be added becase there are ties.  </span></span>
-<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a>ecstasyModel</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a>ecstasyModel<span class="ot">&lt;-</span><span class="fu">wilcox.test</span>(ecstasyData<span class="sc">$</span>wedsBDI, ecstasyData<span class="sc">$</span>sundayBDI, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>,<span class="at">correct=</span> <span class="cn">FALSE</span>)   <span class="co"># Note that the option &quot;exact=FALSE&quot; has to be added becase there are ties.  </span></span>
+<span id="cb62-2"><a href="#cb62-2" tabindex="-1"></a>ecstasyModel</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank test
 ## 
@@ -1320,18 +1338,20 @@ motility, sperm morphology or ejaculate volume.</p>
 <p>These data suggest that higher intake of soy foods and soy
 isoflavones is associated with lower sperm concentration.</p>
 <p>Now let us look at the data from Field, soya.csv.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a></span>
-<span id="cb55-3"><a href="#cb55-3" tabindex="-1"></a>Soyadf <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Soya.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a>Soyadf <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Soya.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 80 Columns: 2
-## ── Column specification ──────────────────────────────────────────────────────────────
+## ── Column specification ───────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): Soya
 ## dbl (1): Sperm
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="fu">head</span>(Soyadf)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a><span class="fu">head</span>(Soyadf)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:soya">
 <col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Soya</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Sperm</th></tr>
@@ -1349,7 +1369,7 @@ isoflavones is associated with lower sperm concentration.</p>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">No Soya Meals</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.51</td></tr>
 </table>
 
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="fu">unique</span>(Soyadf<span class="sc">$</span>Soya)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a><span class="fu">unique</span>(Soyadf<span class="sc">$</span>Soya)</span></code></pre></div>
 <pre><code>## [1] &quot;No Soya Meals&quot;          &quot;1 Soya Meal Per Week&quot;   &quot;4 Soyal Meals Per Week&quot;
 ## [4] &quot;7 Soya Meals Per Week&quot;</code></pre>
 </div>
@@ -1358,18 +1378,18 @@ isoflavones is associated with lower sperm concentration.</p>
 <div id="hacer-un-boxplot-de-los-datos-en-un-nuevo-chunk"
 class="section level1">
 <h1>Hacer un boxplot de los datos en un nuevo chunk</h1>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a></span>
-<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a><span class="fu">ggplot</span>(Soyadf, <span class="fu">aes</span>(<span class="at">x=</span>Soya, <span class="at">y=</span>Sperm, <span class="at">fill=</span>Soya))<span class="sc">+</span></span>
-<span id="cb60-4"><a href="#cb60-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb60-5"><a href="#cb60-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" tabindex="-1"></a><span class="fu">ggplot</span>(Soyadf, <span class="fu">aes</span>(<span class="at">x=</span>Soya, <span class="at">y=</span>Sperm, <span class="at">fill=</span>Soya))<span class="sc">+</span></span>
+<span id="cb70-4"><a href="#cb70-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb70-5"><a href="#cb70-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code></pre></div>
 <p><img src="T17_Non_Parametric_2022_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <hr />
 <p>Descriptive statistics When adding “norm=TRUE” will perform
 Shapiro_Wilks Normality test.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" tabindex="-1"></a><span class="fu">library</span>(pastecs)</span>
-<span id="cb61-2"><a href="#cb61-2" tabindex="-1"></a></span>
-<span id="cb61-3"><a href="#cb61-3" tabindex="-1"></a><span class="fu">by</span>(Soyadf<span class="sc">$</span>Sperm, Soyadf<span class="sc">$</span>Soya, stat.desc, <span class="at">basic =</span> <span class="cn">FALSE</span>, <span class="at">norm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="fu">library</span>(pastecs)</span>
+<span id="cb71-2"><a href="#cb71-2" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="#cb71-3" tabindex="-1"></a><span class="fu">by</span>(Soyadf<span class="sc">$</span>Sperm, Soyadf<span class="sc">$</span>Soya, stat.desc, <span class="at">basic =</span> <span class="cn">FALSE</span>, <span class="at">norm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Soyadf$Soya: 1 Soya Meal Per Week
 ##       median         mean      SE.mean CI.mean.0.95          var      std.dev 
 ##  2.595000000  4.606000000  1.044821919  2.186837409 21.833056842  4.672585670 
@@ -1409,38 +1429,40 @@ class="section level1">
 <h1>Kruskall Wallis test is similar to an ANOVA without assuming normal
 distribution or equality of variance.</h1>
 <p>HO: R1=R2=R3=R4 HA: Por lo menos uno los grupos es diferente</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a><span class="co"># Traditional approach</span></span>
-<span id="cb63-2"><a href="#cb63-2" tabindex="-1"></a><span class="fu">kruskal.test</span>(Sperm<span class="sc">~</span><span class="fu">as.factor</span>(Soya), <span class="at">data=</span>Soyadf)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a><span class="co"># Traditional approach</span></span>
+<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a><span class="fu">kruskal.test</span>(Sperm<span class="sc">~</span><span class="fu">as.factor</span>(Soya), <span class="at">data=</span>Soyadf)</span></code></pre></div>
 <pre><code>## 
 ##  Kruskal-Wallis rank sum test
 ## 
 ## data:  Sperm by as.factor(Soya)
 ## Kruskal-Wallis chi-squared = 8.6589, df = 3, p-value = 0.03419</code></pre>
 <hr />
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" tabindex="-1"></a><span class="fu">library</span>(coin)</span>
-<span id="cb65-2"><a href="#cb65-2" tabindex="-1"></a><span class="co">#Approximative (Monte Carlo) Fisher-Pitman test</span></span>
-<span id="cb65-3"><a href="#cb65-3" tabindex="-1"></a>modelkt<span class="ot">=</span><span class="fu">kruskal_test</span>(Sperm<span class="sc">~</span><span class="fu">as.factor</span>(Soya), <span class="at">data=</span>Soyadf, <span class="at">distribution =</span> <span class="fu">approximate</span>(<span class="at">nresample =</span> <span class="dv">10000</span>))</span>
-<span id="cb65-4"><a href="#cb65-4" tabindex="-1"></a>modelkt</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a><span class="fu">library</span>(coin)</span>
+<span id="cb75-2"><a href="#cb75-2" tabindex="-1"></a><span class="co">#Approximative (Monte Carlo) Fisher-Pitman test</span></span>
+<span id="cb75-3"><a href="#cb75-3" tabindex="-1"></a>modelkt<span class="ot">=</span><span class="fu">kruskal_test</span>(Sperm<span class="sc">~</span><span class="fu">as.factor</span>(Soya), <span class="at">data=</span>Soyadf, <span class="at">distribution =</span> <span class="fu">approximate</span>(<span class="at">nresample =</span> <span class="dv">10000</span>))</span>
+<span id="cb75-4"><a href="#cb75-4" tabindex="-1"></a>modelkt</span></code></pre></div>
 <pre><code>## 
 ##  Approximative Kruskal-Wallis Test
 ## 
 ## data:  Sperm by
 ##   as.factor(Soya) (1 Soya Meal Per Week, 4 Soyal Meals Per Week, 7 Soya Meals Per Week, No Soya Meals)
-## chi-squared = 8.6589, p-value = 0.0356</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" tabindex="-1"></a><span class="co">#op &lt;- par(no.readonly = TRUE) # save current settings</span></span>
-<span id="cb67-2"><a href="#cb67-2" tabindex="-1"></a><span class="co">#layout(matrix(1:3, nrow = 3))</span></span>
-<span id="cb67-3"><a href="#cb67-3" tabindex="-1"></a><span class="co">#s1 &lt;- support(modelkt); d1 &lt;- dperm(modelkt, s1)</span></span>
-<span id="cb67-4"><a href="#cb67-4" tabindex="-1"></a><span class="co">#plot(s1, d1, type = &quot;h&quot;, main = &quot;Mid-score: 0&quot;,</span></span>
-<span id="cb67-5"><a href="#cb67-5" tabindex="-1"></a><span class="co">#     xlab = &quot;Test Statistic&quot;, ylab = &quot;Density&quot;)</span></span>
-<span id="cb67-6"><a href="#cb67-6" tabindex="-1"></a></span>
-<span id="cb67-7"><a href="#cb67-7" tabindex="-1"></a><span class="co">#pperm(modelkt, q=c(0.05, 0.5, 0.95))</span></span>
-<span id="cb67-8"><a href="#cb67-8" tabindex="-1"></a></span>
-<span id="cb67-9"><a href="#cb67-9" tabindex="-1"></a></span>
-<span id="cb67-10"><a href="#cb67-10" tabindex="-1"></a><span class="co">#s=support(modelkt)</span></span>
-<span id="cb67-11"><a href="#cb67-11" tabindex="-1"></a><span class="co">#quantile(s, c(.025, 0.975))</span></span></code></pre></div>
+## chi-squared = 8.6589, p-value = 0.031</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a><span class="co">#op &lt;- par(no.readonly = TRUE) # save current settings</span></span>
+<span id="cb77-2"><a href="#cb77-2" tabindex="-1"></a><span class="co">#layout(matrix(1:3, nrow = 3))</span></span>
+<span id="cb77-3"><a href="#cb77-3" tabindex="-1"></a><span class="co">#s1 &lt;- support(modelkt); d1 &lt;- dperm(modelkt, s1)</span></span>
+<span id="cb77-4"><a href="#cb77-4" tabindex="-1"></a><span class="co">#plot(s1, d1, type = &quot;h&quot;, main = &quot;Mid-score: 0&quot;,</span></span>
+<span id="cb77-5"><a href="#cb77-5" tabindex="-1"></a><span class="co">#     xlab = &quot;Test Statistic&quot;, ylab = &quot;Density&quot;)</span></span>
+<span id="cb77-6"><a href="#cb77-6" tabindex="-1"></a></span>
+<span id="cb77-7"><a href="#cb77-7" tabindex="-1"></a><span class="co">#pperm(modelkt, q=c(0.05, 0.5, 0.95))</span></span>
+<span id="cb77-8"><a href="#cb77-8" tabindex="-1"></a></span>
+<span id="cb77-9"><a href="#cb77-9" tabindex="-1"></a></span>
+<span id="cb77-10"><a href="#cb77-10" tabindex="-1"></a><span class="co">#s=support(modelkt)</span></span>
+<span id="cb77-11"><a href="#cb77-11" tabindex="-1"></a><span class="co">#quantile(s, c(.025, 0.975))</span></span></code></pre></div>
 <hr />
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a>Soyadf<span class="sc">$</span>Ranks<span class="ot">=</span><span class="fu">rank</span>(Soyadf<span class="sc">$</span>Sperm)</span>
-<span id="cb68-2"><a href="#cb68-2" tabindex="-1"></a><span class="fu">head</span>(Soyadf)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a>Soyadf<span class="sc">$</span>Ranks<span class="ot">=</span><span class="fu">rank</span>(Soyadf<span class="sc">$</span>Sperm)</span>
+<span id="cb78-2"><a href="#cb78-2" tabindex="-1"></a><span class="fu">head</span>(Soyadf)</span></code></pre></div>
+<pre><code>## Warning in yaml::yaml.load(..., eval.expr = TRUE): NAs introduced by coercion:
+## . is not a real</code></pre>
 <table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:ranks">
 <col><col><col><tr>
 <th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Soya</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Sperm</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Ranks</th></tr>
@@ -1458,7 +1480,7 @@ distribution or equality of variance.</h1>
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">No Soya Meals</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.51</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">30</td></tr>
 </table>
 
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="fu">by</span>(Soyadf<span class="sc">$</span>Ranks, Soyadf<span class="sc">$</span>Soya, median)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" tabindex="-1"></a><span class="fu">by</span>(Soyadf<span class="sc">$</span>Ranks, Soyadf<span class="sc">$</span>Soya, median)</span></code></pre></div>
 <pre><code>## Soyadf$Soya: 1 Soya Meal Per Week
 ## [1] 43
 ## ------------------------------------------------------------ 
@@ -1477,8 +1499,8 @@ p=values, the pair are significantly different if the p is below
 <div id="note" class="section level3">
 <h3>Note</h3>
 <p>dist=“Tukey”, correction for ties done</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="fu">library</span>(PMCMRplus)</span>
-<span id="cb71-2"><a href="#cb71-2" tabindex="-1"></a><span class="fu">kwAllPairsNemenyiTest</span>(Sperm<span class="sc">~</span><span class="fu">as.factor</span>(Soya) , <span class="at">data=</span>Soyadf)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a><span class="fu">library</span>(PMCMRplus)</span>
+<span id="cb82-2"><a href="#cb82-2" tabindex="-1"></a><span class="fu">kwAllPairsNemenyiTest</span>(Sperm<span class="sc">~</span><span class="fu">as.factor</span>(Soya) , <span class="at">data=</span>Soyadf)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using Tukey-Kramer-Nemenyi all-pairs test with Tukey-Dist approximation</code></pre>
 <pre><code>## data: Sperm by as.factor(Soya)</code></pre>
@@ -1493,8 +1515,8 @@ p=values, the pair are significantly different if the p is below
 <pre><code>## 
 ## P value adjustment method: single-step</code></pre>
 <pre><code>## alternative hypothesis: two.sided</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a>model1<span class="ot">=</span><span class="fu">kwAllPairsNemenyiTest</span>(Sperm<span class="sc">~</span><span class="fu">as.factor</span>(Soya) , <span class="at">data=</span>Soyadf) <span class="co"># para más detalles</span></span>
-<span id="cb77-2"><a href="#cb77-2" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a>model1<span class="ot">=</span><span class="fu">kwAllPairsNemenyiTest</span>(Sperm<span class="sc">~</span><span class="fu">as.factor</span>(Soya) , <span class="at">data=</span>Soyadf) <span class="co"># para más detalles</span></span>
+<span id="cb88-2"><a href="#cb88-2" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using Tukey-Kramer-Nemenyi all-pairs test with Tukey-Dist approximation</code></pre>
 <pre><code>## data: Sperm by as.factor(Soya)</code></pre>
@@ -1510,7 +1532,7 @@ p=values, the pair are significantly different if the p is below
 ## No Soya Meals - 7 Soya Meals Per Week == 0            3.657 0.047845 *</code></pre>
 <pre><code>## ---</code></pre>
 <pre><code>## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a><span class="co"># Try &quot;Chi Square&quot; = Chisq</span></span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" tabindex="-1"></a><span class="co"># Try &quot;Chi Square&quot; = Chisq</span></span></code></pre></div>
 </div>
 </div>
 

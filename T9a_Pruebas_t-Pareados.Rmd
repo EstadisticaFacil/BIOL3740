@@ -1,7 +1,9 @@
 ---
 title: "T9a: Pruebas t-Pareados"
-output:
+
+output: 
   html_document:
+
     css: tutorial.css
     fig_caption: yes
     highlight: pygments
@@ -9,10 +11,13 @@ output:
     toc: yes
     toc_float: yes
     code_folding: hide
+    
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message = FALSE, error = FALSE)
+#knitr::opts_knit$set(root.dir= normalizePath('..'))
 
 ```
 
@@ -187,8 +192,10 @@ Cual metodo para determinar si las diferencias cumple normalidad?
 
 Vamos a evaluar si la cantidad de hijos cambia entre su abuela y su madre.  
 ```{r, abuelamadre}
-abuela=c(3,3,2, 3, 5, 3,2,3, 4,3,4)
-madre=c(2,2,2,3,3,3,2, 3, 1,2,2)
+abuela=c(3,3,2, 3, 5, 
+         3,2,3, 4,3,4)
+madre=c(2,2,2, 3,3,
+        3,2, 3, 1,2,2)
 df=data.frame(abuela,madre)
 df
 df$diff=df$abuela-df$madre
@@ -283,7 +290,7 @@ knitr::include_graphics("Graficos/L_eltoroensis.jpg")
 
 El archivo de datos tiene información sobre la cantidad de hojas que tiene cada una de las plantas marcadas después del huracán Georges (1998).  La plantas fueron muestreado a cada 6 meses comenzando 6 meses después del huracán por 6 años (13 muestreos).  Fueron seguidos 1084 plantas distintas, aunque no todos están muestreados a cada tiempo. Cada fila representa un individuo, si no hay información en un tiempo puede ser que la planta a) no fue encontrada en este muestreo, b) que la planta este muerta o que c) fue antes que la planta creciera (todavía no había germinado). 
 
-```{r, datosLep}
+```{r, datosLep, eval=FALSE}
 library(readr)
 Lepanthes_eltoroensis_Georges_STUDENT <- read_csv("Data_files_csv/Lepanthes_eltoroensis_Georges_STUDENT.csv")
 
@@ -334,7 +341,7 @@ model2
 
 Con un indice de Ansiedad. Más alto el número más ansioso.
 
-```{r anxiety}
+```{r anxiety, eval=FALSE}
 picture=c(1,2,5,2,8,4,5,0,7)
 dead=c(15,15,17,10,10,10,18,16,11)
 mean(picture)
@@ -356,8 +363,6 @@ Los supuestos de la prueba t-pareados.
 > + Qué los individuos sean observaciones independientes.
 > + Qué las diferencias sean normales.
 > + Qué no hay valores atípicos.
-
-
 
 
 
