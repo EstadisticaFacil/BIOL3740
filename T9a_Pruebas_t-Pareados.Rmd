@@ -1,9 +1,7 @@
 ---
-title: "T9a: Pruebas t-Pareados"
-
+title: "T9a:Pruebas_t_Pareados"
 output: 
   html_document:
-
     css: tutorial.css
     fig_caption: yes
     highlight: pygments
@@ -17,8 +15,8 @@ output:
 ```{r setup, include=FALSE}
 library(knitr)
 knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message = FALSE, error = FALSE)
-#knitr::opts_knit$set(root.dir= normalizePath('..'))
-
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+#getwd()
 ```
 
 ```{r, echo=FALSE}
@@ -80,7 +78,7 @@ Sys.Date()
 
 
 ```{r, echo=FALSE, fig.show = "hold", out.width = "20%", fig.align = "default"}
-knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+#knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
 ```
 
 
@@ -217,7 +215,7 @@ Un cultivador heredo 18 parcelas donde hay árboles de toronjas cada una en dife
 
 La cantidad de Toronjas producidas por árbol en fincas pareadas, cada finca tiene una parcela con abono y la otra la otra parcela sin abono. Tenemos 18 diferentes sitios en PR donde se probo el efecto del abono sobre la producción de toronjas, se enseña solamente los primeros 8 pares de valores en la tabla. Cada parcela es del mismo tamaño con la misma cantidad de arboles. Los datos completos están en el próximo chunk.  
 
-```{r, toronja}
+```{r, toronja, eval=FALSE}
 library(tibble)
 library(huxtable)
 Toronja=tribble(
@@ -255,7 +253,7 @@ huxtable(Toronja)%>%
 
 El resultado:  El valor de t-observado es de 8.80, con un grado de libertad de 17 (n=18), y valor de p <0.0001. Por consecuencia se rechaza la hipótesis nula y se acepta la alterna.  El intervalo de confianza del promedio es 198.5 - 323.7, con un promedio de 261. Esto significa que a añadir fertilizante la producción de toronjas aumento de en promedio de 261 toronjas.
 
-```{r, dftoronja}
+```{r, dftoronja, eval=FALSE}
 Fert=c(2250,2410, 2260,2200, 2360, 
      2320,2240,2300,2090, 2250,2410, 2260,2200, 2360, 
      2320,2240,2300,2090)
@@ -285,7 +283,7 @@ Los datos representa cuantas hojas tenían las **mismas** plantas en diferentes 
 
 
 ```{r echo=FALSE, fig.cap="*Lepanthes eltoroensis*",fig.align="center", out.width = '40%'}
-knitr::include_graphics("Graficos/L_eltoroensis.jpg")
+#knitr::include_graphics("Graficos/L_eltoroensis.jpg")
 ```
 
 El archivo de datos tiene información sobre la cantidad de hojas que tiene cada una de las plantas marcadas después del huracán Georges (1998).  La plantas fueron muestreado a cada 6 meses comenzando 6 meses después del huracán por 6 años (13 muestreos).  Fueron seguidos 1084 plantas distintas, aunque no todos están muestreados a cada tiempo. Cada fila representa un individuo, si no hay información en un tiempo puede ser que la planta a) no fue encontrada en este muestreo, b) que la planta este muerta o que c) fue antes que la planta creciera (todavía no había germinado). 

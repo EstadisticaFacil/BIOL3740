@@ -657,31 +657,21 @@ barrio (Datos ficticios)</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>pubs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/pubs.csv&quot;</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>pubs</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:data">
-<col><col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">pubs</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">mortality</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1e+03</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">20</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2e+03</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">30</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3e+03</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">40</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4e+03</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">50</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5e+03</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">60</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6e+03</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">70</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">7e+03</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">500</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1e+04</td></tr>
-</table>
-
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Cambiamos los nombres de las columnas</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>pubs<span class="ot">=</span>pubs<span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">barres=</span>pubs, <span class="at">mortalidad=</span>mortality)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 2
+##    pubs mortality
+##   &lt;dbl&gt;     &lt;dbl&gt;
+## 1    10      1000
+## 2    20      2000
+## 3    30      3000
+## 4    40      4000
+## 5    50      5000
+## 6    60      6000
+## 7    70      7000
+## 8   500     10000</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Cambiamos los nombres de las columnas</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>pubs<span class="ot">=</span>pubs<span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">barres=</span>pubs, <span class="at">mortalidad=</span>mortality)</span></code></pre></div>
 <hr />
 </div>
 <div id="la-función-lm" class="section level1">
@@ -730,19 +720,19 @@ del intercepto tiene un valor de p =0.005, que sugiere que se debería
 rechazar la hipótesis nula, y por consecuencia aceptamos la hipótesis
 alterna. La pendiente tiene un valor de p=0.015 y también se rechaza la
 hipotesis nula.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>pubReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortalidad<span class="sc">~</span>barres, <span class="at">data =</span> pubs) </span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#summary(pubReg) # Si no se acuerda de la funcíon que sigue</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  pubReg,<span class="at">show.df =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="at">CSS =</span> <span class="fu">list</span>(</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="at">css.depvarhead =</span> <span class="st">&#39;color: red;&#39;</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>    <span class="at">css.centeralign =</span> <span class="st">&#39;text-align: left;&#39;</span>, </span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>    <span class="at">css.firsttablecol =</span> <span class="st">&#39;font-weight: bold;&#39;</span>, </span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>    <span class="at">css.summary =</span> <span class="st">&#39;color: blue;&#39;</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  )</span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>pubReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortalidad<span class="sc">~</span>barres, <span class="at">data =</span> pubs) </span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#summary(pubReg) # Si no se acuerda de la funcíon que sigue</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  pubReg,<span class="at">show.df =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">CSS =</span> <span class="fu">list</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    <span class="at">css.depvarhead =</span> <span class="st">&#39;color: red;&#39;</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>    <span class="at">css.centeralign =</span> <span class="st">&#39;text-align: left;&#39;</span>, </span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>    <span class="at">css.firsttablecol =</span> <span class="st">&#39;font-weight: bold;&#39;</span>, </span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>    <span class="at">css.summary =</span> <span class="st">&#39;color: blue;&#39;</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  )</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
@@ -827,9 +817,9 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 <p>Se observa que hay un aumento en fatalidades con aumento en el número
 de barres. Pero nota el valor a la derecha que parece ser muy atípico
 comparado a los otros.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">ggplot</span>(pubs, <span class="fu">aes</span>(<span class="at">x=</span>barres, <span class="at">y=</span>mortalidad))<span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)<span class="sc">+</span> <span class="co"># modelo lineal</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">ggplot</span>(pubs, <span class="fu">aes</span>(<span class="at">x=</span>barres, <span class="at">y=</span>mortalidad))<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)<span class="sc">+</span> <span class="co"># modelo lineal</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="T14_Regression_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <hr />
 </div>
@@ -841,24 +831,24 @@ del valor grande? Removemos ese valor del archivo de datos y revaluamos
 el modelo (la regresión lineal). Nota que ahora el modelo es sumamente
 diferente <span class="math inline">\(y=-163.7+103.2*x\)</span>. ¿Ahora
 se rechaza las dos hipótesis?</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>pubsnew <span class="ot">&lt;-</span> pubs[ <span class="fu">which</span>(pubs<span class="sc">$</span>barres<span class="sc">&lt;</span><span class="dv">80</span>), ]  <span class="co"># remover el valor grande</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>pubsnew<span class="ot">=</span>pubsnew <span class="sc">%&gt;%</span> </span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">barres =</span> <span class="dv">4</span>, <span class="at">mortalidad =</span> <span class="dv">0</span>) <span class="co"># Añadiendo un par de valores</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>pubRegNew <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortalidad<span class="sc">~</span>barres, <span class="at">data =</span> pubsnew)</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#summary(pubRegNew)</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>  pubRegNew,<span class="at">show.df =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  <span class="at">CSS =</span> <span class="fu">list</span>(</span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>    <span class="at">css.depvarhead =</span> <span class="st">&#39;color: red;&#39;</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>    <span class="at">css.centeralign =</span> <span class="st">&#39;text-align: left;&#39;</span>, </span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>    <span class="at">css.firsttablecol =</span> <span class="st">&#39;font-weight: bold;&#39;</span>, </span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>    <span class="at">css.summary =</span> <span class="st">&#39;color: blue;&#39;</span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>  )</span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>pubsnew <span class="ot">&lt;-</span> pubs[ <span class="fu">which</span>(pubs<span class="sc">$</span>barres<span class="sc">&lt;</span><span class="dv">80</span>), ]  <span class="co"># remover el valor grande</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>pubsnew<span class="ot">=</span>pubsnew <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">barres =</span> <span class="dv">4</span>, <span class="at">mortalidad =</span> <span class="dv">0</span>) <span class="co"># Añadiendo un par de valores</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>pubRegNew <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortalidad<span class="sc">~</span>barres, <span class="at">data =</span> pubsnew)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#summary(pubRegNew)</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  pubRegNew,<span class="at">show.df =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  <span class="at">CSS =</span> <span class="fu">list</span>(</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>    <span class="at">css.depvarhead =</span> <span class="st">&#39;color: red;&#39;</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>    <span class="at">css.centeralign =</span> <span class="st">&#39;text-align: left;&#39;</span>, </span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>    <span class="at">css.firsttablecol =</span> <span class="st">&#39;font-weight: bold;&#39;</span>, </span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>    <span class="at">css.summary =</span> <span class="st">&#39;color: blue;&#39;</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>  )</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
@@ -936,9 +926,9 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">ggplot</span>(pubsnew,<span class="fu">aes</span>(<span class="at">x=</span>barres, <span class="at">y=</span>mortalidad))<span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm)<span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ggplot</span>(pubsnew,<span class="fu">aes</span>(<span class="at">x=</span>barres, <span class="at">y=</span>mortalidad))<span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm)<span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="T14_Regression_files/figure-html/remover%20valores-1.png" width="672" /></p>
 <hr />
 </div>
@@ -952,27 +942,19 @@ diferentes CD’s de una compañia de música y la cantidad de CD
 libras esterlina, <strong>£</strong> (UK) dedicado a la promoción del
 album de música, en la primera linea vemos que se gasto £10,256, y
 después la cantidad de CD vendido fue 330.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>Album_Sales_1_new <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Album_Sales_1_new.csv&quot;</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:advertizing and sales">
-<col><col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">adverts</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sales</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">330</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">986&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">120</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.45e+03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">360</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.19e+03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">270</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">575&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">220</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">569&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">170</td></tr>
-</table>
-
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">length</span>(Album_Sales_1_new<span class="sc">$</span>adverts)  <span class="co"># cuantas files de datos hay en el data frame</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>Album_Sales_1_new <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Album_Sales_1_new.csv&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   adverts sales
+##     &lt;dbl&gt; &lt;dbl&gt;
+## 1    10.3   330
+## 2   986.    120
+## 3  1446.    360
+## 4  1188.    270
+## 5   575.    220
+## 6   569.    170</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">length</span>(Album_Sales_1_new<span class="sc">$</span>adverts)  <span class="co"># cuantas files de datos hay en el data frame</span></span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
 <p>Comenzamos con hacer un gráfico entre las dos variables. Nota que en
 la parte de <strong>geom_smooth()</strong>, tiene que incluir
@@ -993,48 +975,40 @@ cantidad dedicada a la promoción. Los <span
 class="math inline">\(epsilon\)</span> seria la diferencia entre la
 mejor linea y el valor original, esto se llama tambien los
 residuales.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">ggplot</span>(Album_Sales_1_new,<span class="fu">aes</span>(<span class="at">x=</span>adverts, <span class="at">y=</span>sales))<span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se =</span> <span class="cn">TRUE</span>)<span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">120</span>, <span class="at">xend=</span><span class="dv">2250</span>, <span class="at">yend=</span><span class="dv">380</span>), <span class="at">colour=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">150</span>, <span class="at">xend=</span><span class="dv">2250</span>, <span class="at">yend=</span><span class="dv">320</span>), <span class="at">colour=</span><span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">ggplot</span>(Album_Sales_1_new,<span class="fu">aes</span>(<span class="at">x=</span>adverts, <span class="at">y=</span>sales))<span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se =</span> <span class="cn">TRUE</span>)<span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">120</span>, <span class="at">xend=</span><span class="dv">2250</span>, <span class="at">yend=</span><span class="dv">380</span>), <span class="at">colour=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">150</span>, <span class="at">xend=</span><span class="dv">2250</span>, <span class="at">yend=</span><span class="dv">320</span>), <span class="at">colour=</span><span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
 <p><img src="T14_Regression_files/figure-html/advertizing%20graph-1.png" width="672" /></p>
 <p>El modelo lineal con la función <strong>lm()</strong>. ¿Como
 interpretas los coeficientes y si estos son significativos, si se
 rechaza la hipótesis nula?</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:sales model">
-<col><col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">adverts</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sales</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">330</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">986&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">120</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.45e+03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">360</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.19e+03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">270</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">575&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">220</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">569&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">170</td></tr>
-</table>
-
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>model1<span class="ot">=</span><span class="fu">lm</span>(sales<span class="sc">~</span>adverts, Album_Sales_1_new)</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co">#summary(model1)</span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  model1,<span class="at">show.df =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="at">CSS =</span> <span class="fu">list</span>(</span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>    <span class="at">css.depvarhead =</span> <span class="st">&#39;color: red;&#39;</span>,</span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>    <span class="at">css.centeralign =</span> <span class="st">&#39;text-align: left;&#39;</span>, </span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>    <span class="at">css.firsttablecol =</span> <span class="st">&#39;font-weight: bold;&#39;</span>, </span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>    <span class="at">css.summary =</span> <span class="st">&#39;color: blue;&#39;</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>  )</span>
-<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   adverts sales
+##     &lt;dbl&gt; &lt;dbl&gt;
+## 1    10.3   330
+## 2   986.    120
+## 3  1446.    360
+## 4  1188.    270
+## 5   575.    220
+## 6   569.    170</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>model1<span class="ot">=</span><span class="fu">lm</span>(sales<span class="sc">~</span>adverts, Album_Sales_1_new)</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="co">#summary(model1)</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  model1,<span class="at">show.df =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  <span class="at">CSS =</span> <span class="fu">list</span>(</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>    <span class="at">css.depvarhead =</span> <span class="st">&#39;color: red;&#39;</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>    <span class="at">css.centeralign =</span> <span class="st">&#39;text-align: left;&#39;</span>, </span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>    <span class="at">css.firsttablecol =</span> <span class="st">&#39;font-weight: bold;&#39;</span>, </span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>    <span class="at">css.summary =</span> <span class="st">&#39;color: blue;&#39;</span></span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>  )</span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
@@ -1132,7 +1106,7 @@ identificado</p></li>
 (1,42,169), estos valores se tiene que asegurar que son correctos.
 Siempre es bueno remover los valores sesgados y rehacer el análisis para
 observar cuan diferente son los resultas.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">plot</span>(model1)  <span class="co"># Evaluar los supuestos, 1. Igualdad de varianza, 2. Normalidad, 4. Datos sesgados (Cook&#39;s Distance)</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">plot</span>(model1)  <span class="co"># Evaluar los supuestos, 1. Igualdad de varianza, 2. Normalidad, 4. Datos sesgados (Cook&#39;s Distance)</span></span></code></pre></div>
 <p><img src="T14_Regression_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-5-3.png" width="672" /><img src="T14_Regression_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
 <hr />
 </div>
@@ -1155,67 +1129,43 @@ archivo 2. Añadir una columna de “secuencia” de los datos 3. Crear una
 gráfica de las distancia de Cook.<br />
 4. Which values have Di larger than 1, which values have Cook’s
 distances larger 4/n?</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="dv">4</span><span class="sc">/</span><span class="fu">length</span>(Album_Sales_1_new<span class="sc">$</span>adverts)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="dv">4</span><span class="sc">/</span><span class="fu">length</span>(Album_Sales_1_new<span class="sc">$</span>adverts)</span></code></pre></div>
 <pre><code>## [1] 0.02</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>Album_Sales_1_new<span class="sc">$</span>cooks.distance<span class="ot">&lt;-</span><span class="fu">cooks.distance</span>(model1)</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:Cook distance">
-<col><col><col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">adverts</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sales</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">cooks.distance</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">330</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0572&nbsp;&nbsp;</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">986&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">120</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.011&nbsp;&nbsp;&nbsp;</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.45e+03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">360</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0178&nbsp;&nbsp;</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.19e+03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">270</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.000662</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">575&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">220</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.000548</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">569&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">170</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.000207</td></tr>
-</table>
-
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>Album_Sales_1_new<span class="sc">$</span>sequence<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:Cook distance">
-<col><col><col><col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">adverts</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sales</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">cooks.distance</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sequence</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">10.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">330</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0572&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">986&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">120</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.011&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">2</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.45e+03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">360</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0178&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">3</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.19e+03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">270</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.000662</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">575&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">220</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.000548</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">5</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">569&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">170</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.000207</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">6</td></tr>
-</table>
-
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">tail</span>(Album_Sales_1_new)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:Cook distance">
-<col><col><col><col><tr>
-<th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">adverts</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sales</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">cooks.distance</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">sequence</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">701&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">250</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.00141&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">195</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">911&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">190</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.000804</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">196</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">889&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">240</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.000321</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">197</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">801&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">250</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.00101&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">198</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">1.5e+03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">230</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.00608&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">199</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">786&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">110</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.00649&nbsp;</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">200</td></tr>
-</table>
-
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">ggplot</span>(Album_Sales_1_new, <span class="fu">aes</span>(sequence, cooks.distance))<span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept=</span><span class="dv">4</span><span class="sc">/</span><span class="fu">length</span>(Album_Sales_1_new<span class="sc">$</span>adverts), <span class="at">colour=</span><span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>Album_Sales_1_new<span class="sc">$</span>cooks.distance<span class="ot">&lt;-</span><span class="fu">cooks.distance</span>(model1)</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   adverts sales cooks.distance
+##     &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;
+## 1    10.3   330       0.0572  
+## 2   986.    120       0.0110  
+## 3  1446.    360       0.0178  
+## 4  1188.    270       0.000662
+## 5   575.    220       0.000548
+## 6   569.    170       0.000207</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>Album_Sales_1_new<span class="sc">$</span>sequence<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">head</span>(Album_Sales_1_new)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   adverts sales cooks.distance sequence
+##     &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;int&gt;
+## 1    10.3   330       0.0572          1
+## 2   986.    120       0.0110          2
+## 3  1446.    360       0.0178          3
+## 4  1188.    270       0.000662        4
+## 5   575.    220       0.000548        5
+## 6   569.    170       0.000207        6</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">tail</span>(Album_Sales_1_new)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   adverts sales cooks.distance sequence
+##     &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;    &lt;int&gt;
+## 1    701.   250       0.00141       195
+## 2    911.   190       0.000804      196
+## 3    889.   240       0.000321      197
+## 4    801.   250       0.00101       198
+## 5   1500    230       0.00608       199
+## 6    786.   110       0.00649       200</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">ggplot</span>(Album_Sales_1_new, <span class="fu">aes</span>(sequence, cooks.distance))<span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept=</span><span class="dv">4</span><span class="sc">/</span><span class="fu">length</span>(Album_Sales_1_new<span class="sc">$</span>adverts), <span class="at">colour=</span><span class="st">&quot;red&quot;</span>))</span></code></pre></div>
 <p><img src="T14_Regression_files/figure-html/Cook%20distance-1.png" width="672" /></p>
 <hr />
 </div>
@@ -1256,8 +1206,8 @@ no incluye cero.</p></li>
 <li><p>Normalidad, qqplot</p></li>
 <li><p>Valores sesgados, la prueba de Cook’s</p></li>
 </ol>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>advertizingReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales<span class="sc">~</span>adverts, <span class="at">data =</span> Album_Sales_1_new)</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">summary</span>(advertizingReg)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>advertizingReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(sales<span class="sc">~</span>adverts, <span class="at">data =</span> Album_Sales_1_new)</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">summary</span>(advertizingReg)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = sales ~ adverts, data = Album_Sales_1_new)
@@ -1276,15 +1226,15 @@ no incluye cero.</p></li>
 ## Residual standard error: 65.99 on 198 degrees of freedom
 ## Multiple R-squared:  0.3346, Adjusted R-squared:  0.3313 
 ## F-statistic: 99.59 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>  advertizingReg,<span class="at">show.df =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>  <span class="at">CSS =</span> <span class="fu">list</span>(</span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>    <span class="at">css.depvarhead =</span> <span class="st">&#39;color: red;&#39;</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>    <span class="at">css.centeralign =</span> <span class="st">&#39;text-align: left;&#39;</span>, </span>
-<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>    <span class="at">css.firsttablecol =</span> <span class="st">&#39;font-weight: bold;&#39;</span>, </span>
-<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>    <span class="at">css.summary =</span> <span class="st">&#39;color: blue;&#39;</span></span>
-<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a>  )</span>
-<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">tab_model</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>  advertizingReg,<span class="at">show.df =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>  <span class="at">CSS =</span> <span class="fu">list</span>(</span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>    <span class="at">css.depvarhead =</span> <span class="st">&#39;color: red;&#39;</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>    <span class="at">css.centeralign =</span> <span class="st">&#39;text-align: left;&#39;</span>, </span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>    <span class="at">css.firsttablecol =</span> <span class="st">&#39;font-weight: bold;&#39;</span>, </span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a>    <span class="at">css.summary =</span> <span class="st">&#39;color: blue;&#39;</span></span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a>  )</span>
+<span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a>)</span></code></pre></div>
 <table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; font-weight: bold; ">
@@ -1382,16 +1332,16 @@ variance along the “x” axis.</p>
 allowed for. <strong>FROM Wikipedia</strong></p>
 <p>A residual (or fitting deviation), on the other hand, is an
 observable estimate of the unobservable statistical error.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># &quot;advertizingReg&quot;, nota que este no es un data frame pero un modelo</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="co"># The main figure</span></span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="fu">ggplot</span>(Album_Sales_1_new,<span class="fu">aes</span>(<span class="at">x=</span>adverts, <span class="at">y=</span>sales))<span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se =</span> <span class="cn">TRUE</span>)<span class="sc">+</span></span>
-<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># &quot;advertizingReg&quot;, nota que este no es un data frame pero un modelo</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="co"># The main figure</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="fu">ggplot</span>(Album_Sales_1_new,<span class="fu">aes</span>(<span class="at">x=</span>adverts, <span class="at">y=</span>sales))<span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se =</span> <span class="cn">TRUE</span>)<span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="T14_Regression_files/figure-html/evaluate%20the%20residuals-1.png" width="672" /></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># Graficando los residuales, metodo 1</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">ggplot</span>(model1, <span class="fu">aes</span>(<span class="at">x=</span>.fitted, <span class="at">y=</span>.resid))<span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co"># Graficando los residuales, metodo 1</span></span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">ggplot</span>(model1, <span class="fu">aes</span>(<span class="at">x=</span>.fitted, <span class="at">y=</span>.resid))<span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm)</span></code></pre></div>
 <p><img src="T14_Regression_files/figure-html/evaluate%20the%20residuals-2.png" width="672" /></p>
 </div>
 </div>
@@ -1405,11 +1355,11 @@ estos calculos como lista de datos.</p>
 modelo y la añade el <strong>$</strong> y deberia aparecer la lista de
 los valores calculados. o otra alternativa es usar la función ls() =
 list() para ver el nombre de las variables</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">ls</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">ls</span>(model1)</span></code></pre></div>
 <pre><code>##  [1] &quot;assign&quot;        &quot;call&quot;          &quot;coefficients&quot;  &quot;df.residual&quot;  
 ##  [5] &quot;effects&quot;       &quot;fitted.values&quot; &quot;model&quot;         &quot;qr&quot;           
 ##  [9] &quot;rank&quot;          &quot;residuals&quot;     &quot;terms&quot;         &quot;xlevels&quot;</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># model1$residuals  # Por ejemplo para ver los residuales del modelo</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co"># model1$residuals  # Por ejemplo para ver los residuales del modelo</span></span></code></pre></div>
 <hr />
 </div>
 </div>
@@ -1425,27 +1375,19 @@ altura y el peso de las personas.</p></li>
 <li><p>Evalúa el modelo de regresión entre las dos variables</p></li>
 <li><p>Evalúa los supuestos</p></li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>Alturas_Humanos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Alturas_Humanos.csv&quot;</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a><span class="fu">head</span>(Alturas_Humanos)</span></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-7">
-<col><col><col><tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Genero</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Altura_cm</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Peso_kg</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hombres</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">174</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">96</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Hombres</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">189</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">87</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Mujer</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">185</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">110</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Mujer</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">195</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">104</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">Hombres</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">149</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">61</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Hombres</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">189</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">104</td></tr>
-</table>
-
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>Alturas_Humanos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Data_files_csv/Alturas_Humanos.csv&quot;</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a><span class="fu">head</span>(Alturas_Humanos)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   Genero  Altura_cm Peso_kg
+##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Hombres       174      96
+## 2 Hombres       189      87
+## 3 Mujer         185     110
+## 4 Mujer         195     104
+## 5 Hombres       149      61
+## 6 Hombres       189     104</code></pre>
 <hr />
 </div>
 <div id="ejercicio-2" class="section level1">
