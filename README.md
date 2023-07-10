@@ -3,15 +3,18 @@ Este sitio es una guia para el curso de Biometría, BIOL3740 en la Universidad d
 
 El curso hará enfasis en los supuestos de las pruebas parametrica y no-paramétrica
 
-Pruebas Paramétricas
+El curso es una presentación de Pruebas Paramétricas y sus parametros
 
   * prueba de t
   * prueba de t con datos paredos
   * ANOVA
   * Regresión lineal
   * Regresión logistica
+  * 
     
-Pruebas para evaluar los supuestos
+Pruebas para evaluar los supuestos de 
+- distribución normal
+- igualdad de varianza
 
 
 
