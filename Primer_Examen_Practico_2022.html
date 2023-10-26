@@ -739,7 +739,9 @@ class="section level3">
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">ggplot</span>(Camas_Hospital, <span class="fu">aes</span>(Camas))<span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour=</span><span class="st">&quot;white&quot;</span>, <span class="at">fill=</span><span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`.
+## Pick better value with
+## `binwidth`.</code></pre>
 <p><img src="Primer_Examen_Practico_2022_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <hr />
 </div>
@@ -865,7 +867,9 @@ un error)</p></li>
 <strong>log(NMP)</strong> dividio por Región del Mundo</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">ggplot</span>(PartosInfantes, <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>,<span class="at">y=</span><span class="fu">log</span>(NMP), <span class="at">colour=</span>Grupo))<span class="sc">+</span> </span>
 <span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span></code></pre></div>
-<pre><code>## Warning: Removed 2 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing
+## non-finite values
+## (`stat_boxplot()`).</code></pre>
 <p><img src="Primer_Examen_Practico_2022_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co">#PartosInfantes |&gt; </span></span>
 <span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a> <span class="co"># filter(Grupo==&quot;EF&quot;)</span></span></code></pre></div>
@@ -909,23 +913,23 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
 <span id="cb38-12"><a href="#cb38-12" tabindex="-1"></a>  </span>
 <span id="cb38-13"><a href="#cb38-13" tabindex="-1"></a>)</span>
 <span id="cb38-14"><a href="#cb38-14" tabindex="-1"></a><span class="fu">gt</span>(df)</span></code></pre></div>
-<div id="zytgyuiaaj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zytgyuiaaj table {
+<div id="ipsmyznien" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ipsmyznien table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zytgyuiaaj thead, #zytgyuiaaj tbody, #zytgyuiaaj tfoot, #zytgyuiaaj tr, #zytgyuiaaj td, #zytgyuiaaj th {
+#ipsmyznien thead, #ipsmyznien tbody, #ipsmyznien tfoot, #ipsmyznien tr, #ipsmyznien td, #ipsmyznien th {
   border-style: none;
 }
 
-#zytgyuiaaj p {
+#ipsmyznien p {
   margin: 0;
   padding: 0;
 }
 
-#zytgyuiaaj .gt_table {
+#ipsmyznien .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -951,12 +955,12 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-left-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_caption {
+#ipsmyznien .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zytgyuiaaj .gt_title {
+#ipsmyznien .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -968,7 +972,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-width: 0;
 }
 
-#zytgyuiaaj .gt_subtitle {
+#ipsmyznien .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -980,7 +984,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-top-width: 0;
 }
 
-#zytgyuiaaj .gt_heading {
+#ipsmyznien .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -992,13 +996,13 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_bottom_border {
+#ipsmyznien .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_col_headings {
+#ipsmyznien .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1013,7 +1017,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_col_heading {
+#ipsmyznien .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1033,7 +1037,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   overflow-x: hidden;
 }
 
-#zytgyuiaaj .gt_column_spanner_outer {
+#ipsmyznien .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1045,15 +1049,15 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 4px;
 }
 
-#zytgyuiaaj .gt_column_spanner_outer:first-child {
+#ipsmyznien .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zytgyuiaaj .gt_column_spanner_outer:last-child {
+#ipsmyznien .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zytgyuiaaj .gt_column_spanner {
+#ipsmyznien .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1065,11 +1069,11 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   width: 100%;
 }
 
-#zytgyuiaaj .gt_spanner_row {
+#ipsmyznien .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zytgyuiaaj .gt_group_heading {
+#ipsmyznien .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1095,7 +1099,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   text-align: left;
 }
 
-#zytgyuiaaj .gt_empty_group_heading {
+#ipsmyznien .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1110,15 +1114,15 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   vertical-align: middle;
 }
 
-#zytgyuiaaj .gt_from_md > :first-child {
+#ipsmyznien .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zytgyuiaaj .gt_from_md > :last-child {
+#ipsmyznien .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zytgyuiaaj .gt_row {
+#ipsmyznien .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1137,7 +1141,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   overflow-x: hidden;
 }
 
-#zytgyuiaaj .gt_stub {
+#ipsmyznien .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1150,7 +1154,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#zytgyuiaaj .gt_stub_row_group {
+#ipsmyznien .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1164,15 +1168,15 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   vertical-align: top;
 }
 
-#zytgyuiaaj .gt_row_group_first td {
+#ipsmyznien .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zytgyuiaaj .gt_row_group_first th {
+#ipsmyznien .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zytgyuiaaj .gt_summary_row {
+#ipsmyznien .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1182,16 +1186,16 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#zytgyuiaaj .gt_first_summary_row {
+#ipsmyznien .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_first_summary_row.thick {
+#ipsmyznien .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zytgyuiaaj .gt_last_summary_row {
+#ipsmyznien .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1201,7 +1205,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_grand_summary_row {
+#ipsmyznien .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1211,7 +1215,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#zytgyuiaaj .gt_first_grand_summary_row {
+#ipsmyznien .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1221,7 +1225,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-top-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_last_grand_summary_row_top {
+#ipsmyznien .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1231,11 +1235,11 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_striped {
+#ipsmyznien .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zytgyuiaaj .gt_table_body {
+#ipsmyznien .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1244,7 +1248,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-bottom-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_footnotes {
+#ipsmyznien .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1258,7 +1262,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_footnote {
+#ipsmyznien .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1267,7 +1271,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#zytgyuiaaj .gt_sourcenotes {
+#ipsmyznien .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1281,7 +1285,7 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   border-right-color: #D3D3D3;
 }
 
-#zytgyuiaaj .gt_sourcenote {
+#ipsmyznien .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1289,63 +1293,63 @@ class="uri">https://en.wikipedia.org/wiki/List_of_buildings_with_100_floors_or_m
   padding-right: 5px;
 }
 
-#zytgyuiaaj .gt_left {
+#ipsmyznien .gt_left {
   text-align: left;
 }
 
-#zytgyuiaaj .gt_center {
+#ipsmyznien .gt_center {
   text-align: center;
 }
 
-#zytgyuiaaj .gt_right {
+#ipsmyznien .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zytgyuiaaj .gt_font_normal {
+#ipsmyznien .gt_font_normal {
   font-weight: normal;
 }
 
-#zytgyuiaaj .gt_font_bold {
+#ipsmyznien .gt_font_bold {
   font-weight: bold;
 }
 
-#zytgyuiaaj .gt_font_italic {
+#ipsmyznien .gt_font_italic {
   font-style: italic;
 }
 
-#zytgyuiaaj .gt_super {
+#ipsmyznien .gt_super {
   font-size: 65%;
 }
 
-#zytgyuiaaj .gt_footnote_marks {
+#ipsmyznien .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zytgyuiaaj .gt_asterisk {
+#ipsmyznien .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zytgyuiaaj .gt_indent_1 {
+#ipsmyznien .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zytgyuiaaj .gt_indent_2 {
+#ipsmyznien .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zytgyuiaaj .gt_indent_3 {
+#ipsmyznien .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zytgyuiaaj .gt_indent_4 {
+#ipsmyznien .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zytgyuiaaj .gt_indent_5 {
+#ipsmyznien .gt_indent_5 {
   text-indent: 25px;
 }
 </style>

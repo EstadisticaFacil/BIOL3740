@@ -12,8 +12,12 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
-
+#knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+library(knitr)
+#library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_knit$set(root.dir= normalizePath('..'))
+knitr::opts_chunk$set(error = FALSE)
 ```
 
 ```{r, color, eval=TRUE, echo=FALSE}
@@ -40,7 +44,7 @@ Sys.Date()
 
 
 ```{r, echo=FALSE, fig.show = "hold", out.width = "20%", fig.align = "default"}
-knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
+#knitr::include_graphics(c("Graficos/hex_ggversa.png", "Graficos/hex_error.png"))
 ```
 
 ***
